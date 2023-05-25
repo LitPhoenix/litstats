@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Dashboard</title>
+    <link rel="icon" type="image/png" href="image.png">
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
     <style>
         body {
-            background-color: #2f252f;
+            background-color: #313338;
             font-family: Crimson Pro, serif;
             font-size: 24px;
             color: #EEE;
@@ -13,12 +14,32 @@
             padding: 0;
         }
         .container {
-            width: 400px;
-            margin: 50px auto;
+            margin-left: 250px;
             padding: 20px;
-            background-color: #363036;
-            border-radius: 10px;
-            text-align: center;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #1e1e1e;
+            color: #EEE;
+            padding: 20px;
+            z-index: 2;
+            transform: translateX(-200px);
+            transition: transform 0.3s ease;
+        }
+        .sidebar-open {
+            transform: translateX(0);
+        }
+        .hamburger {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            color: #EEE;
+            z-index: 3;
         }
         h1 {
             font-size: 28px;
@@ -26,28 +47,83 @@
         }
         p {
             margin: 0;
+            font-size: 18px;
         }
-        #kills {
-            font-weight: bold;
-            color: #FF6666;
+        .game-name {
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <div class="hamburger">&#9776;</div>
+    <div class="sidebar">
+        <h2>Games</h2>
+        <ul>
+            <li class="game-name" data-game="Warlords">Warlords</li>
+            <li class="game-name" data-game="Bedwars">Bedwars</li>
+            <li class="game-name" data-game="Skywars">Skywars</li>
+        </ul>
+    </div>
     <div class="container">
-        <h1>Warlords Kills</h1>
-        <p><span id="kills">...</span> kills</p>
+        <h1 id="game-title">LitStats</h1>
+        <p><span id="kills">Click a game on the sidebar to show your </span> kills</p>
     </div>
 
     <script>
-        var kdr = 0; 
-        $.getJSON(
-            "https://api.hypixel.net/player?key=15e6de99-939e-41df-8bbc-1dfd0d308f3a&uuid=ddc92083-ea13-4a11-a5dd-d2a7edcde137",
-            function (data) {
-                kills = data.player.stats.Battleground.kills;
-                document.getElementById('kills').innerText = kills;
-            }
-        );
+        var sidebarToggle = document.querySelector('.hamburger');
+        var sidebar = document.querySelector('.sidebar');
+        var gameNames = document.querySelectorAll('.game-name');
+        var gameTitle = document.getElementById('game-title');
+        var killsElement = document.getElementById('kills');
+        var cachedData = {}; // Object to store the cached API data
+
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('sidebar-open');
+        });
+
+        gameNames.forEach(function(game) {
+            game.addEventListener('click', function() {
+                var selectedGame = game.getAttribute('data-game');
+                gameTitle.innerText = selectedGame + ' Kills';
+
+                var killsValue = getCachedData(selectedGame); // Get the kills value from cached data
+
+                if (killsValue !== null) {
+                    // If the data is already cached, update the UI with the cached value
+                    killsElement.innerText = killsValue;
+                } else {
+                    // If the data is not cached, fetch data from the Hypixel API and cache it
+                    $.getJSON(
+                        "https://api.hypixel.net/player?key=15e6de99-939e-41df-8bbc-1dfd0d308f3a&uuid=ddc92083-ea13-4a11-a5dd-d2a7edcde137",
+                        function(data) {
+                            if (selectedGame === 'Warlords') {
+                                killsValue = data.player.stats.Battleground.kills;
+                            } else if (selectedGame === 'Bedwars') {
+                                killsValue = data.player.stats.Bedwars.kills_bedwars;
+                            } else if (selectedGame === 'Skywars') {
+                                killsValue = data.player.stats.SkyWars.kills;
+                            }
+
+                            // Cache the kills value for future use
+                            cacheData(selectedGame, killsValue);
+
+                            // Update the UI with the retrieved value
+                            killsElement.innerText = killsValue;
+                        }
+                    );
+                }
+            });
+        });
+
+        // Function to cache the data
+        function cacheData(game, value) {
+            cachedData[game] = value;
+        }
+
+        // Function to get the cached data
+        function getCachedData(game) {
+            return cachedData[game] || null;
+        }
     </script>
 </body>
 </html>
