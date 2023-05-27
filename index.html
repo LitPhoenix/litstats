@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LitStats</title>
+    <title>Dashboard</title>
     <link rel="icon" type="image/png" href="image.png">
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
     <style>
         body {
             background-color: #313338;
-            font-family: Crimson Pro, serif;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             font-size: 24px;
             color: #EEE;
             margin: 0;
             padding: 0;
         }
         .container {
-            margin-left: 250px;
+            margin-left: 0;
             padding: 20px;
+            transition: margin-left 0.3s ease;
         }
         .sidebar {
             position: fixed;
@@ -28,7 +29,7 @@
             padding: 20px;
             z-index: 2;
             transform: translateX(-200px);
-            transition: transform 1.3s ease;
+            transition: transform 0.3s ease;
         }
         .sidebar-open {
             transform: translateX(0);
@@ -51,6 +52,13 @@
         }
         .game-name {
             cursor: pointer;
+        }
+        
+        /* Media queries for mobile-friendly layout */
+        @media only screen and (min-width: 768px) {
+            .container {
+                margin-left: 250px;
+            }
         }
     </style>
 </head>
@@ -79,6 +87,7 @@
 
         sidebarToggle.addEventListener('click', function() {
             sidebar.classList.toggle('sidebar-open');
+            document.querySelector('.container').classList.toggle('sidebar-open');
         });
 
         gameNames.forEach(function(game) {
@@ -92,7 +101,7 @@
                     // If the data is already cached, update the UI with the cached value
                     killsElement.innerText = killsValue;
                 } else {
-                    // If the data is not cached, fetch data from the Hypixel API and cache it
+                    // If the data is not cached, fetch it from the API and update the UI
                     $.getJSON(
                         "https://api.hypixel.net/player?key=15e6de99-939e-41df-8bbc-1dfd0d308f3a&uuid=ddc92083-ea13-4a11-a5dd-d2a7edcde137",
                         function(data) {
