@@ -103,7 +103,7 @@
                 } else {
                     // If the data is not cached, fetch it from the API and update the UI
                     $.getJSON(
-                        "https://api.hypixel.net/player?key=15e6de99-939e-41df-8bbc-1dfd0d308f3a&uuid=ddc92083-ea13-4a11-a5dd-d2a7edcde137",
+                        "https://api.hypixel.net/player?key={apiKey}&uuid=ddc92083-ea13-4a11-a5dd-d2a7edcde137",
                         function(data) {
                             if (selectedGame === 'Warlords') {
                                 killsValue = data.player.stats.Battleground.kills;
