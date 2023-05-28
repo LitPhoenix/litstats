@@ -1,0 +1,372 @@
+<!--Credit to MidJourney and most importantly BrookeAFK-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="keywords" content="LitStats, Hypixel, Stats, LitPhoenix">
+    <meta name="description" content="Player stats lookup for Hypixel">
+    <title>LitStats</title>
+    <link rel="icon" type="image/png" href="litstats logo.png">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            }
+        body {
+            background: linear-gradient(to bottom, #313335, #111315);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            color: #EEE;
+            margin: 0;
+            padding: 0;
+        }
+        .minecraft_font {
+        font-family: "minecraft_font", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            margin-left: 100px;
+            padding: 20px;
+            transition: margin-left 0.25s ease;
+        }
+        .container-shifted {
+            margin-left: 300px;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(to bottom, #212325, #000);
+            color: #EEE;
+            padding: 40px;
+            z-index: 2;
+            transform: translateX(-300px);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-open {
+            transform: translateX(0);
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar li.game-name {
+            display: block;
+        }
+        .hamburger {
+            position: fixed;
+            top: 20px;
+            left: 35px;
+            cursor: pointer;
+            color: #EEE;
+            z-index: 3;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-top: 0;
+        }
+
+        p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .game-name {
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .search-bar {
+            position: relative;
+            background-color: #1e1e1e;
+            color: #EEE;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            z-index: 3;
+            transition: left 0.3s ease, opacity 0.3s ease;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url("phoenix final - Copy (darkness).png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+        }
+
+        .logo-search-container {
+            display: flex;
+            align-items: center;
+            z-index: 3;
+        }
+
+        .search-container {
+            margin-left: 100px;
+            margin-top: -30px;
+            z-index: 3;
+        }
+
+        .search-container button {
+            background-color: #1e1e1e;
+            color: #EEE;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 3;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #444;
+        }
+
+        /* ZE MOBIL */
+        @media only screen and (min-width: 768px) {
+            .container {
+                margin-left: 0;
+            }
+
+            .container-shifted {
+                margin-left: 300px;
+            }
+
+            .sidebar {
+                width: 200px;
+                padding: 50px;
+            }
+
+            p {
+                margin-top: 60px;
+            }
+
+            .background-image {
+                width: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hamburger">&#9776;</div>
+    <div class="sidebar">
+        <h2>Games</h2>
+        <ul>
+            <li class="game-name" data-game="Warlords">Warlords</li>
+            <li class="game-name" data-game="Bedwars">Bedwars</li>
+            <li class="game-name" data-game="Skywars">Skywars</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="logo-search-container">
+            <h1 id="game-title" style="margin-left: 50px;">
+                <a href="index.html"><img src="litstats.png" width="150px" alt="LitStats Logo"></a>
+            </h1>
+            
+            <div class="search-container">
+                <input type="text" class="search-bar" id="player-name" placeholder="Username" autofocus>
+                <button id="search-button">Search</button>
+            </div>
+        </div>
+        <h1 id="game-name" style="margin-left: 120px;"></h1>
+        <div class="content">
+            <p>
+                <span id="kills" style="margin-left: 120px;"></span>
+                <span id="game-name"></span>
+            </p>
+        </div>
+        <div class="background-image"></div>
+    </div>
+
+    <script>
+        var sidebarToggle = document.querySelector('.hamburger');
+        var sidebar = document.querySelector('.sidebar');
+        var container = document.querySelector('.container');
+        var gameNames = document.querySelectorAll('.game-name');
+        var gameNameElement = document.getElementById('game-name');
+        var killsElement = document.getElementById('kills');
+        var cachedData = {}; // Store cache data
+        var searchButton = document.getElementById('search-button');
+        var playerNameInput = document.getElementById('player-name');
+        var searchbar = document.querySelector('.search-bar');
+
+        searchbar.addEventListener('click', function () {
+            this.focus();
+        });
+
+        playerNameInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                var playerName = playerNameInput.value;
+                getPlayerStats(playerName);
+            }
+        });
+
+        function getPlayerStats(playerName) {
+            fetch(`https://api.minetools.eu/uuid/${playerName}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Player not found!');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    var playerUUID = data.id;
+
+                    // Call the Hypixel API with the obtained UUID
+                    getPlayerStatsFromUUID(playerUUID);
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        }
+        
+        function makeRequest(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        callback(response);
+                    } else {
+                        alert('Error occurred during the request.');
+                    }
+                }
+            };
+            xhr.open('GET', url, true);
+            xhr.send();
+        }
+
+        function getPlayerStatsFromUUID(playerUUID) {
+            var url = 'https://api.hypixel.net/player?key=f3bb6b73081e43efa198861e5c11ac16&uuid=' + playerUUID;
+
+            makeRequest(url, function(data) {
+                // Process the response data
+                var selectedGame = gameNameElement.innerText;
+                var killsValue;
+                var newPackageRankValue;
+                var trueRank;
+
+                if (data.player.newPackageRank) {
+                    newPackageRankValue = data.player.newPackageRank;
+                } else {
+                    newPackageRankValue = 'No Rank';
+                }
+
+                if (selectedGame === 'Warlords') {
+                    killsValue = data.player.stats.Battleground.kills + " kills";
+                } else if (selectedGame === 'Bedwars') {
+                    killsValue = data.player.stats.Bedwars.kills_bedwars + " kills";
+                } else if (selectedGame === 'Skywars') {
+                    killsValue = data.player.stats.SkyWars.kills + " kills";
+                } else {
+                    killsValue = gameRankElement.innerText = '[' + trueRank + '] ' + data.player.displayname + '';;
+                }
+                
+                if (newPackageRankValue === 'MVP_PLUS' && data.player.monthlyPackageRank === 'SUPERSTAR') {
+                    trueRank = 'MVP++';
+                } else if (newPackageRankValue === 'MVP_PLUS' && data.player.monthlyPackageRank === 'NONE') {
+                    trueRank = 'MVP+';
+                } else if (newPackageRankValue === 'MVP') {
+                    trueRank = 'MVP';
+                } else if (newPackageRankValue === 'VIP_PLUS') {
+                    trueRank = 'VIP+';
+                } else if (newPackageRankValue === 'VIP') {
+                    trueRank = 'VIP';
+                } else {
+                    trueRank = 'No Rank';
+                }
+
+                // Cache kills and newPackageRank values for future use
+                cacheData(selectedGame, killsValue);
+                cacheData('newPackageRank', newPackageRankValue);
+                cacheData('trueRank', trueRank);
+
+                // Update site with the kills and newPackageRank values
+                killsElement.innerText = killsValue;
+                gameRankElement.innerText = '[' + trueRank + '] ' + data.player.displayname + '';
+                var usernameElement = document.getElementById('username');
+                var newPackageRankElement = document.getElementById('newPackageRank');
+                usernameElement.innerText = data.player.displayname;
+                newPackageRankElement.innerText = newPackageRankValue;
+                newPackageRankElement.classList.add('minecraft_font');
+            });
+        }
+        
+        searchButton.addEventListener('click', function () {
+            var playerName = playerNameInput.value;
+            var selectedGame = gameNameElement.innerText;
+            killsElement.innerText = ''; // Reset kills value
+            var usernameElement = document.getElementById('username');
+            var newPackageRankElement = document.getElementById('newPackageRank');
+            usernameElement.innerText = ''; // Clear username
+            newPackageRankElement.innerText = ''; // Clear newPackageRank
+
+            // Clear all cached data
+            cachedData = {};
+
+            // Update the selected game based on the current game name
+            gameNames.forEach(function (game) {
+                if (game.classList.contains('active')) {
+                    selectedGame = game.getAttribute('data-game');
+                }
+            });
+
+            getPlayerStats(playerName, selectedGame);
+        });
+         
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('sidebar-open');
+            container.classList.toggle('container-shifted');
+        });
+
+        gameNames.forEach(function(game) {
+            game.addEventListener('click', function() {
+                var selectedGame = game.getAttribute('data-game');
+                gameNameElement.innerText = selectedGame;
+                killsElement.innerText = '';
+
+                var killsValue = getCachedData(selectedGame); // Get the kills value from cached data
+
+                if (killsValue !== null) {
+                    // If data is already cached, update site with cached value
+                    killsElement.innerText = killsValue;
+                } else {
+                    // If data is not cached, prompt for player name
+                    var playerName = playerNameInput.value;
+                    if (playerName) {
+                        // Call the getPlayerStats function with the entered player name
+                        getPlayerStats(playerName);
+                    }
+                }
+            });
+        });
+
+        // Function to cache data
+        function cacheData(game, value) {
+            cachedData[game] = value;
+        }
+
+        // Function to get cached data
+        function getCachedData(game) {
+            return cachedData[game] || null;
+        }
+    </script>
+</body>
+</html>
