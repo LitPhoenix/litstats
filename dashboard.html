@@ -197,6 +197,7 @@
 
     <script>
         var sidebarToggle = document.querySelector('.hamburger');
+        var jonathanWick = 2e94e12e-9f5d-4aee-a809-dcae699b7b78
         var sidebar = document.querySelector('.sidebar');
         var container = document.querySelector('.container');
         var gameNames = document.querySelectorAll('.game-name');
@@ -254,7 +255,7 @@
         }
 
         function getPlayerStatsFromUUID(playerUUID) {
-            var url = 'https://api.hypixel.net/player?key=2e94e12e-9f5d-4aee-a809-dcae699b7b78&uuid=' + playerUUID;
+            var url = 'https://api.hypixel.net/player?key=' + jonathanWick + '&uuid=' + playerUUID;
 
             makeRequest(url, function(data) {
                 // Process the response data
