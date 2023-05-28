@@ -229,7 +229,7 @@
                 .then(data => {
                     var playerUUID = data.id;
 
-                    // Call the Hypixel API with the obtained UUID
+                    // Phones up Hypixel with said UUID
                     getPlayerStatsFromUUID(playerUUID);
                 })
                 .catch(error => {
