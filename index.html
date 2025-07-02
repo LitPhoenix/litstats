@@ -38,10 +38,67 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
             transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Dynamic Background Animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(52, 152, 219, 0.1) 0%, 
+                rgba(155, 89, 182, 0.1) 25%, 
+                rgba(52, 152, 219, 0.1) 50%, 
+                rgba(46, 204, 113, 0.1) 75%, 
+                rgba(52, 152, 219, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 20%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(120, 219, 226, 0.3) 0%, transparent 20%);
+            animation: floatBubbles 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floatBubbles {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        [data-theme="dark"] body::before {
+            background: linear-gradient(45deg, 
+                rgba(79, 195, 247, 0.15) 0%, 
+                rgba(142, 68, 173, 0.15) 25%, 
+                rgba(79, 195, 247, 0.15) 50%, 
+                rgba(102, 187, 106, 0.15) 75%, 
+                rgba(79, 195, 247, 0.15) 100%);
         }
 
         header {
@@ -52,6 +109,7 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
         }
 
         .header-content {
@@ -97,6 +155,7 @@
             background: var(--card-bg);
             border-radius: 10px;
             border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
         }
 
         .loading {
@@ -122,6 +181,7 @@
             margin-bottom: 3rem;
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
         }
 
         .global-leaderboard h2 {
@@ -165,12 +225,25 @@
             border-color: var(--accent-color);
         }
 
+        .country-main-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .rank-section {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-right: 1.2rem;
+        }
+
         .rank-number {
             font-weight: bold;
-            font-size: 1.3rem;
-            margin-right: 1rem;
+            font-size: 1.5rem;
             color: var(--accent-color);
-            min-width: 50px;
+            min-width: 35px;
+            text-align: center;
         }
 
         .rank-number.first { color: var(--gold); }
@@ -178,15 +251,25 @@
         .rank-number.third { color: var(--bronze); }
 
         .country-flag {
+            font-size: 2.5rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 45px;
+        }
+
+        .country-flag img {
             width: 40px;
-            height: 40px;
-            margin-right: 1rem;
-            border-radius: 50%;
+            height: 30px;
             object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
         }
 
         .country-info {
             flex: 1;
+            margin-left: 1rem;
         }
 
         .country-name {
@@ -204,17 +287,41 @@
             gap: 0.5rem;
         }
 
+        .preview-players {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.3rem;
+        }
+
+        .preview-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            border: 1px solid var(--border-color);
+        }
+
+        .preview-count {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.6;
+            margin-left: 0.3rem;
+        }
+
         .country-ap {
             font-size: 1.3rem;
             font-weight: bold;
             color: var(--success-color);
             text-align: right;
+            margin-right: 1rem;
         }
 
         .expand-icon {
-            margin-left: 1rem;
             font-size: 1.2rem;
             transition: transform 0.3s ease;
+            color: var(--accent-color);
+            margin-left: auto;
+            padding-left: 1rem;
         }
 
         .country-rank.expanded .expand-icon {
@@ -223,9 +330,10 @@
 
         .country-details {
             display: none;
-            margin-top: 1rem;
-            padding-top: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
             border-top: 2px solid var(--border-color);
+            width: 100%;
         }
 
         .country-details.show {
@@ -235,25 +343,28 @@
         .player-item {
             display: flex;
             align-items: center;
-            padding: 0.8rem;
-            margin: 0.5rem 0;
+            padding: 1rem;
+            margin: 0.8rem 0;
             background: var(--card-bg);
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            width: 100%;
         }
 
         .player-item:hover {
             border-color: var(--accent-color);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
         }
 
         .player-rank {
             font-weight: bold;
             color: var(--accent-color);
-            margin-right: 0.8rem;
-            font-size: 1rem;
-            min-width: 30px;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            min-width: 40px;
+            text-align: center;
         }
 
         .player-rank.first { color: var(--gold); }
@@ -261,10 +372,11 @@
         .player-rank.third { color: var(--bronze); }
 
         .player-avatar {
-            width: 32px;
-            height: 32px;
-            margin-right: 0.8rem;
-            border-radius: 4px;
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+            border-radius: 6px;
+            border: 2px solid var(--border-color);
         }
 
         .player-info {
@@ -273,12 +385,12 @@
 
         .player-name {
             font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
         }
 
         .player-ap {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-color);
             opacity: 0.8;
         }
@@ -286,8 +398,9 @@
         .player-gain {
             font-weight: 600;
             color: var(--success-color);
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-align: right;
+            min-width: 80px;
         }
 
         .footer {
@@ -300,18 +413,22 @@
         }
 
         @media (max-width: 768px) {
-            .country-rank {
+            .rank-section {
                 flex-direction: column;
-                text-align: center;
-                gap: 0.5rem;
+                gap: 0.3rem;
+                margin-right: 0.8rem;
             }
             
-            .rank-number {
-                margin: 0;
+            .country-flag {
+                font-size: 2rem;
+            }
+            
+            .country-rank {
+                padding: 1rem;
             }
             
             .player-item {
-                flex-direction: column;
+                flex-wrap: wrap;
                 text-align: center;
                 gap: 0.5rem;
             }
@@ -362,37 +479,39 @@
     </div>
 
     <script>
-        // Country code to flag emoji mapping
+        // Country code to flag mapping with flag-icons CDN
         const countryFlags = {
-            'UK': '🇬🇧',
-            'United Kingdom': '🇬🇧',
-            'Denmark': '🇩🇰',
-            'USA': '🇺🇸',
-            'United States': '🇺🇸',
-            'Canada': '🇨🇦',
-            'Germany': '🇩🇪',
-            'France': '🇫🇷',
-            'Netherlands': '🇳🇱',
-            'Sweden': '🇸🇪',
-            'Norway': '🇳🇴',
-            'Finland': '🇫🇮',
-            'Poland': '🇵🇱',
-            'Russia': '🇷🇺',
-            'Australia': '🇦🇺',
-            'Brazil': '🇧🇷',
-            'Mexico': '🇲🇽',
-            'Spain': '🇪🇸',
-            'Italy': '🇮🇹',
-            'Belgium': '🇧🇪',
-            'Switzerland': '🇨🇭',
-            'Austria': '🇦🇹',
-            'Japan': '🇯🇵',
-            'South Korea': '🇰🇷',
-            'China': '🇨🇳',
-            'India': '🇮🇳',
-            'Uzbekistan': '🇺🇿',
-            'youtubers': '📺',
-            'staff': '👑'
+            'UK': 'gb',
+            'United Kingdom': 'gb',
+            'US': 'us',
+            'USA': 'us',
+            'United States': 'us',
+            'Denmark': 'dk',
+            'Canada': 'ca',
+            'Germany': 'de',
+            'France': 'fr',
+            'Netherlands': 'nl',
+            'Sweden': 'se',
+            'Norway': 'no',
+            'Finland': 'fi',
+            'Poland': 'pl',
+            'Russia': 'ru',
+            'Australia': 'au',
+            'Brazil': 'br',
+            'Mexico': 'mx',
+            'Spain': 'es',
+            'Italy': 'it',
+            'Belgium': 'be',
+            'Switzerland': 'ch',
+            'Austria': 'at',
+            'Japan': 'jp',
+            'South Korea': 'kr',
+            'China': 'cn',
+            'India': 'in',
+            'Uzbekistan': 'uz',
+            'Serbia': 'rs',
+            'youtubers': null,
+            'staff': null
         };
 
         // Theme management
@@ -443,17 +562,25 @@
         }
 
         function getRankDisplay(rank) {
-            switch(rank) {
-                case 1: return '🥇';
-                case 2: return '🥈';
-                case 3: return '🥉';
-                default: return rank + '.';
-            }
+            return rank.toString();
         }
 
         // Get country flag
         function getCountryFlag(country) {
-            return countryFlags[country] || '🏴';
+            const flagCode = countryFlags[country];
+            if (flagCode) {
+                return `<img src="https://flagcdn.com/w40/${flagCode}.png" alt="${country}" loading="lazy">`;
+            }
+            
+            // Special handling for non-country categories
+            if (country === 'youtubers') {
+                return '📺';
+            } else if (country === 'staff') {
+                return '👑';
+            }
+            
+            // Default flag for unknown countries
+            return '🏴';
         }
 
         // Toggle country details
@@ -470,6 +597,7 @@
                     const detailsDiv = document.createElement('div');
                     detailsDiv.className = 'country-details';
                     
+                    // Show all top 5 players
                     const playersHtml = countryData.top_players.slice(0, 5).map((player, index) => {
                         const rank = index + 1;
                         const rankClass = getRankClass(rank);
@@ -537,18 +665,38 @@
                 
                 const countryDiv = document.createElement('div');
                 countryDiv.className = `country-rank rank-${rank}`;
-                countryDiv.innerHTML = `
-                    <div class="rank-number ${rankClass}">${getRankDisplay(rank)}</div>
-                    <div style="font-size: 2rem;">${getCountryFlag(country.country)}</div>
-                    <div class="country-info">
-                        <div class="country-name">${country.country}</div>
-                        <div class="country-top-player">
-                            <img class="player-avatar" src="https://minotar.net/helm/${topPlayer?.uuid || '8667ba71b85a4004af54457a9734eed7'}/100" alt="${topPlayer?.username || 'Unknown'}" style="width: 20px; height: 20px;" onerror="this.src='https://minotar.net/helm/8667ba71b85a4004af54457a9734eed7/100'">
-                            Top: ${topPlayer?.username || 'Unknown'} (${formatNumber(topPlayer?.current_ap || 0)} AP)
-                        </div>
+                
+                // Get remaining players for preview (players 2-4, showing 3 avatars)
+                const previewPlayers = country.top_players.slice(1, 4);
+                const totalPlayers = country.top_players.length;
+                const remainingCount = Math.max(0, totalPlayers - 1);
+                
+                const previewHtml = previewPlayers.length > 0 ? `
+                    <div class="preview-players">
+                        ${previewPlayers.map(player => 
+                            `<img class="preview-avatar" src="https://minotar.net/helm/${player.uuid}/100" alt="${player.username}" onerror="this.src='https://minotar.net/helm/8667ba71b85a4004af54457a9734eed7/100'">`
+                        ).join('')}
+                        ${remainingCount > 0 ? `<span class="preview-count">+${remainingCount} more</span>` : ''}
                     </div>
-                    <div class="country-ap">${formatNumber(topPlayer?.current_ap || 0)} AP</div>
-                    <div class="expand-icon">▼</div>
+                ` : '';
+                
+                countryDiv.innerHTML = `
+                    <div class="country-main-content">
+                        <div class="rank-section">
+                            <div class="rank-number ${rankClass}">${getRankDisplay(rank)}</div>
+                            <div class="country-flag">${getCountryFlag(country.country)}</div>
+                        </div>
+                        <div class="country-info">
+                            <div class="country-name">${country.country}</div>
+                            <div class="country-top-player">
+                                <img class="player-avatar" src="https://minotar.net/helm/${topPlayer?.uuid || '8667ba71b85a4004af54457a9734eed7'}/100" alt="${topPlayer?.username || 'Unknown'}" style="width: 20px; height: 20px;" onerror="this.src='https://minotar.net/helm/8667ba71b85a4004af54457a9734eed7/100'">
+                                ${topPlayer?.username || 'Unknown'} (${formatNumber(topPlayer?.current_ap || 0)} AP)
+                            </div>
+                            ${previewHtml}
+                        </div>
+                        <div class="country-ap">${formatNumber(topPlayer?.current_ap || 0)} AP</div>
+                        <div class="expand-icon">▼</div>
+                    </div>
                 `;
                 
                 // Add click event to toggle details
