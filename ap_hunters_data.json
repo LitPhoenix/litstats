@@ -43,7 +43,7 @@
           "country": "UK",
           "current_ap": 28390,
           "last_month_ap": 28390,
-          "monthly_gain": 0
+          "monthly_gain": -1
         }
       ]
     },
@@ -1387,6 +1387,20 @@
           "country": "The Netherlands",
           "current_ap": 23085,
           "last_month_ap": 23085,
+          "monthly_gain": 0
+        }
+      ]
+    },
+    {
+      "country": "Turkey",
+      "total_monthly_gain": 0,
+      "top_players": [
+        {
+          "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+          "username": "Melongan",
+          "country": "Turkey",
+          "current_ap": 24170,
+          "last_month_ap": 24170,
           "monthly_gain": 0
         }
       ]
