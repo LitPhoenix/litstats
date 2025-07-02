@@ -89,7 +89,7 @@
       "country": "USA",
       "total_monthly_gain": 0,
       "top_players": [
-        {
+                {
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "username": "oJakey",
           "country": "USA",
@@ -119,6 +119,46 @@
           "country": "USA",
           "current_ap": 27820,
           "last_month_ap": 27820,
+          "monthly_gain": 0
+        },
+        {
+          "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
+          "username": "baseballaholic",
+          "country": "USA",
+          "current_ap": 27065,
+          "last_month_ap": 27065,
+          "monthly_gain": 0
+        },
+        {
+          "uuid": "7456ccb5c8e24271a721a394191d0602",
+          "username": "Kyralicious",
+          "country": "USA",
+          "current_ap": 26245,
+          "last_month_ap": 26245,
+          "monthly_gain": 0
+        },
+        {
+          "uuid": "c08043d19f334a3e8189695cf356cd16",
+          "username": "JurassicBox",
+          "country": "USA",
+          "current_ap": 25130,
+          "last_month_ap": 25130,
+          "monthly_gain": 0
+        },
+        {
+          "uuid": "2e1884f69c294bd589e6d7709b100298",
+          "username": "Ethan15243",
+          "country": "USA",
+          "current_ap": 25000,
+          "last_month_ap": 25000,
+          "monthly_gain": 0
+        },
+        {
+          "uuid": "e5525c64899b40e49ab5b019e66e137d",
+          "username": "ImWolf85",
+          "country": "USA",
+          "current_ap": 24845,
+          "last_month_ap": 24845,
           "monthly_gain": 0
         }
       ]
@@ -1347,74 +1387,6 @@
           "country": "The Netherlands",
           "current_ap": 23085,
           "last_month_ap": 23085,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "US",
-      "total_monthly_gain": 0,
-      "top_players": [
-        {
-          "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
-          "username": "baseballaholic",
-          "country": "US",
-          "current_ap": 27065,
-          "last_month_ap": 27065,
-          "monthly_gain": 0
-        },
-        {
-          "uuid": "7456ccb5c8e24271a721a394191d0602",
-          "username": "Kyralicious",
-          "country": "US",
-          "current_ap": 26245,
-          "last_month_ap": 26245,
-          "monthly_gain": 0
-        },
-        {
-          "uuid": "c08043d19f334a3e8189695cf356cd16",
-          "username": "JurassicBox",
-          "country": "US",
-          "current_ap": 25130,
-          "last_month_ap": 25130,
-          "monthly_gain": 0
-        },
-        {
-          "uuid": "2e1884f69c294bd589e6d7709b100298",
-          "username": "Ethan15243",
-          "country": "US",
-          "current_ap": 25000,
-          "last_month_ap": 25000,
-          "monthly_gain": 0
-        },
-        {
-          "uuid": "e5525c64899b40e49ab5b019e66e137d",
-          "username": "ImWolf85",
-          "country": "US",
-          "current_ap": 24845,
-          "last_month_ap": 24845,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Turkey",
-      "total_monthly_gain": 0,
-      "top_players": [
-        {
-          "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
-          "username": "Randajad",
-          "country": "Turkey",
-          "current_ap": 24170,
-          "last_month_ap": 24170,
-          "monthly_gain": 0
-        },
-        {
-          "uuid": "ca5100f630634c89a3a95836eb79a119",
-          "username": "asiat",
-          "country": "Turkey",
-          "current_ap": 17015,
-          "last_month_ap": 17015,
           "monthly_gain": 0
         }
       ]
