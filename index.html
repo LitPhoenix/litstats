@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Hunters by Country - Hypixel Achievement Points Leaderboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #2c3e50;
+            --card-bg: #f8f9fa;
+            --border-color: #e9ecef;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --header-bg: #2c3e50;
+            --header-text: #ffffff;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+            --bronze: #cd7f32;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --card-bg: #2d2d2d;
+            --border-color: #404040;
+            --accent-color: #4fc3f7;
+            --success-color: #66bb6a;
+            --header-bg: #121212;
+            --header-text: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            background: var(--header-bg);
+            color: var(--header-text);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--header-text);
+            color: var(--header-text);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--header-text);
+            color: var(--header-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .update-info {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .error {
+            text-align: center;
+            padding: 2rem;
+            background: #fee;
+            color: #c53030;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .global-leaderboard {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .global-leaderboard h2 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .click-hint {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        .country-rank {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem;
+            margin: 0.8rem 0;
+            background: var(--bg-color);
+            border-radius: 12px;
+            border: 3px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .country-rank:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .country-rank.rank-1 { border-color: var(--gold); }
+        .country-rank.rank-2 { border-color: var(--silver); }
+        .country-rank.rank-3 { border-color: var(--bronze); }
+
+        .country-rank.expanded {
+            border-color: var(--accent-color);
+        }
+
+        .rank-number {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-right: 1rem;
+            color: var(--accent-color);
+            min-width: 50px;
+        }
+
+        .rank-number.first { color: var(--gold); }
+        .rank-number.second { color: var(--silver); }
+        .rank-number.third { color: var(--bronze); }
+
+        .country-flag {
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .country-info {
+            flex: 1;
+        }
+
+        .country-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .country-top-player {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .country-ap {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--success-color);
+            text-align: right;
+        }
+
+        .expand-icon {
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .country-rank.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .country-details {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .country-details.show {
+            display: block;
+        }
+
+        .player-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .player-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .player-rank {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-right: 0.8rem;
+            font-size: 1rem;
+            min-width: 30px;
+        }
+
+        .player-rank.first { color: var(--gold); }
+        .player-rank.second { color: var(--silver); }
+        .player-rank.third { color: var(--bronze); }
+
+        .player-avatar {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.8rem;
+            border-radius: 4px;
+        }
+
+        .player-info {
+            flex: 1;
+        }
+
+        .player-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .player-ap {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .player-gain {
+            font-weight: 600;
+            color: var(--success-color);
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .country-rank {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            
+            .rank-number {
+                margin: 0;
+            }
+            
+            .player-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .country-ap {
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🏆 AP Hunters by Country</h1>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="update-info">
+            <p><strong>Last Updated:</strong> <span id="lastUpdate">Loading...</span></p>
+            <p>Achievement Points data from Hypixel API • Updated monthly</p>
+        </div>
+
+        <div id="loading" class="loading">
+            Loading leaderboard data...
+        </div>
+
+        <div id="error" class="error" style="display: none;">
+            Failed to load data. Please check that ap_hunters_data.json is available.
+        </div>
+
+        <div id="content" style="display: none;">
+            <div class="global-leaderboard">
+                <h2>🌍 Country Leaderboard (Top Player AP)</h2>
+                <div class="click-hint">💡 Click on any country to expand and see top 5 players</div>
+                <div id="globalRankings"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Data sourced from Hypixel API • Tracking Achievement Points of top players worldwide</p>
+    </div>
+
+    <script>
+        // Country code to flag emoji mapping
+        const countryFlags = {
+            'UK': '🇬🇧',
+            'United Kingdom': '🇬🇧',
+            'Denmark': '🇩🇰',
+            'USA': '🇺🇸',
+            'United States': '🇺🇸',
+            'Canada': '🇨🇦',
+            'Germany': '🇩🇪',
+            'France': '🇫🇷',
+            'Netherlands': '🇳🇱',
+            'Sweden': '🇸🇪',
+            'Norway': '🇳🇴',
+            'Finland': '🇫🇮',
+            'Poland': '🇵🇱',
+            'Russia': '🇷🇺',
+            'Australia': '🇦🇺',
+            'Brazil': '🇧🇷',
+            'Mexico': '🇲🇽',
+            'Spain': '🇪🇸',
+            'Italy': '🇮🇹',
+            'Belgium': '🇧🇪',
+            'Switzerland': '🇨🇭',
+            'Austria': '🇦🇹',
+            'Japan': '🇯🇵',
+            'South Korea': '🇰🇷',
+            'China': '🇨🇳',
+            'India': '🇮🇳',
+            'Uzbekistan': '🇺🇿',
+            'youtubers': '📺',
+            'staff': '👑'
+        };
+
+        // Theme management
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                button.textContent = '🌙 Dark Mode';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                button.textContent = '☀️ Light Mode';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-toggle').textContent = '☀️ Light Mode';
+            }
+        }
+
+        // Format numbers with commas
+        function formatNumber(num) {
+            return num.toLocaleString();
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            if (!dateString) return 'Never';
+            const date = new Date(dateString);
+            return date.toLocaleDateString() + ' at ' + date.toLocaleTimeString();
+        }
+
+        // Get rank class and display
+        function getRankClass(rank) {
+            switch(rank) {
+                case 1: return 'first';
+                case 2: return 'second';
+                case 3: return 'third';
+                default: return '';
+            }
+        }
+
+        function getRankDisplay(rank) {
+            switch(rank) {
+                case 1: return '🥇';
+                case 2: return '🥈';
+                case 3: return '🥉';
+                default: return rank + '.';
+            }
+        }
+
+        // Get country flag
+        function getCountryFlag(country) {
+            return countryFlags[country] || '🏴';
+        }
+
+        // Toggle country details
+        function toggleCountryDetails(countryElement, countryData) {
+            const details = countryElement.querySelector('.country-details');
+            const isExpanded = countryElement.classList.contains('expanded');
+            
+            if (isExpanded) {
+                details.classList.remove('show');
+                countryElement.classList.remove('expanded');
+            } else {
+                // Create details if they don't exist
+                if (!details) {
+                    const detailsDiv = document.createElement('div');
+                    detailsDiv.className = 'country-details';
+                    
+                    const playersHtml = countryData.top_players.slice(0, 5).map((player, index) => {
+                        const rank = index + 1;
+                        const rankClass = getRankClass(rank);
+                        const gainText = player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : '0';
+                        
+                        return `
+                            <div class="player-item">
+                                <span class="player-rank ${rankClass}">${getRankDisplay(rank)}</span>
+                                <img class="player-avatar" src="https://minotar.net/helm/${player.uuid}/100" alt="${player.username}" onerror="this.src='https://minotar.net/helm/8667ba71b85a4004af54457a9734eed7/100'">
+                                <div class="player-info">
+                                    <div class="player-name">${player.username}</div>
+                                    <div class="player-ap">${formatNumber(player.current_ap)} AP</div>
+                                </div>
+                                <div class="player-gain">${gainText}</div>
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    detailsDiv.innerHTML = playersHtml;
+                    countryElement.appendChild(detailsDiv);
+                }
+                
+                countryElement.querySelector('.country-details').classList.add('show');
+                countryElement.classList.add('expanded');
+            }
+        }
+
+        // Load and display data
+        async function loadData() {
+            try {
+                const response = await fetch('ap_hunters_data.json');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                
+                const data = await response.json();
+                displayData(data);
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        function displayData(data) {
+            // Update last update time
+            document.getElementById('lastUpdate').textContent = formatDate(data.last_update);
+            
+            // Sort countries by top player's AP (highest first)
+            const sortedCountries = [...data.country_leaderboard].sort((a, b) => {
+                const aTopAP = a.top_players[0]?.current_ap || 0;
+                const bTopAP = b.top_players[0]?.current_ap || 0;
+                return bTopAP - aTopAP;
+            });
+            
+            // Display global rankings
+            const globalRankings = document.getElementById('globalRankings');
+            globalRankings.innerHTML = '';
+            
+            sortedCountries.forEach((country, index) => {
+                const rank = index + 1;
+                const rankClass = getRankClass(rank);
+                const topPlayer = country.top_players[0];
+                
+                const countryDiv = document.createElement('div');
+                countryDiv.className = `country-rank rank-${rank}`;
+                countryDiv.innerHTML = `
+                    <div class="rank-number ${rankClass}">${getRankDisplay(rank)}</div>
+                    <div style="font-size: 2rem;">${getCountryFlag(country.country)}</div>
+                    <div class="country-info">
+                        <div class="country-name">${country.country}</div>
+                        <div class="country-top-player">
+                            <img class="player-avatar" src="https://minotar.net/helm/${topPlayer?.uuid || '8667ba71b85a4004af54457a9734eed7'}/100" alt="${topPlayer?.username || 'Unknown'}" style="width: 20px; height: 20px;" onerror="this.src='https://minotar.net/helm/8667ba71b85a4004af54457a9734eed7/100'">
+                            Top: ${topPlayer?.username || 'Unknown'} (${formatNumber(topPlayer?.current_ap || 0)} AP)
+                        </div>
+                    </div>
+                    <div class="country-ap">${formatNumber(topPlayer?.current_ap || 0)} AP</div>
+                    <div class="expand-icon">▼</div>
+                `;
+                
+                // Add click event to toggle details
+                countryDiv.addEventListener('click', () => toggleCountryDetails(countryDiv, country));
+                
+                globalRankings.appendChild(countryDiv);
+            });
+            
+            // Show content, hide loading
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            loadData();
+        });
+    </script>
+</body>
+</html>
