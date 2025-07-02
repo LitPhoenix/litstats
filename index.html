@@ -191,6 +191,32 @@
             text-align: center;
         }
 
+        .leaderboard-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .sort-button {
+            background: var(--bg-color);
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .sort-button:hover,
+        .sort-button.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
         .click-hint {
             text-align: center;
             margin-bottom: 1rem;
@@ -229,6 +255,13 @@
             display: flex;
             align-items: center;
             width: 100%;
+            transition: opacity 0.3s ease;
+        }
+
+        .country-rank.expanded .country-main-content {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
         }
 
         .rank-section {
@@ -295,18 +328,18 @@
             margin-top: 0.6rem;
         }
 
+        .preview-count {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.6;
+            margin-right: 0.3rem;
+        }
+
         .preview-avatar {
             width: 20px;
             height: 20px;
             border-radius: 3px;
             border: 1px solid var(--border-color);
-        }
-
-        .preview-count {
-            font-size: 0.8rem;
-            color: var(--text-color);
-            opacity: 0.6;
-            margin-left: 0.3rem;
         }
 
         .country-ap {
@@ -331,14 +364,32 @@
 
         .country-details {
             display: none;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid var(--border-color);
             width: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .country-details.show {
             display: block;
+            opacity: 1;
+        }
+
+        .country-details-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .details-flag {
+            margin-right: 1rem;
+        }
+
+        .details-country-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent-color);
         }
 
         .player-item {
@@ -372,7 +423,7 @@
         .player-rank.second { color: var(--silver); }
         .player-rank.third { color: var(--bronze); }
 
-        .player-avatar { # winner
+        .player-avatar {
             width: 40px;
             height: 40px;
             margin-right: 0.5rem;
@@ -404,6 +455,7 @@
             font-size: 1rem;
             text-align: right;
             min-width: 80px;
+            margin-right: 0.5rem;
         }
 
         .footer {
@@ -470,8 +522,12 @@
 
         <div id="content" style="display: none;">
             <div class="global-leaderboard">
-                <h2>🌍 Country Leaderboard (Top Player AP)</h2>
-                <div class="click-hint">💡 Click on any country to expand and see top 5 players</div>
+                <h2>🌍 Country Leaderboard</h2>
+                <div class="leaderboard-controls">
+                    <button class="sort-button active" onclick="sortByAP()">🏆 Highest AP</button>
+                    <button class="sort-button" onclick="sortAlphabetically()">🔤 Alphabetical</button>
+                </div>
+                <div class="click-hint">💡 Click on any country to expand and see top 10 players</div>
                 <div id="globalRankings"></div>
             </div>
         </div>
@@ -517,6 +573,9 @@
             'staff': null
         };
 
+        let currentData = null;
+        let currentSortMode = 'ap'; // 'ap' or 'alphabetical'
+
         // Theme management
         function toggleTheme() {
             const body = document.body;
@@ -539,6 +598,30 @@
             if (savedTheme === 'dark') {
                 document.body.setAttribute('data-theme', 'dark');
                 document.querySelector('.theme-toggle').textContent = '☀️ Light Mode';
+            }
+        }
+
+        // Sort functions
+        function sortByAP() {
+            currentSortMode = 'ap';
+            updateSortButtons();
+            if (currentData) displayData(currentData);
+        }
+
+        function sortAlphabetically() {
+            currentSortMode = 'alphabetical';
+            updateSortButtons();
+            if (currentData) displayData(currentData);
+        }
+
+        function updateSortButtons() {
+            const buttons = document.querySelectorAll('.sort-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (currentSortMode === 'ap') {
+                buttons[0].classList.add('active');
+            } else {
+                buttons[1].classList.add('active');
             }
         }
 
@@ -600,24 +683,31 @@
                     const detailsDiv = document.createElement('div');
                     detailsDiv.className = 'country-details';
                     
-                    // Show all top 5 players
-                    const playersHtml = countryData.top_players.slice(0, 5).map((player, index) => {
-                        const rank = index + 1;
-                        const rankClass = getRankClass(rank);
-                        const gainText = player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : '0';
-                        
-                        return `
-                            <div class="player-item">
-                                <span class="player-rank ${rankClass}">${getRankDisplay(rank)}</span>
-                                <img class="player-avatar" src="https://minotar.net/helm/${player.uuid}/100" alt="${player.username}" onerror="this.src='https://minotar.net/helm/8667ba71b85a4004af54457a9734eed7/100'">
-                                <div class="player-info">
-                                    <div class="player-name">${player.username}</div>
-                                    <div class="player-ap">${formatNumber(player.current_ap)} AP</div>
+                    // Show top 10 players
+                    const playersToShow = Math.min(10, countryData.top_players.length);
+                    const playersHtml = `
+                        <div class="country-details-header">
+                            <div class="details-flag">${getCountryFlag(countryData.country)}</div>
+                            <div class="details-country-name">${countryData.country}</div>
+                        </div>
+                        ${countryData.top_players.slice(0, playersToShow).map((player, index) => {
+                            const rank = index + 1;
+                            const rankClass = getRankClass(rank);
+                            const gainText = player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : '0';
+                            
+                            return `
+                                <div class="player-item">
+                                    <span class="player-rank ${rankClass}">${getRankDisplay(rank)}</span>
+                                    <img class="player-avatar" src="https://minotar.net/helm/${player.uuid}/100" alt="${player.username}" onerror="this.src='https://minotar.net/helm/8667ba71b85a4004af54457a9734eed7/100'">
+                                    <div class="player-info">
+                                        <div class="player-name">${player.username}</div>
+                                        <div class="player-ap">${formatNumber(player.current_ap)} AP</div>
+                                    </div>
+                                    <div class="player-gain">${gainText}</div>
                                 </div>
-                                <div class="player-gain">${gainText}</div>
-                            </div>
-                        `;
-                    }).join('');
+                            `;
+                        }).join('')}
+                    `;
                     
                     detailsDiv.innerHTML = playersHtml;
                     countryElement.appendChild(detailsDiv);
@@ -637,6 +727,7 @@
                 }
                 
                 const data = await response.json();
+                currentData = data;
                 displayData(data);
                 
             } catch (error) {
@@ -650,24 +741,38 @@
             // Update last update time
             document.getElementById('lastUpdate').textContent = formatDate(data.last_update);
             
-            // Sort countries by top player's AP (highest first)
-            const sortedCountries = [...data.country_leaderboard].sort((a, b) => {
-                const aTopAP = a.top_players[0]?.current_ap || 0;
-                const bTopAP = b.top_players[0]?.current_ap || 0;
-                return bTopAP - aTopAP;
-            });
+            // Sort countries based on current mode
+            let sortedCountries;
+            if (currentSortMode === 'alphabetical') {
+                sortedCountries = [...data.country_leaderboard].sort((a, b) => {
+                    return a.country.localeCompare(b.country);
+                });
+            } else {
+                // Sort by highest AP (default)
+                sortedCountries = [...data.country_leaderboard].sort((a, b) => {
+                    const aTopAP = a.top_players[0]?.current_ap || 0;
+                    const bTopAP = b.top_players[0]?.current_ap || 0;
+                    return bTopAP - aTopAP;
+                });
+            }
             
             // Display global rankings
             const globalRankings = document.getElementById('globalRankings');
             globalRankings.innerHTML = '';
             
             sortedCountries.forEach((country, index) => {
-                const rank = index + 1;
-                const rankClass = getRankClass(rank);
+                const rank = currentSortMode === 'alphabetical' ? index + 1 : 
+                    [...data.country_leaderboard].sort((a, b) => {
+                        const aTopAP = a.top_players[0]?.current_ap || 0;
+                        const bTopAP = b.top_players[0]?.current_ap || 0;
+                        return bTopAP - aTopAP;
+                    }).findIndex(c => c.country === country.country) + 1;
+                
+                const rankClass = currentSortMode === 'ap' ? getRankClass(rank) : '';
                 const topPlayer = country.top_players[0];
                 
                 const countryDiv = document.createElement('div');
-                countryDiv.className = `country-rank rank-${rank}`;
+                countryDiv.className = `country-rank ${currentSortMode === 'ap' ? `rank-${rank}` : ''}`;
                 
                 // Get remaining players for preview (players 2-4, showing 3 avatars)
                 const previewPlayers = country.top_players.slice(1, 4);
@@ -676,10 +781,10 @@
                 
                 const previewHtml = previewPlayers.length > 0 ? `
                     <div class="preview-players">
+                        <span class="preview-count">+${remainingCount} more</span>
                         ${previewPlayers.map(player => 
                             `<img class="preview-avatar" src="https://minotar.net/helm/${player.uuid}/100" alt="${player.username}" onerror="this.src='https://minotar.net/helm/8667ba71b85a4004af54457a9734eed7/100'">`
                         ).join('')}
-                        ${remainingCount > 0 ? `<span class="preview-count">+${remainingCount} more</span>` : ''}
                     </div>
                 ` : '';
                 
