@@ -10,7 +10,7 @@
     <meta property="og:type" content="website">
 
     <meta name="theme-color" content="#fe7e5d">
-    <meta property="og:site_name" content="© LitPhoenix">
+    <meta property="og:site_name" content="LitStats">
     <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
     <title>LitStats - AP Hunters by Country</title>
     <style>
@@ -245,6 +245,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
+            overflow: hidden;
         }
 
         .country-rank:hover {
@@ -265,6 +266,8 @@
             align-items: center;
             width: 100%;
             transition: opacity 0.3s ease;
+            min-width: 0; /* Add this - allows flex items to shrink below content size */
+            overflow: hidden;
         }
 
         .country-rank.expanded .country-main-content {
@@ -437,11 +440,13 @@
             height: 40px;
             margin-right: 0.5rem;
             border-radius: 3px;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
         }
 
         .player-info {
             flex: 1;
+            min-width: 0; /* Allow this to shrink */
+            overflow: hidden; /* Hide overflow instead of wrapping */
         }
 
         .player-name {
@@ -449,6 +454,9 @@
             font-size: 1.1rem;
             margin-bottom: 0.3rem;
             margin-left: 0.3rem;
+            white-space: nowrap; /* Prevent wrapping */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Show ... when text is cut off */
         }
 
         .player-ap {
@@ -456,6 +464,9 @@
             color: var(--text-color);
             opacity: 0.8;
             margin-left: 0.3rem;
+            white-space: nowrap; /* Prevent wrapping */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Show ... when text is cut off */
         }
 
         .player-gain {
@@ -463,8 +474,9 @@
             color: var(--success-color);
             font-size: 1rem;
             text-align: right;
-            min-width: 80px;
-            margin-right: 0.5rem;
+            min-width: 30px;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .footer {
@@ -491,11 +503,18 @@
                 padding: 1rem;
             }
             
-            .player-item {
-                flex-wrap: wrap;
-                text-align: center;
-                gap: 0.5rem;
-            }
+.player-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.8rem 0;
+    background: var(--card-bg);
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+    width: 100%;
+    overflow: hidden; /* Prevent any content from spilling out */
+}
 
             .country-ap {
                 text-align: center;
