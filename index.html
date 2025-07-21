@@ -330,13 +330,13 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: nowrap;
         }
 
         .preview-players {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-left: 1rem;
             margin-top: 0.6rem;
         }
 
@@ -352,14 +352,6 @@
             height: 20px;
             border-radius: 3px;
             border: 1px solid var(--border-color);
-        }
-
-        .country-ap {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--success-color);
-            text-align: right;
-            margin-right: 1rem;
         }
 
         .expand-icon {
@@ -516,10 +508,6 @@
     overflow: hidden; /* Prevent any content from spilling out */
 }
 
-            .country-ap {
-                text-align: center;
-            }
-
             h1 {
                 font-size: 1.4rem;
             }
@@ -529,7 +517,10 @@
 <body>
     <header>
         <div class="header-content">
-            <h1>🏆 AP Hunters by Country</h1>
+            <h1>
+  <img src="/favicon.png" alt="Website Logo" style="height: 1em; vertical-align: middle; margin-right: 0.4em;">
+  LitStats // AP Hunters by Country
+</h1>
             <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
         </div>
     </header>
@@ -843,11 +834,10 @@
                             <div class="country-name">${country.country}</div>
                             <div class="country-top-player">
                                 <img class="player-avatar" src="https://minotar.net/helm/${topPlayer?.uuid || '8667ba71b85a4004af54457a9734eed7'}/100" alt="${topPlayer?.username || 'Unknown'}" style="width: 28px; height: 28px;" onerror="this.src='https://minotar.net/helm/8667ba71b85a4004af54457a9734eed7/100'">
-                                ${topPlayer?.username || 'Unknown'} (${formatNumber(topPlayer?.current_ap || 0)} AP)
+                                ${topPlayer?.username || 'Unknown'} - ${formatNumber(topPlayer?.current_ap || 0)} AP
                             </div>
                             ${previewHtml}
                         </div>
-                        <div class="country-ap">${formatNumber(topPlayer?.current_ap || 0)} AP</div>
                         <div class="expand-icon">▼</div>
                     </div>
                 `;
