@@ -833,8 +833,7 @@
         function getCountryFlag(country) {
             const flagCode = countryFlags[country];
             if (flagCode) {
-                return `<img src="https://flagcdn.com/w40/${flagCode}.png" alt="${country}" loading="lazy">`;
-            }
+                return `<img src="https://flagcdn.com/${flagCode}.svg" alt="${country}" loading="lazy">`;
             
             // Special handling for non-country categories
             if (country === 'youtubers') {
@@ -1021,3 +1020,4 @@ function checkSteveSkin(img, username, uuid) {
 </html>
 </body>
 </html>
+
