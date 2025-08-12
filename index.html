@@ -833,7 +833,7 @@
         function getCountryFlag(country) {
             const flagCode = countryFlags[country];
             if (flagCode) {
-                return `<img src="https://flagcdn.com/${flagCode}.svg" alt="${country}" loading="lazy">`;
+                return `<img src="https://flagcdn.com/${flagCode}.svg" alt="${country}" loading="lazy" width="40">`;
             }
             
             // Special handling for non-country categories
@@ -1021,5 +1021,6 @@ function checkSteveSkin(img, username, uuid) {
 </html>
 </body>
 </html>
+
 
 
