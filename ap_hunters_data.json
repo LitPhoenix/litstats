@@ -834,7 +834,7 @@
           "current_ap": 28085,
           "last_month_ap": 28085,
           "monthly_gain": 0
-        },
+        }
       ]
     },
     {
@@ -1190,6 +1190,13 @@
           "current_ap": 21745,
           "last_month_ap": 21745,
           "monthly_gain": 0
+        },
+        {
+          "uuid": "0b5a9b8d2e6041f18e7c4bd136a5e52a",
+          "username": "ycssin",
+          "current_ap": 11645,
+          "last_month_ap": 11645,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1412,4 +1419,5 @@
     }
   ]
 }
+
 
