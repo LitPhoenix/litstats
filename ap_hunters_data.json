@@ -822,17 +822,17 @@
       "total_monthly_gain": 0,
       "top_players": [
         {
-          "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
-          "username": "Chevio",
-          "current_ap": 26730,
-          "last_month_ap": 26730,
-          "monthly_gain": 0
-        },
-        {
           "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
           "username": "Lumenoz",
           "current_ap": 28085,
           "last_month_ap": 28085,
+          "monthly_gain": 0
+        },
+        {
+          "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+          "username": "Chevio",
+          "current_ap": 26730,
+          "last_month_ap": 26730,
           "monthly_gain": 0
         }
       ]
@@ -1419,5 +1419,6 @@
     }
   ]
 }
+
 
 
