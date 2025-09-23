@@ -27,7 +27,7 @@
             --border-color: #e6e5e0;
             --accent-color: #ff776b;
             --success-color: #27ae60;
-            --header-bg: #2c3e50;
+            --header-bg: #1d2832;
             --header-text: #ffffff;
             --gold: #eed112f0;
             --silver: #b9bbc3f0;
@@ -78,22 +78,19 @@
             overflow-x: hidden;
         }
 
-        /* Remove old background animations */
-        body::before, body::after {
-            display: none;
-        }
-
         /* Enhanced card styling */
         .update-info,
         .global-leaderboard,
-        .country-rank {
+        .country-rank,
+        .player-item {
             background: rgba(255, 255, 255, 0.01);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 4px 6px -1px rgba(0, 0, 0, 0.15),
-                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.8s cubic-bezier(0.1, 0, 0, 1);
+            position: relative;
+            z-index: 1;
         }
 
         [data-theme="dark"] .update-info,
@@ -104,83 +101,6 @@
         [data-theme="midnight"] .update-info,
         [data-theme="midnight"] .global-leaderboard {
             background: rgba(12, 12, 12, 0.653);
-        }
-
-        .player-item {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            transition: all 0.8s cubic-bezier(0.1, 0, 0, 1);
-            position: relative;
-            z-index: 1;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(at top left, rgba(104, 182, 255, 0.12), transparent 60%),
-                       radial-gradient(at top right, rgba(255, 94, 247, 0.12), transparent 60%),
-                       radial-gradient(at bottom left, rgba(74, 222, 128, 0.12), transparent 60%),
-                       var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Dynamic Background Animation */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(52, 152, 219, 0.1) 0%, 
-                rgba(155, 89, 182, 0.1) 25%, 
-                rgba(52, 152, 219, 0.1) 50%, 
-                rgba(46, 204, 113, 0.1) 75%, 
-                rgba(52, 152, 219, 0.1) 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: -2;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(117, 108, 202, 0.3) 0%, transparent 20%),
-                radial-gradient(circle at 80% 20%, rgba(253, 86, 156, 0.3) 0%, transparent 20%),
-                radial-gradient(circle at 40% 80%, rgba(104, 175, 223, 0.3) 0%, transparent 20%);
-            animation: floatBubbles 20s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes floatBubbles {
-            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-
-        [data-theme="dark"] body::before {
-            background: linear-gradient(45deg, 
-                rgba(79, 195, 247, 0.15) 0%, 
-                rgba(142, 68, 173, 0.15) 25%, 
-                rgba(79, 195, 247, 0.15) 50%, 
-                rgba(102, 187, 106, 0.15) 75%, 
-                rgba(79, 195, 247, 0.15) 100%);
         }
 
         header {
@@ -277,73 +197,7 @@
             gap: 1rem;
         }
 
-        .settings-popup {
-            position: relative;
-            display: inline-block;
-        }
 
-        .settings-button {
-            background: var(--bg-color);
-            border: 2px solid var(--border-color);
-            color: var(--text-color);
-            padding: 0.5rem 0.8rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .settings-button:hover {
-            background: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
-
-        .settings-dropdown {
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-            min-width: 150px;
-            backdrop-filter: blur(10px);
-            display: none;
-        }
-
-        .settings-dropdown.show {
-            display: block;
-        }
-
-        .settings-option {
-            padding: 0.8rem 1rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .settings-option:last-child {
-            border-bottom: none;
-        }
-
-        .settings-option:hover {
-            background: var(--accent-color);
-            color: white;
-        }
-
-        .settings-option.active {
-            background: var(--accent-color);
-            color: white;
-        }
 
         .view-toggle {
             display: flex;
@@ -396,6 +250,84 @@
             gap: 1rem;
         }
 
+        /* Search Bar Styles */
+        .search-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(255, 119, 107, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-color);
+            opacity: 0.6;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .search-results-info {
+            text-align: center;
+            margin: 1rem 0;
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-color);
+            opacity: 0.6;
+            font-size: 1.1rem;
+        }
+
+        .no-results .search-icon-large {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        /* Hide elements when searching */
+        .searching .click-hint {
+            display: none;
+        }
+
         .players-table {
             width: 100%;
             border-collapse: collapse;
@@ -410,16 +342,170 @@
             font-weight: 600;
             border-bottom: 2px solid var(--border-color);
             font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            user-select: none;
+        }
+
+        .players-table th:hover {
+            background: rgba(255, 107, 107, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .players-table th.sortable::after {
+            content: '↕️';
+            position: absolute;
+            right: 0.5rem;
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .players-table th.sort-asc::after {
+            content: '↑';
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .players-table th.sort-desc::after {
+            content: '↓';
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        /* Dynamic sorting states */
+        .players-table th[data-sort="none"]:after {
+            content: '↕️';
+            opacity: 0.5;
+        }
+
+        .players-table th[data-sort="asc"]:after {
+            content: '↑';
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .players-table th[data-sort="desc"]:after {
+            content: '↓';
+            opacity: 1;
+            color: var(--accent-color);
         }
 
         .players-table td {
             padding: 1rem 0.8rem;
             border-bottom: 1px solid var(--border-color);
             vertical-align: middle;
+            box-sizing: border-box;
         }
 
         .players-table tr:hover {
             background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Top player background with gradient using country flags */
+        .players-table tr.top-1 {
+            background: linear-gradient(90deg,
+                var(--flag-url-1) left center / 120px no-repeat,
+                rgba(255, 215, 0, 0.15) 0%,
+                rgba(255, 215, 0, 0.08) 100%);
+        }
+
+        .players-table tr.top-2 {
+            background: linear-gradient(90deg,
+                var(--flag-url-2) left center / 110px no-repeat,
+                rgba(192, 192, 192, 0.12) 0%,
+                rgba(192, 192, 192, 0.06) 100%);
+        }
+
+        .players-table tr.top-3 {
+            background: linear-gradient(90deg,
+                var(--flag-url-3) left center / 110px no-repeat,
+                rgba(205, 127, 50, 0.12) 0%,
+                rgba(205, 127, 50, 0.06) 100%);
+        }
+
+        /* Top 4-10 smaller gradient flags */
+        .players-table tr.top-4,
+        .players-table tr.top-5,
+        .players-table tr.top-6,
+        .players-table tr.top-7,
+        .players-table tr.top-8,
+        .players-table tr.top-9,
+        .players-table tr.top-10 {
+            background: linear-gradient(90deg,
+                var(--flag-url-4) left center / 100px no-repeat,
+                rgba(255, 255, 255, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%);
+        }
+
+        /* Dark theme adjustments */
+        [data-theme="dark"] .players-table tr.top-1 {
+            background: linear-gradient(90deg,
+                var(--flag-url-1) left center / 120px no-repeat,
+                rgba(255, 215, 0, 0.2) 0%,
+                rgba(255, 215, 0, 0.1) 100%);
+        }
+
+        [data-theme="dark"] .players-table tr.top-2 {
+            background: linear-gradient(90deg,
+                var(--flag-url-2) left center / 110px no-repeat,
+                rgba(192, 192, 192, 0.15) 0%,
+                rgba(192, 192, 192, 0.08) 100%);
+        }
+
+        [data-theme="dark"] .players-table tr.top-3 {
+            background: linear-gradient(90deg,
+                var(--flag-url-3) left center / 110px no-repeat,
+                rgba(205, 127, 50, 0.15) 0%,
+                rgba(205, 127, 50, 0.08) 100%);
+        }
+
+        [data-theme="dark"] .players-table tr.top-4,
+        [data-theme="dark"] .players-table tr.top-5,
+        [data-theme="dark"] .players-table tr.top-6,
+        [data-theme="dark"] .players-table tr.top-7,
+        [data-theme="dark"] .players-table tr.top-8,
+        [data-theme="dark"] .players-table tr.top-9,
+        [data-theme="dark"] .players-table tr.top-10 {
+            background: linear-gradient(90deg,
+                var(--flag-url-4) left center / 100px no-repeat,
+                rgba(255, 255, 255, 0.08) 0%,
+                rgba(255, 255, 255, 0.04) 100%);
+        }
+
+        /* Midnight theme adjustments */
+        [data-theme="midnight"] .players-table tr.top-1 {
+            background: linear-gradient(90deg,
+                var(--flag-url-1) left center / 120px no-repeat,
+                rgba(255, 215, 0, 0.25) 0%,
+                rgba(255, 215, 0, 0.12) 100%);
+        }
+
+        [data-theme="midnight"] .players-table tr.top-2 {
+            background: linear-gradient(90deg,
+                var(--flag-url-2) left center / 110px no-repeat,
+                rgba(192, 192, 192, 0.18) 0%,
+                rgba(192, 192, 192, 0.1) 100%);
+        }
+
+        [data-theme="midnight"] .players-table tr.top-3 {
+            background: linear-gradient(90deg,
+                var(--flag-url-3) left center / 110px no-repeat,
+                rgba(205, 127, 50, 0.18) 0%,
+                rgba(205, 127, 50, 0.1) 100%);
+        }
+
+        [data-theme="midnight"] .players-table tr.top-4,
+        [data-theme="midnight"] .players-table tr.top-5,
+        [data-theme="midnight"] .players-table tr.top-6,
+        [data-theme="midnight"] .players-table tr.top-7,
+        [data-theme="midnight"] .players-table tr.top-8,
+        [data-theme="midnight"] .players-table tr.top-9,
+        [data-theme="midnight"] .players-table tr.top-10 {
+            background: linear-gradient(90deg,
+                var(--flag-url-4) left center / 100px no-repeat,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 100%);
         }
 
         .player-rank-cell {
@@ -438,13 +524,13 @@
             align-items: center;
             gap: 1rem;
             min-width: 200px;
+            padding: 0.95rem 0.8rem;
         }
 
         .player-avatar-large {
             width: 48px;
             height: 48px;
             border-radius: 4px;
-            border: 1px solid var(--border-color);
         }
 
         .player-details {
@@ -493,6 +579,11 @@
 
         .gain-cell.negative {
             color: #e74c3c;
+        }
+
+        .gain-cell.new {
+            color: var(--accent-color);
+            font-weight: 700;
         }
 
         .tier-cell {
@@ -641,6 +732,16 @@
         .rank-number.first { color: var(--gold); }
         .rank-number.second { color: var(--silver); }
         .rank-number.third { color: var(--bronze); }
+
+        .country-score {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-weight: 500;
+            margin-top: 0.2rem;
+            text-align: center;
+            min-width: 60px;
+        }
 
         .country-flag {
             font-size: 2.5rem;
@@ -929,25 +1030,24 @@
                 <button class="view-toggle-button" onclick="switchView('countries')">🌍 Countries</button>
             </div>
 
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries..." oninput="performSearch()">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+            </div>
+            <div id="searchResults" class="search-results-info" style="display: none;"></div>
+
             <!-- Players Leaderboard -->
             <div id="playersView" class="players-leaderboard">
                 <h2>
                     Players Leaderboard
-                    <div class="settings-popup">
-                        <button class="settings-button" onclick="toggleSettings()">
-                            ⚙️ Settings
-                        </button>
-                        <div id="settingsDropdown" class="settings-dropdown">
-                            <div class="settings-option active" onclick="setPlayersSort('ap')">
-                                🏆 Highest AP
-                            </div>
-                            <div class="settings-option" onclick="setPlayersSort('alphabetical')">
-                                🔤 Alphabetical
-                            </div>
-                        </div>
-                    </div>
                 </h2>
-                <div class="click-hint">Click on a player to view details</div>
+                <div class="click-hint">Click column headers to sort • Search above</div>
                 <table class="players-table">
                     <thead>
                         <tr>
@@ -967,19 +1067,6 @@
             <div id="countriesView" class="global-leaderboard" style="display: none;">
                 <h2>
                     Country Leaderboard
-                    <div class="settings-popup">
-                        <button class="settings-button" onclick="toggleSettings()">
-                            ⚙️ Settings
-                        </button>
-                        <div id="settingsDropdown" class="settings-dropdown">
-                            <div class="settings-option active" onclick="setCountriesSort('ap')">
-                                🏆 Highest AP
-                            </div>
-                            <div class="settings-option" onclick="setCountriesSort('alphabetical')">
-                                🔤 Alphabetical
-                            </div>
-                        </div>
-                    </div>
                 </h2>
                 <div class="click-hint">Click on a country to expand it</div>
                 <div id="globalRankings"></div>
@@ -1064,6 +1151,10 @@
         let currentView = 'players'; // 'players' or 'countries'
         let playersSortMode = 'ap';
         let countriesSortMode = 'ap';
+        let tableSortStates = {}; // Track sort state for each column
+        let searchTimeout = null;
+        let filteredPlayers = [];
+        let filteredCountries = [];
 
         // Theme management
         function toggleTheme() {
@@ -1139,74 +1230,19 @@
             }
         }
 
-        // Settings functions
-        function toggleSettings() {
-            const dropdown = document.getElementById('settingsDropdown');
-            dropdown.classList.toggle('show');
-        }
 
-        function setPlayersSort(mode) {
-            playersSortMode = mode;
-            updateSettingsOptions();
-            if (currentData && currentView === 'players') {
-                displayPlayersData(currentData);
-            }
-        }
-
-        function setCountriesSort(mode) {
-            countriesSortMode = mode;
-            updateSettingsOptions();
-            if (currentData && currentView === 'countries') {
-                displayCountriesData(currentData);
-            }
-        }
-
-        function updateSettingsOptions() {
-            const currentMode = currentView === 'players' ? playersSortMode : countriesSortMode;
-            const dropdown = document.getElementById('settingsDropdown');
-            const options = dropdown.querySelectorAll('.settings-option');
-            
-            options.forEach(option => {
-                option.classList.remove('active');
-                if (option.textContent.includes('Highest AP') && currentMode === 'ap') {
-                    option.classList.add('active');
-                } else if (option.textContent.includes('Alphabetical') && currentMode === 'alphabetical') {
-                    option.classList.add('active');
-                }
-            });
-        }
-
-        // Sort functions (legacy - keeping for compatibility)
-        function sortByAP() {
-            if (currentView === 'players') {
-                setPlayersSort('ap');
-            } else {
-                setCountriesSort('ap');
-            }
-        }
-
-        function sortAlphabetically() {
-            if (currentView === 'players') {
-                setPlayersSort('alphabetical');
-            } else {
-                setCountriesSort('alphabetical');
-            }
-        }
-
-        function updateSortButtons() {
-            const buttons = document.querySelectorAll('.sort-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            if (currentSortMode === 'ap') {
-                buttons[0].classList.add('active');
-            } else {
-                buttons[1].classList.add('active');
-            }
-        }
 
         // Format numbers with commas
         function formatNumber(num) {
             return num.toLocaleString();
+        }
+
+        // Format score as XX.Xk
+        function formatScore(num) {
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'k pts';
+            }
+            return num.toString();
         }
 
         // Format date
@@ -1236,23 +1272,23 @@
             if (flagCode) {
                 return `<img src="https://flagcdn.com/${flagCode}.svg" alt="${country}" loading="lazy" height="30" width="40">`;
             }
-            
+
             // Special handling for non-country categories
             if (country === 'youtubers') {
                 return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png" alt="YouTube" style="width: 40px; height: 30px; object-fit: none;">`;
             } else if (country === 'staff') {
                 return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" alt="Staff" style="width: 45px; height: 38px; object-fit: contain;">`;
             }
-            
-            // Default flag for unknown countries
-            return '🏴';
+
+            // Default flag for unknown countries - use question mark flag
+            return `<img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Flag_with_question_mark.svg" alt="Unknown" loading="lazy" height="30" width="40">`;
         }
 
         // Toggle country details
-        function toggleCountryDetails(countryElement, countryData) {
+        function toggleCountryDetails(countryElement, countryData, fullData) {
             const details = countryElement.querySelector('.country-details');
             const isExpanded = countryElement.classList.contains('expanded');
-            
+
             if (isExpanded) {
                 details.classList.remove('show');
                 countryElement.classList.remove('expanded');
@@ -1261,38 +1297,61 @@
                 if (!details) {
                     const detailsDiv = document.createElement('div');
                     detailsDiv.className = 'country-details';
-                    
-                    // Show top 10 players
+
+                    // Show top 10 players with their individual AP positions
                     const playersToShow = Math.min(10, countryData.top_players.length);
+
+                    // Create a map of player UUIDs to their global positions from the full dataset
+                    const globalPositions = {};
+                    if (currentData) {
+                        let allPlayers = [];
+                        currentData.country_leaderboard.forEach(country => {
+                            country.top_players.forEach(player => {
+                                allPlayers.push({
+                                    ...player,
+                                    country: country.country
+                                });
+                            });
+                        });
+
+                        const sortedPlayers = allPlayers.sort((a, b) => b.current_ap - a.current_ap);
+                        sortedPlayers.forEach((player, index) => {
+                            globalPositions[player.uuid] = index + 1;
+                        });
+                    }
+
                     const playersHtml = `
                         <div class="country-details-header">
                             <div class="details-flag">${getCountryFlag(countryData.country)}</div>
                             <div class="details-country-name">${countryData.country}</div>
                         </div>
                         ${countryData.top_players.slice(0, playersToShow).map((player, index) => {
-                            const rank = index + 1;
-                            const rankClass = getRankClass(rank);
-                            const gainText = player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : '0';
+                            const countryRank = index + 1;
+                            const globalRank = globalPositions[player.uuid] || 'N/A';
+                            const rankClass = getRankClass(countryRank);
+                            const gainText = player.monthly_gain === "NEW" ? "NEW" : (player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : formatNumber(player.monthly_gain));
+                            const gainClass = player.monthly_gain === "NEW" ? "new" : (player.monthly_gain < 0 ? 'negative' : '');
+
                             return `
                                 <div class="player-item">
-                                    <span class="player-rank ${rankClass}">${getRankDisplay(rank)}</span>
-                                    <img class="player-avatar" src="https://minotar.net/avatar/${player.username}/100" alt="${player.username}" 
-    onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')" 
+                                    <span class="player-rank ${rankClass}">${getRankDisplay(countryRank)}</span>
+                                    <img class="player-avatar" src="https://minotar.net/avatar/${player.username}/100" alt="${player.username}"
+    onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
     onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">
                                     <div class="player-info">
                                         <div class="player-name">${player.username}</div>
-                                        <div class="player-ap">${formatNumber(player.current_ap)} AP</div>
+                                        <div class="player-ap">Global #${globalRank} • ${formatNumber(player.current_ap)} AP</div>
                                     </div>
-                                    <div class="player-gain">${gainText}</div>
+                                    <div class="player-gain ${gainClass}">${gainText}</div>
                                 </div>
                             `;
                         }).join('')}
                     `;
-                    
+
                     detailsDiv.innerHTML = playersHtml;
                     countryElement.appendChild(detailsDiv);
                 }
-                
+
                 countryElement.querySelector('.country-details').classList.add('show');
                 countryElement.classList.add('expanded');
             }
@@ -1358,20 +1417,34 @@
             tableBody.innerHTML = '';
             
             allPlayers.forEach((player, index) => {
-                const rank = playersSortMode === 'alphabetical' ? index + 1 : 
+                const rank = playersSortMode === 'alphabetical' ? index + 1 :
                     allPlayers.sort((a, b) => b.current_ap - a.current_ap).findIndex(p => p.username === player.username) + 1;
-                
+
                 const rankClass = playersSortMode === 'ap' ? getRankClass(rank) : '';
-                const gainText = player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : '0';
-                const gainClass = player.monthly_gain < 0 ? 'negative' : '';
-                
+                // Add top-10 classes for flag backgrounds when sorting by AP
+                const topClass = playersSortMode === 'ap' ? (rank <= 10 ? `top-${rank}` : '') : '';
+                let gainText, gainClass;
+                if (player.monthly_gain === "NEW") {
+                    gainText = "NEW";
+                    gainClass = "new";
+                } else {
+                    gainText = player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : formatNumber(player.monthly_gain);
+                    gainClass = player.monthly_gain < 0 ? 'negative' : '';
+                }
+
                 const row = document.createElement('tr');
+                row.className = topClass; // Add top-1, top-2, etc. class
+
+                // Get flag URL for the background
+                const flagCode = countryFlags[player.country];
+                const flagUrl = flagCode ? `https://flagcdn.com/${flagCode}.svg` : '';
+
                 row.innerHTML = `
                     <td class="player-rank-cell ${rankClass}">${rank}</td>
                     <td class="player-info-cell">
-                        <img class="player-avatar-large" src="https://minotar.net/avatar/${player.username}/100" 
-                             alt="${player.username}" 
-                             onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')" 
+                        <img class="player-avatar-large" src="https://minotar.net/avatar/${player.username}/100"
+                             alt="${player.username}"
+                             onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
                              onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">
                         <div class="player-details">
                             <div class="player-name-large">${player.username}</div>
@@ -1386,84 +1459,148 @@
                     <td class="ap-cell">${formatNumber(player.current_ap)}</td>
                     <td class="gain-cell ${gainClass}">${gainText}</td>
                 `;
-                
+
+                // Set the flag background image using CSS custom properties
+                if (flagUrl && rank <= 10) {
+                    if (rank === 1) {
+                        row.style.setProperty('--flag-url-1', `url(${flagUrl})`);
+                    } else if (rank === 2) {
+                        row.style.setProperty('--flag-url-2', `url(${flagUrl})`);
+                    } else if (rank === 3) {
+                        row.style.setProperty('--flag-url-3', `url(${flagUrl})`);
+                    } else {
+                        row.style.setProperty('--flag-url-4', `url(${flagUrl})`);
+                    }
+                }
+
                 tableBody.appendChild(row);
             });
         }
 
         function displayCountriesData(data) {
-            // Sort countries based on current mode
-            let sortedCountries;
-            if (countriesSortMode === 'alphabetical') {
-                sortedCountries = [...data.country_leaderboard].sort((a, b) => {
-                    return a.country.localeCompare(b.country);
+            // Collect all players from all countries
+            let allPlayers = [];
+            data.country_leaderboard.forEach(country => {
+                country.top_players.forEach(player => {
+                    allPlayers.push({
+                        ...player,
+                        country: country.country
+                    });
                 });
-            } else {
-                // Sort by highest AP (default)
-                sortedCountries = [...data.country_leaderboard].sort((a, b) => {
-                    const aTopAP = a.top_players[0]?.current_ap || 0;
-                    const bTopAP = b.top_players[0]?.current_ap || 0;
-                    return bTopAP - aTopAP;
+            });
+
+            // Sort all players by AP to get their individual positions
+            const sortedPlayers = allPlayers.sort((a, b) => b.current_ap - a.current_ap);
+
+            // Create a map of player UUIDs to their individual positions
+            const playerPositions = {};
+            sortedPlayers.forEach((player, index) => {
+                playerPositions[player.uuid] = index + 1;
+            });
+
+            // Group players by country
+            const countriesMap = {};
+            allPlayers.forEach(player => {
+                if (!countriesMap[player.country]) {
+                    countriesMap[player.country] = [];
+                }
+                countriesMap[player.country].push(player);
+            });
+
+            // Calculate scores for each country based on top 5 AP combined / 5
+            // Higher score = better ranking (stronger top 5)
+            const countryScores = {};
+            Object.keys(countriesMap).forEach(country => {
+                const players = countriesMap[country];
+
+                // Get top 5 players (or fewer if less exist)
+                const topPlayers = players.slice(0, 5);
+                let totalAP = 0;
+
+                topPlayers.forEach(player => {
+                    totalAP += player.current_ap;
                 });
-            }
-            
+
+                // Country score = total AP of top 5 players divided by 5
+                // Countries with fewer players are penalized by having lower total AP
+                const countryScore = totalAP / 5;
+
+                countryScores[country] = {
+                    score: countryScore,
+                    playerCount: topPlayers.length,
+                    totalAP: totalAP,
+                    players: players
+                };
+            });
+
+            // Convert to array and sort by total AP of top 5 (higher = better)
+            // Always put "Unknown" at the bottom
+            const countriesArray = Object.keys(countriesMap).map(country => ({
+                country: country,
+                top_players: countriesMap[country],
+                score: countryScores[country]?.score || 0
+            }));
+
+            const knownCountries = countriesArray.filter(c => c.country !== 'Unknown');
+            const unknownCountries = countriesArray.filter(c => c.country === 'Unknown');
+
+            const sortedCountries = [...knownCountries.sort((a, b) => b.score - a.score), ...unknownCountries];
+
             // Display global rankings
             const globalRankings = document.getElementById('globalRankings');
             globalRankings.innerHTML = '';
-            
-            sortedCountries.forEach((country, index) => {
-                const rank = countriesSortMode === 'alphabetical' ? index + 1 : 
-                    [...data.country_leaderboard].sort((a, b) => {
-                        const aTopAP = a.top_players[0]?.current_ap || 0;
-                        const bTopAP = b.top_players[0]?.current_ap || 0;
-                        return bTopAP - aTopAP;
-                    }).findIndex(c => c.country === country.country) + 1;
-                
-                const rankClass = countriesSortMode === 'ap' ? getRankClass(rank) : '';
-                const topPlayer = country.top_players[0];
-                
+
+            sortedCountries.forEach((countryData, index) => {
+                const rank = index + 1;
+                const rankClass = getRankClass(rank);
+                const topPlayer = countryData.top_players[0];
+
                 const countryDiv = document.createElement('div');
-                countryDiv.className = `country-rank ${countriesSortMode === 'ap' ? `rank-${rank}` : ''}`;
-                
+                countryDiv.className = `country-rank rank-${rank}`;
+
                 // Get remaining players for preview (players 2-4, showing 3 avatars)
-                const previewPlayers = country.top_players.slice(1, 4);
-                const totalPlayers = country.top_players.length;
+                const previewPlayers = countryData.top_players.slice(1, 4);
+                const totalPlayers = countryData.top_players.length;
                 const remainingCount = Math.max(0, totalPlayers - 1);
                 const previewHtml = previewPlayers.length > 0 ? `
                     <div class="preview-players">
                         <span class="preview-count">+${remainingCount} more</span>
-                        ${previewPlayers.map(player => 
-                            `<img class="preview-avatar" src="https://minotar.net/avatar/${player.username}/100" alt="${player.username}" 
-    onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')" 
+                        ${previewPlayers.map(player =>
+                            `<img class="preview-avatar" src="https://minotar.net/avatar/${player.username}/100" alt="${player.username}"
+    onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
     onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">`
                         ).join('')}
                     </div>
                 ` : '';
-                
+
+                // Get the score for this country
+                const score = countryData.score;
+                const scoreDisplay = countryData.country === 'Unknown' ? '' : formatScore(score);
+
                 countryDiv.innerHTML = `
                     <div class="country-main-content">
                         <div class="rank-section">
                             <div class="rank-number ${rankClass}">${getRankDisplay(rank)}</div>
-                            <div class="country-flag">${getCountryFlag(country.country)}</div>
+                            <div class="country-score">${scoreDisplay}</div>
+                            <div class="country-flag">${getCountryFlag(countryData.country)}</div>
                         </div>
                         <div class="country-info">
-                            <div class="country-name">${country.country}</div>
+                            <div class="country-name">${countryData.country} <span class="country-score-inline">${scoreDisplay}</span></div>
                             <div class="country-top-player">
-                                <img class="player-avatar" src="https://minotar.net/avatar/${topPlayer?.username || 'Unknown'}/100" 
-    alt="${topPlayer?.username || 'Unknown'}" style="width: 32px; height: 32px;" 
-    onload="checkSteveSkin(this, '${topPlayer?.username || 'Unknown'}', '${topPlayer?.uuid || ''}')" 
+                                <img class="player-avatar" src="https://minotar.net/avatar/${topPlayer?.username || 'Unknown'}/100"
+    alt="${topPlayer?.username || 'Unknown'}" style="width: 32px; height: 32px;"
+    onload="checkSteveSkin(this, '${topPlayer?.username || 'Unknown'}', '${topPlayer?.uuid || ''}')"
     onerror="this.onerror=null;this.src='https://vzge.me/face/${topPlayer?.uuid || 'Unknown'}.png'">
                                 ${topPlayer?.username || 'Unknown'} - ${formatNumber(topPlayer?.current_ap || 0)} AP
                             </div>
                             ${previewHtml}
                         </div>
-                        <div class="expand-icon">▼</div>
                     </div>
                 `;
-                
+
                 // Add click event to toggle details
-                countryDiv.addEventListener('click', () => toggleCountryDetails(countryDiv, country));
-                
+                countryDiv.addEventListener('click', () => toggleCountryDetails(countryDiv, countryData, { country_leaderboard: sortedCountries }));
+
                 globalRankings.appendChild(countryDiv);
             });
         }
@@ -1489,13 +1626,460 @@ function checkSteveSkin(img, username, uuid) {
             }
         });
 
+        // Dynamic table sorting functionality
+        function sortTable(columnIndex, columnName) {
+            const table = document.querySelector('.players-table');
+            const headers = table.querySelectorAll('th');
+            const tbody = table.querySelector('tbody');
+
+            // Get current sort state for this column
+            const currentState = tableSortStates[columnName] || 'none';
+            let newState;
+
+            // Cycle through sort states: none -> asc -> desc -> none
+            if (currentState === 'none') {
+                newState = 'asc';
+            } else if (currentState === 'asc') {
+                newState = 'desc';
+            } else {
+                newState = 'none';
+            }
+
+            // Update sort states
+            tableSortStates[columnName] = newState;
+
+            // Update all headers to remove sort classes
+            headers.forEach((header, index) => {
+                header.removeAttribute('data-sort');
+                header.classList.remove('sort-asc', 'sort-desc');
+            });
+
+            // Add sort class to clicked header
+            if (newState !== 'none') {
+                headers[columnIndex].setAttribute('data-sort', newState);
+                headers[columnIndex].classList.add(`sort-${newState}`);
+            }
+
+            // If no sorting (default state), use the current view's sort mode
+            if (newState === 'none') {
+                if (currentView === 'players') {
+                    displayPlayersData(currentData);
+                }
+                return;
+            }
+
+            // Get all rows
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            // Sort rows based on column
+            rows.sort((a, b) => {
+                let aVal, bVal;
+
+                switch(columnName) {
+                    case 'rank':
+                        aVal = parseInt(a.querySelector('.player-rank-cell').textContent);
+                        bVal = parseInt(b.querySelector('.player-rank-cell').textContent);
+                        break;
+                    case 'player':
+                        aVal = a.querySelector('.player-name-large').textContent.toLowerCase();
+                        bVal = b.querySelector('.player-name-large').textContent.toLowerCase();
+                        break;
+                    case 'country':
+                        aVal = a.querySelector('.player-country').textContent.toLowerCase();
+                        bVal = b.querySelector('.player-country').textContent.toLowerCase();
+                        break;
+                    case 'ap':
+                        aVal = parseInt(a.querySelector('.ap-cell').textContent.replace(/,/g, ''));
+                        bVal = parseInt(b.querySelector('.ap-cell').textContent.replace(/,/g, ''));
+                        break;
+                    case 'gain':
+                        const aGainText = a.querySelector('.gain-cell').textContent;
+                        const bGainText = b.querySelector('.gain-cell').textContent;
+                        aVal = aGainText.startsWith('+') ? parseInt(aGainText.substring(1).replace(/,/g, '')) : 0;
+                        bVal = bGainText.startsWith('+') ? parseInt(bGainText.substring(1).replace(/,/g, '')) : 0;
+                        break;
+                    default:
+                        return 0;
+                }
+
+                if (newState === 'asc') {
+                    return aVal > bVal ? 1 : -1;
+                } else {
+                    return aVal < bVal ? 1 : -1;
+                }
+            });
+
+            // Clear tbody and re-add sorted rows
+            tbody.innerHTML = '';
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        // Add table header click handlers
+        function initializeTableSorting() {
+            const table = document.querySelector('.players-table');
+            const headers = table.querySelectorAll('th');
+
+            headers.forEach((header, index) => {
+                header.addEventListener('click', () => {
+                    let columnName;
+                    switch(index) {
+                        case 0: columnName = 'rank'; break;
+                        case 1: columnName = 'player'; break;
+                        case 2: columnName = 'country'; break;
+                        case 3: columnName = 'ap'; break;
+                        case 4: columnName = 'gain'; break;
+                        default: columnName = 'unknown';
+                    }
+                    sortTable(index, columnName);
+                });
+            });
+        }
+
+        // Search functionality
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const searchResultsDiv = document.getElementById('searchResults');
+
+            if (!searchTerm) {
+                // Clear search - show all data
+                document.body.classList.remove('searching');
+                searchResultsDiv.style.display = 'none';
+
+                if (currentData) {
+                    if (currentView === 'players') {
+                        displayPlayersData(currentData);
+                    } else {
+                        displayCountriesData(currentData);
+                    }
+                }
+                return;
+            }
+
+            if (!currentData) return;
+
+            document.body.classList.add('searching');
+
+            // Search players
+            let matchingPlayers = [];
+            currentData.country_leaderboard.forEach(country => {
+                country.top_players.forEach(player => {
+                    if (player.username.toLowerCase().includes(searchTerm)) {
+                        matchingPlayers.push({
+                            ...player,
+                            country: country.country
+                        });
+                    }
+                });
+            });
+
+            // Search countries
+            let matchingCountries = currentData.country_leaderboard.filter(country =>
+                country.country.toLowerCase().includes(searchTerm)
+            );
+
+            // Show search results info
+            const totalResults = matchingPlayers.length + matchingCountries.length;
+            if (totalResults > 0) {
+                searchResultsDiv.innerHTML = `Found ${matchingPlayers.length} player${matchingPlayers.length !== 1 ? 's' : ''} and ${matchingCountries.length} countr${matchingCountries.length !== 1 ? 'ies' : 'y'} matching "${searchTerm}"`;
+                searchResultsDiv.style.display = 'block';
+            } else {
+                searchResultsDiv.innerHTML = `No results found for "${searchTerm}"`;
+                searchResultsDiv.style.display = 'block';
+            }
+
+            // Display filtered results
+            if (currentView === 'players') {
+                displayFilteredPlayers(matchingPlayers);
+            } else {
+                displayFilteredCountries(matchingCountries);
+            }
+        }
+
+        function displayFilteredPlayers(matchingPlayers) {
+            const tableBody = document.getElementById('playersTableBody');
+
+            if (matchingPlayers.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="no-results">
+                            <div class="search-icon-large">🔍</div>
+                            No players found matching your search
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // Sort filtered players
+            let sortedPlayers = [...matchingPlayers];
+            if (playersSortMode === 'alphabetical') {
+                sortedPlayers.sort((a, b) => a.username.localeCompare(b.username));
+            } else {
+                sortedPlayers.sort((a, b) => b.current_ap - a.current_ap);
+            }
+
+            tableBody.innerHTML = '';
+
+            sortedPlayers.forEach((player, index) => {
+                const rank = index + 1;
+                const rankClass = playersSortMode === 'ap' ? getRankClass(rank) : '';
+                let gainText, gainClass;
+                if (player.monthly_gain === "NEW") {
+                    gainText = "NEW";
+                    gainClass = "new";
+                } else {
+                    gainText = player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : formatNumber(player.monthly_gain);
+                    gainClass = player.monthly_gain < 0 ? 'negative' : '';
+                }
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="player-rank-cell ${rankClass}">${rank}</td>
+                    <td class="player-info-cell">
+                        <img class="player-avatar-large" src="https://minotar.net/avatar/${player.username}/100"
+                             alt="${player.username}"
+                             onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
+                             onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">
+                        <div class="player-details">
+                            <div class="player-name-large">${player.username}</div>
+                        </div>
+                    </td>
+                    <td class="tier-cell">
+                        <span class="player-country">
+                            ${getCountryFlag(player.country)}
+                            ${player.country}
+                        </span>
+                    </td>
+                    <td class="ap-cell">${formatNumber(player.current_ap)}</td>
+                    <td class="gain-cell ${gainClass}">${gainText}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        function displayFilteredCountries(matchingCountries) {
+            const globalRankings = document.getElementById('globalRankings');
+
+            if (matchingCountries.length === 0) {
+                globalRankings.innerHTML = `
+                    <div class="no-results">
+                        <div class="search-icon-large">🔍</div>
+                        No countries found matching your search
+                    </div>
+                `;
+                return;
+            }
+
+            // Collect all players from matching countries
+            let allPlayers = [];
+            matchingCountries.forEach(country => {
+                country.top_players.forEach(player => {
+                    allPlayers.push({
+                        ...player,
+                        country: country.country
+                    });
+                });
+            });
+
+            // Sort all players by AP to get their individual positions
+            const sortedPlayers = allPlayers.sort((a, b) => b.current_ap - a.current_ap);
+
+            // Create a map of player UUIDs to their individual positions
+            const playerPositions = {};
+            sortedPlayers.forEach((player, index) => {
+                playerPositions[player.uuid] = index + 1;
+            });
+
+            // Group players by country
+            const countriesMap = {};
+            allPlayers.forEach(player => {
+                if (!countriesMap[player.country]) {
+                    countriesMap[player.country] = [];
+                }
+                countriesMap[player.country].push(player);
+            });
+
+            // Calculate scores for each country based on top 5 AP combined / 5
+            // Higher score = better ranking (stronger top 5)
+            const countryScores = {};
+            Object.keys(countriesMap).forEach(country => {
+                const players = countriesMap[country];
+
+                // Get top 5 players (or fewer if less exist)
+                const topPlayers = players.slice(0, 5);
+                let totalAP = 0;
+
+                topPlayers.forEach(player => {
+                    totalAP += player.current_ap;
+                });
+
+                // Country score = total AP of top 5 players divided by 5
+                // Countries with fewer players are penalized by having lower total AP
+                const countryScore = totalAP / 5;
+
+                countryScores[country] = {
+                    score: countryScore,
+                    playerCount: topPlayers.length,
+                    totalAP: totalAP,
+                    players: players
+                };
+            });
+
+            // Convert to array and sort by total AP of top 5 (higher = better)
+            // Always put "Unknown" at the bottom
+            const countriesArray = Object.keys(countriesMap).map(country => ({
+                country: country,
+                top_players: countriesMap[country],
+                score: countryScores[country]?.score || 0
+            }));
+
+            const knownCountries = countriesArray.filter(c => c.country !== 'Unknown');
+            const unknownCountries = countriesArray.filter(c => c.country === 'Unknown');
+
+            const sortedCountries = [...knownCountries.sort((a, b) => b.score - a.score), ...unknownCountries];
+
+            globalRankings.innerHTML = '';
+
+            sortedCountries.forEach((countryData, index) => {
+                const rank = index + 1;
+                const rankClass = getRankClass(rank);
+                const topPlayer = countryData.top_players[0];
+
+                const countryDiv = document.createElement('div');
+                countryDiv.className = `country-rank rank-${rank}`;
+
+                // Get remaining players for preview
+                const previewPlayers = countryData.top_players.slice(1, 4);
+                const totalPlayers = countryData.top_players.length;
+                const remainingCount = Math.max(0, totalPlayers - 1);
+                const previewHtml = previewPlayers.length > 0 ? `
+                    <div class="preview-players">
+                        <span class="preview-count">+${remainingCount} more</span>
+                        ${previewPlayers.map(player =>
+                            `<img class="preview-avatar" src="https://minotar.net/avatar/${player.username}/100" alt="${player.username}"
+    onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
+    onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">`
+                        ).join('')}
+                    </div>
+                ` : '';
+
+                // Get the score for this country
+                const score = countryData.score;
+                const scoreDisplay = countryData.country === 'Unknown' ? '' : formatScore(score);
+
+                countryDiv.innerHTML = `
+                    <div class="country-main-content">
+                        <div class="rank-section">
+                            <div class="rank-number ${rankClass}">${getRankDisplay(rank)}</div>
+                            <div class="country-score">${scoreDisplay}</div>
+                            <div class="country-flag">${getCountryFlag(countryData.country)}</div>
+                        </div>
+                        <div class="country-info">
+                            <div class="country-name">${countryData.country}</div>
+                            <div class="country-top-player">
+                                <img class="player-avatar" src="https://minotar.net/avatar/${topPlayer?.username || 'Unknown'}/100"
+    alt="${topPlayer?.username || 'Unknown'}" style="width: 32px; height: 32px;"
+    onload="checkSteveSkin(this, '${topPlayer?.username || 'Unknown'}', '${topPlayer?.uuid || ''}')"
+    onerror="this.onerror=null;this.src='https://vzge.me/face/${topPlayer?.uuid || 'Unknown'}.png'">
+                                ${topPlayer?.username || 'Unknown'} - ${formatNumber(topPlayer?.current_ap || 0)} AP
+                            </div>
+                            ${previewHtml}
+                        </div>
+                    </div>
+                `;
+
+                // Add click event to toggle details
+                countryDiv.addEventListener('click', () => toggleCountryDetails(countryDiv, countryData, { country_leaderboard: sortedCountries }));
+
+                globalRankings.appendChild(countryDiv);
+            });
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            // Ctrl/Cmd + K to focus search
+            if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                event.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+
+            // Escape to clear search
+            if (event.key === 'Escape') {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput.value) {
+                    searchInput.value = '';
+                    performSearch();
+                }
+            }
+        });
+
+        // Add export functionality
+        function exportToCSV() {
+            if (!currentData) return;
+
+            let csvContent = 'data:text/csv;charset=utf-8,';
+            csvContent += 'Rank,Player,Country,AP,Monthly Gain\n';
+
+            // Collect all players
+            let allPlayers = [];
+            currentData.country_leaderboard.forEach(country => {
+                country.top_players.forEach(player => {
+                    allPlayers.push({
+                        ...player,
+                        country: country.country
+                    });
+                });
+            });
+
+            // Sort by AP for export
+            allPlayers.sort((a, b) => b.current_ap - a.current_ap);
+
+            allPlayers.forEach((player, index) => {
+                const rank = index + 1;
+                const gainText = player.monthly_gain > 0 ? `+${player.monthly_gain}` : player.monthly_gain;
+                csvContent += `${rank},"${player.username}","${player.country}",${player.current_ap},${gainText}\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'ap_leaderboard.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Add some cool animations
+        function addScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe country ranks for staggered animation
+            document.querySelectorAll('.country-rank').forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(el);
+            });
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             loadTheme();
             loadData();
+            // Initialize table sorting after data is loaded
+            setTimeout(() => {
+                initializeTableSorting();
+                addScrollAnimations();
+            }, 100);
         });
     </script>
-</body>
-</html>
 </body>
 </html>
