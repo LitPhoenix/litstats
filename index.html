@@ -777,6 +777,16 @@
             font-weight: 600;
             font-size: 1.2rem;
             margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .country-score-inline {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            font-weight: 500;
         }
 
         .country-top-player {
@@ -1026,8 +1036,8 @@
         <div id="content" style="display: none;">
             <!-- View Toggle -->
             <div class="view-toggle">
-                <button class="view-toggle-button active" onclick="switchView('players')">👥 Players</button>
-                <button class="view-toggle-button" onclick="switchView('countries')">🌍 Countries</button>
+                <button class="view-toggle-button active" onclick="switchView('players')">Players</button>
+                <button class="view-toggle-button" onclick="switchView('countries')">Countries</button>
             </div>
 
             <!-- Search Bar -->
@@ -1581,11 +1591,11 @@
                     <div class="country-main-content">
                         <div class="rank-section">
                             <div class="rank-number ${rankClass}">${getRankDisplay(rank)}</div>
-                            <div class="country-score">${scoreDisplay}</div>
+                            
                             <div class="country-flag">${getCountryFlag(countryData.country)}</div>
                         </div>
                         <div class="country-info">
-                            <div class="country-name">${countryData.country} <span class="country-score-inline">${scoreDisplay}</span></div>
+                            <div class="country-name">${countryData.country}<div class="country-score-inline">${scoreDisplay}</div></div>
                             <div class="country-top-player">
                                 <img class="player-avatar" src="https://minotar.net/avatar/${topPlayer?.username || 'Unknown'}/100"
     alt="${topPlayer?.username || 'Unknown'}" style="width: 32px; height: 32px;"
@@ -1972,11 +1982,11 @@ function checkSteveSkin(img, username, uuid) {
                     <div class="country-main-content">
                         <div class="rank-section">
                             <div class="rank-number ${rankClass}">${getRankDisplay(rank)}</div>
-                            <div class="country-score">${scoreDisplay}</div>
+                            
                             <div class="country-flag">${getCountryFlag(countryData.country)}</div>
                         </div>
                         <div class="country-info">
-                            <div class="country-name">${countryData.country}</div>
+                            <div class="country-name">${countryData.country}<div class="country-score-inline">${scoreDisplay}</div></div>
                             <div class="country-top-player">
                                 <img class="player-avatar" src="https://minotar.net/avatar/${topPlayer?.username || 'Unknown'}/100"
     alt="${topPlayer?.username || 'Unknown'}" style="width: 32px; height: 32px;"
