@@ -784,6 +784,7 @@
 
         .country-score-inline {
             font-size: 0.9rem;
+            margin-left: 0.5rem;
             color: var(--text-color);
             opacity: 0.8;
             font-weight: 500;
@@ -884,6 +885,31 @@
             z-index: 1;
         }
 
+        /* Gradient background for #1 player in country details */
+        .player-item.first-player {
+            background: linear-gradient(90deg,
+                var(--country-flag-bg) left center / 200px no-repeat,
+                rgba(255, 215, 0, 0.15) 0%,
+                rgba(255, 215, 0, 0.08) 50%,
+                rgba(255, 255, 255, 0.02) 100%);
+        }
+
+        [data-theme="dark"] .player-item.first-player {
+            background: linear-gradient(90deg,
+                var(--country-flag-bg) left center / 200px no-repeat,
+                rgba(255, 215, 0, 0.2) 0%,
+                rgba(255, 215, 0, 0.1) 50%,
+                rgba(255, 255, 255, 0.04) 100%);
+        }
+
+        [data-theme="midnight"] .player-item.first-player {
+            background: linear-gradient(90deg,
+                var(--country-flag-bg) left center / 200px no-repeat,
+                rgba(255, 215, 0, 0.25) 0%,
+                rgba(255, 215, 0, 0.12) 50%,
+                rgba(255, 255, 255, 0.05) 100%);
+        }
+
         .player-item:hover {
             border-color: var(--accent-color);
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -945,6 +971,48 @@
             min-width: 30px;
             flex-shrink: 0;
             white-space: nowrap;
+        }
+
+        .player-gain.negative {
+            color: #e74c3c !important;
+        }
+
+        .position-indicator {
+            font-size: 0.7rem;
+            margin-left: 0.4rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.4rem;
+            height: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .position-indicator:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .position-up {
+            color: #27ae60;
+        }
+
+        .position-down {
+            color: #e74c3c;
+        }
+
+        .position-same {
+            color: #f39c12;
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.2), rgba(243, 156, 18, 0.1));
+            border-color: rgba(243, 156, 18, 0.4);
+            box-shadow: 0 2px 4px rgba(243, 156, 18, 0.2);
+            font-size: 0.6rem;
+        }
+
+        .position-same::before {
+            content: '=';
+            font-size: 0.7rem;
         }
 
         .tr {
@@ -1022,7 +1090,7 @@
     <div class="container">
         <div class="update-info">
             <p><strong>Last Updated:</strong> <span id="lastUpdate">Loading...</span></p>
-            <p>Achievement data via Hypixel API ─ made by LitPhoenix</p>
+            <p>made by litphoenix</p>
         </div>
 
         <div id="loading" class="loading">
@@ -1057,7 +1125,7 @@
                 <h2>
                     Players Leaderboard
                 </h2>
-                <div class="click-hint">Click column headers to sort • Search above</div>
+                <div class="click-hint">Sort table by clicking headers  ↑↓</div>
                 <table class="players-table">
                     <thead>
                         <tr>
@@ -1291,7 +1359,7 @@
             }
 
             // Default flag for unknown countries - use question mark flag
-            return `<img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Flag_with_question_mark.svg" alt="Unknown" loading="lazy" height="30" width="40">`;
+            return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" alt="Unknown" loading="lazy" height="30" width="40">`;
         }
 
         // Toggle country details
@@ -1313,6 +1381,8 @@
 
                     // Create a map of player UUIDs to their global positions from the full dataset
                     const globalPositions = {};
+                    // Calculate previous positions based on last_month_ap
+                    const previousPositions = {};
                     if (currentData) {
                         let allPlayers = [];
                         currentData.country_leaderboard.forEach(country => {
@@ -1328,12 +1398,26 @@
                         sortedPlayers.forEach((player, index) => {
                             globalPositions[player.uuid] = index + 1;
                         });
+
+                        // Calculate previous positions based on last_month_ap
+                        const playersByLastMonthAP = [...allPlayers].sort((a, b) => (b.last_month_ap || 0) - (a.last_month_ap || 0));
+                        playersByLastMonthAP.forEach((player, index) => {
+                            previousPositions[player.uuid] = index + 1;
+                        });
                     }
+
+                    // Get the score for this country
+                    const score = countryData.score;
+                    const scoreDisplay = countryData.country === 'Unknown' ? '' : formatScore(score);
+
+                    // Get flag URL for gradient background
+                    const flagCode = countryFlags[countryData.country];
+                    const flagUrl = flagCode ? `https://flagcdn.com/${flagCode}.svg` : '';
 
                     const playersHtml = `
                         <div class="country-details-header">
                             <div class="details-flag">${getCountryFlag(countryData.country)}</div>
-                            <div class="details-country-name">${countryData.country}</div>
+                            <div class="details-country-name">${countryData.country} <span class="country-score-inline">${scoreDisplay}</span></div>
                         </div>
                         ${countryData.top_players.slice(0, playersToShow).map((player, index) => {
                             const countryRank = index + 1;
@@ -1341,16 +1425,32 @@
                             const rankClass = getRankClass(countryRank);
                             const gainText = player.monthly_gain === "NEW" ? "NEW" : (player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : formatNumber(player.monthly_gain));
                             const gainClass = player.monthly_gain === "NEW" ? "new" : (player.monthly_gain < 0 ? 'negative' : '');
+                            const isFirstPlayer = countryRank === 1;
+                            const firstPlayerClass = isFirstPlayer ? 'first-player' : '';
+
+                            // Calculate position change for this player
+                            const previousPosition = previousPositions[player.uuid] || 0;
+                            const positionChange = previousPosition - globalRank;
+                            let positionIndicator = '';
+                            if (previousPosition > 0 && previousPosition !== globalRank) {
+                                if (positionChange > 0) {
+                                    positionIndicator = `<span class="position-indicator position-up">▲${positionChange}</span>`;
+                                } else if (positionChange < 0) {
+                                    positionIndicator = `<span class="position-indicator position-down">▼${Math.abs(positionChange)}</span>`;
+                                } else {
+                                    positionIndicator = `<span class="position-indicator position-same">=</span>`;
+                                }
+                            }
 
                             return `
-                                <div class="player-item">
+                                <div class="player-item ${firstPlayerClass}" ${isFirstPlayer && flagUrl ? `style="--country-flag-bg: url(${flagUrl})"` : ''}>
                                     <span class="player-rank ${rankClass}">${getRankDisplay(countryRank)}</span>
                                     <img class="player-avatar" src="https://minotar.net/avatar/${player.username}/100" alt="${player.username}"
     onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
     onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">
                                     <div class="player-info">
                                         <div class="player-name">${player.username}</div>
-                                        <div class="player-ap">Global #${globalRank} • ${formatNumber(player.current_ap)} AP</div>
+                                        <div class="player-ap">Global #${globalRank} ${positionIndicator} • ${formatNumber(player.current_ap)} AP</div>
                                     </div>
                                     <div class="player-gain ${gainClass}">${gainText}</div>
                                 </div>
@@ -1413,22 +1513,33 @@
                     });
                 });
             });
-            
+
+            // Calculate previous positions based on last_month_ap
+            const playersWithPreviousPositions = allPlayers.map(player => {
+                // Create a copy of all players sorted by last_month_ap to get previous positions
+                const playersByLastMonthAP = [...allPlayers].sort((a, b) => (b.last_month_ap || 0) - (a.last_month_ap || 0));
+                const previousPosition = playersByLastMonthAP.findIndex(p => p.uuid === player.uuid) + 1;
+                return {
+                    ...player,
+                    previousPosition: previousPosition
+                };
+            });
+
             // Sort players based on current mode
             if (playersSortMode === 'alphabetical') {
-                allPlayers.sort((a, b) => a.username.localeCompare(b.username));
+                playersWithPreviousPositions.sort((a, b) => a.username.localeCompare(b.username));
             } else {
                 // Sort by highest AP (default)
-                allPlayers.sort((a, b) => b.current_ap - a.current_ap);
+                playersWithPreviousPositions.sort((a, b) => b.current_ap - a.current_ap);
             }
-            
+
             // Display players in table
             const tableBody = document.getElementById('playersTableBody');
             tableBody.innerHTML = '';
-            
-            allPlayers.forEach((player, index) => {
+
+            playersWithPreviousPositions.forEach((player, index) => {
                 const rank = playersSortMode === 'alphabetical' ? index + 1 :
-                    allPlayers.sort((a, b) => b.current_ap - a.current_ap).findIndex(p => p.username === player.username) + 1;
+                    playersWithPreviousPositions.sort((a, b) => b.current_ap - a.current_ap).findIndex(p => p.username === player.username) + 1;
 
                 const rankClass = playersSortMode === 'ap' ? getRankClass(rank) : '';
                 // Add top-10 classes for flag backgrounds when sorting by AP
@@ -1442,6 +1553,19 @@
                     gainClass = player.monthly_gain < 0 ? 'negative' : '';
                 }
 
+                // Calculate position change
+                const positionChange = player.previousPosition - rank;
+                let positionIndicator = '';
+                if (player.previousPosition > 0 && player.previousPosition !== rank) {
+                    if (positionChange > 0) {
+                        positionIndicator = `<span class="position-indicator position-up">▲${positionChange}</span>`;
+                    } else if (positionChange < 0) {
+                        positionIndicator = `<span class="position-indicator position-down">▼${Math.abs(positionChange)}</span>`;
+                    } else {
+                        positionIndicator = `<span class="position-indicator position-same">=</span>`;
+                    }
+                }
+
                 const row = document.createElement('tr');
                 row.className = topClass; // Add top-1, top-2, etc. class
 
@@ -1450,7 +1574,7 @@
                 const flagUrl = flagCode ? `https://flagcdn.com/${flagCode}.svg` : '';
 
                 row.innerHTML = `
-                    <td class="player-rank-cell ${rankClass}">${rank}</td>
+                    <td class="player-rank-cell ${rankClass}">${rank} ${positionIndicator}</td>
                     <td class="player-info-cell">
                         <img class="player-avatar-large" src="https://minotar.net/avatar/${player.username}/100"
                              alt="${player.username}"
