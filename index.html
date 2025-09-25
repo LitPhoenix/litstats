@@ -528,8 +528,8 @@
         }
 
         .player-avatar-large {
-            width: 48px;
-            height: 48px;
+            width: 36px;
+            height: 36px;
             border-radius: 4px;
         }
 
@@ -1088,10 +1088,6 @@
     </header>
 
     <div class="container">
-        <div class="update-info">
-            <p><strong>Last Updated:</strong> <span id="lastUpdate">Loading...</span></p>
-            <p>made by litphoenix</p>
-        </div>
 
         <div id="loading" class="loading">
             Loading leaderboard data...
@@ -1100,13 +1096,6 @@
         <div id="error" class="error" style="display: none;">
             Failed to load data. Please check that ap_hunters_data.json is available.
         </div>
-
-        <div id="content" style="display: none;">
-            <!-- View Toggle -->
-            <div class="view-toggle">
-                <button class="view-toggle-button active" onclick="switchView('players')">Players</button>
-                <button class="view-toggle-button" onclick="switchView('countries')">Countries</button>
-            </div>
 
             <!-- Search Bar -->
             <div class="search-container">
@@ -1119,6 +1108,13 @@
                 </div>
             </div>
             <div id="searchResults" class="search-results-info" style="display: none;"></div>
+        
+        <div id="content" style="display: none;">
+            <!-- View Toggle -->
+            <div class="view-toggle">
+                <button class="view-toggle-button active" onclick="switchView('players')">Players</button>
+                <button class="view-toggle-button" onclick="switchView('countries')">Countries</button>
+            </div>
 
             <!-- Players Leaderboard -->
             <div id="playersView" class="players-leaderboard">
@@ -1149,6 +1145,11 @@
                 <div class="click-hint">Click on a country to expand it</div>
                 <div id="globalRankings"></div>
             </div>
+        </div>
+
+        <div class="update-info">
+            <p><strong>Last Updated:</strong> <span id="lastUpdate">Loading...</span></p>
+            <p>made by litphoenix</p>
         </div>
     </div>
 
