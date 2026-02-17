@@ -1,0 +1,38 @@
+name: Daily Leaderboard Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # every midnight UTC
+  workflow_dispatch:
+
+jobs:
+  update-experimental:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout experimental branch
+        uses: actions/checkout@v4
+        with:
+          ref: experimental
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install node-fetch
+
+      - name: Run Update Script
+        run: node scripts/update_leaderboard.js
+
+      - name: Commit & Push JSON to experimental
+        run: |
+          git config --global user.name "LeaderboardBot"
+          git config --global user.email "bot@noreply.github.com"
+          git add ap_hunters_data.json
+          git commit -m "Daily Leaderboard Update" || exit 0
+          git push origin experimental
