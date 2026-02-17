@@ -2,21 +2,23 @@ name: Daily Leaderboard Update
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run at midnight every day
-  workflow_dispatch:      # Allows you to click "Run Now" button manually
+    - cron: '0 0 * * *' # every midnight UTC
+  workflow_dispatch:
 
 jobs:
-  build:
+  update-experimental:
     runs-on: ubuntu-latest
-    
+
     permissions:
-      contents: write # IMPORTANT: Allows the robot to save the JSON file
+      contents: write
 
     steps:
-      - name: Checkout Code
+      - name: Checkout experimental branch
         uses: actions/checkout@v4
+        with:
+          ref: experimental
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -27,10 +29,10 @@ jobs:
       - name: Run Update Script
         run: node scripts/update_leaderboard.js
 
-      - name: Save Changes
+      - name: Commit & Push JSON to experimental
         run: |
           git config --global user.name "LeaderboardBot"
           git config --global user.email "bot@noreply.github.com"
           git add ap_hunters_data.json
           git commit -m "Daily Leaderboard Update" || exit 0
-          git push
+          git push origin experimental
