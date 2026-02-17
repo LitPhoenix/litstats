@@ -9,82 +9,102 @@ async function update() {
     console.log("🚀 Starting Daily Update...");
 
     // 2. LOAD EXISTING DATA
-    // We need this to remember your manual country tags and the monthly snapshot
+    // We need to load this to get your manual country mappings and history
     let db;
     try {
         db = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
     } catch (e) {
-        db = { 
-            manual_country_mapping: {}, 
-            month_start_snapshot: {}, 
-            country_leaderboard: [] 
-        };
+        console.error("❌ Could not load existing data. Starting fresh.");
+        db = { manual_country_mapping: {}, month_start_snapshot: {}, country_leaderboard: [] };
     }
 
-    // 3. FETCH NADESHIKO
-    console.log("Fetching Nadeshiko...");
+    // 3. FETCH FLAT DATA (From Nadeshiko)
+    console.log("🌐 Fetching Nadeshiko...");
     const response = await fetch(NADESHIKO_URL);
     const json = await response.json();
     const freshPlayers = json.data; 
 
-    // 4. CHECK FOR NEW MONTH
+    // 4. MONTHLY SNAPSHOT LOGIC
+    // We check if we need to reset the "Start of Month" scores
     const today = new Date();
     const lastUpdate = new Date(db.last_update || 0);
-    const isNewMonth = today.getMonth() !== lastUpdate.getMonth();
-
-    if (isNewMonth) {
-        console.log("New month! Resetting snapshots.");
-        db.month_start_snapshot = {};
+    
+    // Simple check: Is the month different from the last update?
+    if (today.getMonth() !== lastUpdate.getMonth()) {
+        console.log("📅 New month detected! Resetting start-of-month snapshot.");
+        db.month_start_snapshot = {}; // Clear old history
+        
+        // Snapshot everyone's CURRENT score as their START score
         freshPlayers.forEach(p => {
             db.month_start_snapshot[p.uuid] = parseFloat(p.value);
         });
     }
 
-    // 5. PROCESS PLAYERS & CALCULATE GAINS
+    // 5. TRANSFORM PLAYERS
+    // Map Nadeshiko format -> LitStats format
     const processedPlayers = freshPlayers.map(p => {
         const currentAP = parseFloat(p.value);
         
-        // Determine Start AP (for gain calculation)
+        // 5a. Calculate Gain
+        // If player isn't in snapshot, add them now.
         if (!db.month_start_snapshot[p.uuid]) {
-            db.month_start_snapshot[p.uuid] = currentAP; // Track new players
+            db.month_start_snapshot[p.uuid] = currentAP;
         }
         const startAP = db.month_start_snapshot[p.uuid];
         const gain = currentAP - startAP;
 
+        // 5b. Clean Username (Remove [MVP+] ranks)
+        // Nadeshiko gives "§b[MVP§c+§b] Name". We need just "Name".
+        const cleanName = p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim();
+
+        // 5c. Resolve Country
+        const countryCode = db.manual_country_mapping[p.uuid] || "Unknown";
+
         return {
-            username: p.tagged_name.replace(/§./g, '').trim(), // Your HTML uses 'username'
+            username: cleanName,     // Index.html expects 'username'
             uuid: p.uuid,
-            current_ap: currentAP, // Your HTML uses 'current_ap'
-            last_month_ap: startAP, // Your HTML uses this for rank change calculation
-            monthly_gain: gain,
-            // Check manual map, default to Unknown
-            country: db.manual_country_mapping[p.uuid] || "Unknown" 
+            country: countryCode,    // Index.html expects 'country'
+            current_ap: currentAP,   // Index.html expects 'current_ap'
+            last_month_ap: startAP,  // Index.html uses this for positioning
+            monthly_gain: gain       // Index.html expects 'monthly_gain'
         };
     });
 
-    // 6. GROUP BY COUNTRY (This is the format your HTML expects)
+    // 6. GROUP BY COUNTRY & CALCULATE SCORES
     const countryMap = {};
 
     processedPlayers.forEach(player => {
-        const countryName = player.country;
-        if (!countryMap[countryName]) {
-            countryMap[countryName] = {
-                country: countryName,
-                top_players: []
-            };
+        const c = player.country;
+        if (!countryMap[c]) {
+            countryMap[c] = { country: c, top_players: [] };
         }
-        countryMap[countryName].top_players.push(player);
+        countryMap[c].top_players.push(player);
     });
 
-    // Convert map to array
-    const countryLeaderboardArray = Object.values(countryMap);
+    // Convert Map to Array and Calculate Country Scores
+    const countryLeaderboardArray = Object.values(countryMap).map(countryObj => {
+        // Sort players by AP descending
+        countryObj.top_players.sort((a, b) => b.current_ap - a.current_ap);
 
-    // 7. SAVE UPDATE
+        // Calculate Score: Average AP of top 5 players
+        const top5 = countryObj.top_players.slice(0, 5);
+        const totalAP = top5.reduce((sum, p) => sum + p.current_ap, 0);
+        const avgScore = top5.length > 0 ? (totalAP / 5) : 0;
+
+        return {
+            country: countryObj.country,
+            score: avgScore, // Index.html uses this to sort countries
+            top_players: countryObj.top_players
+        };
+    });
+
+    // 7. SAVE EVERYTHING
+    // We update the 'country_leaderboard' for the frontend, but keep mappings/snapshots safe
     db.last_update = today.toISOString();
     db.country_leaderboard = countryLeaderboardArray;
 
     fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2));
-    console.log(`✅ Saved ${processedPlayers.length} players across ${countryLeaderboardArray.length} countries.`);
+    console.log(`✅ Success! Processed ${processedPlayers.length} players into ${countryLeaderboardArray.length} countries.`);
 }
 
 update();
