@@ -1,37 +1,33 @@
-name: Update AP Leaderboard
+name: Daily Leaderboard Update
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Midnight UTC
-  workflow_dispatch:
+    - cron: '0 0 * * *' # Run at midnight every day
+  workflow_dispatch:      # Allows you to click "Run Now" button manually
 
 jobs:
-  update-data:
+  build:
     runs-on: ubuntu-latest
-    permissions:        # <--- ADD THIS BLOCK
-      contents: write   # <--- Gives permission to git push
+    
+    permissions:
+      contents: write # IMPORTANT: Allows the robot to save the JSON file
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install node-fetch
-
-      - name: Fetch and update leaderboard
-        env: 
-          HYPIXEL_KEY: ${{ secrets.HYPIXEL_KEY }} # <--- Connects to your secret key
+      - name: Run Update Script
         run: node scripts/update_leaderboard.js
 
-      - name: Commit changes
+      - name: Save Changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global user.name "LeaderboardBot"
+          git config --global user.email "bot@noreply.github.com"
           git add ap_hunters_data.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "📊 Auto-update leaderboard $(date -u +%Y-%m-%d)"
+          git commit -m "Daily Leaderboard Update" || exit 0
           git push
