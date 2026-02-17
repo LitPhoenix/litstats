@@ -1,25 +1,9 @@
 {
-  "last_update": "2025-01-15T12:00:00Z",
-  "month_start": "2025-01-01T00:00:00Z",
-  "global_top_100": [
-    {
-      "rank": 1,
-      "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
-      "name": "oJakey",
-      "current_ap": 32475,
-      "month_start_ap": 32325,
-      "country": "US"
-    }
-  ],
-  "country_watchlist": {
-    "US": ["uuid1", "uuid2"],
-    "UK": ["uuid3", "uuid4"],
-    "DE": ["uuid5", "uuid6"]
+  "last_update": "2026-02-18T00:00:00Z",
+  "month_start_snapshot": {},
+  "manual_country_mapping": {
+    "41825ee5f46b406b9bb74aea7eb2742b": "US",
+    "3de9779b0ed34ca196575639b57e2c3b": "FR"
   },
-  "historical_snapshots": {
-    "2025-01": {
-      "snapshot_date": "2025-01-01T00:00:00Z",
-      "players": {}
-    }
-  }
+  "country_leaderboard": []
 }
