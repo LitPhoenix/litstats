@@ -24,7 +24,7 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies
-        run: npm install node-fetch
+        run: npm install
 
       - name: Run Update Script
         run: node scripts/update_leaderboard.js
