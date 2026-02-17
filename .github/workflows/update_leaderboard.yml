@@ -1,0 +1,37 @@
+name: Update AP Leaderboard
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Midnight UTC
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:        # <--- ADD THIS BLOCK
+      contents: write   # <--- Gives permission to git push
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install node-fetch
+
+      - name: Fetch and update leaderboard
+        env: 
+          HYPIXEL_KEY: ${{ secrets.HYPIXEL_KEY }} # <--- Connects to your secret key
+        run: node scripts/update_leaderboard.js
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ap_hunters_data.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "📊 Auto-update leaderboard $(date -u +%Y-%m-%d)"
+          git push
