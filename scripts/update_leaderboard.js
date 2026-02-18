@@ -21,9 +21,20 @@ async function update() {
 
     // 3. FETCH FLAT DATA (From Nadeshiko)
     console.log("🌐 Fetching Nadeshiko...");
-    const response = await fetch(NADESHIKO_URL);
+    
+    const response = await fetch(NADESHIKO_URL, {
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Nadeshiko returned status: ${response.status}`);
+    }
+
     const json = await response.json();
     const freshPlayers = json.data; 
+
 
     // 4. MONTHLY SNAPSHOT LOGIC
     // We check if we need to reset the "Start of Month" scores
