@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const response = await fetch(NADESHIKO_URL);
+const fetch = require('node-fetch');
 
 // 1. CONFIGURATION
 const NADESHIKO_URL = 'https://www.nadeshiko.io/api/leaderboard/NETWORK_ACHIEVEMENT_POINTS?page=1';
