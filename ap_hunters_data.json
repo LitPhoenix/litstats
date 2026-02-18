@@ -151,6 +151,7 @@
     "4b431497b4094a1d8e15335e81454c4a": "Moldova",
     "d33a4d925db84c30a28e528239471102": "New Zealand",
     "4885c9a84e714b21be94fd7d5e3c0171": "Norway",
+    "ad988df25a274cf592b66c9562834230": "Norway",
     "1f15c58cdf3c419bba39b89e256d8a86": "Norway",
     "4b5257d509bc460f8a82a79510f17fc9": "Poland",
     "0c1f10f9134e496399b6502270055a10": "Portugal",
@@ -188,7 +189,6 @@
     "baebdae38c064f40a3dda17bda5ecbf5": "USA",
     "f13bced3fe9044a6831e0496c0cab1e9": "USA",
     "99fcc41648bc45718c6cebfaf501da97": "USA",
-    "ad988df25a274cf592b66c9562834230": "USA",
     "8eb18a9227fb4b36947177babab261cd": "USA",
     "7289394c9ad843b48213c3e338e1490f": "USA",
     "f326f15b6fab42ad83fe3f0f0ba9994b": "USA",
@@ -368,14 +368,6 @@
           "monthly_gain": 0
         },
         {
-          "username": "Stuffy",
-          "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
-          "country": "USA",
-          "current_ap": 26075,
-          "last_month_ap": 26075,
-          "monthly_gain": 0
-        },
-        {
           "username": "Coduhy",
           "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
           "country": "USA",
@@ -421,14 +413,6 @@
           "country": "USA",
           "current_ap": 25270,
           "last_month_ap": 25270,
-          "monthly_gain": 0
-        },
-        {
-          "username": "sForce",
-          "uuid": "ad988df25a274cf592b66c9562834230",
-          "country": "USA",
-          "current_ap": 25215,
-          "last_month_ap": 25215,
           "monthly_gain": 0
         }
       ]
@@ -832,6 +816,14 @@
           "current_ap": 26350,
           "last_month_ap": 26350,
           "monthly_gain": 0
+        },
+        {
+          "username": "sForce",
+          "uuid": "ad988df25a274cf592b66c9562834230",
+          "country": "Norway",
+          "current_ap": 25215,
+          "last_month_ap": 25215,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1101,6 +1093,14 @@
       "country": "Unknown",
       "score": 10338,
       "top_players": [
+        {
+          "username": "Stuffy",
+          "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+          "country": "Hippie",
+          "current_ap": 26075,
+          "last_month_ap": 26075,
+          "monthly_gain": 0
+        },
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
