@@ -3,7 +3,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 
 // 1. CONFIGURATION
-const NADESHIKO_URL = 'https://www.nadeshiko.io/api/leaderboard/NETWORK_ACHIEVEMENT_POINTS?page=1';
+const NADESHIKO_URL = 'https://www.nadeshiko.io/leaderboard/NETWORK_ACHIEVEMENT_POINTS?page=1';
 const DATA_FILE = path.join(__dirname, '../ap_hunters_data.json');
 
 async function update() {
