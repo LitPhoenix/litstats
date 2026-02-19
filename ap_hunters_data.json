@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-18T15:45:35.634Z",
+  "last_update": "2026-02-19T02:04:42.913Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -365,6 +365,14 @@
           "country": "USA",
           "current_ap": 26595,
           "last_month_ap": 26595,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Stuffy",
+          "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+          "country": "USA",
+          "current_ap": 26075,
+          "last_month_ap": 26075,
           "monthly_gain": 0
         },
         {
@@ -799,7 +807,7 @@
     },
     {
       "country": "Norway",
-      "score": 11048,
+      "score": 16091,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -889,15 +897,15 @@
     },
     {
       "country": "Finland",
-      "score": 21453,
+      "score": 21455,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28075,
+          "current_ap": 28085,
           "last_month_ap": 28075,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "MineElzu60",
@@ -957,15 +965,15 @@
     },
     {
       "country": "Japan",
-      "score": 5424,
+      "score": 5429,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_ap": 27120,
+          "current_ap": 27145,
           "last_month_ap": 27120,
-          "monthly_gain": 0
+          "monthly_gain": 25
         }
       ]
     },
@@ -1094,14 +1102,6 @@
       "score": 10338,
       "top_players": [
         {
-          "username": "Stuffy",
-          "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
-          "country": "Hippie",
-          "current_ap": 26075,
-          "last_month_ap": 26075,
-          "monthly_gain": 0
-        },
-        {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
@@ -1185,15 +1185,15 @@
     },
     {
       "country": "Moldova",
-      "score": 5071,
+      "score": 5072,
       "top_players": [
         {
           "username": "Lofaet",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25355,
+          "current_ap": 25360,
           "last_month_ap": 25355,
-          "monthly_gain": 0
+          "monthly_gain": 5
         }
       ]
     }
