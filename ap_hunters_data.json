@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-19T02:04:42.913Z",
+  "last_update": "2026-02-20T02:00:19.836Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -897,15 +897,15 @@
     },
     {
       "country": "Finland",
-      "score": 21455,
+      "score": 21460,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28085,
+          "current_ap": 28110,
           "last_month_ap": 28075,
-          "monthly_gain": 10
+          "monthly_gain": 35
         },
         {
           "username": "MineElzu60",
@@ -1149,7 +1149,7 @@
     },
     {
       "country": "Spain",
-      "score": 10210,
+      "score": 10219,
       "top_players": [
         {
           "username": "ArelyPEITUDA",
@@ -1163,9 +1163,9 @@
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25500,
+          "current_ap": 25545,
           "last_month_ap": 25500,
-          "monthly_gain": 0
+          "monthly_gain": 45
         }
       ]
     },
