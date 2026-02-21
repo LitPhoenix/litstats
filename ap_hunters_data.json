@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-20T02:00:19.836Z",
+  "last_update": "2026-02-21T01:55:33.983Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -213,7 +213,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 30827,
+      "score": 30831,
       "top_players": [
         {
           "username": "oJakey",
@@ -235,9 +235,9 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_ap": 30715,
+          "current_ap": 30735,
           "last_month_ap": 30705,
-          "monthly_gain": 10
+          "monthly_gain": 30
         },
         {
           "username": "Cabbiss",
@@ -427,7 +427,7 @@
     },
     {
       "country": "France",
-      "score": 29918,
+      "score": 29923,
       "top_players": [
         {
           "username": "Yann31_",
@@ -441,9 +441,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_ap": 31475,
+          "current_ap": 31500,
           "last_month_ap": 31475,
-          "monthly_gain": 0
+          "monthly_gain": 25
         },
         {
           "username": "Thomas1665",
@@ -519,7 +519,7 @@
     },
     {
       "country": "Denmark",
-      "score": 12473,
+      "score": 12482,
       "top_players": [
         {
           "username": "tobias49",
@@ -533,9 +533,9 @@
           "username": "STAYEZ",
           "uuid": "998d3241aec046ad9d5009f56d28e413",
           "country": "Denmark",
-          "current_ap": 30220,
+          "current_ap": 30265,
           "last_month_ap": 30220,
-          "monthly_gain": 0
+          "monthly_gain": 45
         }
       ]
     },
