@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-21T01:55:33.983Z",
+  "last_update": "2026-02-22T02:04:16.049Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -299,9 +299,9 @@
           "username": "rory2",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27370,
+          "current_ap": 27405,
           "last_month_ap": 27340,
-          "monthly_gain": 30
+          "monthly_gain": 65
         },
         {
           "username": "C4PS",
@@ -315,9 +315,9 @@
           "username": "baseballaholic",
           "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
           "country": "USA",
-          "current_ap": 27315,
+          "current_ap": 27320,
           "last_month_ap": 27315,
-          "monthly_gain": 0
+          "monthly_gain": 5
         },
         {
           "username": "sirumair9505",
@@ -673,7 +673,7 @@
     },
     {
       "country": "Canada",
-      "score": 28327,
+      "score": 28331,
       "top_players": [
         {
           "username": "Songgg",
@@ -695,17 +695,17 @@
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
-          "current_ap": 27930,
+          "current_ap": 27940,
           "last_month_ap": 27930,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "5beve",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
-          "current_ap": 26750,
+          "current_ap": 26760,
           "last_month_ap": 26750,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "DetectiveAndrew",
@@ -1029,15 +1029,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 5261,
+      "score": 5269,
       "top_players": [
         {
           "username": "GUSUGUSUGUSUGUS",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26305,
+          "current_ap": 26345,
           "last_month_ap": 26220,
-          "monthly_gain": 85
+          "monthly_gain": 125
         }
       ]
     },
