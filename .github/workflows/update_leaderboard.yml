@@ -6,17 +6,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-experimental:
+  update-leaderboard:
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
 
     steps:
-      - name: Checkout experimental branch
+      - name: Checkout main branch
         uses: actions/checkout@v4
         with:
-          ref: experimental
+          ref: main
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,14 +27,13 @@ jobs:
         run: |
           npm install node-fetch@2 --no-save
 
-
       - name: Run Update Script
         run: node scripts/update_leaderboard.js
 
-      - name: Commit & Push JSON to experimental
+      - name: Commit & Push JSON to main
         run: |
           git config --global user.name "LeaderboardBot"
           git config --global user.email "bot@noreply.github.com"
           git add ap_hunters_data.json
           git commit -m "Daily Leaderboard Update" || exit 0
-          git push origin experimental
+          git push origin main
