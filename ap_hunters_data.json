@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-22T02:04:16.049Z",
+  "last_update": "2026-02-23T02:05:18.027Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -519,7 +519,7 @@
     },
     {
       "country": "Denmark",
-      "score": 12482,
+      "score": 12487,
       "top_players": [
         {
           "username": "tobias49",
@@ -533,9 +533,9 @@
           "username": "STAYEZ",
           "uuid": "998d3241aec046ad9d5009f56d28e413",
           "country": "Denmark",
-          "current_ap": 30265,
+          "current_ap": 30290,
           "last_month_ap": 30220,
-          "monthly_gain": 45
+          "monthly_gain": 70
         }
       ]
     },
@@ -727,7 +727,7 @@
     },
     {
       "country": "Serbia",
-      "score": 11568,
+      "score": 11607,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -741,9 +741,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 26995,
+          "current_ap": 27190,
           "last_month_ap": 26995,
-          "monthly_gain": 0
+          "monthly_gain": 195
         }
       ]
     },
@@ -897,15 +897,15 @@
     },
     {
       "country": "Finland",
-      "score": 21460,
+      "score": 21463,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28110,
+          "current_ap": 28125,
           "last_month_ap": 28075,
-          "monthly_gain": 35
+          "monthly_gain": 50
         },
         {
           "username": "MineElzu60",
@@ -935,7 +935,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 15984,
+      "score": 15992,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -957,9 +957,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 25750,
+          "current_ap": 25790,
           "last_month_ap": 25725,
-          "monthly_gain": 25
+          "monthly_gain": 65
         }
       ]
     },
