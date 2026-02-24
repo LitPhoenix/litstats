@@ -1,2220 +1,791 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="LitStats">
-    <meta property="og:description" content="Get instant access to comprehensive player statistics, rankings, and performance analytics.">
-    <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:url" content="https://litstats.com/">
-    <meta property="og:type" content="website">
-
-    <meta name="theme-color" content="#fe7e5d">
-    <meta property="og:site_name" content="LitStats">
-    <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
-    <title>LitStats - AP Hunters by Country</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-color: #f4f2f0;
-            --text-color: #32404f;
-            --card-bg: #f3f2efaa;
-            --border-color: #e6e5e0;
-            --accent-color: #ff776b;
-            --success-color: #27ae60;
-            --header-bg: #1d2832;
-            --header-text: #ffffff;
-            --gold: #eed112f0;
-            --silver: #b9bbc3f0;
-            --bronze: #d6904af0;
-            --card-highlight: rgba(255, 255, 255, 0.1);
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #1a1a1a;
-            --text-color: #e0e0e0;
-            --card-bg: #202020;
-            --border-color: #363636;
-            --accent-color: #ef6558;
-            --success-color: #66bb6a;
-            --header-bg: #121212;
-            --header-text: #e0e0e0;
-            --gold: #d1b200f0;
-            --silver: #a8abb3f0;
-            --bronze: #CD7F32f0;
-            --card-highlight: rgba(255, 255, 255, 0.0094);
-        }
-
-        [data-theme="midnight"] {
-            --bg-color: #0a0a0a;
-            --text-color: #b0b0b0;
-            --card-bg: #0c0c0c;
-            --border-color: #171717;
-            --accent-color: #bf4a40;
-            --success-color: #3e7e3e;
-            --header-bg: #050505;
-            --header-text: #b0b0b0;
-            --gold: #b79b00f0;
-            --silver: #8c8c8cf0;
-            --bronze: #A0522Df0;
-            --card-highlight: rgba(255, 255, 255, 0.01);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(at top left, rgba(104, 182, 255, 0.12), transparent 60%),
-                       radial-gradient(at top right, rgba(255, 94, 247, 0.12), transparent 60%),
-                       radial-gradient(at bottom left, rgba(74, 222, 128, 0.12), transparent 60%),
-                       var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Enhanced card styling */
-        .update-info,
-        .global-leaderboard,
-        .country-rank,
-        .player-item {
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.8s cubic-bezier(0.1, 0, 0, 1);
-            position: relative;
-            z-index: 1;
-        }
-
-        [data-theme="dark"] .update-info,
-        [data-theme="dark"] .global-leaderboard {
-            background: rgba(32, 32, 32, 0.539);
-        }
-
-        [data-theme="midnight"] .update-info,
-        [data-theme="midnight"] .global-leaderboard {
-            background: rgba(12, 12, 12, 0.653);
-        }
-
-        header {
-            background: var(--header-bg);
-            color: var(--header-text);
-            padding: 0.7rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 500;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 2px solid var(--header-text);
-            color: var(--header-text);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .theme-toggle:hover {
-            background: var(--header-text);
-            color: var(--header-bg);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-
-        .update-info {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: var(--card-bg);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            font-size: 1.2rem;
-            color: var(--accent-color);
-        }
-
-        .error {
-            text-align: center;
-            padding: 2rem;
-            background: #fee;
-            color: #c53030;
-            border-radius: 10px;
-            margin: 2rem 0;
-        }
-
-        .global-leaderboard {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 1.2rem;
-            margin-bottom: 2.5rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
-        }
-
-        .global-leaderboard h2 {
-            margin-bottom: 1.5rem;
-            color: var(--accent-color);
-            font-size: 1.5rem;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-
-
-        .view-toggle {
-            display: flex;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-        }
-
-        .view-toggle-button {
-            flex: 1;
-            padding: 0.8rem 1.5rem;
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .view-toggle-button.active {
-            background: var(--accent-color);
-            color: white;
-        }
-
-        .view-toggle-button:not(.active):hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .players-leaderboard {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 1.2rem;
-            margin-bottom: 2.5rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
-        }
-
-        .players-leaderboard h2 {
-            margin-bottom: 1.5rem;
-            color: var(--accent-color);
-            font-size: 1.5rem;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        /* Search Bar Styles */
-        .search-container {
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: center;
-        }
-
-        .search-bar {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1rem 1.5rem 1rem 3.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 25px;
-            color: var(--text-color);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(255, 119, 107, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .search-input::placeholder {
-            color: var(--text-color);
-            opacity: 0.6;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        .search-results-info {
-            text-align: center;
-            margin: 1rem 0;
-            color: var(--text-color);
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: var(--text-color);
-            opacity: 0.6;
-            font-size: 1.1rem;
-        }
-
-        .no-results .search-icon-large {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.3;
-        }
-
-        /* Hide elements when searching */
-        .searching .click-hint {
-            display: none;
-        }
-
-        .players-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-
-        .players-table th {
-            background: var(--bg-color);
-            color: var(--text-color);
-            padding: 1rem 0.8rem;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid var(--border-color);
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            user-select: none;
-        }
-
-        .players-table th:hover {
-            background: rgba(255, 107, 107, 0.1);
-            transform: translateY(-1px);
-        }
-
-        .players-table th.sortable::after {
-            content: '↕️';
-            position: absolute;
-            right: 0.5rem;
-            opacity: 0.5;
-            transition: var(--transition);
-        }
-
-        .players-table th.sort-asc::after {
-            content: '↑';
-            opacity: 1;
-            color: var(--accent-color);
-        }
-
-        .players-table th.sort-desc::after {
-            content: '↓';
-            opacity: 1;
-            color: var(--accent-color);
-        }
-
-        /* Dynamic sorting states */
-        .players-table th[data-sort="none"]:after {
-            content: '↕️';
-            opacity: 0.5;
-        }
-
-        .players-table th[data-sort="asc"]:after {
-            content: '↑';
-            opacity: 1;
-            color: var(--accent-color);
-        }
-
-        .players-table th[data-sort="desc"]:after {
-            content: '↓';
-            opacity: 1;
-            color: var(--accent-color);
-        }
-
-        .players-table td {
-            padding: 1rem 0.8rem;
-            border-bottom: 1px solid var(--border-color);
-            vertical-align: middle;
-            box-sizing: border-box;
-        }
-
-        .players-table tr:hover {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        /* Top player background with gradient using country flags */
-        .players-table tr.top-1 {
-            background: linear-gradient(90deg,
-                var(--flag-url-1) left center / 120px no-repeat,
-                rgba(255, 215, 0, 0.15) 0%,
-                rgba(255, 215, 0, 0.08) 100%);
-        }
-
-        .players-table tr.top-2 {
-            background: linear-gradient(90deg,
-                var(--flag-url-2) left center / 110px no-repeat,
-                rgba(192, 192, 192, 0.12) 0%,
-                rgba(192, 192, 192, 0.06) 100%);
-        }
-
-        .players-table tr.top-3 {
-            background: linear-gradient(90deg,
-                var(--flag-url-3) left center / 110px no-repeat,
-                rgba(205, 127, 50, 0.12) 0%,
-                rgba(205, 127, 50, 0.06) 100%);
-        }
-
-        /* Top 4-10 smaller gradient flags */
-        .players-table tr.top-4,
-        .players-table tr.top-5,
-        .players-table tr.top-6,
-        .players-table tr.top-7,
-        .players-table tr.top-8,
-        .players-table tr.top-9,
-        .players-table tr.top-10 {
-            background: linear-gradient(90deg,
-                var(--flag-url-4) left center / 100px no-repeat,
-                rgba(255, 255, 255, 0.05) 0%,
-                rgba(255, 255, 255, 0.02) 100%);
-        }
-
-        /* Dark theme adjustments */
-        [data-theme="dark"] .players-table tr.top-1 {
-            background: linear-gradient(90deg,
-                var(--flag-url-1) left center / 120px no-repeat,
-                rgba(255, 215, 0, 0.2) 0%,
-                rgba(255, 215, 0, 0.1) 100%);
-        }
-
-        [data-theme="dark"] .players-table tr.top-2 {
-            background: linear-gradient(90deg,
-                var(--flag-url-2) left center / 110px no-repeat,
-                rgba(192, 192, 192, 0.15) 0%,
-                rgba(192, 192, 192, 0.08) 100%);
-        }
-
-        [data-theme="dark"] .players-table tr.top-3 {
-            background: linear-gradient(90deg,
-                var(--flag-url-3) left center / 110px no-repeat,
-                rgba(205, 127, 50, 0.15) 0%,
-                rgba(205, 127, 50, 0.08) 100%);
-        }
-
-        [data-theme="dark"] .players-table tr.top-4,
-        [data-theme="dark"] .players-table tr.top-5,
-        [data-theme="dark"] .players-table tr.top-6,
-        [data-theme="dark"] .players-table tr.top-7,
-        [data-theme="dark"] .players-table tr.top-8,
-        [data-theme="dark"] .players-table tr.top-9,
-        [data-theme="dark"] .players-table tr.top-10 {
-            background: linear-gradient(90deg,
-                var(--flag-url-4) left center / 100px no-repeat,
-                rgba(255, 255, 255, 0.08) 0%,
-                rgba(255, 255, 255, 0.04) 100%);
-        }
-
-        /* Midnight theme adjustments */
-        [data-theme="midnight"] .players-table tr.top-1 {
-            background: linear-gradient(90deg,
-                var(--flag-url-1) left center / 120px no-repeat,
-                rgba(255, 215, 0, 0.25) 0%,
-                rgba(255, 215, 0, 0.12) 100%);
-        }
-
-        [data-theme="midnight"] .players-table tr.top-2 {
-            background: linear-gradient(90deg,
-                var(--flag-url-2) left center / 110px no-repeat,
-                rgba(192, 192, 192, 0.18) 0%,
-                rgba(192, 192, 192, 0.1) 100%);
-        }
-
-        [data-theme="midnight"] .players-table tr.top-3 {
-            background: linear-gradient(90deg,
-                var(--flag-url-3) left center / 110px no-repeat,
-                rgba(205, 127, 50, 0.18) 0%,
-                rgba(205, 127, 50, 0.1) 100%);
-        }
-
-        [data-theme="midnight"] .players-table tr.top-4,
-        [data-theme="midnight"] .players-table tr.top-5,
-        [data-theme="midnight"] .players-table tr.top-6,
-        [data-theme="midnight"] .players-table tr.top-7,
-        [data-theme="midnight"] .players-table tr.top-8,
-        [data-theme="midnight"] .players-table tr.top-9,
-        [data-theme="midnight"] .players-table tr.top-10 {
-            background: linear-gradient(90deg,
-                var(--flag-url-4) left center / 100px no-repeat,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.05) 100%);
-        }
-
-        .player-rank-cell {
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            min-width: 60px;
-        }
-
-        .player-rank-cell.first { color: var(--gold); }
-        .player-rank-cell.second { color: var(--silver); }
-        .player-rank-cell.third { color: var(--bronze); }
-
-        .player-info-cell {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            min-width: 200px;
-            padding: 0.95rem 0.8rem;
-        }
-
-        .player-avatar-large {
-            width: 36px;
-            height: 36px;
-            border-radius: 4px;
-        }
-
-        .player-details {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-        }
-
-        .player-name-large {
-            font-weight: 500;
-            font-size: 1.1rem;
-            color: var(--text-color);
-        }
-
-        .player-country {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            opacity: 0.9;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .country-flag-small {
-            width: 24px;
-            height: 16px;
-            object-fit: cover;
-            border-radius: 2px;
-            border: 1px solid var(--border-color);
-        }
-
-        .ap-cell {
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--accent-color);
-            min-width: 100px;
-        }
-
-        .gain-cell {
-            text-align: center;
-            font-weight: 600;
-            color: var(--success-color);
-            min-width: 80px;
-        }
-
-        .gain-cell.negative {
-            color: #e74c3c;
-        }
-
-        .gain-cell.new {
-            color: var(--accent-color);
-            font-weight: 700;
-        }
-
-        .tier-cell {
-            text-align: center;
-            min-width: 100px;
-        }
-
-        .tier-badge {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            background: var(--accent-color);
-            color: white;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .wins-cell {
-            text-align: center;
-            font-weight: 600;
-            min-width: 80px;
-        }
-
-
-        .leaderboard-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .sort-button {
-            background: var(--bg-color);
-            border: 2px solid var(--border-color);
-            color: var(--text-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .sort-button:hover,
-        .sort-button.active {
-            background: var(--accent-color);
-            color: white;
-            border-color: var(--accent-color);
-        }
-
-        .click-hint {
-            text-align: center;
-            margin-bottom: 1rem;
-            font-style: italic;
-            color: var(--text-color);
-            opacity: 0.7;
-        }
-
-        .country-rank {
-            display: flex;
-            align-items: center;
-            padding: 1.2rem;
-            margin: 0.8rem 0;
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: all 0.8s cubic-bezier(0.1, 0, 0, 1);
-            position: relative;
-            z-index: 1;
-        }
-
-        .country-rank::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            background: var(--card-highlight);
-            opacity: 0;
-            transition: opacity 0.1s cubic-bezier(0.1, 0, 0, 1);
-            z-index: -1;
-        }
-
-        .country-rank:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 6px 20px rgba(0,0,0,0.15),
-                0 2px 8px rgba(0,0,0,0.1);
-            transition-duration: 0.1s;
-        }
-
-        .country-rank:hover::before {
-            opacity: 1;
-            transition-duration: 0.1s;
-        }
-
-        .country-rank:not(.rank-1):not(.rank-2):not(.rank-3) {
-            border-color: var(--border-color);
-        }
-
-        .country-rank:not(.rank-1):not(.rank-2):not(.rank-3):hover {
-            border-color: var(--accent-color);
-        }
-
-        /* Keep medal colors always */
-        .country-rank.rank-1 { border-color: var(--gold); }
-        .country-rank.rank-2 { border-color: var(--silver); }
-        .country-rank.rank-3 { border-color: var(--bronze); }
-
-        /* Normal accent color for expanded state of non-medal ranks */
-        .country-rank:not(.rank-1):not(.rank-2):not(.rank-3).expanded {
-            border-color: var(--accent-color);
-        }
-
-        .country-main-content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            transition: opacity 0.3s ease;
-            min-width: 0; /* Add this - allows flex items to shrink below content size */
-            overflow: hidden;
-        }
-
-        .country-rank.expanded .country-main-content {
-            opacity: 0;
-            pointer-events: none;
-            position: absolute;
-        }
-
-        .rank-section {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-right: 1.2rem;
-        }
-
-        .rank-number {
-            font-weight: bold;
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            min-width: 35px;
-            text-align: center;
-        }
-
-        .rank-number.first { color: var(--gold); }
-        .rank-number.second { color: var(--silver); }
-        .rank-number.third { color: var(--bronze); }
-
-        .country-score {
-            font-size: 0.8rem;
-            color: var(--text-color);
-            opacity: 0.7;
-            font-weight: 500;
-            margin-top: 0.2rem;
-            text-align: center;
-            min-width: 60px;
-        }
-
-        .country-flag {
-            font-size: 2.5rem;
-            line-height: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 45px;
-        }
-
-        .country-flag img {
-            width: 48px;
-            height: 30px;
-            object-fit: cover;
-            border-radius: 3px;
-            border: 1px solid var(--border-color);
-        }
-
-        .player-country img {
-            width: 48px;
-            height: 30px;
-            object-fit: cover;
-            border-radius: 2px;
-        }
-
-        .country-info {
-            flex: 1;
-            margin-left: 1rem;
-        }
-
-        .country-name {
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .country-score-inline {
-            font-size: 0.9rem;
-            margin-left: 0.5rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            font-weight: 500;
-        }
-
-        .country-top-player {
-            font-size: 1.2rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .preview-players {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 0.6rem;
-        }
-
-        .preview-count {
-            font-size: 0.8rem;
-            color: var(--text-color);
-            opacity: 0.6;
-            margin-right: 0.3rem;
-        }
-
-        .preview-avatar {
-            width: 20px;
-            height: 20px;
-        }
-
-        .expand-icon {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-            color: var(--accent-color);
-            margin-left: auto;
-            padding-left: 1rem;
-        }
-
-        .country-rank.expanded .expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .country-details {
-            display: none;
-            width: 100%;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .country-details.show {
-            display: block;
-            opacity: 1;
-        }
-
-        .country-details-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .details-flag {
-            margin-right: 1rem;
-        }
-
-        .details-flag img {
-            width: 48px;
-            height: 30px;
-            object-fit: cover;
-            border: 1px solid var(--border-color);
-            border-radius: 3px;
-        }
-
-        .details-country-name {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-
-        .player-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            margin: 0.8rem 0;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.1, 0, 0, 1);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Gradient background for #1 player in country details */
-        .player-item.first-player {
-            background: linear-gradient(90deg,
-                var(--country-flag-bg) left center / 200px no-repeat,
-                rgba(255, 215, 0, 0.15) 0%,
-                rgba(255, 215, 0, 0.08) 50%,
-                rgba(255, 255, 255, 0.02) 100%);
-        }
-
-        [data-theme="dark"] .player-item.first-player {
-            background: linear-gradient(90deg,
-                var(--country-flag-bg) left center / 200px no-repeat,
-                rgba(255, 215, 0, 0.2) 0%,
-                rgba(255, 215, 0, 0.1) 50%,
-                rgba(255, 255, 255, 0.04) 100%);
-        }
-
-        [data-theme="midnight"] .player-item.first-player {
-            background: linear-gradient(90deg,
-                var(--country-flag-bg) left center / 200px no-repeat,
-                rgba(255, 215, 0, 0.25) 0%,
-                rgba(255, 215, 0, 0.12) 50%,
-                rgba(255, 255, 255, 0.05) 100%);
-        }
-
-        .player-item:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transform: translateY(-2px);
-            transition-duration: 0.1s;
-        }
-
-        .player-rank {
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-right: 0.7rem;
-            font-size: 1.2rem;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .player-rank.first { color: var(--gold); }
-        .player-rank.second { color: var(--silver); }
-        .player-rank.third { color: var(--bronze); }
-
-        .player-avatar {
-            width: 40px;
-            height: 40px;
-            margin-right: 0.5rem;
-            border-radius: 3px;
-        }
-
-        .player-info {
-            flex: 1;
-            min-width: 0; /* Allow this to shrink */
-            overflow: hidden; /* Hide overflow instead of wrapping */
-        }
-
-        .player-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 0.2rem;
-            margin-left: 0.5rem;
-            white-space: nowrap; /* Prevent wrapping */
-            overflow: hidden; /* Hide overflow */
-            text-overflow: ellipsis; /* Show ... when text is cut off */
-        }
-
-        .player-ap {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            margin-left: 0.5rem;
-            white-space: nowrap; /* Prevent wrapping */
-            overflow: hidden; /* Hide overflow */
-            text-overflow: ellipsis; /* Show ... when text is cut off */
-        }
-
-        .player-gain {
-            font-weight: 600;
-            color: var(--success-color);
-            font-size: 1rem;
-            text-align: right;
-            min-width: 30px;
-            flex-shrink: 0;
-            white-space: nowrap;
-        }
-
-        .player-gain.negative {
-            color: #e74c3c !important;
-        }
-
-        .position-indicator {
-            font-size: 0.7rem;
-            margin-left: 0.4rem;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 1.4rem;
-            height: 1.4rem;
-            transition: all 0.3s ease;
-        }
-
-        .position-indicator:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .position-up {
-            color: #27ae60;
-        }
-
-        .position-down {
-            color: #e74c3c;
-        }
-
-        .position-same {
-            color: #f39c12;
-            background: linear-gradient(135deg, rgba(243, 156, 18, 0.2), rgba(243, 156, 18, 0.1));
-            border-color: rgba(243, 156, 18, 0.4);
-            box-shadow: 0 2px 4px rgba(243, 156, 18, 0.2);
-            font-size: 0.6rem;
-        }
-
-        .position-same::before {
-            content: '=';
-            font-size: 0.7rem;
-        }
-
-        .tr {
-            display: table-row;
-            vertical-align: inherit;
-            border-color: inherit;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Ensure the table containing .tr is contained and doesn't overflow */
-        .players-leaderboard {
-            width: 100%;
-            max-width: 100%;
-            overflow-x: auto;
-            box-sizing: border-box;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-color);
-            opacity: 0.7;
-        }
-
-        @media (max-width: 768px) {
-            .rank-section {
-                flex-direction: column;
-                gap: 0.3rem;
-                margin-right: 0.8rem;
-            }
-            
-            .country-flag {
-                font-size: 2rem;
-            }
-            
-            .country-rank {
-                padding: 1rem;
-            }
-            
-.player-item {
-    display: flex;
-    align-items: center;
-    padding: 0.4rem;
-    margin: 0.7rem 0;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 10px;
-    border: 2px solid var(--border-color);
-    transition: all 0.3s ease;
-    width: 100%;
-    overflow: hidden; /* Prevent any content from spilling out */
-}
-
-            h1 {
-                font-size: 1.4rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="LitStats">
+  <meta property="og:description" content="Get instant access to comprehensive Hypixel player stats, rankings, and performance analytics.">
+  <meta property="og:image" content="/img/favicon.png" />
+  <meta property="og:url" content="https://litstats.com/">
+  <meta property="og:type" content="website">
+  <title>LitStats - AP Hunters by Country</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Fiery Theme Variables */
+    :root {
+      --bg: #fdfaf8;
+      --surface: #ffffff;
+      --surface-2: #fff5f0;
+      --border: #f0e1d8;
+      --border-strong: #e0c5b4;
+      --text: #1a1512;
+      --text-2: #5c4d45;
+      --text-3: #998073;
+      
+      /* Fiery Accents */
+      --accent: #ff5100;
+      --accent-soft: rgba(255, 81, 0, 0.08);
+      --accent-2: #ff8400;
+      
+      --gold: #f59e0b;
+      --silver: #94a3b8;
+      --bronze: #cd7f32;
+      --green: #10b981;
+      --green-soft: #ecfdf5;
+      --red: #ef4444;
+      --red-soft: #fff5f5;
+      
+      --shadow: 0 2px 8px rgba(255, 81, 0, 0.05), 0 8px 24px rgba(0,0,0,0.03);
+      --radius: 12px;
+      --input-bg: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f0a08;
+      --surface: #1a1310;
+      --surface-2: #261c18;
+      --border: #382822;
+      --border-strong: #543c33;
+      --text: #f0e6e1;
+      --text-2: #bfaea6;
+      --text-3: #8c7b73;
+      
+      /* Fiery Accents Dark */
+      --accent: #ff621a;
+      --accent-soft: rgba(255, 98, 26, 0.15);
+      --accent-2: #ff9d00;
+      
+      --green: #3fb950;
+      --green-soft: rgba(46, 160, 67, 0.15);
+      --red: #f85149;
+      --red-soft: rgba(248, 81, 73, 0.1);
+      
+      --input-bg: #140e0c;
+      --shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      box-shadow: 0 2px 8px var(--accent-soft);
+    }
+    .logo-text { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+    .logo-sub { font-size: 12px; color: var(--text-3); font-weight: 400; }
+    
+    .header-controls { display: flex; align-items: center; gap: 16px; }
+    .header-meta { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+    .header-meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
+    
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .theme-toggle:hover { 
+      background: var(--surface-2); 
+      border-color: var(--accent);
+      transform: scale(1.1) rotate(10deg); 
+    }
+
+    /* MAIN */
+    main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; }
+
+    /* HERO & SEARCH */
+    .hero { margin-bottom: 24px; }
+    .hero h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: var(--text); margin-bottom: 6px; }
+    .hero p { font-size: 14px; color: var(--text-2); }
+
+    .search-container { margin-bottom: 32px; }
+    .search-input {
+      width: 100%; max-width: 400px;
+      padding: 10px 16px;
+      background: var(--input-bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .search-input:focus { 
+      outline: none; 
+      border-color: var(--accent); 
+      box-shadow: 0 0 0 3px var(--accent-soft);
+      transform: translateY(-1px);
+    }
+    .search-results-info { font-size: 13px; color: var(--accent); margin-top: 8px; font-weight: 500; }
+
+    /* TABS */
+    .tabs { display: flex; gap: 4px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 4px; width: fit-content; margin-bottom: 20px; }
+    .tab-btn { 
+      padding: 8px 24px; 
+      border-radius: 8px; 
+      font-size: 13px; 
+      font-weight: 600; 
+      font-family: inherit; 
+      border: none; 
+      cursor: pointer; 
+      background: transparent; 
+      color: var(--text-3); 
+      position: relative;
+      overflow: hidden;
+      transition: color 0.2s; 
+    }
+    
+    .tab-btn::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease, left 0.3s ease;
+      border-radius: 2px;
+    }
+    .tab-btn:hover::before { width: 80%; left: 10%; }
+    .tab-btn:hover { color: var(--text); }
+    
+    .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .tab-btn.active::before { display: none; }
+
+    /* SECTION HEADER */
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+    .section-title { font-size: 15px; font-weight: 600; color: var(--text); }
+    .section-hint { font-size: 12px; color: var(--text-3); }
+
+    /* Sorting Arrows */
+    thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
+    thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
+
+    /* Modern Responsive Spark Border */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .table-wrap { 
+      position: relative;
+      background: var(--border);
+      border-radius: var(--radius); 
+      box-shadow: var(--shadow); 
+      padding: 1px; 
+      z-index: 1;
+    }
+
+    .table-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: conic-gradient(from var(--angle), transparent 60%, var(--accent) 95%, transparent 100%);
+      animation: rotateSpark var(--spark-speed, 3s) linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotateSpark {
+      0% { --angle: 0deg; }
+      100% { --angle: 360deg; }
+    }
+
+    /* Bottom Fade & Permanent Credit */
+    .bottom-fade {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%; height: 80px;
+      background: linear-gradient(to top, var(--bg) 10%, transparent);
+      pointer-events: none;
+      z-index: 90;
+    }
+    .made-by-tag {
+      position: fixed;
+      bottom: 12px; left: 16px;
+      font-size: 11px;
+      color: var(--text-3);
+      z-index: 100;
+    }
+    .made-by-tag a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .made-by-tag a:hover { text-decoration: underline; }
+
+    .table-inner {
+      background: var(--surface);
+      border-radius: calc(var(--radius) - 1px);
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* TABLE */
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    thead { background: var(--surface-2); border-bottom: 1px solid var(--border); }
+    thead th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-3); white-space: nowrap; cursor: pointer; user-select: none; transition: color 0.15s; }
+    thead th:hover { color: var(--accent); }
+
+    tbody tr { 
+      border-bottom: 1px solid var(--border); 
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    
+    tbody tr:hover { 
+      background: var(--accent-soft); 
+      transform: translateX(4px);
+    }
+
+    td { padding: 11px 16px; vertical-align: middle; }
+
+    /* RANKS */
+    .rank { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text-3); text-align: center; }
+    .rank-1 { color: var(--gold); font-weight: 700; font-size: 14px;}
+    .rank-2 { color: var(--silver); font-weight: 700; font-size: 14px;}
+    .rank-3 { color: var(--bronze); font-weight: 700; font-size: 14px;}
+
+    /* PLAYER INFO */
+    .player-cell { display: flex; align-items: center; gap: 10px; }
+    .player-avatar { width: 28px; height: 28px; border-radius: 4px; background: var(--surface-2); object-fit: cover; }
+    .player-name { font-weight: 600; color: var(--text); }
+
+    /* COUNTRY FLAG */
+    .flag-cell { display: flex; align-items: center; gap: 8px; }
+    .flag-img { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; border: 1px solid var(--border-strong); }
+    .country-name { color: var(--text-2); font-size: 13px; }
+
+    /* STATS CELLS */
+    .ap-cell { font-family: 'DM Mono', monospace; font-weight: 600; color: var(--text); }
+    
+    .gain-pos { display: inline-flex; align-items: center; gap: 3px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: var(--green); background: var(--green-soft); padding: 2px 8px; border-radius: 20px; }
+    .gain-neg { display: inline-flex; align-items: center; gap: 3px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: var(--red); background: var(--red-soft); padding: 2px 8px; border-radius: 20px; }
+    .gain-zero { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-3); }
+    .gain-new { display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 20px; }
+
+    .position-indicator { font-size: 10px; margin-left: 4px; display: inline-block; }
+    .pos-up { color: var(--green); }
+    .pos-down { color: var(--red); }
+    .pos-same { color: var(--gold); }
+
+    /* COUNTRY EXPANDING ROWS */
+    .country-row { cursor: pointer; }
+    .expand-icon { transition: transform 0.2s; display: inline-block; color: var(--text-3); font-size: 11px; }
+    .country-row.open .expand-icon { transform: rotate(90deg); color: var(--accent); }
+    .country-players-row { display: none; }
+    .country-players-row.open { display: table-row; }
+    .country-players-inner { padding: 0 16px 12px 40px; }
+    
+    .sub-player-list { display: flex; flex-direction: column; gap: 4px; padding-top: 8px; }
+    .sub-player { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      padding: 8px 12px; 
+      background: var(--surface-2); 
+      border-radius: 8px; 
+      font-size: 13px; 
+      border: 1px solid transparent; 
+      transition: all 0.2s;
+    }
+    .sub-player:hover { 
+      border-color: var(--accent); 
+      transform: translateX(2px);
+      box-shadow: 0 2px 8px var(--accent-soft);
+    }
+    .sub-player-left { display: flex; align-items: center; gap: 10px; }
+    .sub-rank { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-3); width: 20px; }
+    .sub-name { font-weight: 600; color: var(--text); }
+    .sub-ap { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--text-2); font-size: 12px; }
+
+    /* LOADING / ERROR */
+    .loading-msg, .error-msg { text-align: center; padding: 48px 24px; color: var(--text-3); font-size: 14px; }
+    .error-msg { color: var(--red); }
+    .hidden { display: none !important; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 20px 24px; text-align: center; font-size: 12px; color: var(--text-3); }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .header-controls { flex-direction: column; align-items: flex-end; gap: 4px; }
+      .hero h1 { font-size: 22px; }
+      table { font-size: 12.5px; }
+      td, thead th { padding: 9px 10px; }
+      .player-avatar { width: 24px; height: 24px; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>
-  <img src="/img/favicon.png" alt="Website Logo" style="height: 1em; vertical-align: middle; margin-right: 0.4em;">
-  LitStats
-</h1>
-            <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="#">
+        <img src="/img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
+        <div>
+          <div class="logo-text">LitStats</div>
+          <div class="logo-sub">by litphoenix</div>
         </div>
-    </header>
-
-    <div class="container">
-
-        <div id="loading" class="loading">
-            Loading leaderboard data...
+      </a>
+      <div class="header-controls">
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Theme">☀️</button>
+        <div class="header-meta">
+          <span class="dot"></span>
+          Updated: <span id="last-updated-header">Loading...</span>
         </div>
+      </div>
+    </div>
+  </header>
 
-        <div id="error" class="error" style="display: none;">
-            Failed to load data. Please check that ap_hunters_data.json is available.
-        </div>
-
-            <!-- Search Bar -->
-            <div class="search-container">
-                <div class="search-bar">
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries..." oninput="performSearch()">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                </div>
-            </div>
-            <div id="searchResults" class="search-results-info" style="display: none;"></div>
-        
-        <div id="content" style="display: none;">
-            <!-- View Toggle -->
-            <div class="view-toggle">
-                <button class="view-toggle-button active" onclick="switchView('players')">Players</button>
-                <button class="view-toggle-button" onclick="switchView('countries')">Countries</button>
-            </div>
-
-            <!-- Players Leaderboard -->
-            <div id="playersView" class="players-leaderboard">
-                <h2>
-                    Players Leaderboard
-                </h2>
-                <div class="click-hint">Sort table by clicking headers  ↑↓</div>
-                <table class="players-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Player</th>
-                            <th>Country</th>
-                            <th>AP</th>
-                            <th>Gain</th>
-                        </tr>
-                    </thead>
-                    <tbody id="playersTableBody">
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Countries Leaderboard -->
-            <div id="countriesView" class="global-leaderboard" style="display: none;">
-                <h2>
-                    Country Leaderboard
-                </h2>
-                <div class="click-hint">Click on a country to expand it</div>
-                <div id="globalRankings"></div>
-            </div>
-        </div>
-
-        <div class="update-info">
-            <p><strong>Last Updated:</strong> <span id="lastUpdate">Loading...</span></p>
-            <p>made by litphoenix</p>
-        </div>
+  <main>
+    <div class="hero">
+      <h1>Achievement Points Leaderboard</h1>
+      <p>Tracking top Hypixel AP hunters worldwide. Data sourced from the Hypixel API.</p>
     </div>
 
-    <div class="footer">
-        <p>Data sourced from Hypixel API • Tracking Achievement Points of top players worldwide</p>
+    <div class="search-container">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries..." oninput="handleSearch()">
+      <div id="searchResults" class="search-results-info hidden"></div>
     </div>
 
-    <script>
-        // Country code to flag mapping with flag-icons CDN
-        const countryFlags = {
-            'UK': 'gb',
-            'United Kingdom': 'gb',
-            'US': 'us',
-            'USA': 'us',
-            'United States': 'us',
-            'Denmark': 'dk',
-            'Canada': 'ca',
-            'Germany': 'de',
-            'France': 'fr',
-            'Netherlands': 'nl',
-            'Sweden': 'se',
-            'Norway': 'no',
-            'Finland': 'fi',
-            'Poland': 'pl',
-            'Russia': 'ru',
-            'Australia': 'au',
-            'Argentina': 'ar',
-            'Bangladesh': 'bd',
-            'Bosnia and Herzegovina': 'ba',
-            'The Netherlands': 'nl',
-            'Hungary': 'hu',
-            'Croatia': 'hr',
-            'Czech Republic': 'cz',
-            'Israel': 'il',
-            'Syria': 'sy',
-            'Ukraine': 'ua',
-            'Ecuador': 'ec',
-            'Iraq': 'iq',
-            'Taiwan': 'tw',
-            'Portugal': 'pt',
-            'New Zealand': 'nz',
-            'Chile': 'cl',
-            'Turkey': 'tr',
-            'Brazil': 'br',
-            'Mexico': 'mx',
-            'Spain': 'es',
-            'Italy': 'it',
-            'Belgium': 'be',
-            'Switzerland': 'ch',
-            'Austria': 'at',
-            'Japan': 'jp',
-            'South Korea': 'kr',
-            'China': 'cn',
-            'India': 'in',
-            'Uzbekistan': 'uz',
-            'Serbia': 'rs',
-            'Slovenia': 'si',
-            'youtubers': null,
-            'staff': null,
-            'Bulgaria': 'bg',
-            'Cyprus': 'cy',
-            'Ecuador': 'ec',
-            'Greece': 'gr',
-            'Hong Kong': 'hk',
-            'Ireland': 'ie',
-            'Luxembourg': 'lu',
-            'Moldova': 'md',
-            'Peru': 'pe',
-            'Philippines': 'ph',
-            'Romania': 'ro',
-            'Saudi Arabia': 'sa',
-            'Singapore': 'sg',
-            'Slovakia': 'sk'
-        };
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="players">Players</button>
+      <button class="tab-btn" data-tab="countries">Countries</button>
+    </div>
 
-        let currentData = null;
-        let currentSortMode = 'ap'; // 'ap' or 'alphabetical'
-        let currentView = 'players'; // 'players' or 'countries'
-        let playersSortMode = 'ap';
-        let countriesSortMode = 'ap';
-        let tableSortStates = {}; // Track sort state for each column
-        let searchTimeout = null;
-        let filteredPlayers = [];
-        let filteredCountries = [];
+    <div id="panel-players">
+      <div class="section-header">
+        <span class="section-title">Global Players</span>
+        <span class="section-hint">Click column headers to sort ↑↓</span>
+      </div>
+      <div class="table-wrap">
+        <div class="table-inner">
+          <div class="loading-msg" id="players-loading">Loading leaderboard data...</div>
+          <div class="error-msg hidden" id="players-error">Failed to load data. Ensure ap_hunters_data.json exists.</div>
+          <table id="players-table" class="hidden">
+            <thead>
+              <tr>
+                <th class="rank sort-desc" data-col="rank">#</th>
+                <th data-col="player">Player</th>
+                <th data-col="country">Country</th>
+                <th data-col="ap">AP</th>
+                <th data-col="gain">Gain</th>
+              </tr>
+            </thead>
+            <tbody id="players-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-        // Theme management
-        function toggleTheme() {
-            const body = document.body;
-            const button = document.querySelector('.theme-toggle');
-            const currentTheme = body.getAttribute('data-theme');
-            
-            if (!currentTheme) { // Light mode
-                body.setAttribute('data-theme', 'dark');
-                button.textContent = 'Midnight Mode';
-                localStorage.setItem('theme', 'dark');
-            } else if (currentTheme === 'dark') {
-                body.setAttribute('data-theme', 'midnight');
-                button.textContent = 'Light Mode';
-                localStorage.setItem('theme', 'midnight');
-            } else if (currentTheme === 'midnight') {
-                body.removeAttribute('data-theme');
-                button.textContent = 'Dark Mode';
-                localStorage.setItem('theme', 'light');
-            }
-        }
+    <div id="panel-countries" class="hidden">
+      <div class="section-header">
+        <span class="section-title">Country Leaderboard</span>
+        <span class="section-hint">Click a country row to expand top players</span>
+      </div>
+      <div class="table-wrap">
+        <div class="table-inner">
+          <div class="loading-msg" id="countries-loading">Loading country data...</div>
+          <table id="countries-table" class="hidden">
+            <thead>
+              <tr>
+                <th class="rank">#</th>
+                <th>Country</th>
+                <th>Score (Top 5 AP)</th>
+                <th>Top Player</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="countries-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
 
-        // Load saved theme
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const body = document.body;
-            const button = document.querySelector('.theme-toggle');
-            
-            // Default to dark mode if no theme saved
-            if (!savedTheme) {
-                body.setAttribute('data-theme', 'dark');
-                button.textContent = 'Midnight Mode';
-                localStorage.setItem('theme', 'dark');
-                return;
-            }
-            
-            if (savedTheme === 'light') {
-                body.removeAttribute('data-theme');
-                button.textContent = 'Dark Mode';
-            } else if (savedTheme === 'dark') {
-                body.setAttribute('data-theme', 'dark');
-                button.textContent = 'Midnight Mode';
-            } else if (savedTheme === 'midnight') {
-                body.setAttribute('data-theme', 'midnight');
-                button.textContent = 'Light Mode';
-            }
-        }
+  <div class="bottom-fade"></div>
+  <div class="made-by-tag">made by <a href="https://hypixel.net" target="_blank">litphoenix</a></div>
 
-        // View switching functions
-        function switchView(view) {
-            currentView = view;
-            
-            // Update toggle buttons
-            document.querySelectorAll('.view-toggle-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Show/hide views
-            document.getElementById('playersView').style.display = view === 'players' ? 'block' : 'none';
-            document.getElementById('countriesView').style.display = view === 'countries' ? 'block' : 'none';
-            
-            // Update current sort mode
-            currentSortMode = view === 'players' ? playersSortMode : countriesSortMode;
-            
-            // Refresh data display
-            if (currentData) {
-                if (view === 'players') {
-                    displayPlayersData(currentData);
-                } else {
-                    displayCountriesData(currentData);
-                }
-            }
-        }
+  <script>
+    // Constants & Config
+    const countryFlags = {
+      'UK': 'gb', 'United Kingdom': 'gb', 'US': 'us', 'USA': 'us', 'United States': 'us',
+      'Denmark': 'dk', 'Canada': 'ca', 'Germany': 'de', 'France': 'fr', 'Netherlands': 'nl',
+      'The Netherlands': 'nl', 'Sweden': 'se', 'Norway': 'no', 'Finland': 'fi', 'Poland': 'pl',
+      'Russia': 'ru', 'Australia': 'au', 'Argentina': 'ar', 'Bangladesh': 'bd', 'Bosnia and Herzegovina': 'ba',
+      'Hungary': 'hu', 'Croatia': 'hr', 'Czech Republic': 'cz', 'Israel': 'il', 'Syria': 'sy',
+      'Ukraine': 'ua', 'Ecuador': 'ec', 'Iraq': 'iq', 'Taiwan': 'tw', 'Portugal': 'pt',
+      'New Zealand': 'nz', 'Chile': 'cl', 'Turkey': 'tr', 'Brazil': 'br', 'Mexico': 'mx',
+      'Spain': 'es', 'Italy': 'it', 'Belgium': 'be', 'Switzerland': 'ch', 'Austria': 'at',
+      'Japan': 'jp', 'South Korea': 'kr', 'China': 'cn', 'India': 'in', 'Uzbekistan': 'uz',
+      'Serbia': 'rs', 'Slovenia': 'si', 'Bulgaria': 'bg', 'Cyprus': 'cy', 'Greece': 'gr',
+      'Hong Kong': 'hk', 'Ireland': 'ie', 'Luxembourg': 'lu', 'Moldova': 'md', 'Peru': 'pe',
+      'Philippines': 'ph', 'Romania': 'ro', 'Saudi Arabia': 'sa', 'Singapore': 'sg', 'Slovakia': 'sk'
+    };
 
+    // State
+    let currentData = null;
+    let allPlayersList = [];
+    let processedCountries = [];
+    let currentTab = 'players';
+    let sortCol = 'rank';
+    let sortDir = 1;
 
-
-        // Format numbers with commas
-        function formatNumber(num) {
-            return num.toLocaleString();
-        }
-
-        // Format score as XX.Xk
-        function formatScore(num) {
-            if (num >= 1000) {
-                return (num / 1000).toFixed(1) + 'k pts';
-            }
-            return num.toString();
-        }
-
-        // Format date
-        function formatDate(dateString) {
-            if (!dateString) return 'Never';
-            const date = new Date(dateString);
-            return date.toLocaleDateString() + ' at ' + date.toLocaleTimeString();
-        }
-
-        // Get rank class and display
-        function getRankClass(rank) {
-            switch(rank) {
-                case 1: return 'first';
-                case 2: return 'second';
-                case 3: return 'third';
-                default: return '';
-            }
-        }
-
-        function getRankDisplay(rank) {
-            return rank.toString();
-        }
-
-        // Get country flag
-        function getCountryFlag(country) {
-            const flagCode = countryFlags[country];
-            if (flagCode) {
-                return `<img src="https://flagcdn.com/${flagCode}.svg" alt="${country}" loading="lazy" height="30" width="40">`;
-            }
-
-            // Special handling for non-country categories
-            if (country === 'youtubers') {
-                return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png" alt="YouTube" style="width: 40px; height: 30px; object-fit: none;">`;
-            } else if (country === 'staff') {
-                return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" alt="Staff" style="width: 45px; height: 38px; object-fit: contain;">`;
-            }
-
-            // Default flag for unknown countries - use question mark flag
-            return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" alt="Unknown" loading="lazy" height="30" width="40">`;
-        }
-
-        // Toggle country details
-        function toggleCountryDetails(countryElement, countryData, fullData) {
-            const details = countryElement.querySelector('.country-details');
-            const isExpanded = countryElement.classList.contains('expanded');
-
-            if (isExpanded) {
-                details.classList.remove('show');
-                countryElement.classList.remove('expanded');
-            } else {
-                // Create details if they don't exist
-                if (!details) {
-                    const detailsDiv = document.createElement('div');
-                    detailsDiv.className = 'country-details';
-
-                    // Show top 10 players with their individual AP positions
-                    const playersToShow = Math.min(10, countryData.top_players.length);
-
-                    // Create a map of player UUIDs to their global positions from the full dataset
-                    const globalPositions = {};
-                    // Calculate previous positions based on last_month_ap
-                    const previousPositions = {};
-                    if (currentData) {
-                        let allPlayers = [];
-                        currentData.country_leaderboard.forEach(country => {
-                            country.top_players.forEach(player => {
-                                allPlayers.push({
-                                    ...player,
-                                    country: country.country
-                                });
-                            });
-                        });
-
-                        const sortedPlayers = allPlayers.sort((a, b) => b.current_ap - a.current_ap);
-                        sortedPlayers.forEach((player, index) => {
-                            globalPositions[player.uuid] = index + 1;
-                        });
-
-                        // Calculate previous positions based on last_month_ap
-                        const playersByLastMonthAP = [...allPlayers].sort((a, b) => (b.last_month_ap || 0) - (a.last_month_ap || 0));
-                        playersByLastMonthAP.forEach((player, index) => {
-                            previousPositions[player.uuid] = index + 1;
-                        });
-                    }
-
-                    // Get the score for this country
-                    const score = countryData.score;
-                    const scoreDisplay = countryData.country === 'Unknown' ? '' : formatScore(score);
-
-                    // Get flag URL for gradient background
-                    const flagCode = countryFlags[countryData.country];
-                    const flagUrl = flagCode ? `https://flagcdn.com/${flagCode}.svg` : '';
-
-                    const playersHtml = `
-                        <div class="country-details-header">
-                            <div class="details-flag">${getCountryFlag(countryData.country)}</div>
-                            <div class="details-country-name">${countryData.country} <span class="country-score-inline">${scoreDisplay}</span></div>
-                        </div>
-                        ${countryData.top_players.slice(0, playersToShow).map((player, index) => {
-                            const countryRank = index + 1;
-                            const globalRank = globalPositions[player.uuid] || 'N/A';
-                            const rankClass = getRankClass(countryRank);
-                            const gainText = player.monthly_gain === "NEW" ? "NEW" : (player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : formatNumber(player.monthly_gain));
-                            const gainClass = player.monthly_gain === "NEW" ? "new" : (player.monthly_gain < 0 ? 'negative' : '');
-                            const isFirstPlayer = countryRank === 1;
-                            const firstPlayerClass = isFirstPlayer ? 'first-player' : '';
-
-                            // Calculate position change for this player
-                            const previousPosition = previousPositions[player.uuid] || 0;
-                            const positionChange = previousPosition - globalRank;
-                            let positionIndicator = '';
-                            if (previousPosition > 0 && previousPosition !== globalRank) {
-                                if (positionChange > 0) {
-                                    positionIndicator = `<span class="position-indicator position-up">▲${positionChange}</span>`;
-                                } else if (positionChange < 0) {
-                                    positionIndicator = `<span class="position-indicator position-down">▼${Math.abs(positionChange)}</span>`;
-                                } else {
-                                    positionIndicator = `<span class="position-indicator position-same">=</span>`;
-                                }
-                            }
-
-                            return `
-                                <div class="player-item ${firstPlayerClass}" ${isFirstPlayer && flagUrl ? `style="--country-flag-bg: url(${flagUrl})"` : ''}>
-                                    <span class="player-rank ${rankClass}">${getRankDisplay(countryRank)}</span>
-                                    <img class="player-avatar" src="https://minotar.net/avatar/${player.username}/100" alt="${player.username}"
-    onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
-    onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">
-                                    <div class="player-info">
-                                        <div class="player-name">${player.username}</div>
-                                        <div class="player-ap">Global #${globalRank} ${positionIndicator} • ${formatNumber(player.current_ap)} AP</div>
-                                    </div>
-                                    <div class="player-gain ${gainClass}">${gainText}</div>
-                                </div>
-                            `;
-                        }).join('')}
-                    `;
-
-                    detailsDiv.innerHTML = playersHtml;
-                    countryElement.appendChild(detailsDiv);
-                }
-
-                countryElement.querySelector('.country-details').classList.add('show');
-                countryElement.classList.add('expanded');
-            }
-        }
-
-        // Load and display data
-        async function loadData() {
-            try {
-                const response = await fetch('ap_hunters_data.json');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-                
-                const data = await response.json();
-                currentData = data;
-                displayData(data);
-                
-            } catch (error) {
-                console.error('Error loading data:', error);
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('error').style.display = 'block';
-            }
-        }
-
-        function displayData(data) {
-            // Update last update time
-            document.getElementById('lastUpdate').textContent = formatDate(data.last_update);
-            
-            // Show content, hide loading
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-            
-            // Display based on current view
-            if (currentView === 'players') {
-                displayPlayersData(data);
-            } else {
-                displayCountriesData(data);
-            }
-        }
-
-        function displayPlayersData(data) {
-            // Collect all players from all countries
-            let allPlayers = [];
-            data.country_leaderboard.forEach(country => {
-                country.top_players.forEach(player => {
-                    allPlayers.push({
-                        ...player,
-                        country: country.country
-                    });
-                });
-            });
-
-            // Calculate previous positions based on last_month_ap
-            const playersWithPreviousPositions = allPlayers.map(player => {
-                // Create a copy of all players sorted by last_month_ap to get previous positions
-                const playersByLastMonthAP = [...allPlayers].sort((a, b) => (b.last_month_ap || 0) - (a.last_month_ap || 0));
-                const previousPosition = playersByLastMonthAP.findIndex(p => p.uuid === player.uuid) + 1;
-                return {
-                    ...player,
-                    previousPosition: previousPosition
-                };
-            });
-
-            // Sort players based on current mode
-            if (playersSortMode === 'alphabetical') {
-                playersWithPreviousPositions.sort((a, b) => a.username.localeCompare(b.username));
-            } else {
-                // Sort by highest AP (default)
-                playersWithPreviousPositions.sort((a, b) => b.current_ap - a.current_ap);
-            }
-
-            // Display players in table
-            const tableBody = document.getElementById('playersTableBody');
-            tableBody.innerHTML = '';
-
-            playersWithPreviousPositions.forEach((player, index) => {
-                const rank = playersSortMode === 'alphabetical' ? index + 1 :
-                    playersWithPreviousPositions.sort((a, b) => b.current_ap - a.current_ap).findIndex(p => p.username === player.username) + 1;
-
-                const rankClass = playersSortMode === 'ap' ? getRankClass(rank) : '';
-                // Add top-10 classes for flag backgrounds when sorting by AP
-                const topClass = playersSortMode === 'ap' ? (rank <= 10 ? `top-${rank}` : '') : '';
-                let gainText, gainClass;
-                if (player.monthly_gain === "NEW") {
-                    gainText = "NEW";
-                    gainClass = "new";
-                } else {
-                    gainText = player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : formatNumber(player.monthly_gain);
-                    gainClass = player.monthly_gain < 0 ? 'negative' : '';
-                }
-
-                // Calculate position change
-                const positionChange = player.previousPosition - rank;
-                let positionIndicator = '';
-                if (player.previousPosition > 0 && player.previousPosition !== rank) {
-                    if (positionChange > 0) {
-                        positionIndicator = `<span class="position-indicator position-up">▲${positionChange}</span>`;
-                    } else if (positionChange < 0) {
-                        positionIndicator = `<span class="position-indicator position-down">▼${Math.abs(positionChange)}</span>`;
-                    } else {
-                        positionIndicator = `<span class="position-indicator position-same">=</span>`;
-                    }
-                }
-
-                const row = document.createElement('tr');
-                row.className = topClass; // Add top-1, top-2, etc. class
-
-                // Get flag URL for the background
-                const flagCode = countryFlags[player.country];
-                const flagUrl = flagCode ? `https://flagcdn.com/${flagCode}.svg` : '';
-
-                row.innerHTML = `
-                    <td class="player-rank-cell ${rankClass}">${rank} ${positionIndicator}</td>
-                    <td class="player-info-cell">
-                        <img class="player-avatar-large" src="https://minotar.net/avatar/${player.username}/100"
-                             alt="${player.username}"
-                             onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
-                             onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">
-                        <div class="player-details">
-                            <div class="player-name-large">${player.username}</div>
-                        </div>
-                    </td>
-                    <td class="tier-cell">
-                        <span class="player-country">
-                            ${getCountryFlag(player.country)}
-                            ${player.country}
-                        </span>
-                    </td>
-                    <td class="ap-cell">${formatNumber(player.current_ap)}</td>
-                    <td class="gain-cell ${gainClass}">${gainText}</td>
-                `;
-
-                // Set the flag background image using CSS custom properties
-                if (flagUrl && rank <= 10) {
-                    if (rank === 1) {
-                        row.style.setProperty('--flag-url-1', `url(${flagUrl})`);
-                    } else if (rank === 2) {
-                        row.style.setProperty('--flag-url-2', `url(${flagUrl})`);
-                    } else if (rank === 3) {
-                        row.style.setProperty('--flag-url-3', `url(${flagUrl})`);
-                    } else {
-                        row.style.setProperty('--flag-url-4', `url(${flagUrl})`);
-                    }
-                }
-
-                tableBody.appendChild(row);
-            });
-        }
-
-        function displayCountriesData(data) {
-            // Collect all players from all countries
-            let allPlayers = [];
-            data.country_leaderboard.forEach(country => {
-                country.top_players.forEach(player => {
-                    allPlayers.push({
-                        ...player,
-                        country: country.country
-                    });
-                });
-            });
-
-            // Sort all players by AP to get their individual positions
-            const sortedPlayers = allPlayers.sort((a, b) => b.current_ap - a.current_ap);
-
-            // Create a map of player UUIDs to their individual positions
-            const playerPositions = {};
-            sortedPlayers.forEach((player, index) => {
-                playerPositions[player.uuid] = index + 1;
-            });
-
-            // Group players by country
-            const countriesMap = {};
-            allPlayers.forEach(player => {
-                if (!countriesMap[player.country]) {
-                    countriesMap[player.country] = [];
-                }
-                countriesMap[player.country].push(player);
-            });
-
-            // Calculate scores for each country based on top 5 AP combined / 5
-            // Higher score = better ranking (stronger top 5)
-            const countryScores = {};
-            Object.keys(countriesMap).forEach(country => {
-                const players = countriesMap[country];
-
-                // Get top 5 players (or fewer if less exist)
-                const topPlayers = players.slice(0, 5);
-                let totalAP = 0;
-
-                topPlayers.forEach(player => {
-                    totalAP += player.current_ap;
-                });
-
-                // Country score = total AP of top 5 players divided by 5
-                // Countries with fewer players are penalized by having lower total AP
-                const countryScore = totalAP / 5;
-
-                countryScores[country] = {
-                    score: countryScore,
-                    playerCount: topPlayers.length,
-                    totalAP: totalAP,
-                    players: players
-                };
-            });
-
-            // Convert to array and sort by total AP of top 5 (higher = better)
-            // Always put "Unknown" at the bottom
-            const countriesArray = Object.keys(countriesMap).map(country => ({
-                country: country,
-                top_players: countriesMap[country],
-                score: countryScores[country]?.score || 0
-            }));
-
-            const knownCountries = countriesArray.filter(c => c.country !== 'Unknown');
-            const unknownCountries = countriesArray.filter(c => c.country === 'Unknown');
-
-            const sortedCountries = [...knownCountries.sort((a, b) => b.score - a.score), ...unknownCountries];
-
-            // Display global rankings
-            const globalRankings = document.getElementById('globalRankings');
-            globalRankings.innerHTML = '';
-
-            sortedCountries.forEach((countryData, index) => {
-                const rank = index + 1;
-                const rankClass = getRankClass(rank);
-                const topPlayer = countryData.top_players[0];
-
-                const countryDiv = document.createElement('div');
-                countryDiv.className = `country-rank rank-${rank}`;
-
-                // Get remaining players for preview (players 2-4, showing 3 avatars)
-                const previewPlayers = countryData.top_players.slice(1, 4);
-                const totalPlayers = countryData.top_players.length;
-                const remainingCount = Math.max(0, totalPlayers - 1);
-                const previewHtml = previewPlayers.length > 0 ? `
-                    <div class="preview-players">
-                        <span class="preview-count">+${remainingCount} more</span>
-                        ${previewPlayers.map(player =>
-                            `<img class="preview-avatar" src="https://minotar.net/avatar/${player.username}/100" alt="${player.username}"
-    onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
-    onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">`
-                        ).join('')}
-                    </div>
-                ` : '';
-
-                // Get the score for this country
-                const score = countryData.score;
-                const scoreDisplay = countryData.country === 'Unknown' ? '' : formatScore(score);
-
-                countryDiv.innerHTML = `
-                    <div class="country-main-content">
-                        <div class="rank-section">
-                            <div class="rank-number ${rankClass}">${getRankDisplay(rank)}</div>
-                            
-                            <div class="country-flag">${getCountryFlag(countryData.country)}</div>
-                        </div>
-                        <div class="country-info">
-                            <div class="country-name">${countryData.country}<div class="country-score-inline">${scoreDisplay}</div></div>
-                            <div class="country-top-player">
-                                <img class="player-avatar" src="https://minotar.net/avatar/${topPlayer?.username || 'Unknown'}/100"
-    alt="${topPlayer?.username || 'Unknown'}" style="width: 32px; height: 32px;"
-    onload="checkSteveSkin(this, '${topPlayer?.username || 'Unknown'}', '${topPlayer?.uuid || ''}')"
-    onerror="this.onerror=null;this.src='https://vzge.me/face/${topPlayer?.uuid || 'Unknown'}.png'">
-                                ${topPlayer?.username || 'Unknown'} - ${formatNumber(topPlayer?.current_ap || 0)} AP
-                            </div>
-                            ${previewHtml}
-                        </div>
-                    </div>
-                `;
-
-                // Add click event to toggle details
-                countryDiv.addEventListener('click', () => toggleCountryDetails(countryDiv, countryData, { country_leaderboard: sortedCountries }));
-
-                globalRankings.appendChild(countryDiv);
-            });
-        }
-
-        // Add Steve skin detection function before DOMContentLoaded:
-function checkSteveSkin(img, username, uuid) {
-    // lmao: If the image is 100x100 and username is not 'steve', likely Steve skin
-    if (img.naturalWidth === 100 && img.naturalHeight === 100) {
-        if (username.toLowerCase() !== 'steve') {
-            img.onerror = null;
-            img.src = `https://vzge.me/face/${uuid}.png`;
-        }
+    // Theme Logic
+    function loadTheme() {
+      const saved = localStorage.getItem('theme') || 'light';
+      if(saved === 'dark') document.body.setAttribute('data-theme', 'dark');
+      else document.body.removeAttribute('data-theme');
+      updateThemeBtn(saved);
     }
-}
+    
+    function toggleTheme() {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      
+      if (next === 'light') document.body.removeAttribute('data-theme');
+      else document.body.setAttribute('data-theme', 'dark');
+      
+      localStorage.setItem('theme', next);
+      updateThemeBtn(next);
+    }
 
-        // Close settings dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const settingsPopup = document.querySelector('.settings-popup');
-            const settingsDropdown = document.getElementById('settingsDropdown');
-            
-            if (settingsPopup && !settingsPopup.contains(event.target)) {
-                settingsDropdown.classList.remove('show');
-            }
+    function updateThemeBtn(theme) {
+      const btn = document.getElementById('themeBtn');
+      btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Tab Logic
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-players').classList.add('hidden');
+        document.getElementById('panel-countries').classList.add('hidden');
+        
+        currentTab = btn.dataset.tab;
+        document.getElementById(`panel-${currentTab}`).classList.remove('hidden');
+      });
+    });
+
+    // Helpers
+    function fmt(n) { return Number(n).toLocaleString(); }
+    function getRankClass(r) { return r === 1 ? 'rank-1' : r === 2 ? 'rank-2' : r === 3 ? 'rank-3' : ''; }
+    
+    function getFlagHTML(country) {
+      if (country === 'youtubers') return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" style="object-fit: contain;">`;
+      if (country === 'staff') return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" style="object-fit: cover;">`;
+      
+      const code = countryFlags[country];
+      if (code) return `<img src="https://flagcdn.com/w40/${code}.png" class="flag-img" alt="${country}">`;
+      return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img" alt="Unknown">`;
+    }
+
+    function checkSteveSkin(img, username, uuid) {
+      if (img.naturalWidth === 100 && img.naturalHeight === 100 && username.toLowerCase() !== 'steve') {
+        img.onerror = null;
+        img.src = `https://vzge.me/face/${uuid}.png`;
+      }
+    }
+
+    // Rendering
+    function renderPlayers(players) {
+      const tbody = document.getElementById('players-tbody');
+      tbody.innerHTML = '';
+      
+      if (!players.length) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No players found.</td></tr>`;
+        return;
+      }
+
+      players.forEach(p => {
+        const rc = getRankClass(p.globalRank);
+        let gainHTML = `<span class="gain-zero">-</span>`;
+        if (p.monthly_gain === "NEW") gainHTML = `<span class="gain-new">NEW</span>`;
+        else if (p.monthly_gain > 0) gainHTML = `<span class="gain-pos">+${fmt(p.monthly_gain)}</span>`;
+        else if (p.monthly_gain < 0) gainHTML = `<span class="gain-neg">${fmt(p.monthly_gain)}</span>`;
+
+        let posHTML = '';
+        if (p.posChange > 0) posHTML = `<span class="position-indicator pos-up">▲ ${p.posChange}</span>`;
+        else if (p.posChange < 0) posHTML = `<span class="position-indicator pos-down">▼ ${Math.abs(p.posChange)}</span>`;
+        else if (p.previousRank > 0) posHTML = `<span class="position-indicator pos-same">=</span>`;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><div class="rank ${rc}">${p.globalRank} ${posHTML}</div></td>
+          <td>
+            <div class="player-cell">
+              <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" alt="${p.username}"
+                onload="checkSteveSkin(this, '${p.username}', '${p.uuid}')"
+                onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid}.png'">
+              <span class="player-name">${p.username}</span>
+            </div>
+          </td>
+          <td>
+            <div class="flag-cell">
+              ${getFlagHTML(p.country)}
+              <span class="country-name">${p.country}</span>
+            </div>
+          </td>
+          <td class="ap-cell">${fmt(p.current_ap)}</td>
+          <td>${gainHTML}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderCountries(countries) {
+      const tbody = document.getElementById('countries-tbody');
+      tbody.innerHTML = '';
+
+      if (!countries.length) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No countries found.</td></tr>`;
+        return;
+      }
+
+      countries.forEach((c, idx) => {
+        const rank = idx + 1;
+        const topP = c.top_players[0] || {};
+        
+        const tr = document.createElement('tr');
+        tr.className = 'country-row';
+        tr.innerHTML = `
+          <td><span class="rank ${getRankClass(rank)}">${rank}</span></td>
+          <td>
+            <div class="flag-cell">
+              ${getFlagHTML(c.country)}
+              <span class="country-name" style="font-weight:600; color:var(--text);">${c.country}</span>
+            </div>
+          </td>
+          <td class="ap-cell">${c.score > 0 ? fmt(Math.round(c.score)) : '-'}</td>
+          <td>
+            <div class="player-cell" style="gap:6px;">
+              <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${topP.username||'?'}/100"
+                onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
+              <span class="country-name">${topP.username || 'Unknown'}</span>
+            </div>
+          </td>
+          <td style="text-align:right; padding-right:20px;"><span class="expand-icon">▶</span></td>
+        `;
+
+        const expandRow = document.createElement('tr');
+        expandRow.className = 'country-players-row';
+        
+        let subPlayersHTML = '';
+        c.top_players.slice(0, 10).forEach((sp, i) => {
+          subPlayersHTML += `
+            <div class="sub-player">
+              <div class="sub-player-left">
+                <span class="sub-rank">${i+1}</span>
+                <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
+                <span class="sub-name">${sp.username}</span>
+              </div>
+              <span class="sub-ap">${fmt(sp.current_ap)} AP</span>
+            </div>
+          `;
         });
 
-        // Dynamic table sorting functionality
-        function sortTable(columnIndex, columnName) {
-            const table = document.querySelector('.players-table');
-            const headers = table.querySelectorAll('th');
-            const tbody = table.querySelector('tbody');
+        expandRow.innerHTML = `
+          <td colspan="5">
+            <div class="country-players-inner">
+              <div class="sub-player-list">${subPlayersHTML}</div>
+            </div>
+          </td>
+        `;
 
-            // Get current sort state for this column
-            const currentState = tableSortStates[columnName] || 'none';
-            let newState;
-
-            // Cycle through sort states: none -> asc -> desc -> none
-            if (currentState === 'none') {
-                newState = 'asc';
-            } else if (currentState === 'asc') {
-                newState = 'desc';
-            } else {
-                newState = 'none';
-            }
-
-            // Update sort states
-            tableSortStates[columnName] = newState;
-
-            // Update all headers to remove sort classes
-            headers.forEach((header, index) => {
-                header.removeAttribute('data-sort');
-                header.classList.remove('sort-asc', 'sort-desc');
-            });
-
-            // Add sort class to clicked header
-            if (newState !== 'none') {
-                headers[columnIndex].setAttribute('data-sort', newState);
-                headers[columnIndex].classList.add(`sort-${newState}`);
-            }
-
-            // If no sorting (default state), use the current view's sort mode
-            if (newState === 'none') {
-                if (currentView === 'players') {
-                    displayPlayersData(currentData);
-                }
-                return;
-            }
-
-            // Get all rows
-            const rows = Array.from(tbody.querySelectorAll('tr'));
-
-            // Sort rows based on column
-            rows.sort((a, b) => {
-                let aVal, bVal;
-
-                switch(columnName) {
-                    case 'rank':
-                        aVal = parseInt(a.querySelector('.player-rank-cell').textContent);
-                        bVal = parseInt(b.querySelector('.player-rank-cell').textContent);
-                        break;
-                    case 'player':
-                        aVal = a.querySelector('.player-name-large').textContent.toLowerCase();
-                        bVal = b.querySelector('.player-name-large').textContent.toLowerCase();
-                        break;
-                    case 'country':
-                        aVal = a.querySelector('.player-country').textContent.toLowerCase();
-                        bVal = b.querySelector('.player-country').textContent.toLowerCase();
-                        break;
-                    case 'ap':
-                        aVal = parseInt(a.querySelector('.ap-cell').textContent.replace(/,/g, ''));
-                        bVal = parseInt(b.querySelector('.ap-cell').textContent.replace(/,/g, ''));
-                        break;
-                    case 'gain':
-                        const aGainText = a.querySelector('.gain-cell').textContent;
-                        const bGainText = b.querySelector('.gain-cell').textContent;
-                        aVal = aGainText.startsWith('+') ? parseInt(aGainText.substring(1).replace(/,/g, '')) : 0;
-                        bVal = bGainText.startsWith('+') ? parseInt(bGainText.substring(1).replace(/,/g, '')) : 0;
-                        break;
-                    default:
-                        return 0;
-                }
-
-                if (newState === 'asc') {
-                    return aVal > bVal ? 1 : -1;
-                } else {
-                    return aVal < bVal ? 1 : -1;
-                }
-            });
-
-            // Clear tbody and re-add sorted rows
-            tbody.innerHTML = '';
-            rows.forEach(row => tbody.appendChild(row));
-        }
-
-        // Add table header click handlers
-        function initializeTableSorting() {
-            const table = document.querySelector('.players-table');
-            const headers = table.querySelectorAll('th');
-
-            headers.forEach((header, index) => {
-                header.addEventListener('click', () => {
-                    let columnName;
-                    switch(index) {
-                        case 0: columnName = 'rank'; break;
-                        case 1: columnName = 'player'; break;
-                        case 2: columnName = 'country'; break;
-                        case 3: columnName = 'ap'; break;
-                        case 4: columnName = 'gain'; break;
-                        default: columnName = 'unknown';
-                    }
-                    sortTable(index, columnName);
-                });
-            });
-        }
-
-        // Search functionality
-        function performSearch() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-            const searchResultsDiv = document.getElementById('searchResults');
-
-            if (!searchTerm) {
-                // Clear search - show all data
-                document.body.classList.remove('searching');
-                searchResultsDiv.style.display = 'none';
-
-                if (currentData) {
-                    if (currentView === 'players') {
-                        displayPlayersData(currentData);
-                    } else {
-                        displayCountriesData(currentData);
-                    }
-                }
-                return;
-            }
-
-            if (!currentData) return;
-
-            document.body.classList.add('searching');
-
-            // Search players
-            let matchingPlayers = [];
-            currentData.country_leaderboard.forEach(country => {
-                country.top_players.forEach(player => {
-                    if (player.username.toLowerCase().includes(searchTerm)) {
-                        matchingPlayers.push({
-                            ...player,
-                            country: country.country
-                        });
-                    }
-                });
-            });
-
-            // Search countries
-            let matchingCountries = currentData.country_leaderboard.filter(country =>
-                country.country.toLowerCase().includes(searchTerm)
-            );
-
-            // Show search results info
-            const totalResults = matchingPlayers.length + matchingCountries.length;
-            if (totalResults > 0) {
-                searchResultsDiv.innerHTML = `Found ${matchingPlayers.length} player${matchingPlayers.length !== 1 ? 's' : ''} and ${matchingCountries.length} countr${matchingCountries.length !== 1 ? 'ies' : 'y'} matching "${searchTerm}"`;
-                searchResultsDiv.style.display = 'block';
-            } else {
-                searchResultsDiv.innerHTML = `No results found for "${searchTerm}"`;
-                searchResultsDiv.style.display = 'block';
-            }
-
-            // Display filtered results
-            if (currentView === 'players') {
-                displayFilteredPlayers(matchingPlayers);
-            } else {
-                displayFilteredCountries(matchingCountries);
-            }
-        }
-
-        function displayFilteredPlayers(matchingPlayers) {
-            const tableBody = document.getElementById('playersTableBody');
-
-            if (matchingPlayers.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="5" class="no-results">
-                            <div class="search-icon-large">🔍</div>
-                            No players found matching your search
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-
-            // Sort filtered players
-            let sortedPlayers = [...matchingPlayers];
-            if (playersSortMode === 'alphabetical') {
-                sortedPlayers.sort((a, b) => a.username.localeCompare(b.username));
-            } else {
-                sortedPlayers.sort((a, b) => b.current_ap - a.current_ap);
-            }
-
-            tableBody.innerHTML = '';
-
-            sortedPlayers.forEach((player, index) => {
-                const rank = index + 1;
-                const rankClass = playersSortMode === 'ap' ? getRankClass(rank) : '';
-                let gainText, gainClass;
-                if (player.monthly_gain === "NEW") {
-                    gainText = "NEW";
-                    gainClass = "new";
-                } else {
-                    gainText = player.monthly_gain > 0 ? `+${formatNumber(player.monthly_gain)}` : formatNumber(player.monthly_gain);
-                    gainClass = player.monthly_gain < 0 ? 'negative' : '';
-                }
-
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="player-rank-cell ${rankClass}">${rank}</td>
-                    <td class="player-info-cell">
-                        <img class="player-avatar-large" src="https://minotar.net/avatar/${player.username}/100"
-                             alt="${player.username}"
-                             onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
-                             onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">
-                        <div class="player-details">
-                            <div class="player-name-large">${player.username}</div>
-                        </div>
-                    </td>
-                    <td class="tier-cell">
-                        <span class="player-country">
-                            ${getCountryFlag(player.country)}
-                            ${player.country}
-                        </span>
-                    </td>
-                    <td class="ap-cell">${formatNumber(player.current_ap)}</td>
-                    <td class="gain-cell ${gainClass}">${gainText}</td>
-                `;
-
-                tableBody.appendChild(row);
-            });
-        }
-
-        function displayFilteredCountries(matchingCountries) {
-            const globalRankings = document.getElementById('globalRankings');
-
-            if (matchingCountries.length === 0) {
-                globalRankings.innerHTML = `
-                    <div class="no-results">
-                        <div class="search-icon-large">🔍</div>
-                        No countries found matching your search
-                    </div>
-                `;
-                return;
-            }
-
-            // Collect all players from matching countries
-            let allPlayers = [];
-            matchingCountries.forEach(country => {
-                country.top_players.forEach(player => {
-                    allPlayers.push({
-                        ...player,
-                        country: country.country
-                    });
-                });
-            });
-
-            // Sort all players by AP to get their individual positions
-            const sortedPlayers = allPlayers.sort((a, b) => b.current_ap - a.current_ap);
-
-            // Create a map of player UUIDs to their individual positions
-            const playerPositions = {};
-            sortedPlayers.forEach((player, index) => {
-                playerPositions[player.uuid] = index + 1;
-            });
-
-            // Group players by country
-            const countriesMap = {};
-            allPlayers.forEach(player => {
-                if (!countriesMap[player.country]) {
-                    countriesMap[player.country] = [];
-                }
-                countriesMap[player.country].push(player);
-            });
-
-            // Calculate scores for each country based on top 5 AP combined / 5
-            // Higher score = better ranking (stronger top 5)
-            const countryScores = {};
-            Object.keys(countriesMap).forEach(country => {
-                const players = countriesMap[country];
-
-                // Get top 5 players (or fewer if less exist)
-                const topPlayers = players.slice(0, 5);
-                let totalAP = 0;
-
-                topPlayers.forEach(player => {
-                    totalAP += player.current_ap;
-                });
-
-                // Country score = total AP of top 5 players divided by 5
-                // Countries with fewer players are penalized by having lower total AP
-                const countryScore = totalAP / 5;
-
-                countryScores[country] = {
-                    score: countryScore,
-                    playerCount: topPlayers.length,
-                    totalAP: totalAP,
-                    players: players
-                };
-            });
-
-            // Convert to array and sort by total AP of top 5 (higher = better)
-            // Always put "Unknown" at the bottom
-            const countriesArray = Object.keys(countriesMap).map(country => ({
-                country: country,
-                top_players: countriesMap[country],
-                score: countryScores[country]?.score || 0
-            }));
-
-            const knownCountries = countriesArray.filter(c => c.country !== 'Unknown');
-            const unknownCountries = countriesArray.filter(c => c.country === 'Unknown');
-
-            const sortedCountries = [...knownCountries.sort((a, b) => b.score - a.score), ...unknownCountries];
-
-            globalRankings.innerHTML = '';
-
-            sortedCountries.forEach((countryData, index) => {
-                const rank = index + 1;
-                const rankClass = getRankClass(rank);
-                const topPlayer = countryData.top_players[0];
-
-                const countryDiv = document.createElement('div');
-                countryDiv.className = `country-rank rank-${rank}`;
-
-                // Get remaining players for preview
-                const previewPlayers = countryData.top_players.slice(1, 4);
-                const totalPlayers = countryData.top_players.length;
-                const remainingCount = Math.max(0, totalPlayers - 1);
-                const previewHtml = previewPlayers.length > 0 ? `
-                    <div class="preview-players">
-                        <span class="preview-count">+${remainingCount} more</span>
-                        ${previewPlayers.map(player =>
-                            `<img class="preview-avatar" src="https://minotar.net/avatar/${player.username}/100" alt="${player.username}"
-    onload="checkSteveSkin(this, '${player.username}', '${player.uuid}')"
-    onerror="this.onerror=null;this.src='https://vzge.me/face/${player.uuid}.png'">`
-                        ).join('')}
-                    </div>
-                ` : '';
-
-                // Get the score for this country
-                const score = countryData.score;
-                const scoreDisplay = countryData.country === 'Unknown' ? '' : formatScore(score);
-
-                countryDiv.innerHTML = `
-                    <div class="country-main-content">
-                        <div class="rank-section">
-                            <div class="rank-number ${rankClass}">${getRankDisplay(rank)}</div>
-                            
-                            <div class="country-flag">${getCountryFlag(countryData.country)}</div>
-                        </div>
-                        <div class="country-info">
-                            <div class="country-name">${countryData.country}<div class="country-score-inline">${scoreDisplay}</div></div>
-                            <div class="country-top-player">
-                                <img class="player-avatar" src="https://minotar.net/avatar/${topPlayer?.username || 'Unknown'}/100"
-    alt="${topPlayer?.username || 'Unknown'}" style="width: 32px; height: 32px;"
-    onload="checkSteveSkin(this, '${topPlayer?.username || 'Unknown'}', '${topPlayer?.uuid || ''}')"
-    onerror="this.onerror=null;this.src='https://vzge.me/face/${topPlayer?.uuid || 'Unknown'}.png'">
-                                ${topPlayer?.username || 'Unknown'} - ${formatNumber(topPlayer?.current_ap || 0)} AP
-                            </div>
-                            ${previewHtml}
-                        </div>
-                    </div>
-                `;
-
-                // Add click event to toggle details
-                countryDiv.addEventListener('click', () => toggleCountryDetails(countryDiv, countryData, { country_leaderboard: sortedCountries }));
-
-                globalRankings.appendChild(countryDiv);
-            });
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(event) {
-            // Ctrl/Cmd + K to focus search
-            if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
-                event.preventDefault();
-                document.getElementById('searchInput').focus();
-            }
-
-            // Escape to clear search
-            if (event.key === 'Escape') {
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput.value) {
-                    searchInput.value = '';
-                    performSearch();
-                }
-            }
+        tr.addEventListener('click', () => {
+          tr.classList.toggle('open');
+          expandRow.classList.toggle('open');
         });
 
-        // Add export functionality
-        function exportToCSV() {
-            if (!currentData) return;
+        tbody.appendChild(tr);
+        tbody.appendChild(expandRow);
+      });
+    }
 
-            let csvContent = 'data:text/csv;charset=utf-8,';
-            csvContent += 'Rank,Player,Country,AP,Monthly Gain\n';
+    // Core Logic
+    async function loadData() {
+      try {
+        const res = await fetch('ap_hunters_data.json');
+        if (!res.ok) throw new Error('Data fetch failed');
+        currentData = await res.json();
+        processData();
+      } catch (err) {
+        document.getElementById('players-loading').classList.add('hidden');
+        document.getElementById('players-error').classList.remove('hidden');
+      }
+    }
 
-            // Collect all players
-            let allPlayers = [];
-            currentData.country_leaderboard.forEach(country => {
-                country.top_players.forEach(player => {
-                    allPlayers.push({
-                        ...player,
-                        country: country.country
-                    });
-                });
-            });
+    function processData() {
+      let tempPlayers = [];
+      currentData.country_leaderboard.forEach(c => {
+        c.top_players.forEach(p => tempPlayers.push({ ...p, country: c.country }));
+      });
 
-            // Sort by AP for export
-            allPlayers.sort((a, b) => b.current_ap - a.current_ap);
+      const sortedByAp = [...tempPlayers].sort((a,b) => b.current_ap - a.current_ap);
+      const sortedByPrev = [...tempPlayers].sort((a,b) => (b.last_month_ap||0) - (a.last_month_ap||0));
+      
+      allPlayersList = sortedByAp.map((p, idx) => {
+        const prevIdx = sortedByPrev.findIndex(op => op.uuid === p.uuid);
+        const prevRank = prevIdx + 1;
+        const currentRank = idx + 1;
+        return {
+          ...p,
+          globalRank: currentRank,
+          previousRank: prevRank,
+          posChange: prevRank > 0 ? (prevRank - currentRank) : 0
+        };
+      });
 
-            allPlayers.forEach((player, index) => {
-                const rank = index + 1;
-                const gainText = player.monthly_gain > 0 ? `+${player.monthly_gain}` : player.monthly_gain;
-                csvContent += `${rank},"${player.username}","${player.country}",${player.current_ap},${gainText}\n`;
-            });
+      const cMap = {};
+      allPlayersList.forEach(p => {
+        if(!cMap[p.country]) cMap[p.country] = [];
+        cMap[p.country].push(p);
+      });
 
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement('a');
-            link.setAttribute('href', encodedUri);
-            link.setAttribute('download', 'ap_leaderboard.csv');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+      processedCountries = Object.keys(cMap).map(c => {
+        const players = cMap[c];
+        const top5 = players.slice(0,5);
+        const score = top5.reduce((sum, p) => sum + p.current_ap, 0) / 5;
+        return { country: c, top_players: players, score };
+      });
+
+      const known = processedCountries.filter(c => c.country !== 'Unknown').sort((a,b) => b.score - a.score);
+      const unknown = processedCountries.filter(c => c.country === 'Unknown');
+      processedCountries = [...known, ...unknown];
+
+      const date = new Date(currentData.last_update);
+      const dateStr = date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      document.getElementById('last-updated-header').textContent = dateStr;
+
+      document.getElementById('players-loading').classList.add('hidden');
+      document.getElementById('players-table').classList.remove('hidden');
+      document.getElementById('countries-loading').classList.add('hidden');
+      document.getElementById('countries-table').classList.remove('hidden');
+
+      renderPlayers(allPlayersList);
+      renderCountries(processedCountries);
+    }
+
+    // Sorting
+    document.querySelectorAll('#players-table th[data-col]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.dataset.col;
+        if (sortCol === col) {
+          sortDir *= -1;
+        } else {
+          sortCol = col;
+          sortDir = (col === 'rank' || col === 'ap' || col === 'gain') ? -1 : 1; 
         }
 
-        // Add some cool animations
-        function addScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
+        document.querySelectorAll('#players-table th').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
 
-            // Observe country ranks for staggered animation
-            document.querySelectorAll('.country-rank').forEach((el, index) => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-                observer.observe(el);
-            });
-        }
+        handleSearch();
+      });
+    });
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            loadTheme();
-            loadData();
-            // Initialize table sorting after data is loaded
-            setTimeout(() => {
-                initializeTableSorting();
-                addScrollAnimations();
-            }, 100);
-        });
-    </script>
+    // Search
+    function handleSearch() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      const resInfo = document.getElementById('searchResults');
+
+      let fPlayers = [...allPlayersList];
+      let fCountries = [...processedCountries];
+
+      if (q) {
+        fPlayers = fPlayers.filter(p => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
+        fCountries = fCountries.filter(c => c.country.toLowerCase().includes(q));
+
+        let results = [];
+        if (fPlayers.length > 0) results.push(`${fPlayers.length} player${fPlayers.length === 1 ? '' : 's'}`);
+        if (fCountries.length > 0) results.push(`${fCountries.length} countr${fCountries.length === 1 ? 'y' : 'ies'}`);
+
+        resInfo.textContent = results.length > 0 ? `Found ${results.join(' and ')}` : 'No results found';
+        resInfo.classList.remove('hidden');
+      } else {
+        resInfo.classList.add('hidden');
+      }
+
+      fPlayers.sort((a, b) => {
+        let va, vb;
+        if (sortCol === 'rank') { va = a.globalRank; vb = b.globalRank; }
+        else if (sortCol === 'ap') { va = a.current_ap; vb = b.current_ap; }
+        else if (sortCol === 'gain') { va = a.monthly_gain === "NEW" ? 0 : a.monthly_gain; vb = b.monthly_gain === "NEW" ? 0 : b.monthly_gain; }
+        else if (sortCol === 'player') { va = a.username.toLowerCase(); vb = b.username.toLowerCase(); }
+        else if (sortCol === 'country') { va = a.country.toLowerCase(); vb = b.country.toLowerCase(); }
+
+        if (va < vb) return -1 * sortDir;
+        if (va > vb) return 1 * sortDir;
+        return 0;
+      });
+
+      renderPlayers(fPlayers);
+      renderCountries(fCountries);
+    }
+
+    // Dynamic spark speed based on table height
+    const sparkObserver = new ResizeObserver(entries => {
+      entries.forEach(entry => {
+        const height = entry.contentRect.height;
+        // Calculates a smooth, consistent travel speed (minimum 2 seconds for tiny tables)
+        const duration = Math.max(5, height / 250);                 // THE SPEEEEEEEEEEEED
+        entry.target.style.setProperty('--spark-speed', `${duration}s`);
+      });
+    });
+
+    document.querySelectorAll('.table-wrap').forEach(wrap => {
+      sparkObserver.observe(wrap);
+    });
+      
+    loadTheme();
+    loadData();
+  </script>
 </body>
 </html>
-
