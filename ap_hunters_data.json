@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-24T02:01:53.733Z",
+  "last_update": "2026-02-25T02:04:11.621Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -519,7 +519,7 @@
     },
     {
       "country": "Denmark",
-      "score": 12487,
+      "score": 12492,
       "top_players": [
         {
           "username": "tobias49",
@@ -533,9 +533,9 @@
           "username": "STAYEZ",
           "uuid": "998d3241aec046ad9d5009f56d28e413",
           "country": "Denmark",
-          "current_ap": 30290,
+          "current_ap": 30315,
           "last_month_ap": 30220,
-          "monthly_gain": 70
+          "monthly_gain": 95
         }
       ]
     },
@@ -793,15 +793,15 @@
     },
     {
       "country": "Hungary",
-      "score": 6094,
+      "score": 6098,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30470,
+          "current_ap": 30490,
           "last_month_ap": 30470,
-          "monthly_gain": 0
+          "monthly_gain": 20
         }
       ]
     },
@@ -935,7 +935,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 15992,
+      "score": 15995,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -957,23 +957,23 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 25790,
+          "current_ap": 25805,
           "last_month_ap": 25725,
-          "monthly_gain": 65
+          "monthly_gain": 80
         }
       ]
     },
     {
       "country": "Japan",
-      "score": 5429,
+      "score": 5436,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_ap": 27145,
+          "current_ap": 27180,
           "last_month_ap": 27120,
-          "monthly_gain": 25
+          "monthly_gain": 60
         }
       ]
     },
