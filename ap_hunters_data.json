@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-25T02:04:11.621Z",
+  "last_update": "2026-02-26T01:59:34.401Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -267,9 +267,9 @@
           "username": "alpinespruce",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28720,
+          "current_ap": 28760,
           "last_month_ap": 28720,
-          "monthly_gain": 0
+          "monthly_gain": 40
         },
         {
           "username": "Rcnnie",
@@ -331,9 +331,9 @@
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 27010,
+          "current_ap": 27025,
           "last_month_ap": 27000,
-          "monthly_gain": 10
+          "monthly_gain": 25
         },
         {
           "username": "tormin",
@@ -427,7 +427,7 @@
     },
     {
       "country": "France",
-      "score": 29923,
+      "score": 29926,
       "top_players": [
         {
           "username": "Yann31_",
@@ -457,9 +457,9 @@
           "username": "Posey",
           "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
           "country": "France",
-          "current_ap": 28640,
+          "current_ap": 28655,
           "last_month_ap": 28640,
-          "monthly_gain": 0
+          "monthly_gain": 15
         },
         {
           "username": "xPeyo",
@@ -541,7 +541,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 27521,
+      "score": 27522,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -563,9 +563,9 @@
           "username": "Ownerd",
           "uuid": "31283097ed0d4628a595eb094130b223",
           "country": "The Netherlands",
-          "current_ap": 26465,
+          "current_ap": 26470,
           "last_month_ap": 26465,
-          "monthly_gain": 0
+          "monthly_gain": 5
         },
         {
           "username": "BU1LDERS",
@@ -641,9 +641,9 @@
           "username": "KyRant",
           "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
           "country": "UK",
-          "current_ap": 26060,
+          "current_ap": 26080,
           "last_month_ap": 26060,
-          "monthly_gain": 0
+          "monthly_gain": 20
         },
         {
           "username": "puffleman3",
@@ -993,7 +993,7 @@
     },
     {
       "country": "Argentina",
-      "score": 10537,
+      "score": 10541,
       "top_players": [
         {
           "username": "Sayapi",
@@ -1007,9 +1007,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26085,
+          "current_ap": 26105,
           "last_month_ap": 26085,
-          "monthly_gain": 0
+          "monthly_gain": 20
         }
       ]
     },
@@ -1185,15 +1185,15 @@
     },
     {
       "country": "Moldova",
-      "score": 5072,
+      "score": 5080,
       "top_players": [
         {
           "username": "Lofaet",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25360,
+          "current_ap": 25400,
           "last_month_ap": 25355,
-          "monthly_gain": 5
+          "monthly_gain": 45
         }
       ]
     }
