@@ -222,7 +222,7 @@
       width: 10000px; height: 10000px;
       margin-top: -5000px; margin-left: -5000px;
       background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%);
-      animation: rotateSpark var(--spark-speed, 3s) linear infinite;
+      animation: rotateSpark var(--spark-speed, 5s) linear infinite;
     }
 
     @keyframes rotateSpark {
@@ -537,7 +537,7 @@
                     <div class="tooltip-content">
                       <h4>Country Power Score</h4>
                       <p><strong>Top Five:</strong> The score is made up of only the Top 5 highest players from a country.</p>
-                      <p><strong>Baseline Subtraction:</strong> The 100th player's score is subtracted from everyone else to create an upper and lower bound.</p>
+                      <p><strong>Baseline Subtraction:</strong> The 100th player's score is subtracted from everyone else. This creates a balanced upper and lower bracket to work with.</p>
                       <p><strong>Diminishing Weights:</strong> Player 1 adds 100% of their new score, Player 2 adds 50%, Player 3 adds 25%, Player 4 adds 10%, Player 5 adds 5%.</p>
                       <div class="formula">Total = (P₁ - B) + 0.5(P₂ - B) + 0.25(P₃ - B) + 0.1(P₄ - B) + 0.05(P₅ - B)</div>
                     </div>
@@ -901,7 +901,7 @@
     const sparkObserver = new ResizeObserver(entries => {
       entries.forEach(entry => {
         const height = entry.contentRect.height;
-        const duration = Math.max(2.5, height / 150);                
+        const duration = Math.max(2.5, height / 100);                
         entry.target.style.setProperty('--spark-speed', `${duration}s`);
       });
     });
@@ -936,5 +936,6 @@
   </script>
 </body>
 </html>
+
 
 
