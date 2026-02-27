@@ -1,563 +1,949 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta property="og:title" content="LitStats">
-  <meta property="og:description" content="Get instant access to comprehensive Hypixel player stats, rankings, and performance analytics.">
-  <meta property="og:image" content="/img/favicon.png" />
-  <meta property="og:url" content="https://litstats.com/">
-  <meta property="og:type" content="website">
-  <title>LitStats - AP Hunters by Country</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="LitStats" />
+    <meta
+      property="og:description"
+      content="Get instant access to comprehensive Hypixel player stats, rankings, and performance analytics."
+    />
+    <meta property="og:image" content="./im" />
+    <meta property="og:url" content="https://litstats.com/" />
+    <meta property="og:type" content="website" />
+    <title>LitStats - AP Hunters by Country</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    /* Fiery Theme Variables */
-    :root {
-      --bg: #fdfaf8;
-      --surface: #ffffff;
-      --surface-2: #fff5f0;
-      --border: #f0e1d8;
-      --border-strong: #e0c5b4;
-      --text: #1a1512;
-      --text-2: #5c4d45;
-      --text-3: #998073;
-      
-      /* Fiery Accents */
-      --accent: #ff5100;
-      --accent-soft: rgba(255, 81, 0, 0.08);
-      --accent-2: #ff8400;
-      
-      --gold: #f59e0b;
-      --silver: #94a3b8;
-      --bronze: #cd7f32;
-      --green: #10b981;
-      --green-soft: #ecfdf5;
-      --red: #ef4444;
-      --red-soft: #fff5f5;
-      
-      --shadow: 0 2px 8px rgba(255, 81, 0, 0.05), 0 8px 24px rgba(0,0,0,0.03);
-      --radius: 12px;
-      --input-bg: #ffffff;
-    }
+      ::selection {
+        background: var(--accent-2);
+        color: #fff;
+      }
 
-    [data-theme="dark"] {
-      --bg: #0f0a08;
-      --surface: #1a1310;
-      --surface-2: #261c18;
-      --border: #382822;
-      --border-strong: #543c33;
-      --text: #f0e6e1;
-      --text-2: #bfaea6;
-      --text-3: #8c7b73;
-      
-      /* Fiery Accents Dark */
-      --accent: #ff621a;
-      --accent-soft: rgba(255, 98, 26, 0.15);
-      --accent-2: #ff9d00;
-      
-      --green: #3fb950;
-      --green-soft: rgba(46, 160, 67, 0.15);
-      --red: #f85149;
-      --red-soft: rgba(248, 81, 73, 0.1);
-      
-      --input-bg: #140e0c;
-      --shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
+      /* Fiery Theme Variables */
+      :root {
+        --bg: #fdfaf8;
+        --surface: #ffffff;
+        --surface-2: #fff5f0;
+        --border: #f0e1d8;
+        --border-strong: #e0c5b4;
+        --text: #1a1512;
+        --text-2: #5c4d45;
+        --text-3: #998073;
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      transition: background-color 0.2s, color 0.2s;
-    }
+        /* Fiery Accents */
+        --accent: #ff5100;
+        --accent-soft: rgba(255, 81, 0, 0.08);
+        --accent-2: #ff8400;
 
-    /* HEADER */
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      transition: background-color 0.2s, border-color 0.2s;
-    }
-    .header-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-    .logo-icon {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-      box-shadow: 0 2px 8px var(--accent-soft);
-    }
-    .logo-text { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
-    .logo-sub { font-size: 12px; color: var(--text-3); font-weight: 400; }
-    
-    .header-controls { display: flex; align-items: center; gap: 16px; }
-    .header-meta { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
-    .header-meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
-    
-    .theme-toggle {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .theme-toggle:hover { 
-      background: var(--surface-2); 
-      border-color: var(--accent);
-      transform: scale(1.1) rotate(10deg); 
-    }
+        --gold: #f59e0b;
+        --silver: #94a3b8;
+        --bronze: #cd7f32;
+        --green: #10b981;
+        --green-soft: #ecfdf5;
+        --red: #ef4444;
+        --red-soft: #fff5f5;
 
-    /* MAIN */
-    main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; }
+        --shadow: 0 2px 8px rgba(255, 81, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.03);
+        --radius: 12px;
+        --input-bg: #ffffff;
+      }
 
-    /* HERO & SEARCH */
-    .hero { margin-bottom: 24px; }
-    .hero h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: var(--text); margin-bottom: 6px; }
-    .hero p { font-size: 14px; color: var(--text-2); }
+      [data-theme="dark"] {
+        --bg: #0f0a08;
+        --surface: #1a1310;
+        --surface-2: #261c18;
+        --border: #382822;
+        --border-strong: #543c33;
+        --text: #f0e6e1;
+        --text-2: #bfaea6;
+        --text-3: #8c7b73;
 
-    .search-container { margin-bottom: 32px; }
-    .search-input {
-      width: 100%; max-width: 400px;
-      padding: 10px 16px;
-      background: var(--input-bg);
-      border: 1px solid var(--border-strong);
-      border-radius: 8px;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      transition: all 0.2s;
-    }
-    .search-input:focus { 
-      outline: none; 
-      border-color: var(--accent); 
-      box-shadow: 0 0 0 3px var(--accent-soft);
-      transform: translateY(-1px);
-    }
-    .search-results-info { font-size: 13px; color: var(--accent); margin-top: 8px; font-weight: 500; }
+        /* Fiery Accents Dark */
+        --accent: #ff621a;
+        --accent-soft: rgba(255, 98, 26, 0.15);
+        --accent-2: #ff9d00;
 
-    /* TABS */
-    .tabs { display: flex; gap: 4px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 4px; width: fit-content; margin-bottom: 20px; }
-    .tab-btn { 
-      padding: 8px 24px; 
-      border-radius: 8px; 
-      font-size: 13px; 
-      font-weight: 600; 
-      font-family: inherit; 
-      border: none; 
-      cursor: pointer; 
-      background: transparent; 
-      color: var(--text-3); 
-      position: relative;
-      overflow: hidden;
-      transition: color 0.2s; 
-    }
-    
-    .tab-btn::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 50%;
-      width: 0; height: 2px;
-      background: var(--accent);
-      transition: width 0.3s ease, left 0.3s ease;
-      border-radius: 2px;
-    }
-    .tab-btn:hover::before { width: 80%; left: 10%; }
-    .tab-btn:hover { color: var(--text); }
-    
-    .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .tab-btn.active::before { display: none; }
+        --green: #3fb950;
+        --green-soft: rgba(46, 160, 67, 0.15);
+        --red: #f85149;
+        --red-soft: rgba(248, 81, 73, 0.1);
 
-    /* SECTION HEADER */
-    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
-    .section-title { font-size: 15px; font-weight: 600; color: var(--text); }
-    .section-hint { font-size: 12px; color: var(--text-3); }
+        --input-bg: #140e0c;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      }
 
-    /* Sorting Arrows */
-    thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
-    thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
+      }
 
-    /* Modern Responsive Spark Border */
-    @property --angle {
-      syntax: '<angle>';
-      initial-value: 0deg;
-      inherits: false;
-    }
+      /* HEADER */
+      header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition:
+          background-color 0.2s,
+          border-color 0.2s;
+      }
+      .header-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        box-shadow: 0 2px 8px var(--accent-soft);
+      }
+      .logo-text {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: -0.3px;
+      }
+      .logo-sub {
+        font-size: 12px;
+        color: var(--text-3);
+        font-weight: 400;
+      }
 
-    .table-wrap { 
-      position: relative;
-      background: var(--border);
-      border-radius: var(--radius); 
-      box-shadow: var(--shadow); 
-      padding: 1px; 
-      z-index: 1;
-    }
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .header-meta {
+        font-size: 12px;
+        color: var(--text-3);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .header-meta .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        display: inline-block;
+      }
 
-    .table-wrap::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: conic-gradient(from var(--angle), transparent 60%, var(--accent) 95%, transparent 100%);
-      animation: rotateSpark var(--spark-speed, 3s) linear infinite;
-      z-index: -1;
-    }
+      .theme-toggle {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .theme-toggle:hover {
+        background: var(--surface-2);
+        border-color: var(--accent);
+        transform: scale(1.1) rotate(10deg);
+      }
 
-    @keyframes rotateSpark {
-      0% { --angle: 0deg; }
-      100% { --angle: 360deg; }
-    }
+      /* MAIN */
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 24px 64px;
+      }
 
-    /* Bottom Fade & Permanent Credit */
-    .bottom-fade {
-      position: fixed;
-      bottom: 0; left: 0; width: 100%; height: 80px;
-      background: linear-gradient(to top, var(--bg) 10%, transparent);
-      pointer-events: none;
-      z-index: 90;
-    }
-    .made-by-tag {
-      position: fixed;
-      bottom: 12px; left: 16px;
-      font-size: 11px;
-      color: var(--text-3);
-      z-index: 100;
-    }
-    .made-by-tag a { color: var(--accent); text-decoration: none; font-weight: 600; }
-    .made-by-tag a:hover { text-decoration: underline; }
+      /* HERO & SEARCH */
+      .hero {
+        margin-bottom: 24px;
+      }
+      .hero h1 {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .hero p {
+        font-size: 14px;
+        color: var(--text-2);
+      }
 
-    .table-inner {
-      background: var(--surface);
-      border-radius: calc(var(--radius) - 1px);
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
+      .search-container {
+        margin-bottom: 32px;
+      }
+      .search-input {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px 16px;
+        background: var(--input-bg);
+        border: 1px solid var(--border-strong);
+        border-radius: 12px;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        transition: all 0.2s;
+      }
+      .search-input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+        transform: translateY(-1px);
+      }
+      .search-results-info {
+        font-size: 13px;
+        color: var(--accent);
+        margin-top: 8px;
+        font-weight: 500;
+      }
 
-    /* TABLE */
-    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-    thead { background: var(--surface-2); border-bottom: 1px solid var(--border); }
-    thead th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-3); white-space: nowrap; cursor: pointer; user-select: none; transition: color 0.15s; }
-    thead th:hover { color: var(--accent); }
+      /* TABS */
+      .tabs {
+        display: flex;
+        gap: 4px;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 4px;
+        width: fit-content;
+        margin-bottom: 20px;
+      }
+      .tab-btn {
+        padding: 8px 24px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: inherit;
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        color: var(--text-3);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.2s;
+      }
 
-    tbody tr { 
-      border-bottom: 1px solid var(--border); 
-      transition: all 0.2s ease;
-      position: relative;
-    }
-    tbody tr:last-child { border-bottom: none; }
-    
-    tbody tr:hover { 
-      background: var(--accent-soft); 
-      transform: translateX(4px);
-    }
+      .tab-btn::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition:
+          width 0.3s ease,
+          left 0.3s ease;
+        border-radius: 2px;
+      }
+      .tab-btn:hover::before {
+        width: 80%;
+        left: 10%;
+      }
+      .tab-btn:hover {
+        color: var(--text);
+      }
 
-    td { padding: 11px 16px; vertical-align: middle; }
+      .tab-btn.active {
+        background: var(--surface);
+        color: var(--text);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      .tab-btn.active::before {
+        display: none;
+      }
 
-    /* RANKS */
-    .rank { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text-3); text-align: center; }
-    .rank-1 { color: var(--gold); font-weight: 700; font-size: 14px;}
-    .rank-2 { color: var(--silver); font-weight: 700; font-size: 14px;}
-    .rank-3 { color: var(--bronze); font-weight: 700; font-size: 14px;}
+      /* SECTION HEADER */
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .section-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .section-hint {
+        font-size: 12px;
+        color: var(--text-3);
+      }
 
-    /* PLAYER INFO */
-    .player-cell { display: flex; align-items: center; gap: 10px; }
-    .player-avatar { width: 28px; height: 28px; border-radius: 4px; background: var(--surface-2); object-fit: cover; }
-    .player-name { font-weight: 600; color: var(--text); }
+      /* Sorting Arrows */
+      thead th.sort-asc::after {
+        content: " ↓";
+        color: var(--accent);
+      }
+      thead th.sort-desc::after {
+        content: " ↑";
+        color: var(--accent);
+      }
 
-    /* COUNTRY FLAG */
-    .flag-cell { display: flex; align-items: center; gap: 8px; }
-    .flag-img { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; border: 1px solid var(--border-strong); }
-    .country-name { color: var(--text-2); font-size: 13px; }
+      /* Modern Responsive Spark Border */
+      @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
 
-    /* STATS CELLS */
-    .ap-cell { font-family: 'DM Mono', monospace; font-weight: 600; color: var(--text); }
-    
-    .gain-pos { display: inline-flex; align-items: center; gap: 3px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: var(--green); background: var(--green-soft); padding: 2px 8px; border-radius: 20px; }
-    .gain-neg { display: inline-flex; align-items: center; gap: 3px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: var(--red); background: var(--red-soft); padding: 2px 8px; border-radius: 20px; }
-    .gain-zero { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-3); }
-    .gain-new { display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 20px; }
+      .table-wrap {
+        position: relative;
+        background: var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1px;
+        z-index: 1;
+      }
 
-    .position-indicator { font-size: 10px; margin-left: 4px; display: inline-block; }
-    .pos-up { color: var(--green); }
-    .pos-down { color: var(--red); }
-    .pos-same { color: var(--gold); }
+      .table-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: conic-gradient(from var(--angle), transparent 60%, var(--accent) 95%, transparent 100%);
+        animation: rotateSpark var(--spark-speed, 3s) linear infinite;
+        z-index: -1;
+      }
 
-    /* COUNTRY EXPANDING ROWS */
-    .country-row { cursor: pointer; }
-    .expand-icon { transition: transform 0.2s; display: inline-block; color: var(--text-3); font-size: 11px; }
-    .country-row.open .expand-icon { transform: rotate(90deg); color: var(--accent); }
-    .country-players-row { display: none; }
-    .country-players-row.open { display: table-row; }
-    .country-players-inner { padding: 0 16px 12px 40px; }
-    
-    .sub-player-list { display: flex; flex-direction: column; gap: 4px; padding-top: 8px; }
-    .sub-player { 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between; 
-      padding: 8px 12px; 
-      background: var(--surface-2); 
-      border-radius: 8px; 
-      font-size: 13px; 
-      border: 1px solid transparent; 
-      transition: all 0.2s;
-    }
-    .sub-player:hover { 
-      border-color: var(--accent); 
-      transform: translateX(2px);
-      box-shadow: 0 2px 8px var(--accent-soft);
-    }
-    .sub-player-left { display: flex; align-items: center; gap: 10px; }
-    .sub-rank { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-3); width: 20px; }
-    .sub-name { font-weight: 600; color: var(--text); }
-    .sub-ap { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--text-2); font-size: 12px; }
+      @keyframes rotateSpark {
+        0% {
+          --angle: 0deg;
+        }
+        100% {
+          --angle: 360deg;
+        }
+      }
 
-    /* LOADING / ERROR */
-    .loading-msg, .error-msg { text-align: center; padding: 48px 24px; color: var(--text-3); font-size: 14px; }
-    .error-msg { color: var(--red); }
-    .hidden { display: none !important; }
+      /* Bottom Fade & Permanent Credit */
+      .bottom-fade {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        background: linear-gradient(to top, var(--bg) 10%, transparent);
+        pointer-events: none;
+        z-index: 90;
+      }
+      .made-by-tag {
+        position: fixed;
+        bottom: 12px;
+        left: 16px;
+        font-size: 11px;
+        color: var(--text-3);
+        z-index: 100;
+      }
+      .made-by-tag a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .made-by-tag a:hover {
+        text-decoration: underline;
+      }
 
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 20px 24px; text-align: center; font-size: 12px; color: var(--text-3); }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+      .table-inner {
+        background: var(--surface);
+        border-radius: calc(var(--radius) - 1px);
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
 
-    @media (max-width: 640px) {
-      .header-controls { flex-direction: column; align-items: flex-end; gap: 4px; }
-      .hero h1 { font-size: 22px; }
-      table { font-size: 12.5px; }
-      td, thead th { padding: 9px 10px; }
-      .player-avatar { width: 24px; height: 24px; }
-    }
-  </style>
-</head>
-<body>
+      /* TABLE */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+      }
+      thead {
+        background: var(--surface-2);
+        border-bottom: 1px solid var(--border);
+      }
+      thead th {
+        padding: 10px 16px;
+        text-align: left;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-3);
+        white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
+        transition: color 0.15s;
+      }
+      thead th:hover {
+        color: var(--accent);
+      }
 
-  <header>
-    <div class="header-inner">
-      <a class="logo" href="#">
-        <img src="/img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
-        <div>
-          <div class="logo-text">LitStats</div>
-          <div class="logo-sub">by litphoenix</div>
+      tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: all 0.2s ease;
+        position: relative;
+      }
+      tbody tr:last-child {
+        border-bottom: none;
+      }
+
+      tbody tr:hover {
+        background: var(--accent-soft);
+        transform: translateX(4px);
+      }
+
+      td {
+        padding: 11px 16px;
+        vertical-align: middle;
+      }
+
+      /* RANKS */
+      .rank {
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-3);
+        text-align: center;
+      }
+      .rank-1 {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .rank-2 {
+        color: var(--silver);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .rank-3 {
+        color: var(--bronze);
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      /* PLAYER INFO */
+      .player-cell {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .player-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+        background: var(--surface-2);
+        object-fit: cover;
+      }
+      .player-name {
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      /* COUNTRY FLAG */
+      .flag-cell {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .flag-img {
+        width: 20px;
+        height: 14px;
+        border-radius: 2px;
+        object-fit: cover;
+        border: 1px solid var(--border-strong);
+      }
+      .country-name {
+        color: var(--text-2);
+        font-size: 13px;
+      }
+
+      /* STATS CELLS */
+      .ap-cell {
+        font-family: "DM Mono", monospace;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .gain-pos {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--green);
+        background: var(--green-soft);
+        padding: 2px 8px;
+        border-radius: 20px;
+      }
+      .gain-neg {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--red);
+        background: var(--red-soft);
+        padding: 2px 8px;
+        border-radius: 20px;
+      }
+      .gain-zero {
+        font-family: "DM Mono", monospace;
+        font-size: 12px;
+        color: var(--text-3);
+      }
+      .gain-new {
+        display: inline-flex;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--accent);
+        background: var(--accent-soft);
+        padding: 2px 8px;
+        border-radius: 20px;
+      }
+
+      .position-indicator {
+        font-size: 10px;
+        margin-left: 4px;
+        display: inline-block;
+      }
+      .pos-up {
+        color: var(--green);
+      }
+      .pos-down {
+        color: var(--red);
+      }
+      .pos-same {
+        color: var(--gold);
+      }
+
+      /* COUNTRY EXPANDING ROWS */
+      .country-row {
+        cursor: pointer;
+      }
+      .expand-icon {
+        transition: transform 0.2s;
+        display: inline-block;
+        color: var(--text-3);
+        font-size: 11px;
+      }
+      .country-row.open .expand-icon {
+        transform: rotate(90deg);
+        color: var(--accent);
+      }
+      .country-players-row {
+        display: none;
+      }
+      .country-players-row.open {
+        display: table-row;
+      }
+      .country-players-inner {
+        padding: 0 16px 12px 40px;
+      }
+
+      .sub-player-list {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding-top: 8px;
+      }
+      .sub-player {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        background: var(--surface-2);
+        border-radius: 8px;
+        font-size: 13px;
+        border: 1px solid transparent;
+        transition: all 0.2s;
+      }
+      .sub-player:hover {
+        border-color: var(--accent);
+        transform: translateX(2px);
+        box-shadow: 0 2px 8px var(--accent-soft);
+      }
+      .sub-player-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .sub-rank {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        color: var(--text-3);
+        width: 20px;
+      }
+      .sub-name {
+        font-weight: 600;
+        color: var(--text);
+      }
+      .sub-ap {
+        font-family: "DM Mono", monospace;
+        font-weight: 500;
+        color: var(--text-2);
+        font-size: 12px;
+      }
+
+      /* LOADING / ERROR */
+      .loading-msg,
+      .error-msg {
+        text-align: center;
+        padding: 48px 24px;
+        color: var(--text-3);
+        font-size: 14px;
+      }
+      .error-msg {
+        color: var(--red);
+      }
+      .hidden {
+        display: none !important;
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 20px 24px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--text-3);
+      }
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 640px) {
+        .header-controls {
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 4px;
+        }
+        .hero h1 {
+          font-size: 22px;
+        }
+        table {
+          font-size: 12.5px;
+        }
+        td,
+        thead th {
+          padding: 9px 10px;
+        }
+        .player-avatar {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <a class="logo" href="#">
+          <img src="/img/logo.svg" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px" />
+          <div>
+            <div class="logo-text">LitStats</div>
+            <div class="logo-sub">by litphoenix</div>
+          </div>
+        </a>
+        <div class="header-controls">
+          <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Theme">☀️</button>
+          <div class="header-meta">
+            <span class="dot"></span>
+            Updated: <span id="last-updated-header">Loading...</span>
+          </div>
         </div>
-      </a>
-      <div class="header-controls">
-        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Theme">☀️</button>
-        <div class="header-meta">
-          <span class="dot"></span>
-          Updated: <span id="last-updated-header">Loading...</span>
+      </div>
+    </header>
+
+    <main>
+      <div class="hero">
+        <h1>Achievement Points Leaderboard</h1>
+        <p>Tracking top Hypixel AP hunters worldwide. Data sourced from the Hypixel API.</p>
+      </div>
+
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search players or countries..."
+          oninput="handleSearch()"
+        />
+        <div id="searchResults" class="search-results-info hidden"></div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="players">Players</button>
+        <button class="tab-btn" data-tab="countries">Countries</button>
+      </div>
+
+      <div id="panel-players">
+        <div class="section-header">
+          <span class="section-title">Global Players</span>
+          <span class="section-hint">Click column headers to sort ↑↓</span>
+        </div>
+        <div class="table-wrap">
+          <div class="table-inner">
+            <div class="loading-msg" id="players-loading">Loading leaderboard data...</div>
+            <div class="error-msg hidden" id="players-error">
+              Failed to load data. Ensure ap_hunters_data.json exists.
+            </div>
+            <table id="players-table" class="hidden">
+              <thead>
+                <tr>
+                  <th class="rank sort-desc" data-col="rank">#</th>
+                  <th data-col="player">Player</th>
+                  <th data-col="country">Country</th>
+                  <th data-col="ap">AP</th>
+                  <th data-col="gain">Gain</th>
+                </tr>
+              </thead>
+              <tbody id="players-tbody"></tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
 
-  <main>
-    <div class="hero">
-      <h1>Achievement Points Leaderboard</h1>
-      <p>Tracking top Hypixel AP hunters worldwide. Data sourced from the Hypixel API.</p>
-    </div>
-
-    <div class="search-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries..." oninput="handleSearch()">
-      <div id="searchResults" class="search-results-info hidden"></div>
-    </div>
-
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="players">Players</button>
-      <button class="tab-btn" data-tab="countries">Countries</button>
-    </div>
-
-    <div id="panel-players">
-      <div class="section-header">
-        <span class="section-title">Global Players</span>
-        <span class="section-hint">Click column headers to sort ↑↓</span>
-      </div>
-      <div class="table-wrap">
-        <div class="table-inner">
-          <div class="loading-msg" id="players-loading">Loading leaderboard data...</div>
-          <div class="error-msg hidden" id="players-error">Failed to load data. Ensure ap_hunters_data.json exists.</div>
-          <table id="players-table" class="hidden">
-            <thead>
-              <tr>
-                <th class="rank sort-desc" data-col="rank">#</th>
-                <th data-col="player">Player</th>
-                <th data-col="country">Country</th>
-                <th data-col="ap">AP</th>
-                <th data-col="gain">Gain</th>
-              </tr>
-            </thead>
-            <tbody id="players-tbody"></tbody>
-          </table>
+      <div id="panel-countries" class="hidden">
+        <div class="section-header">
+          <span class="section-title">Country Leaderboard</span>
+          <span class="section-hint">Click a country row to expand top players</span>
+        </div>
+        <div class="table-wrap">
+          <div class="table-inner">
+            <div class="loading-msg" id="countries-loading">Loading country data...</div>
+            <table id="countries-table" class="hidden">
+              <thead>
+                <tr>
+                  <th class="rank">#</th>
+                  <th>Country</th>
+                  <th>Score (Top 5 AP)</th>
+                  <th>Top Player</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="countries-tbody"></tbody>
+            </table>
+          </div>
         </div>
       </div>
+    </main>
+
+    <div class="bottom-fade"></div>
+    <div class="made-by-tag">
+      made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank">litphoenix</a>
     </div>
 
-    <div id="panel-countries" class="hidden">
-      <div class="section-header">
-        <span class="section-title">Country Leaderboard</span>
-        <span class="section-hint">Click a country row to expand top players</span>
-      </div>
-      <div class="table-wrap">
-        <div class="table-inner">
-          <div class="loading-msg" id="countries-loading">Loading country data...</div>
-          <table id="countries-table" class="hidden">
-            <thead>
-              <tr>
-                <th class="rank">#</th>
-                <th>Country</th>
-                <th>Score (Top 5 AP)</th>
-                <th>Top Player</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="countries-tbody"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </main>
+    <script>
+      // Constants & Config
+      const countryFlags = {
+        UK: "gb",
+        "United Kingdom": "gb",
+        US: "us",
+        USA: "us",
+        "United States": "us",
+        Denmark: "dk",
+        Canada: "ca",
+        Germany: "de",
+        France: "fr",
+        Netherlands: "nl",
+        "The Netherlands": "nl",
+        Sweden: "se",
+        Norway: "no",
+        Finland: "fi",
+        Poland: "pl",
+        Russia: "ru",
+        Australia: "au",
+        Argentina: "ar",
+        Bangladesh: "bd",
+        "Bosnia and Herzegovina": "ba",
+        Hungary: "hu",
+        Croatia: "hr",
+        "Czech Republic": "cz",
+        Israel: "il",
+        Syria: "sy",
+        Ukraine: "ua",
+        Ecuador: "ec",
+        Iraq: "iq",
+        Taiwan: "tw",
+        Portugal: "pt",
+        "New Zealand": "nz",
+        Chile: "cl",
+        Turkey: "tr",
+        Brazil: "br",
+        Mexico: "mx",
+        Spain: "es",
+        Italy: "it",
+        Belgium: "be",
+        Switzerland: "ch",
+        Austria: "at",
+        Japan: "jp",
+        "South Korea": "kr",
+        China: "cn",
+        India: "in",
+        Uzbekistan: "uz",
+        Serbia: "rs",
+        Slovenia: "si",
+        Bulgaria: "bg",
+        Cyprus: "cy",
+        Greece: "gr",
+        "Hong Kong": "hk",
+        Ireland: "ie",
+        Luxembourg: "lu",
+        Moldova: "md",
+        Peru: "pe",
+        Philippines: "ph",
+        Romania: "ro",
+        "Saudi Arabia": "sa",
+        Singapore: "sg",
+        Slovakia: "sk",
+      };
 
-  <div class="bottom-fade"></div>
-  <div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank">litphoenix</a></div>
+      // State
+      let currentData = null;
+      let allPlayersList = [];
+      let processedCountries = [];
+      let currentTab = "players";
+      let sortCol = "rank";
+      let sortDir = 1;
 
-  <script>
-    // Constants & Config
-    const countryFlags = {
-      'UK': 'gb', 'United Kingdom': 'gb', 'US': 'us', 'USA': 'us', 'United States': 'us',
-      'Denmark': 'dk', 'Canada': 'ca', 'Germany': 'de', 'France': 'fr', 'Netherlands': 'nl',
-      'The Netherlands': 'nl', 'Sweden': 'se', 'Norway': 'no', 'Finland': 'fi', 'Poland': 'pl',
-      'Russia': 'ru', 'Australia': 'au', 'Argentina': 'ar', 'Bangladesh': 'bd', 'Bosnia and Herzegovina': 'ba',
-      'Hungary': 'hu', 'Croatia': 'hr', 'Czech Republic': 'cz', 'Israel': 'il', 'Syria': 'sy',
-      'Ukraine': 'ua', 'Ecuador': 'ec', 'Iraq': 'iq', 'Taiwan': 'tw', 'Portugal': 'pt',
-      'New Zealand': 'nz', 'Chile': 'cl', 'Turkey': 'tr', 'Brazil': 'br', 'Mexico': 'mx',
-      'Spain': 'es', 'Italy': 'it', 'Belgium': 'be', 'Switzerland': 'ch', 'Austria': 'at',
-      'Japan': 'jp', 'South Korea': 'kr', 'China': 'cn', 'India': 'in', 'Uzbekistan': 'uz',
-      'Serbia': 'rs', 'Slovenia': 'si', 'Bulgaria': 'bg', 'Cyprus': 'cy', 'Greece': 'gr',
-      'Hong Kong': 'hk', 'Ireland': 'ie', 'Luxembourg': 'lu', 'Moldova': 'md', 'Peru': 'pe',
-      'Philippines': 'ph', 'Romania': 'ro', 'Saudi Arabia': 'sa', 'Singapore': 'sg', 'Slovakia': 'sk'
-    };
+      // Theme Logic
+      function loadTheme() {
+        const saved = localStorage.getItem("theme") || "light";
+        if (saved === "dark") document.body.setAttribute("data-theme", "dark");
+        else document.body.removeAttribute("data-theme");
+        updateThemeBtn(saved);
+      }
 
-    // State
-    let currentData = null;
-    let allPlayersList = [];
-    let processedCountries = [];
-    let currentTab = 'players';
-    let sortCol = 'rank';
-    let sortDir = 1;
+      function toggleTheme() {
+        const isDark = document.body.getAttribute("data-theme") === "dark";
+        const next = isDark ? "light" : "dark";
 
-    // Theme Logic
-    function loadTheme() {
-      const saved = localStorage.getItem('theme') || 'light';
-      if(saved === 'dark') document.body.setAttribute('data-theme', 'dark');
-      else document.body.removeAttribute('data-theme');
-      updateThemeBtn(saved);
-    }
-    
-    function toggleTheme() {
-      const isDark = document.body.getAttribute('data-theme') === 'dark';
-      const next = isDark ? 'light' : 'dark';
-      
-      if (next === 'light') document.body.removeAttribute('data-theme');
-      else document.body.setAttribute('data-theme', 'dark');
-      
-      localStorage.setItem('theme', next);
-      updateThemeBtn(next);
-    }
+        if (next === "light") document.body.removeAttribute("data-theme");
+        else document.body.setAttribute("data-theme", "dark");
 
-    function updateThemeBtn(theme) {
-      const btn = document.getElementById('themeBtn');
-      btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
+        localStorage.setItem("theme", next);
+        updateThemeBtn(next);
+      }
 
-    // Tab Logic
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('panel-players').classList.add('hidden');
-        document.getElementById('panel-countries').classList.add('hidden');
-        
-        currentTab = btn.dataset.tab;
-        document.getElementById(`panel-${currentTab}`).classList.remove('hidden');
+      function updateThemeBtn(theme) {
+        const btn = document.getElementById("themeBtn");
+        btn.textContent = theme === "dark" ? "☀️" : "🌙";
+      }
+
+      // Tab Logic
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          document.getElementById("panel-players").classList.add("hidden");
+          document.getElementById("panel-countries").classList.add("hidden");
+
+          currentTab = btn.dataset.tab;
+          document.getElementById(`panel-${currentTab}`).classList.remove("hidden");
+        });
       });
-    });
 
-    // Helpers
-    function fmt(n) { return Number(n).toLocaleString(); }
-    function getRankClass(r) { return r === 1 ? 'rank-1' : r === 2 ? 'rank-2' : r === 3 ? 'rank-3' : ''; }
-    
-    function getFlagHTML(country) {
-      if (country === 'youtubers') return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" style="object-fit: contain;">`;
-      if (country === 'staff') return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" style="object-fit: cover;">`;
-      
-      const code = countryFlags[country];
-      if (code) return `<img src="https://flagcdn.com/w40/${code}.png" class="flag-img" alt="${country}">`;
-      return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img" alt="Unknown">`;
-    }
-
-    function checkSteveSkin(img, username, uuid) {
-      if (img.naturalWidth === 100 && img.naturalHeight === 100 && username.toLowerCase() !== 'steve') {
-        img.onerror = null;
-        img.src = `https://vzge.me/face/${uuid}.png`;
+      // Helpers
+      function fmt(n) {
+        return Number(n).toLocaleString();
       }
-    }
-
-    // Rendering
-    function renderPlayers(players) {
-      const tbody = document.getElementById('players-tbody');
-      tbody.innerHTML = '';
-      
-      if (!players.length) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No players found.</td></tr>`;
-        return;
+      function getRankClass(r) {
+        return r === 1 ? "rank-1" : r === 2 ? "rank-2" : r === 3 ? "rank-3" : "";
       }
 
-      players.forEach(p => {
-        const rc = getRankClass(p.globalRank);
-        let gainHTML = `<span class="gain-zero">-</span>`;
-        if (p.monthly_gain === "NEW") gainHTML = `<span class="gain-new">NEW</span>`;
-        else if (p.monthly_gain > 0) gainHTML = `<span class="gain-pos">+${fmt(p.monthly_gain)}</span>`;
-        else if (p.monthly_gain < 0) gainHTML = `<span class="gain-neg">${fmt(p.monthly_gain)}</span>`;
+      function getFlagHTML(country) {
+        if (country === "youtubers")
+          return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" style="object-fit: contain;">`;
+        if (country === "staff")
+          return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" style="object-fit: cover;">`;
 
-        let posHTML = '';
-        if (p.posChange > 0) posHTML = `<span class="position-indicator pos-up">▲ ${p.posChange}</span>`;
-        else if (p.posChange < 0) posHTML = `<span class="position-indicator pos-down">▼ ${Math.abs(p.posChange)}</span>`;
-        else if (p.previousRank > 0) posHTML = `<span class="position-indicator pos-same">=</span>`;
+        const code = countryFlags[country];
+        if (code) return `<img src="https://flagcdn.com/w40/${code}.png" class="flag-img" alt="${country}">`;
+        return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img" alt="Unknown">`;
+      }
 
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
+      function checkSteveSkin(img, username, uuid) {
+        if (img.naturalWidth === 100 && img.naturalHeight === 100 && username.toLowerCase() !== "steve") {
+          img.onerror = null;
+          img.src = `https://vzge.me/face/${uuid}.png`;
+        }
+      }
+
+      // Rendering
+      function renderPlayers(players) {
+        const tbody = document.getElementById("players-tbody");
+        tbody.innerHTML = "";
+
+        if (!players.length) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No players found.</td></tr>`;
+          return;
+        }
+
+        players.forEach((p) => {
+          const rc = getRankClass(p.globalRank);
+          let gainHTML = `<span class="gain-zero">-</span>`;
+          if (p.monthly_gain === "NEW") gainHTML = `<span class="gain-new">NEW</span>`;
+          else if (p.monthly_gain > 0) gainHTML = `<span class="gain-pos">+${fmt(p.monthly_gain)}</span>`;
+          else if (p.monthly_gain < 0) gainHTML = `<span class="gain-neg">${fmt(p.monthly_gain)}</span>`;
+
+          let posHTML = "";
+          if (p.posChange > 0) posHTML = `<span class="position-indicator pos-up">▲ ${p.posChange}</span>`;
+          else if (p.posChange < 0)
+            posHTML = `<span class="position-indicator pos-down">▼ ${Math.abs(p.posChange)}</span>`;
+          else if (p.previousRank > 0) posHTML = `<span class="position-indicator pos-same">=</span>`;
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
           <td><div class="rank ${rc}">${p.globalRank} ${posHTML}</div></td>
           <td>
             <div class="player-cell">
@@ -576,26 +962,26 @@
           <td class="ap-cell">${fmt(p.current_ap)}</td>
           <td>${gainHTML}</td>
         `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function renderCountries(countries) {
-      const tbody = document.getElementById('countries-tbody');
-      tbody.innerHTML = '';
-
-      if (!countries.length) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No countries found.</td></tr>`;
-        return;
+          tbody.appendChild(tr);
+        });
       }
 
-      countries.forEach((c, idx) => {
-        const rank = idx + 1;
-        const topP = c.top_players[0] || {};
-        
-        const tr = document.createElement('tr');
-        tr.className = 'country-row';
-        tr.innerHTML = `
+      function renderCountries(countries) {
+        const tbody = document.getElementById("countries-tbody");
+        tbody.innerHTML = "";
+
+        if (!countries.length) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No countries found.</td></tr>`;
+          return;
+        }
+
+        countries.forEach((c, idx) => {
+          const rank = idx + 1;
+          const topP = c.top_players[0] || {};
+
+          const tr = document.createElement("tr");
+          tr.className = "country-row";
+          tr.innerHTML = `
           <td><span class="rank ${getRankClass(rank)}">${rank}</span></td>
           <td>
             <div class="flag-cell">
@@ -603,35 +989,35 @@
               <span class="country-name" style="font-weight:600; color:var(--text);">${c.country}</span>
             </div>
           </td>
-          <td class="ap-cell">${c.score > 0 ? fmt(Math.round(c.score)) : '-'}</td>
+          <td class="ap-cell">${c.score > 0 ? fmt(Math.round(c.score)) : "-"}</td>
           <td>
             <div class="player-cell" style="gap:6px;">
-              <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${topP.username||'?'}/100"
+              <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${topP.username || "?"}/100"
                 onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
-              <span class="country-name">${topP.username || 'Unknown'}</span>
+              <span class="country-name">${topP.username || "Unknown"}</span>
             </div>
           </td>
           <td style="text-align:right; padding-right:20px;"><span class="expand-icon">▶</span></td>
         `;
 
-        const expandRow = document.createElement('tr');
-        expandRow.className = 'country-players-row';
-        
-        let subPlayersHTML = '';
-        c.top_players.slice(0, 10).forEach((sp, i) => {
-          subPlayersHTML += `
+          const expandRow = document.createElement("tr");
+          expandRow.className = "country-players-row";
+
+          let subPlayersHTML = "";
+          c.top_players.slice(0, 10).forEach((sp, i) => {
+            subPlayersHTML += `
             <div class="sub-player">
               <div class="sub-player-left">
-                <span class="sub-rank">${i+1}</span>
+                <span class="sub-rank">${i + 1}</span>
                 <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
                 <span class="sub-name">${sp.username}</span>
               </div>
               <span class="sub-ap">${fmt(sp.current_ap)} AP</span>
             </div>
           `;
-        });
+          });
 
-        expandRow.innerHTML = `
+          expandRow.innerHTML = `
           <td colspan="5">
             <div class="country-players-inner">
               <div class="sub-player-list">${subPlayersHTML}</div>
@@ -639,154 +1025,167 @@
           </td>
         `;
 
-        tr.addEventListener('click', () => {
-          tr.classList.toggle('open');
-          expandRow.classList.toggle('open');
+          tr.addEventListener("click", () => {
+            tr.classList.toggle("open");
+            expandRow.classList.toggle("open");
+          });
+
+          tbody.appendChild(tr);
+          tbody.appendChild(expandRow);
+        });
+      }
+
+      // Core Logic
+      async function loadData() {
+        try {
+          const res = await fetch("ap_hunters_data.json");
+          if (!res.ok) throw new Error("Data fetch failed");
+          currentData = await res.json();
+          processData();
+        } catch (err) {
+          document.getElementById("players-loading").classList.add("hidden");
+          document.getElementById("players-error").classList.remove("hidden");
+        }
+      }
+
+      function processData() {
+        let tempPlayers = [];
+        currentData.country_leaderboard.forEach((c) => {
+          c.top_players.forEach((p) => tempPlayers.push({ ...p, country: c.country }));
         });
 
-        tbody.appendChild(tr);
-        tbody.appendChild(expandRow);
-      });
-    }
+        const sortedByAp = [...tempPlayers].sort((a, b) => b.current_ap - a.current_ap);
+        const sortedByPrev = [...tempPlayers].sort((a, b) => (b.last_month_ap || 0) - (a.last_month_ap || 0));
 
-    // Core Logic
-    async function loadData() {
-      try {
-        const res = await fetch('ap_hunters_data.json');
-        if (!res.ok) throw new Error('Data fetch failed');
-        currentData = await res.json();
-        processData();
-      } catch (err) {
-        document.getElementById('players-loading').classList.add('hidden');
-        document.getElementById('players-error').classList.remove('hidden');
+        allPlayersList = sortedByAp.map((p, idx) => {
+          const prevIdx = sortedByPrev.findIndex((op) => op.uuid === p.uuid);
+          const prevRank = prevIdx + 1;
+          const currentRank = idx + 1;
+          return {
+            ...p,
+            globalRank: currentRank,
+            previousRank: prevRank,
+            posChange: prevRank > 0 ? prevRank - currentRank : 0,
+          };
+        });
+
+        const cMap = {};
+        allPlayersList.forEach((p) => {
+          if (!cMap[p.country]) cMap[p.country] = [];
+          cMap[p.country].push(p);
+        });
+
+        processedCountries = Object.keys(cMap).map((c) => {
+          const players = cMap[c];
+          const top5 = players.slice(0, 5);
+          const score = top5.reduce((sum, p) => sum + p.current_ap, 0) / 5;
+          return { country: c, top_players: players, score };
+        });
+
+        const known = processedCountries.filter((c) => c.country !== "Unknown").sort((a, b) => b.score - a.score);
+        const unknown = processedCountries.filter((c) => c.country === "Unknown");
+        processedCountries = [...known, ...unknown];
+
+        const date = new Date(currentData.last_update);
+        const dateStr = date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+        document.getElementById("last-updated-header").textContent = dateStr;
+
+        document.getElementById("players-loading").classList.add("hidden");
+        document.getElementById("players-table").classList.remove("hidden");
+        document.getElementById("countries-loading").classList.add("hidden");
+        document.getElementById("countries-table").classList.remove("hidden");
+
+        renderPlayers(allPlayersList);
+        renderCountries(processedCountries);
       }
-    }
 
-    function processData() {
-      let tempPlayers = [];
-      currentData.country_leaderboard.forEach(c => {
-        c.top_players.forEach(p => tempPlayers.push({ ...p, country: c.country }));
+      // Sorting
+      document.querySelectorAll("#players-table th[data-col]").forEach((th) => {
+        th.addEventListener("click", () => {
+          const col = th.dataset.col;
+          if (sortCol === col) {
+            sortDir *= -1;
+          } else {
+            sortCol = col;
+            sortDir = col === "rank" || col === "ap" || col === "gain" ? -1 : 1;
+          }
+
+          document.querySelectorAll("#players-table th").forEach((h) => h.classList.remove("sort-asc", "sort-desc"));
+          th.classList.add(sortDir === 1 ? "sort-asc" : "sort-desc");
+
+          handleSearch();
+        });
       });
 
-      const sortedByAp = [...tempPlayers].sort((a,b) => b.current_ap - a.current_ap);
-      const sortedByPrev = [...tempPlayers].sort((a,b) => (b.last_month_ap||0) - (a.last_month_ap||0));
-      
-      allPlayersList = sortedByAp.map((p, idx) => {
-        const prevIdx = sortedByPrev.findIndex(op => op.uuid === p.uuid);
-        const prevRank = prevIdx + 1;
-        const currentRank = idx + 1;
-        return {
-          ...p,
-          globalRank: currentRank,
-          previousRank: prevRank,
-          posChange: prevRank > 0 ? (prevRank - currentRank) : 0
-        };
-      });
+      // Search
+      function handleSearch() {
+        const q = document.getElementById("searchInput").value.toLowerCase().trim();
+        const resInfo = document.getElementById("searchResults");
 
-      const cMap = {};
-      allPlayersList.forEach(p => {
-        if(!cMap[p.country]) cMap[p.country] = [];
-        cMap[p.country].push(p);
-      });
+        let fPlayers = [...allPlayersList];
+        let fCountries = [...processedCountries];
 
-      processedCountries = Object.keys(cMap).map(c => {
-        const players = cMap[c];
-        const top5 = players.slice(0,5);
-        const score = top5.reduce((sum, p) => sum + p.current_ap, 0) / 5;
-        return { country: c, top_players: players, score };
-      });
+        if (q) {
+          fPlayers = fPlayers.filter(
+            (p) => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q),
+          );
+          fCountries = fCountries.filter((c) => c.country.toLowerCase().includes(q));
 
-      const known = processedCountries.filter(c => c.country !== 'Unknown').sort((a,b) => b.score - a.score);
-      const unknown = processedCountries.filter(c => c.country === 'Unknown');
-      processedCountries = [...known, ...unknown];
+          let results = [];
+          if (fPlayers.length > 0) results.push(`${fPlayers.length} player${fPlayers.length === 1 ? "" : "s"}`);
+          if (fCountries.length > 0)
+            results.push(`${fCountries.length} countr${fCountries.length === 1 ? "y" : "ies"}`);
 
-      const date = new Date(currentData.last_update);
-      const dateStr = date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-      document.getElementById('last-updated-header').textContent = dateStr;
-
-      document.getElementById('players-loading').classList.add('hidden');
-      document.getElementById('players-table').classList.remove('hidden');
-      document.getElementById('countries-loading').classList.add('hidden');
-      document.getElementById('countries-table').classList.remove('hidden');
-
-      renderPlayers(allPlayersList);
-      renderCountries(processedCountries);
-    }
-
-    // Sorting
-    document.querySelectorAll('#players-table th[data-col]').forEach(th => {
-      th.addEventListener('click', () => {
-        const col = th.dataset.col;
-        if (sortCol === col) {
-          sortDir *= -1;
+          resInfo.textContent = results.length > 0 ? `Found ${results.join(" and ")}` : "No results found";
+          resInfo.classList.remove("hidden");
         } else {
-          sortCol = col;
-          sortDir = (col === 'rank' || col === 'ap' || col === 'gain') ? -1 : 1; 
+          resInfo.classList.add("hidden");
         }
 
-        document.querySelectorAll('#players-table th').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
-        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+        fPlayers.sort((a, b) => {
+          let va, vb;
+          if (sortCol === "rank") {
+            va = a.globalRank;
+            vb = b.globalRank;
+          } else if (sortCol === "ap") {
+            va = a.current_ap;
+            vb = b.current_ap;
+          } else if (sortCol === "gain") {
+            va = a.monthly_gain === "NEW" ? 0 : a.monthly_gain;
+            vb = b.monthly_gain === "NEW" ? 0 : b.monthly_gain;
+          } else if (sortCol === "player") {
+            va = a.username.toLowerCase();
+            vb = b.username.toLowerCase();
+          } else if (sortCol === "country") {
+            va = a.country.toLowerCase();
+            vb = b.country.toLowerCase();
+          }
 
-        handleSearch();
-      });
-    });
+          if (va < vb) return -1 * sortDir;
+          if (va > vb) return 1 * sortDir;
+          return 0;
+        });
 
-    // Search
-    function handleSearch() {
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      const resInfo = document.getElementById('searchResults');
-
-      let fPlayers = [...allPlayersList];
-      let fCountries = [...processedCountries];
-
-      if (q) {
-        fPlayers = fPlayers.filter(p => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
-        fCountries = fCountries.filter(c => c.country.toLowerCase().includes(q));
-
-        let results = [];
-        if (fPlayers.length > 0) results.push(`${fPlayers.length} player${fPlayers.length === 1 ? '' : 's'}`);
-        if (fCountries.length > 0) results.push(`${fCountries.length} countr${fCountries.length === 1 ? 'y' : 'ies'}`);
-
-        resInfo.textContent = results.length > 0 ? `Found ${results.join(' and ')}` : 'No results found';
-        resInfo.classList.remove('hidden');
-      } else {
-        resInfo.classList.add('hidden');
+        renderPlayers(fPlayers);
+        renderCountries(fCountries);
       }
 
-      fPlayers.sort((a, b) => {
-        let va, vb;
-        if (sortCol === 'rank') { va = a.globalRank; vb = b.globalRank; }
-        else if (sortCol === 'ap') { va = a.current_ap; vb = b.current_ap; }
-        else if (sortCol === 'gain') { va = a.monthly_gain === "NEW" ? 0 : a.monthly_gain; vb = b.monthly_gain === "NEW" ? 0 : b.monthly_gain; }
-        else if (sortCol === 'player') { va = a.username.toLowerCase(); vb = b.username.toLowerCase(); }
-        else if (sortCol === 'country') { va = a.country.toLowerCase(); vb = b.country.toLowerCase(); }
-
-        if (va < vb) return -1 * sortDir;
-        if (va > vb) return 1 * sortDir;
-        return 0;
+      // Dynamic spark speed based on table height
+      const sparkObserver = new ResizeObserver((entries) => {
+        entries.forEach((entry) => {
+          const height = entry.contentRect.height;
+          // Calculates a smooth, consistent travel speed (minimum 2 seconds for tiny tables)
+          const duration = Math.max(5, height / 250); // THE SPEEEEEEEEEEEED
+          entry.target.style.setProperty("--spark-speed", `${duration}s`);
+        });
       });
 
-      renderPlayers(fPlayers);
-      renderCountries(fCountries);
-    }
-
-    // Dynamic spark speed based on table height
-    const sparkObserver = new ResizeObserver(entries => {
-      entries.forEach(entry => {
-        const height = entry.contentRect.height;
-        // Calculates a smooth, consistent travel speed (minimum 2 seconds for tiny tables)
-        const duration = Math.max(5, height / 250);                 // THE SPEEEEEEEEEEEED
-        entry.target.style.setProperty('--spark-speed', `${duration}s`);
+      document.querySelectorAll(".table-wrap").forEach((wrap) => {
+        sparkObserver.observe(wrap);
       });
-    });
 
-    document.querySelectorAll('.table-wrap').forEach(wrap => {
-      sparkObserver.observe(wrap);
-    });
-      
-    loadTheme();
-    loadData();
-  </script>
-</body>
+      loadTheme();
+      loadData();
+    </script>
+  </body>
 </html>
-
