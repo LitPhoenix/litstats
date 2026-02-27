@@ -128,7 +128,6 @@
     "559860c584174a7c90a8f79332802516": "Finland",
     "7d92df9db6f04ef4b24ded24ae739198": "Finland",
     "e9a871c29903474687b0b045edd35ae9": "Finland",
-    "63488c2cf2dc48c0951bdf71efbbdb09": "Finland",
     "3de9779b0ed34ca196575639b57e2c3b": "France",
     "bfe045f7babf4d1c8f00556716576c34": "France",
     "eab5c169c27140c6aba22f3c3f23c7c0": "France",
@@ -187,6 +186,7 @@
     "f61b81b44faf4fc58b00405721f19f84": "USA",
     "8b87c1da0a114a988235c7f54bf48b51": "USA",
     "baebdae38c064f40a3dda17bda5ecbf5": "USA",
+    "63488c2cf2dc48c0951bdf71efbbdb09": "USA",
     "f13bced3fe9044a6831e0496c0cab1e9": "USA",
     "99fcc41648bc45718c6cebfaf501da97": "USA",
     "8eb18a9227fb4b36947177babab261cd": "USA",
@@ -421,6 +421,14 @@
           "country": "USA",
           "current_ap": 25270,
           "last_month_ap": 25270,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Colerer",
+          "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
+          "country": "USA",
+          "current_ap": 25550,
+          "last_month_ap": 25550,
           "monthly_gain": 0
         }
       ]
@@ -824,14 +832,6 @@
           "current_ap": 26350,
           "last_month_ap": 26350,
           "monthly_gain": 0
-        },
-        {
-          "username": "sForce",
-          "uuid": "ad988df25a274cf592b66c9562834230",
-          "country": "Norway",
-          "current_ap": 25215,
-          "last_month_ap": 25215,
-          "monthly_gain": 0
         }
       ]
     },
@@ -921,14 +921,6 @@
           "country": "Finland",
           "current_ap": 26360,
           "last_month_ap": 26360,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Colerer",
-          "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
-          "country": "Finland",
-          "current_ap": 25550,
-          "last_month_ap": 25550,
           "monthly_gain": 0
         }
       ]
@@ -1194,6 +1186,20 @@
           "current_ap": 25425,
           "last_month_ap": 25355,
           "monthly_gain": 70
+        }
+      ]
+    },
+    {
+      "country": "Sweden",
+      "score": 5085,
+      "top_players": [
+        {
+          "username": "sForce",
+          "uuid": "ad988df25a274cf592b66c9562834230",
+          "country": "Sweden",
+          "current_ap": 25215,
+          "last_month_ap": 25215,
+          "monthly_gain": 0
         }
       ]
     }
