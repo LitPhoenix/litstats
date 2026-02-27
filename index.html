@@ -323,8 +323,8 @@
       visibility: hidden;
       opacity: 0;
       position: absolute;
-      bottom: 140%;
-      top: auto;
+      bottom: auto;
+      top: 140%;
       left: 50%;
       transform: translateX(-50%) translateY(-10px);
       width: 320px;
@@ -346,13 +346,13 @@
     .tooltip-content::after {
       content: '';
       position: absolute;
-      top: auto;
       bottom: 100%;
+      top: auto;
       left: 50%;
       transform: translateX(-50%);
       border-width: 6px;
       border-style: solid;
-      border-color: var(--border-strong) transparent transparent transparent;
+      border-color: transparent transparent var(--border-strong) transparent;
     }
     .tooltip-wrap:hover .tooltip-content {
       visibility: visible;
@@ -936,4 +936,5 @@
   </script>
 </body>
 </html>
+
 
