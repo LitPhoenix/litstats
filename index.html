@@ -19,6 +19,7 @@
     /* Fiery Theme Variables */
     :root {
       --bg: #fdfaf8;
+      --bg-glow: rgba(255, 100, 0, 0.03); /* Light mode faint fire glow */
       --surface: #ffffff;
       --surface-2: #fff5f0;
       --border: #f0e1d8;
@@ -46,6 +47,7 @@
 
     [data-theme="dark"] {
       --bg: #0f0a08;
+      --bg-glow: rgba(255, 60, 0, 0.03); /* Dark mode faint fire glow */
       --surface: #1a1310;
       --surface-2: #261c18;
       --border: #382822;
@@ -69,11 +71,22 @@
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
+      background-color: var(--bg);
+      /* Subtle animated fire radial background */
+      background-image: 
+        radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%),
+        radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
+      background-size: 200% 200%;
+      animation: subtleFire 12s ease-in-out infinite alternate;
       color: var(--text);
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
       transition: background-color 0.2s, color 0.2s;
+    }
+
+    @keyframes subtleFire {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
     }
 
     /* HEADER */
@@ -106,6 +119,21 @@
     
     .header-controls { display: flex; align-items: center; gap: 16px; }
     
+    /* Quest Page Link */
+    .nav-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-2);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover {
+      background: var(--surface-2);
+      color: var(--accent);
+    }
+
     .theme-toggle {
       background: transparent;
       border: 1px solid var(--border);
@@ -118,12 +146,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .theme-toggle:hover { 
       background: var(--surface-2); 
       border-color: var(--accent);
-      transform: scale(1.1) rotate(10deg); 
+      transform: scale(1.1) rotate(15deg); 
     }
 
     /* MAIN */
@@ -134,7 +162,7 @@
     .hero h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: var(--text); margin-bottom: 6px; }
     .hero p { font-size: 14px; color: var(--text-2); }
 
-    .search-container { margin-bottom: 32px; }
+    .search-container { margin-bottom: 24px; }
     .search-input {
       width: 100%; max-width: 400px;
       padding: 10px 16px;
@@ -154,6 +182,33 @@
     }
     .search-results-info { font-size: 13px; color: var(--accent); margin-top: 8px; font-weight: 500; }
 
+    /* KEYBOARD SHORTCUTS INFO */
+    .shortcuts-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+      font-size: 12px;
+      color: var(--text-3);
+      align-items: center;
+    }
+    .shortcut-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    kbd {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-2);
+      box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    }
+
     /* TABS */
     .tabs { display: flex; gap: 4px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 4px; width: fit-content; margin-bottom: 20px; }
     .tab-btn { 
@@ -170,7 +225,6 @@
       overflow: hidden;
       transition: color 0.2s; 
     }
-    
     .tab-btn::before {
       content: '';
       position: absolute;
@@ -182,7 +236,6 @@
     }
     .tab-btn:hover::before { width: 80%; left: 10%; }
     .tab-btn:hover { color: var(--text); }
-    
     .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .tab-btn.active::before { display: none; }
 
@@ -200,29 +253,23 @@
 
     .table-wrap { 
       position: relative;
-      background: transparent;
+      background: var(--border);
       border-radius: var(--radius); 
       box-shadow: var(--shadow); 
       padding: 1px; 
       z-index: 1;
+      overflow: hidden;
     }
 
-    .spark-bg {
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      overflow: hidden;
-      z-index: -1;
-      background: var(--border);
-    }
-    .spark-bg::before {
+    .table-wrap::before {
       content: '';
       position: absolute;
       top: 50%; left: 50%;
       width: 10000px; height: 10000px;
       margin-top: -5000px; margin-left: -5000px;
-      background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%);
-      animation: rotateSpark var(--spark-speed, 5s) linear infinite;
+      background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #fffec2 100%);
+      animation: rotateSpark var(--spark-speed, 3s) linear infinite;
+      z-index: -1;
     }
 
     @keyframes rotateSpark {
@@ -260,23 +307,23 @@
     thead th:hover { color: var(--accent); }
     
     th.rank { text-align: center; }
+    td .rank { display: block; text-align: center; }
 
     /* Sorting Arrows */
     thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
     thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
 
-    /* HOVER TRAIL & ORANGE SEGMENT */
     tbody tr { 
       border-bottom: 1px solid var(--border); 
-      transition: all 0.09s ease-out; /* Longer linger trail */
+      transition: all 0.09s ease-out; 
       position: relative;
     }
     tbody tr:last-child { border-bottom: none; }
     
     tbody tr:hover, tbody tr.force-hover { 
       background: var(--accent-soft); 
-      transform: translateX(3px);
-      box-shadow: -3px 0 0 var(--accent);
+      transform: translateX(4px);
+      box-shadow: -4px 0 0 var(--accent);
       transition: all 0.1s ease-in; 
     }
     
@@ -465,6 +512,7 @@
         </div>
       </a>
       <div class="header-controls">
+        <a href="quest.html" class="nav-link">Quests</a>
         <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Theme">☀️</button>
       </div>
     </div>
@@ -481,6 +529,12 @@
       <div id="searchResults" class="search-results-info hidden"></div>
     </div>
 
+    <div class="shortcuts-panel">
+      <div class="shortcut-item"><kbd>/</kbd> Search</div>
+      <div class="shortcut-item"><kbd>1</kbd> Players Tab</div>
+      <div class="shortcut-item"><kbd>2</kbd> Countries Tab</div>
+    </div>
+
     <div class="tabs">
       <button class="tab-btn active" data-tab="players">Players</button>
       <button class="tab-btn" data-tab="countries">Countries</button>
@@ -492,7 +546,6 @@
         <span class="section-hint">Click column headers to sort ↑↓</span>
       </div>
       <div class="table-wrap">
-        <div class="spark-bg"></div>
         <div class="table-inner">
           <div class="loading-msg" id="players-loading">Loading leaderboard data...</div>
           <div class="error-msg hidden" id="players-error">Failed to load data. Ensure ap_hunters_data.json exists.</div>
@@ -522,7 +575,6 @@
         <span class="section-hint">Click a country row to expand top players</span>
       </div>
       <div class="table-wrap">
-        <div class="spark-bg"></div>
         <div class="table-inner">
           <div class="loading-msg" id="countries-loading">Loading country data...</div>
           <table id="countries-table" class="hidden">
@@ -667,7 +719,7 @@
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank} ${posHTML}</span></td>
+          <td><span class="rank ${rc}">${p.globalRank} ${posHTML}</span></td>
           <td>
             <div class="player-cell">
               <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" alt="${p.username}"
@@ -705,7 +757,7 @@
         const tr = document.createElement('tr');
         tr.className = 'country-row';
         tr.innerHTML = `
-          <td style="text-align: center;"><span class="rank ${getRankClass(rank)}">${rank}</span></td>
+          <td><span class="rank ${getRankClass(rank)}">${rank}</span></td>
           <td>
             <div class="flag-cell">
               ${getFlagHTML(c.country)}
@@ -926,7 +978,6 @@
       const tr = e.target.closest('tbody tr');
       if (tr) {
         tr.classList.add('force-hover');
-        // Locks the state for 100ms (matches the 0.1s CSS transition time)
         setTimeout(() => tr.classList.remove('force-hover'), 100); 
       }
     });
@@ -936,7 +987,3 @@
   </script>
 </body>
 </html>
-
-
-
-
