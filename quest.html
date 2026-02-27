@@ -548,7 +548,7 @@
       <div class="table-wrap">
         <div class="table-inner">
           <div class="loading-msg" id="players-loading">Loading leaderboard data...</div>
-          <div class="error-msg hidden" id="players-error">Failed to load data. Ensure ap_hunters_data.json exists.</div>
+          <div class="error-msg hidden" id="players-error">Failed to load. Ensure player data exists.</div>
           <table id="players-table" class="hidden">
             <thead>
               <tr>
@@ -813,7 +813,7 @@
     // Core Logic
     async function loadData() {
       try {
-        const res = await fetch('ap_hunters_data.json');
+        const res = await fetch('questers_data.json');
         if (!res.ok) throw new Error('Data fetch failed');
         currentData = await res.json();
         processData();
