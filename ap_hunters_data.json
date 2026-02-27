@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-26T01:59:34.401Z",
+  "last_update": "2026-02-27T01:58:35.003Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -897,15 +897,15 @@
     },
     {
       "country": "Finland",
-      "score": 21463,
+      "score": 21468,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28125,
+          "current_ap": 28150,
           "last_month_ap": 28075,
-          "monthly_gain": 50
+          "monthly_gain": 75
         },
         {
           "username": "MineElzu60",
@@ -1149,8 +1149,16 @@
     },
     {
       "country": "Spain",
-      "score": 10219,
+      "score": 10221,
       "top_players": [
+        {
+          "username": "julikabuwu",
+          "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+          "country": "Spain",
+          "current_ap": 25555,
+          "last_month_ap": 25500,
+          "monthly_gain": 55
+        },
         {
           "username": "ArelyPEITUDA",
           "uuid": "11b8466e2c724fe994a00cada8112674",
@@ -1158,14 +1166,6 @@
           "current_ap": 25550,
           "last_month_ap": 25550,
           "monthly_gain": 0
-        },
-        {
-          "username": "julikabuwu",
-          "uuid": "dda3fc724a8f467b8a8033aadde1b569",
-          "country": "Spain",
-          "current_ap": 25545,
-          "last_month_ap": 25500,
-          "monthly_gain": 45
         }
       ]
     },
@@ -1185,15 +1185,15 @@
     },
     {
       "country": "Moldova",
-      "score": 5080,
+      "score": 5085,
       "top_players": [
         {
           "username": "Lofaet",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25400,
+          "current_ap": 25425,
           "last_month_ap": 25355,
-          "monthly_gain": 45
+          "monthly_gain": 70
         }
       ]
     }
