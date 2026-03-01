@@ -1,79 +1,79 @@
 {
-  "last_update": "2026-02-28T01:49:09.936Z",
+  "last_update": "2026-03-01T02:11:02.948Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
-    "289e9f90a76640e0921c85dcd96385b5": 30960,
     "9cc15d802eb44f2aaf2075604ce452d5": 32320,
     "3abe2f6bd45a4e2282d4f9014569db25": 32155,
-    "1fc7b5e6c8e1433ba41e7013ab0a3582": 31385,
     "24132c1e1e504da499e1c2953880acd9": 32145,
-    "47d70a979a2c4ea5957a488fe8c052df": 30710,
     "743c12bffc7348fb8525effead057de2": 31915,
-    "bfe045f7babf4d1c8f00556716576c34": 31475,
+    "bfe045f7babf4d1c8f00556716576c34": 31500,
+    "1fc7b5e6c8e1433ba41e7013ab0a3582": 31385,
+    "289e9f90a76640e0921c85dcd96385b5": 30980,
     "31b5211af8b64ea8abc6b16d6dddb07b": 30845,
-    "e698edd3e0124b2f8fa2ccb109b0d0b0": 30705,
+    "e698edd3e0124b2f8fa2ccb109b0d0b0": 30735,
+    "47d70a979a2c4ea5957a488fe8c052df": 30710,
     "4b5257d509bc460f8a82a79510f17fc9": 30535,
-    "f7a452bae2874e8fb98b5b2a20cedbf9": 30470,
+    "f7a452bae2874e8fb98b5b2a20cedbf9": 30490,
+    "998d3241aec046ad9d5009f56d28e413": 30315,
     "e8a9fe3e37f546f8876feae46fd902bb": 30295,
-    "998d3241aec046ad9d5009f56d28e413": 30220,
-    "f61b81b44faf4fc58b00405721f19f84": 29420,
-    "cf8b2bc61fec40fb8c7554a99fed8baa": 29400,
-    "7289394c9ad843b48213c3e338e1490f": 29205,
+    "7289394c9ad843b48213c3e338e1490f": 29570,
+    "f61b81b44faf4fc58b00405721f19f84": 29445,
+    "cf8b2bc61fec40fb8c7554a99fed8baa": 29410,
     "8b87c1da0a114a988235c7f54bf48b51": 29200,
     "8682b351e9c241639291935776608054": 29055,
     "aad6a2754e9c4744bd335213853f023f": 29020,
     "4885c9a84e714b21be94fd7d5e3c0171": 28890,
     "ddc92083ea134a11a5ddd2a7edcde137": 28850,
     "992df94349aa4409ac6a890f6a947a17": 28815,
-    "baebdae38c064f40a3dda17bda5ecbf5": 28720,
-    "eab5c169c27140c6aba22f3c3f23c7c0": 28640,
+    "baebdae38c064f40a3dda17bda5ecbf5": 28760,
+    "eab5c169c27140c6aba22f3c3f23c7c0": 28655,
     "88c0e6ff872a4a94838536b40423dc41": 28470,
-    "73fcd3eb97b54a4b8ab9b34e1c57e2f4": 28370,
+    "73fcd3eb97b54a4b8ab9b34e1c57e2f4": 28395,
+    "af61bb5b6e3a426591e0049ca7a8330f": 28260,
     "56b991d1a9c243d7984df6e6a409cd59": 28260,
-    "af61bb5b6e3a426591e0049ca7a8330f": 28105,
-    "7d92df9db6f04ef4b24ded24ae739198": 28075,
+    "7d92df9db6f04ef4b24ded24ae739198": 28150,
     "f13bced3fe9044a6831e0496c0cab1e9": 28060,
-    "7120f3c4c18a4753baf3d90af928f860": 27930,
+    "7120f3c4c18a4753baf3d90af928f860": 27940,
     "6248c4ae570147369f5cd94192a55094": 27870,
-    "343139d84b91435c90a6d0054a709ca5": 27675,
+    "343139d84b91435c90a6d0054a709ca5": 27700,
     "f9adb4d8fd664d4098d4e70bb3d15ee6": 27620,
     "396c6009191449f691fc86e6d60f7243": 27570,
+    "6119d70a8a724f2aa2ded280a8cf58bb": 27440,
     "1485b2b58ad54eaca304a90a18746196": 27350,
-    "6119d70a8a724f2aa2ded280a8cf58bb": 27340,
-    "14552d0d4cb949b59d4f7d1875b0ad94": 27315,
+    "14552d0d4cb949b59d4f7d1875b0ad94": 27320,
     "77edb6fda6ef4097914ddc698242fe04": 27295,
     "559860c584174a7c90a8f79332802516": 27280,
+    "0baf466458bf4090a761e3cd8b9e5ca6": 27190,
+    "3bd74c4d69e04d76965f256b814b9a44": 27180,
     "f8338f46fc6b4dcdb77842667a6903f8": 27130,
-    "3bd74c4d69e04d76965f256b814b9a44": 27120,
     "2baaec9272fd487294e673eb4ec35201": 27115,
     "dbb5f49cc2394912b1ca89783632d068": 27085,
-    "7456ccb5c8e24271a721a394191d0602": 27000,
-    "0baf466458bf4090a761e3cd8b9e5ca6": 26995,
+    "7456ccb5c8e24271a721a394191d0602": 27050,
     "dc2eaa964e0242589f2731a11aacea55": 26875,
     "f9fe4ed41242460db7dbd7bfd054e082": 26815,
     "cdc3d11920c3401c9903468bc4d82fe3": 26800,
+    "db31ce2250814b1d94345cbb8d07fe4f": 26780,
     "0324177073ee43df82f3825488c83b60": 26755,
-    "db31ce2250814b1d94345cbb8d07fe4f": 26750,
     "059abcc217c2422f9d9f92e8dea2e607": 26740,
     "e3292ca36c5e43cbacd01c52adaca375": 26715,
     "6bb0a8005e3346f8a18ce706dc5f5ccf": 26600,
     "40efa3f0ba0c4a11abfab74d8edff3eb": 26595,
     "3d07a6ad5e5b43a59fe2e99b70c95d88": 26585,
     "e37ccf10fe9643789745e0432ca096b2": 26550,
-    "31283097ed0d4628a595eb094130b223": 26465,
+    "31283097ed0d4628a595eb094130b223": 26470,
+    "d33a4d925db84c30a28e528239471102": 26445,
     "7638efa55b784c41ac34a4c59b2b86df": 26375,
     "e9a871c29903474687b0b045edd35ae9": 26360,
     "1f15c58cdf3c419bba39b89e256d8a86": 26350,
-    "d33a4d925db84c30a28e528239471102": 26220,
     "11f24315871f43f296d5daa2bfc4911d": 26195,
+    "2cfc8db571ed4eb3aacd53b8abff5ee2": 26160,
     "68e1a6b0b49d45fe90661241a5b61a00": 26130,
     "96f645ba026b4e45bc34dd8f0531334c": 26110,
-    "11a41ffd6abc42f8b484e7534118a503": 26100,
-    "d7e0ec9bc36f4d44abd2ff1a1043cebd": 26085,
-    "2cfc8db571ed4eb3aacd53b8abff5ee2": 26075,
+    "d7e0ec9bc36f4d44abd2ff1a1043cebd": 26105,
+    "11a41ffd6abc42f8b484e7534118a503": 26105,
+    "98a4b53f22cd4a18a7b8a4000c98d0cd": 26080,
     "04f4bddb99004950ab605a20f41c6a98": 26065,
-    "98a4b53f22cd4a18a7b8a4000c98d0cd": 26060,
     "6333479985aa448392625f6a5a6876c0": 26040,
     "78a41722527449c38925f5914b005173": 25970,
     "f326f15b6fab42ad83fe3f0f0ba9994b": 25935,
@@ -81,22 +81,22 @@
     "ac97442ca125422cbd72ae60cdd8340f": 25865,
     "9d3220330bfa402987411bf9baf75309": 25825,
     "281aef4684e94e759c7860a055549fe7": 25825,
+    "0e32634dffea4e69b45cae23ea7f4e02": 25815,
     "be11708dcb0946bd9608d29af61269ec": 25790,
     "2f066b0e58fd4db6a24bfbce5ab5bdb4": 25725,
-    "0e32634dffea4e69b45cae23ea7f4e02": 25725,
     "73c22246f2ea4f84827ae0b141d6e33d": 25675,
     "4b48e58c5304407ab8c761fbe125ff3b": 25625,
     "de800b3ca269499e9bcb6ab43e86b4c5": 25620,
+    "dda3fc724a8f467b8a8033aadde1b569": 25555,
     "63488c2cf2dc48c0951bdf71efbbdb09": 25550,
     "11b8466e2c724fe994a00cada8112674": 25550,
     "d297331b7ff9452babd6828871bc2636": 25520,
-    "dda3fc724a8f467b8a8033aadde1b569": 25500,
     "c08043d19f334a3e8189695cf356cd16": 25485,
     "37c6f7335d874321ac4f57c7a5062c71": 25470,
     "f1c38498d6b74d7089313d2e3b2c28b2": 25460,
     "eb2814a894d748dc87c2cb2eedfe1306": 25440,
-    "e20c8b534c054c3db9c079a6fd982c9b": 25415,
-    "4b431497b4094a1d8e15335e81454c4a": 25355,
+    "e20c8b534c054c3db9c079a6fd982c9b": 25440,
+    "4b431497b4094a1d8e15335e81454c4a": 25425,
     "99fcc41648bc45718c6cebfaf501da97": 25310,
     "40884fdda30c4c26ba00abef570469e0": 25310,
     "8eb18a9227fb4b36947177babab261cd": 25270,
@@ -213,7 +213,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 30904,
+      "score": 30909,
       "top_players": [
         {
           "username": "oJakey",
@@ -236,23 +236,23 @@
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
           "current_ap": 30735,
-          "last_month_ap": 30705,
-          "monthly_gain": 30
+          "last_month_ap": 30735,
+          "monthly_gain": 0
         },
         {
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
           "current_ap": 29570,
-          "last_month_ap": 29205,
-          "monthly_gain": 365
+          "last_month_ap": 29570,
+          "monthly_gain": 0
         },
         {
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
-          "current_ap": 29420,
-          "last_month_ap": 29420,
+          "current_ap": 29445,
+          "last_month_ap": 29445,
           "monthly_gain": 0
         },
         {
@@ -268,8 +268,8 @@
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
           "current_ap": 28760,
-          "last_month_ap": 28720,
-          "monthly_gain": 40
+          "last_month_ap": 28760,
+          "monthly_gain": 0
         },
         {
           "username": "Rcnnie",
@@ -284,8 +284,8 @@
           "uuid": "343139d84b91435c90a6d0054a709ca5",
           "country": "USA",
           "current_ap": 27700,
-          "last_month_ap": 27675,
-          "monthly_gain": 25
+          "last_month_ap": 27700,
+          "monthly_gain": 0
         },
         {
           "username": "righter",
@@ -299,9 +299,9 @@
           "username": "rory2",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27420,
-          "last_month_ap": 27340,
-          "monthly_gain": 80
+          "current_ap": 27440,
+          "last_month_ap": 27440,
+          "monthly_gain": 0
         },
         {
           "username": "C4PS",
@@ -316,8 +316,8 @@
           "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
           "country": "USA",
           "current_ap": 27320,
-          "last_month_ap": 27315,
-          "monthly_gain": 5
+          "last_month_ap": 27320,
+          "monthly_gain": 0
         },
         {
           "username": "sirumair9505",
@@ -332,8 +332,8 @@
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
           "current_ap": 27050,
-          "last_month_ap": 27000,
-          "monthly_gain": 50
+          "last_month_ap": 27050,
+          "monthly_gain": 0
         },
         {
           "username": "tormin",
@@ -372,8 +372,8 @@
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
           "current_ap": 26160,
-          "last_month_ap": 26075,
-          "monthly_gain": 85
+          "last_month_ap": 26160,
+          "monthly_gain": 0
         },
         {
           "username": "Coduhy",
@@ -450,8 +450,8 @@
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
           "current_ap": 31500,
-          "last_month_ap": 31475,
-          "monthly_gain": 25
+          "last_month_ap": 31500,
+          "monthly_gain": 0
         },
         {
           "username": "Thomas1665",
@@ -466,16 +466,16 @@
           "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
           "country": "France",
           "current_ap": 28655,
-          "last_month_ap": 28640,
-          "monthly_gain": 15
+          "last_month_ap": 28655,
+          "monthly_gain": 0
         },
         {
           "username": "xPeyo",
           "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
           "country": "France",
           "current_ap": 28260,
-          "last_month_ap": 28105,
-          "monthly_gain": 155
+          "last_month_ap": 28260,
+          "monthly_gain": 0
         },
         {
           "username": "Uleb",
@@ -542,8 +542,8 @@
           "uuid": "998d3241aec046ad9d5009f56d28e413",
           "country": "Denmark",
           "current_ap": 30315,
-          "last_month_ap": 30220,
-          "monthly_gain": 95
+          "last_month_ap": 30315,
+          "monthly_gain": 0
         }
       ]
     },
@@ -572,8 +572,8 @@
           "uuid": "31283097ed0d4628a595eb094130b223",
           "country": "The Netherlands",
           "current_ap": 26470,
-          "last_month_ap": 26465,
-          "monthly_gain": 5
+          "last_month_ap": 26470,
+          "monthly_gain": 0
         },
         {
           "username": "BU1LDERS",
@@ -650,8 +650,8 @@
           "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
           "country": "UK",
           "current_ap": 26080,
-          "last_month_ap": 26060,
-          "monthly_gain": 20
+          "last_month_ap": 26080,
+          "monthly_gain": 0
         },
         {
           "username": "puffleman3",
@@ -681,39 +681,39 @@
     },
     {
       "country": "Canada",
-      "score": 28335,
+      "score": 28339,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
           "current_ap": 30980,
-          "last_month_ap": 30960,
-          "monthly_gain": 20
+          "last_month_ap": 30980,
+          "monthly_gain": 0
         },
         {
           "username": "Andorite",
           "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
           "country": "Canada",
           "current_ap": 29410,
-          "last_month_ap": 29400,
-          "monthly_gain": 10
+          "last_month_ap": 29410,
+          "monthly_gain": 0
         },
         {
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
           "current_ap": 27940,
-          "last_month_ap": 27930,
-          "monthly_gain": 10
+          "last_month_ap": 27940,
+          "monthly_gain": 0
         },
         {
           "username": "5beve",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
-          "current_ap": 26760,
-          "last_month_ap": 26750,
-          "monthly_gain": 10
+          "current_ap": 26780,
+          "last_month_ap": 26780,
+          "monthly_gain": 0
         },
         {
           "username": "DetectiveAndrew",
@@ -750,14 +750,14 @@
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
           "current_ap": 27190,
-          "last_month_ap": 26995,
-          "monthly_gain": 195
+          "last_month_ap": 27190,
+          "monthly_gain": 0
         }
       ]
     },
     {
       "country": "Germany",
-      "score": 16878,
+      "score": 16883,
       "top_players": [
         {
           "username": "NightMan976",
@@ -771,8 +771,8 @@
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28370,
-          "last_month_ap": 28370,
+          "current_ap": 28395,
+          "last_month_ap": 28395,
           "monthly_gain": 0
         },
         {
@@ -808,8 +808,8 @@
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
           "current_ap": 30490,
-          "last_month_ap": 30470,
-          "monthly_gain": 20
+          "last_month_ap": 30490,
+          "monthly_gain": 0
         }
       ]
     },
@@ -912,8 +912,8 @@
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
           "current_ap": 28150,
-          "last_month_ap": 28075,
-          "monthly_gain": 75
+          "last_month_ap": 28150,
+          "monthly_gain": 0
         },
         {
           "username": "MineElzu60",
@@ -958,8 +958,8 @@
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
           "current_ap": 25815,
-          "last_month_ap": 25725,
-          "monthly_gain": 90
+          "last_month_ap": 25815,
+          "monthly_gain": 0
         }
       ]
     },
@@ -972,8 +972,8 @@
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
           "current_ap": 27180,
-          "last_month_ap": 27120,
-          "monthly_gain": 60
+          "last_month_ap": 27180,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1008,22 +1008,22 @@
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
           "current_ap": 26105,
-          "last_month_ap": 26085,
-          "monthly_gain": 20
+          "last_month_ap": 26105,
+          "monthly_gain": 0
         }
       ]
     },
     {
       "country": "New Zealand",
-      "score": 5287,
+      "score": 5289,
       "top_players": [
         {
           "username": "Unstuffynesslys",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26435,
-          "last_month_ap": 26220,
-          "monthly_gain": 215
+          "current_ap": 26445,
+          "last_month_ap": 26445,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1078,8 +1078,8 @@
           "uuid": "11a41ffd6abc42f8b484e7534118a503",
           "country": "Ukraine",
           "current_ap": 26105,
-          "last_month_ap": 26100,
-          "monthly_gain": 5
+          "last_month_ap": 26105,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1156,8 +1156,8 @@
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
           "current_ap": 25555,
-          "last_month_ap": 25500,
-          "monthly_gain": 55
+          "last_month_ap": 25555,
+          "monthly_gain": 0
         },
         {
           "username": "ArelyPEITUDA",
@@ -1178,8 +1178,8 @@
           "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
           "country": "Turkey",
           "current_ap": 25440,
-          "last_month_ap": 25415,
-          "monthly_gain": 25
+          "last_month_ap": 25440,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1192,8 +1192,8 @@
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
           "current_ap": 25425,
-          "last_month_ap": 25355,
-          "monthly_gain": 70
+          "last_month_ap": 25425,
+          "monthly_gain": 0
         }
       ]
     }
