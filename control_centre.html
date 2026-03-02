@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LitStats - Control Centre</title>
+  <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fdfaf8;
+      --bg-glow: rgba(255, 100, 0, 0.03); 
+      --surface: #ffffff;
+      --surface-2: #fff5f0;
+      --border: #f0e1d8;
+      --border-strong: #e0c5b4;
+      --text: #1a1512;
+      --text-2: #5c4d45;
+      --text-3: #998073;
+      --accent: #ff5100;
+      --accent-soft: rgba(255, 81, 0, 0.08);
+      --accent-2: #ff8400;
+      --red: #ef4444;
+      --green: #10b981;
+      --shadow: 0 4px 16px rgba(255, 81, 0, 0.06), 0 8px 32px rgba(0,0,0,0.04);
+      --radius: 12px;
+      --input-bg: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f0a08;
+      --bg-glow: rgba(255, 60, 0, 0.03); 
+      --surface: #1a1310;
+      --surface-2: #261c18;
+      --border: #382822;
+      --border-strong: #543c33;
+      --text: #f0e6e1;
+      --text-2: #bfaea6;
+      --text-3: #8c7b73;
+      --accent: #ff621a;
+      --accent-soft: rgba(255, 98, 26, 0.15);
+      --accent-2: #ff9d00;
+      --red: #f85149;
+      --green: #3fb950;
+      --input-bg: #140e0c;
+      --shadow: 0 8px 32px rgba(0,0,0,0.6);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%),
+        radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
+      background-size: 200% 200%;
+      animation: subtleFire 12s ease-in-out infinite alternate;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes subtleFire { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-text { font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+    .logo-sub { font-size: 12px; color: var(--text-3); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+
+    .header-controls { display: flex; align-items: center; gap: 12px; }
+
+    .btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn:hover { background: var(--border); border-color: var(--accent); }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent-2); }
+    .btn-primary:hover { background: var(--accent-2); color: #fff; }
+
+    main { max-width: 1400px; margin: 0 auto; padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 24px; width: 100%; }
+
+    /* PANELS */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .panel h2 { font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
+    .textarea-wrap textarea {
+      width: 100%; height: 120px;
+      background: var(--input-bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 12px;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      resize: vertical;
+      margin-bottom: 12px;
+    }
+    .textarea-wrap textarea:focus { outline: none; border-color: var(--accent); }
+
+    /* TABLE */
+    .table-toolbar { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+    .search-bar {
+      flex: 1; max-width: 300px;
+      padding: 8px 16px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      background: var(--input-bg);
+      color: var(--text);
+      font-family: inherit;
+    }
+    .search-bar:focus { outline: none; border-color: var(--accent); }
+
+    .table-container {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow-x: auto;
+      max-height: 600px;
+      overflow-y: auto;
+      background: var(--surface-2);
+    }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th {
+      position: sticky; top: 0;
+      background: var(--surface);
+      padding: 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      border-bottom: 2px solid var(--border-strong);
+      z-index: 10;
+    }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:hover { background: var(--surface); }
+
+    .edit-input {
+      width: 100%; padding: 6px 8px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .edit-input:hover, .edit-input:focus { background: var(--input-bg); border-color: var(--accent); outline: none; }
+    .mono { font-family: 'DM Mono', monospace; font-size: 12px; }
+
+    .flag-wrap { display: flex; align-items: center; gap: 8px; }
+    .flag-img { width: 24px; height: 16px; object-fit: cover; border-radius: 2px; border: 1px solid var(--border-strong); }
+
+    .gain-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 12px;
+      font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600;
+    }
+    .gain-pos { color: var(--green); background: var(--green-soft); }
+    .gain-neg { color: var(--red); background: var(--red-soft); }
+    .gain-zero { color: var(--text-3); }
+
+    .btn-icon { background: transparent; border: none; color: var(--text-3); cursor: pointer; padding: 4px; border-radius: 4px; transition: 0.2s; }
+    .btn-icon:hover { background: var(--red-soft); color: var(--red); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="#">
+        <img src="/img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
+        <div>
+          <div class="logo-text">LitStats</div>
+          <div class="logo-sub">Control Centre</div>
+        </div>
+      </a>
+      <div class="header-controls">
+        <button class="btn" onclick="document.getElementById('fileInput').click()">📂 Load JSON File</button>
+        <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="loadExistingJSON(event)">
+        
+        <button class="btn btn-primary" onclick="exportJSON('ap')">📥 Export AP JSON</button>
+        <button class="btn btn-primary" onclick="exportJSON('quest')">📥 Export Quest JSON</button>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="panel">
+      <h2>🔌 Process Nadeshiko Data</h2>
+      <p style="font-size: 13px; color: var(--text-3); margin-bottom: 12px;">Paste the raw JSON response from the Nadeshiko API here to automatically add new players and update existing scores.</p>
+      <div class="textarea-wrap">
+        <textarea id="nadeshikoInput" placeholder='{"count":100000,"data":[{"uuid":"...","tagged_name":"...","value":"..."}]}'></textarea>
+      </div>
+      <button class="btn" onclick="importNadeshiko()">🚀 Sync Nadeshiko Data</button>
+    </div>
+
+    <div class="panel" style="flex: 1; display: flex; flex-direction: column;">
+      <div class="table-toolbar">
+        <h2>👥 Player Database (<span id="playerCount">0</span>)</h2>
+        <div style="display: flex; gap: 12px;">
+          <input type="text" id="searchBar" class="search-bar" placeholder="Search UUID, Name, Country..." oninput="renderTable()">
+          <button class="btn btn-primary" onclick="addBlankPlayer()">➕ New Player</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 180px;">Country</th>
+              <th style="width: 200px;">Username</th>
+              <th>UUID</th>
+              <th style="width: 120px;">Start Score</th>
+              <th style="width: 120px;">Current Score</th>
+              <th style="width: 100px;">Gain</th>
+              <th style="width: 60px; text-align: center;">Del</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const countryFlags = {
+      'UK': 'gb', 'United Kingdom': 'gb', 'US': 'us', 'USA': 'us', 'United States': 'us',
+      'Denmark': 'dk', 'Canada': 'ca', 'Germany': 'de', 'France': 'fr', 'Netherlands': 'nl',
+      'The Netherlands': 'nl', 'Sweden': 'se', 'Norway': 'no', 'Finland': 'fi', 'Poland': 'pl',
+      'Russia': 'ru', 'Australia': 'au', 'Argentina': 'ar', 'Bangladesh': 'bd', 'Bosnia and Herzegovina': 'ba',
+      'Hungary': 'hu', 'Croatia': 'hr', 'Czech Republic': 'cz', 'Israel': 'il', 'Syria': 'sy',
+      'Ukraine': 'ua', 'Ecuador': 'ec', 'Iraq': 'iq', 'Taiwan': 'tw', 'Portugal': 'pt',
+      'New Zealand': 'nz', 'Chile': 'cl', 'Turkey': 'tr', 'Brazil': 'br', 'Mexico': 'mx',
+      'Spain': 'es', 'Italy': 'it', 'Belgium': 'be', 'Switzerland': 'ch', 'Austria': 'at',
+      'Japan': 'jp', 'South Korea': 'kr', 'China': 'cn', 'India': 'in', 'Uzbekistan': 'uz',
+      'Serbia': 'rs', 'Slovenia': 'si', 'Bulgaria': 'bg', 'Cyprus': 'cy', 'Greece': 'gr',
+      'Hong Kong': 'hk', 'Ireland': 'ie', 'Luxembourg': 'lu', 'Moldova': 'md', 'Peru': 'pe',
+      'Philippines': 'ph', 'Romania': 'ro', 'Saudi Arabia': 'sa', 'Singapore': 'sg', 'Slovakia': 'sk',
+      'youtubers': 'yt', 'staff': 'staff' // Special cases handled in flag renderer
+    };
+
+    // State
+    // Format: { "uuid": { username: "Name", country: "UK", startScore: 0, currentScore: 0 } }
+    let players = {}; 
+
+    // --- Core Logic ---
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      const q = document.getElementById('searchBar').value.toLowerCase();
+      tbody.innerHTML = '';
+
+      const playerArray = Object.entries(players).map(([uuid, data]) => ({ uuid, ...data }));
+      
+      // Sort by current score highest first
+      playerArray.sort((a, b) => b.currentScore - a.currentScore);
+
+      let count = 0;
+      playerArray.forEach(p => {
+        if (q && !p.username.toLowerCase().includes(q) && !p.uuid.toLowerCase().includes(q) && !p.country.toLowerCase().includes(q)) return;
+        count++;
+
+        const gain = p.currentScore - p.startScore;
+        let gainHtml = `<span class="gain-badge gain-zero">0</span>`;
+        if (gain > 0) gainHtml = `<span class="gain-badge gain-pos">+${gain}</span>`;
+        else if (gain < 0) gainHtml = `<span class="gain-badge gain-neg">${gain}</span>`;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <div class="flag-wrap">
+              ${getFlagHTML(p.country)}
+              <input class="edit-input" type="text" value="${p.country}" onchange="updatePlayer('${p.uuid}', 'country', this.value)">
+            </div>
+          </td>
+          <td>
+            <input class="edit-input" style="font-weight:600;" type="text" value="${p.username}" placeholder="Loading..." onchange="handleNameChange('${p.uuid}', this.value)">
+          </td>
+          <td>
+            <input class="edit-input mono" type="text" value="${p.uuid}" placeholder="Paste UUID..." onchange="handleUuidChange('${p.uuid}', this.value)">
+          </td>
+          <td>
+            <input class="edit-input mono" type="number" value="${p.startScore}" onchange="updatePlayer('${p.uuid}', 'startScore', this.value)">
+          </td>
+          <td>
+            <input class="edit-input mono" type="number" value="${p.currentScore}" onchange="updatePlayer('${p.uuid}', 'currentScore', this.value)">
+          </td>
+          <td>${gainHtml}</td>
+          <td style="text-align: center;">
+            <button class="btn-icon" onclick="deletePlayer('${p.uuid}')">✖</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('playerCount').textContent = count;
+    }
+
+    function getFlagHTML(country) {
+      if (country === 'youtubers') return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" style="object-fit: contain; width:20px;">`;
+      if (country === 'staff') return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" style="object-fit: cover; width:20px;">`;
+      
+      const code = countryFlags[country];
+      if (code) return `<img src="https://flagcdn.com/w40/${code}.png" class="flag-img">`;
+      return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img">`;
+    }
+
+    // --- Edits & Automation ---
+
+    function updatePlayer(uuid, field, value) {
+      if(field === 'startScore' || field === 'currentScore') {
+        players[uuid][field] = parseFloat(value) || 0;
+      } else {
+        players[uuid][field] = value.trim();
+      }
+      renderTable();
+    }
+
+    async function handleNameChange(oldUuid, newName) {
+      newName = newName.trim();
+      if (!newName) return renderTable();
+      if (players[oldUuid].username.toLowerCase() === newName.toLowerCase()) return;
+
+      const res = await fetch(`https://playerdb.co/api/player/minecraft/${newName}`);
+      const data = await res.json();
+      
+      if (data.code === 'player.found') {
+        const newUuid = data.data.player.raw_id;
+        
+        // Migrate data to new UUID
+        players[newUuid] = { ...players[oldUuid], username: data.data.player.username, uuid: newUuid };
+        if (oldUuid !== newUuid) delete players[oldUuid];
+      } else {
+        alert("Minecraft Username not found!");
+      }
+      renderTable();
+    }
+
+    async function handleUuidChange(oldUuid, newUuid) {
+      newUuid = newUuid.trim().replace(/-/g, '');
+      if (!newUuid || oldUuid === newUuid) return renderTable();
+
+      const res = await fetch(`https://playerdb.co/api/player/minecraft/${newUuid}`);
+      const data = await res.json();
+      
+      if (data.code === 'player.found') {
+        players[newUuid] = { ...players[oldUuid], username: data.data.player.username, uuid: newUuid };
+        delete players[oldUuid];
+      } else {
+        alert("Minecraft UUID not found!");
+      }
+      renderTable();
+    }
+
+    function deletePlayer(uuid) {
+      if(confirm(`Remove ${players[uuid].username} from tracking?`)) {
+        delete players[uuid];
+        renderTable();
+      }
+    }
+
+    function addBlankPlayer() {
+      // Temporary UUID so it renders. Once user types name, it auto-fetches real UUID.
+      const tempId = 'new_' + Math.floor(Math.random()*10000);
+      players[tempId] = { uuid: tempId, username: '', country: 'Unknown', startScore: 0, currentScore: 0 };
+      document.getElementById('searchBar').value = '';
+      renderTable();
+    }
+
+    // --- Imports ---
+
+    function loadExistingJSON(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const db = JSON.parse(ev.target.result);
+          players = {}; // Reset state
+
+          // Build state from mappings and snapshots
+          const snapshots = db.month_start_snapshot || {};
+          const mappings = db.manual_country_mapping || {};
+          
+          // Try to extract usernames and current scores from leaderboard array
+          const cachedPlayers = {};
+          if(db.country_leaderboard) {
+            db.country_leaderboard.forEach(c => {
+              c.top_players.forEach(p => {
+                cachedPlayers[p.uuid] = { 
+                  name: p.username, 
+                  current: p.current_ap || p.current_quests || 0 
+                };
+              });
+            });
+          }
+
+          // Merge everything
+          Object.keys(snapshots).forEach(uuid => {
+            players[uuid] = {
+              uuid: uuid,
+              username: cachedPlayers[uuid]?.name || "Unknown",
+              country: mappings[uuid] || "Unknown",
+              startScore: snapshots[uuid],
+              currentScore: cachedPlayers[uuid]?.current || snapshots[uuid]
+            };
+          });
+
+          // Add any mapped players who didn't have a snapshot
+          Object.keys(mappings).forEach(uuid => {
+            if(!players[uuid]) {
+              players[uuid] = {
+                uuid: uuid,
+                username: cachedPlayers[uuid]?.name || "Unknown",
+                country: mappings[uuid],
+                startScore: 0,
+                currentScore: cachedPlayers[uuid]?.current || 0
+              };
+            }
+          });
+
+          alert("Successfully loaded database!");
+          renderTable();
+          
+          // Background repair: Fetch usernames for any missing names
+          Object.values(players).forEach(p => {
+            if(p.username === "Unknown" && !p.uuid.startsWith('new_')) {
+               handleUuidChange(p.uuid, p.uuid); // Forces a PlayerDB refresh
+            }
+          });
+
+        } catch (err) {
+          alert("Invalid JSON format.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function importNadeshiko() {
+      const text = document.getElementById('nadeshikoInput').value;
+      if(!text) return;
+      try {
+        const data = JSON.parse(text);
+        if (!data.data) throw new Error("Missing 'data' array.");
+
+        data.data.forEach(p => {
+          const cleanName = p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim();
+          const uuid = p.uuid;
+          const value = parseFloat(p.value);
+
+          if (players[uuid]) {
+            players[uuid].currentScore = value;
+            players[uuid].username = cleanName; // Keep name up to date
+          } else {
+            players[uuid] = {
+              uuid: uuid,
+              username: cleanName,
+              country: 'Unknown',
+              startScore: value,
+              currentScore: value
+            };
+          }
+        });
+        
+        alert(`Successfully synced ${data.data.length} Nadeshiko records!`);
+        document.getElementById('nadeshikoInput').value = '';
+        renderTable();
+      } catch (e) {
+        alert("Error parsing Nadeshiko JSON: " + e.message);
+      }
+    }
+
+    // --- Exports ---
+
+    function exportJSON(type) {
+      const db = {
+        last_update: new Date().toISOString(),
+        month_start_snapshot: {},
+        manual_country_mapping: {},
+        country_leaderboard: []
+      };
+
+      const cMap = {};
+
+      Object.values(players).forEach(p => {
+        // Save mappings
+        db.month_start_snapshot[p.uuid] = p.startScore;
+        if(p.country !== "Unknown") db.manual_country_mapping[p.uuid] = p.country;
+
+        // Prep leaderboard grouping
+        if(!cMap[p.country]) cMap[p.country] = [];
+        
+        // Dynamic keys based on type
+        const playerEntry = {
+          username: p.username,
+          uuid: p.uuid,
+          country: p.country,
+          monthly_gain: p.currentScore - p.startScore
+        };
+
+        if (type === 'ap') {
+          playerEntry.current_ap = p.currentScore;
+          playerEntry.last_month_ap = p.startScore;
+        } else {
+          playerEntry.current_quests = p.currentScore;
+          playerEntry.last_month_quests = p.startScore;
+        }
+
+        cMap[p.country].push(playerEntry);
+      });
+
+      // Calculate Country Scores (Using your exact weighting formula)
+      const weights = [1.0, 0.50, 0.25, 0.10, 0.05]; 
+      const allP = Object.values(players);
+      const minScore = allP.length > 0 ? Math.min(...allP.map(p => p.currentScore)) : 0;
+      const baseline = minScore - 100; 
+
+      db.country_leaderboard = Object.keys(cMap).map(c => {
+        const plist = cMap[c];
+        
+        // Sort descending
+        plist.sort((a, b) => type === 'ap' ? b.current_ap - a.current_ap : b.current_quests - a.current_quests);
+        
+        const top5 = plist.slice(0, 5);
+        const score = top5.reduce((sum, p, i) => {
+          const val = type === 'ap' ? p.current_ap : p.current_quests;
+          const effectiveScore = Math.max(0, val - baseline);
+          return sum + (effectiveScore * weights[i]);
+        }, 0);
+
+        return { country: c, score: Math.round(score), top_players: plist };
+      });
+
+      // Sort Countries (Known first, Unknown last)
+      const known = db.country_leaderboard.filter(c => c.country !== 'Unknown').sort((a,b) => b.score - a.score);
+      const unknown = db.country_leaderboard.filter(c => c.country === 'Unknown');
+      db.country_leaderboard = [...known, ...unknown];
+
+      // Download
+      const dataStr = JSON.stringify(db, null, 2);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = type === 'ap' ? 'ap_hunters_data.json' : 'questers_data.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // --- Theme & Boot ---
+    function loadTheme() {
+      const saved = localStorage.getItem('theme') || 'light';
+      if(saved === 'dark') document.body.setAttribute('data-theme', 'dark');
+      document.getElementById('themeBtn').textContent = saved === 'dark' ? '☀️' : '🌙';
+    }
+    function toggleTheme() {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      if (next === 'light') document.body.removeAttribute('data-theme');
+      else document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', next);
+      document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+    
+    loadTheme();
+    renderTable(); // Renders empty state initially
+  </script>
+</body>
+</html>
