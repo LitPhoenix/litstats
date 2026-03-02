@@ -1,161 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>LitStats JSON Editor</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LitStats - JSON Editor</title>
+  <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #f4f4f5;
+      --bg: #fdfaf8;
+      --bg-glow: rgba(255, 100, 0, 0.03); 
       --surface: #ffffff;
-      --border: #e5e5e5;
-      --text: #171717;
-      --text-muted: #737373;
+      --surface-2: #fff5f0;
+      --border: #f0e1d8;
+      --border-strong: #e0c5b4;
+      --text: #1a1512;
+      --text-2: #5c4d45;
+      --text-3: #998073;
       --accent: #ff5100;
-      --accent-hover: #e64a00;
-      --danger: #ef4444;
-      --radius: 8px;
+      --accent-soft: rgba(255, 81, 0, 0.08);
+      --accent-2: #ff8400;
+      --red: #ef4444;
+      --shadow: 0 2px 8px rgba(255, 81, 0, 0.05), 0 8px 24px rgba(0,0,0,0.03);
+      --radius: 12px;
+      --input-bg: #ffffff;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    [data-theme="dark"] {
+      --bg: #0f0a08;
+      --bg-glow: rgba(255, 60, 0, 0.03); 
+      --surface: #1a1310;
+      --surface-2: #261c18;
+      --border: #382822;
+      --border-strong: #543c33;
+      --text: #f0e6e1;
+      --text-2: #bfaea6;
+      --text-3: #8c7b73;
+      --accent: #ff621a;
+      --accent-soft: rgba(255, 98, 26, 0.15);
+      --accent-2: #ff9d00;
+      --red: #f85149;
+      --input-bg: #140e0c;
+      --shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%),
+        radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
+      background-size: 200% 200%;
+      animation: subtleFire 12s ease-in-out infinite alternate;
       color: var(--text);
-      padding: 2rem;
-      height: 100vh;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s, color 0.2s;
       display: flex;
       flex-direction: column;
+    }
+
+    @keyframes subtleFire {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    h1 { font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
-    
-    .btn {
       background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .btn:hover { background: #f9fafb; }
-    .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
-    .btn-primary:hover { background: var(--accent-hover); }
-    .btn-danger { color: var(--danger); }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-text { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+    .logo-sub { font-size: 12px; color: var(--text-3); font-weight: 400; }
+    
+    .header-controls { display: flex; align-items: center; gap: 16px; }
+    .nav-link { font-size: 13px; font-weight: 600; color: var(--text-2); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; cursor: pointer; border: none; font-family: inherit;}
+    .nav-link:hover, .btn-export { background: var(--surface-2); color: var(--accent); }
+    
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.25s;
+    }
+    .theme-toggle:hover { background: var(--surface-2); border-color: var(--accent); transform: scale(1.1) rotate(15deg); }
 
+    main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 100px; flex: 1; display: flex; flex-direction: column; width: 100%; }
+    
+    .hero { margin-bottom: 24px; }
+    .hero h1 { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .hero p { font-size: 14px; color: var(--text-2); }
+
+    /* UPLOAD ZONE */
     .upload-zone {
-      border: 2px dashed var(--border);
+      border: 2px dashed var(--border-strong);
       border-radius: var(--radius);
-      padding: 3rem;
+      padding: 4rem 2rem;
       text-align: center;
       background: var(--surface);
       cursor: pointer;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
+      margin-bottom: 2rem;
     }
-    .upload-zone:hover { border-color: var(--accent); }
+    .upload-zone:hover { border-color: var(--accent); background: var(--surface-2); }
+    .upload-zone h3 { color: var(--text); margin-bottom: 8px; font-size: 18px; }
+    .upload-zone p { color: var(--text-3); font-size: 14px; }
+
+    /* EDITOR UI */
+    .editor-container { display: flex; flex-direction: column; gap: 20px; flex: 1; }
     
-    .editor-container {
-      display: none; /* Hidden until file loads */
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      min-height: 0;
+    .toolbar { display: flex; gap: 16px; flex-wrap: wrap; }
+    .search-input {
+      flex: 1; min-width: 200px;
+      padding: 10px 16px;
+      background: var(--input-bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: inherit; font-size: 14px;
     }
+    .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 
-    .controls {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      background: var(--surface);
-      padding: 1rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
+    .tabs { display: flex; gap: 4px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 4px; width: fit-content; }
+    .tab-btn { 
+      padding: 8px 24px; border-radius: 8px; font-size: 13px; font-weight: 600; 
+      border: none; cursor: pointer; background: transparent; color: var(--text-3); 
+      transition: color 0.2s; 
     }
+    .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
 
-    .search-bar {
-      flex: 1;
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: inherit;
+    /* SPARK BORDER WRAPPER */
+    @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+    .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; display: flex; flex-direction: column; flex: 1; min-height: 400px; }
+    .spark-bg { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; z-index: -1; background: var(--border); }
+    .spark-bg::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      width: 10000px; height: 10000px; margin-top: -5000px; margin-left: -5000px;
+      background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #fffec2 100%);
+      animation: rotateSpark 4s linear infinite;
     }
-
-    .tabs { display: flex; gap: 0.5rem; }
-    .tab {
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      background: transparent;
-      border: none;
-      font-weight: 500;
-      color: var(--text-muted);
-    }
-    .tab.active { background: var(--border); color: var(--text); }
-
-    .table-container {
-      flex: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow-y: auto;
-    }
-
-    table { width: 100%; border-collapse: collapse; text-align: left; }
-    th {
-      position: sticky;
-      top: 0;
-      background: #fafafa;
-      padding: 1rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border);
-      z-index: 10;
-    }
-    td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-    tr:last-child td { border-bottom: none; }
+    @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
     
-    .uuid { font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--text-muted); }
+    .table-inner { background: var(--surface); border-radius: calc(var(--radius) - 1px); height: 100%; width: 100%; display: flex; flex-direction: column; overflow: hidden; }
+    .table-scroll { flex: 1; overflow-y: auto; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    thead th { position: sticky; top: 0; background: var(--surface-2); padding: 12px 16px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-3); border-bottom: 1px solid var(--border); z-index: 10; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.2s; }
+    tbody tr:hover { background: var(--accent-soft); }
+    td { padding: 8px 16px; vertical-align: middle; }
+
+    .uuid-cell { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-3); }
     
-    input[type="text"], input[type="number"] {
-      width: 100%;
-      padding: 0.4rem;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      font-family: inherit;
-      background: transparent;
-    }
-    input:focus {
-      background: var(--surface);
-      border-color: var(--accent);
-      outline: none;
-    }
+    /* Highlight the username input specifically to look like plain text until hovered/focused */
+    .edit-input { width: 100%; padding: 6px 10px; background: transparent; border: 1px solid transparent; border-radius: 6px; color: var(--text); font-family: inherit; font-size: 13.5px; font-weight: 600; transition: all 0.2s; }
+    .edit-input:focus, .edit-input:hover { border-color: var(--border-strong); outline: none; background: var(--input-bg); }
+    .edit-input:focus { border-color: var(--accent); }
     
-    .add-row {
-      display: flex;
-      gap: 1rem;
-      background: var(--surface);
-      padding: 1rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      margin-top: 1rem;
-    }
-    .add-row input { border: 1px solid var(--border); background: var(--bg); }
+    /* Value input (Country/Score) */
+    .value-input { font-weight: 400; font-family: 'DM Mono', monospace; }
+
+    .btn-delete { background: transparent; border: none; color: var(--text-3); cursor: pointer; font-size: 16px; transition: color 0.2s; padding: 4px; }
+    .btn-delete:hover { color: var(--red); }
+
+    /* ADD ROW */
+    .add-row-bar { display: flex; gap: 12px; padding: 16px; background: var(--surface-2); border-top: 1px solid var(--border); align-items: center;}
+    .add-row-bar input { flex: 1; }
+    .btn-add { background: var(--text); color: var(--bg); border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-add:hover { background: var(--accent); }
+    .btn-add:disabled { background: var(--border-strong); cursor: not-allowed; }
 
     .hidden { display: none !important; }
   </style>
@@ -163,61 +199,97 @@
 <body>
 
   <header>
-    <h1>🔥 LitStats JSON Editor</h1>
-    <div>
-      <button class="btn hidden" id="downloadBtn" onclick="downloadJSON()">⬇️ Export JSON</button>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="/img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
+        <div>
+          <div class="logo-text">LitStats</div>
+          <div class="logo-sub">Database Editor</div>
+        </div>
+      </a>
+      <div class="header-controls">
+        <button class="nav-link btn-export hidden" id="downloadBtn" onclick="downloadJSON()">💾 Export JSON</button>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Theme">☀️</button>
+      </div>
     </div>
   </header>
 
-  <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
-    <h3>Click or Drag & Drop your JSON file here</h3>
-    <p style="color: var(--text-muted); margin-top: 0.5rem;">ap_hunters_data.json OR questers_data.json</p>
-    <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="handleFileUpload(event)">
-  </div>
+  <main>
+    <div class="hero">
+      <h1>Data Editor</h1>
+      <p>Upload your tracking JSON below. Add usernames to automatically fetch and save their Minecraft UUIDs.</p>
+    </div>
 
-  <div class="editor-container hidden" id="editorContainer">
-    <div class="controls">
-      <div class="tabs">
-        <button class="tab active" onclick="switchTab('mappings')">Country Mappings</button>
-        <button class="tab" onclick="switchTab('snapshots')">Start of Month Snapshots</button>
+    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+      <h3>Click or Drag & Drop your JSON</h3>
+      <p>Works with ap_hunters_data.json or questers_data.json</p>
+      <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="handleFileUpload(event)">
+    </div>
+
+    <div class="editor-container hidden" id="editorContainer">
+      <div class="toolbar">
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('mappings')">Country Mappings</button>
+          <button class="tab-btn" onclick="switchTab('snapshots')">Snapshots</button>
+        </div>
+        <input type="text" class="search-input" id="searchBar" placeholder="Search Username or Country..." oninput="renderTable()">
       </div>
-      <input type="text" class="search-bar" id="searchBar" placeholder="Search UUID or Value..." oninput="renderTable()">
-    </div>
 
-    <div class="table-container">
-      <table id="dataTable">
-        <thead>
-          <tr>
-            <th>UUID</th>
-            <th id="valueHeader">Country</th>
-            <th style="width: 80px; text-align: center;">Actions</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody">
-          </tbody>
-      </table>
+      <div class="table-wrap">
+        <div class="spark-bg"></div>
+        <div class="table-inner">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Player Username</th>
+                  <th>UUID</th>
+                  <th id="valueHeader">Country</th>
+                  <th style="width: 60px; text-align: center;">Del</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+          <div class="add-row-bar">
+            <input type="text" class="search-input" id="newUsername" placeholder="Player Username...">
+            <input type="text" class="search-input" id="newValue" placeholder="Value (Country or Score)...">
+            <button class="btn-add" id="addBtn" onclick="addNewEntry()">Add Entry</button>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="add-row">
-      <input type="text" id="newUuid" placeholder="New Player UUID (e.g. 41825ee5f46b406b...)">
-      <input type="text" id="newValue" placeholder="Value (Country or Score)">
-      <button class="btn btn-primary" onclick="addNewEntry()">➕ Add Entry</button>
-    </div>
-  </div>
+  </main>
 
   <script>
     let db = null;
-    let currentTab = 'mappings'; // 'mappings' or 'snapshots'
+    let currentTab = 'mappings'; 
     let originalFileName = 'updated_data.json';
+    let uuidMap = {}; // Maps UUID -> Username for display
 
-    // --- File Handling ---
+    function loadTheme() {
+      const saved = localStorage.getItem('theme') || 'light';
+      if(saved === 'dark') document.body.setAttribute('data-theme', 'dark');
+      else document.body.removeAttribute('data-theme');
+      document.getElementById('themeBtn').textContent = saved === 'dark' ? '☀️' : '🌙';
+    }
+    
+    function toggleTheme() {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      if (next === 'light') document.body.removeAttribute('data-theme');
+      else document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', next);
+      document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+    loadTheme();
+
     const uploadZone = document.getElementById('uploadZone');
-
     uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.style.borderColor = 'var(--accent)'; });
-    uploadZone.addEventListener('dragleave', () => uploadZone.style.borderColor = 'var(--border)');
+    uploadZone.addEventListener('dragleave', () => uploadZone.style.borderColor = 'var(--border-strong)');
     uploadZone.addEventListener('drop', (e) => {
       e.preventDefault();
-      uploadZone.style.borderColor = 'var(--border)';
+      uploadZone.style.borderColor = 'var(--border-strong)';
       if (e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]);
     });
 
@@ -231,34 +303,70 @@
       reader.onload = (e) => {
         try {
           db = JSON.parse(e.target.result);
-          // Ensure structure exists
           if (!db.manual_country_mapping) db.manual_country_mapping = {};
           if (!db.month_start_snapshot) db.month_start_snapshot = {};
           
+          // Build initial UUID -> Username map from the cached leaderboard
+          if (db.country_leaderboard) {
+            db.country_leaderboard.forEach(c => {
+              c.top_players.forEach(p => {
+                uuidMap[p.uuid] = p.username;
+              });
+            });
+          }
+
           document.getElementById('uploadZone').classList.add('hidden');
           document.getElementById('editorContainer').classList.remove('hidden');
           document.getElementById('downloadBtn').classList.remove('hidden');
           
           renderTable();
         } catch (err) {
-          alert("Invalid JSON file!");
+          alert("Invalid JSON format. Make sure it is the correct file.");
         }
       };
       reader.readAsText(file);
     }
 
-    // --- Editor Logic ---
     function switchTab(tabName) {
       currentTab = tabName;
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
       event.target.classList.add('active');
       
-      document.getElementById('valueHeader').textContent = tabName === 'mappings' ? 'Country' : 'Start Value (Score)';
+      document.getElementById('valueHeader').textContent = tabName === 'mappings' ? 'Country' : 'Baseline Score';
       document.getElementById('newValue').placeholder = tabName === 'mappings' ? 'Country (e.g. UK, USA)' : 'Score (e.g. 25000)';
       
       renderTable();
     }
 
+    // --- API Helpers ---
+    async function fetchUUIDFromUsername(username) {
+      try {
+        const res = await fetch(`https://playerdb.co/api/player/minecraft/${username}`);
+        const data = await res.json();
+        if (data.code === 'player.found') {
+          return data.data.player.raw_id; // Undashed UUID
+        }
+      } catch (e) {
+        console.error(e);
+      }
+      return null;
+    }
+
+    async function resolveUnknownUUID(uuid) {
+      try {
+        const res = await fetch(`https://playerdb.co/api/player/minecraft/${uuid}`);
+        const data = await res.json();
+        if (data.code === 'player.found') {
+          uuidMap[uuid] = data.data.player.username;
+          // Only re-render if we actually found a new name to prevent infinite loops
+          renderTable(); 
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // --- Core Logic ---
     function renderTable() {
       const tbody = document.getElementById('tableBody');
       const searchTerm = document.getElementById('searchBar').value.toLowerCase();
@@ -268,78 +376,119 @@
       const inputType = currentTab === 'mappings' ? 'text' : 'number';
 
       Object.entries(targetObject).forEach(([uuid, value]) => {
-        // Filter logic
-        if (searchTerm && !uuid.toLowerCase().includes(searchTerm) && !String(value).toLowerCase().includes(searchTerm)) {
-          return;
+        let username = uuidMap[uuid];
+        
+        // If we don't know the username, trigger an async fetch and put a placeholder
+        if (!username) {
+          username = "Loading...";
+          uuidMap[uuid] = "Fetching..."; // Prevent spamming the API
+          resolveUnknownUUID(uuid);
         }
+
+        if (searchTerm && !username.toLowerCase().includes(searchTerm) && !String(value).toLowerCase().includes(searchTerm) && !uuid.toLowerCase().includes(searchTerm)) return;
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td class="uuid">${uuid}</td>
           <td>
-            <input type="${inputType}" value="${value}" onchange="updateValue('${uuid}', this.value)">
+            <input class="edit-input" type="text" value="${username === 'Fetching...' ? 'Loading...' : username}" 
+                   onchange="handleUsernameEdit('${uuid}', this.value)" 
+                   ${username === 'Fetching...' ? 'disabled' : ''}>
+          </td>
+          <td class="uuid-cell">${uuid}</td>
+          <td>
+            <input class="edit-input value-input" type="${inputType}" value="${value}" onchange="updateValue('${uuid}', this.value)">
           </td>
           <td style="text-align: center;">
-            <button class="btn btn-danger" style="padding: 0.2rem 0.5rem;" onclick="deleteEntry('${uuid}')">🗑️</button>
+            <button class="btn-delete" onclick="deleteEntry('${uuid}')">✖</button>
           </td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    function updateValue(uuid, newValue) {
-      if (currentTab === 'mappings') {
-        db.manual_country_mapping[uuid] = newValue.trim();
-      } else {
-        db.month_start_snapshot[uuid] = parseFloat(newValue) || 0;
+    async function handleUsernameEdit(oldUuid, newUsername) {
+      const cleanName = newUsername.trim();
+      if (!cleanName) return renderTable(); // Revert if blank
+
+      // If they didn't actually change the name, do nothing
+      if (cleanName.toLowerCase() === uuidMap[oldUuid]?.toLowerCase()) return;
+
+      const newUuid = await fetchUUIDFromUsername(cleanName);
+      if (!newUuid) {
+        alert("Minecraft player not found. Reverting to old name.");
+        return renderTable();
       }
+
+      // Migrate data to new UUID in BOTH tables to keep database consistent
+      if (db.manual_country_mapping[oldUuid]) {
+        db.manual_country_mapping[newUuid] = db.manual_country_mapping[oldUuid];
+        delete db.manual_country_mapping[oldUuid];
+      }
+      if (db.month_start_snapshot[oldUuid]) {
+        db.month_start_snapshot[newUuid] = db.month_start_snapshot[oldUuid];
+        delete db.month_start_snapshot[oldUuid];
+      }
+
+      uuidMap[newUuid] = cleanName;
+      renderTable();
+    }
+
+    function updateValue(uuid, newValue) {
+      if (currentTab === 'mappings') db.manual_country_mapping[uuid] = newValue.trim();
+      else db.month_start_snapshot[uuid] = parseFloat(newValue) || 0;
     }
 
     function deleteEntry(uuid) {
-      if (confirm(`Are you sure you want to remove ${uuid}?`)) {
+      if (confirm(`Remove data for ${uuidMap[uuid] || uuid}?`)) {
         if (currentTab === 'mappings') delete db.manual_country_mapping[uuid];
         else delete db.month_start_snapshot[uuid];
         renderTable();
       }
     }
 
-    function addNewEntry() {
-      const uuidInput = document.getElementById('newUuid');
+    async function addNewEntry() {
+      const nameInput = document.getElementById('newUsername');
       const valInput = document.getElementById('newValue');
-      const uuid = uuidInput.value.trim();
+      const btn = document.getElementById('addBtn');
+      
+      const username = nameInput.value.trim();
       let val = valInput.value.trim();
 
-      if (!uuid || !val) return alert("Please fill in both UUID and Value.");
+      if (!username || !val) return alert("Fill in both Username and Value.");
 
-      if (currentTab === 'mappings') {
-        db.manual_country_mapping[uuid] = val;
-      } else {
-        db.month_start_snapshot[uuid] = parseFloat(val) || 0;
+      btn.disabled = true;
+      btn.textContent = "Fetching UUID...";
+
+      const newUuid = await fetchUUIDFromUsername(username);
+      
+      if (!newUuid) {
+        btn.disabled = false;
+        btn.textContent = "Add Entry";
+        return alert("Minecraft player not found!");
       }
 
-      uuidInput.value = '';
+      // Add to database
+      if (currentTab === 'mappings') db.manual_country_mapping[newUuid] = val;
+      else db.month_start_snapshot[newUuid] = parseFloat(val) || 0;
+
+      uuidMap[newUuid] = username; // Cache name for display
+
+      // Reset UI
+      nameInput.value = '';
       valInput.value = '';
+      btn.disabled = false;
+      btn.textContent = "Add Entry";
       
-      // Clear search so the new entry is visible
       document.getElementById('searchBar').value = '';
       renderTable();
-      
-      // Scroll to top to see it
-      document.querySelector('.table-container').scrollTop = 0;
+      document.querySelector('.table-scroll').scrollTop = document.querySelector('.table-scroll').scrollHeight;
     }
 
-    // --- Export Logic ---
     function downloadJSON() {
       if (!db) return;
-      
-      // Note: We don't recalculate the country_leaderboard array here.
-      // That is handled by the GitHub Action/Node script. This editor 
-      // just manages the manual data safely.
-      
       const dataStr = JSON.stringify(db, null, 2);
       const blob = new Blob([dataStr], { type: "application/json" });
       const url = URL.createObjectURL(blob);
-      
       const a = document.createElement('a');
       a.href = url;
       a.download = originalFileName;
