@@ -1003,6 +1003,37 @@
         setTimeout(() => tr.classList.remove('force-hover'), 100); 
       }
     });
+
+            // Audio Context for the Easter Egg sounds
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+    
+    function playTone(freq, type) {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      osc.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.1);
+    }
+    
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
+    let konamiIndex = 0;
+    
+    document.getElementById('searchInput').addEventListener('keydown', (e) => {
+      if (e.key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        playTone(800 + (konamiIndex * 50), 'sine'); // Pitch goes up with progress
+        
+        if (konamiIndex === konamiCode.length) {
+          window.location.href = 'control_centre.html';
+        }
+      } else {
+        if (konamiIndex > 0) playTone(200, 'sawtooth'); // Error buzz
+        konamiIndex = 0; // Reset
+      }
+    });
       
     loadTheme();
     loadData();
