@@ -8,7 +8,7 @@
   <meta property="og:image" content="/img/favicon.png" />
   <meta property="og:url" content="https://litstats.com/">
   <meta property="og:type" content="website">
-  <title>LitStats - AP Hunters by Country</title>
+  <title>LitStats - Questers by Country</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
@@ -19,7 +19,7 @@
     /* Fiery Theme Variables */
     :root {
       --bg: #fdfaf8;
-      --bg-glow: rgba(255, 100, 0, 0.03); /* Light mode faint fire glow */
+      --bg-glow: rgba(255, 100, 0, 0.03); 
       --surface: #ffffff;
       --surface-2: #fff5f0;
       --border: #f0e1d8;
@@ -47,7 +47,7 @@
 
     [data-theme="dark"] {
       --bg: #0f0a08;
-      --bg-glow: rgba(255, 60, 0, 0.03); /* Dark mode faint fire glow */
+      --bg-glow: rgba(255, 60, 0, 0.03); 
       --surface: #1a1310;
       --surface-2: #261c18;
       --border: #382822;
@@ -72,7 +72,6 @@
     body {
       font-family: 'DM Sans', sans-serif;
       background-color: var(--bg);
-      /* Subtle animated fire radial background */
       background-image: 
         radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%),
         radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
@@ -119,7 +118,6 @@
     
     .header-controls { display: flex; align-items: center; gap: 16px; }
     
-    /* Quest Page Link */
     .nav-link {
       font-size: 13px;
       font-weight: 600;
@@ -261,7 +259,15 @@
       overflow: hidden;
     }
 
-    .table-wrap::before {
+    .spark-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      overflow: hidden;
+      z-index: -1;
+      background: var(--border);
+    }
+    .spark-bg::before {
       content: '';
       position: absolute;
       top: 50%; left: 50%;
@@ -269,7 +275,6 @@
       margin-top: -5000px; margin-left: -5000px;
       background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #fffec2 100%);
       animation: rotateSpark var(--spark-speed, 3s) linear infinite;
-      z-index: -1;
     }
 
     @keyframes rotateSpark {
@@ -307,7 +312,6 @@
     thead th:hover { color: var(--accent); }
     
     th.rank { text-align: center; }
-    td .rank { display: block; text-align: center; }
 
     /* Sorting Arrows */
     thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
@@ -508,7 +512,7 @@
         <img src="/img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
         <div>
           <div class="logo-text">LitStats</div>
-          <div class="logo-sub">AP Hunters by Country</div>
+          <div class="logo-sub">Questers by Country</div>
         </div>
       </a>
       <div class="header-controls">
@@ -520,7 +524,7 @@
 
   <main>
     <div class="hero">
-      <h1>Coming Soon ...</h1>
+      <h1>Quests Leaderboard</h1>
       <p>Tracking top Hypixel Questers worldwide. Data sourced from Nadeshiko and Hypixel API.</p>
     </div>
 
@@ -546,16 +550,17 @@
         <span class="section-hint">Click column headers to sort ↑↓</span>
       </div>
       <div class="table-wrap">
+        <div class="spark-bg"></div>
         <div class="table-inner">
           <div class="loading-msg" id="players-loading">Loading leaderboard data...</div>
-          <div class="error-msg hidden" id="players-error">Failed to load. Ensure player data exists.</div>
+          <div class="error-msg hidden" id="players-error">Failed to load data. Ensure questers_data.json exists.</div>
           <table id="players-table" class="hidden">
             <thead>
               <tr>
                 <th class="rank sort-desc" data-col="rank">#</th>
                 <th data-col="player">Player</th>
                 <th data-col="country">Country</th>
-                <th data-col="ap">AP</th>
+                <th data-col="quests">Quests</th>
                 <th data-col="gain">Gain</th>
               </tr>
             </thead>
@@ -575,6 +580,7 @@
         <span class="section-hint">Click a country row to expand top players</span>
       </div>
       <div class="table-wrap">
+        <div class="spark-bg"></div>
         <div class="table-inner">
           <div class="loading-msg" id="countries-loading">Loading country data...</div>
           <table id="countries-table" class="hidden">
@@ -719,7 +725,7 @@
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><span class="rank ${rc}">${p.globalRank} ${posHTML}</span></td>
+          <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank} ${posHTML}</span></td>
           <td>
             <div class="player-cell">
               <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" alt="${p.username}"
@@ -734,7 +740,7 @@
               <span class="country-name">${p.country}</span>
             </div>
           </td>
-          <td class="ap-cell">${fmt(p.current_ap)}</td>
+          <td class="ap-cell">${fmt(p.current_quests)}</td>
           <td>${gainHTML}</td>
         `;
         tbody.appendChild(tr);
@@ -757,7 +763,7 @@
         const tr = document.createElement('tr');
         tr.className = 'country-row';
         tr.innerHTML = `
-          <td><span class="rank ${getRankClass(rank)}">${rank}</span></td>
+          <td style="text-align: center;"><span class="rank ${getRankClass(rank)}">${rank}</span></td>
           <td>
             <div class="flag-cell">
               ${getFlagHTML(c.country)}
@@ -787,7 +793,7 @@
                 <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
                 <span class="sub-name">${sp.username}</span>
               </div>
-              <span class="sub-ap">${fmt(sp.current_ap)} AP</span>
+              <span class="sub-ap">${fmt(sp.current_quests)} Quests</span>
             </div>
           `;
         });
@@ -829,8 +835,8 @@
         c.top_players.forEach(p => tempPlayers.push({ ...p, country: c.country }));
       });
 
-      const sortedByAp = [...tempPlayers].sort((a,b) => b.current_ap - a.current_ap);
-      const sortedByPrev = [...tempPlayers].sort((a,b) => (b.last_month_ap||0) - (a.last_month_ap||0));
+      const sortedByAp = [...tempPlayers].sort((a,b) => b.current_quests - a.current_quests);
+      const sortedByPrev = [...tempPlayers].sort((a,b) => (b.last_month_quests||0) - (a.last_month_quests||0));
       
       allPlayersList = sortedByAp.map((p, idx) => {
         const prevIdx = sortedByPrev.findIndex(op => op.uuid === p.uuid);
@@ -850,24 +856,20 @@
         cMap[p.country].push(p);
       });
 
-      // Steeper weights favour quality over pure quantity
       const weights = [1.0, 0.50, 0.25, 0.10, 0.05]; 
 
-      // Find the lowest score in the current data to set the baseline
       const allPlayers = Object.values(cMap).flat();
-      const minScore = Math.min(...allPlayers.map(p => p.current_ap));
+      const minScore = Math.min(...allPlayers.map(p => p.current_quests));
       const baseline = minScore - 100; 
 
       processedCountries = Object.keys(cMap).map(c => {
         const players = cMap[c];
         
-        // Sort from highest AP to lowest
-        const sortedPlayers = players.sort((a, b) => b.current_ap - a.current_ap);
+        const sortedPlayers = players.sort((a, b) => b.current_quests - a.current_quests);
         const top5 = sortedPlayers.slice(0, 5);
         
-        // Subtract baseline to expose the true skill gap, then apply weights
         const score = top5.reduce((sum, p, index) => {
-          const effectiveScore = Math.max(0, p.current_ap - baseline);
+          const effectiveScore = Math.max(0, p.current_quests - baseline);
           return sum + (effectiveScore * weights[index]);
         }, 0);
         
@@ -878,7 +880,6 @@
       const unknown = processedCountries.filter(c => c.country === 'Unknown');
       processedCountries = [...known, ...unknown];
 
-      // Format Date & Apply to Bottom of Tables
       const date = new Date(currentData.last_update);
       const dateStr = date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
       document.querySelectorAll('.last-updated-time').forEach(el => el.textContent = dateStr);
@@ -900,7 +901,7 @@
           sortDir *= -1;
         } else {
           sortCol = col;
-          sortDir = (col === 'rank' || col === 'ap' || col === 'gain') ? -1 : 1; 
+          sortDir = (col === 'rank' || col === 'quests' || col === 'gain') ? -1 : 1; 
         }
 
         document.querySelectorAll('#players-table th').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
@@ -935,7 +936,7 @@
       fPlayers.sort((a, b) => {
         let va, vb;
         if (sortCol === 'rank') { va = a.globalRank; vb = b.globalRank; }
-        else if (sortCol === 'ap') { va = a.current_ap; vb = b.current_ap; }
+        else if (sortCol === 'quests') { va = a.current_quests; vb = b.current_quests; }
         else if (sortCol === 'gain') { va = a.monthly_gain === "NEW" ? 0 : a.monthly_gain; vb = b.monthly_gain === "NEW" ? 0 : b.monthly_gain; }
         else if (sortCol === 'player') { va = a.username.toLowerCase(); vb = b.username.toLowerCase(); }
         else if (sortCol === 'country') { va = a.country.toLowerCase(); vb = b.country.toLowerCase(); }
@@ -949,7 +950,7 @@
       renderCountries(fCountries);
     }
 
-    // Dynamic spark speed based on table height
+    // Dynamic spark speed
     const sparkObserver = new ResizeObserver(entries => {
       entries.forEach(entry => {
         const height = entry.contentRect.height;
@@ -973,7 +974,7 @@
       }
     });
 
-    // Guarantees the hover ease-in finishes even if the mouse leaves early
+    // Guarantees hover ease-in finishes
     document.addEventListener('mouseover', (e) => {
       const tr = e.target.closest('tbody tr');
       if (tr) {
