@@ -51,25 +51,31 @@
     .section-title { font-size: 15px; font-weight: 600; color: var(--text); }
     .section-hint { font-size: 12px; color: var(--text-3); }
 
-    /* Animated Border */
+    /* Animated Border Wrapper (Removed overflow:hidden to save tooltip) */
     @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
-    .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; overflow: hidden; }
+    .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; }
     .spark-bg { position: absolute; inset: 0; border-radius: inherit; z-index: -1; background: var(--border); overflow: hidden; }
     .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 10000px; height: 10000px; margin-top: -5000px; margin-left: -5000px; background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
     @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
     
-    .table-inner { background: var(--surface); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; overflow: hidden; }
+    /* Removed overflow: hidden here as well */
+    .table-inner { background: var(--surface); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
 
-    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-    thead { background: var(--surface-2); border-bottom: 1px solid var(--border); }
-    thead th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-3); white-space: nowrap; cursor: pointer; user-select: none; transition: color 0.15s; }
+    /* Fixed Border Radius due to removed overflow */
+    table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
+    thead th:first-child { border-top-left-radius: calc(var(--radius) - 1px); }
+    thead th:last-child { border-top-right-radius: calc(var(--radius) - 1px); }
+    
+    thead { background: var(--surface-2); }
+    thead th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-3); white-space: nowrap; cursor: pointer; user-select: none; transition: color 0.15s; border-bottom: 1px solid var(--border); }
     thead th:hover { color: var(--accent); }
     th.rank { text-align: center; }
     thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
     thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
 
-    tbody tr { border-bottom: 1px solid var(--border); transition: all 0.4s ease-out; }
-    tbody tr:last-child { border-bottom: none; }
+    tbody tr { transition: all 0.4s ease-out; }
+    tbody tr td { border-bottom: 1px solid var(--border); }
+    tbody tr:last-child td { border-bottom: none; }
     tbody tr:hover, tbody tr.force-hover { background: var(--accent-soft); transform: translateX(4px); box-shadow: -4px 0 0 var(--accent); transition: all 0.1s ease-in; }
     td { padding: 11px 16px; vertical-align: middle; }
 
@@ -101,7 +107,7 @@
     .tooltip-content::after { content: ''; position: absolute; bottom: 100%; top: auto; left: 50%; transform: translateX(-50%); border-width: 6px; border-style: solid; border-color: transparent transparent var(--border-strong) transparent; }
     .tooltip-wrap:hover .tooltip-content { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
     
-    .table-footer { padding: 12px 16px; text-align: right; font-size: 11px; color: var(--text-3); border-top: 1px solid var(--border); background: var(--surface-2); display: flex; align-items: center; justify-content: flex-end; gap: 6px;}
+    .table-footer { padding: 12px 16px; text-align: right; font-size: 11px; color: var(--text-3); border-top: 1px solid var(--border); background: var(--surface-2); display: flex; align-items: center; justify-content: flex-end; gap: 6px; border-bottom-left-radius: calc(var(--radius) - 1px); border-bottom-right-radius: calc(var(--radius) - 1px); }
     .table-footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
     .loading-msg, .error-msg { text-align: center; padding: 48px 24px; font-size: 14px; color: var(--text-3); }
     .error-msg { color: var(--red); }
@@ -156,7 +162,6 @@
       </a>
       <div class="header-controls">
         <a href="quest.html" class="nav-link">Quests</a>
-        <a href="trophy.html" class="nav-link">Trophy Room</a>
         <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme" onclick="toggleTheme()">☀️</button>
       </div>
     </div>
@@ -169,7 +174,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries..." oninput="handleSearch()">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries... (Hint: Konami)" oninput="handleSearch()">
       <div id="searchResults" class="search-results-info hidden"></div>
     </div>
 
@@ -261,6 +266,7 @@
     let currentData = null;
     let allPlayersList = [];
     let processedCountries = [];
+    let currentTab = 'players';
     let sortCol = 'rank', sortDir = 1;
 
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -398,7 +404,6 @@
         const weights = [1.0, 0.50, 0.25, 0.10, 0.05]; 
         const baseline = Math.min(...allPlayersList.map(p => p.current_ap)) - 100; 
 
-        // NEW SQUARE ROOT MATH
         processedCountries = Object.keys(cMap).map(c => {
           const top5 = cMap[c].slice(0, 5);
           const score = top5.reduce((sum, p, i) => sum + (Math.sqrt(Math.max(0, p.current_ap - baseline)) * weights[i]), 0);
@@ -489,4 +494,3 @@
   </script>
 </body>
 </html>
-
