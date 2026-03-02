@@ -51,17 +51,15 @@
     .section-title { font-size: 15px; font-weight: 600; color: var(--text); }
     .section-hint { font-size: 12px; color: var(--text-3); }
 
-    /* Animated Border Wrapper (Removed overflow:hidden to save tooltip) */
+    /* Animated Border */
     @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
     .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; }
     .spark-bg { position: absolute; inset: 0; border-radius: inherit; z-index: -1; background: var(--border); overflow: hidden; }
     .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 10000px; height: 10000px; margin-top: -5000px; margin-left: -5000px; background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
     @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
     
-    /* Removed overflow: hidden here as well */
     .table-inner { background: var(--surface); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
 
-    /* Fixed Border Radius due to removed overflow */
     table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
     thead th:first-child { border-top-left-radius: calc(var(--radius) - 1px); }
     thead th:last-child { border-top-right-radius: calc(var(--radius) - 1px); }
@@ -102,10 +100,27 @@
     .pos-down { color: var(--red); }
     .pos-same { color: var(--gold); }
 
+    /* FIXED TOOLTIP CSS */
     .tooltip-wrap { position: relative; display: inline-flex; align-items: center; gap: 5px; cursor: help; }
-    .tooltip-content { visibility: hidden; opacity: 0; position: absolute; top: 140%; bottom: auto; left: 50%; transform: translateX(-50%) translateY(-10px); width: 320px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow); font-size: 12px; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 100; white-space: normal; cursor: default; }
+    .tooltip-content { 
+      visibility: hidden; opacity: 0; position: absolute; top: 140%; bottom: auto; left: 50%; transform: translateX(-50%) translateY(-10px); 
+      width: 320px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); 
+      padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow); 
+      font-size: 12px; font-weight: 400; text-transform: none; letter-spacing: normal; 
+      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 100; white-space: normal; cursor: default; 
+    }
+    .tooltip-content * { text-transform: none; letter-spacing: normal; } /* Prevents table header inheritance */
     .tooltip-content::after { content: ''; position: absolute; bottom: 100%; top: auto; left: 50%; transform: translateX(-50%); border-width: 6px; border-style: solid; border-color: transparent transparent var(--border-strong) transparent; }
     .tooltip-wrap:hover .tooltip-content { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+    
+    .tooltip-content h4 { margin-bottom: 8px; color: var(--accent); font-size: 14px; font-weight: 700; }
+    .tooltip-content p { margin-bottom: 8px; color: var(--text-2); line-height: 1.5; }
+    .tooltip-content strong { color: var(--text); font-weight: 600; }
+    .tooltip-content .formula {
+      background: var(--surface-2); padding: 10px; border-radius: 6px; 
+      font-family: 'DM Mono', monospace; color: var(--accent); text-align: center; 
+      border: 1px solid var(--border); margin-top: 12px;
+    }
     
     .table-footer { padding: 12px 16px; text-align: right; font-size: 11px; color: var(--text-3); border-top: 1px solid var(--border); background: var(--surface-2); display: flex; align-items: center; justify-content: flex-end; gap: 6px; border-bottom-left-radius: calc(var(--radius) - 1px); border-bottom-right-radius: calc(var(--radius) - 1px); }
     .table-footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
@@ -128,7 +143,6 @@
     .sub-name { font-weight: 600; color: var(--text); }
     .sub-ap { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--text-2); font-size: 12px; }
 
-    /* MOBILE SCROLLING FIX */
     @media (max-width: 640px) {
       .table-inner {
         overflow-x: auto;
@@ -174,7 +188,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries... (Hint: Konami)" oninput="handleSearch()">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries..." oninput="handleSearch()">
       <div id="searchResults" class="search-results-info hidden"></div>
     </div>
 
@@ -235,10 +249,11 @@
                     Score
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                     <div class="tooltip-content">
-                      <h4 style="color:var(--accent); font-weight:700; margin-bottom:8px;">Country Power Score</h4>
-                      <p style="margin-bottom:6px;"><strong>1. Baseline Subtraction:</strong> The 100th place global score is subtracted to act as a minimum skill filter.</p>
-                      <p style="margin-bottom:6px;"><strong>2. Square Root Scaling:</strong> The filtered score is square-rooted to heavily nerf massive outliers and reward teamwork.</p>
-                      <p style="margin-bottom:6px;"><strong>3. Top 5 Diminishing Weights:</strong> Player 1 (100%), Player 2 (50%), Player 3 (25%), Player 4 (10%), Player 5 (5%).</p>
+                      <h4>Country Power Score</h4>
+                      <p><strong>Top Five:</strong> The score is made up of only the Top 5 highest players from a country.</p>
+                      <p><strong>Baseline Subtraction:</strong> The 100th player's score is subtracted from everyone else to isolate true skill.</p>
+                      <p><strong>Square Root Scaling:</strong> The filtered score is square-rooted to nerf massive outliers and reward teamwork.</p>
+                      <p><strong>Diminishing Weights:</strong> Player 1 adds 100%, Player 2 adds 50%, Player 3 adds 25%, Player 4 adds 10%, Player 5 adds 5%.</p>
                       <div class="formula">Total = (√P₁ - B) + 0.5(√P₂ - B) + ...</div>
                     </div>
                   </div>
@@ -404,6 +419,7 @@
         const weights = [1.0, 0.50, 0.25, 0.10, 0.05]; 
         const baseline = Math.min(...allPlayersList.map(p => p.current_ap)) - 100; 
 
+        // SQUARE ROOT MATH
         processedCountries = Object.keys(cMap).map(c => {
           const top5 = cMap[c].slice(0, 5);
           const score = top5.reduce((sum, p, i) => sum + (Math.sqrt(Math.max(0, p.current_ap - baseline)) * weights[i]), 0);
