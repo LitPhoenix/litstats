@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-02T22:04:14.196Z",
+  "last_update": "2026-03-02T22:08:58.107Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -158,6 +158,7 @@
     "a621a7a79f324b5c83449e4453ad454d": "France",
     "52206b9a3e8446c995fa9f2d4e8c0078": "France",
     "fe7bf008272246f18421d39db8042257": "Brazil",
+    "bc4e34b5a28d49d4b61d8a6f4901533b": "Japan",
     "26f62ec0b55e46b993a34b184080a0eb": "Poland",
     "dbb5f49cc2394912b1ca89783632d068": "Australia",
     "743c12bffc7348fb8525effead057de2": "Netherlands",
@@ -173,6 +174,7 @@
     "5de0cd7c0baf4d4facb117618a3b5fd7": "Sweden",
     "af193f3ea82148489129dc9d32f8dc67": "The Netherlands",
     "db365262927d48f5bf54cdeddcf4dae6": "USA",
+    "3efd540b06ae4141861672f6510c99e8": "Japan",
     "14016bbfdcf547dab04549b49e891dc8": "UK",
     "4b715312d0bb45a5b766184613c45aa4": "USA",
     "bf6b32ef38934d9e90b8a1037e16b972": "The Netherlands",
@@ -728,22 +730,8 @@
       ]
     },
     {
-      "country": "Serbia",
-      "score": 18574,
-      "top_players": [
-        {
-          "username": "Misqu",
-          "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
-          "country": "Serbia",
-          "monthly_gain": 0,
-          "current_quests": 39347,
-          "last_month_quests": 39347
-        }
-      ]
-    },
-    {
       "country": "Japan",
-      "score": 17565,
+      "score": 18686,
       "top_players": [
         {
           "username": "CowKou",
@@ -760,6 +748,36 @@
           "monthly_gain": 0,
           "current_quests": 30504,
           "last_month_quests": 30504
+        },
+        {
+          "username": "Hayaoki",
+          "uuid": "bc4e34b5a28d49d4b61d8a6f4901533b",
+          "country": "Japan",
+          "monthly_gain": 0,
+          "current_quests": 24602,
+          "last_month_quests": 24602
+        },
+        {
+          "username": "Tonaken",
+          "uuid": "3efd540b06ae4141861672f6510c99e8",
+          "country": "Japan",
+          "monthly_gain": 0,
+          "current_quests": 22415,
+          "last_month_quests": 22415
+        }
+      ]
+    },
+    {
+      "country": "Serbia",
+      "score": 18574,
+      "top_players": [
+        {
+          "username": "Misqu",
+          "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+          "country": "Serbia",
+          "monthly_gain": 0,
+          "current_quests": 39347,
+          "last_month_quests": 39347
         }
       ]
     },
@@ -1086,14 +1104,6 @@
           "last_month_quests": 24955
         },
         {
-          "username": "Hayaoki",
-          "uuid": "bc4e34b5a28d49d4b61d8a6f4901533b",
-          "country": "Unknown",
-          "monthly_gain": 0,
-          "current_quests": 24602,
-          "last_month_quests": 24602
-        },
-        {
           "username": "zeytrixx",
           "uuid": "8fe8adb1793942d0a852f8d2bb239b16",
           "country": "Unknown",
@@ -1108,14 +1118,6 @@
           "monthly_gain": 0,
           "current_quests": 23522,
           "last_month_quests": 23522
-        },
-        {
-          "username": "Tonaken",
-          "uuid": "3efd540b06ae4141861672f6510c99e8",
-          "country": "Unknown",
-          "monthly_gain": 0,
-          "current_quests": 22415,
-          "last_month_quests": 22415
         },
         {
           "username": "zsomi123",
