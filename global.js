@@ -52,7 +52,8 @@ let konamiCooldown = false;
 
 document.addEventListener('keydown', (e) => {
   // Check if user is typing in ANY input or textarea
-  const isTyping = document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName);
+  const activeTag = document.activeElement ? document.activeElement.tagName : '';
+  const isTyping = activeTag === 'INPUT' || activeTag === 'TEXTAREA';
 
   // 1. Standard Shortcuts (Disabled whilst typing)
   if (!isTyping) {
