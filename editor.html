@@ -80,4 +80,274 @@
       align-items: center;
       background: var(--surface);
       padding: 1rem;
-      border-radius: var(--radius
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .search-bar {
+      flex: 1;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+    }
+
+    .tabs { display: flex; gap: 0.5rem; }
+    .tab {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .tab.active { background: var(--border); color: var(--text); }
+
+    .table-container {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow-y: auto;
+    }
+
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th {
+      position: sticky;
+      top: 0;
+      background: #fafafa;
+      padding: 1rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    tr:last-child td { border-bottom: none; }
+    
+    .uuid { font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--text-muted); }
+    
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 0.4rem;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      font-family: inherit;
+      background: transparent;
+    }
+    input:focus {
+      background: var(--surface);
+      border-color: var(--accent);
+      outline: none;
+    }
+    
+    .add-row {
+      display: flex;
+      gap: 1rem;
+      background: var(--surface);
+      padding: 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+    .add-row input { border: 1px solid var(--border); background: var(--bg); }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🔥 LitStats JSON Editor</h1>
+    <div>
+      <button class="btn hidden" id="downloadBtn" onclick="downloadJSON()">⬇️ Export JSON</button>
+    </div>
+  </header>
+
+  <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+    <h3>Click or Drag & Drop your JSON file here</h3>
+    <p style="color: var(--text-muted); margin-top: 0.5rem;">ap_hunters_data.json OR questers_data.json</p>
+    <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="handleFileUpload(event)">
+  </div>
+
+  <div class="editor-container hidden" id="editorContainer">
+    <div class="controls">
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('mappings')">Country Mappings</button>
+        <button class="tab" onclick="switchTab('snapshots')">Start of Month Snapshots</button>
+      </div>
+      <input type="text" class="search-bar" id="searchBar" placeholder="Search UUID or Value..." oninput="renderTable()">
+    </div>
+
+    <div class="table-container">
+      <table id="dataTable">
+        <thead>
+          <tr>
+            <th>UUID</th>
+            <th id="valueHeader">Country</th>
+            <th style="width: 80px; text-align: center;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          </tbody>
+      </table>
+    </div>
+
+    <div class="add-row">
+      <input type="text" id="newUuid" placeholder="New Player UUID (e.g. 41825ee5f46b406b...)">
+      <input type="text" id="newValue" placeholder="Value (Country or Score)">
+      <button class="btn btn-primary" onclick="addNewEntry()">➕ Add Entry</button>
+    </div>
+  </div>
+
+  <script>
+    let db = null;
+    let currentTab = 'mappings'; // 'mappings' or 'snapshots'
+    let originalFileName = 'updated_data.json';
+
+    // --- File Handling ---
+    const uploadZone = document.getElementById('uploadZone');
+
+    uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.style.borderColor = 'var(--accent)'; });
+    uploadZone.addEventListener('dragleave', () => uploadZone.style.borderColor = 'var(--border)');
+    uploadZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadZone.style.borderColor = 'var(--border)';
+      if (e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]);
+    });
+
+    function handleFileUpload(event) {
+      if (event.target.files.length) processFile(event.target.files[0]);
+    }
+
+    function processFile(file) {
+      originalFileName = file.name;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          db = JSON.parse(e.target.result);
+          // Ensure structure exists
+          if (!db.manual_country_mapping) db.manual_country_mapping = {};
+          if (!db.month_start_snapshot) db.month_start_snapshot = {};
+          
+          document.getElementById('uploadZone').classList.add('hidden');
+          document.getElementById('editorContainer').classList.remove('hidden');
+          document.getElementById('downloadBtn').classList.remove('hidden');
+          
+          renderTable();
+        } catch (err) {
+          alert("Invalid JSON file!");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // --- Editor Logic ---
+    function switchTab(tabName) {
+      currentTab = tabName;
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      document.getElementById('valueHeader').textContent = tabName === 'mappings' ? 'Country' : 'Start Value (Score)';
+      document.getElementById('newValue').placeholder = tabName === 'mappings' ? 'Country (e.g. UK, USA)' : 'Score (e.g. 25000)';
+      
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+      tbody.innerHTML = '';
+
+      const targetObject = currentTab === 'mappings' ? db.manual_country_mapping : db.month_start_snapshot;
+      const inputType = currentTab === 'mappings' ? 'text' : 'number';
+
+      Object.entries(targetObject).forEach(([uuid, value]) => {
+        // Filter logic
+        if (searchTerm && !uuid.toLowerCase().includes(searchTerm) && !String(value).toLowerCase().includes(searchTerm)) {
+          return;
+        }
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="uuid">${uuid}</td>
+          <td>
+            <input type="${inputType}" value="${value}" onchange="updateValue('${uuid}', this.value)">
+          </td>
+          <td style="text-align: center;">
+            <button class="btn btn-danger" style="padding: 0.2rem 0.5rem;" onclick="deleteEntry('${uuid}')">🗑️</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateValue(uuid, newValue) {
+      if (currentTab === 'mappings') {
+        db.manual_country_mapping[uuid] = newValue.trim();
+      } else {
+        db.month_start_snapshot[uuid] = parseFloat(newValue) || 0;
+      }
+    }
+
+    function deleteEntry(uuid) {
+      if (confirm(`Are you sure you want to remove ${uuid}?`)) {
+        if (currentTab === 'mappings') delete db.manual_country_mapping[uuid];
+        else delete db.month_start_snapshot[uuid];
+        renderTable();
+      }
+    }
+
+    function addNewEntry() {
+      const uuidInput = document.getElementById('newUuid');
+      const valInput = document.getElementById('newValue');
+      const uuid = uuidInput.value.trim();
+      let val = valInput.value.trim();
+
+      if (!uuid || !val) return alert("Please fill in both UUID and Value.");
+
+      if (currentTab === 'mappings') {
+        db.manual_country_mapping[uuid] = val;
+      } else {
+        db.month_start_snapshot[uuid] = parseFloat(val) || 0;
+      }
+
+      uuidInput.value = '';
+      valInput.value = '';
+      
+      // Clear search so the new entry is visible
+      document.getElementById('searchBar').value = '';
+      renderTable();
+      
+      // Scroll to top to see it
+      document.querySelector('.table-container').scrollTop = 0;
+    }
+
+    // --- Export Logic ---
+    function downloadJSON() {
+      if (!db) return;
+      
+      // Note: We don't recalculate the country_leaderboard array here.
+      // That is handled by the GitHub Action/Node script. This editor 
+      // just manages the manual data safely.
+      
+      const dataStr = JSON.stringify(db, null, 2);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = originalFileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
