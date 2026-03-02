@@ -1,4 +1,4 @@
-// --- Theme System ---
+// Theme System
 function loadTheme() {
   const saved = localStorage.getItem('theme') || 'light';
   if(saved === 'dark') document.body.setAttribute('data-theme', 'dark');
@@ -20,11 +20,10 @@ function toggleTheme() {
   if(btn) btn.textContent = next === 'dark' ? '☀️' : '🌙';
 }
 
-// --- Audio & Easter Egg System ---
-let audioCtx; // Kept undefined until a key is pressed to prevent browser blocking
+// Audio System
+let audioCtx; 
 
 function playTone(freq, type) {
-  // Lazy-load the audio context on the first keypress
   if (!audioCtx) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     audioCtx = new AudioContext();
@@ -37,7 +36,7 @@ function playTone(freq, type) {
   
   osc.type = type;
   osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-  gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); // 5% volume
+  gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); 
   
   osc.connect(gainNode);
   gainNode.connect(audioCtx.destination);
@@ -46,60 +45,62 @@ function playTone(freq, type) {
   osc.stop(audioCtx.currentTime + 0.1);
 }
 
+// Global Keyboard Shortcuts & Easter Egg
 const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
 let konamiIndex = 0;
+let konamiCooldown = false;
 
 document.addEventListener('keydown', (e) => {
-  const searchInput = document.getElementById('searchInput');
-  const isTypingInSearch = document.activeElement === searchInput;
-  const isTypingAnywhereElse = document.activeElement && document.activeElement.tagName === 'INPUT' && !isTypingInSearch;
+  // Check if user is typing in ANY input or textarea
+  const isTyping = document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName);
 
-  // Ignore if typing in an editor input box
-  if (isTypingAnywhereElse) return;
-
-  // 1. Standard Shortcuts (Only trigger if NOT in the search bar)
-  if (!isTypingInSearch) {
+  // 1. Standard Shortcuts (Disabled whilst typing)
+  if (!isTyping) {
     if (e.key === '1') { const p = document.querySelector('[data-tab="players"]'); if(p) p.click(); return; }
     if (e.key === '2') { const c = document.querySelector('[data-tab="countries"]'); if(c) c.click(); return; }
     if (e.key === '/') {
       e.preventDefault(); 
-      if(searchInput) searchInput.focus();
+      const searchBox = document.getElementById('searchInput');
+      if (searchBox) searchBox.focus();
       return;
     }
   }
 
-  // 2. Konami Logic (Only works while focused in the search bar)
-  if (isTypingInSearch) {
-    // Check against the sequence (handling case sensitivity for letters)
+  // 2. Konami Logic (Works globally, but disabled whilst typing or during cooldown)
+  if (!isTyping && !konamiCooldown) {
+    
+    // Case insensitive check for 'b' and 'a'
     if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase() || e.key === konamiCode[konamiIndex]) {
       konamiIndex++;
       
-      // Try/Catch prevents any weird audio hardware errors from breaking the code
       try { playTone(800 + (konamiIndex * 50), 'sine'); } catch(err) {}
       
-      // Stop the cursor from moving around the input box while using arrows
-      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+      // Stop the page from scrolling, but let the very first ArrowUp scroll normally
+      // so we do not break regular scrolling for users who just want to go up.
+      if (konamiIndex > 1 && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
         e.preventDefault(); 
       }
 
+      // Success
       if (konamiIndex === konamiCode.length) {
-        window.location.href = 'trophy.html'; // Surprise destination
+        window.location.href = 'trophy.html'; 
       }
+      
     } else {
+      // Failure state (only trigger if they actually started the code)
       if (konamiIndex > 0) {
         try { playTone(200, 'sawtooth'); } catch(err) {}
-      }
-      konamiIndex = 0; 
-      
-      // Allow immediate restart if they hit Up Arrow right after a mistake
-      if (e.key === 'ArrowUp') {
-        konamiIndex = 1;
-        try { playTone(850, 'sine'); } catch(err) {}
-        e.preventDefault();
+        
+        // Lock out the code for 3 seconds
+        konamiCooldown = true;
+        konamiIndex = 0;
+        
+        setTimeout(() => {
+          konamiCooldown = false;
+        }, 3000);
       }
     }
   }
 });
 
-// Boot theme on load
 document.addEventListener('DOMContentLoaded', loadTheme);
