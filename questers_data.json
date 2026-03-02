@@ -3,10 +3,34 @@
   "last_update": "2026-03-02T02:02:17.720Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
-    "3de9779b0ed34ca196575639b57e2c3b": 32400
+    "d7e0ec9bc36f4d44abd2ff1a1043cebd": 32400
   },
   "manual_country_mapping": {
-    "6bb0a8005e3346f8a18ce706dc5f5ccf": "Argentina",
+    "41825ee5f46b406b9bb74aea7eb2742b": "Argentina",
     "d7e0ec9bc36f4d44abd2ff1a1043cebd": "Argentina"
-  }
+  },
+  "country_leaderboard": [
+    {
+      "country": "Argentina",
+      "score": 30914,
+      "top_players": [
+        {
+          "username": "oJakey1",
+          "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+          "country": "Argentina",
+          "current_ap": 12345,
+          "last_month_ap": 12340,
+          "monthly_gain": 5
+        },
+        {
+          "username": "oJakey2",
+          "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+          "country": "Argentina",
+          "current_ap": 12345,
+          "last_month_ap": 12335,
+          "monthly_gain": 10
+        }
+      ]
+    }
+  ]
 }
