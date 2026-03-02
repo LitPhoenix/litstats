@@ -1015,34 +1015,67 @@
       }
     });
 
-        // Audio Context for the Easter Egg sounds
+// --- Audio System (Quiet) ---
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     const audioCtx = new AudioContext();
-    
+
     function playTone(freq, type) {
       if (audioCtx.state === 'suspended') audioCtx.resume();
       const osc = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      
       osc.type = type;
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      osc.connect(audioCtx.destination);
+      
+      // Drops volume to a comfortable 5%
+      gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); 
+      
+      osc.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      
       osc.start();
       osc.stop(audioCtx.currentTime + 0.1);
     }
-    
+
+    // Konami
     const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
     let konamiIndex = 0;
-    
-    document.getElementById('searchInput').addEventListener('keydown', (e) => {
+
+    document.addEventListener('keydown', (e) => {
+      if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+
+      if (e.key === '1') return document.querySelector('[data-tab="players"]').click();
+      if (e.key === '2') return document.querySelector('[data-tab="countries"]').click();
+      if (e.key === '/') {
+        e.preventDefault(); 
+        return document.getElementById('searchInput').focus();
+      }
+
       if (e.key === konamiCode[konamiIndex]) {
         konamiIndex++;
         playTone(800 + (konamiIndex * 50), 'sine'); // Pitch goes up with progress
         
+        // Stop the page from scrolling while actively entering the code
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+          e.preventDefault();
+        }
+
         if (konamiIndex === konamiCode.length) {
           window.location.href = 'control_centre.html';
         }
       } else {
-        if (konamiIndex > 0) playTone(200, 'sawtooth'); // Error buzz
+        // Only play the error buzz if they actually started the code and messed up
+        if (konamiIndex > 0) {
+          playTone(200, 'sawtooth'); 
+        }
         konamiIndex = 0; // Reset
+        
+        // Allow immediate restart if they hit Up Arrow right after a mistake
+        if (e.key === 'ArrowUp') {
+          konamiIndex = 1;
+          playTone(850, 'sine');
+          e.preventDefault();
+        }
       }
     });
       
@@ -1051,6 +1084,7 @@
   </script>
 </body>
 </html>
+
 
 
 
