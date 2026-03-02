@@ -1,4 +1,4 @@
-// Theme System
+// --- Theme System ---
 function loadTheme() {
   const saved = localStorage.getItem('theme') || 'light';
   if(saved === 'dark') document.body.setAttribute('data-theme', 'dark');
@@ -20,7 +20,7 @@ function toggleTheme() {
   if(btn) btn.textContent = next === 'dark' ? '☀️' : '🌙';
 }
 
-// Audio System
+// --- Audio System ---
 let audioCtx; 
 
 function playTone(freq, type) {
@@ -36,7 +36,7 @@ function playTone(freq, type) {
   
   osc.type = type;
   osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-  gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); 
+  gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); // 5% volume
   
   osc.connect(gainNode);
   gainNode.connect(audioCtx.destination);
@@ -45,17 +45,15 @@ function playTone(freq, type) {
   osc.stop(audioCtx.currentTime + 0.1);
 }
 
-// Global Keyboard Shortcuts & Easter Egg
+// --- Global Keyboard Shortcuts & Easter Egg ---
 const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
 let konamiIndex = 0;
 let konamiCooldown = false;
 
 document.addEventListener('keydown', (e) => {
-  // Check if user is typing in ANY input or textarea
-  const activeTag = document.activeElement ? document.activeElement.tagName : '';
-  const isTyping = activeTag === 'INPUT' || activeTag === 'TEXTAREA';
+  const isTyping = document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName);
 
-  // 1. Standard Shortcuts (Disabled whilst typing)
+  // 1. Standard Shortcuts
   if (!isTyping) {
     if (e.key === '1') { const p = document.querySelector('[data-tab="players"]'); if(p) p.click(); return; }
     if (e.key === '2') { const c = document.querySelector('[data-tab="countries"]'); if(c) c.click(); return; }
@@ -67,38 +65,37 @@ document.addEventListener('keydown', (e) => {
     }
   }
 
-  // 2. Konami Logic (Works globally, but disabled whilst typing or during cooldown)
+  // 2. Konami Logic (Tracks in background, NEVER overrides default scrolling)
   if (!isTyping && !konamiCooldown) {
     
-    // Case insensitive check for 'b' and 'a'
-    if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase() || e.key === konamiCode[konamiIndex]) {
+    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    const expectedKey = konamiCode[konamiIndex].length === 1 ? konamiCode[konamiIndex].toLowerCase() : konamiCode[konamiIndex];
+
+    if (key === expectedKey) {
       konamiIndex++;
       
       try { playTone(800 + (konamiIndex * 50), 'sine'); } catch(err) {}
-      
-      // Stop the page from scrolling, but let the very first ArrowUp scroll normally
-      // so we do not break regular scrolling for users who just want to go up.
-      if (konamiIndex > 1 && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
-        e.preventDefault(); 
-      }
 
       // Success
       if (konamiIndex === konamiCode.length) {
+        konamiIndex = 0;
         window.location.href = 'trophy.html'; 
       }
       
     } else {
-      // Failure state (only trigger if they actually started the code)
+      // Failure (only buzz if they were actively in a sequence)
       if (konamiIndex > 0) {
         try { playTone(200, 'sawtooth'); } catch(err) {}
         
-        // Lock out the code for 3 seconds
-        konamiCooldown = true;
         konamiIndex = 0;
-        
-        setTimeout(() => {
-          konamiCooldown = false;
-        }, 3000);
+        konamiCooldown = true;
+        setTimeout(() => { konamiCooldown = false; }, 3000); // 3 Second Penalty Lock
+      }
+      
+      // If they failed but pressed Up, start the sequence over if not on cooldown
+      if (key === 'ArrowUp' && !konamiCooldown) {
+        konamiIndex = 1;
+        try { playTone(850, 'sine'); } catch(err) {}
       }
     }
   }
