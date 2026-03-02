@@ -1,4 +1,4 @@
-name: Daily Leaderboard Update
+name: Daily Leaderboards Update
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-leaderboard:
+  update-leaderboards:
     runs-on: ubuntu-latest
 
     permissions:
@@ -27,13 +27,15 @@ jobs:
         run: |
           npm install node-fetch@2 --no-save
 
-      - name: Run Update Script
-        run: node scripts/update_leaderboard.js
+      - name: Run Update Scripts
+        run: |
+          node scripts/update_leaderboard.js
+          node scripts/update_quests.js
 
       - name: Commit & Push JSON to main
         run: |
           git config --global user.name "LeaderboardBot"
           git config --global user.email "bot@noreply.github.com"
-          git add ap_hunters_data.json
-          git commit -m "Daily Leaderboard Update" || exit 0
+          git add ap_hunters_data.json questers_data.json
+          git commit -m "Daily Leaderboards Update" || exit 0
           git push origin main
