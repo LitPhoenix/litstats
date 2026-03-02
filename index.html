@@ -512,17 +512,18 @@
       .player-avatar { width: 24px; height: 24px; }
 
       /* The new horizontal swipe scrolling */
-      .table-inner {
+    .table-inner {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
-        /* Shadow indicators for scrollable content */
+        /* Shadow indicators for scrollable content, with var(--surface) locked at the bottom */
         background: linear-gradient(to right, var(--surface) 30%, transparent),
                     linear-gradient(to left, var(--surface) 30%, transparent) 100% 0,
                     radial-gradient(farthest-side at 0 50%, rgba(0,0,0,0.1), transparent),
-                    radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.1), transparent) 100% 0;
+                    radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.1), transparent) 100% 0,
+                    var(--surface); /* This line fixes the transparency bug */
         background-repeat: no-repeat;
-        background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
-        background-attachment: local, local, scroll, scroll;
+        background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%, 100% 100%;
+        background-attachment: local, local, scroll, scroll, scroll;
       }
       
       /* Hide the country text to save space, keeping just the flag */
@@ -1084,6 +1085,7 @@
   </script>
 </body>
 </html>
+
 
 
 
