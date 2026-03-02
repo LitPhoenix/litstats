@@ -20,30 +20,46 @@ function toggleTheme() {
   if(btn) btn.textContent = next === 'dark' ? '☀️' : '🌙';
 }
 
+
 // --- Audio System ---
 let audioCtx; 
 
-function playTone(freq, type) {
+// Modern browsers block audio until the user clicks on the page. 
+// This invisible listener safely unlocks the audio context in the background on the first click.
+document.addEventListener('click', () => {
   if (!audioCtx) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     audioCtx = new AudioContext();
   }
-  
   if (audioCtx.state === 'suspended') audioCtx.resume();
-  
-  const osc = audioCtx.createOscillator();
-  const gainNode = audioCtx.createGain();
-  
-  osc.type = type;
-  osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-  gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); // 5% volume
-  
-  osc.connect(gainNode);
-  gainNode.connect(audioCtx.destination);
-  
-  osc.start();
-  osc.stop(audioCtx.currentTime + 0.1);
+}, { once: true });
+
+function playTone(freq, type) {
+  try {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+    }
+    
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime); // 10% volume
+    
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.1);
+  } catch (err) {
+    // Fails silently if the browser strictly blocks it, preventing crashes
+  }
 }
+
 
 // --- Global Keyboard Shortcuts & Easter Egg ---
 const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
@@ -51,7 +67,9 @@ let konamiIndex = 0;
 let konamiCooldown = false;
 
 document.addEventListener('keydown', (e) => {
-  const isTyping = document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName);
+  // Check if user is actively typing in a search bar or editor
+  const activeTag = document.activeElement ? document.activeElement.tagName : '';
+  const isTyping = activeTag === 'INPUT' || activeTag === 'TEXTAREA';
 
   // 1. Standard Shortcuts
   if (!isTyping) {
@@ -65,16 +83,22 @@ document.addEventListener('keydown', (e) => {
     }
   }
 
-  // 2. Konami Logic (Tracks in background, NEVER overrides default scrolling)
+  // 2. Easter Egg Logic (Tracks globally, disabled whilst typing or on cooldown)
   if (!isTyping && !konamiCooldown) {
     
-    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-    const expectedKey = konamiCode[konamiIndex].length === 1 ? konamiCode[konamiIndex].toLowerCase() : konamiCode[konamiIndex];
+    // Convert both to lowercase to prevent Caps Lock or Shift from breaking 'a' and 'b'
+    const key = e.key.toLowerCase();
+    const expectedKey = konamiCode[konamiIndex].toLowerCase();
 
     if (key === expectedKey) {
       konamiIndex++;
+      playTone(800 + (konamiIndex * 50), 'sine'); // Pitch raises per correct key
       
-      try { playTone(800 + (konamiIndex * 50), 'sine'); } catch(err) {}
+      // Prevent the page from scrolling wildly while the user inputs the code.
+      // The very first ArrowUp is ignored so normal users can still scroll up.
+      if (konamiIndex > 1 && ['arrowup', 'arrowdown', 'arrowleft', 'arrowright'].includes(key)) {
+        e.preventDefault(); 
+      }
 
       // Success
       if (konamiIndex === konamiCode.length) {
@@ -83,22 +107,18 @@ document.addEventListener('keydown', (e) => {
       }
       
     } else {
-      // Failure (only buzz if they were actively in a sequence)
+      // Failure (Only triggers if they were actively in the middle of a sequence)
       if (konamiIndex > 0) {
-        try { playTone(200, 'sawtooth'); } catch(err) {}
+        playTone(200, 'sawtooth'); // Error Buzz
         
+        // 3 Second Penalty Lock
         konamiIndex = 0;
         konamiCooldown = true;
-        setTimeout(() => { konamiCooldown = false; }, 3000); // 3 Second Penalty Lock
-      }
-      
-      // If they failed but pressed Up, start the sequence over if not on cooldown
-      if (key === 'ArrowUp' && !konamiCooldown) {
-        konamiIndex = 1;
-        try { playTone(850, 'sine'); } catch(err) {}
+        setTimeout(() => { konamiCooldown = false; }, 3000);
       }
     }
   }
 });
 
+// Boot theme on load
 document.addEventListener('DOMContentLoaded', loadTheme);
