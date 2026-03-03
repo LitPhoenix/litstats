@@ -3,14 +3,18 @@ const path = require('path');
 const fetch = require('node-fetch');
 
 // 1. CONFIGURATION
-const NADESHIKO_URL = 'https://www.nadeshiko.io/leaderboard/NETWORK_ACHIEVEMENT_POINTS?page=1';
+const NADESHIKO_URL = 'https://www.nadeshiko.io/leaderboard/NETWORK_ACHIEVEMENT_POINTS';
 const DATA_FILE = path.join(__dirname, '../ap_hunters_data.json');
+const HYPIXEL_KEY = process.env.HYPIXEL_API_KEY;
 
 async function update() {
-    console.log("🚀 Starting Daily Update...");
+    console.log("🚀 Starting Daily AP Update...");
 
-    // 2. LOAD EXISTING DATA
-    // We need to load this to get your manual country mappings and history
+    if (!HYPIXEL_KEY) {
+        console.error("❌ HYPIXEL_API_KEY is missing from environment variables!");
+        process.exit(1);
+    }
+
     let db;
     try {
         db = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
@@ -19,66 +23,100 @@ async function update() {
         db = { manual_country_mapping: {}, month_start_snapshot: {}, country_leaderboard: [] };
     }
 
-    // 3. FETCH FLAT DATA (From Nadeshiko)
-    console.log("🌐 Fetching Nadeshiko...");
-    
-    const response = await fetch(NADESHIKO_URL, {
-        headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-        }
-    });
+    // 2. FETCH TOP 200 FROM NADESHIKO (Page 1 & 2)
+    console.log("🌐 Fetching Nadeshiko Top 200...");
+    const nadeshikoPlayers = [];
 
-    if (!response.ok) {
-        throw new Error(`Nadeshiko returned status: ${response.status}`);
+    for (let page = 1; page <= 2; page++) {
+        const response = await fetch(`${NADESHIKO_URL}?page=${page}`, {
+            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36' }
+        });
+        if (!response.ok) throw new Error(`Nadeshiko returned status: ${response.status}`);
+        const json = await response.json();
+        nadeshikoPlayers.push(...json.data);
     }
 
-    const json = await response.json();
-    const freshPlayers = json.data; 
+    console.log(`✅ Got ${nadeshikoPlayers.length} players from Nadeshiko.`);
+    console.log("🌐 Fetching Live Hypixel Data (This will take ~50 seconds)...");
 
+    const freshPlayers = [];
+
+    // 3. LIVE HYPIXEL API CHECK
+    for (let i = 0; i < nadeshikoPlayers.length; i++) {
+        const p = nadeshikoPlayers[i];
+        
+        try {
+            const hypixelRes = await fetch(`https://api.hypixel.net/v2/player?uuid=${p.uuid}`, {
+                headers: { 'API-Key': HYPIXEL_KEY }
+            });
+
+            if (hypixelRes.ok) {
+                const hypixelData = await hypixelRes.json();
+                
+                if (hypixelData.success && hypixelData.player) {
+                    freshPlayers.push({
+                        uuid: p.uuid,
+                        username: hypixelData.player.displayname || p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
+                        value: hypixelData.player.achievementPoints || parseFloat(p.value)
+                    });
+                } else {
+                    // Fallback to Nadeshiko data if player API fails
+                    freshPlayers.push({
+                        uuid: p.uuid,
+                        username: p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
+                        value: parseFloat(p.value)
+                    });
+                }
+            } else {
+                freshPlayers.push({
+                    uuid: p.uuid,
+                    username: p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
+                    value: parseFloat(p.value)
+                });
+            }
+        } catch (error) {
+            freshPlayers.push({
+                uuid: p.uuid,
+                username: p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
+                value: parseFloat(p.value)
+            });
+        }
+
+        // CRUCIAL: 250ms delay limits us to 4 requests/sec. Hypixel limit is 300/5mins (1 per sec average).
+        await new Promise(r => setTimeout(r, 250));
+        
+        if ((i + 1) % 50 === 0) console.log(`⏳ Processed ${i + 1}/200 players...`);
+    }
 
     // 4. MONTHLY SNAPSHOT LOGIC
-    // We check if we need to reset the "Start of Month" scores
     const today = new Date();
     const lastUpdate = new Date(db.last_update || 0);
     
-    // Simple check: Is the month different from the last update?
     if (today.getMonth() !== lastUpdate.getMonth()) {
         console.log("📅 New month detected! Resetting start-of-month snapshot.");
-        db.month_start_snapshot = {}; // Clear old history
+        db.month_start_snapshot = {}; 
         
-        // Snapshot everyone's CURRENT score as their START score
         freshPlayers.forEach(p => {
-            db.month_start_snapshot[p.uuid] = parseFloat(p.value);
+            db.month_start_snapshot[p.uuid] = p.value;
         });
     }
 
     // 5. TRANSFORM PLAYERS
-    // Map Nadeshiko format -> LitStats format
     const processedPlayers = freshPlayers.map(p => {
-        const currentAP = parseFloat(p.value);
-        
-        // 5a. Calculate Gain
-        // If player isn't in snapshot, add them now.
         if (!db.month_start_snapshot[p.uuid]) {
-            db.month_start_snapshot[p.uuid] = currentAP;
+            db.month_start_snapshot[p.uuid] = p.value;
         }
         const startAP = db.month_start_snapshot[p.uuid];
-        const gain = currentAP - startAP;
-
-        // 5b. Clean Username (Remove [MVP+] ranks)
-        // Nadeshiko gives "§b[MVP§c+§b] Name". We need just "Name".
-        const cleanName = p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim();
-
-        // 5c. Resolve Country
+        const gain = p.value - startAP;
         const countryCode = db.manual_country_mapping[p.uuid] || "Unknown";
 
         return {
-            username: cleanName,     // Index.html expects 'username'
+            username: p.username,
             uuid: p.uuid,
-            country: countryCode,    // Index.html expects 'country'
-            current_ap: currentAP,   // Index.html expects 'current_ap'
-            last_month_ap: startAP,  // Index.html uses this for positioning
-            monthly_gain: gain       // Index.html expects 'monthly_gain'
+            country: countryCode,
+            current_ap: p.value,
+            last_month_ap: startAP,
+            monthly_gain: gain
         };
     });
 
@@ -87,31 +125,25 @@ async function update() {
 
     processedPlayers.forEach(player => {
         const c = player.country;
-        if (!countryMap[c]) {
-            countryMap[c] = { country: c, top_players: [] };
-        }
+        if (!countryMap[c]) countryMap[c] = { country: c, top_players: [] };
         countryMap[c].top_players.push(player);
     });
 
-    // Convert Map to Array and Calculate Country Scores
     const countryLeaderboardArray = Object.values(countryMap).map(countryObj => {
-        // Sort players by AP descending
         countryObj.top_players.sort((a, b) => b.current_ap - a.current_ap);
 
-        // Calculate Score: Average AP of top 5 players
         const top5 = countryObj.top_players.slice(0, 5);
         const totalAP = top5.reduce((sum, p) => sum + p.current_ap, 0);
         const avgScore = top5.length > 0 ? (totalAP / 5) : 0;
 
         return {
             country: countryObj.country,
-            score: avgScore, // Index.html uses this to sort countries
+            score: avgScore, 
             top_players: countryObj.top_players
         };
     });
 
     // 7. SAVE EVERYTHING
-    // We update the 'country_leaderboard' for the frontend, but keep mappings/snapshots safe
     db.last_update = today.toISOString();
     db.country_leaderboard = countryLeaderboardArray;
 
