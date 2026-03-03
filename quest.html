@@ -51,14 +51,17 @@
     .section-title { font-size: 15px; font-weight: 600; color: var(--text); }
     .section-hint { font-size: 12px; color: var(--text-3); }
 
+    /* Animated Border Wrapper (Removed overflow:hidden to save tooltip) */
     @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
     .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; }
     .spark-bg { position: absolute; inset: 0; border-radius: inherit; z-index: -1; background: var(--border); overflow: hidden; }
     .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 10000px; height: 10000px; margin-top: -5000px; margin-left: -5000px; background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
     @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
     
+    /* Removed overflow: hidden here to allow tooltips to escape bounds */
     .table-inner { background: var(--surface); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
 
+    /* Fixed Border Radius due to removed overflow */
     table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
     thead th:first-child { border-top-left-radius: calc(var(--radius) - 1px); }
     thead th:last-child { border-top-right-radius: calc(var(--radius) - 1px); }
@@ -325,10 +328,10 @@
 
         return `
           <tr>
-            <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank} ${posHTML}</span></td>
+            <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank || ''} ${posHTML}</span></td>
             <td>
               <div class="player-cell">
-                <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" onload="checkSteveSkin(this, '${p.username}', '${p.uuid}')" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid}.png'">
+                <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" onload="checkSteveSkin(this, '${p.username}', '${p.uuid || ''}')" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
                 <span class="player-name">${p.username}</span>
               </div>
             </td>
@@ -417,7 +420,6 @@
         const weights = [1.0, 0.50, 0.25, 0.10, 0.05]; 
         const baseline = Math.min(...allPlayersList.map(p => p.current_quests)) - 100; 
 
-        // SQUARE ROOT MATH
         processedCountries = Object.keys(cMap).map(c => {
           const top5 = cMap[c].slice(0, 5);
           const score = top5.reduce((sum, p, i) => sum + (Math.sqrt(Math.max(0, p.current_quests - baseline)) * weights[i]), 0);
@@ -456,7 +458,25 @@
       });
     });
 
-    // --- Vercel API Live Search Hook ---
+    // --- Search & Live API Intent Listener ---
+    document.getElementById('searchInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const q = this.value.toLowerCase().trim();
+        if (!q) return;
+
+        let localPlayers = allPlayersList.filter(p => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
+        let localCountries = processedCountries.filter(c => c.country.toLowerCase().includes(q));
+
+        // ONLY fire Vercel API if the user explicitly hit Enter AND there are no local cached results
+        if (localPlayers.length === 0 && localCountries.length === 0) {
+          document.getElementById('searchResults').textContent = `Searching Hypixel network for "${q}"...`;
+          document.getElementById('searchResults').classList.remove('hidden');
+          fetchLivePlayer(q);
+        }
+      }
+    });
+
     function handleSearch() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       let fPlayers = allPlayersList;
@@ -470,16 +490,17 @@
           let res = [];
           if (fPlayers.length) res.push(`${fPlayers.length} player${fPlayers.length === 1 ? '' : 's'}`);
           if (fCountries.length) res.push(`${fCountries.length} countr${fCountries.length === 1 ? 'y' : 'ies'}`);
-          document.getElementById('searchResults').textContent = `Found ${res.join(' and ')}`;
+          document.getElementById('searchResults').innerHTML = `Found ${res.join(' and ')}`;
           document.getElementById('searchResults').classList.remove('hidden');
           
           renderPlayers(fPlayers);
           renderCountries(fCountries);
         } else {
-          // Trigger Live Vercel Check
-          document.getElementById('searchResults').textContent = `Searching Hypixel network for "${q}"...`;
+          // PROMPT INTENT FOR LIVE SEARCH
+          document.getElementById('searchResults').innerHTML = `No local results found. Press <strong>Enter</strong> to search the network live.`;
           document.getElementById('searchResults').classList.remove('hidden');
-          fetchLivePlayer(q);
+          renderPlayers([]);
+          renderCountries([]);
         }
       } else {
         document.getElementById('searchResults').classList.add('hidden');
