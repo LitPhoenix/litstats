@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-03T02:04:06.883Z",
+  "last_update": "2026-03-03T23:43:27.217Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -101,7 +101,106 @@
     "40884fdda30c4c26ba00abef570469e0": 25310,
     "8eb18a9227fb4b36947177babab261cd": 25270,
     "ad988df25a274cf592b66c9562834230": 25215,
-    "cf0e056bfae246f48053bd7979772f63": 25425
+    "cf0e056bfae246f48053bd7979772f63": 25425,
+    "6d84e8ed95b3452095221594b9e448fe": 25405,
+    "a481c0951d3246169ebe1dd6f583d357": 25195,
+    "72250a1d144c48d882231209ffcaf82d": 25195,
+    "0c1f10f9134e496399b6502270055a10": 25180,
+    "2a8842a87cfe40fc8ed200f91908a7fa": 25125,
+    "e44b43cda004469eb1a8a00c1952a92b": 25140,
+    "4f9182ff532e4dd0a77ebc0994c1562b": 25050,
+    "0ca18b7f6cb74731865b69e5511f0ff1": 25010,
+    "171faf6b54c045d884ba95f27049984f": 25210,
+    "6a040159d71841129271ce291b226587": 24925,
+    "14fc22531af545cf918eec7b30527272": 25030,
+    "666ef25282ec47b881c5b3e474c3ec2b": 24910,
+    "f4bee4a9c1ca4b929563f4f8148b2968": 24875,
+    "2e1884f69c294bd589e6d7709b100298": 24855,
+    "11949c8a9c084ada8afc66fcbcb005fc": 24860,
+    "dde31282b7be4cc0bea437a22ee0c6d7": 24775,
+    "6d3ec92d80ed4cf3aded1c5d7db7dfe3": 24775,
+    "266b09b979a345909824aa9d31ffe8ba": 25015,
+    "ab4645d4f2934af9b02d3c6ff296317a": 24740,
+    "cbb48c0b007745b8a5a6e8cd5fca808a": 24715,
+    "c7b1528ce5604302a279c16e7e135038": 24700,
+    "00eb09d164b54ab08114d119eebbb903": 25025,
+    "5c1acb0d23fa4ded8bdf20acf508e7d0": 24620,
+    "82fc95c49afc4b8182b6cefeac42874e": 24600,
+    "12ecedbce19b448cad38aa4f57f3afda": 24590,
+    "1cf6bb869dc74417bfcf7536bb30578c": 24660,
+    "fe7bf008272246f18421d39db8042257": 24600,
+    "23498017b5654aa0b9949effbbdd147e": 24550,
+    "1121d718b08145fe8b8a3728639d6723": 24520,
+    "8ace6f57323d4a349441a1ca863f5072": 24475,
+    "6d481389154d4421ae0d47533b8ce8d3": 24455,
+    "e5525c64899b40e49ab5b019e66e137d": 24445,
+    "fdfcc24e742746e592d666150e771a93": 24315,
+    "df968d057a4445c2a5118faa3e5d7e3b": 24290,
+    "82b6b4ca76004360af77d0d141a2e83a": 24255,
+    "4019260a28f544c2a35a0a1f35108a96": 24230,
+    "00b5bbf550084470a4dd3c2e1b9049fb": 24230,
+    "f94ade5012374648b0423fc0b66cac0a": 24220,
+    "bf6b32ef38934d9e90b8a1037e16b972": 24220,
+    "27a86e7999a64f32a8ae44b2ea310fe1": 24200,
+    "9f16e788457c44fc8c24b90167569420": 24135,
+    "9f532f0b78fc4dc49c1f95665d890fce": 24115,
+    "cdea33877a37413da44e365acc9f7a50": 24110,
+    "9d98449f501a47359a05534728c621c1": 24060,
+    "cc596a56d1d245a08a4292fd1e36a128": 24080,
+    "22eb4504ff954677ba3e6cc87c8e271c": 24065,
+    "f2b587fe0b2347dca0908d4832e047d5": 24035,
+    "3c38a419050345f2bce19bd3d1fc055c": 24180,
+    "2c8e1e5d1fbd466fb6770fdd65359cd5": 24000,
+    "b2cbfed76872468fac2842af0cd4877b": 23990,
+    "caee82099e1f44b0ad5a3682c3faf6e7": 23945,
+    "79e033c9e772499896561e0d7d117301": 23930,
+    "0e42568a6d934984bc699c60ab1895d8": 23950,
+    "decd08e13b754a6788b65181f302c94d": 23965,
+    "8edc188a258c461b91ac9844a44ec989": 23835,
+    "1b8b7e076bcb4795b21a408197d4ded7": 23830,
+    "ba804eff1d3f48348048350cc686a3f6": 23780,
+    "8f0349e80fee4394b66d0e32fb09002d": 23765,
+    "1cc68f64f4384b50bf846bf55bd2e1df": 23760,
+    "8d167f27157d488394f6b6142ccc16be": 23750,
+    "14016bbfdcf547dab04549b49e891dc8": 23715,
+    "5dd1035bc9b2491e892a71ac3e952c3c": 23705,
+    "24c6a4ad771b4328a49b9c6f9196ace3": 23730,
+    "0ff62bf91bda4c6b92b8f2d0ca4ed835": 23670,
+    "0a3e7efc5bb3461eb18f47a64e4d9721": 23640,
+    "a06aea053b6b47da8931a453e1f9632f": 23590,
+    "9dccd818228640bfa33174d8dc86dfb7": 23590,
+    "b5ab6db9366049ae8a9882927e46ce08": 23590,
+    "0d405677379c43139db69485749d9d31": 23570,
+    "35de049d7fcc4d129fe03eb48f5c3804": 23540,
+    "6056e9c1e8174c6e9a8e01830d8b803d": 23495,
+    "a621a7a79f324b5c83449e4453ad454d": 23480,
+    "7a49c7d7b03243bd86b11fd88214e3b2": 23315,
+    "6be718564437499fbb6242e17fbaa0c3": 23455,
+    "5fd7ec031e054a01b18c2aca29cf1a23": 23410,
+    "bde72daebb4640ae90ee096f26bb5f85": 23415,
+    "9872248cdad742f785657dbf78d9c756": 23400,
+    "b2b30608b0744cdfa5512f7f2fa06408": 23280,
+    "3d55b88551fe48d997bae3412cd8aa72": 23375,
+    "d91eb87c945b490b82a2638c8cf5a291": 23355,
+    "6d1160f1c9104aa082c64487645e2c3d": 23330,
+    "27a214e4b2644bcea2f5584ea2b994a3": 23300,
+    "8415341022134dbe969b81ed3ff6cd6f": 23250,
+    "8d66db5ea90b4137854808b97e0ca5c7": 23190,
+    "4b03948c422f4f11b0d55170b640a673": 23165,
+    "0cfa3f33d16f46949ae6e5a4a1ea547d": 23160,
+    "9899b3edf2364d318fe33c7278a2d4a8": 22820,
+    "a4a83ccb4d7f45f0806bd7cbe48de984": 23140,
+    "92c736b5ae414125b4cacd89bf856a77": 23140,
+    "7d96f585618f4b328d7ebdea16ca1d71": 23180,
+    "1ee8f444029b41db84a0b2a34415cdf0": 23370,
+    "d0115286ff43420ca6dbf452f67a4a56": 23100,
+    "b12c6b822faa4ebfaab429982dab58ed": 23065,
+    "c99fe76f6ed14f8a8b739d740a9674c3": 23025,
+    "e3fc5b36a60f4ff1ac2df06405a20601": 23020,
+    "01834d8a3c7a49c796589979d7a9ab74": 23015,
+    "c82a204b300f4b88888e4ab79e44920b": 23000,
+    "c185afbbd692431a906131448e693f19": 22950,
+    "e4447d2895924f76986ac1ba4dcf183c": 22935
   },
   "manual_country_mapping": {
     "6bb0a8005e3346f8a18ce706dc5f5ccf": "Argentina",
@@ -265,7 +364,7 @@
           "monthly_gain": 0
         },
         {
-          "username": "alpinespruce",
+          "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
           "current_ap": 28760,
@@ -292,17 +391,17 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 27600,
+          "current_ap": 27625,
           "last_month_ap": 27570,
-          "monthly_gain": 30
+          "monthly_gain": 55
         },
         {
           "username": "rory2",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27440,
+          "current_ap": 27475,
           "last_month_ap": 27440,
-          "monthly_gain": 0
+          "monthly_gain": 35
         },
         {
           "username": "C4PS",
@@ -313,19 +412,19 @@
           "monthly_gain": 0
         },
         {
+          "username": "sirumair9505",
+          "uuid": "77edb6fda6ef4097914ddc698242fe04",
+          "country": "USA",
+          "current_ap": 27345,
+          "last_month_ap": 27295,
+          "monthly_gain": 50
+        },
+        {
           "username": "baseballaholic",
           "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
           "country": "USA",
           "current_ap": 27320,
           "last_month_ap": 27320,
-          "monthly_gain": 0
-        },
-        {
-          "username": "sirumair9505",
-          "uuid": "77edb6fda6ef4097914ddc698242fe04",
-          "country": "USA",
-          "current_ap": 27295,
-          "last_month_ap": 27295,
           "monthly_gain": 0
         },
         {
@@ -372,9 +471,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26160,
+          "current_ap": 26200,
           "last_month_ap": 26160,
-          "monthly_gain": 0
+          "monthly_gain": 40
         },
         {
           "username": "Coduhy",
@@ -417,26 +516,34 @@
           "monthly_gain": 0
         },
         {
-          "username": "YSoSalty",
+          "username": "lyraava",
+          "uuid": "6d84e8ed95b3452095221594b9e448fe",
+          "country": "USA",
+          "current_ap": 25405,
+          "last_month_ap": 25405,
+          "monthly_gain": 0
+        },
+        {
+          "username": "needycatboy",
           "uuid": "99fcc41648bc45718c6cebfaf501da97",
           "country": "USA",
-          "current_ap": 25310,
+          "current_ap": 25405,
           "last_month_ap": 25310,
-          "monthly_gain": 0
+          "monthly_gain": 95
         },
         {
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25270,
+          "current_ap": 25285,
           "last_month_ap": 25270,
-          "monthly_gain": 0
+          "monthly_gain": 15
         }
       ]
     },
     {
       "country": "France",
-      "score": 29926,
+      "score": 29942,
       "top_players": [
         {
           "username": "Yann31_",
@@ -450,9 +557,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_ap": 31500,
+          "current_ap": 31580,
           "last_month_ap": 31500,
-          "monthly_gain": 0
+          "monthly_gain": 80
         },
         {
           "username": "Thomas1665",
@@ -482,9 +589,9 @@
           "username": "Uleb",
           "uuid": "2baaec9272fd487294e673eb4ec35201",
           "country": "France",
-          "current_ap": 27115,
+          "current_ap": 27125,
           "last_month_ap": 27115,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "enoitna",
@@ -495,18 +602,26 @@
           "monthly_gain": 0
         },
         {
-          "username": "horrifying",
+          "username": "horri",
           "uuid": "04f4bddb99004950ab605a20f41c6a98",
           "country": "France",
-          "current_ap": 26065,
+          "current_ap": 26070,
           "last_month_ap": 26065,
+          "monthly_gain": 5
+        },
+        {
+          "username": "Charcutier",
+          "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+          "country": "France",
+          "current_ap": 25050,
+          "last_month_ap": 25050,
           "monthly_gain": 0
         }
       ]
     },
     {
       "country": "Russia",
-      "score": 11555,
+      "score": 11619,
       "top_players": [
         {
           "username": "anrie",
@@ -520,9 +635,9 @@
           "username": "bubulS",
           "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
           "country": "Russia",
-          "current_ap": 25620,
+          "current_ap": 25940,
           "last_month_ap": 25620,
-          "monthly_gain": 0
+          "monthly_gain": 320
         }
       ]
     },
@@ -550,15 +665,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 27527,
+      "score": 27596,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 31940,
+          "current_ap": 31965,
           "last_month_ap": 31915,
-          "monthly_gain": 25
+          "monthly_gain": 50
         },
         {
           "username": "Paskwal",
@@ -580,9 +695,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 25895,
+          "current_ap": 26215,
           "last_month_ap": 25895,
-          "monthly_gain": 0
+          "monthly_gain": 320
         },
         {
           "username": "Kinderfeest",
@@ -591,20 +706,28 @@
           "current_ap": 25460,
           "last_month_ap": 25460,
           "monthly_gain": 0
+        },
+        {
+          "username": "SvenTerror",
+          "uuid": "171faf6b54c045d884ba95f27049984f",
+          "country": "The Netherlands",
+          "current_ap": 25210,
+          "last_month_ap": 25210,
+          "monthly_gain": 0
         }
       ]
     },
     {
       "country": "UK",
-      "score": 29721,
+      "score": 29726,
       "top_players": [
         {
           "username": "greaneye",
           "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
           "country": "UK",
-          "current_ap": 31385,
+          "current_ap": 31410,
           "last_month_ap": 31385,
-          "monthly_gain": 0
+          "monthly_gain": 25
         },
         {
           "username": "XandaPandaMC",
@@ -631,7 +754,7 @@
           "monthly_gain": 0
         },
         {
-          "username": "litphoenix",
+          "username": "LitOLantern",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
           "current_ap": 28850,
@@ -642,9 +765,9 @@
           "username": "Fossilised",
           "uuid": "e3292ca36c5e43cbacd01c52adaca375",
           "country": "UK",
-          "current_ap": 26715,
+          "current_ap": 26735,
           "last_month_ap": 26715,
-          "monthly_gain": 0
+          "monthly_gain": 20
         },
         {
           "username": "KyRant",
@@ -682,7 +805,7 @@
     },
     {
       "country": "Canada",
-      "score": 28339,
+      "score": 28352,
       "top_players": [
         {
           "username": "Songgg",
@@ -696,9 +819,9 @@
           "username": "Andorite",
           "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
           "country": "Canada",
-          "current_ap": 29410,
+          "current_ap": 29450,
           "last_month_ap": 29410,
-          "monthly_gain": 0
+          "monthly_gain": 40
         },
         {
           "username": "enderdrxgon",
@@ -712,9 +835,9 @@
           "username": "5beve",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
-          "current_ap": 26780,
+          "current_ap": 26805,
           "last_month_ap": 26780,
-          "monthly_gain": 0
+          "monthly_gain": 25
         },
         {
           "username": "DetectiveAndrew",
@@ -731,12 +854,28 @@
           "current_ap": 25970,
           "last_month_ap": 25970,
           "monthly_gain": 0
+        },
+        {
+          "username": "Crooder",
+          "uuid": "266b09b979a345909824aa9d31ffe8ba",
+          "country": "Canada",
+          "current_ap": 25015,
+          "last_month_ap": 25015,
+          "monthly_gain": 0
+        },
+        {
+          "username": "BenOuiMaxi",
+          "uuid": "0ca18b7f6cb74731865b69e5511f0ff1",
+          "country": "Canada",
+          "current_ap": 25010,
+          "last_month_ap": 25010,
+          "monthly_gain": 0
         }
       ]
     },
     {
       "country": "Serbia",
-      "score": 11607,
+      "score": 11610,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -750,15 +889,15 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27190,
+          "current_ap": 27205,
           "last_month_ap": 27190,
-          "monthly_gain": 0
+          "monthly_gain": 15
         }
       ]
     },
     {
       "country": "Germany",
-      "score": 16883,
+      "score": 16889,
       "top_players": [
         {
           "username": "NightMan976",
@@ -780,9 +919,9 @@
           "username": "Niko702",
           "uuid": "40884fdda30c4c26ba00abef570469e0",
           "country": "Germany",
-          "current_ap": 25310,
+          "current_ap": 25340,
           "last_month_ap": 25310,
-          "monthly_gain": 0
+          "monthly_gain": 30
         }
       ]
     },
@@ -816,7 +955,7 @@
     },
     {
       "country": "Norway",
-      "score": 11048,
+      "score": 16098,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -833,12 +972,20 @@
           "current_ap": 26350,
           "last_month_ap": 26350,
           "monthly_gain": 0
+        },
+        {
+          "username": "sForce",
+          "uuid": "ad988df25a274cf592b66c9562834230",
+          "country": "Norway",
+          "current_ap": 25250,
+          "last_month_ap": 25215,
+          "monthly_gain": 35
         }
       ]
     },
     {
       "country": "Croatia",
-      "score": 16133,
+      "score": 21177,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -852,31 +999,39 @@
           "username": "Craftian9",
           "uuid": "0324177073ee43df82f3825488c83b60",
           "country": "Croatia",
-          "current_ap": 26755,
+          "current_ap": 26780,
           "last_month_ap": 26755,
-          "monthly_gain": 0
+          "monthly_gain": 25
         },
         {
-          "username": "mihannah",
+          "username": "Mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
           "current_ap": 25440,
           "last_month_ap": 25440,
+          "monthly_gain": 0
+        },
+        {
+          "username": "noobay",
+          "uuid": "a481c0951d3246169ebe1dd6f583d357",
+          "country": "Croatia",
+          "current_ap": 25195,
+          "last_month_ap": 25195,
           "monthly_gain": 0
         }
       ]
     },
     {
       "country": "Israel",
-      "score": 16304,
+      "score": 16306,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_ap": 28260,
+          "current_ap": 28270,
           "last_month_ap": 28260,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "Kickuxer",
@@ -928,45 +1083,53 @@
     },
     {
       "country": "Czech Republic",
-      "score": 16006,
+      "score": 21037,
       "top_players": [
         {
           "username": "ZenBenn",
           "uuid": "f9adb4d8fd664d4098d4e70bb3d15ee6",
           "country": "Czech Republic",
-          "current_ap": 27620,
+          "current_ap": 27545,
           "last_month_ap": 27620,
-          "monthly_gain": 0
+          "monthly_gain": -75
         },
         {
           "username": "ZERATHIX",
           "uuid": "e37ccf10fe9643789745e0432ca096b2",
           "country": "Czech Republic",
-          "current_ap": 26550,
+          "current_ap": 26560,
           "last_month_ap": 26550,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 25860,
+          "current_ap": 25885,
           "last_month_ap": 25815,
-          "monthly_gain": 45
+          "monthly_gain": 70
+        },
+        {
+          "username": "koprr",
+          "uuid": "72250a1d144c48d882231209ffcaf82d",
+          "country": "Czech Republic",
+          "current_ap": 25195,
+          "last_month_ap": 25195,
+          "monthly_gain": 0
         }
       ]
     },
     {
       "country": "Japan",
-      "score": 5436,
+      "score": 5441,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_ap": 27180,
+          "current_ap": 27205,
           "last_month_ap": 27180,
-          "monthly_gain": 0
+          "monthly_gain": 25
         }
       ]
     },
@@ -986,15 +1149,15 @@
     },
     {
       "country": "Argentina",
-      "score": 10541,
+      "score": 10584,
       "top_players": [
         {
           "username": "Sayapi",
           "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
           "country": "Argentina",
-          "current_ap": 26600,
+          "current_ap": 26815,
           "last_month_ap": 26600,
-          "monthly_gain": 0
+          "monthly_gain": 215
         },
         {
           "username": "Iaan",
@@ -1008,15 +1171,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 5289,
+      "score": 5295,
       "top_players": [
         {
           "username": "Unstuffynesslys",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26445,
+          "current_ap": 26475,
           "last_month_ap": 26445,
-          "monthly_gain": 0
+          "monthly_gain": 30
         }
       ]
     },
@@ -1036,15 +1199,15 @@
     },
     {
       "country": "Syria",
-      "score": 5239,
+      "score": 5221,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26195,
+          "current_ap": 26105,
           "last_month_ap": 26195,
-          "monthly_gain": 0
+          "monthly_gain": -90
         }
       ]
     },
@@ -1092,7 +1255,7 @@
     },
     {
       "country": "Unknown",
-      "score": 15423,
+      "score": 25480,
       "top_players": [
         {
           "username": "Rayjer",
@@ -1114,8 +1277,736 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "Unknown",
-          "current_ap": 25425,
+          "current_ap": 25445,
           "last_month_ap": 25425,
+          "monthly_gain": 20
+        },
+        {
+          "username": "kawaa",
+          "uuid": "e44b43cda004469eb1a8a00c1952a92b",
+          "country": "Unknown",
+          "current_ap": 25140,
+          "last_month_ap": 25140,
+          "monthly_gain": 0
+        },
+        {
+          "username": "radicul",
+          "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
+          "country": "Unknown",
+          "current_ap": 25125,
+          "last_month_ap": 25125,
+          "monthly_gain": 0
+        },
+        {
+          "username": "sosal",
+          "uuid": "14fc22531af545cf918eec7b30527272",
+          "country": "Unknown",
+          "current_ap": 25030,
+          "last_month_ap": 25030,
+          "monthly_gain": 0
+        },
+        {
+          "username": "ToggleFly",
+          "uuid": "00eb09d164b54ab08114d119eebbb903",
+          "country": "Unknown",
+          "current_ap": 25025,
+          "last_month_ap": 25025,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Aldix",
+          "uuid": "6a040159d71841129271ce291b226587",
+          "country": "Unknown",
+          "current_ap": 24925,
+          "last_month_ap": 24925,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Hailette",
+          "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
+          "country": "Unknown",
+          "current_ap": 24910,
+          "last_month_ap": 24910,
+          "monthly_gain": 0
+        },
+        {
+          "username": "adjective_n0un",
+          "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
+          "country": "Unknown",
+          "current_ap": 24875,
+          "last_month_ap": 24875,
+          "monthly_gain": 0
+        },
+        {
+          "username": "pumpkan",
+          "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
+          "country": "Unknown",
+          "current_ap": 24860,
+          "last_month_ap": 24860,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Lilaaay",
+          "uuid": "2e1884f69c294bd589e6d7709b100298",
+          "country": "Unknown",
+          "current_ap": 24855,
+          "last_month_ap": 24855,
+          "monthly_gain": 0
+        },
+        {
+          "username": "ILiveInAWall",
+          "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+          "country": "Unknown",
+          "current_ap": 24775,
+          "last_month_ap": 24775,
+          "monthly_gain": 0
+        },
+        {
+          "username": "nrteu",
+          "uuid": "6d3ec92d80ed4cf3aded1c5d7db7dfe3",
+          "country": "Unknown",
+          "current_ap": 24775,
+          "last_month_ap": 24775,
+          "monthly_gain": 0
+        },
+        {
+          "username": "memeister",
+          "uuid": "ab4645d4f2934af9b02d3c6ff296317a",
+          "country": "Unknown",
+          "current_ap": 24740,
+          "last_month_ap": 24740,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Brano",
+          "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
+          "country": "Unknown",
+          "current_ap": 24715,
+          "last_month_ap": 24715,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Sunta",
+          "uuid": "c7b1528ce5604302a279c16e7e135038",
+          "country": "Unknown",
+          "current_ap": 24700,
+          "last_month_ap": 24700,
+          "monthly_gain": 0
+        },
+        {
+          "username": "nonoooooooo",
+          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+          "country": "Unknown",
+          "current_ap": 24660,
+          "last_month_ap": 24660,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Questologist",
+          "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
+          "country": "Unknown",
+          "current_ap": 24620,
+          "last_month_ap": 24620,
+          "monthly_gain": 0
+        },
+        {
+          "username": "xBxnny",
+          "uuid": "82fc95c49afc4b8182b6cefeac42874e",
+          "country": "Unknown",
+          "current_ap": 24600,
+          "last_month_ap": 24600,
+          "monthly_gain": 0
+        },
+        {
+          "username": "irkt",
+          "uuid": "fe7bf008272246f18421d39db8042257",
+          "country": "Unknown",
+          "current_ap": 24600,
+          "last_month_ap": 24600,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Bikkie",
+          "uuid": "12ecedbce19b448cad38aa4f57f3afda",
+          "country": "Unknown",
+          "current_ap": 24590,
+          "last_month_ap": 24590,
+          "monthly_gain": 0
+        },
+        {
+          "username": "combatively",
+          "uuid": "23498017b5654aa0b9949effbbdd147e",
+          "country": "Unknown",
+          "current_ap": 24550,
+          "last_month_ap": 24550,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Ofek",
+          "uuid": "1121d718b08145fe8b8a3728639d6723",
+          "country": "Unknown",
+          "current_ap": 24520,
+          "last_month_ap": 24520,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Kqnfetka",
+          "uuid": "8ace6f57323d4a349441a1ca863f5072",
+          "country": "Unknown",
+          "current_ap": 24475,
+          "last_month_ap": 24475,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Stylee",
+          "uuid": "6d481389154d4421ae0d47533b8ce8d3",
+          "country": "Unknown",
+          "current_ap": 24455,
+          "last_month_ap": 24455,
+          "monthly_gain": 0
+        },
+        {
+          "username": "ImWolf85",
+          "uuid": "e5525c64899b40e49ab5b019e66e137d",
+          "country": "Unknown",
+          "current_ap": 24445,
+          "last_month_ap": 24445,
+          "monthly_gain": 0
+        },
+        {
+          "username": "martinbelike",
+          "uuid": "fdfcc24e742746e592d666150e771a93",
+          "country": "Unknown",
+          "current_ap": 24315,
+          "last_month_ap": 24315,
+          "monthly_gain": 0
+        },
+        {
+          "username": "typefast",
+          "uuid": "df968d057a4445c2a5118faa3e5d7e3b",
+          "country": "Unknown",
+          "current_ap": 24290,
+          "last_month_ap": 24290,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Cluelesss",
+          "uuid": "82b6b4ca76004360af77d0d141a2e83a",
+          "country": "Unknown",
+          "current_ap": 24255,
+          "last_month_ap": 24255,
+          "monthly_gain": 0
+        },
+        {
+          "username": "morof",
+          "uuid": "4019260a28f544c2a35a0a1f35108a96",
+          "country": "Unknown",
+          "current_ap": 24230,
+          "last_month_ap": 24230,
+          "monthly_gain": 0
+        },
+        {
+          "username": "leonl",
+          "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+          "country": "Unknown",
+          "current_ap": 24230,
+          "last_month_ap": 24230,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Xylim",
+          "uuid": "f94ade5012374648b0423fc0b66cac0a",
+          "country": "Unknown",
+          "current_ap": 24220,
+          "last_month_ap": 24220,
+          "monthly_gain": 0
+        },
+        {
+          "username": "iiris",
+          "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
+          "country": "Unknown",
+          "current_ap": 24220,
+          "last_month_ap": 24220,
+          "monthly_gain": 0
+        },
+        {
+          "username": "animethighs68",
+          "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
+          "country": "Unknown",
+          "current_ap": 24200,
+          "last_month_ap": 24200,
+          "monthly_gain": 0
+        },
+        {
+          "username": "azyugo",
+          "uuid": "3c38a419050345f2bce19bd3d1fc055c",
+          "country": "Unknown",
+          "current_ap": 24180,
+          "last_month_ap": 24180,
+          "monthly_gain": 0
+        },
+        {
+          "username": "recordheat",
+          "uuid": "9f16e788457c44fc8c24b90167569420",
+          "country": "Unknown",
+          "current_ap": 24135,
+          "last_month_ap": 24135,
+          "monthly_gain": 0
+        },
+        {
+          "username": "stevcn",
+          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+          "country": "Unknown",
+          "current_ap": 24115,
+          "last_month_ap": 24115,
+          "monthly_gain": 0
+        },
+        {
+          "username": "SeaOtterFan",
+          "uuid": "cdea33877a37413da44e365acc9f7a50",
+          "country": "Unknown",
+          "current_ap": 24110,
+          "last_month_ap": 24110,
+          "monthly_gain": 0
+        },
+        {
+          "username": "FuyajouRuri",
+          "uuid": "cc596a56d1d245a08a4292fd1e36a128",
+          "country": "Unknown",
+          "current_ap": 24080,
+          "last_month_ap": 24080,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Misqu",
+          "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+          "country": "Unknown",
+          "current_ap": 24065,
+          "last_month_ap": 24065,
+          "monthly_gain": 0
+        },
+        {
+          "username": "ILoveMyDoggo2",
+          "uuid": "9d98449f501a47359a05534728c621c1",
+          "country": "Unknown",
+          "current_ap": 24060,
+          "last_month_ap": 24060,
+          "monthly_gain": 0
+        },
+        {
+          "username": "ni6a",
+          "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+          "country": "Unknown",
+          "current_ap": 24035,
+          "last_month_ap": 24035,
+          "monthly_gain": 0
+        },
+        {
+          "username": "pehi",
+          "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
+          "country": "Unknown",
+          "current_ap": 24000,
+          "last_month_ap": 24000,
+          "monthly_gain": 0
+        },
+        {
+          "username": "tyelur",
+          "uuid": "b2cbfed76872468fac2842af0cd4877b",
+          "country": "Unknown",
+          "current_ap": 23990,
+          "last_month_ap": 23990,
+          "monthly_gain": 0
+        },
+        {
+          "username": "goyslopper_",
+          "uuid": "decd08e13b754a6788b65181f302c94d",
+          "country": "Unknown",
+          "current_ap": 23965,
+          "last_month_ap": 23965,
+          "monthly_gain": 0
+        },
+        {
+          "username": "SpaceDano",
+          "uuid": "0e42568a6d934984bc699c60ab1895d8",
+          "country": "Unknown",
+          "current_ap": 23950,
+          "last_month_ap": 23950,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Pomw",
+          "uuid": "caee82099e1f44b0ad5a3682c3faf6e7",
+          "country": "Unknown",
+          "current_ap": 23945,
+          "last_month_ap": 23945,
+          "monthly_gain": 0
+        },
+        {
+          "username": "riyako",
+          "uuid": "79e033c9e772499896561e0d7d117301",
+          "country": "Unknown",
+          "current_ap": 23930,
+          "last_month_ap": 23930,
+          "monthly_gain": 0
+        },
+        {
+          "username": "A0E",
+          "uuid": "8edc188a258c461b91ac9844a44ec989",
+          "country": "Unknown",
+          "current_ap": 23835,
+          "last_month_ap": 23835,
+          "monthly_gain": 0
+        },
+        {
+          "username": "KaoriMiyazono",
+          "uuid": "1b8b7e076bcb4795b21a408197d4ded7",
+          "country": "Unknown",
+          "current_ap": 23830,
+          "last_month_ap": 23830,
+          "monthly_gain": 0
+        },
+        {
+          "username": "alonmario1",
+          "uuid": "ba804eff1d3f48348048350cc686a3f6",
+          "country": "Unknown",
+          "current_ap": 23780,
+          "last_month_ap": 23780,
+          "monthly_gain": 0
+        },
+        {
+          "username": "NoHaxJustTaiwan",
+          "uuid": "8f0349e80fee4394b66d0e32fb09002d",
+          "country": "Unknown",
+          "current_ap": 23765,
+          "last_month_ap": 23765,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Gamja_OwO",
+          "uuid": "1cc68f64f4384b50bf846bf55bd2e1df",
+          "country": "Unknown",
+          "current_ap": 23760,
+          "last_month_ap": 23760,
+          "monthly_gain": 0
+        },
+        {
+          "username": "DirtyAvocado",
+          "uuid": "8d167f27157d488394f6b6142ccc16be",
+          "country": "Unknown",
+          "current_ap": 23750,
+          "last_month_ap": 23750,
+          "monthly_gain": 0
+        },
+        {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 23730,
+          "last_month_ap": 23730,
+          "monthly_gain": 0
+        },
+        {
+          "username": "alpanyahu",
+          "uuid": "14016bbfdcf547dab04549b49e891dc8",
+          "country": "Unknown",
+          "current_ap": 23715,
+          "last_month_ap": 23715,
+          "monthly_gain": 0
+        },
+        {
+          "username": "ichhabevape",
+          "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
+          "country": "Unknown",
+          "current_ap": 23705,
+          "last_month_ap": 23705,
+          "monthly_gain": 0
+        },
+        {
+          "username": "nevqr",
+          "uuid": "0ff62bf91bda4c6b92b8f2d0ca4ed835",
+          "country": "Unknown",
+          "current_ap": 23670,
+          "last_month_ap": 23670,
+          "monthly_gain": 0
+        },
+        {
+          "username": "ToastyOosty",
+          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+          "country": "Unknown",
+          "current_ap": 23640,
+          "last_month_ap": 23640,
+          "monthly_gain": 0
+        },
+        {
+          "username": "zabolec",
+          "uuid": "a06aea053b6b47da8931a453e1f9632f",
+          "country": "Unknown",
+          "current_ap": 23590,
+          "last_month_ap": 23590,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Justin_Jefferson",
+          "uuid": "9dccd818228640bfa33174d8dc86dfb7",
+          "country": "Unknown",
+          "current_ap": 23590,
+          "last_month_ap": 23590,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Hacks",
+          "uuid": "b5ab6db9366049ae8a9882927e46ce08",
+          "country": "Unknown",
+          "current_ap": 23590,
+          "last_month_ap": 23590,
+          "monthly_gain": 0
+        },
+        {
+          "username": "ciyp",
+          "uuid": "0d405677379c43139db69485749d9d31",
+          "country": "Unknown",
+          "current_ap": 23570,
+          "last_month_ap": 23570,
+          "monthly_gain": 0
+        },
+        {
+          "username": "0HfLUfFIE",
+          "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
+          "country": "Unknown",
+          "current_ap": 23540,
+          "last_month_ap": 23540,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Slime",
+          "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
+          "country": "Unknown",
+          "current_ap": 23495,
+          "last_month_ap": 23495,
+          "monthly_gain": 0
+        },
+        {
+          "username": "titi2502",
+          "uuid": "a621a7a79f324b5c83449e4453ad454d",
+          "country": "Unknown",
+          "current_ap": 23480,
+          "last_month_ap": 23480,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Paczuszka",
+          "uuid": "6be718564437499fbb6242e17fbaa0c3",
+          "country": "Unknown",
+          "current_ap": 23455,
+          "last_month_ap": 23455,
+          "monthly_gain": 0
+        },
+        {
+          "username": "mohtele",
+          "uuid": "bde72daebb4640ae90ee096f26bb5f85",
+          "country": "Unknown",
+          "current_ap": 23415,
+          "last_month_ap": 23415,
+          "monthly_gain": 0
+        },
+        {
+          "username": "rvba",
+          "uuid": "5fd7ec031e054a01b18c2aca29cf1a23",
+          "country": "Unknown",
+          "current_ap": 23410,
+          "last_month_ap": 23410,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Pqssible",
+          "uuid": "9872248cdad742f785657dbf78d9c756",
+          "country": "Unknown",
+          "current_ap": 23400,
+          "last_month_ap": 23400,
+          "monthly_gain": 0
+        },
+        {
+          "username": "MacchuPicchu",
+          "uuid": "3d55b88551fe48d997bae3412cd8aa72",
+          "country": "Unknown",
+          "current_ap": 23375,
+          "last_month_ap": 23375,
+          "monthly_gain": 0
+        },
+        {
+          "username": "twww",
+          "uuid": "1ee8f444029b41db84a0b2a34415cdf0",
+          "country": "Unknown",
+          "current_ap": 23370,
+          "last_month_ap": 23370,
+          "monthly_gain": 0
+        },
+        {
+          "username": "o3w",
+          "uuid": "d91eb87c945b490b82a2638c8cf5a291",
+          "country": "Unknown",
+          "current_ap": 23355,
+          "last_month_ap": 23355,
+          "monthly_gain": 0
+        },
+        {
+          "username": "7hu",
+          "uuid": "6d1160f1c9104aa082c64487645e2c3d",
+          "country": "Unknown",
+          "current_ap": 23330,
+          "last_month_ap": 23330,
+          "monthly_gain": 0
+        },
+        {
+          "username": "J2J",
+          "uuid": "7a49c7d7b03243bd86b11fd88214e3b2",
+          "country": "Unknown",
+          "current_ap": 23315,
+          "last_month_ap": 23315,
+          "monthly_gain": 0
+        },
+        {
+          "username": "jenidu",
+          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+          "country": "Unknown",
+          "current_ap": 23300,
+          "last_month_ap": 23300,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Woomy",
+          "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
+          "country": "Unknown",
+          "current_ap": 23280,
+          "last_month_ap": 23280,
+          "monthly_gain": 0
+        },
+        {
+          "username": "MockBall",
+          "uuid": "8415341022134dbe969b81ed3ff6cd6f",
+          "country": "Unknown",
+          "current_ap": 23250,
+          "last_month_ap": 23250,
+          "monthly_gain": 0
+        },
+        {
+          "username": "hentor5",
+          "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
+          "country": "Unknown",
+          "current_ap": 23190,
+          "last_month_ap": 23190,
+          "monthly_gain": 0
+        },
+        {
+          "username": "tommy042001",
+          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+          "country": "Unknown",
+          "current_ap": 23180,
+          "last_month_ap": 23180,
+          "monthly_gain": 0
+        },
+        {
+          "username": "yoyolin2007",
+          "uuid": "4b03948c422f4f11b0d55170b640a673",
+          "country": "Unknown",
+          "current_ap": 23165,
+          "last_month_ap": 23165,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Warido37",
+          "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
+          "country": "Unknown",
+          "current_ap": 23160,
+          "last_month_ap": 23160,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Khqled",
+          "uuid": "a4a83ccb4d7f45f0806bd7cbe48de984",
+          "country": "Unknown",
+          "current_ap": 23140,
+          "last_month_ap": 23140,
+          "monthly_gain": 0
+        },
+        {
+          "username": "oBeastia",
+          "uuid": "92c736b5ae414125b4cacd89bf856a77",
+          "country": "Unknown",
+          "current_ap": 23140,
+          "last_month_ap": 23140,
+          "monthly_gain": 0
+        },
+        {
+          "username": "TheFifth",
+          "uuid": "d0115286ff43420ca6dbf452f67a4a56",
+          "country": "Unknown",
+          "current_ap": 23100,
+          "last_month_ap": 23100,
+          "monthly_gain": 0
+        },
+        {
+          "username": "xRyann_",
+          "uuid": "b12c6b822faa4ebfaab429982dab58ed",
+          "country": "Unknown",
+          "current_ap": 23065,
+          "last_month_ap": 23065,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Kilster",
+          "uuid": "c99fe76f6ed14f8a8b739d740a9674c3",
+          "country": "Unknown",
+          "current_ap": 23025,
+          "last_month_ap": 23025,
+          "monthly_gain": 0
+        },
+        {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 23020,
+          "last_month_ap": 23020,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Huvo",
+          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+          "country": "Unknown",
+          "current_ap": 23015,
+          "last_month_ap": 23015,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Saubt",
+          "uuid": "c82a204b300f4b88888e4ab79e44920b",
+          "country": "Unknown",
+          "current_ap": 23000,
+          "last_month_ap": 23000,
+          "monthly_gain": 0
+        },
+        {
+          "username": "kstay",
+          "uuid": "c185afbbd692431a906131448e693f19",
+          "country": "Unknown",
+          "current_ap": 22950,
+          "last_month_ap": 22950,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Maribor",
+          "uuid": "e4447d2895924f76986ac1ba4dcf183c",
+          "country": "Unknown",
+          "current_ap": 22935,
+          "last_month_ap": 22935,
+          "monthly_gain": 0
+        },
+        {
+          "username": "CelsiusPeachVibe",
+          "uuid": "9899b3edf2364d318fe33c7278a2d4a8",
+          "country": "Unknown",
+          "current_ap": 22820,
+          "last_month_ap": 22820,
           "monthly_gain": 0
         }
       ]
@@ -1150,18 +2041,18 @@
     },
     {
       "country": "Spain",
-      "score": 10221,
+      "score": 10222,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25555,
+          "current_ap": 25560,
           "last_month_ap": 25555,
-          "monthly_gain": 0
+          "monthly_gain": 5
         },
         {
-          "username": "ArelyPEITUDA",
+          "username": "aphunterview",
           "uuid": "11b8466e2c724fe994a00cada8112674",
           "country": "Spain",
           "current_ap": 25550,
@@ -1189,11 +2080,25 @@
       "score": 5085,
       "top_players": [
         {
-          "username": "Lofaet",
+          "username": "kenav",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
           "current_ap": 25425,
           "last_month_ap": 25425,
+          "monthly_gain": 0
+        }
+      ]
+    },
+    {
+      "country": "Portugal",
+      "score": 5036,
+      "top_players": [
+        {
+          "username": "Seymour4444",
+          "uuid": "0c1f10f9134e496399b6502270055a10",
+          "country": "Portugal",
+          "current_ap": 25180,
+          "last_month_ap": 25180,
           "monthly_gain": 0
         }
       ]

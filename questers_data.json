@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-03T02:04:07.087Z",
+  "last_update": "2026-03-03T23:43:27.587Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -621,15 +621,15 @@
     },
     {
       "country": "Belgium",
-      "score": 9335.8,
+      "score": 9350.6,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 46679,
+          "current_quests": 46753,
           "last_month_quests": 46679,
-          "monthly_gain": 0
+          "monthly_gain": 74
         }
       ]
     },
@@ -657,7 +657,7 @@
     },
     {
       "country": "Chile",
-      "score": 21384.8,
+      "score": 21412.2,
       "top_players": [
         {
           "username": "xBxnny",
@@ -671,9 +671,9 @@
           "username": "MrRodd",
           "uuid": "f33bcc883074424784ccb6126eb65264",
           "country": "Chile",
-          "current_quests": 39720,
+          "current_quests": 39857,
           "last_month_quests": 39720,
-          "monthly_gain": 0
+          "monthly_gain": 137
         },
         {
           "username": "memeister",
@@ -687,15 +687,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 17215.8,
+      "score": 17231,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 43497,
+          "current_quests": 43573,
           "last_month_quests": 43497,
-          "monthly_gain": 0
+          "monthly_gain": 76
         },
         {
           "username": "Itz_Pipi",
@@ -951,9 +951,9 @@
           "username": "zeytrixx",
           "uuid": "8fe8adb1793942d0a852f8d2bb239b16",
           "country": "Unknown",
-          "current_quests": 23615,
+          "current_quests": 23635,
           "last_month_quests": 23615,
-          "monthly_gain": 0
+          "monthly_gain": 20
         },
         {
           "username": "0HfLUfFIE",
@@ -975,9 +975,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
-          "current_quests": 22286,
+          "current_quests": 22296,
           "last_month_quests": 22286,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "morof",
@@ -1165,15 +1165,15 @@
     },
     {
       "country": "Greece",
-      "score": 4197.8,
+      "score": 4200,
       "top_players": [
         {
           "username": "giorgy",
           "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
           "country": "Greece",
-          "current_quests": 20989,
+          "current_quests": 21000,
           "last_month_quests": 20986,
-          "monthly_gain": 3
+          "monthly_gain": 14
         }
       ]
     }
