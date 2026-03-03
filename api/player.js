@@ -1,18 +1,38 @@
 export default async function handler(req, res) {
-  // Enable CORS so your GitHub Pages site can access this API
+  // 1. SECURITY BOUNCER: Define exactly which websites are allowed
+  const allowedOrigins = [
+    'https://litstats.com',
+    'https://www.litstats.com',
+    'https://litphoenix.github.io' // Added just in case you test on your raw GitHub Pages URL
+  ];
+
+  const requestOrigin = req.headers.origin;
+  const requestReferer = req.headers.referer;
+
+  // Check if the request comes from an allowed domain
+  const isAllowed = allowedOrigins.includes(requestOrigin) || 
+                    (requestReferer && allowedOrigins.some(o => requestReferer.startsWith(o)));
+
+  // If someone visits the API directly in their browser URL bar, or tries to embed it on their own site, reject it.
+  if (!isAllowed) {
+    return res.status(403).json({ error: "Forbidden: API access restricted to litstats.com" });
+  }
+
+  // 2. Set strict CORS headers (Replacing the vulnerable '*')
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', requestOrigin || allowedOrigins[0]);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
+  // 3. Normal API Execution
   const { uuid } = req.query;
   if (!uuid) return res.status(400).json({ error: "Missing UUID parameter" });
 
   const API_KEY = process.env.HYPIXEL_API_KEY;
 
   try {
-    // Fetch Player Data & Achievements Template concurrently to save time
+    // Fetch Player Data & Achievements Template concurrently
     const [playerRes, achRes] = await Promise.all([
       fetch(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } }),
       fetch('https://api.hypixel.net/v2/resources/achievements')
@@ -28,13 +48,11 @@ export default async function handler(req, res) {
     const profile = playerData.player;
     const achievementsMap = achData.achievements;
     
-    // JS Translation of your Python get_maxes script
     const maxes = calculateMaxes(profile, achievementsMap);
 
     // Set Edge Cache: Caches response globally for 10 mins (600s)
     res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate');
 
-    // Return the clean data
     return res.status(200).json({
       uuid: profile.uuid,
       username: profile.displayname,
@@ -50,7 +68,6 @@ export default async function handler(req, res) {
 
 // Translated Python Logic
 function calculateMaxes(profile, achMap) {
-  // Define your games array [api_name, Display Name]
   const aplist = [
     ["uhc", "Max UHC"], ["pit", "Max Pit"], ["walls3", "Max Mega Walls"], 
     ["skywars", "Max SkyWars"], ["survivalgames", "Max Blitz"], 
@@ -80,7 +97,6 @@ function calculateMaxes(profile, achMap) {
     const gameData = achMap[apgame];
     if (!gameData) continue;
 
-    // Check One Time Achievements
     if (gameData.one_time) {
       for (const y in gameData.one_time) {
         const apdata = `${apgame}_${y.toLowerCase()}`;
@@ -93,7 +109,6 @@ function calculateMaxes(profile, achMap) {
       }
     }
 
-    // Check Tiered Achievements
     if (tempgive && gameData.tiered) {
       for (const y in gameData.tiered) {
         const apdata = `${apgame}_${y.toLowerCase()}`;
