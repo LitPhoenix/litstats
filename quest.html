@@ -51,17 +51,14 @@
     .section-title { font-size: 15px; font-weight: 600; color: var(--text); }
     .section-hint { font-size: 12px; color: var(--text-3); }
 
-    /* Animated Border Wrapper (Removed overflow:hidden to save tooltip) */
     @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
     .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; }
     .spark-bg { position: absolute; inset: 0; border-radius: inherit; z-index: -1; background: var(--border); overflow: hidden; }
     .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 10000px; height: 10000px; margin-top: -5000px; margin-left: -5000px; background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
     @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
     
-    /* Removed overflow: hidden here to allow tooltips to escape bounds */
     .table-inner { background: var(--surface); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
 
-    /* Fixed Border Radius due to removed overflow */
     table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
     thead th:first-child { border-top-left-radius: calc(var(--radius) - 1px); }
     thead th:last-child { border-top-right-radius: calc(var(--radius) - 1px); }
@@ -73,10 +70,10 @@
     thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
     thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
 
-    tbody tr { transition: all 0.4s ease-out; }
-    tbody tr td { border-bottom: 1px solid var(--border); }
-    tbody tr:last-child td { border-bottom: none; }
-    tbody tr:hover, tbody tr.force-hover { background: var(--accent-soft); transform: translateX(4px); box-shadow: -4px 0 0 var(--accent); transition: all 0.1s ease-in; }
+    /* Clickable Player Rows */
+    tbody tr.player-row { transition: all 0.2s ease-out; cursor: pointer; }
+    tbody tr.player-row td { border-bottom: 1px solid var(--border); }
+    tbody tr.player-row:hover, tbody tr.player-row.force-hover { background: var(--accent-soft); transform: translateX(4px); box-shadow: -4px 0 0 var(--accent); transition: all 0.1s ease-in; }
     td { padding: 11px 16px; vertical-align: middle; }
 
     .rank { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text-3); }
@@ -102,7 +99,15 @@
     .pos-down { color: var(--red); }
     .pos-same { color: var(--gold); }
 
-    /* TOOLTIP FIXES */
+    /* MAX GAMES EXPANSION */
+    .player-expanded-row { display: none; background: var(--surface-2); border-bottom: 1px solid var(--border); }
+    .player-expanded-row.open { display: table-row; }
+    .maxes-container { padding: 16px 16px 16px 40px; display: flex; flex-direction: column; gap: 12px; }
+    .tier-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .tier-label { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; width: 60px; flex-shrink: 0; }
+    .game-badge { display: flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border-strong); padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--text); }
+    .game-badge img { width: 16px; height: 16px; object-fit: contain; }
+
     .tooltip-wrap { position: relative; display: inline-flex; align-items: center; gap: 5px; cursor: help; }
     .tooltip-content { visibility: hidden; opacity: 0; position: absolute; top: 140%; bottom: auto; left: 50%; transform: translateX(-50%) translateY(-10px); width: 320px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow); font-size: 12px; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 100; white-space: normal; cursor: default; }
     .tooltip-content * { text-transform: none; letter-spacing: normal; } 
@@ -134,7 +139,6 @@
     .sub-name { font-weight: 600; color: var(--text); }
     .sub-ap { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--text-2); font-size: 12px; }
 
-    /* MOBILE SCROLLING FIX */
     @media (max-width: 640px) {
       .table-inner {
         overflow-x: auto;
@@ -176,11 +180,11 @@
   <main>
     <div class="hero">
       <h1>Quests Leaderboard</h1>
-      <p>Tracking top Hypixel Questers worldwide. Data sourced from Nadeshiko and Hypixel API.</p>
+      <p>Tracking top Hypixel Questers worldwide. Click a player to view their max games.</p>
     </div>
 
     <div class="search-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries..." oninput="handleSearch()">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search players or countries...">
       <div id="searchResults" class="search-results-info hidden"></div>
     </div>
 
@@ -244,7 +248,7 @@
                       <h4 style="color:var(--accent); font-weight:700; margin-bottom:8px;">Country Power Score</h4>
                       <p style="margin-bottom:6px;"><strong>1. Baseline Subtraction:</strong> The 100th place global score is subtracted to act as a minimum skill filter.</p>
                       <p style="margin-bottom:6px;"><strong>2. Square Root Scaling:</strong> The filtered score is square-rooted to heavily nerf massive outliers and reward teamwork.</p>
-                      <p style="margin-bottom:6px;"><strong>3. Top 5 Diminishing Weights:</strong> Player 1 (100%), Player 2 (50%), Player 3 (25%), Player 4 (10%), Player 5 (5%).</p>
+                      <p style="margin-bottom:6px;"><strong>3. Diminishing Weights:</strong> Player 1 adds 100%, Player 2 adds 50%, Player 3 adds 25%, Player 4 adds 10%, Player 5 adds 5%.</p>
                       <div class="formula">Total = (√P₁ - B) + 0.5(√P₂ - B) + ...</div>
                     </div>
                   </div>
@@ -279,11 +283,22 @@
       'Turkey': 'tr', 'UK': 'gb', 'Ukraine': 'ua', 'USA': 'us'
     };
 
+    const gameTiers = {
+      'Max UHC': 7, 'Max Pit': 7, 'Max Mega Walls': 7, 'Max SkyWars': 7,
+      'Max Blitz': 6, 'Max Arena Brawl': 6, 'Max Smash Heroes': 6, 'Max Paintball': 6,
+      'Max Cops and Crims': 5, 'Max Quake': 5, 'Max SkyBlock': 5, 'Max Speed UHC': 5,
+      'Max Warlords': 4, 'Max Walls': 4, 'Max TNT Games': 4, 'Max Arcade': 4,
+      'Max Murder Mystery': 3, 'Max VampireZ': 3, 'Max Bed Wars': 3,
+      'Max TKR': 2, 'Max Wool Games': 2, 'Max Duels': 2, 'Max Build Battle': 2,
+      'Max Seasonal': 1, 'Max Crazy Walls': 1, 'Max SkyClash': 1
+    };
+
     let currentData = null;
     let allPlayersList = [];
     let processedCountries = [];
     let currentTab = 'players';
     let sortCol = 'rank', sortDir = 1;
+    let playerMaxesCache = {}; 
 
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -301,7 +316,6 @@
     function getFlagHTML(c) {
       if (c === 'youtubers') return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" style="object-fit: contain;">`;
       if (c === 'staff') return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" style="object-fit: cover;">`;
-      
       if (countryFlags[c]) return `<img src="https://flagcdn.com/w40/${countryFlags[c]}.png" class="flag-img">`;
       return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img">`;
     }
@@ -313,9 +327,75 @@
       }
     }
 
+    async function togglePlayerExpand(uuid) {
+      const expandRow = document.getElementById(`expand-${uuid}`);
+      if (!expandRow) return;
+
+      if (expandRow.classList.contains('open')) {
+        expandRow.classList.remove('open');
+        return;
+      }
+
+      document.querySelectorAll('.player-expanded-row').forEach(row => row.classList.remove('open'));
+      expandRow.classList.add('open');
+
+      const container = document.getElementById(`maxes-${uuid}`);
+      
+      if (playerMaxesCache[uuid]) {
+        renderMaxesHTML(container, playerMaxesCache[uuid]);
+        return;
+      }
+
+      container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">Loading maxed games from network...</span>`;
+
+      try {
+        const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+        if (res.status === 429) throw new Error('RATE_LIMIT');
+        const data = await res.json();
+        if (data.error) throw new Error('API_ERROR');
+        
+        playerMaxesCache[uuid] = data.maxGames || [];
+        renderMaxesHTML(container, playerMaxesCache[uuid]);
+      } catch (e) {
+        container.innerHTML = `<span style="color:var(--red); font-size:12px;">${e.message === 'RATE_LIMIT' ? 'Slow down! Too many network requests.' : 'Failed to load maxed games.'}</span>`;
+      }
+    }
+
+    function renderMaxesHTML(container, maxes) {
+      if (maxes.length === 0) {
+        container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span>`;
+        return;
+      }
+
+      const grouped = { 7: [], 6: [], 5: [], 4: [], 3: [], 2: [], 1: [] };
+      maxes.forEach(game => {
+        const tier = gameTiers[game];
+        if (tier) grouped[tier].push(game);
+      });
+
+      let html = '';
+      for (let t = 7; t >= 1; t--) {
+        if (grouped[t].length > 0) {
+          html += `<div class="tier-row"><span class="tier-label">${t}ᵗʰ Tier</span>`;
+          grouped[t].forEach(game => {
+            html += `<div class="game-badge"><img src="/img/games/${game}.png" onerror="this.style.display='none'"> ${game}</div>`;
+          });
+          html += `</div>`;
+        }
+      }
+      container.innerHTML = html;
+    }
+
     function renderPlayers(players) {
       const tbody = document.getElementById('players-tbody');
-      tbody.innerHTML = players.map(p => {
+      tbody.innerHTML = '';
+      
+      if (!players.length) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No players found.</td></tr>`;
+        return;
+      }
+
+      players.forEach(p => {
         const rc = getRankClass(p.globalRank);
         let gainHTML = p.monthly_gain === "NEW" ? `<span class="gain-new">NEW</span>` : 
                        p.monthly_gain > 0 ? `<span class="gain-pos">+${fmt(p.monthly_gain)}</span>` : 
@@ -326,8 +406,10 @@
                       p.posChange < 0 ? `<span class="position-indicator pos-down">▼ ${Math.abs(p.posChange)}</span>` : 
                       p.previousRank > 0 ? `<span class="position-indicator pos-same">=</span>` : '';
 
-        return `
-          <tr>
+        const tr = document.createElement('tr');
+        tr.className = 'player-row';
+        tr.onclick = () => togglePlayerExpand(p.uuid);
+        tr.innerHTML = `
             <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank || ''} ${posHTML}</span></td>
             <td>
               <div class="player-cell">
@@ -338,8 +420,15 @@
             <td><div class="flag-cell">${getFlagHTML(p.country)}<span class="country-name">${p.country}</span></div></td>
             <td class="ap-cell">${fmt(p.current_quests)}</td>
             <td>${gainHTML}</td>
-          </tr>`;
-      }).join('');
+        `;
+        tbody.appendChild(tr);
+
+        const expand = document.createElement('tr');
+        expand.className = 'player-expanded-row';
+        expand.id = `expand-${p.uuid}`;
+        expand.innerHTML = `<td colspan="5"><div class="maxes-container" id="maxes-${p.uuid}"></div></td>`;
+        tbody.appendChild(expand);
+      });
     }
 
     function renderCountries(countries) {
@@ -430,8 +519,10 @@
         const unknown = processedCountries.filter(c => c.country === 'Unknown');
         processedCountries = [...known, ...unknown];
 
-        const dateStr = new Date(currentData.last_update).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-        document.querySelectorAll('.last-updated-time').forEach(el => el.textContent = dateStr);
+        const d = new Date(currentData.last_update);
+        const dateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        const timeStr = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+        document.querySelectorAll('.last-updated-time').forEach(el => el.textContent = `${dateStr} at ${timeStr}`);
 
         document.getElementById('players-loading').classList.add('hidden');
         document.getElementById('players-table').classList.remove('hidden');
@@ -454,11 +545,48 @@
 
         document.querySelectorAll('#players-table th').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
         th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
-        handleSearch();
+        
+        let fPlayers = allPlayersList.filter(p => p.username.toLowerCase().includes(document.getElementById('searchInput').value.toLowerCase().trim()) || p.country.toLowerCase().includes(document.getElementById('searchInput').value.toLowerCase().trim()));
+        fPlayers.sort((a, b) => {
+          let va = sortCol === 'rank' ? a.globalRank : sortCol === 'quests' ? a.current_quests : sortCol === 'gain' ? (a.monthly_gain === "NEW" ? 0 : a.monthly_gain) : sortCol === 'player' ? a.username.toLowerCase() : a.country.toLowerCase();
+          let vb = sortCol === 'rank' ? b.globalRank : sortCol === 'quests' ? b.current_quests : sortCol === 'gain' ? (b.monthly_gain === "NEW" ? 0 : b.monthly_gain) : sortCol === 'player' ? b.username.toLowerCase() : b.country.toLowerCase();
+          if (va < vb) return -1 * sortDir;
+          if (va > vb) return 1 * sortDir;
+          return 0;
+        });
+        renderPlayers(fPlayers);
       });
     });
 
-    // --- Search & Live API Intent Listener ---
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const q = this.value.toLowerCase().trim();
+      
+      if (!q) {
+        document.getElementById('searchResults').classList.add('hidden');
+        renderPlayers(allPlayersList);
+        renderCountries(processedCountries);
+        return;
+      }
+
+      let localPlayers = allPlayersList.filter(p => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
+      let localCountries = processedCountries.filter(c => c.country.toLowerCase().includes(q));
+
+      if (localPlayers.length > 0 || localCountries.length > 0) {
+        let res = [];
+        if (localPlayers.length) res.push(`${localPlayers.length} player${localPlayers.length === 1 ? '' : 's'}`);
+        if (localCountries.length) res.push(`${localCountries.length} countr${localCountries.length === 1 ? 'y' : 'ies'}`);
+        document.getElementById('searchResults').innerHTML = `Found ${res.join(' and ')}`;
+        document.getElementById('searchResults').classList.remove('hidden');
+        renderPlayers(localPlayers);
+        renderCountries(localCountries);
+      } else {
+        document.getElementById('searchResults').innerHTML = `No local results found. Press <strong>Enter</strong> to search the network live.`;
+        document.getElementById('searchResults').classList.remove('hidden');
+        renderPlayers([]);
+        renderCountries([]);
+      }
+    });
+
     document.getElementById('searchInput').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -468,7 +596,6 @@
         let localPlayers = allPlayersList.filter(p => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
         let localCountries = processedCountries.filter(c => c.country.toLowerCase().includes(q));
 
-        // ONLY fire Vercel API if the user explicitly hit Enter AND there are no local cached results
         if (localPlayers.length === 0 && localCountries.length === 0) {
           document.getElementById('searchResults').textContent = `Searching Hypixel network for "${q}"...`;
           document.getElementById('searchResults').classList.remove('hidden');
@@ -477,85 +604,90 @@
       }
     });
 
-    function handleSearch() {
-      const q = document.getElementById('searchInput').value.toLowerCase().trim();
-      let fPlayers = allPlayersList;
-      let fCountries = processedCountries;
-
-      if (q) {
-        fPlayers = fPlayers.filter(p => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
-        fCountries = fCountries.filter(c => c.country.toLowerCase().includes(q));
-
-        if (fPlayers.length > 0 || fCountries.length > 0) {
-          let res = [];
-          if (fPlayers.length) res.push(`${fPlayers.length} player${fPlayers.length === 1 ? '' : 's'}`);
-          if (fCountries.length) res.push(`${fCountries.length} countr${fCountries.length === 1 ? 'y' : 'ies'}`);
-          document.getElementById('searchResults').innerHTML = `Found ${res.join(' and ')}`;
-          document.getElementById('searchResults').classList.remove('hidden');
-          
-          renderPlayers(fPlayers);
-          renderCountries(fCountries);
-        } else {
-          // PROMPT INTENT FOR LIVE SEARCH
-          document.getElementById('searchResults').innerHTML = `No Top 100 results found. Press <strong>Enter</strong> to search.`;
-          document.getElementById('searchResults').classList.remove('hidden');
-          renderPlayers([]);
-          renderCountries([]);
-        }
-      } else {
-        document.getElementById('searchResults').classList.add('hidden');
-        
-        fPlayers.sort((a, b) => {
-          let va = sortCol === 'rank' ? a.globalRank : sortCol === 'quests' ? a.current_quests : sortCol === 'gain' ? (a.monthly_gain === "NEW" ? 0 : a.monthly_gain) : sortCol === 'player' ? a.username.toLowerCase() : a.country.toLowerCase();
-          let vb = sortCol === 'rank' ? b.globalRank : sortCol === 'quests' ? b.current_quests : sortCol === 'gain' ? (b.monthly_gain === "NEW" ? 0 : b.monthly_gain) : sortCol === 'player' ? b.username.toLowerCase() : b.country.toLowerCase();
-          if (va < vb) return -1 * sortDir;
-          if (va > vb) return 1 * sortDir;
-          return 0;
-        });
-        renderPlayers(fPlayers);
-        renderCountries(fCountries);
-      }
-    }
-
     async function fetchLivePlayer(username) {
+      const qLower = username.toLowerCase();
+      const cacheKey = `litstats_live_${qLower}`;
+      const searchBox = document.getElementById('searchResults');
+
       try {
+        // 1. CROSS-PAGE CACHE CHECK (Valid for 10 minutes)
+        const cached = sessionStorage.getItem(cacheKey);
+        if (cached) {
+          const parsedCache = JSON.parse(cached);
+          if (Date.now() - parsedCache.timestamp < 10 * 60 * 1000) {
+            displayLiveResult(parsedCache.data);
+            searchBox.textContent = `Showing cached live data for ${parsedCache.data.actualName}`;
+            return;
+          }
+        }
+
+        // 2. FETCH NEW DATA
         const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${username}`);
+        if (dbRes.status === 429) throw new Error('RATE_LIMIT');
+        
         const dbData = await dbRes.json();
-        if (dbData.code !== 'player.found') throw new Error();
+        if (dbData.code !== 'player.found') throw new Error('NOT_FOUND');
         
         const uuid = dbData.data.player.raw_id;
         const actualName = dbData.data.player.username;
 
-        document.getElementById('searchResults').textContent = `Loading live stats for ${actualName}...`;
+        searchBox.textContent = `Loading live stats for ${actualName}...`;
         const vRes = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+        
+        if (vRes.status === 429) throw new Error('RATE_LIMIT');
+        
         const vData = await vRes.json();
+        if (vData.error === "Player not found on Hypixel") throw new Error('NOT_FOUND');
+        if (vData.error) throw new Error('API_ERROR');
 
-        if (vData.error) throw new Error();
+        const finalData = {
+          actualName: actualName,
+          uuid: uuid,
+          achievementPoints: vData.achievementPoints || 0,
+          questsCompleted: vData.questsCompleted || 0,
+          maxGames: vData.maxGames || []
+        };
 
-        const score = vData.questsCompleted || 0;
-        
-        const tbody = document.getElementById('players-tbody');
-        tbody.innerHTML = `
-          <tr style="background: var(--accent-soft); border-left: 3px solid var(--accent);">
-            <td style="text-align: center;"><span class="rank" style="color: var(--accent); font-weight: bold;">LIVE</span></td>
-            <td>
-              <div class="player-cell">
-                <img class="player-avatar" src="https://minotar.net/helm/${actualName}/100">
-                <span class="player-name">${actualName}</span>
-              </div>
-            </td>
-            <td><div class="flag-cell"><span class="country-name" style="color: var(--text-3); font-style: italic;">Unknown</span></div></td>
-            <td class="ap-cell">${Number(score).toLocaleString()}</td>
-            <td><span class="gain-new" style="background:var(--surface);border:1px solid var(--accent);">LIVE API</span></td>
-          </tr>
-        `;
-        
-        document.querySelector('[data-tab="players"]').click();
-        document.getElementById('searchResults').textContent = `Showing live data for ${actualName}`;
+        // 3. SAVE TO BROWSER SESSION
+        sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: finalData }));
+        playerMaxesCache[uuid] = finalData.maxGames; // Cache maxes dropdown directly too
+
+        displayLiveResult(finalData);
+        searchBox.textContent = `Showing live data for ${actualName}`;
 
       } catch (e) {
-        document.getElementById('searchResults').textContent = `Player "${username}" not found on Hypixel.`;
+        if (e.message === 'NOT_FOUND') {
+          searchBox.textContent = `Player "${username}" not found on Hypixel.`;
+        } else if (e.message === 'RATE_LIMIT') {
+          searchBox.textContent = `Slow down! You are being rate-limited. Try again in a minute.`;
+        } else {
+          searchBox.textContent = `Error fetching data for "${username}". Try again later.`;
+        }
       }
+    }
+
+    function displayLiveResult(data) {
+      const score = data.questsCompleted;
+      const tbody = document.getElementById('players-tbody');
+      
+      tbody.innerHTML = `
+        <tr class="player-row" style="background: var(--accent-soft); border-left: 3px solid var(--accent);" onclick="togglePlayerExpand('${data.uuid}')">
+          <td style="text-align: center;"><span class="rank" style="color: var(--accent); font-weight: bold;">LIVE</span></td>
+          <td>
+            <div class="player-cell">
+              <img class="player-avatar" src="https://minotar.net/helm/${data.actualName}/100">
+              <span class="player-name">${data.actualName}</span>
+            </div>
+          </td>
+          <td><div class="flag-cell"><span class="country-name" style="color: var(--text-3); font-style: italic;">Unknown</span></div></td>
+          <td class="ap-cell">${Number(score).toLocaleString()}</td>
+          <td><span class="gain-new" style="background:var(--surface);border:1px solid var(--accent);">LIVE API</span></td>
+        </tr>
+        <tr class="player-expanded-row" id="expand-${data.uuid}">
+          <td colspan="5"><div class="maxes-container" id="maxes-${data.uuid}"></div></td>
+        </tr>
+      `;
+      document.querySelector('[data-tab="players"]').click();
     }
 
     const sparkObserver = new ResizeObserver(entries => {
@@ -565,11 +697,6 @@
       });
     });
     document.querySelectorAll('.table-wrap').forEach(wrap => sparkObserver.observe(wrap));
-
-    document.addEventListener('mouseover', (e) => {
-      const tr = e.target.closest('tbody tr');
-      if (tr) { tr.classList.add('force-hover'); setTimeout(() => tr.classList.remove('force-hover'), 100); }
-    });
 
     loadData();
   </script>
