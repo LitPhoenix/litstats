@@ -483,9 +483,12 @@
       });
     }
 
-    async function loadData() {
+async function loadData() {
       try {
-        const res = await fetch('questers_data.json');
+        // Smart Cache for Quests
+        const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
+        const res = await fetch(`questers_data.json?v=${currentHour}`);
+        
         if (!res.ok) throw new Error('Data fetch failed');
         currentData = await res.json();
         
