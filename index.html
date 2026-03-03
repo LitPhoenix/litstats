@@ -252,9 +252,8 @@
                       <h4>Country Power Score</h4>
                       <p><strong>Top Five:</strong> The score is made up of only the Top 5 highest players from a country.</p>
                       <p><strong>Baseline Subtraction:</strong> The 100th player's score is subtracted from everyone else to isolate true skill.</p>
-                      <p><strong>Square Root Scaling:</strong> The filtered score is square-rooted to nerf massive outliers and reward teamwork.</p>
                       <p><strong>Diminishing Weights:</strong> Player 1 adds 100%, Player 2 adds 50%, Player 3 adds 25%, Player 4 adds 10%, Player 5 adds 5%.</p>
-                      <div class="formula">Total = (√P₁ - B) + 0.5(√P₂ - B) + ...</div>
+                      <div class="formula">Total = (P₁ - B) + 0.5(P₂ - B) + ...</div>
                     </div>
                   </div>
                 </th>
@@ -431,7 +430,7 @@
         // SQUARE ROOT MATH
         processedCountries = Object.keys(cMap).map(c => {
           const top5 = cMap[c].slice(0, 5);
-          const score = top5.reduce((sum, p, i) => sum + (Math.sqrt(Math.max(0, p.current_ap - baseline)) * weights[i]), 0);
+          const score = top5.reduce((sum, p, i) => sum + (Math.max(0, p.current_ap - baseline) * weights[i]), 0);
           return { country: c, top_players: cMap[c], score: Math.round(Math.pow(score, 2)) };
         });
 
@@ -519,4 +518,5 @@
   </script>
 </body>
 </html>
+
 
