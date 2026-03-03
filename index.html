@@ -211,3 +211,348 @@
                 <th class="rank sort-desc" data-col="rank">#</th>
                 <th data-col="player">Player</th>
                 <th data-col="country">Country</th>
+                <th data-col="ap">AP</th>
+                <th data-col="gain">Gain</th>
+              </tr>
+            </thead>
+            <tbody id="players-tbody"></tbody>
+          </table>
+          <div class="table-footer"><span class="dot"></span>Updated: <span class="last-updated-time">-</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="panel-countries" class="hidden">
+      <div class="section-header">
+        <span class="section-title">Country Leaderboard</span>
+        <span class="section-hint">Click a country row to expand top players</span>
+      </div>
+      <div class="table-wrap">
+        <div class="spark-bg"></div>
+        <div class="table-inner">
+          <div class="loading-msg" id="countries-loading">Loading country data...</div>
+          <table id="countries-table" class="hidden">
+            <thead>
+              <tr>
+                <th class="rank">#</th>
+                <th>Country</th>
+                <th>
+                  <div class="tooltip-wrap">
+                    Score
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <div class="tooltip-content">
+                      <h4 style="color:var(--accent); font-weight:700; margin-bottom:8px;">Country Power Score</h4>
+                      <p style="margin-bottom:6px;"><strong>1. Baseline Subtraction:</strong> The 100th place global score is subtracted to act as a minimum skill filter.</p>
+                      <p style="margin-bottom:6px;"><strong>2. Square Root Scaling:</strong> The filtered score is square-rooted to heavily nerf massive outliers and reward teamwork.</p>
+                      <p style="margin-bottom:6px;"><strong>3. Top 5 Diminishing Weights:</strong> Player 1 (100%), Player 2 (50%), Player 3 (25%), Player 4 (10%), Player 5 (5%).</p>
+                      <div class="formula">Total = (√P₁ - B) + 0.5(√P₂ - B) + ...</div>
+                    </div>
+                  </div>
+                </th>
+                <th>Top Player</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="countries-tbody"></tbody>
+          </table>
+          <div class="table-footer"><span class="dot"></span>Updated: <span class="last-updated-time">-</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="bottom-fade"></div>
+  <div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank">litphoenix</a></div>
+
+  <script src="global.js"></script>
+  
+  <script>
+    const countryFlags = {
+      'Argentina': 'ar', 'Australia': 'au', 'Austria': 'at', 'Belgium': 'be', 'Brazil': 'br',
+      'Bulgaria': 'bg', 'Canada': 'ca', 'China': 'cn', 'Croatia': 'hr', 'Czech Republic': 'cz',
+      'Denmark': 'dk', 'Ecuador': 'ec', 'Finland': 'fi', 'France': 'fr', 'Germany': 'de',
+      'Greece': 'gr', 'Hungary': 'hu', 'India': 'in', 'Iraq': 'iq', 'Ireland': 'ie',
+      'Israel': 'il', 'Italy': 'it', 'Japan': 'jp', 'Mexico': 'mx', 'Moldova': 'md',
+      'New Zealand': 'nz', 'Norway': 'no', 'Poland': 'pl', 'Portugal': 'pt', 'Romania': 'ro',
+      'Russia': 'ru', 'Saudi Arabia': 'sa', 'Serbia': 'rs', 'South Korea': 'kr', 'Spain': 'es',
+      'Sweden': 'se', 'Switzerland': 'ch', 'Syria': 'sy', 'Taiwan': 'tw', 'The Netherlands': 'nl',
+      'Turkey': 'tr', 'UK': 'gb', 'Ukraine': 'ua', 'USA': 'us'
+    };
+
+    let currentData = null;
+    let allPlayersList = [];
+    let processedCountries = [];
+    let currentTab = 'players';
+    let sortCol = 'rank', sortDir = 1;
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-players').classList.add('hidden');
+        document.getElementById('panel-countries').classList.add('hidden');
+        document.getElementById(`panel-${btn.dataset.tab}`).classList.remove('hidden');
+      });
+    });
+
+    function fmt(n) { return Number(n).toLocaleString(); }
+    function getRankClass(r) { return r === 1 ? 'rank-1' : r === 2 ? 'rank-2' : r === 3 ? 'rank-3' : ''; }
+
+    function getFlagHTML(c) {
+      if (c === 'youtubers') return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" style="object-fit: contain;">`;
+      if (c === 'staff') return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" style="object-fit: cover;">`;
+      
+      if (countryFlags[c]) return `<img src="https://flagcdn.com/w40/${countryFlags[c]}.png" class="flag-img">`;
+      return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img">`;
+    }
+
+    function checkSteveSkin(img, username, uuid) {
+      if (img.naturalWidth === 100 && img.naturalHeight === 100 && username.toLowerCase() !== 'steve') {
+        img.onerror = null;
+        img.src = `https://vzge.me/face/${uuid}.png`;
+      }
+    }
+
+    function renderPlayers(players) {
+      const tbody = document.getElementById('players-tbody');
+      tbody.innerHTML = players.map(p => {
+        const rc = getRankClass(p.globalRank);
+        let gainHTML = p.monthly_gain === "NEW" ? `<span class="gain-new">NEW</span>` : 
+                       p.monthly_gain > 0 ? `<span class="gain-pos">+${fmt(p.monthly_gain)}</span>` : 
+                       p.monthly_gain < 0 ? `<span class="gain-neg">${fmt(p.monthly_gain)}</span>` : 
+                       `<span class="gain-zero">-</span>`;
+
+        let posHTML = p.posChange > 0 ? `<span class="position-indicator pos-up">▲ ${p.posChange}</span>` : 
+                      p.posChange < 0 ? `<span class="position-indicator pos-down">▼ ${Math.abs(p.posChange)}</span>` : 
+                      p.previousRank > 0 ? `<span class="position-indicator pos-same">=</span>` : '';
+
+        return `
+          <tr>
+            <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank} ${posHTML}</span></td>
+            <td>
+              <div class="player-cell">
+                <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" onload="checkSteveSkin(this, '${p.username}', '${p.uuid}')" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid}.png'">
+                <span class="player-name">${p.username}</span>
+              </div>
+            </td>
+            <td><div class="flag-cell">${getFlagHTML(p.country)}<span class="country-name">${p.country}</span></div></td>
+            <td class="ap-cell">${fmt(p.current_ap)}</td>
+            <td>${gainHTML}</td>
+          </tr>`;
+      }).join('');
+    }
+
+    function renderCountries(countries) {
+      const tbody = document.getElementById('countries-tbody');
+      if (!countries.length) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No countries found.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = '';
+      countries.forEach((c, idx) => {
+        const rank = idx + 1;
+        const topP = c.top_players[0] || {};
+        
+        const tr = document.createElement('tr');
+        tr.className = 'country-row';
+        tr.innerHTML = `
+          <td style="text-align: center;"><span class="rank ${getRankClass(rank)}">${rank}</span></td>
+          <td><div class="flag-cell">${getFlagHTML(c.country)}<span class="country-name" style="font-weight:600; color:var(--text);">${c.country}</span></div></td>
+          <td class="ap-cell">${c.score > 0 ? fmt(Math.round(c.score)) : '-'}</td>
+          <td>
+            <div class="player-cell" style="gap:6px;">
+              <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${topP.username||'?'}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
+              <span class="country-name">${topP.username || 'Unknown'}</span>
+            </div>
+          </td>
+          <td style="text-align:right; padding-right:20px;"><span class="expand-icon">▶</span></td>
+        `;
+
+        const expandRow = document.createElement('tr');
+        expandRow.className = 'country-players-row';
+        let subPlayersHTML = c.top_players.slice(0, 10).map((sp, i) => `
+            <div class="sub-player">
+              <div class="sub-player-left">
+                <span class="sub-rank">${i+1}</span>
+                <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
+                <span class="sub-name">${sp.username}</span>
+              </div>
+              <span class="sub-ap">${fmt(sp.current_ap)} AP</span>
+            </div>
+          `).join('');
+
+        expandRow.innerHTML = `<td colspan="5"><div class="country-players-inner"><div class="sub-player-list">${subPlayersHTML}</div></div></td>`;
+
+        tr.addEventListener('click', () => {
+          tr.classList.toggle('open');
+          expandRow.classList.toggle('open');
+        });
+
+        tbody.appendChild(tr);
+        tbody.appendChild(expandRow);
+      });
+    }
+
+    async function loadData() {
+      try {
+        const res = await fetch('ap_hunters_data.json');
+        if (!res.ok) throw new Error('Data fetch failed');
+        currentData = await res.json();
+        
+        const tempPlayers = currentData.country_leaderboard.flatMap(c => c.top_players.map(p => ({...p, country: c.country})));
+        const sortedByAp = [...tempPlayers].sort((a,b) => b.current_ap - a.current_ap);
+        const sortedByPrev = [...tempPlayers].sort((a,b) => (b.last_month_ap||0) - (a.last_month_ap||0));
+        
+        allPlayersList = sortedByAp.map((p, idx) => {
+          const prevIdx = sortedByPrev.findIndex(op => op.uuid === p.uuid);
+          return {
+            ...p,
+            globalRank: idx + 1,
+            previousRank: prevIdx + 1,
+            posChange: prevIdx >= 0 ? ((prevIdx + 1) - (idx + 1)) : 0
+          };
+        });
+
+        const cMap = {};
+        allPlayersList.forEach(p => { if(!cMap[p.country]) cMap[p.country] = []; cMap[p.country].push(p); });
+
+        const weights = [1.0, 0.50, 0.25, 0.10, 0.05]; 
+        const baseline = Math.min(...allPlayersList.map(p => p.current_ap)) - 100; 
+
+        processedCountries = Object.keys(cMap).map(c => {
+          const top5 = cMap[c].slice(0, 5);
+          const score = top5.reduce((sum, p, i) => sum + (Math.sqrt(Math.max(0, p.current_ap - baseline)) * weights[i]), 0);
+          return { country: c, top_players: cMap[c], score: Math.round(Math.pow(score, 2)) };
+        });
+
+        const known = processedCountries.filter(c => c.country !== 'Unknown').sort((a,b) => b.score - a.score);
+        const unknown = processedCountries.filter(c => c.country === 'Unknown');
+        processedCountries = [...known, ...unknown];
+
+        const dateStr = new Date(currentData.last_update).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        document.querySelectorAll('.last-updated-time').forEach(el => el.textContent = dateStr);
+
+        document.getElementById('players-loading').classList.add('hidden');
+        document.getElementById('players-table').classList.remove('hidden');
+        document.getElementById('countries-loading').classList.add('hidden');
+        document.getElementById('countries-table').classList.remove('hidden');
+
+        renderPlayers(allPlayersList);
+        renderCountries(processedCountries);
+      } catch (err) {
+        document.getElementById('players-loading').classList.add('hidden');
+        document.getElementById('players-error').classList.remove('hidden');
+      }
+    }
+
+    document.querySelectorAll('#players-table th[data-col]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.dataset.col;
+        if (sortCol === col) sortDir *= -1;
+        else { sortCol = col; sortDir = (col === 'rank' || col === 'ap' || col === 'gain') ? -1 : 1; }
+
+        document.querySelectorAll('#players-table th').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+        th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+        handleSearch();
+      });
+    });
+
+    // --- Vercel API Live Search Hook ---
+    function handleSearch() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      let fPlayers = allPlayersList;
+      let fCountries = processedCountries;
+
+      if (q) {
+        fPlayers = fPlayers.filter(p => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
+        fCountries = fCountries.filter(c => c.country.toLowerCase().includes(q));
+
+        if (fPlayers.length > 0 || fCountries.length > 0) {
+          let res = [];
+          if (fPlayers.length) res.push(`${fPlayers.length} player${fPlayers.length === 1 ? '' : 's'}`);
+          if (fCountries.length) res.push(`${fCountries.length} countr${fCountries.length === 1 ? 'y' : 'ies'}`);
+          document.getElementById('searchResults').textContent = `Found ${res.join(' and ')}`;
+          document.getElementById('searchResults').classList.remove('hidden');
+          
+          renderPlayers(fPlayers);
+          renderCountries(fCountries);
+        } else {
+          // Trigger Live Vercel Check
+          document.getElementById('searchResults').textContent = `Searching Hypixel network for "${q}"...`;
+          document.getElementById('searchResults').classList.remove('hidden');
+          fetchLivePlayer(q);
+        }
+      } else {
+        document.getElementById('searchResults').classList.add('hidden');
+        
+        fPlayers.sort((a, b) => {
+          let va = sortCol === 'rank' ? a.globalRank : sortCol === 'ap' ? a.current_ap : sortCol === 'gain' ? (a.monthly_gain === "NEW" ? 0 : a.monthly_gain) : sortCol === 'player' ? a.username.toLowerCase() : a.country.toLowerCase();
+          let vb = sortCol === 'rank' ? b.globalRank : sortCol === 'ap' ? b.current_ap : sortCol === 'gain' ? (b.monthly_gain === "NEW" ? 0 : b.monthly_gain) : sortCol === 'player' ? b.username.toLowerCase() : b.country.toLowerCase();
+          if (va < vb) return -1 * sortDir;
+          if (va > vb) return 1 * sortDir;
+          return 0;
+        });
+        renderPlayers(fPlayers);
+        renderCountries(fCountries);
+      }
+    }
+
+    async function fetchLivePlayer(username) {
+      try {
+        const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${username}`);
+        const dbData = await dbRes.json();
+        if (dbData.code !== 'player.found') throw new Error();
+        
+        const uuid = dbData.data.player.raw_id;
+        const actualName = dbData.data.player.username;
+
+        document.getElementById('searchResults').textContent = `Loading live stats for ${actualName}...`;
+        const vRes = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+        const vData = await vRes.json();
+
+        if (vData.error) throw new Error();
+
+        const score = vData.achievementPoints || 0;
+        
+        const tbody = document.getElementById('players-tbody');
+        tbody.innerHTML = `
+          <tr style="background: var(--accent-soft); border-left: 3px solid var(--accent);">
+            <td style="text-align: center;"><span class="rank" style="color: var(--accent); font-weight: bold;">LIVE</span></td>
+            <td>
+              <div class="player-cell">
+                <img class="player-avatar" src="https://minotar.net/helm/${actualName}/100">
+                <span class="player-name">${actualName}</span>
+              </div>
+            </td>
+            <td><div class="flag-cell"><span class="country-name" style="color: var(--text-3); font-style: italic;">Unknown</span></div></td>
+            <td class="ap-cell">${Number(score).toLocaleString()}</td>
+            <td><span class="gain-new" style="background:var(--surface);border:1px solid var(--accent);">LIVE API</span></td>
+          </tr>
+        `;
+        
+        document.querySelector('[data-tab="players"]').click();
+        document.getElementById('searchResults').textContent = `Showing live data for ${actualName}`;
+
+      } catch (e) {
+        document.getElementById('searchResults').textContent = `Player "${username}" not found on Hypixel.`;
+      }
+    }
+
+    const sparkObserver = new ResizeObserver(entries => {
+      entries.forEach(entry => {
+        const height = entry.contentRect.height;
+        entry.target.style.setProperty('--spark-speed', `${Math.max(2.5, height / 100)}s`);
+      });
+    });
+    document.querySelectorAll('.table-wrap').forEach(wrap => sparkObserver.observe(wrap));
+
+    document.addEventListener('mouseover', (e) => {
+      const tr = e.target.closest('tbody tr');
+      if (tr) { tr.classList.add('force-hover'); setTimeout(() => tr.classList.remove('force-hover'), 100); }
+    });
+
+    loadData();
+  </script>
+</body>
+</html>
