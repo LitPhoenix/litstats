@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-02T02:02:17.720Z",
+  "last_update": "2026-03-03T02:04:06.883Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -214,7 +214,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 30914,
+      "score": 30918,
       "top_players": [
         {
           "username": "oJakey",
@@ -244,9 +244,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 29595,
+          "current_ap": 29615,
           "last_month_ap": 29570,
-          "monthly_gain": 25
+          "monthly_gain": 45
         },
         {
           "username": "Cabbiss",
@@ -284,9 +284,9 @@
           "username": "Boogatomyooga",
           "uuid": "343139d84b91435c90a6d0054a709ca5",
           "country": "USA",
-          "current_ap": 27700,
+          "current_ap": 27760,
           "last_month_ap": 27700,
-          "monthly_gain": 0
+          "monthly_gain": 60
         },
         {
           "username": "righter",
@@ -928,7 +928,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 16001,
+      "score": 16006,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -950,9 +950,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 25835,
+          "current_ap": 25860,
           "last_month_ap": 25815,
-          "monthly_gain": 20
+          "monthly_gain": 45
         }
       ]
     },
