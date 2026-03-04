@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-04T16:55:51.388Z",
+  "last_update": "2026-03-04T17:44:29.196Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -897,7 +897,7 @@
     },
     {
       "country": "Germany",
-      "score": 16889,
+      "score": 16893,
       "top_players": [
         {
           "username": "NightMan976",
@@ -911,9 +911,9 @@
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28395,
+          "current_ap": 28415,
           "last_month_ap": 28395,
-          "monthly_gain": 0
+          "monthly_gain": 20
         },
         {
           "username": "Niko702",
@@ -1053,15 +1053,15 @@
     },
     {
       "country": "Finland",
-      "score": 16358,
+      "score": 16362,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28150,
+          "current_ap": 28170,
           "last_month_ap": 28150,
-          "monthly_gain": 0
+          "monthly_gain": 20
         },
         {
           "username": "MineElzu60",
@@ -1255,7 +1255,7 @@
     },
     {
       "country": "Unknown",
-      "score": 25485,
+      "score": 25490,
       "top_players": [
         {
           "username": "Rayjer",
@@ -1277,9 +1277,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "Unknown",
-          "current_ap": 25470,
+          "current_ap": 25495,
           "last_month_ap": 25425,
-          "monthly_gain": 45
+          "monthly_gain": 70
         },
         {
           "username": "kawaa",
