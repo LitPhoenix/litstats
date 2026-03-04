@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-04T02:28:56.980Z",
+  "last_update": "2026-03-04T04:45:37.001Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -519,9 +519,9 @@
           "username": "lyraava",
           "uuid": "6d84e8ed95b3452095221594b9e448fe",
           "country": "USA",
-          "current_ap": 25405,
+          "current_ap": 25455,
           "last_month_ap": 25405,
-          "monthly_gain": 0
+          "monthly_gain": 50
         },
         {
           "username": "needycatboy",
@@ -875,7 +875,7 @@
     },
     {
       "country": "Serbia",
-      "score": 11610,
+      "score": 11612,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -889,9 +889,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27205,
+          "current_ap": 27215,
           "last_month_ap": 27190,
-          "monthly_gain": 15
+          "monthly_gain": 25
         }
       ]
     },
