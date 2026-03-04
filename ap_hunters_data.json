@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-04T13:07:30.625Z",
+  "last_update": "2026-03-04T14:42:15.884Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1083,7 +1083,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 21037,
+      "score": 21039,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -1097,9 +1097,9 @@
           "username": "ZERATHIX",
           "uuid": "e37ccf10fe9643789745e0432ca096b2",
           "country": "Czech Republic",
-          "current_ap": 26560,
+          "current_ap": 26570,
           "last_month_ap": 26550,
-          "monthly_gain": 10
+          "monthly_gain": 20
         },
         {
           "username": "valericious",
