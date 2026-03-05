@@ -67,20 +67,35 @@ export default async function handler(req, res) {
 }
 
 // Translated Python Logic
+// Translated Python Logic
 function calculateMaxes(profile, achMap) {
+  // Corrected mappings based on Hypixel API structure
   const aplist = [
-    ["uhc", "Max UHC"], ["pit", "Max Pit"], ["walls3", "Max Mega Walls"], 
-    ["skywars", "Max SkyWars"], ["survival_games", "Max Blitz"], 
-    ["arena", "Max Arena Brawl"], ["supersmash", "Max Smash Heroes"], 
-    ["paintball", "Max Paintball"], ["mcgo", "Max Cops and Crims"], 
-    ["quake", "Max Quake"], ["skyblock", "Max SkyBlock"], 
-    ["speeduhc", "Max Speed UHC"], ["warlords", "Max Warlords"], 
-    ["walls", "Max Walls"], ["tntgames", "Max TNT Games"], 
-    ["arcade", "Max Arcade"], ["murdermystery", "Max Murder Mystery"], 
-    ["vampirez", "Max VampireZ"], ["bedwars", "Max Bed Wars"], 
-    ["gingerbread", "Max TKR"], ["woolgames", "Max Wool Games"], 
-    ["duels", "Max Duels"], ["buildbattle", "Max Build Battle"], 
-    ["holiday", "Max Seasonal"], ["truecombat", "Max Crazy Walls"], 
+    ["uhc", "Max UHC"], 
+    ["pit", "Max Pit"], 
+    ["walls3", "Max Mega Walls"], 
+    ["skywars", "Max SkyWars"], 
+    ["survivalgames", "Max Blitz"], // Hypixel internally calls Blitz 'survivalgames' or 'HungerGames'. The Achievements API uses 'survivalgames'.
+    ["arena", "Max Arena Brawl"], 
+    ["supersmash", "Max Smash Heroes"], 
+    ["paintball", "Max Paintball"], 
+    ["mcgo", "Max Cops and Crims"], // Hypixel internally calls CvC 'mcgo'
+    ["quake", "Max Quake"], 
+    ["skyblock", "Max SkyBlock"], 
+    ["speeduhc", "Max Speed UHC"], 
+    ["warlords", "Max Warlords"], 
+    ["walls", "Max Walls"], 
+    ["tntgames", "Max TNT Games"], 
+    ["arcade", "Max Arcade"], 
+    ["murdermystery", "Max Murder Mystery"], 
+    ["vampirez", "Max VampireZ"], 
+    ["bedwars", "Max Bed Wars"], 
+    ["gingerbread", "Max TKR"], // Hypixel internally calls TKR 'gingerbread'
+    ["woolgames", "Max Wool Games"], 
+    ["duels", "Max Duels"], 
+    ["buildbattle", "Max Build Battle"], 
+    ["holiday", "Max Seasonal"], // Hypixel internally calls Seasonal 'holiday'
+    ["truecombat", "Max Crazy Walls"], 
     ["skyclash", "Max SkyClash"]
   ];
 
@@ -91,56 +106,59 @@ function calculateMaxes(profile, achMap) {
   for (let i = 0; i < aplist.length; i++) {
     const apgame = aplist[i][0];
     const apgamename = aplist[i][1];
-
-    // The Java code completely skips legacy games. 
-    // If you want to keep them, remove this if statement.
-    if (apgame === "skyclash" || apgame === "truecombat") {
-      continue; 
-    }
+    
+    // SkyClash and Crazy Walls (truecombat) are legacy games.
+    const includelegacy = ["skyclash", "truecombat"].includes(apgame);
+    let tempgive = true;
 
     const gameData = achMap[apgame];
+    
+    // If the game data doesn't exist in the achievements resource, skip it.
     if (!gameData) continue;
 
-    let maxed = true;
-
+    // Check One Time Achievements
     if (gameData.one_time) {
-      for (const key in gameData.one_time) {
-        const isLegacy = gameData.one_time[key].legacy || false;
-        if (isLegacy) continue;
+      for (const y in gameData.one_time) {
+        const apdata = `${apgame}_${y.toLowerCase()}`;
+        const legacy = gameData.one_time[y].legacy || false;
 
-        const apdata = `${apgame}_${key.toLowerCase()}`;
-        if (!oneTimePlayer.includes(apdata)) {
-          maxed = false;
-          break;
+        // If the player doesn't have the achievement, AND it's not a legacy achievement 
+        // (unless we explicitly include legacy for this game), they fail.
+        if (!oneTimePlayer.includes(apdata) && (!legacy || includelegacy)) {
+          tempgive = false;
+          break; // Stop checking this game
         }
       }
     }
 
-    if (maxed && gameData.tiered) {
-      for (const key in gameData.tiered) {
-        const isLegacy = gameData.tiered[key].legacy || false;
-        if (isLegacy) continue;
-
-        // FIX: Dynamically find the highest tier instead of assuming the array is ordered
-        let maxTierAmount = 0;
-        const tiers = gameData.tiered[key].tiers || [];
-        for (let t = 0; t < tiers.length; t++) {
-          if (tiers[t].amount > maxTierAmount) {
-            maxTierAmount = tiers[t].amount;
-          }
-        }
-
-        const apdata = `${apgame}_${key.toLowerCase()}`;
+    // Check Tiered Achievements
+    if (tempgive && gameData.tiered) {
+      for (const y in gameData.tiered) {
+        const apdata = `${apgame}_${y.toLowerCase()}`;
         const playerap = tieredPlayer[apdata] || 0;
+        const legacy = gameData.tiered[y].legacy || false;
+        
+        const tiers = gameData.tiered[y].tiers;
+        
+        // Find the maximum amount required for the highest tier of this achievement
+        let required_amount = 0;
+        for(let t = 0; t < tiers.length; t++) {
+            if(tiers[t].amount > required_amount) {
+                required_amount = tiers[t].amount;
+            }
+        }
 
-        if (playerap < maxTierAmount) {
-          maxed = false;
-          break;
+        // If the player's amount is less than the required amount, AND it's not a legacy achievement
+        // (unless we explicitly include legacy for this game), they fail.
+        if (playerap < required_amount && (!legacy || includelegacy)) {
+          tempgive = false;
+          break; // Stop checking this game
         }
       }
     }
 
-    if (maxed) {
+    // If they passed all non-legacy checks (or all checks for legacy games), they get the max badge!
+    if (tempgive) {
       maxes.push(apgamename);
     }
   }
