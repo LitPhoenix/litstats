@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-05T09:53:02.969Z",
+  "last_update": "2026-03-05T10:47:26.427Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1506,6 +1506,14 @@
           "monthly_gain": 20
         },
         {
+          "username": "stevcn",
+          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+          "country": "Unknown",
+          "current_ap": 24245,
+          "last_month_ap": 24115,
+          "monthly_gain": 130
+        },
+        {
           "username": "morof",
           "uuid": "4019260a28f544c2a35a0a1f35108a96",
           "country": "Unknown",
@@ -1536,14 +1544,6 @@
           "current_ap": 24200,
           "last_month_ap": 24200,
           "monthly_gain": 0
-        },
-        {
-          "username": "stevcn",
-          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
-          "country": "Unknown",
-          "current_ap": 24185,
-          "last_month_ap": 24115,
-          "monthly_gain": 70
         },
         {
           "username": "azyugo",
