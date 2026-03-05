@@ -68,98 +68,115 @@ export default async function handler(req, res) {
 
 // Translated Python Logic
 function calculateMaxes(profile, achMap) {
-  // Corrected mappings based on Hypixel API structure
-  const aplist = [
-    ["uhc", "Max UHC"], 
-    ["pit", "Max Pit"], 
-    ["walls3", "Max Mega Walls"], 
-    ["skywars", "Max SkyWars"], 
-    ["survivalgames", "Max Blitz"], // Hypixel internally calls Blitz 'survivalgames' or 'HungerGames'. The Achievements API uses 'survivalgames'.
-    ["arena", "Max Arena Brawl"], 
-    ["supersmash", "Max Smash Heroes"], 
-    ["paintball", "Max Paintball"], 
-    ["mcgo", "Max Cops and Crims"], // Hypixel internally calls CvC 'mcgo'
-    ["quake", "Max Quake"], 
-    ["skyblock", "Max SkyBlock"], 
-    ["speeduhc", "Max Speed UHC"], 
-    ["warlords", "Max Warlords"], 
-    ["walls", "Max Walls"], 
-    ["tntgames", "Max TNT Games"], 
-    ["arcade", "Max Arcade"], 
-    ["murdermystery", "Max Murder Mystery"], 
-    ["vampirez", "Max VampireZ"], 
-    ["bedwars", "Max Bed Wars"], 
-    ["gingerbread", "Max TKR"], // Hypixel internally calls TKR 'gingerbread'
-    ["woolgames", "Max Wool Games"], 
-    ["duels", "Max Duels"], 
-    ["buildbattle", "Max Build Battle"], 
-    ["holiday", "Max Seasonal"], // Hypixel internally calls Seasonal 'holiday'
-    ["truecombat", "Max Crazy Walls"], 
-    ["skyclash", "Max SkyClash"]
+  // 1. The Hypixel Bug Fix
+  // Safely extract One-Time achievements, ignoring corrupted non-string entries
+  const rawOneTime = profile.achievementsOneTime || [];
+  const cleanOneTime = [];
+  for (let i = 0; i < rawOneTime.length; i++) {
+    if (typeof rawOneTime[i] === 'string') {
+      cleanOneTime.push(rawOneTime[i]);
+    }
+  }
+
+  const tieredPlayer = profile.achievements || {};
+
+  // 2. Dictionary Mapping (Including Seasonal Grouping & Legacy Flags)
+  const gameMappings = [
+    { names: ["uhc"], badge: "Max UHC" },
+    { names: ["pit"], badge: "Max Pit" },
+    { names: ["walls3"], badge: "Max Mega Walls" },
+    { names: ["skywars"], badge: "Max SkyWars" },
+    { names: ["survivalgames"], badge: "Max Blitz" },
+    { names: ["arena"], badge: "Max Arena Brawl" },
+    { names: ["supersmash"], badge: "Max Smash Heroes" },
+    { names: ["paintball"], badge: "Max Paintball" },
+    { names: ["mcgo"], badge: "Max Cops and Crims" },
+    { names: ["quake"], badge: "Max Quake" },
+    { names: ["skyblock"], badge: "Max SkyBlock" },
+    { names: ["speeduhc"], badge: "Max Speed UHC" },
+    { names: ["warlords"], badge: "Max Warlords" },
+    { names: ["walls"], badge: "Max Walls" },
+    { names: ["tntgames"], badge: "Max TNT Games" },
+    { names: ["arcade"], badge: "Max Arcade" },
+    { names: ["murdermystery"], badge: "Max Murder Mystery" },
+    { names: ["vampirez"], badge: "Max VampireZ" },
+    { names: ["bedwars"], badge: "Max Bed Wars" },
+    { names: ["gingerbread"], badge: "Max TKR" },
+    { names: ["woolgames"], badge: "Max Wool Games" },
+    { names: ["duels"], badge: "Max Duels" },
+    { names: ["buildbattle"], badge: "Max Build Battle" },
+    { names: ["easter", "christmas2017", "halloween2017", "summer"], badge: "Max Seasonal" },
+    { names: ["truecombat"], badge: "Max Crazy Walls", isLegacyGame: true },
+    { names: ["skyclash"], badge: "Max SkyClash", isLegacyGame: true }
   ];
 
   let maxes = [];
-  const oneTimePlayer = profile.achievementsOneTime || [];
-  const tieredPlayer = profile.achievements || {};
 
-  for (let i = 0; i < aplist.length; i++) {
-    const apgame = aplist[i][0];
-    const apgamename = aplist[i][1];
-    
-    // SkyClash and Crazy Walls (truecombat) are legacy games.
-    const includelegacy = ["skyclash", "truecombat"].includes(apgame);
-    let tempgive = true;
+  for (const group of gameMappings) {
+    let hasMaxedGroup = true;
 
-    const gameData = achMap[apgame];
-    
-    // If the game data doesn't exist in the achievements resource, skip it.
-    if (!gameData) continue;
+    for (const apgame of group.names) {
+      const gameData = achMap[apgame];
+      if (!gameData) continue; 
 
-    // Check One Time Achievements
-    if (gameData.one_time) {
-      for (const y in gameData.one_time) {
-        const apdata = `${apgame}_${y.toLowerCase()}`;
-        const legacy = gameData.one_time[y].legacy || false;
+      // 3. Process One-Time Achievements
+      if (gameData.one_time) {
+        for (const key in gameData.one_time) {
+          const achInfo = gameData.one_time[key];
+          
+          // Skip legacy achievements unless the game itself is a legacy game
+          if (achInfo.legacy && !group.isLegacyGame) {
+            continue;
+          }
 
-        // If the player doesn't have the achievement, AND it's not a legacy achievement 
-        // (unless we explicitly include legacy for this game), they fail.
-        if (!oneTimePlayer.includes(apdata) && (!legacy || includelegacy)) {
-          tempgive = false;
-          break; // Stop checking this game
+          const apdata = `${apgame}_${key.toLowerCase()}`;
+          if (!cleanOneTime.includes(apdata)) {
+            hasMaxedGroup = false;
+            break;
+          }
         }
       }
-    }
 
-    // Check Tiered Achievements
-    if (tempgive && gameData.tiered) {
-      for (const y in gameData.tiered) {
-        const apdata = `${apgame}_${y.toLowerCase()}`;
-        const playerap = tieredPlayer[apdata] || 0;
-        const legacy = gameData.tiered[y].legacy || false;
-        
-        const tiers = gameData.tiered[y].tiers;
-        
-        // Find the maximum amount required for the highest tier of this achievement
-        let required_amount = 0;
-        for(let t = 0; t < tiers.length; t++) {
-            if(tiers[t].amount > required_amount) {
-                required_amount = tiers[t].amount;
+      if (!hasMaxedGroup) break;
+
+      // 4. Process Tiered Achievements
+      if (gameData.tiered) {
+        for (const key in gameData.tiered) {
+          const achInfo = gameData.tiered[key];
+
+          // Skip legacy achievements unless the game itself is a legacy game
+          if (achInfo.legacy && !group.isLegacyGame) {
+            continue;
+          }
+
+          const apdata = `${apgame}_${key.toLowerCase()}`;
+          const playerap = tieredPlayer[apdata] || 0;
+          
+          // Dynamically find the highest tier amount (as done in the Java framework)
+          let maxTierAmount = 0;
+          if (achInfo.tiers && Array.isArray(achInfo.tiers)) {
+            for (const tier of achInfo.tiers) {
+              if (tier.amount > maxTierAmount) {
+                maxTierAmount = tier.amount;
+              }
             }
-        }
+          }
 
-        // If the player's amount is less than the required amount, AND it's not a legacy achievement
-        // (unless we explicitly include legacy for this game), they fail.
-        if (playerap < required_amount && (!legacy || includelegacy)) {
-          tempgive = false;
-          break; // Stop checking this game
+          if (playerap < maxTierAmount) {
+            hasMaxedGroup = false;
+            break;
+          }
         }
       }
+
+      if (!hasMaxedGroup) break;
     }
 
-    // If they passed all non-legacy checks (or all checks for legacy games), they get the max badge!
-    if (tempgive) {
-      maxes.push(apgamename);
+    // 5. Award Badge
+    if (hasMaxedGroup) {
+      maxes.push(group.badge);
     }
   }
+
   return maxes;
 }
