@@ -91,47 +91,56 @@ function calculateMaxes(profile, achMap) {
   for (let i = 0; i < aplist.length; i++) {
     const apgame = aplist[i][0];
     const apgamename = aplist[i][1];
-    const includelegacy = ["skyclash", "truecombat"].includes(apgame);
-    let tempgive = true;
+
+    // The Java code completely skips legacy games. 
+    // If you want to keep them, remove this if statement.
+    if (apgame === "skyclash" || apgame === "truecombat") {
+      continue; 
+    }
 
     const gameData = achMap[apgame];
     if (!gameData) continue;
 
-    // FIX: Handle Hypixel API naming inconsistencies
-    let prefix = `${apgame}_`;
-    if (apgame === "survivalgames") prefix = "blitz_";
-    if (apgame === "mcgo") prefix = "copsandcrims_";
-    if (apgame === "holiday") prefix = ""; 
+    let maxed = true;
 
     if (gameData.one_time) {
-      for (const y in gameData.one_time) {
-        const apdata = `${prefix}${y.toLowerCase()}`;
-        const legacy = gameData.one_time[y].legacy || false;
+      for (const key in gameData.one_time) {
+        const isLegacy = gameData.one_time[key].legacy || false;
+        if (isLegacy) continue;
 
-        if (!oneTimePlayer.includes(apdata) && (!legacy || includelegacy)) {
-          tempgive = false;
+        const apdata = `${apgame}_${key.toLowerCase()}`;
+        if (!oneTimePlayer.includes(apdata)) {
+          maxed = false;
           break;
         }
       }
     }
 
-    if (tempgive && gameData.tiered) {
-      for (const y in gameData.tiered) {
-        const apdata = `${prefix}${y.toLowerCase()}`;
+    if (maxed && gameData.tiered) {
+      for (const key in gameData.tiered) {
+        const isLegacy = gameData.tiered[key].legacy || false;
+        if (isLegacy) continue;
+
+        // FIX: Dynamically find the highest tier instead of assuming the array is ordered
+        let maxTierAmount = 0;
+        const tiers = gameData.tiered[key].tiers || [];
+        for (let t = 0; t < tiers.length; t++) {
+          if (tiers[t].amount > maxTierAmount) {
+            maxTierAmount = tiers[t].amount;
+          }
+        }
+
+        const apdata = `${apgame}_${key.toLowerCase()}`;
         const playerap = tieredPlayer[apdata] || 0;
-        const legacy = gameData.tiered[y].legacy || false;
-        
-        const tiers = gameData.tiered[y].tiers;
-        const required_amount = tiers[tiers.length - 1].amount;
 
-        if (playerap < required_amount && (!legacy || includelegacy)) {
-          tempgive = false;
+        if (playerap < maxTierAmount) {
+          maxed = false;
           break;
         }
       }
     }
 
-    if (tempgive) {
+    if (maxed) {
       maxes.push(apgamename);
     }
   }
