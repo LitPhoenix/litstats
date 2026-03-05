@@ -70,7 +70,7 @@ export default async function handler(req, res) {
 function calculateMaxes(profile, achMap) {
   const aplist = [
     ["uhc", "Max UHC"], ["pit", "Max Pit"], ["walls3", "Max Mega Walls"], 
-    ["skywars", "Max SkyWars"], ["survivalgames", "Max Blitz"], 
+    ["skywars", "Max SkyWars"], ["survival_games", "Max Blitz"], 
     ["arena", "Max Arena Brawl"], ["supersmash", "Max Smash Heroes"], 
     ["paintball", "Max Paintball"], ["mcgo", "Max Cops and Crims"], 
     ["quake", "Max Quake"], ["skyblock", "Max SkyBlock"], 
