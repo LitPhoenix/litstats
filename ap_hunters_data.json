@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-04T23:36:17.846Z",
+  "last_update": "2026-03-05T02:31:31.205Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1546,20 +1546,20 @@
           "monthly_gain": 0
         },
         {
+          "username": "stevcn",
+          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+          "country": "Unknown",
+          "current_ap": 24170,
+          "last_month_ap": 24115,
+          "monthly_gain": 55
+        },
+        {
           "username": "recordheat",
           "uuid": "9f16e788457c44fc8c24b90167569420",
           "country": "Unknown",
           "current_ap": 24135,
           "last_month_ap": 24135,
           "monthly_gain": 0
-        },
-        {
-          "username": "stevcn",
-          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
-          "country": "Unknown",
-          "current_ap": 24130,
-          "last_month_ap": 24115,
-          "monthly_gain": 15
         },
         {
           "username": "SeaOtterFan",
