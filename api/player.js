@@ -97,9 +97,15 @@ function calculateMaxes(profile, achMap) {
     const gameData = achMap[apgame];
     if (!gameData) continue;
 
+    // FIX: Handle Hypixel API naming inconsistencies
+    let prefix = `${apgame}_`;
+    if (apgame === "survivalgames") prefix = "blitz_";
+    if (apgame === "mcgo") prefix = "copsandcrims_";
+    if (apgame === "holiday") prefix = ""; 
+
     if (gameData.one_time) {
       for (const y in gameData.one_time) {
-        const apdata = `${apgame}_${y.toLowerCase()}`;
+        const apdata = `${prefix}${y.toLowerCase()}`;
         const legacy = gameData.one_time[y].legacy || false;
 
         if (!oneTimePlayer.includes(apdata) && (!legacy || includelegacy)) {
@@ -111,7 +117,7 @@ function calculateMaxes(profile, achMap) {
 
     if (tempgive && gameData.tiered) {
       for (const y in gameData.tiered) {
-        const apdata = `${apgame}_${y.toLowerCase()}`;
+        const apdata = `${prefix}${y.toLowerCase()}`;
         const playerap = tieredPlayer[apdata] || 0;
         const legacy = gameData.tiered[y].legacy || false;
         
