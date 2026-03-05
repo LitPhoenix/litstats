@@ -67,7 +67,6 @@ export default async function handler(req, res) {
 }
 
 // Translated Python Logic
-// Translated Python Logic
 function calculateMaxes(profile, achMap) {
   // Corrected mappings based on Hypixel API structure
   const aplist = [
