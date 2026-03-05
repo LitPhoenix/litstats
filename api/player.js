@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     return res.status(403).json({ error: "Forbidden: API access restricted to litstats.com" });
   }
 
-  // 2. Set strict CORS headers (Replacing the vulnerable '*')
+  // 2. Set strict CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', requestOrigin || allowedOrigins[0]);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
@@ -80,17 +80,17 @@ function calculateMaxes(profile, achMap) {
 
   const tieredPlayer = profile.achievements || {};
 
-  // 2. Dictionary Mapping (Including Seasonal Grouping & Legacy Flags)
+  // 2. Dictionary Mapping (Fixed Blitz and CvC names)
   const gameMappings = [
     { names: ["uhc"], badge: "Max UHC" },
     { names: ["pit"], badge: "Max Pit" },
     { names: ["walls3"], badge: "Max Mega Walls" },
     { names: ["skywars"], badge: "Max SkyWars" },
-    { names: ["survivalgames"], badge: "Max Blitz" },
+    { names: ["blitz"], badge: "Max Blitz" }, // Fixed: Changed from 'survivalgames' to 'blitz'
     { names: ["arena"], badge: "Max Arena Brawl" },
     { names: ["supersmash"], badge: "Max Smash Heroes" },
     { names: ["paintball"], badge: "Max Paintball" },
-    { names: ["mcgo"], badge: "Max Cops and Crims" },
+    { names: ["copsandcrims"], badge: "Max Cops and Crims" }, // Fixed: Changed from 'mcgo' to 'copsandcrims'
     { names: ["quake"], badge: "Max Quake" },
     { names: ["skyblock"], badge: "Max SkyBlock" },
     { names: ["speeduhc"], badge: "Max Speed UHC" },
@@ -117,7 +117,12 @@ function calculateMaxes(profile, achMap) {
 
     for (const apgame of group.names) {
       const gameData = achMap[apgame];
-      if (!gameData) continue; 
+      
+      // FAIL CLOSED LOGIC FIX: Deny the badge if the game doesn't exist.
+      if (!gameData) {
+        hasMaxedGroup = false;
+        break;
+      }
 
       // 3. Process One-Time Achievements
       if (gameData.one_time) {
@@ -152,7 +157,7 @@ function calculateMaxes(profile, achMap) {
           const apdata = `${apgame}_${key.toLowerCase()}`;
           const playerap = tieredPlayer[apdata] || 0;
           
-          // Dynamically find the highest tier amount (as done in the Java framework)
+          // Dynamically find the highest tier amount
           let maxTierAmount = 0;
           if (achInfo.tiers && Array.isArray(achInfo.tiers)) {
             for (const tier of achInfo.tiers) {
