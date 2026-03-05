@@ -366,17 +366,19 @@
         container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span>`;
         return;
       }
-
+    
       const grouped = { 7: [], 6: [], 5: [], 4: [], 3: [], 2: [], 1: [] };
       maxes.forEach(game => {
         const tier = gameTiers[game];
         if (tier) grouped[tier].push(game);
       });
-
+    
+      const ordinals = ["", "1st", "2nd", "3rd", "4th", "5th", "6th", "7th"];
       let html = '';
+    
       for (let t = 7; t >= 1; t--) {
         if (grouped[t].length > 0) {
-          html += `<div class="tier-row"><span class="tier-label">${t}ᵗʰ Tier</span>`;
+          html += `<div class="tier-row"><span class="tier-label">${ordinals[t]} Tier</span>`;
           grouped[t].forEach(game => {
             html += `<div class="game-badge"><img src="/img/games/${game}.png" onerror="this.style.display='none'"> ${game}</div>`;
           });
@@ -709,4 +711,5 @@ async function loadData() {
   </script>
 </body>
 </html>
+
 
