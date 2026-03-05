@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-05T15:56:01.482Z",
+  "last_update": "2026-03-05T18:10:11.010Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1826,6 +1826,14 @@
           "monthly_gain": 0
         },
         {
+          "username": "jenidu",
+          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+          "country": "Unknown",
+          "current_ap": 23395,
+          "last_month_ap": 23300,
+          "monthly_gain": 95
+        },
+        {
           "username": "MacchuPicchu",
           "uuid": "3d55b88551fe48d997bae3412cd8aa72",
           "country": "Unknown",
@@ -1840,14 +1848,6 @@
           "current_ap": 23370,
           "last_month_ap": 23370,
           "monthly_gain": 0
-        },
-        {
-          "username": "jenidu",
-          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
-          "country": "Unknown",
-          "current_ap": 23360,
-          "last_month_ap": 23300,
-          "monthly_gain": 60
         },
         {
           "username": "o3w",
@@ -1885,9 +1885,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23250,
+          "current_ap": 23260,
           "last_month_ap": 23250,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "hentor5",
