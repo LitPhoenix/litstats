@@ -25,7 +25,6 @@ body {
   image-rendering: pixelated;
 }
 
-/* --- Header & Nav --- */
 #kit-header {
   display: flex;
   align-items: center;
@@ -52,7 +51,6 @@ body {
   text-align: center;
 }
 
-/* --- Main Inventory Box --- */
 #inventory-container {
   background: var(--mc-panel);
   border: 4px solid #fff;
@@ -63,7 +61,6 @@ body {
   transition: transform 0.1s ease-out, opacity 0.1s ease-out;
 }
 
-/* Follows the layout of image_8c5706.png */
 .top-section {
   display: flex;
   gap: 10px;
@@ -92,7 +89,6 @@ body {
   height: 100% !important;
 }
 
-/* Slots */
 .inv-grid {
   display: grid;
   grid-template-columns: repeat(9, 36px);
@@ -171,27 +167,30 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/skinview3d@2.2.0/bundles/skinview3d.min.js"></script>
 
 <script>
-// Use 7-Zip/Crafatar - more reliable for CORS than mc-heads
-const ITEM_URL = "https://crafatar.com/items/";
+// Reliable APIs for local testing
+const ITEM_URL = "https://mc-heads.net/item/";
+const SKIN_URL = "https://crafatar.com/skins/853c80ef3c3749fdaa49938b674adae6"; // Standard Steve UUID
 
 const KITS = [
   {
-    name: "Kit I — Starter",
+    name: "Kit I - Starter",
     armour: ["leather_helmet", "leather_chestplate", "leather_leggings", "leather_boots"],
     hotbar: [{id: "wooden_sword", n: 1}, {id: "bread", n: 16}],
     inv: [{id: "cobblestone", n: 64}]
   },
-  // Added placeholder kits to reach 11 slides
-  ...Array(9).fill({
-    name: "Upgrading Kit...",
-    armour: ["iron_helmet", "iron_chestplate", "iron_leggings", "iron_boots"],
-    hotbar: [{id: "iron_sword", n: 1}],
-    inv: []
-  }),
+  { name: "Kit II - Stone", armour: [], hotbar: [{id: "stone_sword", n: 1}], inv: [] },
+  { name: "Kit III - Iron Base", armour: ["iron_chestplate"], hotbar: [{id: "iron_sword", n: 1}], inv: [] },
+  { name: "Kit IV - Iron Full", armour: ["iron_helmet", "iron_chestplate", "iron_leggings", "iron_boots"], hotbar: [{id: "iron_sword", n: 1}], inv: [] },
+  { name: "Kit V - Gold", armour: ["golden_helmet", "golden_chestplate", "golden_leggings", "golden_boots"], hotbar: [{id: "golden_sword", n: 1}], inv: [] },
+  { name: "Kit VI - Diamond Base", armour: ["diamond_chestplate"], hotbar: [{id: "diamond_sword", n: 1}], inv: [] },
+  { name: "Kit VII - Diamond Core", armour: ["diamond_chestplate", "diamond_leggings"], hotbar: [{id: "diamond_sword", n: 1}], inv: [] },
+  { name: "Kit VIII - Diamond Full", armour: ["diamond_helmet", "diamond_chestplate", "diamond_leggings", "diamond_boots"], hotbar: [{id: "diamond_sword", n: 1}], inv: [] },
+  { name: "Kit IX - Netherite Base", armour: ["netherite_chestplate"], hotbar: [{id: "netherite_sword", n: 1}], inv: [] },
+  { name: "Kit X - Prestige I", armour: ["netherite_chestplate", "netherite_leggings"], hotbar: [{id: "netherite_sword", n: 1}], inv: [] },
   {
-    name: "Kit XI — Prestige II ✦",
-    armour: ["netherite_helmet", "netherite_chestplate", "netherite_leggings", "netherite_boots"],
-    hotbar: [{id: "netherite_sword", n: 1}, {id: "enchanted_golden_apple", n: 64}],
+    name: "Kit XI - Prestige II",
+    armour: ["diamond_helmet", "diamond_chestplate", "diamond_leggings", "diamond_boots"],
+    hotbar: [{id: "diamond_sword", n: 1}, {id: "enchanted_golden_apple", n: 64}],
     inv: [{id: "nether_star", n: 9}, {id: "beacon", n: 1}]
   }
 ];
@@ -200,21 +199,26 @@ let currentKit = 0;
 let viewer;
 
 function initPlayer() {
-  viewer = new skinview3d.SkinViewer({
-    canvas: document.getElementById("player-canvas"),
-    width: 130,
-    height: 150,
-    skin: "https://textures.minecraft.net/texture/3b60a1f0333387c054236f3323089d7b9da54f3b76251ec652f1950d87fa678"
-  });
-  viewer.zoom = 0.7;
-  
-  window.addEventListener("mousemove", (e) => {
-    const box = document.getElementById("player-box").getBoundingClientRect();
-    const x = (e.clientX - (box.left + box.width / 2)) / window.innerWidth;
-    const y = (e.clientY - (box.top + box.height / 2)) / window.innerHeight;
-    viewer.playerObject.rotation.y = x * 2.5;
-    viewer.playerObject.rotation.x = y * 0.8;
-  });
+  try {
+    viewer = new skinview3d.SkinViewer({
+      canvas: document.getElementById("player-canvas"),
+      width: 130,
+      height: 150,
+      skin: SKIN_URL
+    });
+    viewer.zoom = 0.7;
+    
+    window.addEventListener("mousemove", (e) => {
+      if (!viewer) return;
+      const box = document.getElementById("player-box").getBoundingClientRect();
+      const x = (e.clientX - (box.left + box.width / 2)) / window.innerWidth;
+      const y = (e.clientY - (box.top + box.height / 2)) / window.innerHeight;
+      viewer.playerObject.rotation.y = x * 2.5;
+      viewer.playerObject.rotation.x = y * 0.8;
+    });
+  } catch (err) {
+    console.error("3D Viewer failed to load:", err);
+  }
 }
 
 function render() {
@@ -222,18 +226,18 @@ function render() {
   document.getElementById("kit-name").innerText = kit.name;
   const container = document.getElementById("inventory-container");
   
-  // Slide animation effect
   container.style.opacity = "0.7";
   container.style.transform = "scale(0.98)";
 
   setTimeout(() => {
     // Armour
     const aSlots = document.getElementById("armour-slots").children;
-    kit.armour.forEach((id, i) => {
-      aSlots[i].innerHTML = `<img src="${ITEM_URL}${id}" onerror="this.style.display='none'">`;
-    });
+    for(let i=0; i<4; i++) {
+      const id = kit.armour[i];
+      aSlots[i].innerHTML = id ? `<img src="${ITEM_URL}${id}" alt="${id}">` : '';
+    }
 
-    // Main Inv (27 slots)
+    // Main Inv
     const mInv = document.getElementById("main-inv");
     mInv.innerHTML = "";
     for(let i=0; i<27; i++) {
@@ -241,7 +245,7 @@ function render() {
       mInv.innerHTML += `<div class="slot">${item ? `<img src="${ITEM_URL}${item.id}"><span class="count">${item.n}</span>` : ''}</div>`;
     }
 
-    // Hotbar (9 slots)
+    // Hotbar
     const hInv = document.getElementById("hotbar-inv");
     hInv.innerHTML = "";
     for(let i=0; i<9; i++) {
