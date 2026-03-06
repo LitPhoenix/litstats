@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minecraft Kit Inventory</title>
+<link href="https://fonts.cdnfonts.com/css/minecraft-ia" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --mc-panel: #c6c6c6;
+  --mc-dark:  #373737;
+  --mc-slot:  #8b8b8b;
+  --mc-font:  'Minecraft', sans-serif;
+}
+
+body {
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: var(--mc-font);
+  image-rendering: pixelated;
+  user-select: none;
+  color: #fff;
+}
+
+/* --- Navigation --- */
+#kit-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.arrow-btn {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.arrow-btn:hover:not(:disabled) { color: #fff; }
+.arrow-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+#kit-name {
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 0 #000;
+  width: 300px;
+  text-align: center;
+}
+
+/* --- Container & Animation --- */
+#inventory-container {
+  position: relative;
+  background: var(--mc-panel);
+  border: 4px solid #fff;
+  border-right-color: #555;
+  border-bottom-color: #555;
+  padding: 10px;
+  box-shadow: inset 2px 2px 0 #000;
+  overflow: hidden;
+}
+
+.slide-wrapper {
+  display: flex;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.kit-page {
+  flex: 0 0 100%;
+}
+
+/* --- Layout --- */
+.top-row {
+  display: flex;
+  gap: 15px;
+  padding-bottom: 10px;
+}
+
+.armour-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#player-viewport {
+  width: 160px;
+  height: 200px;
+  background: #00000033;
+  border: 2px solid #555;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  position: relative;
+}
+
+/* --- Grid System --- */
+.inv-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 36px);
+  gap: 2px;
+}
+
+.slot {
+  width: 36px;
+  height: 36px;
+  background: #8b8b8b;
+  border: 2px solid #373737;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.slot:hover {
+  background: #9d9d9d;
+  outline: 2px solid #fff;
+  z-index: 5;
+}
+
+.slot img {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+}
+
+.slot .count {
+  position: absolute;
+  bottom: 1px;
+  right: 2px;
+  font-size: 14px;
+  text-shadow: 1px 1px 0 #000;
+  pointer-events: none;
+}
+
+.hotbar-sep {
+  height: 8px;
+}
+
+/* --- Tooltip --- */
+#tooltip {
+  position: fixed;
+  background: rgba(16, 0, 16, 0.9);
+  border: 2px solid #2d0064;
+  padding: 8px;
+  pointer-events: none;
+  display: none;
+  z-index: 100;
+  font-size: 14px;
+}
+
+.rarity-legendary { color: #ffaa00; }
+.rarity-epic { color: #ff55ff; }
+.rarity-rare { color: #5555ff; }
+.rarity-uncommon { color: #55ff55; }
+.rarity-common { color: #ffffff; }
+</style>
+</head>
+<body>
+
+<div id="kit-header">
+  <button class="arrow-btn" id="prevBtn">◀</button>
+  <div id="kit-name">Kit I — Starter</div>
+  <button class="arrow-btn" id="nextBtn">▶</button>
+</div>
+
+<div id="inventory-container">
+  <div class="top-row">
+    <div class="armour-slots" id="armour-container">
+      <div class="slot" data-slot="helmet"></div>
+      <div class="slot" data-slot="chestplate"></div>
+      <div class="slot" data-slot="leggings"></div>
+      <div class="slot" data-slot="boots"></div>
+    </div>
+
+    <div id="player-viewport">
+      <canvas id="player-canvas"></canvas>
+    </div>
+  </div>
+
+  <div id="bottom-section">
+    <div class="inv-grid" id="main-inv"></div>
+    <div class="hotbar-sep"></div>
+    <div class="inv-grid" id="hotbar"></div>
+  </div>
+</div>
+
+<div id="tooltip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/skinview3d@2.2.0/bundles/skinview3d.min.js"></script>
+
+<script>
+const KITS = [
+  {
+    name: "Kit I — Starter",
+    armour: { helmet: "leather_helmet", chestplate: "leather_chestplate", leggings: "leather_leggings", boots: "leather_boots" },
+    hotbar: [{id: "wooden_sword", count: 1, rarity: "common"}, {id: "bread", count: 16, rarity: "common"}],
+    inv: [{id: "oak_log", count: 64, rarity: "common"}]
+  },
+  {
+    name: "Kit XI — Prestige II ✦",
+    armour: { helmet: "netherite_helmet", chestplate: "netherite_chestplate", leggings: "netherite_leggings", boots: "netherite_boots" },
+    hotbar: [{id: "netherite_sword", count: 1, rarity: "legendary"}, {id: "enchanted_golden_apple", count: 64, rarity: "epic"}],
+    inv: [{id: "nether_star", count: 9, rarity: "legendary"}, {id: "beacon", count: 1, rarity: "rare"}]
+  }
+];
+
+let currentIdx = 0;
+let skinViewer;
+
+// --- Initialize 3D Player ---
+function init3D() {
+  skinViewer = new skinview3d.SkinViewer({
+    canvas: document.getElementById("player-canvas"),
+    width: 160,
+    height: 200,
+    skin: "https://textures.minecraft.net/texture/3b60a1f0333387c054236f3323089d7b9da54f3b76251ec652f1950d87fa678" // Steve
+  });
+
+  skinViewer.zoom = 0.9;
+  skinViewer.autoRotate = false;
+
+  // Follow Mouse Logic
+  window.addEventListener("mousemove", (e) => {
+    const rect = document.getElementById("player-viewport").getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    // Calculate rotation based on cursor position relative to player
+    const mouseX = (e.clientX - centerX) / window.innerWidth;
+    const mouseY = (e.clientY - centerY) / window.innerHeight;
+
+    skinViewer.playerObject.rotation.y = mouseX * 2; 
+    skinViewer.playerObject.rotation.x = mouseY * 0.5;
+  });
+}
+
+function getImg(id) {
+  // Using Crafatar for reliable item icons
+  return `https://crafatar.com/items/${id}`;
+}
+
+function renderKit(idx) {
+  const kit = KITS[idx] || KITS[0];
+  document.getElementById("kit-name").innerText = kit.name;
+
+  // Render Armour
+  const armourBox = document.getElementById("armour-container");
+  armourBox.innerHTML = "";
+  ["helmet", "chestplate", "leggings", "boots"].forEach(type => {
+    const itemId = kit.armour[type];
+    armourBox.innerHTML += `<div class="slot"><img src="${getImg(itemId)}"></div>`;
+  });
+
+  // Render Hotbar
+  const hotbar = document.getElementById("hotbar");
+  hotbar.innerHTML = "";
+  for(let i=0; i<9; i++) {
+    const item = kit.hotbar[i];
+    hotbar.innerHTML += item ? `<div class="slot"><img src="${getImg(item.id)}"><span class="count">${item.count}</span></div>` : `<div class="slot"></div>`;
+  }
+
+  // Render Inv
+  const mainInv = document.getElementById("main-inv");
+  mainInv.innerHTML = "";
+  for(let i=0; i<27; i++) {
+    const item = kit.inv[i];
+    mainInv.innerHTML += item ? `<div class="slot"><img src="${getImg(item.id)}"><span class="count">${item.count}</span></div>` : `<div class="slot"></div>`;
+  }
+}
+
+// --- Navigation ---
+document.getElementById("nextBtn").onclick = () => {
+  if(currentIdx < KITS.length - 1) {
+    currentIdx++;
+    triggerSlide();
+  }
+};
+
+document.getElementById("prevBtn").onclick = () => {
+  if(currentIdx > 0) {
+    currentIdx--;
+    triggerSlide();
+  }
+};
+
+function triggerSlide() {
+  const container = document.getElementById("inventory-container");
+  container.style.opacity = "0.5";
+  container.style.transform = "translateX(10px)";
+  
+  setTimeout(() => {
+    renderKit(currentIdx);
+    container.style.opacity = "1";
+    container.style.transform = "translateX(0)";
+  }, 150);
+}
+
+window.onload = () => {
+  init3D();
+  renderKit(0);
+};
+</script>
+</body>
+</html>
