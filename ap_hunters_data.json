@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-06T10:42:30.854Z",
+  "last_update": "2026-03-06T11:35:19.987Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -621,15 +621,15 @@
     },
     {
       "country": "Russia",
-      "score": 11619,
+      "score": 11623,
       "top_players": [
         {
           "username": "anrie",
           "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
           "country": "Russia",
-          "current_ap": 32155,
+          "current_ap": 32175,
           "last_month_ap": 32155,
-          "monthly_gain": 0
+          "monthly_gain": 20
         },
         {
           "username": "bubulS",
