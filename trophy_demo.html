@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LitStats - Trophy Cabinet Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* LITSTATS CORE VARIABLES (Forced Dark Mode for Demo) */
+    :root {
+      --bg: #0f0a08;
+      --bg-glow: rgba(255, 60, 0, 0.03); 
+      --surface: #1a1310;
+      --surface-2: #261c18;
+      --border: #382822;
+      --border-strong: #543c33;
+      --text: #f0e6e1;
+      --text-2: #bfaea6;
+      --text-3: #8c7b73;
+      --accent: #ff621a;
+      --accent-soft: rgba(255, 98, 26, 0.15);
+      --shadow: 0 4px 20px rgba(0,0,0,0.5);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* MOCK TABLE WRAPPER FOR CONTEXT */
+    .mock-table-container {
+      width: 100%;
+      max-width: 900px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .mock-header {
+      background: var(--surface-2);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mock-avatar {
+      width: 32px; height: 32px; border-radius: 4px;
+    }
+
+    /* --- THE NEW TROPHY CABINET CSS --- */
+
+    .cabinet-container {
+      padding: 24px;
+      background: linear-gradient(to bottom, transparent, var(--surface-2));
+    }
+
+    .cabinet-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-3);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cabinet-title::after {
+      content: '';
+      flex-grow: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .tier-group {
+      margin-bottom: 24px;
+    }
+
+    .tier-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .tier-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      display: inline-block;
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* THE GRID */
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 12px;
+    }
+
+    /* THE MODERN BADGE DESIGN */
+    .trophy-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      padding: 16px 12px;
+      border-radius: 10px;
+      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle background glow effect on hover */
+    .trophy-badge::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, var(--accent-soft), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
+    }
+
+    .trophy-badge:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4), 0 0 0 1px var(--accent);
+    }
+
+    .trophy-badge:hover::before {
+      opacity: 1;
+    }
+
+    .game-logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      z-index: 1;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+      transition: transform 0.2s ease;
+    }
+
+    .trophy-badge:hover .game-logo {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .game-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      z-index: 1;
+      line-height: 1.2;
+    }
+
+    /* Styling for Legacy Tier to make it look distinct */
+    .tier-group.legacy .tier-label {
+      color: var(--text-2);
+      background: var(--border);
+    }
+    
+    .tier-group.legacy .trophy-badge {
+      opacity: 0.8;
+      border-style: dashed;
+    }
+    
+    .tier-group.legacy .trophy-badge:hover {
+      opacity: 1;
+      border-style: solid;
+      border-color: var(--text-2);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4), 0 0 0 1px var(--border-strong);
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="mock-table-container">
+    
+    <div class="mock-header">
+      <img src="https://minotar.net/helm/oJakey/100" class="mock-avatar" alt="Avatar">
+      oJakey's Expanded Stats
+    </div>
+
+    <div class="cabinet-container">
+      <div class="cabinet-title">Verified Max Games</div>
+
+      <div class="tier-group">
+        <div class="tier-label">7th Tier (Ultimate)</div>
+        <div class="badge-grid">
+          
+          <div class="trophy-badge">
+            <img src="https://placehold.co/80x80/261c18/ff621a?text=UHC" class="game-logo" alt="Max UHC">
+            <span class="game-name">Max UHC</span>
+          </div>
+
+          <div class="trophy-badge">
+            <img src="https://placehold.co/80x80/261c18/ff621a?text=MW" class="game-logo" alt="Max Mega Walls">
+            <span class="game-name">Max Mega Walls</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tier-group">
+        <div class="tier-label">6th Tier (Elite)</div>
+        <div class="badge-grid">
+          
+          <div class="trophy-badge">
+            <img src="https://placehold.co/80x80/261c18/ff621a?text=BLITZ" class="game-logo" alt="Max Blitz">
+            <span class="game-name">Max Blitz</span>
+          </div>
+
+          <div class="trophy-badge">
+            <img src="https://placehold.co/80x80/261c18/ff621a?text=SH" class="game-logo" alt="Max Smash Heroes">
+            <span class="game-name">Max Smash Heroes</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tier-group">
+        <div class="tier-label">4th Tier (Hard)</div>
+        <div class="badge-grid">
+          
+          <div class="trophy-badge">
+            <img src="https://placehold.co/80x80/261c18/ff621a?text=TNT" class="game-logo" alt="Max TNT Games">
+            <span class="game-name">Max TNT Games</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tier-group legacy">
+        <div class="tier-label">Legacy (Unobtainable)</div>
+        <div class="badge-grid">
+          
+          <div class="trophy-badge">
+            <img src="https://placehold.co/80x80/261c18/bfaea6?text=SC" class="game-logo" alt="Max SkyClash">
+            <span class="game-name">Max SkyClash</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+</body>
+</html>
