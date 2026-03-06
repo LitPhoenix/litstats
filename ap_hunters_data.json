@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-05T23:55:34.057Z",
+  "last_update": "2026-03-06T02:29:32.332Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -511,9 +511,9 @@
           "username": "lyraava",
           "uuid": "6d84e8ed95b3452095221594b9e448fe",
           "country": "USA",
-          "current_ap": 25525,
+          "current_ap": 25535,
           "last_month_ap": 25405,
-          "monthly_gain": 120
+          "monthly_gain": 130
         },
         {
           "username": "JurassicBox",
@@ -1255,7 +1255,7 @@
     },
     {
       "country": "Unknown",
-      "score": 25494,
+      "score": 25499,
       "top_players": [
         {
           "username": "Rayjer",
@@ -1277,9 +1277,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "Unknown",
-          "current_ap": 25515,
+          "current_ap": 25540,
           "last_month_ap": 25425,
-          "monthly_gain": 90
+          "monthly_gain": 115
         },
         {
           "username": "kawaa",
@@ -1322,20 +1322,20 @@
           "monthly_gain": 0
         },
         {
+          "username": "adjective_n0un",
+          "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
+          "country": "Unknown",
+          "current_ap": 24915,
+          "last_month_ap": 24875,
+          "monthly_gain": 40
+        },
+        {
           "username": "Hailette",
           "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
           "country": "Unknown",
           "current_ap": 24910,
           "last_month_ap": 24910,
           "monthly_gain": 0
-        },
-        {
-          "username": "adjective_n0un",
-          "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
-          "country": "Unknown",
-          "current_ap": 24890,
-          "last_month_ap": 24875,
-          "monthly_gain": 15
         },
         {
           "username": "pumpkan",
@@ -1437,9 +1437,9 @@
           "username": "combatively",
           "uuid": "23498017b5654aa0b9949effbbdd147e",
           "country": "Unknown",
-          "current_ap": 24550,
+          "current_ap": 24575,
           "last_month_ap": 24550,
-          "monthly_gain": 0
+          "monthly_gain": 25
         },
         {
           "username": "Ofek",
