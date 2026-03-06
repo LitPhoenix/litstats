@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-06T19:38:51.881Z",
+  "last_update": "2026-03-06T20:39:03.590Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -719,7 +719,7 @@
     },
     {
       "country": "UK",
-      "score": 29727,
+      "score": 29717,
       "top_players": [
         {
           "username": "greaneye",
@@ -754,12 +754,12 @@
           "monthly_gain": 5
         },
         {
-          "username": "LitOLantern",
+          "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 28850,
+          "current_ap": 28800,
           "last_month_ap": 28850,
-          "monthly_gain": 0
+          "monthly_gain": -50
         },
         {
           "username": "Fossilised",
