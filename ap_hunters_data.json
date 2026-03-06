@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-06T11:35:19.987Z",
+  "last_update": "2026-03-06T13:07:02.534Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1802,6 +1802,14 @@
           "monthly_gain": 0
         },
         {
+          "username": "jenidu",
+          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+          "country": "Unknown",
+          "current_ap": 23430,
+          "last_month_ap": 23300,
+          "monthly_gain": 130
+        },
+        {
           "username": "mohtele",
           "uuid": "bde72daebb4640ae90ee096f26bb5f85",
           "country": "Unknown",
@@ -1824,14 +1832,6 @@
           "current_ap": 23400,
           "last_month_ap": 23400,
           "monthly_gain": 0
-        },
-        {
-          "username": "jenidu",
-          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
-          "country": "Unknown",
-          "current_ap": 23395,
-          "last_month_ap": 23300,
-          "monthly_gain": 95
         },
         {
           "username": "MacchuPicchu",
