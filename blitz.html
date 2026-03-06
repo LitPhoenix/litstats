@@ -23,6 +23,7 @@ body {
   font-family: var(--mc-font);
   color: #fff;
   image-rendering: pixelated;
+  user-select: none;
 }
 
 #kit-header {
@@ -61,10 +62,12 @@ body {
   transition: transform 0.1s ease-out, opacity 0.1s ease-out;
 }
 
+/* --- Top Section: Armour, Player, Crafting --- */
 .top-section {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 15px;
+  align-items: flex-start;
 }
 
 .armour-column {
@@ -74,7 +77,7 @@ body {
 }
 
 #player-box {
-  width: 130px;
+  width: 120px;
   height: 150px;
   background: #000;
   border: 2px solid #373737;
@@ -84,11 +87,42 @@ body {
   overflow: hidden;
 }
 
-#player-canvas {
-  width: 100% !important;
-  height: 100% !important;
+/* Crafting Layout */
+.crafting-area {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: 5px;
 }
 
+.crafting-title {
+  color: #373737;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+}
+
+.crafting-layout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crafting-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 36px);
+  gap: 2px;
+}
+
+.crafting-arrow {
+  color: #8b8b8b;
+  font-size: 28px;
+  text-shadow: 2px 2px 0 #fff;
+  line-height: 1;
+  margin-top: -4px;
+}
+
+/* --- Slots --- */
 .inv-grid {
   display: grid;
   grid-template-columns: repeat(9, 36px);
@@ -115,9 +149,10 @@ body {
 }
 
 .slot img {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   image-rendering: pixelated;
+  pointer-events: none;
 }
 
 .count {
@@ -128,9 +163,37 @@ body {
   color: #fff;
   text-shadow: 1px 1px 0 #3f3f3f;
   pointer-events: none;
+  z-index: 2;
 }
 
 .hotbar-spacer { height: 8px; }
+
+/* --- Tooltips --- */
+.mc-tooltip {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  padding: 8px 10px;
+  background: rgba(16, 0, 16, 0.95);
+  border: 2px solid #2d0064;
+  image-rendering: pixelated;
+  color: #fff;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+.mc-tooltip.show { display: block; }
+.tt-name { font-size: 16px; display: block; }
+.tt-div { height: 2px; margin: 6px 0; background: #4a0064; }
+.tt-line { font-size: 14px; display: block; margin-top: 4px; }
+
+.r-common { color: #fff; }
+.r-uncommon { color: #55ff55; }
+.r-rare { color: #5555ff; }
+.r-epic { color: #ff55ff; }
+.r-legendary { color: #ffaa00; }
+.c-grey { color: #aaa; }
+.c-yellow { color: #ffff55; }
+.c-purple { color: #ff55ff; }
 
 </style>
 </head>
@@ -144,15 +207,22 @@ body {
 
 <div id="inventory-container">
   <div class="top-section">
-    <div class="armour-column" id="armour-slots">
-      <div class="slot" data-type="helmet"></div>
-      <div class="slot" data-type="chestplate"></div>
-      <div class="slot" data-type="leggings"></div>
-      <div class="slot" data-type="boots"></div>
-    </div>
+    <div class="armour-column" id="armour-slots"></div>
 
     <div id="player-box">
       <canvas id="player-canvas"></canvas>
+    </div>
+
+    <div class="crafting-area">
+      <div class="crafting-title">Crafting</div>
+      <div class="crafting-layout">
+        <div class="crafting-grid">
+          <div class="slot"></div><div class="slot"></div>
+          <div class="slot"></div><div class="slot"></div>
+        </div>
+        <div class="crafting-arrow">➔</div>
+        <div class="slot"></div>
+      </div>
     </div>
   </div>
 
@@ -163,63 +233,137 @@ body {
   </div>
 </div>
 
+<div class="mc-tooltip" id="tooltip"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/skinview3d@2.2.0/bundles/skinview3d.min.js"></script>
 
 <script>
-// Reliable APIs for local testing
-const ITEM_URL = "https://mc-heads.net/item/";
-const SKIN_URL = "https://crafatar.com/skins/853c80ef3c3749fdaa49938b674adae6"; // Standard Steve UUID
+const ITEM_API = "https://api.minecraftitems.xyz/api/item/";
+
+function item(id, name, rarity = 'common', stack = null, lines = []) {
+  return { id, name, rarity, stack, lines };
+}
 
 const KITS = [
   {
     name: "Kit I - Starter",
-    armour: ["leather_helmet", "leather_chestplate", "leather_leggings", "leather_boots"],
-    hotbar: [{id: "wooden_sword", n: 1}, {id: "bread", n: 16}],
-    inv: [{id: "cobblestone", n: 64}]
+    armour: {
+      helmet: item('leather_helmet', 'Leather Helmet', 'common', null, [{text: '+1 Armour', cls: 'c-yellow'}]),
+      chestplate: item('leather_chestplate', 'Leather Chestplate', 'common', null, [{text: '+3 Armour', cls: 'c-yellow'}]),
+      leggings: item('leather_leggings', 'Leather Leggings', 'common', null, [{text: '+2 Armour', cls: 'c-yellow'}]),
+      boots: item('leather_boots', 'Leather Boots', 'common', null, [{text: '+1 Armour', cls: 'c-yellow'}])
+    },
+    hotbar: [
+      item('wooden_sword', 'Wooden Sword', 'common', null, [{text: '+4 Attack Damage', cls: 'c-yellow'}]),
+      item('bread', 'Bread', 'common', 16, [{text: 'Restores 5 hunger.', cls: 'c-grey'}])
+    ],
+    inv: [item('cobblestone', 'Cobblestone', 'common', 64)]
   },
-  { name: "Kit II - Stone", armour: [], hotbar: [{id: "stone_sword", n: 1}], inv: [] },
-  { name: "Kit III - Iron Base", armour: ["iron_chestplate"], hotbar: [{id: "iron_sword", n: 1}], inv: [] },
-  { name: "Kit IV - Iron Full", armour: ["iron_helmet", "iron_chestplate", "iron_leggings", "iron_boots"], hotbar: [{id: "iron_sword", n: 1}], inv: [] },
-  { name: "Kit V - Gold", armour: ["golden_helmet", "golden_chestplate", "golden_leggings", "golden_boots"], hotbar: [{id: "golden_sword", n: 1}], inv: [] },
-  { name: "Kit VI - Diamond Base", armour: ["diamond_chestplate"], hotbar: [{id: "diamond_sword", n: 1}], inv: [] },
-  { name: "Kit VII - Diamond Core", armour: ["diamond_chestplate", "diamond_leggings"], hotbar: [{id: "diamond_sword", n: 1}], inv: [] },
-  { name: "Kit VIII - Diamond Full", armour: ["diamond_helmet", "diamond_chestplate", "diamond_leggings", "diamond_boots"], hotbar: [{id: "diamond_sword", n: 1}], inv: [] },
-  { name: "Kit IX - Netherite Base", armour: ["netherite_chestplate"], hotbar: [{id: "netherite_sword", n: 1}], inv: [] },
-  { name: "Kit X - Prestige I", armour: ["netherite_chestplate", "netherite_leggings"], hotbar: [{id: "netherite_sword", n: 1}], inv: [] },
+  ...Array(9).fill().map((_, i) => ({
+    name: `Kit ${i+2} - Unlocked Soon`,
+    armour: {}, hotbar: [], inv: []
+  })),
   {
-    name: "Kit XI - Prestige II",
-    armour: ["diamond_helmet", "diamond_chestplate", "diamond_leggings", "diamond_boots"],
-    hotbar: [{id: "diamond_sword", n: 1}, {id: "enchanted_golden_apple", n: 64}],
-    inv: [{id: "nether_star", n: 9}, {id: "beacon", n: 1}]
+    name: "Kit XI - Prestige II ✦",
+    armour: {
+      helmet: item('diamond_helmet', 'Diamond Helmet', 'legendary', null, [{text: '+3 Armour', cls: 'c-yellow'}]),
+      chestplate: item('diamond_chestplate', 'Diamond Chestplate', 'legendary', null, [{text: '+8 Armour', cls: 'c-yellow'}]),
+      leggings: item('diamond_leggings', 'Diamond Leggings', 'legendary', null, [{text: '+6 Armour', cls: 'c-yellow'}]),
+      boots: item('diamond_boots', 'Diamond Boots', 'legendary', null, [{text: '+3 Armour', cls: 'c-yellow'}])
+    },
+    hotbar: [
+      item('diamond_sword', 'Diamond Sword', 'legendary', null, [{text: '+7 Attack Damage', cls: 'c-yellow'}]),
+      item('enchanted_golden_apple', 'Enchanted Golden Apple', 'epic', 64)
+    ],
+    inv: [item('nether_star', 'Nether Star', 'legendary', 9), item('beacon', 'Beacon', 'rare', 1)]
   }
 ];
 
-let currentKit = 0;
+// --- 3D Player Engine ---
 let viewer;
-
 function initPlayer() {
+  const canvas = document.getElementById("player-canvas");
+  if(viewer) return;
+  
   try {
     viewer = new skinview3d.SkinViewer({
-      canvas: document.getElementById("player-canvas"),
-      width: 130,
+      canvas: canvas,
+      width: 120,
       height: 150,
-      skin: SKIN_URL
+      skin: "https://crafatar.com/skins/853c80ef3c3749fdaa49938b674adae6"
     });
-    viewer.zoom = 0.7;
+    viewer.zoom = 0.8;
+    viewer.autoRotate = false;
     
-    window.addEventListener("mousemove", (e) => {
-      if (!viewer) return;
+    document.addEventListener("mousemove", (e) => {
+      if(!viewer || !viewer.playerObject) return;
       const box = document.getElementById("player-box").getBoundingClientRect();
-      const x = (e.clientX - (box.left + box.width / 2)) / window.innerWidth;
-      const y = (e.clientY - (box.top + box.height / 2)) / window.innerHeight;
-      viewer.playerObject.rotation.y = x * 2.5;
-      viewer.playerObject.rotation.x = y * 0.8;
+      const cx = box.left + box.width / 2;
+      const cy = box.top + box.height / 2;
+      const x = (e.clientX - cx) / window.innerWidth;
+      const y = (e.clientY - cy) / window.innerHeight;
+      
+      viewer.playerObject.rotation.y = x * 3;
+      viewer.playerObject.rotation.x = y * 1.5;
     });
-  } catch (err) {
-    console.error("3D Viewer failed to load:", err);
-  }
+  } catch(e) { console.error("3D Load Failed:", e); }
 }
+
+// --- Tooltip Event Delegation Engine ---
+const tooltip = document.getElementById('tooltip');
+
+function buildTooltip(it) {
+  let h = `<span class="tt-name r-${it.rarity}">${it.name}</span>`;
+  if (it.lines && it.lines.length) {
+    h += '<div class="tt-div"></div>';
+    for (const ln of it.lines) {
+      h += `<span class="tt-line ${ln.cls || ''}">${ln.text}</span>`;
+    }
+  }
+  return h;
+}
+
+document.addEventListener('mouseover', e => {
+  const slot = e.target.closest('.slot');
+  if(!slot) return;
+  const data = slot.getAttribute('data-item');
+  if(!data) return;
+  
+  const it = JSON.parse(data);
+  tooltip.innerHTML = buildTooltip(it);
+  tooltip.classList.add('show');
+});
+
+document.addEventListener('mousemove', e => {
+  if(!tooltip.classList.contains('show')) return;
+  const pad = 15;
+  let x = e.clientX + pad;
+  let y = e.clientY + pad;
+  if (x + tooltip.offsetWidth > window.innerWidth) x = e.clientX - tooltip.offsetWidth - pad;
+  if (y + tooltip.offsetHeight > window.innerHeight) y = e.clientY - tooltip.offsetHeight - pad;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top = y + 'px';
+});
+
+document.addEventListener('mouseout', e => {
+  if(e.target.closest('.slot')) tooltip.classList.remove('show');
+});
+
+// --- Slot Generator ---
+function makeSlotHtml(it) {
+  if (!it) return `<div class="slot"></div>`;
+  // Inject item data directly to HTML attribute to avoid listener drops on redraw
+  const dataStr = JSON.stringify(it).replace(/"/g, '&quot;');
+  let html = `<div class="slot" data-item="${dataStr}">`;
+  html += `<img src="${ITEM_API}${it.id}/size=4" alt="${it.name}" onerror="this.style.display='none'">`;
+  if (it.stack && it.stack > 1) html += `<span class="count">${it.stack}</span>`;
+  html += `</div>`;
+  return html;
+}
+
+// --- Render Logic ---
+let currentKit = 0;
 
 function render() {
   const kit = KITS[currentKit];
@@ -230,28 +374,16 @@ function render() {
   container.style.transform = "scale(0.98)";
 
   setTimeout(() => {
-    // Armour
-    const aSlots = document.getElementById("armour-slots").children;
-    for(let i=0; i<4; i++) {
-      const id = kit.armour[i];
-      aSlots[i].innerHTML = id ? `<img src="${ITEM_URL}${id}" alt="${id}">` : '';
-    }
+    document.getElementById('armour-slots').innerHTML = ['helmet', 'chestplate', 'leggings', 'boots']
+      .map(type => makeSlotHtml(kit.armour[type])).join('');
 
-    // Main Inv
-    const mInv = document.getElementById("main-inv");
-    mInv.innerHTML = "";
-    for(let i=0; i<27; i++) {
-      const item = kit.inv[i];
-      mInv.innerHTML += `<div class="slot">${item ? `<img src="${ITEM_URL}${item.id}"><span class="count">${item.n}</span>` : ''}</div>`;
-    }
+    let mHtml = "";
+    for(let i=0; i<27; i++) mHtml += makeSlotHtml(kit.inv[i]);
+    document.getElementById("main-inv").innerHTML = mHtml;
 
-    // Hotbar
-    const hInv = document.getElementById("hotbar-inv");
-    hInv.innerHTML = "";
-    for(let i=0; i<9; i++) {
-      const item = kit.hotbar[i];
-      hInv.innerHTML += `<div class="slot">${item ? `<img src="${ITEM_URL}${item.id}"><span class="count">${item.n}</span>` : ''}</div>`;
-    }
+    let hHtml = "";
+    for(let i=0; i<9; i++) hHtml += makeSlotHtml(kit.hotbar[i]);
+    document.getElementById("hotbar-inv").innerHTML = hHtml;
     
     container.style.opacity = "1";
     container.style.transform = "scale(1)";
