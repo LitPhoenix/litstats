@@ -54,7 +54,7 @@
     @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
     .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; }
     .spark-bg { position: absolute; inset: 0; border-radius: inherit; z-index: -1; background: var(--border); overflow: hidden; }
-    .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 30000px; height: 30000px; margin-top: -5000px; margin-left: -5000px; background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
+    .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100000px; height: 100000px; margin-top: -50000px; margin-left: -50000px; background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
     @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
     
     .table-inner { background: var(--surface); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
@@ -70,10 +70,10 @@
     thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
     thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
 
-    /* Clickable Player Rows */
-    tbody tr.player-row { transition: all 0.2s ease-out; cursor: pointer; }
-    tbody tr.player-row td { border-bottom: 1px solid var(--border); }
-    tbody tr.player-row:hover, tbody tr.player-row.force-hover { background: var(--accent-soft); transform: translateX(4px); box-shadow: -4px 0 0 var(--accent); transition: all 0.1s ease-in; }
+    /* Static rows for quests */
+    tbody tr { transition: all 0.2s ease-out; }
+    tbody tr td { border-bottom: 1px solid var(--border); }
+    tbody tr:hover { background: var(--accent-soft); transform: translateX(4px); box-shadow: -4px 0 0 var(--accent); transition: all 0.1s ease-in; }
     td { padding: 11px 16px; vertical-align: middle; }
 
     .rank { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text-3); }
@@ -98,15 +98,6 @@
     .pos-up { color: var(--green); }
     .pos-down { color: var(--red); }
     .pos-same { color: var(--gold); }
-
-    /* MAX GAMES EXPANSION */
-    .player-expanded-row { display: none; background: var(--surface-2); border-bottom: 1px solid var(--border); }
-    .player-expanded-row.open { display: table-row; }
-    .maxes-container { padding: 16px 16px 16px 40px; display: flex; flex-direction: column; gap: 12px; }
-    .tier-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-    .tier-label { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; width: 60px; flex-shrink: 0; }
-    .game-badge { display: flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border-strong); padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--text); }
-    .game-badge img { width: 16px; height: 16px; object-fit: contain; }
 
     .tooltip-wrap { position: relative; display: inline-flex; align-items: center; gap: 5px; cursor: help; }
     .tooltip-content { visibility: hidden; opacity: 0; position: absolute; top: 140%; bottom: auto; left: 50%; transform: translateX(-50%) translateY(-10px); width: 320px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow); font-size: 12px; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 100; white-space: normal; cursor: default; }
@@ -180,7 +171,7 @@
   <main>
     <div class="hero">
       <h1>Quests Leaderboard</h1>
-      <p>Tracking top Hypixel Questers worldwide. Click a player to view their max games.</p>
+      <p>Tracking top Hypixel Questers worldwide.</p>
     </div>
 
     <div class="search-container">
@@ -283,22 +274,11 @@
       'Turkey': 'tr', 'UK': 'gb', 'Ukraine': 'ua', 'USA': 'us'
     };
 
-    const gameTiers = {
-      'Max UHC': 7, 'Max Pit': 7, 'Max Mega Walls': 7, 'Max SkyWars': 7,
-      'Max Blitz': 6, 'Max Arena Brawl': 6, 'Max Smash Heroes': 6, 'Max Paintball': 6,
-      'Max Cops and Crims': 5, 'Max Quake': 5, 'Max SkyBlock': 5, 'Max Speed UHC': 5,
-      'Max Warlords': 4, 'Max Walls': 4, 'Max TNT Games': 4, 'Max Arcade': 4,
-      'Max Murder Mystery': 3, 'Max VampireZ': 3, 'Max Bed Wars': 3,
-      'Max TKR': 2, 'Max Wool Games': 2, 'Max Duels': 2, 'Max Build Battle': 2,
-      'Max Seasonal': 1, 'Max Crazy Walls': 1, 'Max SkyClash': 1
-    };
-
     let currentData = null;
     let allPlayersList = [];
     let processedCountries = [];
     let currentTab = 'players';
     let sortCol = 'rank', sortDir = 1;
-    let playerMaxesCache = {}; 
 
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -327,65 +307,6 @@
       }
     }
 
-    async function togglePlayerExpand(uuid) {
-      const expandRow = document.getElementById(`expand-${uuid}`);
-      if (!expandRow) return;
-
-      if (expandRow.classList.contains('open')) {
-        expandRow.classList.remove('open');
-        return;
-      }
-
-      document.querySelectorAll('.player-expanded-row').forEach(row => row.classList.remove('open'));
-      expandRow.classList.add('open');
-
-      const container = document.getElementById(`maxes-${uuid}`);
-      
-      if (playerMaxesCache[uuid]) {
-        renderMaxesHTML(container, playerMaxesCache[uuid]);
-        return;
-      }
-
-      container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">Loading maxed games from network...</span>`;
-
-      try {
-        const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
-        if (res.status === 429) throw new Error('RATE_LIMIT');
-        const data = await res.json();
-        if (data.error) throw new Error('API_ERROR');
-        
-        playerMaxesCache[uuid] = data.maxGames || [];
-        renderMaxesHTML(container, playerMaxesCache[uuid]);
-      } catch (e) {
-        container.innerHTML = `<span style="color:var(--red); font-size:12px;">${e.message === 'RATE_LIMIT' ? 'Slow down! Too many network requests.' : 'Failed to load maxed games.'}</span>`;
-      }
-    }
-
-    function renderMaxesHTML(container, maxes) {
-      if (maxes.length === 0) {
-        container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span>`;
-        return;
-      }
-
-      const grouped = { 7: [], 6: [], 5: [], 4: [], 3: [], 2: [], 1: [] };
-      maxes.forEach(game => {
-        const tier = gameTiers[game];
-        if (tier) grouped[tier].push(game);
-      });
-
-      let html = '';
-      for (let t = 7; t >= 1; t--) {
-        if (grouped[t].length > 0) {
-          html += `<div class="tier-row"><span class="tier-label">${t}ᵗʰ Tier</span>`;
-          grouped[t].forEach(game => {
-            html += `<div class="game-badge"><img src="/img/games/${game}.png" onerror="this.style.display='none'"> ${game}</div>`;
-          });
-          html += `</div>`;
-        }
-      }
-      container.innerHTML = html;
-    }
-
     function renderPlayers(players) {
       const tbody = document.getElementById('players-tbody');
       tbody.innerHTML = '';
@@ -407,8 +328,6 @@
                       p.previousRank > 0 ? `<span class="position-indicator pos-same">=</span>` : '';
 
         const tr = document.createElement('tr');
-        tr.className = 'player-row';
-        tr.onclick = () => togglePlayerExpand(p.uuid);
         tr.innerHTML = `
             <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank || ''} ${posHTML}</span></td>
             <td>
@@ -422,12 +341,6 @@
             <td>${gainHTML}</td>
         `;
         tbody.appendChild(tr);
-
-        const expand = document.createElement('tr');
-        expand.className = 'player-expanded-row';
-        expand.id = `expand-${p.uuid}`;
-        expand.innerHTML = `<td colspan="5"><div class="maxes-container" id="maxes-${p.uuid}"></div></td>`;
-        tbody.appendChild(expand);
       });
     }
 
@@ -483,9 +396,8 @@
       });
     }
 
-async function loadData() {
+    async function loadData() {
       try {
-        // Smart Cache for Quests
         const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
         const res = await fetch(`questers_data.json?v=${currentHour}`);
         
@@ -540,7 +452,6 @@ async function loadData() {
       }
     }
 
-    // --- Search Logic (Unified and Bulletproof) ---
     const searchInput = document.getElementById('searchInput');
 
     function runLocalSearch(q) {
@@ -579,12 +490,10 @@ async function loadData() {
       }
     }
 
-    // 1. As you type: Update local list immediately.
     searchInput.addEventListener('input', function() {
       runLocalSearch(this.value.toLowerCase().trim());
     });
 
-    // 2. When you hit enter: Ping Vercel ONLY if the local list is empty.
     searchInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -602,7 +511,6 @@ async function loadData() {
       }
     });
 
-    // Handle Table Header Sorting
     document.querySelectorAll('#players-table th[data-col]').forEach(th => {
       th.addEventListener('click', () => {
         const col = th.dataset.col;
@@ -658,8 +566,7 @@ async function loadData() {
         };
 
         sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: finalData }));
-        playerMaxesCache[uuid] = finalData.maxGames; 
-
+        
         displayLiveResult(finalData);
         searchBox.textContent = `Showing live data for ${actualName}`;
 
@@ -679,7 +586,7 @@ async function loadData() {
       const tbody = document.getElementById('players-tbody');
       
       tbody.innerHTML = `
-        <tr class="player-row" style="background: var(--accent-soft); border-left: 3px solid var(--accent);" onclick="togglePlayerExpand('${data.uuid}')">
+        <tr style="background: var(--accent-soft); border-left: 3px solid var(--accent);">
           <td style="text-align: center;"><span class="rank" style="color: var(--accent); font-weight: bold;">LIVE</span></td>
           <td>
             <div class="player-cell">
@@ -690,9 +597,6 @@ async function loadData() {
           <td><div class="flag-cell"><span class="country-name" style="color: var(--text-3); font-style: italic;">Unknown</span></div></td>
           <td class="ap-cell">${Number(score).toLocaleString()}</td>
           <td><span class="gain-new" style="background:var(--surface);border:1px solid var(--accent);">LIVE API</span></td>
-        </tr>
-        <tr class="player-expanded-row" id="expand-${data.uuid}">
-          <td colspan="5"><div class="maxes-container" id="maxes-${data.uuid}"></div></td>
         </tr>
       `;
       document.querySelector('[data-tab="players"]').click();
