@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-07T06:50:40.037Z",
+  "last_update": "2026-03-07T07:34:18.756Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -652,9 +652,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26220,
+          "current_ap": 26245,
           "last_month_ap": 26160,
-          "monthly_gain": 60,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Warlords",
             "Max Arcade",
@@ -712,6 +712,24 @@
           ]
         },
         {
+          "username": "lyraava",
+          "uuid": "6d84e8ed95b3452095221594b9e448fe",
+          "country": "USA",
+          "current_ap": 25560,
+          "last_month_ap": 25405,
+          "monthly_gain": 155,
+          "maxGames": [
+            "Max Arena Brawl",
+            "Max Smash Heroes",
+            "Max Paintball",
+            "Max SkyBlock",
+            "Max Speed UHC",
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "Colerer",
           "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
           "country": "USA",
@@ -721,24 +739,6 @@
           "maxGames": [
             "Max Blitz",
             "Max Walls",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "lyraava",
-          "uuid": "6d84e8ed95b3452095221594b9e448fe",
-          "country": "USA",
-          "current_ap": 25550,
-          "last_month_ap": 25405,
-          "monthly_gain": 145,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max VampireZ",
             "Max TKR"
           ]
         },
