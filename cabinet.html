@@ -214,9 +214,7 @@
     ];
 
     function getGameIconUrl(gameName) {
-      if (gameName === "Max Seasonal") {
-        return "/img/games/seasonal.png";
-      }
+      if (gameName === "Max Seasonal") return "img/games/seasonal.png";
 
       const iconMap = {
         "Max Arcade": "Arcade-64.png",
@@ -259,7 +257,6 @@
         let html = '';
 
         trophyStructure.forEach(tier => {
-          // Moved the tier.classes parameter up to the main group wrapper!
           html += `<div class="tier-group ${tier.classes} ${tier.isLegacy ? 'legacy' : ''}">`;
           html += `<div class="tier-header"><span class="tier-label">${tier.name}</span></div>`;
           html += `<div class="badge-row">`;
@@ -288,15 +285,7 @@
 
     async function initCabinet() {
       const urlParams = new URLSearchParams(window.location.search);
-      let uuid = urlParams.get('uuid');
-
-      // Fallback for Vercel Clean URL rewriting (e.g. litstats.com/cabinet/12345)
-      if (!uuid || uuid === "undefined") {
-        const pathSegments = window.location.pathname.split('/').filter(Boolean);
-        if (pathSegments[0] === 'cabinet' && pathSegments[1]) {
-          uuid = pathSegments[1];
-        }
-      }
+      const uuid = urlParams.get('uuid');
 
       if (!uuid || uuid === "undefined") {
         document.getElementById('loader').classList.add('hidden');
@@ -307,7 +296,7 @@
 
       try {
         const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-        const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
+        const jsonRes = await fetch(`ap_hunters_data.json?v=${currentHour}`);
         
         if (jsonRes.ok) {
             const localData = await jsonRes.json();
