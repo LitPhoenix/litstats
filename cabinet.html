@@ -70,64 +70,84 @@
     .game-badge img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
     .game-badge span { font-size: 12px; font-weight: 600; color: var(--text); text-align: center; z-index: 1; padding: 0 6px; line-height: 1.2; }
 
-    /* =========================================
-       TIER COLOUR INHERITANCE 
+   /* =========================================
+       THE INTEGRITY SHADOW SCALING
        ========================================= */
-
-    /* Legendary (Gold) */
-    .tier-group.legendary .tier-label { color: var(--gold); }
-    .tier-group.legendary .game-badge.achieved { 
-      border-color: var(--gold); 
-      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.15), inset 0 0 0 1px rgba(245, 158, 11, 0.3); 
+       
+    /* Base for all Achieved Badges */
+    .game-badge.achieved {
+      background: var(--surface-2);
+      border-width: 1px;
+      border-style: solid;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    .tier-group.legendary .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(245, 158, 11, 0.25), inset 0 0 0 1px rgba(245, 158, 11, 0.4); }
-    .tier-group.legendary .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.5)); }
+    .game-badge.achieved::after { display: none; } /* Remove sweep animation */
 
-    /* Epic (Silver) */
-    .tier-group.epic .tier-label { color: var(--silver); }
-    .tier-group.epic .game-badge.achieved { 
-      border-color: var(--silver); 
-      box-shadow: 0 6px 16px rgba(192, 192, 192, 0.15), inset 0 0 0 1px rgba(192, 192, 192, 0.3); 
-    }
-    .tier-group.epic .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(192, 192, 192, 0.25), inset 0 0 0 1px rgba(192, 192, 192, 0.4); }
-    .tier-group.epic .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(192, 192, 192, 0.5)); }
-
-    /* Rare (Bronze) */
-    .tier-group.rare .tier-label { color: var(--bronze); }
-    .tier-group.rare .game-badge.achieved { 
-      border-color: var(--bronze); 
-      box-shadow: 0 6px 16px rgba(205, 127, 50, 0.15), inset 0 0 0 1px rgba(205, 127, 50, 0.3); 
-    }
-    .tier-group.rare .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(205, 127, 50, 0.25), inset 0 0 0 1px rgba(205, 127, 50, 0.4); }
-    .tier-group.rare .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(205, 127, 50, 0.5)); }
-
-    /* Common (Stone - intentionally dull and unpolished) */
+    /* Common (Stone) - Baseline Integrity */
     .tier-group.common .tier-label { color: #78716c; }
     .tier-group.common .game-badge.achieved { 
       border-color: #57534e; 
-      background: var(--surface-2); 
-      box-shadow: 0 2px 4px rgba(0,0,0,0.5); 
+      box-shadow: 0 4px 6px rgba(0,0,0,0.6); 
     }
     .tier-group.common .game-badge.achieved:hover { 
       border-color: #78716c; 
-      box-shadow: 0 8px 16px rgba(0,0,0,0.6); 
+      box-shadow: 0 6px 12px rgba(0,0,0,0.8); 
+      transform: translateY(-2px);
+    }
+    .tier-group.common .game-badge.achieved img { filter: drop-shadow(0 4px 4px rgba(0,0,0,0.8)); }
+
+    /* Rare (Bronze) - Deeper shadow */
+    .tier-group.rare .tier-label { color: var(--bronze); }
+    .tier-group.rare .game-badge.achieved { 
+      border-color: var(--bronze); 
+      box-shadow: 0 6px 10px rgba(0,0,0,0.7); 
+    }
+    .tier-group.rare .game-badge.achieved:hover { 
+      border-color: #e59850; /* slightly brighter on hover */
+      box-shadow: 0 8px 16px rgba(0,0,0,0.9); 
       transform: translateY(-4px);
     }
-    /* Dark shadow instead of a glowing filter */
-    .tier-group.common .game-badge.achieved img { filter: drop-shadow(0 4px 4px rgba(0,0,0,0.8)); }
-    /* Remove the shiny sweeping animation for common */
-    .tier-group.common .game-badge.achieved::after { display: none; }
+    .tier-group.rare .game-badge.achieved img { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.8)); }
 
-    /* Legacy (Red / Dashed) */
+    /* Epic (Silver) - Heavy, pronounced weight */
+    .tier-group.epic .tier-label { color: var(--silver); }
+    .tier-group.epic .game-badge.achieved { 
+      border-color: var(--silver); 
+      box-shadow: 0 8px 14px rgba(0,0,0,0.85); 
+    }
+    .tier-group.epic .game-badge.achieved:hover { 
+      border-color: #cbd5e1; /* slightly brighter on hover */
+      box-shadow: 0 12px 20px rgba(0,0,0,1); 
+      transform: translateY(-6px); 
+    }
+    .tier-group.epic .game-badge.achieved img { filter: drop-shadow(0 6px 8px rgba(0,0,0,0.9)); }
+
+    /* Legendary (Gold) - Absolute deepest shadow, highest elevation */
+    .tier-group.legendary .tier-label { color: var(--gold); }
+    .tier-group.legendary .game-badge.achieved { 
+      border-color: var(--gold); 
+      box-shadow: 0 10px 18px rgba(0,0,0,0.95); 
+    }
+    .tier-group.legendary .game-badge.achieved:hover { 
+      border-color: #fbbf24; /* slightly brighter on hover */
+      box-shadow: 0 16px 28px rgba(0,0,0,1); 
+      transform: translateY(-8px); 
+    }
+    .tier-group.legendary .game-badge.achieved img { filter: drop-shadow(0 8px 10px rgba(0,0,0,1)); }
+
+    /* Legacy (Red / Dashed) - Maintained for visual distinction */
     .tier-group.legacy .tier-label { color: var(--red); }
-    .tier-group.legacy .game-badge { border-style: dashed; }
+    .tier-group.legacy .game-badge { border-style: dashed; border-width: 1px; }
     .tier-group.legacy .game-badge.achieved { 
       border-color: var(--red); 
-      box-shadow: 0 6px 16px rgba(255, 68, 68, 0.15), inset 0 0 0 1px rgba(255, 68, 68, 0.3); 
+      box-shadow: 0 6px 10px rgba(0,0,0,0.7); 
     }
-    .tier-group.legacy .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(255, 68, 68, 0.25), inset 0 0 0 1px rgba(255, 68, 68, 0.4); }
-    .tier-group.legacy .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(255, 68, 68, 0.5)); }
-
+    .tier-group.legacy .game-badge.achieved:hover { 
+      border-color: #f87171;
+      box-shadow: 0 10px 16px rgba(0,0,0,0.9); 
+      transform: translateY(-4px);
+    }
+    .tier-group.legacy .game-badge.achieved img { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.8)); }
 
     .loading-msg { font-size: 16px; color: var(--text-3); text-align: center; padding: 100px; }
     .hidden { display: none !important; }
