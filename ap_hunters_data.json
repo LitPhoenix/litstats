@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-07T21:28:07.911Z",
+  "last_update": "2026-03-07T23:28:58.475Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -313,7 +313,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12608,
+      "score": 12610,
       "top_players": [
         {
           "username": "oJakey",
@@ -409,9 +409,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 29630,
+          "current_ap": 29650,
           "last_month_ap": 29570,
-          "monthly_gain": 60,
+          "monthly_gain": 80,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
@@ -539,9 +539,9 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27400,
+          "current_ap": 27415,
           "last_month_ap": 27295,
-          "monthly_gain": 105,
+          "monthly_gain": 120,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
@@ -2144,9 +2144,9 @@
           "username": "adjective_n0un",
           "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
           "country": "Unknown",
-          "current_ap": 24915,
+          "current_ap": 24920,
           "last_month_ap": 24875,
-          "monthly_gain": 40,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock"
@@ -2422,6 +2422,19 @@
           ]
         },
         {
+          "username": "leonl",
+          "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+          "country": "Unknown",
+          "current_ap": 24260,
+          "last_month_ap": 24230,
+          "monthly_gain": 30,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "Unknown",
@@ -2443,19 +2456,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "leonl",
-          "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
-          "country": "Unknown",
-          "current_ap": 24250,
-          "last_month_ap": 24230,
-          "monthly_gain": 20,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Seasonal"
           ]
         },
         {
@@ -3393,15 +3393,15 @@
     },
     {
       "country": "Moldova",
-      "score": 85,
+      "score": 100,
       "top_players": [
         {
           "username": "kenav",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25425,
+          "current_ap": 25440,
           "last_month_ap": 25425,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
