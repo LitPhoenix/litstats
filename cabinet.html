@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LitStats - Trophy Cabinet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="global.css">
+
+  <style>
+    main { max-width: 1000px; margin: 0 auto; padding: 40px 24px 100px; display: flex; flex-direction: column; align-items: center; }
+
+    .back-btn { align-self: flex-start; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.2s; margin-bottom: 32px; }
+    .back-btn:hover { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+
+    /* Profile Header */
+    .profile-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; width: 100%; display: flex; align-items: center; gap: 24px; box-shadow: var(--shadow); margin-bottom: 40px; position: relative; overflow: hidden; }
+    .profile-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gold); }
+    .player-avatar { width: 80px; height: 80px; border-radius: 8px; background: var(--surface-2); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .player-info h1 { font-size: 32px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1; }
+    .stat-pill { display: inline-flex; align-items: center; background: var(--surface-2); border: 1px solid var(--border-strong); padding: 6px 12px; border-radius: 20px; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; color: var(--accent); }
+
+    /* Cabinet Layout */
+    .cabinet-wrapper { width: 100%; display: flex; flex-direction: column; gap: 40px; align-items: center; }
+    .tier-group { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; }
+    
+    .tier-header { display: flex; align-items: center; width: 100%; gap: 16px; }
+    .tier-header::before, .tier-header::after { content: ''; flex-grow: 1; height: 1px; background: var(--border); }
+    .tier-label { font-size: 12px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; }
+    .tier-label.mythic { color: var(--gold); }
+    .tier-label.legacy { color: var(--red); }
+    
+    .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+    
+    /* The Stamp Badge */
+    .game-badge {
+      width: 120px; height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      border-radius: 10px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; overflow: hidden;
+    }
+
+    /* UNACHIEVED (Rusty/Moody) */
+    .game-badge.unachieved {
+      background: var(--surface-2); border: 1px solid var(--border-strong);
+      box-shadow: inset 0 4px 8px rgba(0,0,0,0.5);
+      filter: grayscale(100%) brightness(0.4) contrast(1.1); opacity: 0.7;
+    }
+    
+    /* ACHIEVED (Shiny/Prestigious) */
+    .game-badge.achieved {
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(245, 158, 11, 0.05) 100%);
+      border: 1px solid var(--gold);
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.15), inset 0 0 0 1px rgba(245, 158, 11, 0.3);
+    }
+    .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.5)); transform: scale(1.1); }
+    .game-badge.achieved:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(245, 158, 11, 0.25), inset 0 0 0 1px rgba(245, 158, 11, 0.4); }
+
+    /* Shine Animation */
+    .game-badge.achieved::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+      transform: skewX(-20deg); animation: shine 4s infinite;
+    }
+    @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+
+    .tier-group.legacy .game-badge { border-style: dashed; border-width: 2px; }
+    
+    .game-badge img { width: 48px; height: 48px; object-fit: contain; z-index: 1; transition: 0.3s; }
+    .game-badge span { font-size: 12px; font-weight: 600; color: var(--text); text-align: center; z-index: 1; padding: 0 6px; line-height: 1.2; }
+
+    .loading-msg { font-size: 16px; color: var(--text-3); text-align: center; padding: 100px; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="/img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
+        <div>
+          <div class="logo-text">LitStats</div>
+          <div class="logo-sub">Trophy Cabinet</div>
+        </div>
+      </a>
+      <div class="header-controls">
+        <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme" onclick="toggleTheme()">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <a href="index.html" class="back-btn">← Back to Leaderboards</a>
+
+    <div id="loader" class="loading-msg">Summoning network data...</div>
+    <div id="errorBox" class="loading-msg hidden" style="color: var(--red);"></div>
+
+    <div id="cabinet-content" class="hidden" style="width: 100%;">
+      <div class="profile-card">
+        <img id="p-avatar" class="player-avatar" src="" alt="Avatar">
+        <div class="player-info">
+          <h1 id="p-name">Loading...</h1>
+          <div class="stat-pill" id="p-ap">0 AP</div>
+        </div>
+      </div>
+
+      <div class="cabinet-wrapper" id="cabinet-grid"></div>
+    </div>
+  </main>
+
+  <script src="global.js"></script>
+  <script>
+    const trophyStructure = [
+      { name: "4th Tier", classes: "mythic", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
+      { name: "3rd Tier", classes: "", games: ["Max Smash Heroes", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
+      { name: "2nd Tier", classes: "", games: ["Max SkyBlock", "Max Speed UHC", "Max Warlords", "Max Walls", "Max TNT Games", "Max Arcade"] },
+      { name: "1st Tier", classes: "", games: ["Max Murder Mystery", "Max VampireZ", "Max Bed Wars", "Max TKR", "Max Wool Games", "Max Duels", "Max Build Battle"] },
+      { name: "Time Limited", classes: "legacy", isLegacy: true, games: ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"] }
+    ];
+
+    async function initCabinet() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const uuid = urlParams.get('uuid');
+
+      if (!uuid) {
+        document.getElementById('loader').classList.add('hidden');
+        document.getElementById('errorBox').textContent = "No player UUID provided.";
+        document.getElementById('errorBox').classList.remove('hidden');
+        return;
+      }
+
+      try {
+        const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+        if (res.status === 429) throw new Error("Rate Limited. Please wait a minute.");
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+
+        // Populate Profile
+        document.getElementById('p-avatar').src = `https://minotar.net/helm/${data.username}/100`;
+        document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/face/${uuid}.png`; };
+        document.getElementById('p-name').textContent = data.username;
+        document.getElementById('p-ap').textContent = `${Number(data.achievementPoints).toLocaleString()} Achievement Points`;
+
+        // Render Cabinet
+        const cabinetGrid = document.getElementById('cabinet-grid');
+        let html = '';
+
+        trophyStructure.forEach(tier => {
+          html += `<div class="tier-group ${tier.isLegacy ? 'legacy' : ''}">`;
+          html += `<div class="tier-header"><span class="tier-label ${tier.classes}">${tier.name}</span></div>`;
+          html += `<div class="badge-row">`;
+          
+          tier.games.forEach(game => {
+            const isAchieved = data.maxGames.includes(game);
+            const statusClass = isAchieved ? 'achieved' : 'unachieved';
+            html += `
+              <div class="game-badge ${statusClass}">
+                <img src="/img/games/${game}.png" onerror="this.style.opacity='0'">
+                <span>${game.replace('Max ', '')}</span>
+              </div>
+            `;
+          });
+          
+          html += `</div></div>`;
+        });
+
+        cabinetGrid.innerHTML = html;
+
+        document.getElementById('loader').classList.add('hidden');
+        document.getElementById('cabinet-content').classList.remove('hidden');
+
+      } catch (err) {
+        document.getElementById('loader').classList.add('hidden');
+        document.getElementById('errorBox').textContent = err.message;
+        document.getElementById('errorBox').classList.remove('hidden');
+      }
+    }
+
+    initCabinet();
+  </script>
+</body>
+</html>
