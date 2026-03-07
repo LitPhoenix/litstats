@@ -1,187 +1,179 @@
-export default async function handler(req, res) {
-  // 1. SECURITY BOUNCER: Define exactly which websites are allowed
-  const allowedOrigins = [
-    'https://litstats.com',
-    'https://www.litstats.com',
-    'https://litphoenix.github.io' // Added just in case you test on your raw GitHub Pages URL
-  ];
+const fetch = require('node-fetch');
 
-  const requestOrigin = req.headers.origin;
-  const requestReferer = req.headers.referer;
+// Cache the template in server memory so we don't hit Hypixel twice per request
+let cachedTemplate = null;
+let templateFetchTime = 0;
 
-  // Check if the request comes from an allowed domain
-  const isAllowed = allowedOrigins.includes(requestOrigin) || 
-                    (requestReferer && allowedOrigins.some(o => requestReferer.startsWith(o)));
-
-  // If someone visits the API directly in their browser URL bar, or tries to embed it on their own site, reject it.
-  if (!isAllowed) {
-    return res.status(403).json({ error: "Forbidden: API access restricted to litstats.com" });
+function getPlayerRank(player) {
+  if (player.prefix) return player.prefix.replace(/§./g, '');
+  if (player.rank && player.rank !== 'NORMAL') return player.rank;
+  if (player.monthlyPackageRank && player.monthlyPackageRank !== 'NONE') return 'MVP++';
+  if (player.newPackageRank) {
+    const ranks = { 'MVP_PLUS': 'MVP+', 'MVP': 'MVP', 'VIP_PLUS': 'VIP+', 'VIP': 'VIP' };
+    return ranks[player.newPackageRank] || 'NON';
   }
+  return 'NON';
+}
 
-  // 2. Set strict CORS headers
+module.exports = async (req, res) => {
+  // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', requestOrigin || allowedOrigins[0]);
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // 3. Normal API Execution
   const { uuid } = req.query;
-  if (!uuid) return res.status(400).json({ error: "Missing UUID parameter" });
+  if (!uuid) return res.status(400).json({ error: "Missing UUID" });
 
   const API_KEY = process.env.HYPIXEL_API_KEY;
+  if (!API_KEY) return res.status(500).json({ error: "Server missing API Key" });
 
   try {
-    // Fetch Player Data & Achievements Template concurrently
-    const [playerRes, achRes] = await Promise.all([
-      fetch(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } }),
-      fetch('https://api.hypixel.net/v2/resources/achievements')
-    ]);
-
-    const playerData = await playerRes.json();
-    const achData = await achRes.json();
-
-    if (!playerData.success || !playerData.player) {
-      return res.status(404).json({ error: "Player not found on Hypixel" });
+    // 1. Fetch Global Achievements Template (Cached for 1 hour to save API limits)
+    if (!cachedTemplate || Date.now() - templateFetchTime > 3600000) {
+      const tRes = await fetch('https://api.hypixel.net/v2/resources/achievements');
+      if (tRes.ok) {
+        const tData = await tRes.json();
+        cachedTemplate = tData.achievements;
+        templateFetchTime = Date.now();
+      }
     }
 
-    const profile = playerData.player;
-    const achievementsMap = achData.achievements;
+    // 2. Fetch Player Data
+    const pRes = await fetch(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } });
+    if (pRes.status === 429) return res.status(429).json({ error: "Hypixel API Rate Limit. Try again shortly." });
     
-    const maxes = calculateMaxes(profile, achievementsMap);
+    const pData = await pRes.json();
+    if (!pData.success) return res.status(400).json({ error: pData.cause || "Hypixel API Error" });
+    if (!pData.player) return res.status(404).json({ error: "Player not found" });
 
-    // Set Edge Cache: Caches response globally for 10 mins (600s)
-    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate');
+    const profile = pData.player;
+    const rawOneTime = profile.achievementsOneTime || [];
+    const cleanOneTime = rawOneTime.filter(item => typeof item === 'string');
+    const tieredPlayer = profile.achievements || {};
 
-    return res.status(200).json({
+    // Base Data
+    const responseData = {
+      username: profile.displayname || "Unknown",
       uuid: profile.uuid,
-      username: profile.displayname,
+      rank: getPlayerRank(profile),
       achievementPoints: profile.achievementPoints || 0,
-      questsCompleted: profile.quests_completed || 0,
-      maxGames: maxes
-    });
+      questsCompleted: 0, 
+      maxGames: [],
+      gamePercentages: {},
+      missingAchievements: []
+    };
+
+    // Calculate Quests
+    if (profile.quests) {
+      for (const quest in profile.quests) {
+        if (profile.quests[quest].completions) {
+          responseData.questsCompleted += profile.quests[quest].completions.length;
+        }
+      }
+    }
+
+    // Advanced Calculation: Maxes, Percentages & Missing
+    if (cachedTemplate) {
+      const gameMappings = [
+        { internal: "uhc", name: "UHC", badge: "Max UHC" },
+        { internal: "pit", name: "Pit", badge: "Max Pit" },
+        { internal: "walls3", name: "Mega Walls", badge: "Max Mega Walls" },
+        { internal: "skywars", name: "SkyWars", badge: "Max SkyWars" },
+        { internal: "blitz", name: "Blitz", badge: "Max Blitz" },
+        { internal: "arena", name: "Arena Brawl", badge: "Max Arena Brawl" },
+        { internal: "supersmash", name: "Smash Heroes", badge: "Max Smash Heroes" },
+        { internal: "paintball", name: "Paintball", badge: "Max Paintball" },
+        { internal: "copsandcrims", name: "Cops and Crims", badge: "Max Cops and Crims" },
+        { internal: "quake", name: "Quake", badge: "Max Quake" },
+        { internal: "skyblock", name: "SkyBlock", badge: "Max SkyBlock" },
+        { internal: "speeduhc", name: "Speed UHC", badge: "Max Speed UHC" },
+        { internal: "warlords", name: "Warlords", badge: "Max Warlords" },
+        { internal: "walls", name: "Walls", badge: "Max Walls" },
+        { internal: "tntgames", name: "TNT Games", badge: "Max TNT Games" },
+        { internal: "arcade", name: "Arcade", badge: "Max Arcade" },
+        { internal: "murdermystery", name: "Murder Mystery", badge: "Max Murder Mystery" },
+        { internal: "vampirez", name: "VampireZ", badge: "Max VampireZ" },
+        { internal: "bedwars", name: "Bed Wars", badge: "Max Bed Wars" },
+        { internal: "gingerbread", name: "TKR", badge: "Max TKR" },
+        { internal: "woolgames", name: "Wool Games", badge: "Max Wool Games" },
+        { internal: "duels", name: "Duels", badge: "Max Duels" },
+        { internal: "buildbattle", name: "Build Battle", badge: "Max Build Battle" },
+        { internal: "truecombat", name: "Crazy Walls", badge: "Max Crazy Walls", legacy: true },
+        { internal: "skyclash", name: "SkyClash", badge: "Max SkyClash", legacy: true }
+      ];
+
+      for (const game of gameMappings) {
+        const tGame = cachedTemplate[game.internal];
+        if (!tGame) continue;
+
+        let totalPossible = 0;
+        let playerUnlocked = 0;
+        let isMaxed = true;
+
+        // Process One-Time
+        if (tGame.one_time) {
+          for (const [key, ach] of Object.entries(tGame.one_time)) {
+            if (ach.legacy && !game.legacy) continue; // Skip legacy unless it's a legacy game
+            totalPossible++;
+            const fullId = `${game.internal}_${key.toLowerCase()}`;
+            
+            if (cleanOneTime.includes(fullId)) {
+              playerUnlocked++;
+            } else {
+              isMaxed = false;
+              responseData.missingAchievements.push({
+                game: game.name,
+                title: ach.name,
+                desc: ach.description,
+                reward: ach.points
+              });
+            }
+          }
+        }
+
+        // Process Tiered
+        if (tGame.tiered) {
+          for (const [key, ach] of Object.entries(tGame.tiered)) {
+            if (ach.legacy && !game.legacy) continue;
+            const fullId = `${game.internal}_${key.toLowerCase()}`;
+            const playerAmt = tieredPlayer[fullId] || 0;
+
+            for (const tier of ach.tiers) {
+              totalPossible++;
+              if (playerAmt >= tier.amount) {
+                playerUnlocked++;
+              } else {
+                isMaxed = false;
+                responseData.missingAchievements.push({
+                  game: game.name,
+                  title: `${ach.name} (Tier ${tier.amount})`,
+                  desc: ach.description,
+                  reward: tier.points
+                });
+              }
+            }
+          }
+        }
+
+        if (isMaxed && totalPossible > 0) {
+          responseData.maxGames.push(game.badge);
+        } else if (totalPossible > 0) {
+          responseData.gamePercentages[game.badge] = ((playerUnlocked / totalPossible) * 100).toFixed(1);
+        }
+      }
+    }
+
+    // Sort missing achievements by Easiest First (lowest reward points)
+    responseData.missingAchievements.sort((a, b) => a.reward - b.reward);
+    // Limit to Top 50 to prevent massive browser lag
+    responseData.missingAchievements = responseData.missingAchievements.slice(0, 50);
+
+    return res.status(200).json(responseData);
 
   } catch (error) {
     return res.status(500).json({ error: "Internal Server Error" });
   }
-}
-
-// Translated Python Logic
-function calculateMaxes(profile, achMap) {
-  // 1. The Hypixel Bug Fix
-  // Safely extract One-Time achievements, ignoring corrupted non-string entries
-  const rawOneTime = profile.achievementsOneTime || [];
-  const cleanOneTime = [];
-  for (let i = 0; i < rawOneTime.length; i++) {
-    if (typeof rawOneTime[i] === 'string') {
-      cleanOneTime.push(rawOneTime[i]);
-    }
-  }
-
-  const tieredPlayer = profile.achievements || {};
-
-  // 2. Dictionary Mapping (Fixed Blitz and CvC names)
-  const gameMappings = [
-    { names: ["uhc"], badge: "Max UHC" },
-    { names: ["pit"], badge: "Max Pit" },
-    { names: ["walls3"], badge: "Max Mega Walls" },
-    { names: ["skywars"], badge: "Max SkyWars" },
-    { names: ["blitz"], badge: "Max Blitz" }, // Fixed: Changed from 'survivalgames' to 'blitz'
-    { names: ["arena"], badge: "Max Arena Brawl" },
-    { names: ["supersmash"], badge: "Max Smash Heroes" },
-    { names: ["paintball"], badge: "Max Paintball" },
-    { names: ["copsandcrims"], badge: "Max Cops and Crims" }, // Fixed: Changed from 'mcgo' to 'copsandcrims'
-    { names: ["quake"], badge: "Max Quake" },
-    { names: ["skyblock"], badge: "Max SkyBlock" },
-    { names: ["speeduhc"], badge: "Max Speed UHC" },
-    { names: ["warlords"], badge: "Max Warlords" },
-    { names: ["walls"], badge: "Max Walls" },
-    { names: ["tntgames"], badge: "Max TNT Games" },
-    { names: ["arcade"], badge: "Max Arcade" },
-    { names: ["murdermystery"], badge: "Max Murder Mystery" },
-    { names: ["vampirez"], badge: "Max VampireZ" },
-    { names: ["bedwars"], badge: "Max Bed Wars" },
-    { names: ["gingerbread"], badge: "Max TKR" },
-    { names: ["woolgames"], badge: "Max Wool Games" },
-    { names: ["duels"], badge: "Max Duels" },
-    { names: ["buildbattle"], badge: "Max Build Battle" },
-    { names: ["easter", "christmas2017", "halloween2017", "summer"], badge: "Max Seasonal" },
-    { names: ["truecombat"], badge: "Max Crazy Walls", isLegacyGame: true },
-    { names: ["skyclash"], badge: "Max SkyClash", isLegacyGame: true }
-  ];
-
-  let maxes = [];
-
-  for (const group of gameMappings) {
-    let hasMaxedGroup = true;
-
-    for (const apgame of group.names) {
-      const gameData = achMap[apgame];
-      
-      // FAIL CLOSED LOGIC FIX: Deny the badge if the game doesn't exist.
-      if (!gameData) {
-        hasMaxedGroup = false;
-        break;
-      }
-
-      // 3. Process One-Time Achievements
-      if (gameData.one_time) {
-        for (const key in gameData.one_time) {
-          const achInfo = gameData.one_time[key];
-          
-          // Skip legacy achievements unless the game itself is a legacy game
-          if (achInfo.legacy && !group.isLegacyGame) {
-            continue;
-          }
-
-          const apdata = `${apgame}_${key.toLowerCase()}`;
-          if (!cleanOneTime.includes(apdata)) {
-            hasMaxedGroup = false;
-            break;
-          }
-        }
-      }
-
-      if (!hasMaxedGroup) break;
-
-      // 4. Process Tiered Achievements
-      if (gameData.tiered) {
-        for (const key in gameData.tiered) {
-          const achInfo = gameData.tiered[key];
-
-          // Skip legacy achievements unless the game itself is a legacy game
-          if (achInfo.legacy && !group.isLegacyGame) {
-            continue;
-          }
-
-          const apdata = `${apgame}_${key.toLowerCase()}`;
-          const playerap = tieredPlayer[apdata] || 0;
-          
-          // Dynamically find the highest tier amount
-          let maxTierAmount = 0;
-          if (achInfo.tiers && Array.isArray(achInfo.tiers)) {
-            for (const tier of achInfo.tiers) {
-              if (tier.amount > maxTierAmount) {
-                maxTierAmount = tier.amount;
-              }
-            }
-          }
-
-          if (playerap < maxTierAmount) {
-            hasMaxedGroup = false;
-            break;
-          }
-        }
-      }
-
-      if (!hasMaxedGroup) break;
-    }
-
-    // 5. Award Badge
-    if (hasMaxedGroup) {
-      maxes.push(group.badge);
-    }
-  }
-
-  return maxes;
-}
+};
