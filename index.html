@@ -412,11 +412,6 @@
         "Max SkyClash": "SkyClash-64.png"
       };
       
-      // 3. Fallback and build the Hypixel CDN URL
-      const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
-      return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
-    }
-      
       // Fallback for unmapped games (e.g. Speed UHC -> SpeedUHC-64.png)
       const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
       return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
@@ -766,6 +761,7 @@
   </script>
 </body>
 </html>
+
 
 
 
