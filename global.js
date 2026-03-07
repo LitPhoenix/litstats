@@ -1,24 +1,38 @@
-// --- Theme System ---
-function loadTheme() {
-  const saved = localStorage.getItem('theme') || 'light';
-  if(saved === 'dark') document.body.setAttribute('data-theme', 'dark');
-  else document.body.removeAttribute('data-theme');
-  
-  const btn = document.getElementById('themeBtn');
-  if(btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+// --- THEME TOGGLE LOGIC ---
+
+function initTheme() {
+  const themeBtn = document.getElementById('themeBtn');
+  if (!themeBtn) return;
+
+  // 1. Check if they have a saved preference from a previous visit
+  const savedTheme = localStorage.getItem('litstats_theme');
+
+  // 2. If no saved preference, FORCE dark mode by default
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+    themeBtn.textContent = '🌙'; 
+  } else {
+    document.body.classList.remove('light-theme');
+    themeBtn.textContent = '☀️'; 
+    localStorage.setItem('litstats_theme', 'dark'); // Lock in dark mode
+  }
 }
 
 function toggleTheme() {
-  const isDark = document.body.getAttribute('data-theme') === 'dark';
-  const next = isDark ? 'light' : 'dark';
+  const isLight = document.body.classList.toggle('light-theme');
+  const themeBtn = document.getElementById('themeBtn');
   
-  if (next === 'light') document.body.removeAttribute('data-theme');
-  else document.body.setAttribute('data-theme', 'dark');
-  
-  localStorage.setItem('theme', next);
-  const btn = document.getElementById('themeBtn');
-  if(btn) btn.textContent = next === 'dark' ? '☀️' : '🌙';
+  if (isLight) {
+    localStorage.setItem('litstats_theme', 'light');
+    if (themeBtn) themeBtn.textContent = '🌙';
+  } else {
+    localStorage.setItem('litstats_theme', 'dark');
+    if (themeBtn) themeBtn.textContent = '☀️';
+  }
 }
+
+// Run immediately on load
+initTheme();
 
 
 // --- Audio System ---
