@@ -186,7 +186,7 @@
         </div>
       </a>
       <div class="header-controls">
-        <a href="quest.html" class="nav-link">Quests</a>
+        <a href="/quest" class="nav-link">Quests</a>
         <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme" onclick="toggleTheme()">☀️</button>
       </div>
     </div>
@@ -422,7 +422,7 @@
       if (maxes.length === 0) {
         container.innerHTML = `
           <span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span><br>
-          <a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">View Trophy Cabinet ➔</a>
+          <a href="/cabinet/${uuid}" class="cabinet-btn">View Trophy Cabinet ➔</a>
         `;
         return;
       }
@@ -761,6 +761,7 @@
   </script>
 </body>
 </html>
+
 
 
 
