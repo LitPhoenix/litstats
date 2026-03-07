@@ -114,7 +114,7 @@
 
   <script src="global.js"></script>
   <script>
-    const trophyStructure = [
+const trophyStructure = [
       { name: "4th Tier", classes: "mythic", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
       { name: "3rd Tier", classes: "", games: ["Max Smash Heroes", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
       { name: "2nd Tier", classes: "", games: ["Max SkyBlock", "Max Speed UHC", "Max Warlords", "Max Walls", "Max TNT Games", "Max Arcade"] },
@@ -123,59 +123,49 @@
     ];
 
     function getGameIconUrl(gameName) {
-      const iconMap = {
-        "Max Arcade": "Arcade-64.png",
-        "Max Bed Wars": "BedWars-64.png",
-        "Max Build Battle": "BuildBattle-64.png",
-        "Max Cops and Crims": "CVC-64.png",
-        "Max Duels": "Duels-64.png",
-        "Max Mega Walls": "MegaWalls-64.png",
-        "Max Murder Mystery": "MurderMystery-64.png",
-        "Max Pit": "Pit-64.png",
-        "Max Blitz": "SG-64.png",
-        "Max SkyBlock": "SkyBlock-64.png",
-        "Max SkyWars": "Skywars-64.png",
-        "Max Smash Heroes": "SmashHeroes-64.png",
-        "Max TNT Games": "TNT-64.png",
-        "Max UHC": "UHC-64.png",
-        "Max Warlords": "Warlords-64.png",
-        "Max Wool Games": "WoolGames-64.png",
-        "Max Arena Brawl": "Arena-64.png",
-        "Max Paintball": "Paintball-64.png",
-        "Max Quake": "Quakecraft-64.png",
-        "Max VampireZ": "VampireZ-64.png",
-        "Max Walls": "Walls-64.png",
-        "Max TKR": "TurboKartRacers-64.png",
-        "Max Crazy Walls": "CrazyWalls-64.png",
-        "Max SkyClash": "SkyClash-64.png"
-      };
-      
-      const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
-      if (gameName == `Max Seasonal`) || filename = `/img/games/seasonal.png`;
-      return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
-    }
+  // 1. Intercept Seasonal immediately and return the local path
+  if (gameName === "Max Seasonal") {
+    return "/img/games/seasonal.png";
+  }
 
-    async function initCabinet() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const uuid = urlParams.get('uuid');
+  // 2. The Hypixel CDN Map (Updated Arena)
+  const iconMap = {
+    "Max Arcade": "Arcade-64.png",
+    "Max Bed Wars": "BedWars-64.png",
+    "Max Build Battle": "BuildBattle-64.png",
+    "Max Cops and Crims": "CVC-64.png",
+    "Max Duels": "Duels-64.png",
+    "Max Mega Walls": "MegaWalls-64.png",
+    "Max Murder Mystery": "MurderMystery-64.png",
+    "Max Pit": "Pit-64.png",
+    "Max Blitz": "SG-64.png",
+    "Max SkyBlock": "SkyBlock-64.png",
+    "Max SkyWars": "Skywars-64.png",
+    "Max Smash Heroes": "SmashHeroes-64.png",
+    "Max TNT Games": "TNT-64.png",
+    "Max UHC": "UHC-64.png",
+    "Max Warlords": "Warlords-64.png",
+    "Max Wool Games": "WoolGames-64.png",
+    "Max Arena Brawl": "Arena-64.png", // Fixed to Arena-64
+    "Max Paintball": "Paintball-64.png",
+    "Max Quake": "Quakecraft-64.png",
+    "Max VampireZ": "VampireZ-64.png",
+    "Max Walls": "Walls-64.png",
+    "Max TKR": "TurboKartRacers-64.png",
+    "Max Crazy Walls": "CrazyWalls-64.png",
+    "Max SkyClash": "SkyClash-64.png"
+  };
+  
+  // 3. Fallback and build the Hypixel CDN URL
+  const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
+  return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
+}
 
-      if (!uuid || uuid === "undefined") {
-        document.getElementById('loader').classList.add('hidden');
-        document.getElementById('errorBox').textContent = "No valid player UUID provided.";
-        document.getElementById('errorBox').classList.remove('hidden');
-        return;
-      }
-
-      try {
-        const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
-        if (res.status === 429) throw new Error("Rate Limited. Please wait a minute.");
-        const data = await res.json();
-        if (data.error) throw new Error(data.error);
-
+    function renderCabinet(data) {
         document.getElementById('p-avatar').src = `https://minotar.net/helm/${data.username}/100`;
-        document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/face/${uuid}.png`; };
+        document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/face/${data.uuid}.png`; };
         document.getElementById('p-name').textContent = data.username;
-        document.getElementById('p-ap').textContent = `${Number(data.achievementPoints).toLocaleString()} AP`;
+        document.getElementById('p-ap').textContent = `${Number(data.achievementPoints || data.current_ap).toLocaleString()} AP`;
 
         const cabinetGrid = document.getElementById('cabinet-grid');
         let html = '';
@@ -186,7 +176,7 @@
           html += `<div class="badge-row">`;
           
           tier.games.forEach(game => {
-            const isAchieved = data.maxGames.includes(game);
+            const isAchieved = (data.maxGames || []).includes(game);
             const statusClass = isAchieved ? 'achieved' : 'unachieved';
             
             html += `
@@ -205,6 +195,42 @@
         cabinetGrid.innerHTML = html;
         document.getElementById('loader').classList.add('hidden');
         document.getElementById('cabinet-content').classList.remove('hidden');
+    }
+
+    async function initCabinet() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const uuid = urlParams.get('uuid');
+
+      if (!uuid || uuid === "undefined") {
+        document.getElementById('loader').classList.add('hidden');
+        document.getElementById('errorBox').textContent = "No valid player UUID provided.";
+        document.getElementById('errorBox').classList.remove('hidden');
+        return;
+      }
+
+      try {
+        // 1. SMART CACHE: Check the hourly updated JSON first
+        const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
+        const jsonRes = await fetch(`ap_hunters_data.json?v=${currentHour}`);
+        
+        if (jsonRes.ok) {
+            const localData = await jsonRes.json();
+            const localPlayer = localData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
+            
+            if (localPlayer && localPlayer.maxGames) {
+                renderCabinet(localPlayer);
+                return; // Stop execution, we got the data locally!
+            }
+        }
+
+        // 2. LIVE FETCH: If not in Top 200, fetch from Vercel
+        const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+        if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
+        const data = await res.json();
+        
+        if (data.error) throw new Error(`API Error: ${data.error}`);
+
+        renderCabinet(data);
 
       } catch (err) {
         document.getElementById('loader').classList.add('hidden');
