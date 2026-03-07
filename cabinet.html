@@ -30,9 +30,9 @@
     
     .tier-header { display: flex; align-items: center; width: 100%; gap: 16px; }
     .tier-header::before, .tier-header::after { content: ''; flex-grow: 1; height: 1px; background: var(--border); }
-    .tier-label { font-size: 12px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; }
-    .tier-label.mythic { color: var(--gold); }
-    .tier-label.legacy { color: var(--red); }
+    
+    /* Removed individual colours here, they are now inherited from the group */
+    .tier-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; }
     
     .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
     
@@ -49,14 +49,14 @@
       filter: grayscale(100%) brightness(0.4) contrast(1.1); opacity: 0.7;
     }
     
-    /* ACHIEVED (Shiny/Prestigious) */
+    /* ACHIEVED (Base Configuration) */
     .game-badge.achieved {
-      background: linear-gradient(135deg, var(--surface) 0%, rgba(245, 158, 11, 0.05) 100%);
-      border: 1px solid var(--gold);
-      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.15), inset 0 0 0 1px rgba(245, 158, 11, 0.3);
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border-width: 1px;
+      border-style: solid;
     }
-    .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.5)); transform: scale(1.1); }
-    .game-badge.achieved:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(245, 158, 11, 0.25), inset 0 0 0 1px rgba(245, 158, 11, 0.4); }
+    .game-badge.achieved img { transform: scale(1.1); }
+    .game-badge.achieved:hover { transform: translateY(-6px); }
 
     /* Shine Animation */
     .game-badge.achieved::after {
@@ -66,11 +66,60 @@
     }
     @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
 
-    .tier-group.legacy .game-badge { border-style: dashed; border-width: 2px; }
-    
     .img-wrapper { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; z-index: 1; }
     .game-badge img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
     .game-badge span { font-size: 12px; font-weight: 600; color: var(--text); text-align: center; z-index: 1; padding: 0 6px; line-height: 1.2; }
+
+    /* =========================================
+       TIER COLOUR INHERITANCE 
+       ========================================= */
+
+    /* Legendary (Gold) */
+    .tier-group.legendary .tier-label { color: var(--gold); }
+    .tier-group.legendary .game-badge.achieved { 
+      border-color: var(--gold); 
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.15), inset 0 0 0 1px rgba(245, 158, 11, 0.3); 
+    }
+    .tier-group.legendary .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(245, 158, 11, 0.25), inset 0 0 0 1px rgba(245, 158, 11, 0.4); }
+    .tier-group.legendary .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.5)); }
+
+    /* Epic (Silver) */
+    .tier-group.epic .tier-label { color: var(--silver); }
+    .tier-group.epic .game-badge.achieved { 
+      border-color: var(--silver); 
+      box-shadow: 0 6px 16px rgba(192, 192, 192, 0.15), inset 0 0 0 1px rgba(192, 192, 192, 0.3); 
+    }
+    .tier-group.epic .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(192, 192, 192, 0.25), inset 0 0 0 1px rgba(192, 192, 192, 0.4); }
+    .tier-group.epic .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(192, 192, 192, 0.5)); }
+
+    /* Rare (Bronze) */
+    .tier-group.rare .tier-label { color: var(--bronze); }
+    .tier-group.rare .game-badge.achieved { 
+      border-color: var(--bronze); 
+      box-shadow: 0 6px 16px rgba(205, 127, 50, 0.15), inset 0 0 0 1px rgba(205, 127, 50, 0.3); 
+    }
+    .tier-group.rare .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(205, 127, 50, 0.25), inset 0 0 0 1px rgba(205, 127, 50, 0.4); }
+    .tier-group.rare .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(205, 127, 50, 0.5)); }
+
+    /* Common */
+    .tier-group.common .tier-label { color: #94a3b8; }
+    .tier-group.common .game-badge.achieved { 
+      border-color: #94a3b8; 
+      box-shadow: 0 6px 16px rgba(148, 163, 184, 0.15), inset 0 0 0 1px rgba(148, 163, 184, 0.3); 
+    }
+    .tier-group.common .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(148, 163, 184, 0.25), inset 0 0 0 1px rgba(148, 163, 184, 0.4); }
+    .tier-group.common .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(148, 163, 184, 0.5)); }
+
+    /* Legacy (Red / Dashed) */
+    .tier-group.legacy .tier-label { color: var(--red); }
+    .tier-group.legacy .game-badge { border-style: dashed; }
+    .tier-group.legacy .game-badge.achieved { 
+      border-color: var(--red); 
+      box-shadow: 0 6px 16px rgba(255, 68, 68, 0.15), inset 0 0 0 1px rgba(255, 68, 68, 0.3); 
+    }
+    .tier-group.legacy .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(255, 68, 68, 0.25), inset 0 0 0 1px rgba(255, 68, 68, 0.4); }
+    .tier-group.legacy .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(255, 68, 68, 0.5)); }
+
 
     .loading-msg { font-size: 16px; color: var(--text-3); text-align: center; padding: 100px; }
     .hidden { display: none !important; }
@@ -115,10 +164,10 @@
   <script src="/global.js"></script>
   <script>
     const trophyStructure = [
-      { name: "4th Tier", classes: "mythic", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
-      { name: "3rd Tier", classes: "", games: ["Max Smash Heroes", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
-      { name: "2nd Tier", classes: "", games: ["Max SkyBlock", "Max Speed UHC", "Max Warlords", "Max Walls", "Max TNT Games", "Max Arcade"] },
-      { name: "1st Tier", classes: "", games: ["Max Murder Mystery", "Max VampireZ", "Max Bed Wars", "Max TKR", "Max Wool Games", "Max Duels", "Max Build Battle"] },
+      { name: "4th Tier", classes: "legendary", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
+      { name: "3rd Tier", classes: "epic", games: ["Max Smash Heroes", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
+      { name: "2nd Tier", classes: "rare", games: ["Max SkyBlock", "Max Speed UHC", "Max Warlords", "Max Walls", "Max TNT Games", "Max Arcade"] },
+      { name: "1st Tier", classes: "common", games: ["Max Murder Mystery", "Max VampireZ", "Max Bed Wars", "Max TKR", "Max Wool Games", "Max Duels", "Max Build Battle"] },
       { name: "Time Limited", classes: "legacy", isLegacy: true, games: ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"] }
     ];
 
@@ -168,8 +217,9 @@
         let html = '';
 
         trophyStructure.forEach(tier => {
-          html += `<div class="tier-group ${tier.isLegacy ? 'legacy' : ''}">`;
-          html += `<div class="tier-header"><span class="tier-label ${tier.classes}">${tier.name}</span></div>`;
+          // Moved the tier.classes parameter up to the main group wrapper!
+          html += `<div class="tier-group ${tier.classes} ${tier.isLegacy ? 'legacy' : ''}">`;
+          html += `<div class="tier-header"><span class="tier-label">${tier.name}</span></div>`;
           html += `<div class="badge-row">`;
           
           tier.games.forEach(game => {
