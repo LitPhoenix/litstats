@@ -4,6 +4,10 @@
     {
       "source": "/cabinet/:uuid",
       "destination": "/cabinet.html?uuid=:uuid"
+    },
+    {
+      "source": "/quest",
+      "destination": "/quest.html"
     }
   ]
 }
