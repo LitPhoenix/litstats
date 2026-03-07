@@ -441,7 +441,7 @@
       if (maxes.length === 0) {
         container.innerHTML = `
           <span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span><br>
-          <a href="/cabinet/${uuid}" class="cabinet-btn">View Trophy Cabinet ➔</a>
+          <a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">View Trophy Cabinet ➔</a>
         `;
         return;
       }
@@ -455,7 +455,7 @@
         `;
       });
       html += `</div>`;
-      html += `<a href="/cabinet/${uuid}" class="cabinet-btn">Enter Trophy Cabinet ➔</a>`;
+      html += `<a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Trophy Cabinet ➔</a>`;
       
       container.innerHTML = html;
     }
@@ -845,4 +845,5 @@
   </script>
 </body>
 </html>
+
 
