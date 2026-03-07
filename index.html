@@ -157,6 +157,60 @@
       .player-avatar { width: 24px; height: 24px; }
       td, thead th { padding: 9px 10px; }
     }
+
+    /* --- NEW MAX GAMES EXPANSION --- */
+    .player-expanded-row { display: none; background: var(--surface-2); border-bottom: 1px solid var(--border); box-shadow: inset 0 4px 10px rgba(0,0,0,0.1); }
+    .player-expanded-row.open { display: table-row; }
+    .maxes-container { padding: 24px 16px 32px 16px; display: flex; flex-direction: column; gap: 20px; align-items: center; }
+    
+    .tier-group { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; max-width: 800px; }
+    .tier-label { font-size: 10px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 2px; }
+    .tier-label.mythic { color: var(--gold); }
+    
+    .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    
+    .game-badge {
+      width: 100px; height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 8px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; overflow: hidden;
+      cursor: default;
+    }
+
+    /* UNACHIEVED (Rusty/Moody Stamp) */
+    .game-badge.unachieved {
+      background: var(--surface); border: 1px solid var(--border-strong);
+      box-shadow: inset 0 3px 6px rgba(0,0,0,0.6); /* Pressed in look */
+      filter: grayscale(100%) brightness(0.4) contrast(1.2); opacity: 0.8;
+    }
+    .game-badge.unachieved:hover { filter: grayscale(100%) brightness(0.6); opacity: 1; }
+    
+    /* ACHIEVED (Prestigious/Shiny) */
+    .game-badge.achieved {
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(245, 158, 11, 0.05) 100%);
+      border: 1px solid var(--gold);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15), inset 0 0 0 1px rgba(245, 158, 11, 0.2);
+    }
+    .game-badge.achieved img { filter: drop-shadow(0 2px 6px rgba(245, 158, 11, 0.4)); transform: scale(1.05); }
+    .game-badge.achieved:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25), inset 0 0 0 1px rgba(245, 158, 11, 0.3); }
+
+    /* CSS Shine Animation */
+    .game-badge.achieved::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+      transform: skewX(-20deg); animation: shine 5s infinite;
+    }
+    @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+
+    /* LEGACY */
+    .tier-group.legacy .game-badge { border-style: dashed; border-width: 2px; }
+    
+    .game-badge img { width: 36px; height: 36px; object-fit: contain; z-index: 1; transition: 0.2s; }
+    .game-badge span { font-size: 10.5px; font-weight: 600; color: var(--text); text-align: center; z-index: 1; padding: 0 4px; line-height: 1.2; }
+    
+    .cabinet-btn {
+      margin-top: 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent);
+      padding: 10px 24px; border-radius: 8px; font-size: 12px; font-weight: 700; text-decoration: none; transition: 0.2s;
+    }
+    .cabinet-btn:hover { background: var(--accent); color: var(--bg); box-shadow: 0 4px 12px var(--accent-soft); }
   </style>
 </head>
 <body>
@@ -361,30 +415,40 @@
       }
     }
 
-    function renderMaxesHTML(container, maxes) {
-      if (maxes.length === 0) {
-        container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span>`;
-        return;
-      }
-    
-      const grouped = { 7: [], 6: [], 5: [], 4: [], 3: [], 2: [], 1: [] };
-      maxes.forEach(game => {
-        const tier = gameTiers[game];
-        if (tier) grouped[tier].push(game);
-      });
-    
-      const ordinals = ["", "1st", "2nd", "3rd", "4th", "5th", "6th", "7th"];
+    // The master layout architecture you requested
+    const trophyStructure = [
+      { name: "4th Tier", classes: "mythic", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
+      { name: "3rd Tier", classes: "", games: ["Max Smash Heroes", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
+      { name: "2nd Tier", classes: "", games: ["Max SkyBlock", "Max Speed UHC", "Max Warlords", "Max Walls", "Max TNT Games", "Max Arcade"] },
+      { name: "1st Tier", classes: "", games: ["Max Murder Mystery", "Max VampireZ", "Max Bed Wars", "Max TKR", "Max Wool Games", "Max Duels", "Max Build Battle"] },
+      { name: "Legacy (Time Limited)", classes: "legacy", isLegacy: true, games: ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"] }
+    ];
+
+    function renderMaxesHTML(container, maxes, uuid) {
       let html = '';
-    
-      for (let t = 7; t >= 1; t--) {
-        if (grouped[t].length > 0) {
-          html += `<div class="tier-row"><span class="tier-label">${ordinals[t]} Tier</span>`;
-          grouped[t].forEach(game => {
-            html += `<div class="game-badge"><img src="/img/games/${game}.png" onerror="this.style.display='none'"> ${game}</div>`;
-          });
-          html += `</div>`;
-        }
-      }
+      
+      trophyStructure.forEach(tier => {
+        html += `<div class="tier-group ${tier.isLegacy ? 'legacy' : ''}">`;
+        html += `<div class="tier-label ${tier.classes}">${tier.name}</div>`;
+        html += `<div class="badge-row">`;
+        
+        tier.games.forEach(game => {
+          const isAchieved = maxes.includes(game);
+          const statusClass = isAchieved ? 'achieved' : 'unachieved';
+          html += `
+            <div class="game-badge ${statusClass}">
+              <img src="/img/games/${game}.png" onerror="this.style.opacity='0'">
+              <span>${game.replace('Max ', '')}</span>
+            </div>
+          `;
+        });
+        
+        html += `</div></div>`;
+      });
+
+      // Add the button pointing to the dedicated page
+      html += `<a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Dedicated Trophy Cabinet ➔</a>`;
+      
       container.innerHTML = html;
     }
 
@@ -711,6 +775,7 @@ async function loadData() {
   </script>
 </body>
 </html>
+
 
 
 
