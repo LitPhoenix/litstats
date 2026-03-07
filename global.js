@@ -103,7 +103,7 @@ document.addEventListener('keydown', (e) => {
       // Success
       if (konamiIndex === konamiCode.length) {
         konamiIndex = 0;
-        window.location.href = 'trophy.html'; 
+        window.location.href = 'blitz.html'; 
       }
       
     } else {
