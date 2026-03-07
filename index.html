@@ -346,23 +346,34 @@
 
       const container = document.getElementById(`maxes-${uuid}`);
       
+      // 1. SMART CACHE: Check if the player is already in our downloaded JSON list
+      const localPlayer = allPlayersList.find(p => p.uuid === uuid);
+      
+      if (localPlayer && localPlayer.maxGames) {
+        // Player is Top 200: Instantly render from local file. Zero API requests.
+        renderMaxesHTML(container, localPlayer.maxGames, uuid);
+        return;
+      }
+
+      // 2. SESSION CACHE: Check if we searched them recently this session
       if (playerMaxesCache[uuid]) {
         renderMaxesHTML(container, playerMaxesCache[uuid], uuid);
         return;
       }
 
+      // 3. FALLBACK: Live Vercel fetch (Only triggers for custom searches)
       container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">Loading maxed games from network...</span>`;
 
       try {
         const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
         if (res.status === 429) throw new Error('RATE_LIMIT');
         const data = await res.json();
-        if (data.error) throw new Error('API_ERROR');
+        if (data.error) throw new Error(data.error); // Show actual API error if one exists
         
         playerMaxesCache[uuid] = data.maxGames || [];
         renderMaxesHTML(container, playerMaxesCache[uuid], uuid);
       } catch (e) {
-        container.innerHTML = `<span style="color:var(--red); font-size:12px;">${e.message === 'RATE_LIMIT' ? 'Slow down! Too many network requests.' : 'Failed to load data.'}</span>`;
+        container.innerHTML = `<span style="color:var(--red); font-size:12px;">${e.message === 'RATE_LIMIT' ? 'Slow down! Too many network requests.' : `Error: ${e.message}`}</span>`;
       }
     }
 
@@ -744,6 +755,7 @@
   </script>
 </body>
 </html>
+
 
 
 
