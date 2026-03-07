@@ -1,154 +1,213 @@
 const fs = require('fs');
-const path = require('path');
-const fetch = require('node-fetch');
 
-// 1. CONFIGURATION
-const NADESHIKO_URL = 'https://www.nadeshiko.io/leaderboard/NETWORK_ACHIEVEMENT_POINTS';
-const DATA_FILE = path.join(__dirname, '../ap_hunters_data.json');
-const HYPIXEL_KEY = process.env.HYPIXEL_API_KEY;
+const API_KEY = process.env.HYPIXEL_API_KEY;
 
-async function update() {
-    console.log("🚀 Starting Daily AP Update...");
+// Max Games Calculation Logic (Mirrored from Vercel)
+function calculateMaxes(profile, achMap) {
+  const rawOneTime = profile.achievementsOneTime || [];
+  const cleanOneTime = rawOneTime.filter(item => typeof item === 'string');
+  const tieredPlayer = profile.achievements || {};
 
-    if (!HYPIXEL_KEY) {
-        console.error("❌ HYPIXEL_API_KEY is missing from environment variables!");
-        process.exit(1);
-    }
+  const gameMappings = [
+    { names: ["uhc"], badge: "Max UHC" },
+    { names: ["pit"], badge: "Max Pit" },
+    { names: ["walls3"], badge: "Max Mega Walls" },
+    { names: ["skywars"], badge: "Max SkyWars" },
+    { names: ["blitz"], badge: "Max Blitz" },
+    { names: ["arena"], badge: "Max Arena Brawl" },
+    { names: ["supersmash"], badge: "Max Smash Heroes" },
+    { names: ["paintball"], badge: "Max Paintball" },
+    { names: ["copsandcrims"], badge: "Max Cops and Crims" },
+    { names: ["quake"], badge: "Max Quake" },
+    { names: ["skyblock"], badge: "Max SkyBlock" },
+    { names: ["speeduhc"], badge: "Max Speed UHC" },
+    { names: ["warlords"], badge: "Max Warlords" },
+    { names: ["walls"], badge: "Max Walls" },
+    { names: ["tntgames"], badge: "Max TNT Games" },
+    { names: ["arcade"], badge: "Max Arcade" },
+    { names: ["murdermystery"], badge: "Max Murder Mystery" },
+    { names: ["vampirez"], badge: "Max VampireZ" },
+    { names: ["bedwars"], badge: "Max Bed Wars" },
+    { names: ["gingerbread"], badge: "Max TKR" },
+    { names: ["woolgames"], badge: "Max Wool Games" },
+    { names: ["duels"], badge: "Max Duels" },
+    { names: ["buildbattle"], badge: "Max Build Battle" },
+    { names: ["easter", "christmas2017", "halloween2017", "summer"], badge: "Max Seasonal" },
+    { names: ["truecombat"], badge: "Max Crazy Walls", isLegacyGame: true },
+    { names: ["skyclash"], badge: "Max SkyClash", isLegacyGame: true }
+  ];
 
-    let db;
-    try {
-        db = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-    } catch (e) {
-        console.error("❌ Could not load existing data. Starting fresh.");
-        db = { manual_country_mapping: {}, month_start_snapshot: {}, country_leaderboard: [] };
-    }
+  let maxes = [];
 
-    // 2. FETCH TOP 200 FROM NADESHIKO (Page 1 & 2)
-    console.log("🌐 Fetching Nadeshiko Top 200...");
-    const nadeshikoPlayers = [];
+  for (const group of gameMappings) {
+    let hasMaxedGroup = true;
 
-    for (let page = 1; page <= 2; page++) {
-        const response = await fetch(`${NADESHIKO_URL}?page=${page}`, {
-            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36' }
-        });
-        if (!response.ok) throw new Error(`Nadeshiko returned status: ${response.status}`);
-        const json = await response.json();
-        nadeshikoPlayers.push(...json.data);
-    }
+    for (const apgame of group.names) {
+      const gameData = achMap[apgame];
+      
+      if (!gameData) {
+        hasMaxedGroup = false;
+        break;
+      }
 
-    console.log(`✅ Got ${nadeshikoPlayers.length} players from Nadeshiko.`);
-    console.log("🌐 Fetching Live Hypixel Data (This will take ~50 seconds)...");
+      if (gameData.one_time) {
+        for (const key in gameData.one_time) {
+          const achInfo = gameData.one_time[key];
+          if (achInfo.legacy && !group.isLegacyGame) continue;
+          if (!cleanOneTime.includes(`${apgame}_${key.toLowerCase()}`)) {
+            hasMaxedGroup = false;
+            break;
+          }
+        }
+      }
 
-    const freshPlayers = [];
+      if (!hasMaxedGroup) break;
 
-    // 3. LIVE HYPIXEL API CHECK
-    for (let i = 0; i < nadeshikoPlayers.length; i++) {
-        const p = nadeshikoPlayers[i];
-        
-        try {
-            const hypixelRes = await fetch(`https://api.hypixel.net/v2/player?uuid=${p.uuid}`, {
-                headers: { 'API-Key': HYPIXEL_KEY }
-            });
+      if (gameData.tiered) {
+        for (const key in gameData.tiered) {
+          const achInfo = gameData.tiered[key];
+          if (achInfo.legacy && !group.isLegacyGame) continue;
 
-            if (hypixelRes.ok) {
-                const hypixelData = await hypixelRes.json();
-                
-                if (hypixelData.success && hypixelData.player) {
-                    freshPlayers.push({
-                        uuid: p.uuid,
-                        username: hypixelData.player.displayname || p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
-                        value: hypixelData.player.achievementPoints || parseFloat(p.value)
-                    });
-                } else {
-                    // Fallback to Nadeshiko data if player API fails
-                    freshPlayers.push({
-                        uuid: p.uuid,
-                        username: p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
-                        value: parseFloat(p.value)
-                    });
-                }
-            } else {
-                freshPlayers.push({
-                    uuid: p.uuid,
-                    username: p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
-                    value: parseFloat(p.value)
-                });
+          let maxTierAmount = 0;
+          if (achInfo.tiers && Array.isArray(achInfo.tiers)) {
+            for (const tier of achInfo.tiers) {
+              if (tier.amount > maxTierAmount) maxTierAmount = tier.amount;
             }
-        } catch (error) {
-            freshPlayers.push({
-                uuid: p.uuid,
-                username: p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
-                value: parseFloat(p.value)
-            });
-        }
+          }
 
-        // CRUCIAL: 250ms delay limits us to 4 requests/sec. Hypixel limit is 300/5mins (1 per sec average).
-        await new Promise(r => setTimeout(r, 250));
-        
-        if ((i + 1) % 50 === 0) console.log(`⏳ Processed ${i + 1}/200 players...`);
+          if ((tieredPlayer[`${apgame}_${key.toLowerCase()}`] || 0) < maxTierAmount) {
+            hasMaxedGroup = false;
+            break;
+          }
+        }
+      }
+
+      if (!hasMaxedGroup) break;
     }
 
-    // 4. MONTHLY SNAPSHOT LOGIC
-    const today = new Date();
-    const lastUpdate = new Date(db.last_update || 0);
-    
-    if (today.getMonth() !== lastUpdate.getMonth()) {
-        console.log("📅 New month detected! Resetting start-of-month snapshot.");
-        db.month_start_snapshot = {}; 
-        
-        freshPlayers.forEach(p => {
-            db.month_start_snapshot[p.uuid] = p.value;
-        });
-    }
-
-    // 5. TRANSFORM PLAYERS
-    const processedPlayers = freshPlayers.map(p => {
-        if (!db.month_start_snapshot[p.uuid]) {
-            db.month_start_snapshot[p.uuid] = p.value;
-        }
-        const startAP = db.month_start_snapshot[p.uuid];
-        const gain = p.value - startAP;
-        const countryCode = db.manual_country_mapping[p.uuid] || "Unknown";
-
-        return {
-            username: p.username,
-            uuid: p.uuid,
-            country: countryCode,
-            current_ap: p.value,
-            last_month_ap: startAP,
-            monthly_gain: gain
-        };
-    });
-
-    // 6. GROUP BY COUNTRY & CALCULATE SCORES
-    const countryMap = {};
-
-    processedPlayers.forEach(player => {
-        const c = player.country;
-        if (!countryMap[c]) countryMap[c] = { country: c, top_players: [] };
-        countryMap[c].top_players.push(player);
-    });
-
-    const countryLeaderboardArray = Object.values(countryMap).map(countryObj => {
-        countryObj.top_players.sort((a, b) => b.current_ap - a.current_ap);
-
-        const top5 = countryObj.top_players.slice(0, 5);
-        const totalAP = top5.reduce((sum, p) => sum + p.current_ap, 0);
-        const avgScore = top5.length > 0 ? (totalAP / 5) : 0;
-
-        return {
-            country: countryObj.country,
-            score: avgScore, 
-            top_players: countryObj.top_players
-        };
-    });
-
-    // 7. SAVE EVERYTHING
-    db.last_update = today.toISOString();
-    db.country_leaderboard = countryLeaderboardArray;
-
-    fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2));
-    console.log(`✅ Success! Processed ${processedPlayers.length} players into ${countryLeaderboardArray.length} countries.`);
+    if (hasMaxedGroup) maxes.push(group.badge);
+  }
+  return maxes;
 }
 
-update();
+async function fetchWithRetry(url, options = {}, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const res = await fetch(url, options);
+      if (res.status === 429) {
+        await new Promise(r => setTimeout(r, 2000 * (i + 1))); 
+        continue;
+      }
+      return await res.json();
+    } catch (e) {
+      if (i === retries - 1) throw e;
+      await new Promise(r => setTimeout(r, 1000));
+    }
+  }
+}
+
+async function run() {
+  try {
+    // 1. Get Nadeshiko Leaderboard & Hypixel Template
+    const [nadRes, achMapRes] = await Promise.all([
+      fetchWithRetry('https://nadeshiko.io/api/leaderboard/achievement_points'),
+      fetchWithRetry('https://api.hypixel.net/v2/resources/achievements')
+    ]);
+
+    const topPlayers = nadRes.slice(0, 200);
+    const achievementsMap = achMapRes.achievements;
+
+    // 2. Load Old Cache
+    let oldData = { month_start_snapshot: {}, country_leaderboard: [] };
+    if (fs.existsSync('ap_hunters_data.json')) {
+      try { oldData = JSON.parse(fs.readFileSync('ap_hunters_data.json', 'utf8')); } 
+      catch (e) { console.error("Error reading cache", e); }
+    }
+
+    const currentMonth = new Date().toISOString().slice(0, 7);
+    if (oldData.current_month !== currentMonth) {
+      oldData.month_start_snapshot = {};
+      oldData.current_month = currentMonth;
+    }
+
+    const livePlayers = [];
+
+    // 3. Process Players Concurrently (Staggered to respect API limits)
+    for (let i = 0; i < topPlayers.length; i++) {
+      const uuid = topPlayers[i].uuid;
+      const cachedPlayer = oldData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
+      const startAP = oldData.month_start_snapshot[uuid];
+
+      try {
+        const playerData = await fetchWithRetry(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } });
+        
+        if (playerData.success && playerData.player) {
+          const profile = playerData.player;
+          const liveAP = profile.achievementPoints || 0;
+          
+          if (startAP === undefined) oldData.month_start_snapshot[uuid] = liveAP;
+          
+          const finalStartAP = oldData.month_start_snapshot[uuid];
+          const monthlyGain = finalStartAP === liveAP && cachedPlayer ? cachedPlayer.monthly_gain : (liveAP - finalStartAP);
+
+          // Calculate maxes locally!
+          const playerMaxes = calculateMaxes(profile, achievementsMap);
+
+          livePlayers.push({
+            uuid: profile.uuid,
+            username: profile.displayname || topPlayers[i].name,
+            country: topPlayers[i].country || 'Unknown',
+            current_ap: liveAP,
+            monthly_gain: finalStartAP === liveAP && cachedPlayer && cachedPlayer.monthly_gain === "NEW" ? "NEW" : monthlyGain,
+            maxGames: playerMaxes // Store directly in JSON
+          });
+        }
+      } catch (err) {
+        console.error(`Failed to fetch ${uuid}, using fallback.`);
+        if (cachedPlayer) livePlayers.push(cachedPlayer);
+      }
+
+      await new Promise(r => setTimeout(r, 250)); // Rate limit buffer
+    }
+
+    // 4. Country Power Score (Removed Square Root)
+    const cMap = {};
+    livePlayers.forEach(p => {
+      if(!cMap[p.country]) cMap[p.country] = [];
+      cMap[p.country].push(p);
+    });
+
+    const baseline = Math.min(...livePlayers.map(p => p.current_ap)) - 100;
+    const weights = [1.0, 0.50, 0.25, 0.10, 0.05];
+
+    const processedCountries = Object.keys(cMap).map(c => {
+      cMap[c].sort((a,b) => b.current_ap - a.current_ap);
+      const top5 = cMap[c].slice(0, 5);
+      
+      // Removed the Math.sqrt() as requested
+      const score = top5.reduce((sum, p, i) => sum + (Math.max(0, p.current_ap - baseline) * weights[i]), 0);
+      
+      return { 
+        country: c, 
+        top_players: cMap[c], 
+        score: Math.round(score) 
+      };
+    });
+
+    // 5. Save Output
+    const output = {
+      last_update: new Date().toISOString(),
+      current_month: currentMonth,
+      month_start_snapshot: oldData.month_start_snapshot,
+      country_leaderboard: processedCountries.sort((a,b) => b.score - a.score)
+    };
+
+    fs.writeFileSync('ap_hunters_data.json', JSON.stringify(output, null, 2));
+
+  } catch (error) {
+    console.error("Critical Error generating leaderboard:", error);
+    process.exit(1);
+  }
+}
+
+run();
