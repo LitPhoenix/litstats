@@ -1,7 +1,14 @@
 const fs = require('fs');
+const path = require('path');
 
-const API_KEY = process.env.HYPIXEL_API_KEY;
+// Support both local Node.js fetch and older environments
+const fetch = require('node-fetch') || global.fetch; 
 
+const NADESHIKO_URL = 'https://www.nadeshiko.io/leaderboard/NETWORK_ACHIEVEMENT_POINTS';
+const DATA_FILE = path.join(__dirname, '../ap_hunters_data.json');
+const HYPIXEL_KEY = process.env.HYPIXEL_API_KEY;
+
+// Max Games Calculation Logic (Mirrored from Vercel)
 function calculateMaxes(profile, achMap) {
   const rawOneTime = profile.achievementsOneTime || [];
   const cleanOneTime = rawOneTime.filter(item => typeof item === 'string');
@@ -78,118 +85,179 @@ function calculateMaxes(profile, achMap) {
   return maxes;
 }
 
-// HIGHLY ROBUST FETCH WITH HTML ERROR CATCHING
-async function fetchWithRetry(url, options = {}, retries = 3) {
+// Custom Fetch to handle random API HTML drops
+async function fetchSafeJSON(url, options = {}, retries = 3) {
   for (let i = 0; i < retries; i++) {
     try {
       const res = await fetch(url, options);
       if (res.status === 429) {
-        await new Promise(r => setTimeout(r, 2000 * (i + 1))); 
+        await new Promise(r => setTimeout(r, 2000));
         continue;
       }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      
       const text = await res.text();
       try {
-        return JSON.parse(text); // Try parsing JSON safely
+        return JSON.parse(text); 
       } catch (err) {
-        throw new Error(`API returned invalid JSON (HTML page)`);
+        throw new Error(`API returned invalid JSON`);
       }
     } catch (e) {
-      console.warn(`Attempt ${i+1} failed for ${url}: ${e.message}`);
       if (i === retries - 1) throw e;
-      await new Promise(r => setTimeout(r, 2000));
+      await new Promise(r => setTimeout(r, 1000));
     }
   }
 }
 
-async function run() {
-  try {
-    const [nadRes, achMapRes] = await Promise.all([
-      fetchWithRetry('https://nadeshiko.io/api/leaderboard/achievement_points'),
-      fetchWithRetry('https://api.hypixel.net/v2/resources/achievements')
-    ]);
+async function update() {
+  console.log("🚀 Starting Daily AP Update...");
 
-    const topPlayers = nadRes.slice(0, 200);
-    const achievementsMap = achMapRes.achievements;
-
-    let oldData = { month_start_snapshot: {}, country_leaderboard: [] };
-    if (fs.existsSync('ap_hunters_data.json')) {
-      try { oldData = JSON.parse(fs.readFileSync('ap_hunters_data.json', 'utf8')); } 
-      catch (e) {}
-    }
-
-    const currentMonth = new Date().toISOString().slice(0, 7);
-    if (oldData.current_month !== currentMonth) {
-      oldData.month_start_snapshot = {};
-      oldData.current_month = currentMonth;
-    }
-
-    const livePlayers = [];
-
-    for (let i = 0; i < topPlayers.length; i++) {
-      const uuid = topPlayers[i].uuid;
-      const cachedPlayer = oldData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
-      const startAP = oldData.month_start_snapshot[uuid];
-
-      try {
-        const playerData = await fetchWithRetry(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } });
-        
-        if (playerData.success && playerData.player) {
-          const profile = playerData.player;
-          const liveAP = profile.achievementPoints || 0;
-          
-          if (startAP === undefined) oldData.month_start_snapshot[uuid] = liveAP;
-          const finalStartAP = oldData.month_start_snapshot[uuid];
-          const monthlyGain = finalStartAP === liveAP && cachedPlayer ? cachedPlayer.monthly_gain : (liveAP - finalStartAP);
-
-          const playerMaxes = calculateMaxes(profile, achievementsMap);
-
-          livePlayers.push({
-            uuid: profile.uuid,
-            username: profile.displayname || topPlayers[i].name,
-            country: topPlayers[i].country || 'Unknown',
-            current_ap: liveAP,
-            monthly_gain: finalStartAP === liveAP && cachedPlayer && cachedPlayer.monthly_gain === "NEW" ? "NEW" : monthlyGain,
-            maxGames: playerMaxes
-          });
-        } else {
-           if (cachedPlayer) livePlayers.push(cachedPlayer);
-        }
-      } catch (err) {
-        if (cachedPlayer) livePlayers.push(cachedPlayer);
-      }
-      await new Promise(r => setTimeout(r, 200)); 
-    }
-
-    const cMap = {};
-    livePlayers.forEach(p => {
-      if(!cMap[p.country]) cMap[p.country] = [];
-      cMap[p.country].push(p);
-    });
-
-    const baseline = Math.min(...livePlayers.map(p => p.current_ap)) - 100;
-    const weights = [1.0, 0.50, 0.25, 0.10, 0.05];
-
-    const processedCountries = Object.keys(cMap).map(c => {
-      cMap[c].sort((a,b) => b.current_ap - a.current_ap);
-      const top5 = cMap[c].slice(0, 5);
-      const score = top5.reduce((sum, p, i) => sum + (Math.max(0, p.current_ap - baseline) * weights[i]), 0);
-      
-      return { country: c, top_players: cMap[c], score: Math.round(score) };
-    });
-
-    const output = {
-      last_update: new Date().toISOString(),
-      current_month: currentMonth,
-      month_start_snapshot: oldData.month_start_snapshot,
-      country_leaderboard: processedCountries.sort((a,b) => b.score - a.score)
-    };
-
-    fs.writeFileSync('ap_hunters_data.json', JSON.stringify(output, null, 2));
-  } catch (error) {
-    console.error("Critical Error:", error);
+  if (!HYPIXEL_KEY) {
+    console.error("❌ HYPIXEL_API_KEY is missing from environment variables!");
     process.exit(1);
   }
+
+  let db;
+  try {
+    db = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+  } catch (e) {
+    console.error("❌ Could not load existing data. Starting fresh.");
+    db = { manual_country_mapping: {}, month_start_snapshot: {}, country_leaderboard: [] };
+  }
+
+  console.log("🌐 Fetching Nadeshiko Top 200...");
+  const nadeshikoPlayers = [];
+
+  try {
+    for (let page = 1; page <= 2; page++) {
+      const response = await fetch(`${NADESHIKO_URL}?page=${page}`, {
+        headers: { 'User-Agent': 'Mozilla/5.0' }
+      });
+      if (!response.ok) throw new Error(`Nadeshiko HTTP ${response.status}`);
+      const json = await response.json();
+      nadeshikoPlayers.push(...json.data);
+    }
+  } catch (e) {
+    console.error("Critical failure fetching Nadeshiko: ", e);
+    process.exit(1);
+  }
+
+  console.log(`✅ Got ${nadeshikoPlayers.length} players from Nadeshiko.`);
+  
+  console.log("🌐 Fetching Global Achievements Template...");
+  let achievementsMap = {};
+  try {
+    const achTemplate = await fetchSafeJSON('https://api.hypixel.net/v2/resources/achievements');
+    if (achTemplate.success) achievementsMap = achTemplate.achievements;
+  } catch (e) {
+    console.error("Failed to load Hypixel Achievements Template. Max games will not calculate.");
+  }
+
+  console.log("🌐 Fetching Live Hypixel Data...");
+  const freshPlayers = [];
+
+  for (let i = 0; i < nadeshikoPlayers.length; i++) {
+    const p = nadeshikoPlayers[i];
+    let maxesArray = [];
+    
+    try {
+      const hypixelData = await fetchSafeJSON(`https://api.hypixel.net/v2/player?uuid=${p.uuid}`, {
+        headers: { 'API-Key': HYPIXEL_KEY }
+      });
+
+      if (hypixelData && hypixelData.success && hypixelData.player) {
+        
+        // Calculate max games if we successfully grabbed the template earlier
+        if (Object.keys(achievementsMap).length > 0) {
+            maxesArray = calculateMaxes(hypixelData.player, achievementsMap);
+        }
+
+        freshPlayers.push({
+          uuid: p.uuid,
+          username: hypixelData.player.displayname || p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
+          value: hypixelData.player.achievementPoints || parseFloat(p.value),
+          maxGames: maxesArray
+        });
+      } else {
+        freshPlayers.push({
+          uuid: p.uuid,
+          username: p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
+          value: parseFloat(p.value),
+          maxGames: []
+        });
+      }
+    } catch (error) {
+      freshPlayers.push({
+        uuid: p.uuid,
+        username: p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim(),
+        value: parseFloat(p.value),
+        maxGames: []
+      });
+    }
+
+    await new Promise(r => setTimeout(r, 250));
+    if ((i + 1) % 50 === 0) console.log(`⏳ Processed ${i + 1}/200 players...`);
+  }
+
+  // Monthly snapshot
+  const today = new Date();
+  const lastUpdate = new Date(db.last_update || 0);
+  
+  if (today.getMonth() !== lastUpdate.getMonth()) {
+    console.log("📅 New month detected! Resetting start-of-month snapshot.");
+    db.month_start_snapshot = {}; 
+    freshPlayers.forEach(p => { db.month_start_snapshot[p.uuid] = p.value; });
+  }
+
+  // Transform players and apply country
+  const processedPlayers = freshPlayers.map(p => {
+    if (!db.month_start_snapshot[p.uuid]) db.month_start_snapshot[p.uuid] = p.value;
+    const startAP = db.month_start_snapshot[p.uuid];
+    const gain = p.value - startAP;
+    const countryCode = db.manual_country_mapping[p.uuid] || "Unknown";
+
+    return {
+      username: p.username,
+      uuid: p.uuid,
+      country: countryCode,
+      current_ap: p.value,
+      last_month_ap: startAP,
+      monthly_gain: gain,
+      maxGames: p.maxGames
+    };
+  });
+
+  // Group by country & Calculate Scores (Your Requested Score Logic)
+  const countryMap = {};
+  processedPlayers.forEach(player => {
+    const c = player.country;
+    if (!countryMap[c]) countryMap[c] = { country: c, top_players: [] };
+    countryMap[c].top_players.push(player);
+  });
+
+  // Calculate baseline based on the 100th player score
+  const sortedGlobal = [...processedPlayers].sort((a,b) => b.current_ap - a.current_ap);
+  const baseline = sortedGlobal.length >= 100 ? sortedGlobal[99].current_ap : sortedGlobal[sortedGlobal.length - 1].current_ap;
+  const weights = [1.0, 0.50, 0.25, 0.10, 0.05];
+
+  const countryLeaderboardArray = Object.values(countryMap).map(countryObj => {
+    countryObj.top_players.sort((a, b) => b.current_ap - a.current_ap);
+    const top5 = countryObj.top_players.slice(0, 5);
+    
+    // The exact scoring formula you requested
+    const score = top5.reduce((sum, p, i) => sum + (Math.max(0, p.current_ap - baseline) * weights[i]), 0);
+
+    return {
+      country: countryObj.country,
+      score: Math.round(score), 
+      top_players: countryObj.top_players
+    };
+  });
+
+  db.last_update = today.toISOString();
+  db.country_leaderboard = countryLeaderboardArray.sort((a,b) => b.score - a.score);
+
+  fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2));
+  console.log(`✅ Success! Processed ${processedPlayers.length} players. Update complete.`);
 }
-run();
+
+update();
