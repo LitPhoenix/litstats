@@ -101,14 +101,22 @@
     .tier-group.rare .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(205, 127, 50, 0.25), inset 0 0 0 1px rgba(205, 127, 50, 0.4); }
     .tier-group.rare .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(205, 127, 50, 0.5)); }
 
-    /* Common */
-    .tier-group.common .tier-label { color: #94a3b8; }
+    /* Common (Stone - intentionally dull and unpolished) */
+    .tier-group.common .tier-label { color: #78716c; }
     .tier-group.common .game-badge.achieved { 
-      border-color: #94a3b8; 
-      box-shadow: 0 6px 16px rgba(148, 163, 184, 0.15), inset 0 0 0 1px rgba(148, 163, 184, 0.3); 
+      border-color: #57534e; 
+      background: var(--surface-2); 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5); 
     }
-    .tier-group.common .game-badge.achieved:hover { box-shadow: 0 12px 24px rgba(148, 163, 184, 0.25), inset 0 0 0 1px rgba(148, 163, 184, 0.4); }
-    .tier-group.common .game-badge.achieved img { filter: drop-shadow(0 4px 8px rgba(148, 163, 184, 0.5)); }
+    .tier-group.common .game-badge.achieved:hover { 
+      border-color: #78716c; 
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6); 
+      transform: translateY(-4px);
+    }
+    /* Dark shadow instead of a glowing filter */
+    .tier-group.common .game-badge.achieved img { filter: drop-shadow(0 4px 4px rgba(0,0,0,0.8)); }
+    /* Remove the shiny sweeping animation for common */
+    .tier-group.common .game-badge.achieved::after { display: none; }
 
     /* Legacy (Red / Dashed) */
     .tier-group.legacy .tier-label { color: var(--red); }
