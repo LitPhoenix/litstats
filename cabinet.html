@@ -151,6 +151,7 @@
       };
       
       const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
+      if (gameName == `Max Seasonal`) || filename = `/img/games/seasonal.png`;
       return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
     }
 
