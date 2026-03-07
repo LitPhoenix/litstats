@@ -2,7 +2,6 @@ const fs = require('fs');
 
 const API_KEY = process.env.HYPIXEL_API_KEY;
 
-// Max Games Calculation Logic (Mirrored from Vercel)
 function calculateMaxes(profile, achMap) {
   const rawOneTime = profile.achievementsOneTime || [];
   const cleanOneTime = rawOneTime.filter(item => typeof item === 'string');
@@ -44,52 +43,42 @@ function calculateMaxes(profile, achMap) {
 
     for (const apgame of group.names) {
       const gameData = achMap[apgame];
-      
-      if (!gameData) {
-        hasMaxedGroup = false;
-        break;
-      }
+      if (!gameData) { hasMaxedGroup = false; break; }
 
       if (gameData.one_time) {
         for (const key in gameData.one_time) {
           const achInfo = gameData.one_time[key];
           if (achInfo.legacy && !group.isLegacyGame) continue;
           if (!cleanOneTime.includes(`${apgame}_${key.toLowerCase()}`)) {
-            hasMaxedGroup = false;
-            break;
+            hasMaxedGroup = false; break;
           }
         }
       }
-
       if (!hasMaxedGroup) break;
 
       if (gameData.tiered) {
         for (const key in gameData.tiered) {
           const achInfo = gameData.tiered[key];
           if (achInfo.legacy && !group.isLegacyGame) continue;
-
           let maxTierAmount = 0;
           if (achInfo.tiers && Array.isArray(achInfo.tiers)) {
             for (const tier of achInfo.tiers) {
               if (tier.amount > maxTierAmount) maxTierAmount = tier.amount;
             }
           }
-
           if ((tieredPlayer[`${apgame}_${key.toLowerCase()}`] || 0) < maxTierAmount) {
-            hasMaxedGroup = false;
-            break;
+            hasMaxedGroup = false; break;
           }
         }
       }
-
       if (!hasMaxedGroup) break;
     }
-
     if (hasMaxedGroup) maxes.push(group.badge);
   }
   return maxes;
 }
 
+// HIGHLY ROBUST FETCH WITH HTML ERROR CATCHING
 async function fetchWithRetry(url, options = {}, retries = 3) {
   for (let i = 0; i < retries; i++) {
     try {
@@ -98,17 +87,24 @@ async function fetchWithRetry(url, options = {}, retries = 3) {
         await new Promise(r => setTimeout(r, 2000 * (i + 1))); 
         continue;
       }
-      return await res.json();
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      
+      const text = await res.text();
+      try {
+        return JSON.parse(text); // Try parsing JSON safely
+      } catch (err) {
+        throw new Error(`API returned invalid JSON (HTML page)`);
+      }
     } catch (e) {
+      console.warn(`Attempt ${i+1} failed for ${url}: ${e.message}`);
       if (i === retries - 1) throw e;
-      await new Promise(r => setTimeout(r, 1000));
+      await new Promise(r => setTimeout(r, 2000));
     }
   }
 }
 
 async function run() {
   try {
-    // 1. Get Nadeshiko Leaderboard & Hypixel Template
     const [nadRes, achMapRes] = await Promise.all([
       fetchWithRetry('https://nadeshiko.io/api/leaderboard/achievement_points'),
       fetchWithRetry('https://api.hypixel.net/v2/resources/achievements')
@@ -117,11 +113,10 @@ async function run() {
     const topPlayers = nadRes.slice(0, 200);
     const achievementsMap = achMapRes.achievements;
 
-    // 2. Load Old Cache
     let oldData = { month_start_snapshot: {}, country_leaderboard: [] };
     if (fs.existsSync('ap_hunters_data.json')) {
       try { oldData = JSON.parse(fs.readFileSync('ap_hunters_data.json', 'utf8')); } 
-      catch (e) { console.error("Error reading cache", e); }
+      catch (e) {}
     }
 
     const currentMonth = new Date().toISOString().slice(0, 7);
@@ -132,7 +127,6 @@ async function run() {
 
     const livePlayers = [];
 
-    // 3. Process Players Concurrently (Staggered to respect API limits)
     for (let i = 0; i < topPlayers.length; i++) {
       const uuid = topPlayers[i].uuid;
       const cachedPlayer = oldData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
@@ -146,11 +140,9 @@ async function run() {
           const liveAP = profile.achievementPoints || 0;
           
           if (startAP === undefined) oldData.month_start_snapshot[uuid] = liveAP;
-          
           const finalStartAP = oldData.month_start_snapshot[uuid];
           const monthlyGain = finalStartAP === liveAP && cachedPlayer ? cachedPlayer.monthly_gain : (liveAP - finalStartAP);
 
-          // Calculate maxes locally!
           const playerMaxes = calculateMaxes(profile, achievementsMap);
 
           livePlayers.push({
@@ -159,18 +151,17 @@ async function run() {
             country: topPlayers[i].country || 'Unknown',
             current_ap: liveAP,
             monthly_gain: finalStartAP === liveAP && cachedPlayer && cachedPlayer.monthly_gain === "NEW" ? "NEW" : monthlyGain,
-            maxGames: playerMaxes // Store directly in JSON
+            maxGames: playerMaxes
           });
+        } else {
+           if (cachedPlayer) livePlayers.push(cachedPlayer);
         }
       } catch (err) {
-        console.error(`Failed to fetch ${uuid}, using fallback.`);
         if (cachedPlayer) livePlayers.push(cachedPlayer);
       }
-
-      await new Promise(r => setTimeout(r, 250)); // Rate limit buffer
+      await new Promise(r => setTimeout(r, 200)); 
     }
 
-    // 4. Country Power Score (Removed Square Root)
     const cMap = {};
     livePlayers.forEach(p => {
       if(!cMap[p.country]) cMap[p.country] = [];
@@ -183,18 +174,11 @@ async function run() {
     const processedCountries = Object.keys(cMap).map(c => {
       cMap[c].sort((a,b) => b.current_ap - a.current_ap);
       const top5 = cMap[c].slice(0, 5);
-      
-      // Removed the Math.sqrt() as requested
       const score = top5.reduce((sum, p, i) => sum + (Math.max(0, p.current_ap - baseline) * weights[i]), 0);
       
-      return { 
-        country: c, 
-        top_players: cMap[c], 
-        score: Math.round(score) 
-      };
+      return { country: c, top_players: cMap[c], score: Math.round(score) };
     });
 
-    // 5. Save Output
     const output = {
       last_update: new Date().toISOString(),
       current_month: currentMonth,
@@ -203,11 +187,9 @@ async function run() {
     };
 
     fs.writeFileSync('ap_hunters_data.json', JSON.stringify(output, null, 2));
-
   } catch (error) {
-    console.error("Critical Error generating leaderboard:", error);
+    console.error("Critical Error:", error);
     process.exit(1);
   }
 }
-
 run();
