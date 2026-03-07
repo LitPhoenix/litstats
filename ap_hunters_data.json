@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-07T04:02:55.769Z",
+  "last_update": "2026-03-07T04:26:02.483Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -322,7 +322,32 @@
           "current_ap": 32475,
           "last_month_ap": 32475,
           "monthly_gain": 0,
-          "maxGames": []
+          "maxGames": [
+            "Max UHC",
+            "Max Pit",
+            "Max Mega Walls",
+            "Max SkyWars",
+            "Max Blitz",
+            "Max Arena Brawl",
+            "Max Smash Heroes",
+            "Max Paintball",
+            "Max Cops and Crims",
+            "Max Quake",
+            "Max SkyBlock",
+            "Max Speed UHC",
+            "Max Warlords",
+            "Max Walls",
+            "Max TNT Games",
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle",
+            "Max Seasonal"
+          ]
         },
         {
           "username": "vasiv",
@@ -471,9 +496,9 @@
           "username": "Boogatomyooga",
           "uuid": "343139d84b91435c90a6d0054a709ca5",
           "country": "USA",
-          "current_ap": 27760,
+          "current_ap": 27825,
           "last_month_ap": 27700,
-          "monthly_gain": 60,
+          "monthly_gain": 125,
           "maxGames": [
             "Max SkyBlock",
             "Max Duels"
@@ -511,6 +536,21 @@
           ]
         },
         {
+          "username": "sirumair9505",
+          "uuid": "77edb6fda6ef4097914ddc698242fe04",
+          "country": "USA",
+          "current_ap": 27370,
+          "last_month_ap": 27295,
+          "monthly_gain": 75,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "C4PS",
           "uuid": "1485b2b58ad54eaca304a90a18746196",
           "country": "USA",
@@ -522,21 +562,6 @@
             "Max Speed UHC",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "sirumair9505",
-          "uuid": "77edb6fda6ef4097914ddc698242fe04",
-          "country": "USA",
-          "current_ap": 27350,
-          "last_month_ap": 27295,
-          "monthly_gain": 55,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Seasonal"
           ]
         },
         {
@@ -769,7 +794,31 @@
           "current_ap": 32400,
           "last_month_ap": 32400,
           "monthly_gain": 0,
-          "maxGames": []
+          "maxGames": [
+            "Max UHC",
+            "Max Pit",
+            "Max Mega Walls",
+            "Max SkyWars",
+            "Max Blitz",
+            "Max Arena Brawl",
+            "Max Paintball",
+            "Max Cops and Crims",
+            "Max Quake",
+            "Max SkyBlock",
+            "Max Speed UHC",
+            "Max Warlords",
+            "Max Walls",
+            "Max TNT Games",
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle",
+            "Max Seasonal"
+          ]
         },
         {
           "username": "ErtrycheZ",
@@ -1091,7 +1140,30 @@
           "current_ap": 32145,
           "last_month_ap": 32145,
           "monthly_gain": 0,
-          "maxGames": []
+          "maxGames": [
+            "Max Pit",
+            "Max Mega Walls",
+            "Max Blitz",
+            "Max Arena Brawl",
+            "Max Smash Heroes",
+            "Max Paintball",
+            "Max Cops and Crims",
+            "Max Quake",
+            "Max SkyBlock",
+            "Max Speed UHC",
+            "Max Warlords",
+            "Max Walls",
+            "Max TNT Games",
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle",
+            "Max Seasonal"
+          ]
         },
         {
           "username": "STAYEZ",
