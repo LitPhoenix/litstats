@@ -54,7 +54,7 @@
     @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
     .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; }
     .spark-bg { position: absolute; inset: 0; border-radius: inherit; z-index: -1; background: var(--border); overflow: hidden; }
-    .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 30000px; height: 30000px; margin-top: -5000px; margin-left: -5000px; background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
+    .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100000px; height: 100000px; margin-top: -50000px; margin-left: -50000px; background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
     @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
     
     .table-inner { background: var(--surface); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
@@ -99,14 +99,29 @@
     .pos-down { color: var(--red); }
     .pos-same { color: var(--gold); }
 
-    /* MAX GAMES EXPANSION */
-    .player-expanded-row { display: none; background: var(--surface-2); border-bottom: 1px solid var(--border); }
+    /* MAX GAMES EXPANSION - MINI ICONS */
+    .player-expanded-row { display: none; background: var(--surface-2); border-bottom: 1px solid var(--border); box-shadow: inset 0 4px 10px rgba(0,0,0,0.1); }
     .player-expanded-row.open { display: table-row; }
-    .maxes-container { padding: 16px 16px 16px 40px; display: flex; flex-direction: column; gap: 12px; }
-    .tier-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-    .tier-label { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; width: 60px; flex-shrink: 0; }
-    .game-badge { display: flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border-strong); padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--text); }
-    .game-badge img { width: 16px; height: 16px; object-fit: contain; }
+    .maxes-container { padding: 16px 16px 24px 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    
+    .mini-game-icon {
+      width: 36px; height: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .mini-game-icon:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .mini-game-icon img { width: 100%; height: 100%; object-fit: contain; }
+
+    .cabinet-btn {
+      display: inline-block; margin-top: 8px; background: transparent; border: 1px solid var(--accent); color: var(--accent);
+      padding: 8px 20px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; transition: 0.2s;
+    }
+    .cabinet-btn:hover { background: var(--accent); color: var(--bg); box-shadow: 0 4px 12px var(--accent-soft); }
 
     .tooltip-wrap { position: relative; display: inline-flex; align-items: center; gap: 5px; cursor: help; }
     .tooltip-content { visibility: hidden; opacity: 0; position: absolute; top: 140%; bottom: auto; left: 50%; transform: translateX(-50%) translateY(-10px); width: 320px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow); font-size: 12px; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 100; white-space: normal; cursor: default; }
@@ -157,60 +172,6 @@
       .player-avatar { width: 24px; height: 24px; }
       td, thead th { padding: 9px 10px; }
     }
-
-    /* --- NEW MAX GAMES EXPANSION --- */
-    .player-expanded-row { display: none; background: var(--surface-2); border-bottom: 1px solid var(--border); box-shadow: inset 0 4px 10px rgba(0,0,0,0.1); }
-    .player-expanded-row.open { display: table-row; }
-    .maxes-container { padding: 24px 16px 32px 16px; display: flex; flex-direction: column; gap: 20px; align-items: center; }
-    
-    .tier-group { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; max-width: 800px; }
-    .tier-label { font-size: 10px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 2px; }
-    .tier-label.mythic { color: var(--gold); }
-    
-    .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-    
-    .game-badge {
-      width: 100px; height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-      border-radius: 8px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; overflow: hidden;
-      cursor: default;
-    }
-
-    /* UNACHIEVED (Rusty/Moody Stamp) */
-    .game-badge.unachieved {
-      background: var(--surface); border: 1px solid var(--border-strong);
-      box-shadow: inset 0 3px 6px rgba(0,0,0,0.6); /* Pressed in look */
-      filter: grayscale(100%) brightness(0.4) contrast(1.2); opacity: 0.8;
-    }
-    .game-badge.unachieved:hover { filter: grayscale(100%) brightness(0.6); opacity: 1; }
-    
-    /* ACHIEVED (Prestigious/Shiny) */
-    .game-badge.achieved {
-      background: linear-gradient(135deg, var(--surface) 0%, rgba(245, 158, 11, 0.05) 100%);
-      border: 1px solid var(--gold);
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15), inset 0 0 0 1px rgba(245, 158, 11, 0.2);
-    }
-    .game-badge.achieved img { filter: drop-shadow(0 2px 6px rgba(245, 158, 11, 0.4)); transform: scale(1.05); }
-    .game-badge.achieved:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25), inset 0 0 0 1px rgba(245, 158, 11, 0.3); }
-
-    /* CSS Shine Animation */
-    .game-badge.achieved::after {
-      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
-      transform: skewX(-20deg); animation: shine 5s infinite;
-    }
-    @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
-
-    /* LEGACY */
-    .tier-group.legacy .game-badge { border-style: dashed; border-width: 2px; }
-    
-    .game-badge img { width: 36px; height: 36px; object-fit: contain; z-index: 1; transition: 0.2s; }
-    .game-badge span { font-size: 10.5px; font-weight: 600; color: var(--text); text-align: center; z-index: 1; padding: 0 4px; line-height: 1.2; }
-    
-    .cabinet-btn {
-      margin-top: 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent);
-      padding: 10px 24px; border-radius: 8px; font-size: 12px; font-weight: 700; text-decoration: none; transition: 0.2s;
-    }
-    .cabinet-btn:hover { background: var(--accent); color: var(--bg); box-shadow: 0 4px 12px var(--accent-soft); }
   </style>
 </head>
 <body>
@@ -300,8 +261,8 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                     <div class="tooltip-content">
                       <h4 style="color:var(--accent); font-weight:700; margin-bottom:8px;">Country Power Score</h4>
-                      <p style="margin-bottom:6px;"><strong>1. Baseline Subtraction:</strong> The 100th place global score is subtracted from everyone else to isolate true skill.</p>
-                      <p style="margin-bottom:6px;"><strong>2. Square Root Scaling:</strong> The filtered score is square-rooted to nerf massive outliers and reward teamwork.</p>
+                      <p style="margin-bottom:6px;"><strong>1. Baseline Subtraction:</strong> The 100th place global score is subtracted to act as a minimum skill filter.</p>
+                      <p style="margin-bottom:6px;"><strong>2. Square Root Scaling:</strong> The filtered score is square-rooted to heavily nerf massive outliers and reward teamwork.</p>
                       <p style="margin-bottom:6px;"><strong>3. Diminishing Weights:</strong> Player 1 adds 100%, Player 2 adds 50%, Player 3 adds 25%, Player 4 adds 10%, Player 5 adds 5%.</p>
                       <div class="formula">Total = (√P₁ - B) + 0.5(√P₂ - B) + ...</div>
                     </div>
@@ -335,16 +296,6 @@
       'Russia': 'ru', 'Saudi Arabia': 'sa', 'Serbia': 'rs', 'South Korea': 'kr', 'Spain': 'es',
       'Sweden': 'se', 'Switzerland': 'ch', 'Syria': 'sy', 'Taiwan': 'tw', 'The Netherlands': 'nl',
       'Turkey': 'tr', 'UK': 'gb', 'Ukraine': 'ua', 'USA': 'us'
-    };
-
-    const gameTiers = {
-      'Max UHC': 7, 'Max Pit': 7, 'Max Mega Walls': 7, 'Max SkyWars': 7,
-      'Max Blitz': 6, 'Max Arena Brawl': 6, 'Max Smash Heroes': 6, 'Max Paintball': 6,
-      'Max Cops and Crims': 5, 'Max Quake': 5, 'Max SkyBlock': 5, 'Max Speed UHC': 5,
-      'Max Warlords': 4, 'Max Walls': 4, 'Max TNT Games': 4, 'Max Arcade': 4,
-      'Max Murder Mystery': 3, 'Max VampireZ': 3, 'Max Bed Wars': 3,
-      'Max TKR': 2, 'Max Wool Games': 2, 'Max Duels': 2, 'Max Build Battle': 2,
-      'Max Seasonal': 1, 'Max Crazy Walls': 1, 'Max SkyClash': 1
     };
 
     let currentData = null;
@@ -396,7 +347,7 @@
       const container = document.getElementById(`maxes-${uuid}`);
       
       if (playerMaxesCache[uuid]) {
-        renderMaxesHTML(container, playerMaxesCache[uuid]);
+        renderMaxesHTML(container, playerMaxesCache[uuid], uuid);
         return;
       }
 
@@ -409,45 +360,31 @@
         if (data.error) throw new Error('API_ERROR');
         
         playerMaxesCache[uuid] = data.maxGames || [];
-        renderMaxesHTML(container, playerMaxesCache[uuid]);
+        renderMaxesHTML(container, playerMaxesCache[uuid], uuid);
       } catch (e) {
-        container.innerHTML = `<span style="color:var(--red); font-size:12px;">${e.message === 'RATE_LIMIT' ? 'Slow down! Too many network requests.' : 'Failed to load maxed games.'}</span>`;
+        container.innerHTML = `<span style="color:var(--red); font-size:12px;">${e.message === 'RATE_LIMIT' ? 'Slow down! Too many network requests.' : 'Failed to load data.'}</span>`;
       }
     }
 
-    // The master layout architecture you requested
-    const trophyStructure = [
-      { name: "4th Tier", classes: "mythic", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
-      { name: "3rd Tier", classes: "", games: ["Max Smash Heroes", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
-      { name: "2nd Tier", classes: "", games: ["Max SkyBlock", "Max Speed UHC", "Max Warlords", "Max Walls", "Max TNT Games", "Max Arcade"] },
-      { name: "1st Tier", classes: "", games: ["Max Murder Mystery", "Max VampireZ", "Max Bed Wars", "Max TKR", "Max Wool Games", "Max Duels", "Max Build Battle"] },
-      { name: "Legacy (Time Limited)", classes: "legacy", isLegacy: true, games: ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"] }
-    ];
-
     function renderMaxesHTML(container, maxes, uuid) {
-      let html = '';
-      
-      trophyStructure.forEach(tier => {
-        html += `<div class="tier-group ${tier.isLegacy ? 'legacy' : ''}">`;
-        html += `<div class="tier-label ${tier.classes}">${tier.name}</div>`;
-        html += `<div class="badge-row">`;
-        
-        tier.games.forEach(game => {
-          const isAchieved = maxes.includes(game);
-          const statusClass = isAchieved ? 'achieved' : 'unachieved';
-          html += `
-            <div class="game-badge ${statusClass}">
-              <img src="/img/games/${game}.png" onerror="this.style.opacity='0'">
-              <span>${game.replace('Max ', '')}</span>
-            </div>
-          `;
-        });
-        
-        html += `</div></div>`;
-      });
+      if (maxes.length === 0) {
+        container.innerHTML = `
+          <span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span><br>
+          <a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">View Trophy Cabinet ➔</a>
+        `;
+        return;
+      }
 
-      // Add the button pointing to the dedicated page
-      html += `<a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Dedicated Trophy Cabinet ➔</a>`;
+      let html = `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
+      maxes.forEach(game => {
+        html += `
+          <div class="mini-game-icon" title="${game}">
+            <img src="/img/games/${game}.png" onerror="this.style.display='none'">
+          </div>
+        `;
+      });
+      html += `</div>`;
+      html += `<a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Trophy Cabinet ➔</a>`;
       
       container.innerHTML = html;
     }
@@ -549,7 +486,7 @@
       });
     }
 
-async function loadData() {
+    async function loadData() {
       try {
         const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
         const res = await fetch(`ap_hunters_data.json?v=${currentHour}`);
@@ -605,7 +542,7 @@ async function loadData() {
       }
     }
 
-    // --- Search Logic (Unified and Bulletproof) ---
+    // Search Logic
     const searchInput = document.getElementById('searchInput');
 
     function runLocalSearch(q) {
@@ -644,12 +581,10 @@ async function loadData() {
       }
     }
 
-    // 1. As you type: Update local list immediately.
     searchInput.addEventListener('input', function() {
       runLocalSearch(this.value.toLowerCase().trim());
     });
 
-    // 2. When you hit enter: Ping Vercel ONLY if the local list is empty.
     searchInput.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -667,7 +602,6 @@ async function loadData() {
       }
     });
 
-    // Handle Table Header Sorting
     document.querySelectorAll('#players-table th[data-col]').forEach(th => {
       th.addEventListener('click', () => {
         const col = th.dataset.col;
@@ -775,7 +709,3 @@ async function loadData() {
   </script>
 </body>
 </html>
-
-
-
-
