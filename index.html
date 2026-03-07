@@ -379,6 +379,12 @@
 
 
     function getGameIconUrl(gameName) {
+      // 1. Intercept Seasonal immediately and return the local path
+      if (gameName === "Max Seasonal") {
+        return "/img/games/seasonal.png";
+      }
+    
+      // 2. The Hypixel CDN Map (Updated Arena)
       const iconMap = {
         "Max Arcade": "Arcade-64.png",
         "Max Bed Wars": "BedWars-64.png",
@@ -396,7 +402,7 @@
         "Max UHC": "UHC-64.png",
         "Max Warlords": "Warlords-64.png",
         "Max Wool Games": "WoolGames-64.png",
-        "Max Arena Brawl": "Arena-64.png",
+        "Max Arena Brawl": "Arena-64.png", // Fixed to Arena-64
         "Max Paintball": "Paintball-64.png",
         "Max Quake": "Quakecraft-64.png",
         "Max VampireZ": "VampireZ-64.png",
@@ -405,6 +411,11 @@
         "Max Crazy Walls": "CrazyWalls-64.png",
         "Max SkyClash": "SkyClash-64.png"
       };
+      
+      // 3. Fallback and build the Hypixel CDN URL
+      const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
+      return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
+    }
       
       // Fallback for unmapped games (e.g. Speed UHC -> SpeedUHC-64.png)
       const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
@@ -755,6 +766,7 @@
   </script>
 </body>
 </html>
+
 
 
 
