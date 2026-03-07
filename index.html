@@ -99,13 +99,15 @@
     .pos-down { color: var(--red); }
     .pos-same { color: var(--gold); }
 
-    /* MAX GAMES EXPANSION - MINI ICONS */
+    /* MAX GAMES EXPANSION - MINI ICONS (Fixed for Mobile Flexbox Crushing) */
     .player-expanded-row { display: none; background: var(--surface-2); border-bottom: 1px solid var(--border); box-shadow: inset 0 4px 10px rgba(0,0,0,0.1); }
     .player-expanded-row.open { display: table-row; }
     .maxes-container { padding: 16px 16px 24px 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
     
     .mini-game-icon {
       width: 36px; height: 36px;
+      min-width: 36px; min-height: 36px; /* IOS Fix */
+      flex-shrink: 0; /* Prevents mobile crushing */
       background: var(--surface);
       border: 1px solid var(--border-strong);
       border-radius: 6px;
@@ -115,7 +117,12 @@
       transition: transform 0.2s;
     }
     .mini-game-icon:hover { transform: translateY(-2px); border-color: var(--accent); }
-    .mini-game-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .mini-game-icon img { 
+      width: 100%; height: 100%; 
+      min-width: 100%; min-height: 100%;
+      object-fit: contain; 
+      display: block; 
+    }
 
     .cabinet-btn {
       display: inline-block; margin-top: 8px; background: transparent; border: 1px solid var(--accent); color: var(--accent);
@@ -135,9 +142,15 @@
 
     .table-footer { padding: 12px 16px; text-align: right; font-size: 11px; color: var(--text-3); border-top: 1px solid var(--border); background: var(--surface-2); display: flex; align-items: center; justify-content: flex-end; gap: 6px; border-bottom-left-radius: calc(var(--radius) - 1px); border-bottom-right-radius: calc(var(--radius) - 1px); }
     .table-footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
+    
     .loading-msg, .error-msg { text-align: center; padding: 48px 24px; font-size: 14px; color: var(--text-3); }
     .error-msg { color: var(--red); }
     .hidden { display: none !important; }
+
+    /* Buffer loading sentinel styling */
+    .sentinel-row td { text-align: center; padding: 24px !important; color: var(--text-3); font-size: 13px; font-weight: 500; border: none; }
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--text-3); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; vertical-align: middle; margin-right: 8px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     .country-row { cursor: pointer; }
     .expand-icon { transition: transform 0.2s; display: inline-block; color: var(--text-3); font-size: 11px; }
@@ -230,11 +243,16 @@
                 <th class="rank sort-desc" data-col="rank">#</th>
                 <th data-col="player">Player</th>
                 <th data-col="country">Country</th>
-                <th data-col="ap">AP</th>
-                <th data-col="gain">Gain</th>
+                <th data-col="ap" style="text-align: right;">AP</th>
+                <th data-col="gain" style="text-align: right;">Gain</th>
               </tr>
             </thead>
             <tbody id="players-tbody"></tbody>
+            <tbody id="players-sentinel-body">
+              <tr id="players-sentinel" class="sentinel-row hidden">
+                <td colspan="5"><span class="spinner"></span> Loading more players...</td>
+              </tr>
+            </tbody>
           </table>
           <div class="table-footer"><span class="dot"></span>Updated: <span class="last-updated-time">-</span></div>
         </div>
@@ -255,16 +273,15 @@
               <tr>
                 <th class="rank">#</th>
                 <th>Country</th>
-                <th>
-                  <div class="tooltip-wrap">
+                <th style="text-align: right;">
+                  <div class="tooltip-wrap" style="justify-content: flex-end; width: 100%;">
                     Score
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                    <div class="tooltip-content">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 4px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <div class="tooltip-content" style="text-align: left;">
                       <h4 style="color:var(--accent); font-weight:700; margin-bottom:8px;">Country Power Score</h4>
                       <p style="margin-bottom:6px;"><strong>1. Baseline Subtraction:</strong> The 100th place global score is subtracted to act as a minimum skill filter.</p>
-                      <p style="margin-bottom:6px;"><strong>2. Square Root Scaling:</strong> The filtered score is square-rooted to heavily nerf massive outliers and reward teamwork.</p>
-                      <p style="margin-bottom:6px;"><strong>3. Diminishing Weights:</strong> Player 1 adds 100%, Player 2 adds 50%, Player 3 adds 25%, Player 4 adds 10%, Player 5 adds 5%.</p>
-                      <div class="formula">Total = (√P₁ - B) + 0.5(√P₂ - B) + ...</div>
+                      <p style="margin-bottom:6px;"><strong>2. Diminishing Weights:</strong> Player 1 adds 100%, Player 2 adds 50%, Player 3 adds 25%, Player 4 adds 10%, Player 5 adds 5%.</p>
+                      <div class="formula">Total = (P₁ - B) + 0.5(P₂ - B) + ...</div>
                     </div>
                   </div>
                 </th>
@@ -273,6 +290,11 @@
               </tr>
             </thead>
             <tbody id="countries-tbody"></tbody>
+            <tbody id="countries-sentinel-body">
+              <tr id="countries-sentinel" class="sentinel-row hidden">
+                <td colspan="5"><span class="spinner"></span> Loading more countries...</td>
+              </tr>
+            </tbody>
           </table>
           <div class="table-footer"><span class="dot"></span>Updated: <span class="last-updated-time">-</span></div>
         </div>
@@ -305,13 +327,21 @@
     let sortCol = 'rank', sortDir = 1;
     let playerMaxesCache = {}; 
 
+    // --- INFINITE SCROLL STATE ---
+    const BATCH_SIZE = 50;
+    let currentFilteredPlayers = [];
+    let playersRenderCount = 0;
+    let currentFilteredCountries = [];
+    let countriesRenderCount = 0;
+
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        currentTab = btn.dataset.tab;
         document.getElementById('panel-players').classList.add('hidden');
         document.getElementById('panel-countries').classList.add('hidden');
-        document.getElementById(`panel-${btn.dataset.tab}`).classList.remove('hidden');
+        document.getElementById(`panel-${currentTab}`).classList.remove('hidden');
       });
     });
 
@@ -346,29 +376,25 @@
 
       const container = document.getElementById(`maxes-${uuid}`);
       
-      // 1. SMART CACHE: Check if the player is already in our downloaded JSON list
       const localPlayer = allPlayersList.find(p => p.uuid === uuid);
       
       if (localPlayer && localPlayer.maxGames) {
-        // Player is Top 200: Instantly render from local file. Zero API requests.
         renderMaxesHTML(container, localPlayer.maxGames, uuid);
         return;
       }
 
-      // 2. SESSION CACHE: Check if we searched them recently this session
       if (playerMaxesCache[uuid]) {
         renderMaxesHTML(container, playerMaxesCache[uuid], uuid);
         return;
       }
 
-      // 3. FALLBACK: Live Vercel fetch (Only triggers for custom searches)
       container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">Loading maxed games from network...</span>`;
 
       try {
         const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
         if (res.status === 429) throw new Error('RATE_LIMIT');
         const data = await res.json();
-        if (data.error) throw new Error(data.error); // Show actual API error if one exists
+        if (data.error) throw new Error(data.error); 
         
         playerMaxesCache[uuid] = data.maxGames || [];
         renderMaxesHTML(container, playerMaxesCache[uuid], uuid);
@@ -377,14 +403,9 @@
       }
     }
 
-
     function getGameIconUrl(gameName) {
-      // 1. Intercept Seasonal immediately and return the local path
-      if (gameName === "Max Seasonal") {
-        return "/img/games/seasonal.png";
-      }
-    
-      // 2. The Hypixel CDN Map (Updated Arena)
+      if (gameName === "Max Seasonal") return "/img/games/seasonal.png";
+  
       const iconMap = {
         "Max Arcade": "Arcade-64.png",
         "Max Bed Wars": "BedWars-64.png",
@@ -402,7 +423,7 @@
         "Max UHC": "UHC-64.png",
         "Max Warlords": "Warlords-64.png",
         "Max Wool Games": "WoolGames-64.png",
-        "Max Arena Brawl": "Arena-64.png", // Fixed to Arena-64
+        "Max Arena Brawl": "Arena-64.png", 
         "Max Paintball": "Paintball-64.png",
         "Max Quake": "Quakecraft-64.png",
         "Max VampireZ": "VampireZ-64.png",
@@ -412,11 +433,9 @@
         "Max SkyClash": "SkyClash-64.png"
       };
       
-      // Fallback for unmapped games (e.g. Speed UHC -> SpeedUHC-64.png)
       const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
       return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
     }
-
     
     function renderMaxesHTML(container, maxes, uuid) {
       if (maxes.length === 0) {
@@ -431,26 +450,40 @@
       maxes.forEach(game => {
         html += `
           <div class="mini-game-icon" title="${game}">
-            <img src="${getGameIconUrl(game)}" onerror="this.style.display='none'">
+            <img src="${getGameIconUrl(game)}" onerror="this.style.opacity='0'">
           </div>
         `;
       });
       html += `</div>`;
-      html += `<a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Trophy Cabinet ➔</a>`;
+      html += `<a href="/cabinet/${uuid}" class="cabinet-btn">Enter Trophy Cabinet ➔</a>`;
       
       container.innerHTML = html;
     }
 
-    function renderPlayers(players) {
+    // --- INFINITE SCROLL SYSTEM ---
+    function initPlayersRender(players) {
+      currentFilteredPlayers = players;
+      playersRenderCount = 0;
       const tbody = document.getElementById('players-tbody');
       tbody.innerHTML = '';
       
       if (!players.length) {
         tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No players found.</td></tr>`;
+        document.getElementById('players-sentinel').classList.add('hidden');
         return;
       }
 
-      players.forEach(p => {
+      renderNextPlayersBatch();
+    }
+
+    function renderNextPlayersBatch() {
+      const tbody = document.getElementById('players-tbody');
+      const toRender = currentFilteredPlayers.slice(playersRenderCount, playersRenderCount + BATCH_SIZE);
+      if (!toRender.length) return;
+
+      const fragment = document.createDocumentFragment();
+
+      toRender.forEach(p => {
         const rc = getRankClass(p.globalRank);
         let gainHTML = p.monthly_gain === "NEW" ? `<span class="gain-new">NEW</span>` : 
                        p.monthly_gain > 0 ? `<span class="gain-pos">+${fmt(p.monthly_gain)}</span>` : 
@@ -473,29 +506,52 @@
               </div>
             </td>
             <td><div class="flag-cell">${getFlagHTML(p.country)}<span class="country-name">${p.country}</span></div></td>
-            <td class="ap-cell">${fmt(p.current_ap)}</td>
-            <td>${gainHTML}</td>
+            <td class="ap-cell" style="text-align: right;">${fmt(p.current_ap)}</td>
+            <td style="text-align: right;">${gainHTML}</td>
         `;
-        tbody.appendChild(tr);
+        fragment.appendChild(tr);
 
         const expand = document.createElement('tr');
         expand.className = 'player-expanded-row';
         expand.id = `expand-${p.uuid}`;
         expand.innerHTML = `<td colspan="5"><div class="maxes-container" id="maxes-${p.uuid}"></div></td>`;
-        tbody.appendChild(expand);
+        fragment.appendChild(expand);
       });
+
+      tbody.appendChild(fragment);
+      playersRenderCount += toRender.length;
+
+      if (playersRenderCount < currentFilteredPlayers.length) {
+        document.getElementById('players-sentinel').classList.remove('hidden');
+      } else {
+        document.getElementById('players-sentinel').classList.add('hidden');
+      }
     }
 
-    function renderCountries(countries) {
+    function initCountriesRender(countries) {
+      currentFilteredCountries = countries;
+      countriesRenderCount = 0;
       const tbody = document.getElementById('countries-tbody');
+      tbody.innerHTML = '';
+
       if (!countries.length) {
         tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No countries found.</td></tr>`;
+        document.getElementById('countries-sentinel').classList.add('hidden');
         return;
       }
 
-      tbody.innerHTML = '';
-      countries.forEach((c, idx) => {
-        const rank = idx + 1;
+      renderNextCountriesBatch();
+    }
+
+    function renderNextCountriesBatch() {
+      const tbody = document.getElementById('countries-tbody');
+      const toRender = currentFilteredCountries.slice(countriesRenderCount, countriesRenderCount + BATCH_SIZE);
+      if (!toRender.length) return;
+
+      const fragment = document.createDocumentFragment();
+
+      toRender.forEach((c, idx) => {
+        const rank = c.globalRank;
         const topP = c.top_players[0] || {};
         
         const tr = document.createElement('tr');
@@ -503,7 +559,7 @@
         tr.innerHTML = `
           <td style="text-align: center;"><span class="rank ${getRankClass(rank)}">${rank}</span></td>
           <td><div class="flag-cell">${getFlagHTML(c.country)}<span class="country-name" style="font-weight:600; color:var(--text);">${c.country}</span></div></td>
-          <td class="ap-cell">${c.score > 0 ? fmt(Math.round(c.score)) : '-'}</td>
+          <td class="ap-cell" style="text-align: right;">${c.score > 0 ? fmt(Math.round(c.score)) : '-'}</td>
           <td>
             <div class="player-cell" style="gap:6px;">
               <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${topP.username||'?'}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
@@ -533,9 +589,18 @@
           expandRow.classList.toggle('open');
         });
 
-        tbody.appendChild(tr);
-        tbody.appendChild(expandRow);
+        fragment.appendChild(tr);
+        fragment.appendChild(expandRow);
       });
+
+      tbody.appendChild(fragment);
+      countriesRenderCount += toRender.length;
+
+      if (countriesRenderCount < currentFilteredCountries.length) {
+        document.getElementById('countries-sentinel').classList.remove('hidden');
+      } else {
+        document.getElementById('countries-sentinel').classList.add('hidden');
+      }
     }
 
     async function loadData() {
@@ -568,13 +633,15 @@
 
         processedCountries = Object.keys(cMap).map(c => {
           const top5 = cMap[c].slice(0, 5);
-          const score = top5.reduce((sum, p, i) => sum + (Math.sqrt(Math.max(0, p.current_ap - baseline)) * weights[i]), 0);
-          return { country: c, top_players: cMap[c], score: Math.round(Math.pow(score, 2)) };
+          const score = top5.reduce((sum, p, i) => sum + (Math.max(0, p.current_ap - baseline) * weights[i]), 0);
+          return { country: c, top_players: cMap[c], score: Math.round(score) };
         });
 
         const known = processedCountries.filter(c => c.country !== 'Unknown').sort((a,b) => b.score - a.score);
         const unknown = processedCountries.filter(c => c.country === 'Unknown');
-        processedCountries = [...known, ...unknown];
+        
+        // Apply Global Ranks to Countries for pagination context
+        processedCountries = [...known, ...unknown].map((c, idx) => ({ ...c, globalRank: idx + 1 }));
 
         const d = new Date(currentData.last_update);
         const dateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -586,15 +653,14 @@
         document.getElementById('countries-loading').classList.add('hidden');
         document.getElementById('countries-table').classList.remove('hidden');
 
-        renderPlayers(allPlayersList);
-        renderCountries(processedCountries);
+        initPlayersRender(allPlayersList);
+        initCountriesRender(processedCountries);
       } catch (err) {
         document.getElementById('players-loading').classList.add('hidden');
         document.getElementById('players-error').classList.remove('hidden');
       }
     }
 
-    // Search Logic
     const searchInput = document.getElementById('searchInput');
 
     function runLocalSearch(q) {
@@ -611,13 +677,13 @@
           if (fCountries.length) res.push(`${fCountries.length} countr${fCountries.length === 1 ? 'y' : 'ies'}`);
           document.getElementById('searchResults').innerHTML = `Found ${res.join(' and ')}`;
           document.getElementById('searchResults').classList.remove('hidden');
-          renderPlayers(fPlayers);
-          renderCountries(fCountries);
+          initPlayersRender(fPlayers);
+          initCountriesRender(fCountries);
         } else {
           document.getElementById('searchResults').innerHTML = `No local results found. Press <strong>Enter</strong> to search the network live.`;
           document.getElementById('searchResults').classList.remove('hidden');
-          renderPlayers([]);
-          renderCountries([]);
+          initPlayersRender([]);
+          initCountriesRender([]);
         }
       } else {
         document.getElementById('searchResults').classList.add('hidden');
@@ -628,8 +694,8 @@
           if (va > vb) return 1 * sortDir;
           return 0;
         });
-        renderPlayers(fPlayers);
-        renderCountries(fCountries);
+        initPlayersRender(fPlayers);
+        initCountriesRender(fCountries);
       }
     }
 
@@ -729,7 +795,7 @@
       const score = data.achievementPoints;
       const tbody = document.getElementById('players-tbody');
       
-      tbody.innerHTML = `
+      const trHTML = `
         <tr class="player-row" style="background: var(--accent-soft); border-left: 3px solid var(--accent);" onclick="togglePlayerExpand('${data.uuid}')">
           <td style="text-align: center;"><span class="rank" style="color: var(--accent); font-weight: bold;">LIVE</span></td>
           <td>
@@ -739,15 +805,33 @@
             </div>
           </td>
           <td><div class="flag-cell"><span class="country-name" style="color: var(--text-3); font-style: italic;">Unknown</span></div></td>
-          <td class="ap-cell">${Number(score).toLocaleString()}</td>
-          <td><span class="gain-new" style="background:var(--surface);border:1px solid var(--accent);">LIVE API</span></td>
+          <td class="ap-cell" style="text-align: right;">${Number(score).toLocaleString()}</td>
+          <td style="text-align: right;"><span class="gain-new" style="background:var(--surface);border:1px solid var(--accent);">LIVE API</span></td>
         </tr>
         <tr class="player-expanded-row" id="expand-${data.uuid}">
           <td colspan="5"><div class="maxes-container" id="maxes-${data.uuid}"></div></td>
         </tr>
       `;
+      
+      tbody.insertAdjacentHTML('afterbegin', trHTML);
       document.querySelector('[data-tab="players"]').click();
     }
+
+    // Connect Intersection Observer for Infinite Scrolling
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === 'players-sentinel' && currentTab === 'players' && playersRenderCount < currentFilteredPlayers.length) {
+            renderNextPlayersBatch();
+          } else if (entry.target.id === 'countries-sentinel' && currentTab === 'countries' && countriesRenderCount < currentFilteredCountries.length) {
+            renderNextCountriesBatch();
+          }
+        }
+      });
+    }, { rootMargin: '200px' });
+
+    scrollObserver.observe(document.getElementById('players-sentinel'));
+    scrollObserver.observe(document.getElementById('countries-sentinel'));
 
     const sparkObserver = new ResizeObserver(entries => {
       entries.forEach(entry => {
@@ -761,12 +845,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
