@@ -3,182 +3,178 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LitStats - Trophy Cabinet</title>
+  <title>LitStats - Player Profile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   
   <link rel="stylesheet" href="/global.css">
 
   <style>
-    main { max-width: 1000px; margin: 0 auto; padding: 40px 24px 100px; display: flex; flex-direction: column; align-items: center; }
+    main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 100px; display: flex; flex-direction: column; align-items: center; }
 
-    .back-btn { align-self: flex-start; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.2s; margin-bottom: 32px; }
-    .back-btn:hover { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+    /* --- NEW HEADER NAVIGATION --- */
+    .nav-links { display: flex; gap: 8px; margin-right: auto; margin-left: 32px; }
+    .nav-btn { color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px; transition: 0.2s; }
+    .nav-btn:hover { background: var(--surface-2); color: var(--text); }
+    .nav-btn.active { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(255, 81, 0, 0.2); }
 
-    /* Profile Header */
-    .profile-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; width: 100%; display: flex; align-items: center; gap: 24px; box-shadow: var(--shadow); margin-bottom: 40px; position: relative; overflow: hidden; }
-    .profile-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gold); }
-    .player-avatar { width: 80px; height: 80px; border-radius: 8px; background: var(--surface-2); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-    .player-info h1 { font-size: 32px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1; }
-    .stat-pill { display: inline-flex; align-items: center; background: var(--surface-2); border: 1px solid var(--border-strong); padding: 6px 12px; border-radius: 20px; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; color: var(--accent); }
+    /* --- UPGRADED PROFILE CARD --- */
+    .profile-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; width: 100%; display: flex; flex-direction: column; gap: 20px; box-shadow: var(--shadow); margin-bottom: 40px; position: relative; overflow: hidden; }
+    .profile-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent); }
+    
+    .profile-top { display: flex; align-items: center; gap: 24px; }
+    .player-avatar { width: 72px; height: 72px; border-radius: 8px; background: var(--surface-2); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    
+    .player-info { flex: 1; }
+    .player-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+    .mc-rank { font-size: 12px; font-weight: 700; padding: 2px 6px; border-radius: 4px; background: #fbbf24; color: #000; } /* Placeholder MVP+ style */
+    .player-info h1 { font-size: 28px; font-weight: 700; color: var(--text); line-height: 1; margin: 0; }
+    
+    .stat-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .stat-pill { display: inline-flex; align-items: center; background: var(--surface-2); border: 1px solid var(--border-strong); padding: 6px 12px; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; color: var(--text); }
+    .stat-pill span { color: var(--accent); margin-right: 6px; }
 
-    /* Cabinet Layout */
-    .cabinet-wrapper { width: 100%; display: flex; flex-direction: column; gap: 40px; align-items: center; }
-    .tier-group { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; }
+    .ap-progress-container { width: 100%; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+    .ap-labels { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: var(--text-3); font-family: 'DM Mono', monospace; }
+    .ap-bar-bg { width: 100%; height: 8px; background: var(--surface-2); border-radius: 4px; border: 1px solid var(--border-strong); overflow: hidden; }
+    .ap-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #ff9d00); border-radius: 4px; transition: width 1s cubic-bezier(0.25, 0.8, 0.25, 1); }
+
+    /* --- 3D CABINET LAYOUT --- */
+    .cabinet-wrapper { width: 100%; display: flex; flex-direction: column; gap: 48px; align-items: center; }
+    .tier-group { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; }
     
     .tier-header { display: flex; align-items: center; width: 100%; gap: 16px; }
-    .tier-header::before, .tier-header::after { content: ''; flex-grow: 1; height: 1px; background: var(--border); }
+    .tier-header::before, .tier-header::after { content: ''; flex-grow: 1; height: 1px; background: var(--border-strong); opacity: 0.5; }
+    .tier-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; }
     
-    /* Removed individual colours here, they are now inherited from the group */
-    .tier-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; }
+    .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
     
-    .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-    
-    /* The Stamp Badge */
+    /* Base Badge */
     .game-badge {
-      width: 120px; height: 130px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-      border-radius: 10px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; overflow: hidden;
+      width: 110px; height: 125px; 
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start; 
+      border-radius: 12px; transition: all 0.2s ease; position: relative; overflow: hidden;
+      padding-top: 16px;
     }
+    .img-wrapper { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; z-index: 1; margin-bottom: 12px; }
+    .game-badge img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
+    .game-badge span { font-size: 11px; font-weight: 600; color: var(--text); text-align: center; z-index: 1; padding: 0 6px; line-height: 1.2; }
 
-    /* UNACHIEVED (Rusty/Moody) */
+    /* =========================================
+       UNACHIEVED: THE "SUNK-IN SLAB" EFFECT
+       ========================================= */
     .game-badge.unachieved {
-      background: var(--surface-2); border: 1px solid var(--border-strong);
-      box-shadow: inset 0 4px 8px rgba(0,0,0,0.5);
-      filter: grayscale(100%) brightness(0.4) contrast(1.1); opacity: 0.7;
+      background: var(--surface-2); 
+      border: 1px solid var(--border-strong);
+      /* Inset shadows create the illusion of a cavity carved into the page */
+      box-shadow: inset 0 6px 12px rgba(0,0,0,0.6), inset 0 2px 4px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.05);
+      border-top-color: #000; /* Darker top edge simulates shadow */
     }
-    
-    /* ACHIEVED (Base Configuration) */
+    body.light-theme .game-badge.unachieved {
+      background: #f1f5f9;
+      box-shadow: inset 0 4px 8px rgba(0,0,0,0.1), inset 0 1px 3px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,1);
+      border-top-color: #cbd5e1;
+    }
+    .game-badge.unachieved img { filter: grayscale(100%) brightness(0.3); opacity: 0.4; }
+    body.light-theme .game-badge.unachieved img { filter: grayscale(100%) brightness(0.8); opacity: 0.5; }
+    .game-badge.unachieved span { color: var(--text-3); opacity: 0.6; }
+
+    /* Mini Progress Bar inside empty slots */
+    .slot-progress { position: absolute; bottom: 0; left: 0; width: 100%; height: 6px; background: rgba(0,0,0,0.3); }
+    .slot-fill { height: 100%; background: var(--text-3); opacity: 0.4; }
+
+    /* =========================================
+       ACHIEVED: THE "3D POP" EFFECT
+       ========================================= */
     .game-badge.achieved {
-      background: linear-gradient(135deg, var(--surface) 0%, rgba(255, 255, 255, 0.03) 100%);
-      border-width: 1px;
-      border-style: solid;
+      background: var(--surface);
+      border: 1px solid transparent;
+      /* The solid bottom shadow creates the 3D "thickness" of the physical badge */
     }
     .game-badge.achieved img { transform: scale(1.1); }
-    .game-badge.achieved:hover { transform: translateY(-6px); }
+    .game-badge.achieved:hover { transform: translateY(-4px); }
 
-    /* Shine Animation */
-    .game-badge.achieved::after {
-      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
-      transform: skewX(-20deg); animation: shine 4s infinite;
-    }
-    @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
-
-    .img-wrapper { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; z-index: 1; }
-    .game-badge img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
-    .game-badge span { font-size: 12px; font-weight: 600; color: var(--text); text-align: center; z-index: 1; padding: 0 6px; line-height: 1.2; }
-
-/* =========================================
-       MATERIAL INTEGRITY SCALING (REFINED)
-       ========================================= */
-       
-    /* Base for all Achieved Badges (Softer, cleaner shelf shadow) */
-    .game-badge.achieved {
-      background: var(--surface-2);
-      border-width: 1px;
-      border-style: solid;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* Softened spread */
-    }
-    .game-badge.achieved::after { display: none; }
-
-    /* Common (Stone) - Matte, flat */
+    /* Common (Stone) */
     .tier-group.common .tier-label { color: #78716c; }
     .tier-group.common .game-badge.achieved { 
       border-color: #57534e; 
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 4px 0 #292524, 0 8px 12px rgba(0,0,0,0.5); 
     }
-    .tier-group.common .game-badge.achieved:hover { 
-      border-color: #78716c; 
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    }
-    .tier-group.common .game-badge.achieved img { filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5)); }
+    .tier-group.common .game-badge.achieved:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 6px 0 #292524, 0 12px 20px rgba(0,0,0,0.6); }
 
-    /* Rare (Bronze) - Subtle light catch */
+    /* Rare (Bronze) */
     .tier-group.rare .tier-label { color: var(--bronze); }
     .tier-group.rare .game-badge.achieved { 
       border-color: var(--bronze); 
-      background: linear-gradient(135deg, rgba(205, 127, 50, 0.12) 0%, var(--surface-2) 50%);
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), 0 4px 12px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, rgba(205, 127, 50, 0.15) 0%, var(--surface) 60%);
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), 0 4px 0 #7c4a1b, 0 8px 12px rgba(0,0,0,0.6);
     }
-    .tier-group.rare .game-badge.achieved:hover { 
-      border-color: #e59850;
-      transform: translateY(-3px);
-      box-shadow: inset 0 1px 2px rgba(255,255,255,0.25), 0 8px 20px rgba(0,0,0,0.4);
-    }
-    .tier-group.rare .game-badge.achieved img { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
+    .tier-group.rare .game-badge.achieved:hover { box-shadow: inset 0 1px 2px rgba(255,255,255,0.3), 0 6px 0 #7c4a1b, 0 12px 20px rgba(0,0,0,0.7); }
 
-    /* Epic (Silver) - Crisp, polished inner rim */
+    /* Epic (Silver) - STRONGER GLARE */
     .tier-group.epic .tier-label { color: var(--silver); }
     .tier-group.epic .game-badge.achieved { 
       border-color: var(--silver); 
-      background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, var(--surface-2) 50%);
-      box-shadow: inset 0 1px 2px rgba(255,255,255,0.3), inset 0 0 8px rgba(192, 192, 192, 0.05), 0 4px 12px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, var(--surface) 50%);
+      /* Significantly boosted the white inner inset shadow for the sharp glare */
+      box-shadow: inset 0 2px 6px rgba(255,255,255,0.6), inset 0 0 12px rgba(192, 192, 192, 0.1), 0 4px 0 #475569, 0 8px 16px rgba(0,0,0,0.7);
     }
-    .tier-group.epic .game-badge.achieved:hover { 
-      border-color: #ffffff;
-      transform: translateY(-3px);
-      box-shadow: inset 0 1px 3px rgba(255,255,255,0.5), inset 0 0 12px rgba(192, 192, 192, 0.15), 0 8px 20px rgba(0,0,0,0.45);
-    }
-    .tier-group.epic .game-badge.achieved img { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6)); }
+    .tier-group.epic .game-badge.achieved:hover { box-shadow: inset 0 2px 8px rgba(255,255,255,0.8), 0 6px 0 #475569, 0 12px 24px rgba(0,0,0,0.8); }
 
-    /* Legendary (Gold) - Gleaming, high-value reflection */
+    /* Legendary (Gold) */
     .tier-group.legendary .tier-label { color: var(--gold); }
     .tier-group.legendary .game-badge.achieved { 
       border-color: var(--gold); 
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, var(--surface-2) 60%);
-      box-shadow: inset 0 1px 3px rgba(255,255,255,0.45), inset 0 0 16px rgba(245, 158, 11, 0.2), 0 4px 12px rgba(0,0,0,0.3);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, var(--surface) 60%);
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.5), inset 0 0 16px rgba(245, 158, 11, 0.3), 0 4px 0 #92400e, 0 8px 16px rgba(0,0,0,0.8);
     }
-    .tier-group.legendary .game-badge.achieved:hover { 
-      border-color: #fbbf24;
-      transform: translateY(-3px);
-      box-shadow: inset 0 1px 4px rgba(255,255,255,0.65), inset 0 0 24px rgba(245, 158, 11, 0.3), 0 8px 24px rgba(0,0,0,0.45);
-    }
-    .tier-group.legendary .game-badge.achieved img { filter: drop-shadow(0 6px 8px rgba(0,0,0,0.6)); }
+    .tier-group.legendary .game-badge.achieved:hover { box-shadow: inset 0 2px 6px rgba(255,255,255,0.7), inset 0 0 24px rgba(245, 158, 11, 0.4), 0 6px 0 #92400e, 0 14px 28px rgba(0,0,0,0.9); }
 
-    /* Legacy (Red / Dashed) */
+    /* Legacy (Red) */
     .tier-group.legacy .tier-label { color: var(--red); }
     .tier-group.legacy .game-badge { border-style: dashed; border-width: 1px; }
-    .tier-group.legacy .game-badge.achieved { 
-      border-color: var(--red); 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .tier-group.legacy .game-badge.achieved:hover { 
-      border-color: #f87171;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    }
-    .tier-group.legacy .game-badge.achieved img { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
+    .tier-group.legacy .game-badge.achieved { border-color: var(--red); box-shadow: 0 4px 0 #7f1d1d, 0 8px 12px rgba(0,0,0,0.6); }
+
+    /* --- NEW: INCOMPLETE ACHIEVEMENTS DASHBOARD --- */
+    .todo-section { width: 100%; margin-top: 64px; display: flex; flex-direction: column; gap: 20px; }
+    .todo-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--border-strong); padding-bottom: 12px; }
+    .todo-header h2 { font-size: 20px; color: var(--text); margin: 0; }
     
-    
+    .todo-controls { display: flex; gap: 12px; }
+    .todo-btn { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .todo-btn:hover, .todo-btn.active { background: var(--surface); border-color: var(--accent); color: var(--text); }
+
+    .ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .ach-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .ach-game { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; }
+    .ach-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .ach-desc { font-size: 12px; color: var(--text-2); line-height: 1.4; }
+    .ach-reward { margin-top: auto; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
+    .ach-reward::before { content: ''; display: inline-block; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
 
     .loading-msg { font-size: 16px; color: var(--text-3); text-align: center; padding: 100px; }
     .hidden { display: none !important; }
-
-
-        /* Adjust these values until it looks right */
-    body.light-theme .game-badge.unachieved {
-      filter: grayscale(100%) brightness(0.85); /* Raised from 0.4 to 0.85 */
-      opacity: 0.5; /* Makes it slightly transparent against the white background */
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); /* Much softer inner shadow */
-      border-color: #cbd5e1; /* Lighter border colour */
-    }
-    
   </style>
 </head>
 <body>
 
   <header>
-    <div class="header-inner">
+    <div class="header-inner" style="width: 100%; display: flex; align-items: center;">
       <a class="logo" href="/">
         <img src="/img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
         <div>
           <div class="logo-text">LitStats</div>
-          <div class="logo-sub">Trophy Cabinet</div>
         </div>
       </a>
+      
+      <nav class="nav-links">
+        <a href="/" class="nav-btn">AP Leaderboard</a>
+        <a href="/quest" class="nav-btn">Quest Leaderboard</a>
+        <a href="#" class="nav-btn active">Player Hub</a>
+      </nav>
+
       <div class="header-controls">
         <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme" onclick="toggleTheme()">☀️</button>
       </div>
@@ -186,26 +182,76 @@
   </header>
 
   <main>
-    <a href="/" class="back-btn">← Back to Leaderboards</a>
-
     <div id="loader" class="loading-msg">Summoning network data...</div>
     <div id="errorBox" class="loading-msg hidden" style="color: var(--red);"></div>
 
     <div id="cabinet-content" class="hidden" style="width: 100%;">
+      
       <div class="profile-card">
-        <img id="p-avatar" class="player-avatar" src="" alt="Avatar">
-        <div class="player-info">
-          <h1 id="p-name">Loading...</h1>
-          <div class="stat-pill" id="p-ap">0 AP</div>
+        <div class="profile-top">
+          <img id="p-avatar" class="player-avatar" src="" alt="Avatar">
+          <div class="player-info">
+            <div class="player-name-row">
+              <span class="mc-rank" id="p-rank">[MVP+]</span>
+              <h1 id="p-name">Loading...</h1>
+            </div>
+            <div class="stat-row">
+              <div class="stat-pill"><span>🏆</span> <b id="p-ap">0 AP</b></div>
+              <div class="stat-pill"><span>🔥</span> <b id="p-max-count">0 / 26 Maxed</b></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="ap-progress-container">
+          <div class="ap-labels">
+            <span>Progress to Maximum AP</span>
+            <span id="p-ap-percent">0%</span>
+          </div>
+          <div class="ap-bar-bg">
+            <div class="ap-bar-fill" id="p-ap-bar" style="width: 0%;"></div>
+          </div>
         </div>
       </div>
 
       <div class="cabinet-wrapper" id="cabinet-grid"></div>
+
+      <div class="todo-section">
+        <div class="todo-header">
+          <h2>Target Priorities (Incomplete)</h2>
+          <div class="todo-controls">
+            <button class="todo-btn active">Easiest First</button>
+            <button class="todo-btn">Sort by Game</button>
+            <button class="todo-btn">Filter: None</button>
+          </div>
+        </div>
+
+        <div class="ach-grid">
+          <div class="ach-card">
+            <span class="ach-game">Bed Wars</span>
+            <span class="ach-title">Slumber Party</span>
+            <span class="ach-desc">Win 100 games of Bed Wars in a party of 4.</span>
+            <span class="ach-reward">15 AP</span>
+          </div>
+          <div class="ach-card">
+            <span class="ach-game">Murder Mystery</span>
+            <span class="ach-title">Sleuth</span>
+            <span class="ach-desc">Find the murderer's identity before they kill 3 people.</span>
+            <span class="ach-reward">10 AP</span>
+          </div>
+          <div class="ach-card" style="opacity: 0.6; align-items: center; justify-content: center;">
+            <span style="font-size: 12px; color: var(--text-3); text-align: center;">Requires Backend Update<br>to fetch missing API data.</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 
   <script src="/global.js"></script>
   <script>
+    const MAX_POSSIBLE_AP = 33000; // Adjust this hardcode until Vercel provides the exact total
+    const TOTAL_GAMES = 26;
+
     const trophyStructure = [
       { name: "4th Tier", classes: "legendary", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
       { name: "3rd Tier", classes: "epic", games: ["Max Smash Heroes", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
@@ -218,32 +264,15 @@
       if (gameName === "Max Seasonal") return "img/games/seasonal.png";
 
       const iconMap = {
-        "Max Arcade": "Arcade-64.png",
-        "Max Bed Wars": "BedWars-64.png",
-        "Max Build Battle": "BuildBattle-64.png",
-        "Max Cops and Crims": "CVC-64.png",
-        "Max Duels": "Duels-64.png",
-        "Max Mega Walls": "MegaWalls-64.png",
-        "Max Murder Mystery": "MurderMystery-64.png",
-        "Max Pit": "Pit-64.png",
-        "Max Blitz": "SG-64.png",
-        "Max SkyBlock": "SkyBlock-64.png",
-        "Max SkyWars": "Skywars-64.png",
-        "Max Smash Heroes": "SmashHeroes-64.png",
-        "Max TNT Games": "TNT-64.png",
-        "Max UHC": "UHC-64.png",
-        "Max Warlords": "Warlords-64.png",
-        "Max Wool Games": "WoolGames-64.png",
-        "Max Arena Brawl": "Arena-64.png",
-        "Max Paintball": "Paintball-64.png",
-        "Max Quake": "Quakecraft-64.png",
-        "Max VampireZ": "VampireZ-64.png",
-        "Max Walls": "Walls-64.png",
-        "Max TKR": "TurboKartRacers-64.png",
-        "Max Crazy Walls": "CrazyWalls-64.png",
-        "Max SkyClash": "SkyClash-64.png"
+        "Max Arcade": "Arcade-64.png", "Max Bed Wars": "BedWars-64.png", "Max Build Battle": "BuildBattle-64.png",
+        "Max Cops and Crims": "CVC-64.png", "Max Duels": "Duels-64.png", "Max Mega Walls": "MegaWalls-64.png",
+        "Max Murder Mystery": "MurderMystery-64.png", "Max Pit": "Pit-64.png", "Max Blitz": "SG-64.png",
+        "Max SkyBlock": "SkyBlock-64.png", "Max SkyWars": "Skywars-64.png", "Max Smash Heroes": "SmashHeroes-64.png",
+        "Max TNT Games": "TNT-64.png", "Max UHC": "UHC-64.png", "Max Warlords": "Warlords-64.png",
+        "Max Wool Games": "WoolGames-64.png", "Max Arena Brawl": "Arena-64.png", "Max Paintball": "Paintball-64.png",
+        "Max Quake": "Quakecraft-64.png", "Max VampireZ": "VampireZ-64.png", "Max Walls": "Walls-64.png",
+        "Max TKR": "TurboKartRacers-64.png", "Max Crazy Walls": "CrazyWalls-64.png", "Max SkyClash": "SkyClash-64.png"
       };
-      
       const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
       return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
     }
@@ -252,8 +281,18 @@
         document.getElementById('p-avatar').src = `https://minotar.net/helm/${data.username}/100`;
         document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/face/${data.uuid}.png`; };
         document.getElementById('p-name').textContent = data.username;
-        document.getElementById('p-ap').textContent = `${Number(data.achievementPoints || data.current_ap).toLocaleString()} AP`;
+        
+        // AP & Progress Math
+        const ap = data.achievementPoints || data.current_ap || 0;
+        document.getElementById('p-ap').textContent = `${Number(ap).toLocaleString()} AP`;
+        const percentage = Math.min(100, (ap / MAX_POSSIBLE_AP) * 100).toFixed(1);
+        document.getElementById('p-ap-bar').style.width = `${percentage}%`;
+        document.getElementById('p-ap-percent').textContent = `${percentage}%`;
 
+        const userMaxes = data.maxGames || [];
+        document.getElementById('p-max-count').textContent = `${userMaxes.length} / ${TOTAL_GAMES} Maxed`;
+
+        // Build Cabinet
         const cabinetGrid = document.getElementById('cabinet-grid');
         let html = '';
 
@@ -263,19 +302,26 @@
           html += `<div class="badge-row">`;
           
           tier.games.forEach(game => {
-            const isAchieved = (data.maxGames || []).includes(game);
+            const isAchieved = userMaxes.includes(game);
             const statusClass = isAchieved ? 'achieved' : 'unachieved';
             
+            // Mock percentage for unachieved games (to show the design)
+            let innerHtml = '';
+            if (!isAchieved) {
+                const mockPercent = Math.floor(Math.random() * 80) + 10; // Random 10-90%
+                innerHtml = `<div class="slot-progress"><div class="slot-fill" style="width: ${mockPercent}%;"></div></div>`;
+            }
+
             html += `
-              <div class="game-badge ${statusClass}">
+              <div class="game-badge ${statusClass}" title="${isAchieved ? '' : 'Pending Backend Sync for exact %'}">
                 <div class="img-wrapper">
                   <img src="${getGameIconUrl(game)}" onerror="this.style.display='none'">
                 </div>
                 <span>${game.replace('Max ', '')}</span>
+                ${innerHtml}
               </div>
             `;
           });
-          
           html += `</div></div>`;
         });
 
@@ -286,7 +332,7 @@
 
     async function initCabinet() {
       const urlParams = new URLSearchParams(window.location.search);
-      const uuid = urlParams.get('uuid');
+      let uuid = urlParams.get('uuid');
 
       if (!uuid || uuid === "undefined") {
         document.getElementById('loader').classList.add('hidden');
@@ -297,12 +343,11 @@
 
       try {
         const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-        const jsonRes = await fetch(`ap_hunters_data.json?v=${currentHour}`);
+        const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
         
         if (jsonRes.ok) {
             const localData = await jsonRes.json();
             const localPlayer = localData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
-            
             if (localPlayer && localPlayer.maxGames) {
                 renderCabinet(localPlayer);
                 return;
@@ -312,19 +357,8 @@
         const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
         if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
         const data = await res.json();
-        
         if (data.error) throw new Error(`API Error: ${data.error}`);
 
         renderCabinet(data);
-
       } catch (err) {
-        document.getElementById('loader').classList.add('hidden');
-        document.getElementById('errorBox').textContent = err.message;
-        document.getElementById('errorBox').classList.remove('hidden');
-      }
-    }
-
-    initCabinet();
-  </script>
-</body>
-</html>
+        document.getElementById('l
