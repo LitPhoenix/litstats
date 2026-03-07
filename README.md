@@ -1,2 +1,2 @@
-# litstats
-stats that are lit
+# LitStats
+Comprehensive Hypixel leaderboards and stats
