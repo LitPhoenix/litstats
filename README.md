@@ -1,2 +1,2 @@
 # LitStats
-Comprehensive Hypixel leaderboards and stats
+Comprehensive Hypixel leaderboards and stats!
