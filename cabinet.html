@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   
-  <link rel="stylesheet" href="global.css">
+  <link rel="stylesheet" href="/global.css">
 
   <style>
     main { max-width: 1000px; margin: 0 auto; padding: 40px 24px 100px; display: flex; flex-direction: column; align-items: center; }
@@ -80,7 +80,7 @@
 
   <header>
     <div class="header-inner">
-      <a class="logo" href="index.html">
+      <a class="logo" href="/">
         <img src="/img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
         <div>
           <div class="logo-text">LitStats</div>
@@ -94,7 +94,7 @@
   </header>
 
   <main>
-    <a href="index.html" class="back-btn">← Back to Leaderboards</a>
+    <a href="/" class="back-btn">← Back to Leaderboards</a>
 
     <div id="loader" class="loading-msg">Summoning network data...</div>
     <div id="errorBox" class="loading-msg hidden" style="color: var(--red);"></div>
@@ -112,9 +112,9 @@
     </div>
   </main>
 
-  <script src="global.js"></script>
+  <script src="/global.js"></script>
   <script>
-const trophyStructure = [
+    const trophyStructure = [
       { name: "4th Tier", classes: "mythic", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
       { name: "3rd Tier", classes: "", games: ["Max Smash Heroes", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
       { name: "2nd Tier", classes: "", games: ["Max SkyBlock", "Max Speed UHC", "Max Warlords", "Max Walls", "Max TNT Games", "Max Arcade"] },
@@ -123,43 +123,40 @@ const trophyStructure = [
     ];
 
     function getGameIconUrl(gameName) {
-  // 1. Intercept Seasonal immediately and return the local path
-  if (gameName === "Max Seasonal") {
-    return "/img/games/seasonal.png";
-  }
+      if (gameName === "Max Seasonal") {
+        return "/img/games/seasonal.png";
+      }
 
-  // 2. The Hypixel CDN Map (Updated Arena)
-  const iconMap = {
-    "Max Arcade": "Arcade-64.png",
-    "Max Bed Wars": "BedWars-64.png",
-    "Max Build Battle": "BuildBattle-64.png",
-    "Max Cops and Crims": "CVC-64.png",
-    "Max Duels": "Duels-64.png",
-    "Max Mega Walls": "MegaWalls-64.png",
-    "Max Murder Mystery": "MurderMystery-64.png",
-    "Max Pit": "Pit-64.png",
-    "Max Blitz": "SG-64.png",
-    "Max SkyBlock": "SkyBlock-64.png",
-    "Max SkyWars": "Skywars-64.png",
-    "Max Smash Heroes": "SmashHeroes-64.png",
-    "Max TNT Games": "TNT-64.png",
-    "Max UHC": "UHC-64.png",
-    "Max Warlords": "Warlords-64.png",
-    "Max Wool Games": "WoolGames-64.png",
-    "Max Arena Brawl": "Arena-64.png", // Fixed to Arena-64
-    "Max Paintball": "Paintball-64.png",
-    "Max Quake": "Quakecraft-64.png",
-    "Max VampireZ": "VampireZ-64.png",
-    "Max Walls": "Walls-64.png",
-    "Max TKR": "TurboKartRacers-64.png",
-    "Max Crazy Walls": "CrazyWalls-64.png",
-    "Max SkyClash": "SkyClash-64.png"
-  };
-  
-  // 3. Fallback and build the Hypixel CDN URL
-  const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
-  return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
-}
+      const iconMap = {
+        "Max Arcade": "Arcade-64.png",
+        "Max Bed Wars": "BedWars-64.png",
+        "Max Build Battle": "BuildBattle-64.png",
+        "Max Cops and Crims": "CVC-64.png",
+        "Max Duels": "Duels-64.png",
+        "Max Mega Walls": "MegaWalls-64.png",
+        "Max Murder Mystery": "MurderMystery-64.png",
+        "Max Pit": "Pit-64.png",
+        "Max Blitz": "SG-64.png",
+        "Max SkyBlock": "SkyBlock-64.png",
+        "Max SkyWars": "Skywars-64.png",
+        "Max Smash Heroes": "SmashHeroes-64.png",
+        "Max TNT Games": "TNT-64.png",
+        "Max UHC": "UHC-64.png",
+        "Max Warlords": "Warlords-64.png",
+        "Max Wool Games": "WoolGames-64.png",
+        "Max Arena Brawl": "Arena-64.png",
+        "Max Paintball": "Paintball-64.png",
+        "Max Quake": "Quakecraft-64.png",
+        "Max VampireZ": "VampireZ-64.png",
+        "Max Walls": "Walls-64.png",
+        "Max TKR": "TurboKartRacers-64.png",
+        "Max Crazy Walls": "CrazyWalls-64.png",
+        "Max SkyClash": "SkyClash-64.png"
+      };
+      
+      const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
+      return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
+    }
 
     function renderCabinet(data) {
         document.getElementById('p-avatar').src = `https://minotar.net/helm/${data.username}/100`;
@@ -199,7 +196,15 @@ const trophyStructure = [
 
     async function initCabinet() {
       const urlParams = new URLSearchParams(window.location.search);
-      const uuid = urlParams.get('uuid');
+      let uuid = urlParams.get('uuid');
+
+      // Fallback for Vercel Clean URL rewriting (e.g. litstats.com/cabinet/12345)
+      if (!uuid || uuid === "undefined") {
+        const pathSegments = window.location.pathname.split('/').filter(Boolean);
+        if (pathSegments[0] === 'cabinet' && pathSegments[1]) {
+          uuid = pathSegments[1];
+        }
+      }
 
       if (!uuid || uuid === "undefined") {
         document.getElementById('loader').classList.add('hidden');
@@ -209,9 +214,8 @@ const trophyStructure = [
       }
 
       try {
-        // 1. SMART CACHE: Check the hourly updated JSON first
         const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-        const jsonRes = await fetch(`ap_hunters_data.json?v=${currentHour}`);
+        const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
         
         if (jsonRes.ok) {
             const localData = await jsonRes.json();
@@ -219,11 +223,10 @@ const trophyStructure = [
             
             if (localPlayer && localPlayer.maxGames) {
                 renderCabinet(localPlayer);
-                return; // Stop execution, we got the data locally!
+                return;
             }
         }
 
-        // 2. LIVE FETCH: If not in Top 200, fetch from Vercel
         const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
         if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
         const data = await res.json();
