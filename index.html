@@ -366,6 +366,41 @@
       }
     }
 
+
+    function getGameIconUrl(gameName) {
+      const iconMap = {
+        "Max Arcade": "Arcade-64.png",
+        "Max Bed Wars": "BedWars-64.png",
+        "Max Build Battle": "BuildBattle-64.png",
+        "Max Cops and Crims": "CVC-64.png",
+        "Max Duels": "Duels-64.png",
+        "Max Mega Walls": "MegaWalls-64.png",
+        "Max Murder Mystery": "MurderMystery-64.png",
+        "Max Pit": "Pit-64.png",
+        "Max Blitz": "SG-64.png",
+        "Max SkyBlock": "SkyBlock-64.png",
+        "Max SkyWars": "Skywars-64.png",
+        "Max Smash Heroes": "SmashHeroes-64.png",
+        "Max TNT Games": "TNT-64.png",
+        "Max UHC": "UHC-64.png",
+        "Max Warlords": "Warlords-64.png",
+        "Max Wool Games": "WoolGames-64.png",
+        "Max Arena Brawl": "ClassicLobby-64.png",
+        "Max Paintball": "ClassicLobby-64.png",
+        "Max Quake": "ClassicLobby-64.png",
+        "Max VampireZ": "ClassicLobby-64.png",
+        "Max Walls": "ClassicLobby-64.png",
+        "Max TKR": "ClassicLobby-64.png",
+        "Max Crazy Walls": "CrazyWalls.png",
+        "Max SkyClash": "SkyClash.png"
+      };
+      
+      // Fallback for unmapped games (e.g. Speed UHC -> SpeedUHC-64.png)
+      const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
+      return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
+    }
+
+    
     function renderMaxesHTML(container, maxes, uuid) {
       if (maxes.length === 0) {
         container.innerHTML = `
@@ -374,12 +409,12 @@
         `;
         return;
       }
-
+    
       let html = `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
       maxes.forEach(game => {
         html += `
           <div class="mini-game-icon" title="${game}">
-            <img src="https://hypixel.net/styles/hypixel-v2/images/game-icons/${game}.png" onerror="this.style.display='none'">
+            <img src="${getGameIconUrl(game)}" onerror="this.style.display='none'">
           </div>
         `;
       });
@@ -709,4 +744,5 @@
   </script>
 </body>
 </html>
+
 
