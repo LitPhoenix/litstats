@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-08T14:30:32.149Z",
+  "last_update": "2026-03-08T15:30:16.528Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -193,7 +193,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 48805.8,
+      "score": 48826.8,
       "top_players": [
         {
           "username": "Skorlex",
@@ -231,9 +231,9 @@
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_quests": 27961,
+          "current_quests": 28066,
           "last_month_quests": 27961,
-          "monthly_gain": 0
+          "monthly_gain": 105
         },
         {
           "username": "trql",
@@ -447,9 +447,9 @@
           "username": "Dadje",
           "uuid": "616eb57f51b441018734724efc998f53",
           "country": "USA",
-          "current_quests": 31268,
+          "current_quests": 31295,
           "last_month_quests": 31245,
-          "monthly_gain": 23
+          "monthly_gain": 50
         },
         {
           "username": "oJakey",
@@ -825,23 +825,23 @@
     },
     {
       "country": "Sweden",
-      "score": 10970,
+      "score": 11007.4,
       "top_players": [
         {
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Sweden",
-          "current_quests": 32030,
+          "current_quests": 32071,
           "last_month_quests": 32030,
-          "monthly_gain": 0
+          "monthly_gain": 41
         },
         {
           "username": "Reeedly",
           "uuid": "5de0cd7c0baf4d4facb117618a3b5fd7",
           "country": "Sweden",
-          "current_quests": 22820,
+          "current_quests": 22966,
           "last_month_quests": 22820,
-          "monthly_gain": 0
+          "monthly_gain": 146
         }
       ]
     },
