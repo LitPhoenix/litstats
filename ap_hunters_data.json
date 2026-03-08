@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-08T20:33:46.141Z",
+  "last_update": "2026-03-08T21:30:31.043Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2130,6 +2130,18 @@
           ]
         },
         {
+          "username": "adjective_n0un",
+          "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
+          "country": "Unknown",
+          "current_ap": 24935,
+          "last_month_ap": 24875,
+          "monthly_gain": 60,
+          "maxGames": [
+            "Max Pit",
+            "Max SkyBlock"
+          ]
+        },
+        {
           "username": "Aldix",
           "uuid": "6a040159d71841129271ce291b226587",
           "country": "Unknown",
@@ -2138,18 +2150,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "adjective_n0un",
-          "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
-          "country": "Unknown",
-          "current_ap": 24920,
-          "last_month_ap": 24875,
-          "monthly_gain": 45,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyBlock"
           ]
         },
         {
