@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
+// Native fetch fallback for modern Vercel environments
+const fetchObj = typeof fetch === 'undefined' ? require('node-fetch') : fetch;
 
-// Cache the template in server memory so we don't hit Hypixel twice per request
 let cachedTemplate = null;
 let templateFetchTime = 0;
 
@@ -31,9 +31,9 @@ module.exports = async (req, res) => {
   if (!API_KEY) return res.status(500).json({ error: "Server missing API Key" });
 
   try {
-    // 1. Fetch Global Achievements Template (Cached for 1 hour to save API limits)
+    // 1. Fetch Global Achievements Template (Cached)
     if (!cachedTemplate || Date.now() - templateFetchTime > 3600000) {
-      const tRes = await fetch('https://api.hypixel.net/v2/resources/achievements');
+      const tRes = await fetchObj('https://api.hypixel.net/v2/resources/achievements');
       if (tRes.ok) {
         const tData = await tRes.json();
         cachedTemplate = tData.achievements;
@@ -42,19 +42,18 @@ module.exports = async (req, res) => {
     }
 
     // 2. Fetch Player Data
-    const pRes = await fetch(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } });
+    const pRes = await fetchObj(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } });
     if (pRes.status === 429) return res.status(429).json({ error: "Hypixel API Rate Limit. Try again shortly." });
     
     const pData = await pRes.json();
     if (!pData.success) return res.status(400).json({ error: pData.cause || "Hypixel API Error" });
-    if (!pData.player) return res.status(404).json({ error: "Player not found" });
+    if (!pData.player) return res.status(404).json({ error: "Player not found on Hypixel" });
 
     const profile = pData.player;
     const rawOneTime = profile.achievementsOneTime || [];
     const cleanOneTime = rawOneTime.filter(item => typeof item === 'string');
     const tieredPlayer = profile.achievements || {};
 
-    // Base Data
     const responseData = {
       username: profile.displayname || "Unknown",
       uuid: profile.uuid,
@@ -62,20 +61,45 @@ module.exports = async (req, res) => {
       achievementPoints: profile.achievementPoints || 0,
       questsCompleted: 0, 
       maxGames: [],
+      topQuests: [],
       gamePercentages: {},
       missingAchievements: []
     };
 
-    // Calculate Quests
+    // --- QUEST CALCULATION ---
     if (profile.quests) {
-      for (const quest in profile.quests) {
-        if (profile.quests[quest].completions) {
-          responseData.questsCompleted += profile.quests[quest].completions.length;
+      const questTotals = {};
+      const qMap = {
+        "arcade": "Arcade", "arena": "Arena Brawl", "bedwars": "Bed Wars", "blitz": "Blitz SG",
+        "buildbattle": "Build Battle", "copsandcrims": "Cops and Crims", "duels": "Duels",
+        "gingerbread": "TKR", "murder_mystery": "Murder Mystery", "paintball": "Paintball",
+        "pit": "The Pit", "quake": "Quakecraft", "skyblock": "SkyBlock", "skywars": "SkyWars",
+        "smash": "Smash Heroes", "speed_uhc": "Speed UHC", "tntgames": "TNT Games",
+        "truecombat": "Crazy Walls", "uhc": "UHC", "vampirez": "VampireZ", "walls3": "Mega Walls",
+        "walls": "Walls", "warlords": "Warlords", "woolgames": "Wool Games"
+      };
+
+      for (const [qId, qData] of Object.entries(profile.quests)) {
+        if (qData.completions && Array.isArray(qData.completions)) {
+          const count = qData.completions.length;
+          responseData.questsCompleted += count;
+          
+          let gName = "Other";
+          for (const pfx in qMap) {
+            if (qId.startsWith(pfx)) { gName = qMap[pfx]; break; }
+          }
+          if (!questTotals[gName]) questTotals[gName] = 0;
+          questTotals[gName] += count;
         }
       }
+      
+      responseData.topQuests = Object.entries(questTotals)
+        .map(([game, count]) => ({ game, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 3);
     }
 
-    // Advanced Calculation: Maxes, Percentages & Missing
+    // --- AP MAXES & PERCENTAGES CALCULATION ---
     if (cachedTemplate) {
       const gameMappings = [
         { internal: "uhc", name: "UHC", badge: "Max UHC" },
@@ -113,10 +137,9 @@ module.exports = async (req, res) => {
         let playerUnlocked = 0;
         let isMaxed = true;
 
-        // Process One-Time
         if (tGame.one_time) {
           for (const [key, ach] of Object.entries(tGame.one_time)) {
-            if (ach.legacy && !game.legacy) continue; // Skip legacy unless it's a legacy game
+            if (ach.legacy && !game.legacy) continue; 
             totalPossible++;
             const fullId = `${game.internal}_${key.toLowerCase()}`;
             
@@ -125,16 +148,12 @@ module.exports = async (req, res) => {
             } else {
               isMaxed = false;
               responseData.missingAchievements.push({
-                game: game.name,
-                title: ach.name,
-                desc: ach.description,
-                reward: ach.points
+                game: game.name, title: ach.name, desc: ach.description, reward: ach.points
               });
             }
           }
         }
 
-        // Process Tiered
         if (tGame.tiered) {
           for (const [key, ach] of Object.entries(tGame.tiered)) {
             if (ach.legacy && !game.legacy) continue;
@@ -148,10 +167,7 @@ module.exports = async (req, res) => {
               } else {
                 isMaxed = false;
                 responseData.missingAchievements.push({
-                  game: game.name,
-                  title: `${ach.name} (Tier ${tier.amount})`,
-                  desc: ach.description,
-                  reward: tier.points
+                  game: game.name, title: `${ach.name} (Tier ${tier.amount})`, desc: ach.description, reward: tier.points
                 });
               }
             }
@@ -166,14 +182,12 @@ module.exports = async (req, res) => {
       }
     }
 
-    // Sort missing achievements by Easiest First (lowest reward points)
     responseData.missingAchievements.sort((a, b) => a.reward - b.reward);
-    // Limit to Top 50 to prevent massive browser lag
     responseData.missingAchievements = responseData.missingAchievements.slice(0, 50);
 
     return res.status(200).json(responseData);
 
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error" });
+    return res.status(500).json({ error: error.message || "Internal Server Error" });
   }
 };
