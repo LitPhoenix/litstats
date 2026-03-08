@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-08T05:49:03.493Z",
+  "last_update": "2026-03-08T06:52:42.953Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2708,6 +2708,22 @@
           ]
         },
         {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 23780,
+          "last_month_ap": 23730,
+          "monthly_gain": 50,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "NoHaxJustTaiwan",
           "uuid": "8f0349e80fee4394b66d0e32fb09002d",
           "country": "Unknown",
@@ -2728,22 +2744,6 @@
           "last_month_ap": 23760,
           "monthly_gain": 0,
           "maxGames": []
-        },
-        {
-          "username": "EuanKC",
-          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
-          "country": "Unknown",
-          "current_ap": 23760,
-          "last_month_ap": 23730,
-          "monthly_gain": 30,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
-          ]
         },
         {
           "username": "ToastyOosty",
