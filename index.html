@@ -6,20 +6,13 @@
   <meta property="og:title" content="LitStats">
   <meta property="og:description" content="Get instant access to comprehensive Hypixel player stats, rankings, and performance analytics.">
   <meta property="og:image" content="https://www.litstats.com/img/opengraph.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:url" content="https://litstats.com/">
   <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="LitStats" />
-  <meta name="twitter:description" content="Get instant access to comprehensive Hypixel player stats, rankings, and performance analytics." />
-  <meta name="twitter:image" content="https://www.litstats.com/img/opengraph.png" />
 
   <title>LitStats - AP Hunters by Country</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="img/favicon.png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   
   <link rel="stylesheet" href="global.css">
@@ -29,6 +22,23 @@
     .hero { margin-bottom: 24px; }
     .hero h1 { font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
     .hero p { font-size: 14px; color: var(--text-2); }
+
+    /* HEADER NAVIGATION */
+    .nav-links { display: flex; gap: 8px; margin-right: auto; margin-left: 32px; }
+    .nav-btn { color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px; transition: 0.2s; }
+    .nav-btn:hover { background: var(--surface-2); color: var(--text); }
+    .nav-btn.active { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(255, 81, 0, 0.2); }
+
+    /* MOBILE MENU */
+    .mobile-menu-btn { display: none; background: transparent; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 4px; border-radius: 6px; }
+    .mobile-menu-btn:hover { background: var(--surface-2); }
+    .mobile-nav { display: none; flex-direction: column; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; gap: 8px; }
+    .mobile-nav.open { display: flex; }
+
+    @media (max-width: 768px) {
+      .nav-links.desktop-nav { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
 
     .search-container { margin-bottom: 24px; }
     .search-input { width: 100%; max-width: 400px; padding: 10px 16px; background: var(--input-bg); border: 1px solid var(--border-strong); border-radius: 8px; color: var(--text); font-family: inherit; font-size: 14px; transition: all 0.2s; }
@@ -70,7 +80,6 @@
     thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
     thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
 
-    /* Clickable Player Rows */
     tbody tr.player-row { transition: all 0.2s ease-out; cursor: pointer; }
     tbody tr.player-row td { border-bottom: 1px solid var(--border); }
     tbody tr.player-row:hover, tbody tr.player-row.force-hover { background: var(--accent-soft); transform: translateX(4px); box-shadow: -4px 0 0 var(--accent); transition: all 0.1s ease-in; }
@@ -99,15 +108,14 @@
     .pos-down { color: var(--red); }
     .pos-same { color: var(--gold); }
 
-    /* MAX GAMES EXPANSION - MINI ICONS (Fixed for Mobile Flexbox Crushing) */
     .player-expanded-row { display: none; background: var(--surface-2); border-bottom: 1px solid var(--border); box-shadow: inset 0 4px 10px rgba(0,0,0,0.1); }
     .player-expanded-row.open { display: table-row; }
     .maxes-container { padding: 16px 16px 24px 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
     
     .mini-game-icon {
       width: 36px; height: 36px;
-      min-width: 36px; min-height: 36px; /* IOS Fix */
-      flex-shrink: 0; /* Prevents mobile crushing */
+      min-width: 36px; min-height: 36px;
+      flex-shrink: 0;
       background: var(--surface);
       border: 1px solid var(--border-strong);
       border-radius: 6px;
@@ -117,12 +125,7 @@
       transition: transform 0.2s;
     }
     .mini-game-icon:hover { transform: translateY(-2px); border-color: var(--accent); }
-    .mini-game-icon img { 
-      width: 100%; height: 100%; 
-      min-width: 100%; min-height: 100%;
-      object-fit: contain; 
-      display: block; 
-    }
+    .mini-game-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
     .cabinet-btn {
       display: inline-block; margin-top: 8px; background: transparent; border: 1px solid var(--accent); color: var(--accent);
@@ -137,7 +140,6 @@
     .tooltip-wrap:hover .tooltip-content { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
     .tooltip-content h4 { margin-bottom: 8px; color: var(--accent); font-size: 14px; font-weight: 700; }
     .tooltip-content p { margin-bottom: 8px; color: var(--text-2); line-height: 1.5; }
-    .tooltip-content strong { color: var(--text); font-weight: 600; }
     .tooltip-content .formula { background: var(--surface-2); padding: 10px; border-radius: 6px; font-family: 'DM Mono', monospace; color: var(--accent); text-align: center; border: 1px solid var(--border); margin-top: 12px; }
 
     .table-footer { padding: 12px 16px; text-align: right; font-size: 11px; color: var(--text-3); border-top: 1px solid var(--border); background: var(--surface-2); display: flex; align-items: center; justify-content: flex-end; gap: 6px; border-bottom-left-radius: calc(var(--radius) - 1px); border-bottom-right-radius: calc(var(--radius) - 1px); }
@@ -147,7 +149,6 @@
     .error-msg { color: var(--red); }
     .hidden { display: none !important; }
 
-    /* Buffer loading sentinel styling */
     .sentinel-row td { text-align: center; padding: 24px !important; color: var(--text-3); font-size: 13px; font-weight: 500; border: none; }
     .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--text-3); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; vertical-align: middle; margin-right: 8px; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -190,20 +191,30 @@
 <body>
 
   <header>
-    <div class="header-inner">
-      <a class="logo" href="#">
-        <img src="/img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
+    <div class="header-inner" style="width: 100%; display: flex; align-items: center;">
+      <a class="logo" href="index.html">
+        <img src="img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
         <div>
           <div class="logo-text">LitStats</div>
-          <div class="logo-sub">AP Hunters by Country</div>
         </div>
       </a>
+      
+      <nav class="nav-links desktop-nav">
+        <a href="index.html" class="nav-btn active">AP Leaderboard</a>
+        <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
+      </nav>
+
       <div class="header-controls">
-        <a href="quest.html" class="nav-link">Quests</a>
+        <button class="mobile-menu-btn" onclick="document.getElementById('mobileNav').classList.toggle('open')">☰</button>
         <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme" onclick="toggleTheme()">☀️</button>
       </div>
     </div>
   </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="nav-btn active">AP Leaderboard</a>
+    <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
+  </nav>
 
   <main>
     <div class="hero">
@@ -327,7 +338,6 @@
     let sortCol = 'rank', sortDir = 1;
     let playerMaxesCache = {}; 
 
-    // --- INFINITE SCROLL STATE ---
     const BATCH_SIZE = 50;
     let currentFilteredPlayers = [];
     let playersRenderCount = 0;
@@ -349,10 +359,10 @@
     function getRankClass(r) { return r === 1 ? 'rank-1' : r === 2 ? 'rank-2' : r === 3 ? 'rank-3' : ''; }
 
     function getFlagHTML(c) {
-      if (c === 'youtubers') return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" style="object-fit: contain;">`;
-      if (c === 'staff') return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" style="object-fit: cover;">`;
-      if (countryFlags[c]) return `<img src="https://flagcdn.com/w40/${countryFlags[c]}.png" class="flag-img">`;
-      return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img">`;
+      if (c === 'youtubers') return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" loading="lazy" style="object-fit: contain;">`;
+      if (c === 'staff') return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" loading="lazy" style="object-fit: cover;">`;
+      if (countryFlags[c]) return `<img src="https://flagcdn.com/w40/${countryFlags[c]}.png" class="flag-img" loading="lazy">`;
+      return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img" loading="lazy">`;
     }
 
     function checkSteveSkin(img, username, uuid) {
@@ -375,7 +385,6 @@
       expandRow.classList.add('open');
 
       const container = document.getElementById(`maxes-${uuid}`);
-      
       const localPlayer = allPlayersList.find(p => p.uuid === uuid);
       
       if (localPlayer && localPlayer.maxGames) {
@@ -404,35 +413,17 @@
     }
 
     function getGameIconUrl(gameName) {
-      if (gameName === "Max Seasonal") return "/img/games/seasonal.png";
-  
+      if (gameName === "Max Seasonal") return "img/games/seasonal.png";
       const iconMap = {
-        "Max Arcade": "Arcade-64.png",
-        "Max Bed Wars": "BedWars-64.png",
-        "Max Build Battle": "BuildBattle-64.png",
-        "Max Cops and Crims": "CVC-64.png",
-        "Max Duels": "Duels-64.png",
-        "Max Mega Walls": "MegaWalls-64.png",
-        "Max Murder Mystery": "MurderMystery-64.png",
-        "Max Pit": "Pit-64.png",
-        "Max Blitz": "SG-64.png",
-        "Max SkyBlock": "SkyBlock-64.png",
-        "Max SkyWars": "Skywars-64.png",
-        "Max Smash Heroes": "SmashHeroes-64.png",
-        "Max TNT Games": "TNT-64.png",
-        "Max UHC": "UHC-64.png",
-        "Max Warlords": "Warlords-64.png",
-        "Max Wool Games": "WoolGames-64.png",
-        "Max Arena Brawl": "Arena-64.png", 
-        "Max Paintball": "Paintball-64.png",
-        "Max Quake": "Quakecraft-64.png",
-        "Max VampireZ": "VampireZ-64.png",
-        "Max Walls": "Walls-64.png",
-        "Max TKR": "TurboKartRacers-64.png",
-        "Max Crazy Walls": "CrazyWalls-64.png",
-        "Max SkyClash": "SkyClash-64.png"
+        "Max Arcade": "Arcade-64.png", "Max Bed Wars": "BedWars-64.png", "Max Build Battle": "BuildBattle-64.png",
+        "Max Cops and Crims": "CVC-64.png", "Max Duels": "Duels-64.png", "Max Mega Walls": "MegaWalls-64.png",
+        "Max Murder Mystery": "MurderMystery-64.png", "Max Pit": "Pit-64.png", "Max Blitz": "SG-64.png",
+        "Max SkyBlock": "SkyBlock-64.png", "Max SkyWars": "Skywars-64.png", "Max Smash Heroes": "SmashHeroes-64.png",
+        "Max TNT Games": "TNT-64.png", "Max UHC": "UHC-64.png", "Max Warlords": "Warlords-64.png",
+        "Max Wool Games": "WoolGames-64.png", "Max Arena Brawl": "Arena-64.png", "Max Paintball": "Paintball-64.png",
+        "Max Quake": "Quakecraft-64.png", "Max VampireZ": "VampireZ-64.png", "Max Walls": "Walls-64.png",
+        "Max TKR": "TurboKartRacers-64.png", "Max Crazy Walls": "CrazyWalls-64.png", "Max SkyClash": "SkyClash-64.png"
       };
-      
       const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
       return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
     }
@@ -441,7 +432,7 @@
       if (maxes.length === 0) {
         container.innerHTML = `
           <span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span><br>
-          <a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">View Trophy Cabinet ➔</a>
+          <a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">View Player Hub ➔</a>
         `;
         return;
       }
@@ -450,17 +441,16 @@
       maxes.forEach(game => {
         html += `
           <div class="mini-game-icon" title="${game}">
-            <img src="${getGameIconUrl(game)}" onerror="this.style.opacity='0'">
+            <img src="${getGameIconUrl(game)}" loading="lazy" onerror="this.style.opacity='0'">
           </div>
         `;
       });
       html += `</div>`;
-      html += `<a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Trophy Cabinet ➔</a>`;
+      html += `<a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Player Hub ➔</a>`;
       
       container.innerHTML = html;
     }
 
-    // --- INFINITE SCROLL SYSTEM ---
     function initPlayersRender(players) {
       currentFilteredPlayers = players;
       playersRenderCount = 0;
@@ -472,7 +462,6 @@
         document.getElementById('players-sentinel').classList.add('hidden');
         return;
       }
-
       renderNextPlayersBatch();
     }
 
@@ -501,7 +490,7 @@
             <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank || ''} ${posHTML}</span></td>
             <td>
               <div class="player-cell">
-                <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" onload="checkSteveSkin(this, '${p.username}', '${p.uuid || ''}')" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
+                <img class="player-avatar" loading="lazy" src="https://minotar.net/helm/${p.username}/100" onload="checkSteveSkin(this, '${p.username}', '${p.uuid || ''}')" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
                 <span class="player-name">${p.username}</span>
               </div>
             </td>
@@ -539,7 +528,6 @@
         document.getElementById('countries-sentinel').classList.add('hidden');
         return;
       }
-
       renderNextCountriesBatch();
     }
 
@@ -550,7 +538,7 @@
 
       const fragment = document.createDocumentFragment();
 
-      toRender.forEach((c, idx) => {
+      toRender.forEach((c) => {
         const rank = c.globalRank;
         const topP = c.top_players[0] || {};
         
@@ -562,7 +550,7 @@
           <td class="ap-cell" style="text-align: right;">${c.score > 0 ? fmt(Math.round(c.score)) : '-'}</td>
           <td>
             <div class="player-cell" style="gap:6px;">
-              <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${topP.username||'?'}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
+              <img class="player-avatar" loading="lazy" style="width:20px;height:20px;" src="https://minotar.net/helm/${topP.username||'?'}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
               <span class="country-name">${topP.username || 'Unknown'}</span>
             </div>
           </td>
@@ -575,7 +563,7 @@
             <div class="sub-player">
               <div class="sub-player-left">
                 <span class="sub-rank">${i+1}</span>
-                <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
+                <img class="player-avatar" loading="lazy" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
                 <span class="sub-name">${sp.username}</span>
               </div>
               <span class="sub-ap">${fmt(sp.current_ap)} AP</span>
@@ -639,8 +627,6 @@
 
         const known = processedCountries.filter(c => c.country !== 'Unknown').sort((a,b) => b.score - a.score);
         const unknown = processedCountries.filter(c => c.country === 'Unknown');
-        
-        // Apply Global Ranks to Countries for pagination context
         processedCountries = [...known, ...unknown].map((c, idx) => ({ ...c, globalRank: idx + 1 }));
 
         const d = new Date(currentData.last_update);
@@ -800,7 +786,7 @@
           <td style="text-align: center;"><span class="rank" style="color: var(--accent); font-weight: bold;">LIVE</span></td>
           <td>
             <div class="player-cell">
-              <img class="player-avatar" src="https://minotar.net/helm/${data.actualName}/100">
+              <img class="player-avatar" loading="lazy" src="https://minotar.net/helm/${data.actualName}/100">
               <span class="player-name">${data.actualName}</span>
             </div>
           </td>
@@ -817,7 +803,6 @@
       document.querySelector('[data-tab="players"]').click();
     }
 
-    // Connect Intersection Observer for Infinite Scrolling
     const scrollObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -845,5 +830,3 @@
   </script>
 </body>
 </html>
-
-
