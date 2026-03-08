@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-08T02:34:48.503Z",
+  "last_update": "2026-03-08T04:48:23.328Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1546,7 +1546,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6445,
+      "score": 6463,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -1575,9 +1575,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27220,
+          "current_ap": 27255,
           "last_month_ap": 27190,
-          "monthly_gain": 30,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2760,6 +2760,19 @@
           ]
         },
         {
+          "username": "ToastyOosty",
+          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+          "country": "Unknown",
+          "current_ap": 23740,
+          "last_month_ap": 23640,
+          "monthly_gain": 100,
+          "maxGames": [
+            "Max Pit",
+            "Max Warlords",
+            "Max VampireZ"
+          ]
+        },
+        {
           "username": "alpanyahu",
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "Unknown",
@@ -2768,19 +2781,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Paintball"
-          ]
-        },
-        {
-          "username": "ToastyOosty",
-          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
-          "country": "Unknown",
-          "current_ap": 23710,
-          "last_month_ap": 23640,
-          "monthly_gain": 70,
-          "maxGames": [
-            "Max Pit",
-            "Max Warlords",
-            "Max VampireZ"
           ]
         },
         {
@@ -3316,7 +3316,7 @@
       "score": 325,
       "top_players": [
         {
-          "username": "julikabuwu",
+          "username": "mudkipseas",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
           "current_ap": 25560,
