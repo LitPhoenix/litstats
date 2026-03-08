@@ -2,18 +2,16 @@
 
 function initTheme() {
   const themeBtn = document.getElementById('themeBtn');
-  if (!themeBtn) return;
-
-  // 1. Check if they have a saved preference from a previous visit
   const savedTheme = localStorage.getItem('litstats_theme');
 
-  // 2. If no saved preference, FORCE dark mode by default
+  // 1. If they explicitly saved light mode before, give it to them
   if (savedTheme === 'light') {
     document.body.classList.add('light-theme');
-    themeBtn.textContent = '🌙'; 
+    if (themeBtn) themeBtn.textContent = '🌙'; 
   } else {
+    // 2. Otherwise, FORCE dark mode by default
     document.body.classList.remove('light-theme');
-    themeBtn.textContent = '☀️'; 
+    if (themeBtn) themeBtn.textContent = '☀️'; 
     localStorage.setItem('litstats_theme', 'dark'); // Lock in dark mode
   }
 }
@@ -133,6 +131,3 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
-
-// Boot theme on load
-document.addEventListener('DOMContentLoaded', loadTheme);
