@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-08T04:48:23.328Z",
+  "last_update": "2026-03-08T05:49:03.493Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2746,6 +2746,19 @@
           ]
         },
         {
+          "username": "ToastyOosty",
+          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+          "country": "Unknown",
+          "current_ap": 23755,
+          "last_month_ap": 23640,
+          "monthly_gain": 115,
+          "maxGames": [
+            "Max Pit",
+            "Max Warlords",
+            "Max VampireZ"
+          ]
+        },
+        {
           "username": "DirtyAvocado",
           "uuid": "8d167f27157d488394f6b6142ccc16be",
           "country": "Unknown",
@@ -2757,19 +2770,6 @@
             "Max Bed Wars",
             "Max TKR",
             "Max Duels"
-          ]
-        },
-        {
-          "username": "ToastyOosty",
-          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
-          "country": "Unknown",
-          "current_ap": 23740,
-          "last_month_ap": 23640,
-          "monthly_gain": 100,
-          "maxGames": [
-            "Max Pit",
-            "Max Warlords",
-            "Max VampireZ"
           ]
         },
         {
