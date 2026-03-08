@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-07T23:28:58.475Z",
+  "last_update": "2026-03-08T02:34:48.503Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2288,6 +2288,17 @@
           ]
         },
         {
+          "username": "irkt",
+          "uuid": "fe7bf008272246f18421d39db8042257",
+          "country": "Unknown",
+          "current_ap": 24610,
+          "last_month_ap": 24600,
+          "monthly_gain": 10,
+          "maxGames": [
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "xBxnny",
           "uuid": "82fc95c49afc4b8182b6cefeac42874e",
           "country": "Unknown",
@@ -2299,17 +2310,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "irkt",
-          "uuid": "fe7bf008272246f18421d39db8042257",
-          "country": "Unknown",
-          "current_ap": 24600,
-          "last_month_ap": 24600,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games"
           ]
         },
         {
@@ -2730,6 +2730,22 @@
           "maxGames": []
         },
         {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 23760,
+          "last_month_ap": 23730,
+          "monthly_gain": 30,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "DirtyAvocado",
           "uuid": "8d167f27157d488394f6b6142ccc16be",
           "country": "Unknown",
@@ -2741,22 +2757,6 @@
             "Max Bed Wars",
             "Max TKR",
             "Max Duels"
-          ]
-        },
-        {
-          "username": "EuanKC",
-          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
-          "country": "Unknown",
-          "current_ap": 23750,
-          "last_month_ap": 23730,
-          "monthly_gain": 20,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -3369,6 +3369,26 @@
       ]
     },
     {
+      "country": "Moldova",
+      "score": 140,
+      "top_players": [
+        {
+          "username": "kenav",
+          "uuid": "4b431497b4094a1d8e15335e81454c4a",
+          "country": "Moldova",
+          "current_ap": 25480,
+          "last_month_ap": 25425,
+          "monthly_gain": 55,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Turkey",
       "score": 100,
       "top_players": [
@@ -3387,26 +3407,6 @@
             "Max TKR",
             "Max Build Battle",
             "Max Seasonal"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Moldova",
-      "score": 100,
-      "top_players": [
-        {
-          "username": "kenav",
-          "uuid": "4b431497b4094a1d8e15335e81454c4a",
-          "country": "Moldova",
-          "current_ap": 25440,
-          "last_month_ap": 25425,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Duels",
-            "Max Build Battle"
           ]
         }
       ]
