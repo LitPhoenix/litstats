@@ -62,7 +62,7 @@
     .game-badge img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
     .game-badge span { font-size: 11px; font-weight: 600; color: var(--text); text-align: center; z-index: 1; padding: 0 6px; line-height: 1.2; }
 
-    /* =========================================
+/* =========================================
        UNACHIEVED: THE "SUNK-IN SLAB" EFFECT
        ========================================= */
     .game-badge.unachieved {
@@ -72,8 +72,7 @@
       border-top-color: #000; 
     }
     
-    /* Light Mode Targeting */
-    body:not([data-theme="dark"]) .game-badge.unachieved {
+    body.light-theme .game-badge.unachieved {
       background: #f1f5f9;
       box-shadow: inset 0 4px 8px rgba(0,0,0,0.1), inset 0 1px 3px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,1);
       border-top-color: #cbd5e1;
@@ -83,12 +82,12 @@
     }
     
     .game-badge.unachieved img { filter: grayscale(100%) brightness(0.3); opacity: 0.4; }
-    body:not([data-theme="dark"]) .game-badge.unachieved img { filter: grayscale(100%) brightness(0.85); opacity: 0.5; }
+    body.light-theme .game-badge.unachieved img { filter: grayscale(100%) brightness(0.85); opacity: 0.5; }
     .game-badge.unachieved span { color: var(--text-3); opacity: 0.6; }
 
     /* Mini Progress Bar inside empty slots */
     .slot-progress { position: absolute; bottom: 0; left: 0; width: 100%; height: 6px; background: rgba(0,0,0,0.3); }
-    body:not([data-theme="dark"]) .slot-progress { background: rgba(0,0,0,0.05); }
+    body.light-theme .slot-progress { background: rgba(0,0,0,0.05); }
     .slot-fill { height: 100%; background: var(--text-3); opacity: 0.4; }
 
     /* =========================================
