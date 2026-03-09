@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-09T21:38:47.278Z",
+  "last_update": "2026-03-09T22:35:49.582Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1999,15 +1999,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 1155,
+      "score": 1175,
       "top_players": [
         {
           "username": "Unstuffynesslys",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26495,
+          "current_ap": 26515,
           "last_month_ap": 26445,
-          "monthly_gain": 50,
+          "monthly_gain": 70,
           "maxGames": []
         }
       ]
