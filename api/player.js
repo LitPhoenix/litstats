@@ -129,58 +129,71 @@ module.exports = async (req, res) => {
         { internal: "skyclash", name: "SkyClash", badge: "Max SkyClash", legacy: true }
       ];
 
-      for (const game of gameMappings) {
-        const tGame = cachedTemplate[game.internal];
-        if (!tGame) continue;
+// --- AP MAXES & PERCENTAGES CALCULATION ---
+for (const game of gameMappings) {
+  const tGame = cachedTemplate[game.internal];
+  if (!tGame) continue;
 
-        let totalPossible = 0;
-        let playerUnlocked = 0;
-        let isMaxed = true;
+  let totalPossible = 0;
+  let playerUnlocked = 0;
+  let isMaxed = true;
 
-        if (tGame.one_time) {
-          for (const [key, ach] of Object.entries(tGame.one_time)) {
-            if (ach.legacy && !game.legacy) continue; 
-            totalPossible++;
-            const fullId = `${game.internal}_${key.toLowerCase()}`;
-            
-            if (cleanOneTime.includes(fullId)) {
-              playerUnlocked++;
-            } else {
-              isMaxed = false;
-              responseData.missingAchievements.push({
-                game: game.name, title: ach.name, desc: ach.description, reward: ach.points
-              });
-            }
-          }
-        }
+  // 1. One-Time Achievements
+  if (tGame.one_time) {
+    for (const [key, ach] of Object.entries(tGame.one_time)) {
+      // EXCLUDE ALL LEGACY ACHIEVEMENTS
+      if (ach.legacy) continue; 
+      
+      totalPossible++;
+      const fullId = `${game.internal}_${key.toLowerCase()}`;
+      
+      if (cleanOneTime.includes(fullId)) {
+        playerUnlocked++;
+      } else {
+        isMaxed = false;
+        responseData.missingAchievements.push({
+          game: game.name, 
+          title: ach.name, 
+          desc: ach.description, 
+          reward: ach.points
+        });
+      }
+    }
+  }
 
-        if (tGame.tiered) {
-          for (const [key, ach] of Object.entries(tGame.tiered)) {
-            if (ach.legacy && !game.legacy) continue;
-            const fullId = `${game.internal}_${key.toLowerCase()}`;
-            const playerAmt = tieredPlayer[fullId] || 0;
+  // 2. Tiered Achievements
+  if (tGame.tiered) {
+    for (const [key, ach] of Object.entries(tGame.tiered)) {
+      // EXCLUDE ALL LEGACY ACHIEVEMENTS
+      if (ach.legacy) continue;
 
-            for (const tier of ach.tiers) {
-              totalPossible++;
-              if (playerAmt >= tier.amount) {
-                playerUnlocked++;
-              } else {
-                isMaxed = false;
-                responseData.missingAchievements.push({
-                  game: game.name, title: `${ach.name} (Tier ${tier.amount})`, desc: ach.description, reward: tier.points
-                });
-              }
-            }
-          }
-        }
+      const fullId = `${game.internal}_${key.toLowerCase()}`;
+      const playerAmt = tieredPlayer[fullId] || 0;
 
-        if (isMaxed && totalPossible > 0) {
-          responseData.maxGames.push(game.badge);
-        } else if (totalPossible > 0) {
-          responseData.gamePercentages[game.badge] = ((playerUnlocked / totalPossible) * 100).toFixed(1);
+      for (const tier of ach.tiers) {
+        totalPossible++;
+        if (playerAmt >= tier.amount) {
+          playerUnlocked++;
+        } else {
+          isMaxed = false;
+          responseData.missingAchievements.push({
+            game: game.name, 
+            title: `${ach.name} (Tier ${tier.amount})`, 
+            desc: ach.description, 
+            reward: tier.points
+          });
         }
       }
     }
+  }
+
+  // Handle Maxed Badge Logic
+  if (isMaxed && totalPossible > 0) {
+    responseData.maxGames.push(game.badge);
+  } else if (totalPossible > 0) {
+    responseData.gamePercentages[game.badge] = ((playerUnlocked / totalPossible) * 100).toFixed(1);
+  }
+}
 
     responseData.missingAchievements.sort((a, b) => a.reward - b.reward);
     responseData.missingAchievements = responseData.missingAchievements.slice(0, 50);
