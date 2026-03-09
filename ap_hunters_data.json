@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-09T02:36:05.785Z",
+  "last_update": "2026-03-09T04:57:12.852Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -313,7 +313,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12611,
+      "score": 12612,
       "top_players": [
         {
           "username": "oJakey",
@@ -409,9 +409,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 29660,
+          "current_ap": 29670,
           "last_month_ap": 29570,
-          "monthly_gain": 90,
+          "monthly_gain": 100,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
@@ -2032,7 +2032,7 @@
     },
     {
       "country": "Unknown",
-      "score": 818,
+      "score": 823,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2065,9 +2065,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "Unknown",
-          "current_ap": 25540,
+          "current_ap": 25560,
           "last_month_ap": 25425,
-          "monthly_gain": 115,
+          "monthly_gain": 135,
           "maxGames": [
             "Max Blitz",
             "Max Bed Wars",
@@ -2422,6 +2422,19 @@
           ]
         },
         {
+          "username": "iiris",
+          "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
+          "country": "Unknown",
+          "current_ap": 24280,
+          "last_month_ap": 24220,
+          "monthly_gain": 60,
+          "maxGames": [
+            "Max Cops and Crims",
+            "Max Quake",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Unknown",
@@ -2432,19 +2445,6 @@
             "Max Murder Mystery",
             "Max Bed Wars",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "iiris",
-          "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
-          "country": "Unknown",
-          "current_ap": 24260,
-          "last_month_ap": 24220,
-          "monthly_gain": 40,
-          "maxGames": [
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max Duels"
           ]
         },
         {
