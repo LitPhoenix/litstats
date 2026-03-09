@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-09T04:57:12.852Z",
+  "last_update": "2026-03-09T06:03:08.449Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -624,9 +624,9 @@
           "username": "Mazk",
           "uuid": "059abcc217c2422f9d9f92e8dea2e607",
           "country": "USA",
-          "current_ap": 26740,
+          "current_ap": 26745,
           "last_month_ap": 26740,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Blitz",
             "Max Bed Wars",
@@ -2032,7 +2032,7 @@
     },
     {
       "country": "Unknown",
-      "score": 823,
+      "score": 829,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2065,9 +2065,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "Unknown",
-          "current_ap": 25560,
+          "current_ap": 25585,
           "last_month_ap": 25425,
-          "monthly_gain": 135,
+          "monthly_gain": 160,
           "maxGames": [
             "Max Blitz",
             "Max Bed Wars",
