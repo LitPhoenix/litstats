@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-09T16:05:08.167Z",
+  "last_update": "2026-03-09T17:51:41.658Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -785,7 +785,7 @@
     },
     {
       "country": "France",
-      "score": 11526,
+      "score": 11534,
       "top_players": [
         {
           "username": "Yann31_",
@@ -824,9 +824,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_ap": 31580,
+          "current_ap": 31595,
           "last_month_ap": 31500,
-          "monthly_gain": 80,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Pit",
             "Max Blitz",
@@ -838,6 +838,7 @@
             "Max Warlords",
             "Max Walls",
             "Max TNT Games",
+            "Max Murder Mystery",
             "Max VampireZ",
             "Max Bed Wars",
             "Max TKR",
