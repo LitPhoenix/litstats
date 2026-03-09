@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-08T23:30:30.815Z",
+  "last_update": "2026-03-09T02:36:05.785Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -313,7 +313,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12610,
+      "score": 12611,
       "top_players": [
         {
           "username": "oJakey",
@@ -409,9 +409,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 29650,
+          "current_ap": 29660,
           "last_month_ap": 29570,
-          "monthly_gain": 80,
+          "monthly_gain": 90,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
@@ -2133,9 +2133,9 @@
           "username": "adjective_n0un",
           "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
           "country": "Unknown",
-          "current_ap": 24935,
+          "current_ap": 25000,
           "last_month_ap": 24875,
-          "monthly_gain": 60,
+          "monthly_gain": 125,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock"
