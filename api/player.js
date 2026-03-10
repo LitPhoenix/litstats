@@ -196,7 +196,6 @@ module.exports = async (req, res) => {
     }
 
     responseData.missingAchievements.sort((a, b) => a.reward - b.reward);
-    responseData.missingAchievements = responseData.missingAchievements.slice(0, 50);
 
     return res.status(200).json(responseData);
 
