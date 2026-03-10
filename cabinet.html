@@ -409,6 +409,7 @@
     }
 
     function renderCabinet(data) {
+        document.title = `LitStats - ${data.username}'s Cabinet`
         document.getElementById('p-avatar').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
         document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/bust/${data.uuid}.png`; };
         document.getElementById('p-name').textContent = data.username;
