@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-10T13:12:52.267Z",
+  "last_update": "2026-03-10T14:34:29.232Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -863,15 +863,15 @@
     },
     {
       "country": "Sweden",
-      "score": 11007.4,
+      "score": 11013.8,
       "top_players": [
         {
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Sweden",
-          "current_quests": 32071,
+          "current_quests": 32103,
           "last_month_quests": 32030,
-          "monthly_gain": 41
+          "monthly_gain": 73
         },
         {
           "username": "Reeedly",
