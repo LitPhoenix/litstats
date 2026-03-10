@@ -48,7 +48,7 @@
   --glass-edge: rgba(255, 255, 255, 0.08); 
 }
 
-/* Base Body (No backgrounds here to prevent scroll lag) */
+/* Base Body */
 body {
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
@@ -56,20 +56,26 @@ body {
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg); /* Puts the solid dark base back */
 }
 
-/* Light Mode Background */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background-color: var(--bg);
+/* Dark Mode Background Image (Toned Down) */
+body[data-theme="dark"]::before {
+  background-color: #040201; 
+  
+  /* Use a dark gradient OVER the image to dim it, instead of CSS opacity */
   background-image: 
-    radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%),
-    radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
-  background-size: 200% 200%;
-  animation: subtleFire 12s ease-in-out infinite alternate;
+    linear-gradient(rgba(4, 2, 1, 0.85), rgba(4, 2, 1, 0.85)), 
+    url('../../img/bg-embers.jpg'); 
+    
+  background-size: cover;
+  background-position: center;
+  
+  /* Opacity removed. Blur and grayscale kept. */
+  filter: blur(12px) grayscale(20%); 
+  transform: scale(1.05); 
+  
+  animation: none;
   pointer-events: none;
 }
 
