@@ -20,13 +20,13 @@
     .nav-btn:hover { background: var(--surface-2); color: var(--text); }
     .nav-btn.active { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(255, 81, 0, 0.2); }
 
-/* --- UPGRADED PROFILE CARD (GLASSMORPHISM) --- */
+    /* --- UPGRADED PROFILE CARD (GLASSMORPHISM) --- */
     .profile-card { 
       background: var(--surface); 
       backdrop-filter: blur(24px) saturate(150%);
       -webkit-backdrop-filter: blur(24px) saturate(150%);
       border: 1px solid var(--border); 
-      border-top: 1px solid var(--glass-edge); /* Sharp glass rim lighting */
+      border-top: 1px solid var(--glass-edge); 
       border-radius: 16px; 
       padding: 32px; 
       width: 100%; 
@@ -96,13 +96,12 @@
     .game-badge img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
     .game-badge span { font-size: 11px; font-weight: 600; color: var(--text); text-align: center; z-index: 1; padding: 0 6px; line-height: 1.2; }
 
-/* =========================================
+    /* =========================================
        UNACHIEVED: THE "SUNK-IN SLAB" EFFECT
        ========================================= */
     .game-badge.unachieved {
       background: var(--surface-2); 
       border: 1px solid var(--border);
-      /* Smooth, tiered inner shadows for depth, and a faint bottom lip highlight */
       box-shadow: 
         inset 0 4px 10px rgba(0,0,0,0.6), 
         inset 0 1px 3px rgba(0,0,0,0.8), 
@@ -127,6 +126,7 @@
     .slot-progress { position: absolute; bottom: 0; left: 0; width: 100%; height: 6px; background: rgba(0,0,0,0.3); }
     body:not([data-theme="dark"]) .slot-progress { background: rgba(0,0,0,0.05); }
     .slot-fill { height: 100%; background: var(--text-3); opacity: 0.4; }
+
     /* =========================================
        ACHIEVED: MATERIAL INTEGRITY SCALING
        ========================================= */
@@ -206,23 +206,29 @@
     }
     .tier-group.legacy .game-badge.achieved img { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
 
-    /* --- NEW: INCOMPLETE ACHIEVEMENTS DASHBOARD --- */
+    /* --- INCOMPLETE ACHIEVEMENTS DASHBOARD --- */
     .todo-section { width: 100%; margin-top: 64px; display: flex; flex-direction: column; gap: 20px; }
-    .todo-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--border-strong); padding-bottom: 12px; }
+    .todo-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--border-strong); padding-bottom: 12px; flex-wrap: wrap; gap: 12px; }
     .todo-header h2 { font-size: 20px; color: var(--text); margin: 0; }
     
-    .todo-controls { display: flex; gap: 12px; }
-    .todo-btn { background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-    .todo-btn:hover, .todo-btn.active { background: var(--surface); border-color: var(--accent); color: var(--text); }
+    .todo-controls { display: flex; gap: 8px; flex-wrap: wrap; }
+    .todo-select {
+      background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+      padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; 
+      transition: 0.2s; font-family: inherit; outline: none;
+    }
+    .todo-select:hover, .todo-select:focus { background: var(--surface); border-color: var(--accent); }
 
     .ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-    .ach-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 8px; transition: 0.2s; }
+    .ach-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 8px; transition: 0.2s; position: relative; }
     .ach-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px var(--accent-soft); }
+    
+    .ach-percent { position: absolute; top: 16px; right: 16px; font-size: 12px; font-weight: 700; color: var(--text-3); font-family: 'DM Mono', monospace; }
     .ach-game { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 1px; }
-    .ach-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .ach-title { font-size: 14px; font-weight: 600; color: var(--text); padding-right: 40px; }
     .ach-desc { font-size: 12px; color: var(--text-2); line-height: 1.4; }
-    .ach-reward { margin-top: auto; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--text-3); display: flex; align-items: center; gap: 6px; }
-    .ach-reward::before { content: ''; display: inline-block; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    
+    .ach-reward { margin-top: auto; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
 
     .loading-msg { font-size: 16px; color: var(--text-3); text-align: center; padding: 100px; }
     .hidden { display: none !important; }
@@ -287,14 +293,20 @@
 
       <div class="todo-section">
         <div class="todo-header">
-          <h2>Target Priorities (Incomplete)</h2>
+          <h2>Target Priorities</h2>
           <div class="todo-controls">
-            <button class="todo-btn active">Easiest First</button>
+            <select id="sortFilter" class="todo-select" onchange="renderTodoGrid()">
+              <option value="easiest">Sort: Easiest First</option>
+              <option value="hardest">Sort: Hardest First</option>
+            </select>
+            <select id="gameFilter" class="todo-select" onchange="renderTodoGrid()">
+              <option value="all">Games: All</option>
+              <option value="no_comp">Games: Exclude Comp (Pit, UHC, MW)</option>
+            </select>
           </div>
         </div>
 
-        <div class="ach-grid" id="todo-grid">
-          </div>
+        <div class="ach-grid" id="todo-grid"></div>
       </div>
 
     </div>
@@ -302,8 +314,73 @@
 
   <script src="global.js"></script>
   <script>
+
+    let globalPlayerData = null;
+
+    function populateFilters() {
+        const select = document.getElementById('gameFilter');
+        if (!globalPlayerData || !globalPlayerData.missingAchievements) return;
+        
+        // Find all unique games the player has missing achievements for
+        const games = [...new Set(globalPlayerData.missingAchievements.map(a => a.game))].sort();
+        
+        let html = `<option value="all">Games: All</option>
+                    <option value="no_comp">Games: Exclude Comp (Pit, UHC, MW)</option>
+                    <option disabled>──────────</option>`;
+                    
+        games.forEach(g => { html += `<option value="${g}">${g}</option>`; });
+        select.innerHTML = html;
+    }
+
+    function renderTodoGrid() {
+        const container = document.getElementById('todo-grid');
+        if (!globalPlayerData || !globalPlayerData.missingAchievements) return;
+
+        let achs = [...globalPlayerData.missingAchievements];
+        const sortVal = document.getElementById('sortFilter').value;
+        const filterVal = document.getElementById('gameFilter').value;
+
+        // Apply Filters
+        if (filterVal === 'no_comp') {
+            achs = achs.filter(a => !['Pit', 'UHC', 'Mega Walls'].includes(a.game));
+        } else if (filterVal !== 'all') {
+            achs = achs.filter(a => a.game === filterVal);
+        }
+
+        // Apply Sorting
+        if (sortVal === 'easiest') achs.sort((a, b) => a.reward - b.reward);
+        else achs.sort((a, b) => b.reward - a.reward);
+
+        // Limit rendering to 50 items so the browser doesn't lag
+        achs = achs.slice(0, 50);
+
+        if (achs.length === 0) {
+            container.innerHTML = `<span style="color:var(--text-3); padding: 20px; width: 100%; text-align: center;">No achievements match your filters.</span>`;
+            return;
+        }
+
+        container.innerHTML = achs.map(ach => {
+            const badgeName = 'Max ' + ach.game;
+            // Fetch exact completion percentage
+            const percent = globalPlayerData.gamePercentages[badgeName] || 0;
+            
+            return `
+              <div class="ach-card">
+                <span class="ach-percent">${percent}%</span>
+                <span class="ach-game">${ach.game}</span>
+                <span class="ach-title">${ach.title}</span>
+                <span class="ach-desc">${ach.desc}</span>
+                <span class="ach-reward">
+                  <img src="img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> 
+                  ${ach.reward} AP
+                </span>
+              </div>
+            `;
+        }).join('');
+    }
+
     // Update this number when Hypixel adds more AP
-    const MAX_POSSIBLE_AP = 33000; 
+    const MAX_POSSIBLE_AP = 32475; 
     const TOTAL_GAMES = 26;
 
     const trophyStructure = [
@@ -396,21 +473,16 @@
         cabinetGrid.innerHTML = html;
 
         // Render Real Missing Achievements
-        const todoContainer = document.getElementById('todo-grid');
+        globalPlayerData = data;
+        
         if (data.missingAchievements && data.missingAchievements.length > 0) {
-            todoContainer.innerHTML = data.missingAchievements.map(ach => `
-              <div class="ach-card">
-                <span class="ach-game">${ach.game}</span>
-                <span class="ach-title">${ach.title}</span>
-                <span class="ach-desc">${ach.desc}</span>
-                <span class="ach-reward">${ach.reward} AP</span>
-              </div>
-            `).join('');
+            populateFilters();
+            renderTodoGrid();
         } else if (data.missingAchievements && data.missingAchievements.length === 0) {
-            todoContainer.innerHTML = `<span style="color:var(--text-3); padding: 20px; width: 100%; text-align: center;">No missing achievements found, or API data incomplete.</span>`;
+            document.getElementById('todo-grid').innerHTML = `<span style="color:var(--text-3); padding: 20px; width: 100%; text-align: center;">No missing achievements found, or API data incomplete.</span>`;
         } else {
-            // This happens if the user loaded instantly from JSON cache without pinging Vercel
-            todoContainer.innerHTML = `
+            // Live fetch prompt
+            document.getElementById('todo-grid').innerHTML = `
               <div style="width: 100%; text-align: center; grid-column: 1 / -1; padding: 40px;">
                 <span style="color:var(--text-3); font-size: 14px;">Achievement tracking requires live data.</span><br><br>
                 <button class="nav-btn active" style="border:none; cursor:pointer;" onclick="forceLiveFetch('${data.uuid}')">Fetch Live Data</button>
@@ -422,7 +494,7 @@
         document.getElementById('cabinet-content').classList.remove('hidden');
     }
 
-// Function to force a live fetch if they clicked a top 200 player and want to see missing achievements
+    // Function to force a live fetch if they clicked a top 200 player and want to see missing achievements
     async function forceLiveFetch(uuid) {
         document.getElementById('cabinet-content').classList.add('hidden');
         document.getElementById('loader').textContent = "Fetching live achievement data...";
