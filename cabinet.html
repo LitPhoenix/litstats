@@ -388,17 +388,20 @@
         document.getElementById('cabinet-content').classList.remove('hidden');
     }
 
-    // Function to force a live fetch if they clicked a top 200 player and want to see missing achievements
+// Function to force a live fetch if they clicked a top 200 player and want to see missing achievements
     async function forceLiveFetch(uuid) {
         document.getElementById('cabinet-content').classList.add('hidden');
         document.getElementById('loader').textContent = "Fetching live achievement data...";
         document.getElementById('loader').classList.remove('hidden');
+        document.getElementById('errorBox').classList.add('hidden');
 
         try {
             const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
             if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
+            
             const data = await res.json();
             if (data.error) throw new Error(`API Error: ${data.error}`);
+            
             renderCabinet(data);
         } catch (err) {
             document.getElementById('loader').classList.add('hidden');
