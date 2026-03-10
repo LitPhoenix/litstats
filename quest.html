@@ -67,7 +67,15 @@
     .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100000px; height: 100000px; margin-top: -50000px; margin-left: -50000px; background: conic-gradient(from var(--angle), transparent 90%, var(--red) 96%, var(--accent) 98%, #ffeb3b 99.5%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
     @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
     
-    .table-inner { background: var(--surface); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
+    .table-inner { 
+      background: var(--surface); 
+      backdrop-filter: blur(24px) saturate(150%);
+      -webkit-backdrop-filter: blur(24px) saturate(150%);
+      border-top: 1px solid var(--glass-edge);
+      border-radius: calc(var(--radius) - 1px); 
+      display: flex; 
+      flex-direction: column; 
+    }
 
     table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
     thead th:first-child { border-top-left-radius: calc(var(--radius) - 1px); }
