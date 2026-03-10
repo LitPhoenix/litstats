@@ -64,13 +64,16 @@ body {
   flex-direction: column;
 }
 
-body[data-theme="dark"] {
-  /* Smouldering night abstract background for dark mode */
-  background-image: 
-    radial-gradient(circle at 20% 0%, rgba(255, 81, 0, 0.08), transparent 40vw),
-    radial-gradient(circle at 80% 100%, rgba(255, 157, 0, 0.05), transparent 40vw),
-    radial-gradient(circle at 50% 50%, rgba(255, 60, 0, 0.03), transparent 60vw);
-  background-attachment: fixed;
+body[data-theme="dark"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-color: #080403;
+  background-image: url('../img/bg-embers.jpg'); /* YOUR IMAGE HERE */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6; /* Dims the image so it doesn't overpower the site */
 }
 
 @keyframes subtleFire {
