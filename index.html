@@ -490,7 +490,7 @@
             <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank || ''} ${posHTML}</span></td>
             <td>
               <div class="player-cell">
-                <img class="player-avatar" loading="lazy" src="https://minotar.net/helm/${p.username}/100" onload="checkSteveSkin(this, '${p.username}', '${p.uuid || ''}')" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
+                <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
                 <span class="player-name">${p.username}</span>
               </div>
             </td>
@@ -830,3 +830,4 @@
   </script>
 </body>
 </html>
+
