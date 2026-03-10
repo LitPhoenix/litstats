@@ -73,15 +73,22 @@ body::before {
   pointer-events: none;
 }
 
-/* Dark Mode Background Image */
+/* Dark Mode Background Image (Toned Down) */
 body[data-theme="dark"]::before {
-  background-color: #080403;
-  /* Uses ../ because this CSS file is inside assets/css/ */
+  background-color: #040201; /* Even darker base */
   background-image: url('../../img/bg-embers.jpg'); 
   background-size: cover;
   background-position: center;
-  opacity: 0.4; 
+  
+  /* The Fix: Dim the image and blur it heavily */
+  opacity: 0.15; 
+  filter: blur(12px) grayscale(20%); 
+  
+  /* Scale slightly to hide the messy edges caused by the blur */
+  transform: scale(1.05); 
+  
   animation: none;
+  pointer-events: none;
 }
 
 /* Dark Mode Glowing Embers (The Glassmorphism Engine) */
