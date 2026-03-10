@@ -1,6 +1,3 @@
-// Native fetch fallback for modern Vercel environments
-const fetchObj = typeof fetch === 'undefined' ? require('node-fetch') : fetch;
-
 let cachedTemplate = null;
 let templateFetchTime = 0;
 
@@ -13,6 +10,20 @@ function getPlayerRank(player) {
     return ranks[player.newPackageRank] || 'NON';
   }
   return 'NON';
+}
+
+// Safely handle Hypixel API random Cloudflare HTML blocks
+async function safeFetchJSON(url, options = {}) {
+  const res = await fetch(url, options);
+  if (res.status === 429) return { rateLimited: true };
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  
+  const text = await res.text();
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    throw new Error("API returned invalid JSON (HTML Page)");
+  }
 }
 
 module.exports = async (req, res) => {
@@ -31,21 +42,23 @@ module.exports = async (req, res) => {
   if (!API_KEY) return res.status(500).json({ error: "Server missing API Key" });
 
   try {
-    // 1. Fetch Global Achievements Template (Cached)
+    // 1. Fetch Global Achievements Template
     if (!cachedTemplate || Date.now() - templateFetchTime > 3600000) {
-      const tRes = await fetchObj('https://api.hypixel.net/v2/resources/achievements');
-      if (tRes.ok) {
-        const tData = await tRes.json();
-        cachedTemplate = tData.achievements;
-        templateFetchTime = Date.now();
+      try {
+        const tData = await safeFetchJSON('https://api.hypixel.net/v2/resources/achievements');
+        if (tData && tData.success) {
+          cachedTemplate = tData.achievements;
+          templateFetchTime = Date.now();
+        }
+      } catch (e) {
+        console.warn("Failed to fetch achievements template");
       }
     }
 
     // 2. Fetch Player Data
-    const pRes = await fetchObj(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } });
-    if (pRes.status === 429) return res.status(429).json({ error: "Hypixel API Rate Limit. Try again shortly." });
+    const pData = await safeFetchJSON(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } });
     
-    const pData = await pRes.json();
+    if (pData.rateLimited) return res.status(429).json({ error: "Hypixel API Rate Limit. Try again shortly." });
     if (!pData.success) return res.status(400).json({ error: pData.cause || "Hypixel API Error" });
     if (!pData.player) return res.status(404).json({ error: "Player not found on Hypixel" });
 
@@ -129,71 +142,58 @@ module.exports = async (req, res) => {
         { internal: "skyclash", name: "SkyClash", badge: "Max SkyClash", legacy: true }
       ];
 
-// --- AP MAXES & PERCENTAGES CALCULATION ---
-for (const game of gameMappings) {
-  const tGame = cachedTemplate[game.internal];
-  if (!tGame) continue;
+      for (const game of gameMappings) {
+        const tGame = cachedTemplate[game.internal];
+        if (!tGame) continue;
 
-  let totalPossible = 0;
-  let playerUnlocked = 0;
-  let isMaxed = true;
+        let totalPossible = 0;
+        let playerUnlocked = 0;
+        let isMaxed = true;
 
-  // 1. One-Time Achievements
-  if (tGame.one_time) {
-    for (const [key, ach] of Object.entries(tGame.one_time)) {
-      // EXCLUDE ALL LEGACY ACHIEVEMENTS
-      if (ach.legacy) continue; 
-      
-      totalPossible++;
-      const fullId = `${game.internal}_${key.toLowerCase()}`;
-      
-      if (cleanOneTime.includes(fullId)) {
-        playerUnlocked++;
-      } else {
-        isMaxed = false;
-        responseData.missingAchievements.push({
-          game: game.name, 
-          title: ach.name, 
-          desc: ach.description, 
-          reward: ach.points
-        });
-      }
-    }
-  }
+        if (tGame.one_time) {
+          for (const [key, ach] of Object.entries(tGame.one_time)) {
+            if (ach.legacy) continue; // Exclude legacy achievements
+            totalPossible++;
+            const fullId = `${game.internal}_${key.toLowerCase()}`;
+            
+            if (cleanOneTime.includes(fullId)) {
+              playerUnlocked++;
+            } else {
+              isMaxed = false;
+              responseData.missingAchievements.push({
+                game: game.name, title: ach.name, desc: ach.description, reward: ach.points
+              });
+            }
+          }
+        }
 
-  // 2. Tiered Achievements
-  if (tGame.tiered) {
-    for (const [key, ach] of Object.entries(tGame.tiered)) {
-      // EXCLUDE ALL LEGACY ACHIEVEMENTS
-      if (ach.legacy) continue;
+        if (tGame.tiered) {
+          for (const [key, ach] of Object.entries(tGame.tiered)) {
+            if (ach.legacy) continue; // Exclude legacy achievements
+            const fullId = `${game.internal}_${key.toLowerCase()}`;
+            const playerAmt = tieredPlayer[fullId] || 0;
 
-      const fullId = `${game.internal}_${key.toLowerCase()}`;
-      const playerAmt = tieredPlayer[fullId] || 0;
+            for (const tier of ach.tiers) {
+              totalPossible++;
+              if (playerAmt >= tier.amount) {
+                playerUnlocked++;
+              } else {
+                isMaxed = false;
+                responseData.missingAchievements.push({
+                  game: game.name, title: `${ach.name} (Tier ${tier.amount})`, desc: ach.description, reward: tier.points
+                });
+              }
+            }
+          }
+        }
 
-      for (const tier of ach.tiers) {
-        totalPossible++;
-        if (playerAmt >= tier.amount) {
-          playerUnlocked++;
-        } else {
-          isMaxed = false;
-          responseData.missingAchievements.push({
-            game: game.name, 
-            title: `${ach.name} (Tier ${tier.amount})`, 
-            desc: ach.description, 
-            reward: tier.points
-          });
+        if (isMaxed && totalPossible > 0) {
+          responseData.maxGames.push(game.badge);
+        } else if (totalPossible > 0) {
+          responseData.gamePercentages[game.badge] = ((playerUnlocked / totalPossible) * 100).toFixed(1);
         }
       }
     }
-  }
-
-  // Handle Maxed Badge Logic
-  if (isMaxed && totalPossible > 0) {
-    responseData.maxGames.push(game.badge);
-  } else if (totalPossible > 0) {
-    responseData.gamePercentages[game.badge] = ((playerUnlocked / totalPossible) * 100).toFixed(1);
-  }
-}
 
     responseData.missingAchievements.sort((a, b) => a.reward - b.reward);
     responseData.missingAchievements = responseData.missingAchievements.slice(0, 50);
