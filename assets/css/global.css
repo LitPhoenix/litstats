@@ -48,7 +48,7 @@
   --glass-edge: rgba(255, 255, 255, 0.08); 
 }
 
-/* Base Body (No backgrounds here to prevent scroll lag) */
+/* Base Body */
 body {
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
@@ -56,6 +56,7 @@ body {
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg); /* <-- THIS FIXES THE WHITE GLARE */
 }
 
 /* Light Mode Background */
@@ -73,15 +74,19 @@ body::before {
   pointer-events: none;
 }
 
-/* Dark Mode Background Image */
+/* Dark Mode Background Image (Toned Down & Fixed) */
 body[data-theme="dark"]::before {
-  background-color: #080403;
-  /* Uses ../ because this CSS file is inside assets/css/ */
-  background-image: url('../../img/bg-embers.jpg'); 
+  background-color: #040201; 
+  /* Uses a dark gradient overlay to dim the image instead of CSS opacity */
+  background-image: 
+    linear-gradient(rgba(4, 2, 1, 0.85), rgba(4, 2, 1, 0.85)), 
+    url('../../img/bg-embers.jpg'); 
   background-size: cover;
   background-position: center;
-  opacity: 0.4; 
+  filter: blur(12px) grayscale(20%); 
+  transform: scale(1.05); 
   animation: none;
+  pointer-events: none;
 }
 
 /* Dark Mode Glowing Embers (The Glassmorphism Engine) */
