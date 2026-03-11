@@ -33,7 +33,7 @@ kbd { background: var(--surface); border: 1px solid var(--border-strong); border
 
 table table { 
   width: 100%; 
-  border-collapse: separate; 
+  border-collapse: collapse; 
   border-spacing: 0; 
   font-size: 13.5px; 
 }
@@ -48,9 +48,11 @@ thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
 
 /* 1. Remove ugly vertical lines & fix vertical squishing globally */
 td, th {
+  padding: 14px 16px !important;
   border-left: none !important;
   border-right: none !important;
-  padding: 14px 16px !important; 
+  border-top: none !important;
+  border-bottom: 1px solid var(--border) !important; 
 }
 
 /* 2. Apply the sleek custom bottom line to BOTH player and country rows */
