@@ -28,8 +28,26 @@ kbd { background: var(--surface); border: 1px solid var(--border-strong); border
 
 
 /* SPARK MASK */
-.spark-bg { position: absolute; inset: 0; border-radius: inherit; z-index: -1; overflow: hidden; padding: 1px; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
-.spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 3000px; height: 3000px; margin-top: -1500px; margin-left: -1500px; background: conic-gradient(from var(--angle), transparent 85%, var(--red) 94%, var(--accent) 98%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
+.spark-bg { 
+  position: absolute; 
+  inset: 0; 
+  border-radius: inherit; 
+  z-index: -1; 
+  overflow: hidden; 
+  padding: 1px; 
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); 
+  -webkit-mask-composite: xor; 
+  mask-composite: exclude; 
+  will-change: transform; /* Hardware accelerates the animation */
+}
+.spark-bg::before { 
+  content: ''; 
+  position: absolute; top: 50%; left: 50%; width: 3000px; height: 3000px; 
+  margin-top: -1500px; margin-left: -1500px; 
+  background: conic-gradient(from var(--angle), transparent 85%, var(--red) 94%, var(--accent) 98%, #ffffff 100%); 
+  animation: rotateSpark var(--spark-speed, 3s) linear infinite; 
+  will-change: transform; /* Hardware accelerates the animation */
+}
 @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
 
 .table-inner { background: var(--surface); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); border-top: 1px solid var(--glass-edge); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
