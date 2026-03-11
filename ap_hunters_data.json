@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-11T07:02:03.852Z",
+  "last_update": "2026-03-11T08:52:18.687Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2032,7 +2032,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6463,
+      "score": 6473,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2061,9 +2061,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27255,
+          "current_ap": 27275,
           "last_month_ap": 27190,
-          "monthly_gain": 65,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2517,47 +2517,16 @@
       ]
     },
     {
-      "country": "Argentina",
-      "score": 1868,
-      "top_players": [
-        {
-          "username": "Sayapi",
-          "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
-          "country": "Argentina",
-          "current_ap": 26815,
-          "last_month_ap": 26600,
-          "monthly_gain": 215,
-          "maxGames": [
-            "Max VampireZ"
-          ]
-        },
-        {
-          "username": "Iaan",
-          "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
-          "country": "Argentina",
-          "current_ap": 26125,
-          "last_month_ap": 26105,
-          "monthly_gain": 20,
-          "maxGames": [
-            "Max SkyWars",
-            "Max TNT Games",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Japan",
-      "score": 1865,
+      "score": 1880,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_ap": 27205,
+          "current_ap": 27220,
           "last_month_ap": 27180,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Speed UHC",
             "Max Bed Wars",
@@ -2596,6 +2565,37 @@
             "Max Bed Wars",
             "Max Wool Games",
             "Max Duels"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Argentina",
+      "score": 1868,
+      "top_players": [
+        {
+          "username": "Sayapi",
+          "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
+          "country": "Argentina",
+          "current_ap": 26815,
+          "last_month_ap": 26600,
+          "monthly_gain": 215,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        },
+        {
+          "username": "Iaan",
+          "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+          "country": "Argentina",
+          "current_ap": 26125,
+          "last_month_ap": 26105,
+          "monthly_gain": 20,
+          "maxGames": [
+            "Max SkyWars",
+            "Max TNT Games",
+            "Max Bed Wars",
+            "Max TKR"
           ]
         }
       ]
