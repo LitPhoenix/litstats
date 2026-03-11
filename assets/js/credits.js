@@ -20,13 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const tooltip = document.createElement("div");
   tooltip.className = "credits-tooltip";
   
-  let html = `<h4 style="color:var(--accent); margin-bottom: 8px;">LitStats Credits</h4><ul style="list-style:none; font-size:11px; color:var(--text-2); display:flex; flex-direction:column; gap:4px;">`;
+  let html = `<h4 style="color:var(--accent); margin-bottom: 8px; font-weight:700; font-size: 13px;">LitStats Credits</h4><ul style="list-style:none; margin:0; padding:0; font-size:11px; color:var(--text-2); display:flex; flex-direction:column; gap:6px;">`;
   litstatsCredits.forEach(c => {
     html += `<li><strong style="color:var(--text);">${c.name}</strong> &ndash; ${c.role}</li>`;
   });
   html += `</ul>`;
   
   tooltip.innerHTML = html;
+  
+  // Appends the tooltip inside the made-by-tag container so the hover triggers correctly
   target.parentElement.appendChild(tooltip);
-  target.parentElement.style.position = 'relative';
 });
