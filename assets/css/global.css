@@ -121,7 +121,7 @@ body[data-theme="dark"]::after {
 
 /* Header */
 header {
-  background: rgba(15, 10, 8, 0.85); /* Darker to hide scrolling text */
+  background: rgba(15, 10, 8, 0.65); /* Darker to hide scrolling text */
   backdrop-filter: blur(24px) saturate(150%);
   -webkit-backdrop-filter: blur(24px) saturate(150%);
   border-bottom: 1px solid var(--border);
