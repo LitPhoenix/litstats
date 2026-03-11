@@ -39,10 +39,11 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        // FIX: Checks multiple possible key formats the API might be sending
-        let percent = globalPlayerData.gamePercentages[ach.game] 
-                   || globalPlayerData.gamePercentages['Max ' + ach.game] 
-                   || 0;
+        // FIX: Grab the achievement's specific global rarity, not the game's overall progress.
+        // Falls back to 0.0 if the API backend hasn't provided the globalPercentage field.
+        let percent = ach.globalPercentage !== undefined 
+            ? Number(ach.globalPercentage).toFixed(1) 
+            : '0.0';
         
         return `
           <div class="ach-card">
