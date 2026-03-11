@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-11T13:12:20.958Z",
+  "last_update": "2026-03-11T14:53:47.580Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1883,15 +1883,15 @@
     },
     {
       "country": "Russia",
-      "score": 7198,
+      "score": 7208,
       "top_players": [
         {
           "username": "anrie",
           "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
           "country": "Russia",
-          "current_ap": 32230,
+          "current_ap": 32240,
           "last_month_ap": 32155,
-          "monthly_gain": 75,
+          "monthly_gain": 85,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -2436,7 +2436,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2964,
+      "score": 2969,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2468,9 +2468,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 25915,
+          "current_ap": 25935,
           "last_month_ap": 25815,
-          "monthly_gain": 100,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Blitz",
             "Max Duels"
