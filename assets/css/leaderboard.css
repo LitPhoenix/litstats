@@ -52,10 +52,11 @@ th.rank { text-align: center; }
 thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
 thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
 
-tbody tr.player-row { transition: all 0.2s ease-out; cursor: pointer; }
-tbody tr.player-row td { border-bottom: 1px solid var(--border); }
-tbody tr.player-row:hover, tbody tr.player-row.force-hover { background: var(--accent-soft); transform: translateX(4px); box-shadow: -4px 0 0 var(--accent); transition: all 0.1s ease-in; }
-td { padding: 11px 16px; vertical-align: middle; }
+tbody tr.player-row td { border-bottom: none; position: relative; padding: 11px 16px; vertical-align: middle; }
+tbody tr.player-row td::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--border); transition: 0.2s; }
+tbody tr.player-row td:first-child::after { left: 24px; }
+tbody tr.player-row td:last-child::after { right: 24px; }
+tbody tr.player-row:hover td::after { background: var(--accent); }
 
 .rank { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text-3); }
 .rank-1 { color: var(--gold); font-weight: 700; font-size: 14px;}
