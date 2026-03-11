@@ -3,9 +3,9 @@ const litstatsCredits = [
   { name: "Melongan", role: "Quest Country Data (Support)" },
   { name: "Brooke", role: "Life Advice" },
   { name: "Mo", role: "Life Advice & Icon Design" },
-  { name: "C4PS", role: "Promo Opportunity" },
-  { name: "tobias49", role: "Maxed Game On-Click Idea" },
-  { name: "valericious", role: "Country Analytics" },
+  { name: "C4PS", role: "Promo" },
+  { name: "tobias49", role: "Maxed Game on Click Idea" },
+  { name: "valericious", role: "AP Country Data" },
   { name: "Unsplash", role: "Background Textures" },
   { name: "Minotar & Vzge", role: "Avatar Rendering APIs" },
   { name: "Nadeshiko", role: "Data Archiving" },
@@ -24,9 +24,12 @@ function initCredits() {
   tooltip.className = "credits-tooltip";
   
   let html = `<h4 style="color:var(--accent); margin-bottom: 8px; font-weight:700; font-size: 13px;">LitStats Credits</h4><ul style="list-style:none; margin:0; padding:0; font-size:11px; color:var(--text-2); display:flex; flex-direction:column; gap:6px;">`;
+  
   litstatsCredits.forEach(c => {
-    html += `<li><strong style="color:var(--text);">${c.name}</strong> &ndash; ${c.role}</li>`;
+    // Replaced the HTML entity with a standard hyphen to fix the tooltip display
+    html += `<li><strong style="color:var(--text);">${c.name}</strong> - ${c.role}</li>`;
   });
+  
   html += `</ul>`;
   
   tooltip.innerHTML = html;
