@@ -74,12 +74,12 @@ body::before {
   pointer-events: none;
 }
 
-/* Dark Mode Background Image (Toned Down & Fixed) */
+/* Dark Mode Background Image */
 body[data-theme="dark"]::before {
   background-color: #040201; 
-  /* Uses a dark gradient overlay to dim the image instead of CSS opacity */
+  /* This gradient is set to 0.7 opacity, allowing the image underneath to peek through */
   background-image: 
-    linear-gradient(rgba(4, 2, 1, 0.85), rgba(4, 2, 1, 0.85)), 
+    linear-gradient(rgba(4, 2, 1, 0.70), rgba(4, 2, 1, 0.70)), 
     url('../../img/bg-embers.jpg'); 
   background-size: cover;
   background-position: center;
