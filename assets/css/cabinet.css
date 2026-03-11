@@ -1,10 +1,5 @@
 main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 100px; display: flex; flex-direction: column; align-items: center; width: 100%; }
 
-.nav-links { display: flex; gap: 8px; margin-right: auto; margin-left: 32px; }
-.nav-btn { color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px; transition: 0.2s; }
-.nav-btn:hover { background: var(--surface-2); color: var(--text); }
-.nav-btn.active { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(255, 81, 0, 0.2); }
-
 .profile-card { 
   background: var(--surface); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%);
   border: 1px solid var(--border); border-top: 1px solid var(--glass-edge); border-radius: 16px; 
@@ -63,14 +58,16 @@ body:not([data-theme="dark"]) .slot-progress { background: rgba(0,0,0,0.05); }
 .tier-group.common .game-badge.achieved:hover { border-color: #78716c; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
 .tier-group.common .game-badge.achieved img { filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5)); }
 
+/* ENHANCED BRONZE GLARE */
 .tier-group.rare .tier-label { color: var(--bronze); }
-.tier-group.rare .game-badge.achieved { border-color: var(--bronze); background: linear-gradient(135deg, rgba(205, 127, 50, 0.12) 0%, var(--surface-2) 50%); box-shadow: inset 0 1px 1px rgba(255,255,255,0.15), 0 4px 12px rgba(0,0,0,0.3); }
-.tier-group.rare .game-badge.achieved:hover { border-color: #e59850; transform: translateY(-3px); box-shadow: inset 0 1px 2px rgba(255,255,255,0.25), 0 8px 20px rgba(0,0,0,0.4); }
+.tier-group.rare .game-badge.achieved { border-color: var(--bronze); background: linear-gradient(135deg, rgba(205, 127, 50, 0.15) 0%, var(--surface-2) 60%); box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.3), inset 0 0 12px rgba(205, 127, 50, 0.2), 0 4px 12px rgba(0,0,0,0.3); }
+.tier-group.rare .game-badge.achieved:hover { border-color: #e59850; transform: translateY(-3px); box-shadow: inset 0 1px 6px rgba(255, 255, 255, 0.4), 0 8px 20px rgba(0,0,0,0.4); }
 .tier-group.rare .game-badge.achieved img { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
 
+/* ENHANCED SILVER GLARE */
 .tier-group.epic .tier-label { color: var(--silver); }
-.tier-group.epic .game-badge.achieved { border-color: var(--silver); background: linear-gradient(135deg, rgba(192, 192, 192, 0.15) 0%, var(--surface-2) 50%); box-shadow: inset 0 1px 2px rgba(255,255,255,0.3), inset 0 0 8px rgba(192, 192, 192, 0.05), 0 4px 12px rgba(0,0,0,0.3); }
-.tier-group.epic .game-badge.achieved:hover { border-color: #ffffff; transform: translateY(-3px); box-shadow: inset 0 1px 3px rgba(255,255,255,0.5), inset 0 0 12px rgba(192, 192, 192, 0.15), 0 8px 20px rgba(0,0,0,0.45); }
+.tier-group.epic .game-badge.achieved { border-color: #e2e8f0; background: linear-gradient(135deg, rgba(226, 232, 240, 0.25) 0%, var(--surface-2) 60%); box-shadow: inset 0 1px 6px rgba(255,255,255,0.7), inset 0 0 20px rgba(192, 192, 192, 0.3), 0 4px 12px rgba(0,0,0,0.3); }
+.tier-group.epic .game-badge.achieved:hover { border-color: #ffffff; transform: translateY(-3px); box-shadow: inset 0 1px 8px rgba(255,255,255,0.9), inset 0 0 24px rgba(192, 192, 192, 0.4), 0 8px 20px rgba(0,0,0,0.45); }
 .tier-group.epic .game-badge.achieved img { filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6)); }
 
 .tier-group.legendary .tier-label { color: var(--gold); }
