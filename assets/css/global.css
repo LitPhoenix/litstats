@@ -74,10 +74,9 @@ body::before {
 body:not([data-theme="dark"])::before {
   content: ''; position: fixed; inset: 0; z-index: -2;
   background-color: var(--bg);
-  /* The gradient overlay ensures text remains readable over the image */
   background-image: 
     linear-gradient(rgba(253, 250, 248, 0.75), rgba(253, 250, 248, 0.75)), 
-    url('../../img/lq-bg-embers-light.jpg');
+    url('img/lq-bg-embers-light.jpg'); /* <-- Check this line */
   background-size: cover; 
   background-position: center; 
   filter: blur(12px); 
@@ -88,9 +87,15 @@ body:not([data-theme="dark"])::before {
 
 body[data-theme="dark"]::before {
   background-color: #040201; 
-  background-image: linear-gradient(rgba(4, 2, 1, 0.80), rgba(4, 2, 1, 0.80)), url('../../img/bg-embers.jpg'); 
-  background-size: cover; background-position: center; filter: blur(12px) grayscale(20%); 
-  transform: scale(1.05); animation: none; pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(4, 2, 1, 0.80), rgba(4, 2, 1, 0.80)), 
+    url('img/lq-bg-embers.jpg'); /* <-- Check this line */
+  background-size: cover; 
+  background-position: center; 
+  filter: blur(12px) grayscale(20%); 
+  transform: scale(1.05); 
+  animation: none; 
+  pointer-events: none;
 }
 
 body[data-theme="dark"]::after {
