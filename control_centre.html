@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="img/favicon.png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   
-  <link rel="stylesheet" href="global.css">
+  <link rel="stylesheet" href="assets/css/global.css">
 
   <style>
     main { max-width: 1400px; margin: 0 auto; padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 24px; width: 100%; }
@@ -24,7 +24,7 @@
       backdrop-filter: blur(24px) saturate(150%);
       -webkit-backdrop-filter: blur(24px) saturate(150%);
       border: 1px solid var(--border);
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid var(--glass-edge);
       border-radius: var(--radius);
       padding: 20px;
       box-shadow: var(--shadow);
@@ -47,7 +47,6 @@
     }
     .textarea-wrap textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 
-    /* TABLE */
     .table-toolbar { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
     .search-bar {
       flex: 1; max-width: 300px; padding: 8px 16px; border: 1px solid var(--border-strong);
@@ -59,7 +58,7 @@
     table { width: 100%; border-collapse: collapse; text-align: left; }
     th { position: sticky; top: 0; background: var(--surface); padding: 12px; font-size: 11px; text-transform: uppercase; color: var(--text-3); border-bottom: 2px solid var(--border-strong); z-index: 10; backdrop-filter: blur(12px); }
     td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; color: var(--text); }
-    tr:hover { background: var(--surface); }
+    tr:hover { background: rgba(0,0,0,0.1); }
 
     .edit-input {
       width: 100%; padding: 6px 8px; background: transparent; border: 1px solid transparent;
@@ -83,7 +82,7 @@
 <body>
 
   <header>
-    <div class="header-inner" style="width: 100%; display: flex; align-items: center;">
+    <div class="header-inner">
       <a class="logo" href="index.html">
         <img src="img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
         <div>
@@ -149,7 +148,7 @@
     </div>
   </main>
 
-  <script src="global.js"></script>
+  <script src="assets/js/global.js"></script>
 
   <script>
     const countryFlags = {
@@ -305,7 +304,7 @@
                 cachedPlayers[p.uuid] = { 
                   name: p.username, 
                   current: p.current_ap || p.current_quests || 0,
-                  maxes: p.maxGames || [] // CRITICAL: Extract maxGames to prevent wipe
+                  maxes: p.maxGames || [] 
                 };
               });
             });
@@ -318,7 +317,7 @@
               country: mappings[uuid] || "Unknown",
               startScore: snapshots[uuid],
               currentScore: cachedPlayers[uuid]?.current || snapshots[uuid],
-              maxGames: cachedPlayers[uuid]?.maxes || [] // Save to state
+              maxGames: cachedPlayers[uuid]?.maxes || [] 
             };
           });
 
@@ -330,12 +329,12 @@
                 country: mappings[uuid],
                 startScore: 0,
                 currentScore: cachedPlayers[uuid]?.current || 0,
-                maxGames: cachedPlayers[uuid]?.maxes || [] // Save to state
+                maxGames: cachedPlayers[uuid]?.maxes || [] 
               };
             }
           });
 
-          alert("Successfully loaded database! Legacy JSON formats have been converted and maxGames preserved.");
+          alert("Successfully loaded database!");
           renderTable();
           
           Object.values(players).forEach(p => {
@@ -373,7 +372,7 @@
               country: 'Unknown',
               startScore: value,
               currentScore: value,
-              maxGames: [] // Initialize array for new players
+              maxGames: [] 
             };
           }
         });
@@ -407,7 +406,7 @@
           uuid: p.uuid,
           country: p.country,
           monthly_gain: p.currentScore - p.startScore,
-          maxGames: p.maxGames || [] // CRITICAL: Write back to file
+          maxGames: p.maxGames || [] 
         };
 
         if (type === 'ap') {
@@ -425,7 +424,6 @@
       const allP = Object.values(players);
       const sortedGlobal = [...allP].sort((a,b) => b.currentScore - a.currentScore);
       
-      // NEW BASELINE LOGIC: Subtracts the 100th place score
       const baseline = sortedGlobal.length >= 100 ? sortedGlobal[99].currentScore : (sortedGlobal[sortedGlobal.length - 1]?.currentScore || 0);
 
       db.country_leaderboard = Object.keys(cMap).map(c => {
