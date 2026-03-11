@@ -5,10 +5,10 @@
   --bg-glow: rgba(255, 100, 0, 0.02); 
   
   /* FROSTED GLASS VARIABLES */
-  --surface: rgba(255, 253, 253, 0.65); /* FROSTED OPACITY VARIABLE */
+  --surface: rgba(255, 253, 253, 0.5); /* Header, Table */
   --surface-2: rgba(255, 245, 240, 0.55); 
   --border: rgba(255, 253, 253, 0.5);
-  --input-bg: rgba(255, 253, 253, 0.7);
+  --input-bg: rgba(255, 253, 253, 0.75);
   --glass-edge: rgba(255, 253, 253, 0.8);
   
   --border-strong: #e0c5b4;
@@ -78,11 +78,11 @@ body:not([data-theme="dark"])::before {
   content: ''; position: fixed; inset: 0; z-index: -2;
   background-color: var(--bg);
   background-image: 
-    linear-gradient(rgba(253, 250, 248, 0.40), rgba(253, 250, 248, 0.85)), 
+    linear-gradient(rgba(255, 234, 219, 0.4), rgba(253, 250, 248, 0.85)), 
     url('../../img/lq-bg-embers-light.jpg');
   background-size: cover; 
   background-position: center; 
-  filter: blur(8px); /* Unblurred so the foreground glass works */
+  filter: blur(10px); /* Unblurred so the foreground glass works */
   transform: scale(1.02); 
   animation: none; 
   pointer-events: none;
@@ -92,11 +92,11 @@ body:not([data-theme="dark"])::before {
 body[data-theme="dark"]::before {
   background-color: #040201; 
   background-image: 
-    linear-gradient(rgba(4, 2, 1, 0.50), rgba(4, 2, 1, 0.85)), 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(4, 2, 1, 0.85)), 
     url('../../img/lq-bg-embers.jpg');
   background-size: cover; 
   background-position: center; 
-  filter: blur(8px) grayscale(20%); /* Unblurred so the foreground glass works */
+  filter: blur(20px) grayscale(40%); /* Unblurred so the foreground glass works */
   transform: scale(1.02); 
   animation: none; 
   pointer-events: none;
