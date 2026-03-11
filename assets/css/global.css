@@ -70,17 +70,19 @@ body::before {
   background-size: 200% 200%; animation: subtleFire 12s ease-in-out infinite alternate; pointer-events: none;
 }
 
-/* CSS-only animated warm glow for Light Mode */
+/* Light Mode Background Image */
 body:not([data-theme="dark"])::before {
   content: ''; position: fixed; inset: 0; z-index: -2;
   background-color: var(--bg);
+  /* The gradient overlay ensures text remains readable over the image */
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(255, 81, 0, 0.04), transparent 50%),
-    radial-gradient(circle at 85% 30%, rgba(255, 157, 0, 0.04), transparent 50%),
-    radial-gradient(circle at 50% 100%, rgba(255, 81, 0, 0.03), transparent 50%);
-  background-size: 200% 200%;
-  animation: subtleFire 15s ease-in-out infinite alternate;
-  filter: blur(24px);
+    linear-gradient(rgba(253, 250, 248, 0.75), rgba(253, 250, 248, 0.75)), 
+    url('../../img/lq-bg-embers-light.jpg');
+  background-size: cover; 
+  background-position: center; 
+  filter: blur(12px); 
+  transform: scale(1.05); 
+  animation: none; 
   pointer-events: none;
 }
 
