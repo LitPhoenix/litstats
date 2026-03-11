@@ -70,9 +70,18 @@ body::before {
   background-size: 200% 200%; animation: subtleFire 12s ease-in-out infinite alternate; pointer-events: none;
 }
 
+/* CSS-only animated warm glow for Light Mode */
 body:not([data-theme="dark"])::before {
-  background-image: linear-gradient(rgba(253, 250, 248, 0.8), rgba(253, 250, 248, 0.8)), url('../../img/bg-light.jpg');
-  background-size: cover; background-position: center; opacity: 1; filter: blur(8px);
+  content: ''; position: fixed; inset: 0; z-index: -2;
+  background-color: var(--bg);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(255, 81, 0, 0.04), transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(255, 157, 0, 0.04), transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(255, 81, 0, 0.03), transparent 50%);
+  background-size: 200% 200%;
+  animation: subtleFire 15s ease-in-out infinite alternate;
+  filter: blur(24px);
+  pointer-events: none;
 }
 
 body[data-theme="dark"]::before {
