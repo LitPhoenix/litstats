@@ -39,7 +39,7 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        // FIX: Check multiple possible key formats the API might be sending
+        // FIX: Checks multiple possible key formats the API might be sending
         let percent = globalPlayerData.gamePercentages[ach.game] 
                    || globalPlayerData.gamePercentages['Max ' + ach.game] 
                    || 0;
