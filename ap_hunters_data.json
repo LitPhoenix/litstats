@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-11T11:38:45.049Z",
+  "last_update": "2026-03-11T13:12:20.958Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1469,7 +1469,7 @@
     },
     {
       "country": "Denmark",
-      "score": 9293,
+      "score": 9305,
       "top_players": [
         {
           "username": "tobias49",
@@ -1507,9 +1507,9 @@
           "username": "STAYEZ",
           "uuid": "998d3241aec046ad9d5009f56d28e413",
           "country": "Denmark",
-          "current_ap": 30315,
+          "current_ap": 30340,
           "last_month_ap": 30315,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
