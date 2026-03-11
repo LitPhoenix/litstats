@@ -6,6 +6,7 @@
 .search-input { width: 100%; max-width: 400px; padding: 10px 16px; background: var(--input-bg); border: 1px solid var(--border-strong); border-radius: 8px; color: var(--text); font-family: inherit; font-size: 14px; transition: all 0.2s; }
 .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); transform: translateY(-1px); }
 .search-results-info { font-size: 13px; color: var(--accent); margin-top: 8px; font-weight: 500; }
+
 .shortcuts-panel { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; font-size: 12px; color: var(--text-3); align-items: center; }
 .shortcut-item { display: flex; align-items: center; gap: 6px; }
 kbd { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 4px; padding: 2px 6px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--text-2); box-shadow: 0 1px 1px rgba(0,0,0,0.05); }
@@ -25,69 +26,63 @@ kbd { background: var(--surface); border: 1px solid var(--border-strong); border
 @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
 .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; }
 
+/* SPARK MASK */
 .spark-bg { position: absolute; inset: 0; border-radius: inherit; z-index: -1; overflow: hidden; padding: 1px; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
 .spark-bg::before { content: ''; position: absolute; top: 50%; left: 50%; width: 3000px; height: 3000px; margin-top: -1500px; margin-left: -1500px; background: conic-gradient(from var(--angle), transparent 85%, var(--red) 94%, var(--accent) 98%, #ffffff 100%); animation: rotateSpark var(--spark-speed, 3s) linear infinite; }
 @keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
 
 .table-inner { background: var(--surface); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); border-top: 1px solid var(--glass-edge); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
 
-table table { 
+/* --- TABLE FUSION & LAYOUT FIXES --- */
+table { 
   width: 100%; 
-  border-collapse: collapse; 
-  border-spacing: 0; 
+  border-collapse: collapse; /* Fuses cells together so hovers don't break */
   font-size: 13.5px; 
 }
-thead th:first-child { border-top-left-radius: calc(var(--radius) - 1px); }
-thead th:last-child { border-top-right-radius: calc(var(--radius) - 1px); }
+
 thead { background: rgba(0,0,0,0.2); }
-thead th { padding: 10px 16px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-3); white-space: nowrap; cursor: pointer; user-select: none; transition: color 0.15s; border-bottom: 1px solid var(--border); }
+thead th { 
+  padding: 14px 16px; /* Restored padding for headers */
+  text-align: left; 
+  font-size: 11px; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+  color: var(--text-3); 
+  white-space: nowrap; 
+  cursor: pointer; 
+  user-select: none; 
+  transition: color 0.15s; 
+  border-bottom: 2px solid var(--border-strong); 
+}
 thead th:hover { color: var(--accent); }
 th.rank { text-align: center; }
 thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
 thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
 
-/* 1. Remove ugly vertical lines & fix vertical squishing globally */
-td, th {
-  padding: 14px 16px !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-top: none !important;
-  border-bottom: 1px solid var(--border) !important; 
-}
-
-/* 2. Apply the sleek custom bottom line to BOTH player and country rows */
-tbody tr.player-row td, 
-tbody tr.country-row td { 
-  border-bottom: none !important; 
-  position: relative; 
+/* Unified Row Padding & Borders */
+td { 
+  padding: 14px 16px; /* Fixes vertical squishing */
   vertical-align: middle; 
+  border-bottom: 1px solid var(--border); /* Clean, reliable row separator */
 }
 
-/* 3. Draw the inset line */
-tbody tr.player-row td::after,
-tbody tr.country-row td::after { 
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--border); transition: 0.2s; 
+/* Base Row Logic */
+tbody tr.player-row, 
+tbody tr.country-row { 
+  transition: transform 0.2s ease-out, background-color 0.2s ease-out; 
+  cursor: pointer; 
 }
 
-/* 4. Shorten the line on the edges */
-tbody tr.player-row td:first-child::after,
-tbody tr.country-row td:first-child::after { left: 24px; }
-
-tbody tr.player-row td:last-child::after,
-tbody tr.country-row td:last-child::after { right: 24px; }
-
-/* 5. Hover colour change */
-tbody tr.player-row:hover td::after,
-tbody tr.country-row:hover td::after { background: var(--accent); }
-
-/* 6. Fix country row hover background */
-tbody tr.country-row:hover {
-  background: var(--accent-soft); 
+/* Flawless Hover Highlight */
+tbody tr.player-row:hover, 
+tbody tr.player-row.force-hover,
+tbody tr.country-row:hover { 
+  background-color: var(--accent-soft); 
   transform: translateX(4px); 
   box-shadow: -4px 0 0 var(--accent); 
-  transition: all 0.1s ease-in;
 }
 
+/* Text Formatting */
 .rank { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text-3); }
 .rank-1 { color: var(--gold); font-weight: 700; font-size: 14px;}
 .rank-2 { color: var(--silver); font-weight: 700; font-size: 14px;}
@@ -96,6 +91,7 @@ tbody tr.country-row:hover {
 .player-cell { display: flex; align-items: center; gap: 10px; }
 .player-avatar { width: 28px; height: 28px; border-radius: 4px; background: var(--surface-2); object-fit: cover; }
 .player-name { font-weight: 600; color: var(--text); }
+
 .flag-cell { display: flex; align-items: center; gap: 8px; }
 .flag-img { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; border: 1px solid var(--border-strong); }
 .country-name { color: var(--text-2); font-size: 13px; }
@@ -110,6 +106,7 @@ tbody tr.country-row:hover {
 .pos-down { color: var(--red); }
 .pos-same { color: var(--gold); }
 
+/* Expanded Drawers */
 .player-expanded-row { display: none; background: rgba(0,0,0,0.15); border-bottom: 1px solid var(--border); box-shadow: inset 0 4px 10px rgba(0,0,0,0.1); }
 .player-expanded-row.open { display: table-row; }
 .maxes-container { padding: 16px 16px 24px 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -122,6 +119,7 @@ tbody tr.country-row:hover {
 .cabinet-btn { display: inline-block; margin-top: 8px; background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 8px 20px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; transition: 0.2s; }
 .cabinet-btn:hover { background: var(--accent); color: #fff; box-shadow: 0 4px 12px var(--accent-soft); }
 
+/* Tooltips */
 .tooltip-wrap { position: relative; display: inline-flex; align-items: center; gap: 5px; cursor: help; }
 .tooltip-content { visibility: hidden; opacity: 0; position: absolute; top: 140%; bottom: auto; left: 50%; transform: translateX(-50%) translateY(-10px); width: 320px; background: var(--surface); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); color: var(--text); border: 1px solid var(--border-strong); padding: 16px; border-radius: var(--radius); box-shadow: var(--shadow); font-size: 12px; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); z-index: 100; white-space: normal; cursor: default; }
 .tooltip-content * { text-transform: none; letter-spacing: normal; } 
@@ -131,6 +129,7 @@ tbody tr.country-row:hover {
 .tooltip-content p { margin-bottom: 8px; color: var(--text-2); line-height: 1.5; }
 .tooltip-content .formula { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; font-family: 'DM Mono', monospace; color: var(--accent); text-align: center; border: 1px solid var(--border); margin-top: 12px; }
 
+/* Status & Layouts */
 .table-footer { padding: 12px 16px; text-align: right; font-size: 11px; color: var(--text-3); border-top: 1px solid var(--border); background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: flex-end; gap: 6px; border-bottom-left-radius: calc(var(--radius) - 1px); border-bottom-right-radius: calc(var(--radius) - 1px); }
 .table-footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); display: inline-block; }
 
@@ -140,7 +139,7 @@ tbody tr.country-row:hover {
 .sentinel-row td { text-align: center; padding: 24px !important; color: var(--text-3); font-size: 13px; font-weight: 500; border: none; }
 .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--text-3); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; vertical-align: middle; margin-right: 8px; }
 
-.country-row { cursor: pointer; }
+/* Country Row Sub-Menu */
 .expand-icon { transition: transform 0.2s; display: inline-block; color: var(--text-3); font-size: 11px; }
 .country-row.open .expand-icon { transform: rotate(90deg); color: var(--accent); }
 .country-players-row { display: none; }
@@ -155,6 +154,7 @@ tbody tr.country-row:hover {
 .sub-name { font-weight: 600; color: var(--text); }
 .sub-ap { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--text-2); font-size: 12px; }
 
+/* Mobile Formatting */
 @media (max-width: 640px) {
   .table-inner {
     overflow-x: auto; -webkit-overflow-scrolling: touch;
