@@ -27,10 +27,10 @@ function fmt(n) { return Number(n).toLocaleString(); }
 function getRankClass(r) { return r === 1 ? 'rank-1' : r === 2 ? 'rank-2' : r === 3 ? 'rank-3' : ''; }
 
 function getFlagHTML(c) {
-  if (c === 'youtubers') return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" style="object-fit: contain;">`;
-  if (c === 'staff') return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" style="object-fit: cover;">`;
-  if (countryFlags[c]) return `<img src="https://flagcdn.com/w40/${countryFlags[c]}.png" class="flag-img">`;
-  return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img">`;
+  if (c === 'youtubers') return `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png" class="flag-img" alt="YT" style="object-fit: contain;">`;
+  if (c === 'staff') return `<img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg" class="flag-img" alt="Staff" style="object-fit: cover;">`;
+  if (countryFlags[c]) return `<img src="https://flagcdn.com/w40/${countryFlags[c]}.png" class="flag-img" alt="${c} flag">`;
+  return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img" alt="Unknown flag">`;
 }
 
 async function togglePlayerExpand(uuid) {
@@ -101,7 +101,7 @@ function renderNextPlayersBatch() {
         <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank || ''} ${posHTML}</span></td>
         <td>
           <div class="player-cell">
-            <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
+            <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" alt="${p.username} avatar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
             <span class="player-name">${p.username}</span>
           </div>
         </td>
