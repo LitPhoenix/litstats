@@ -39,8 +39,10 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        const badgeName = 'Max ' + ach.game;
-        const percent = globalPlayerData.gamePercentages[badgeName] || 0;
+        // FIX: Check multiple possible key formats the API might be sending
+        let percent = globalPlayerData.gamePercentages[ach.game] 
+                   || globalPlayerData.gamePercentages['Max ' + ach.game] 
+                   || 0;
         
         return `
           <div class="ach-card">
