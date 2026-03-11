@@ -13,9 +13,12 @@ const litstatsCredits = [
   { name: "Vercel", role: "Backend Deployment" }
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
+function initCredits() {
   const target = document.getElementById("credits-hover");
   if (!target) return;
+
+  // Prevent duplicate injection if script runs twice
+  if (target.querySelector('.credits-tooltip')) return;
 
   const tooltip = document.createElement("div");
   tooltip.className = "credits-tooltip";
@@ -28,6 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
   
   tooltip.innerHTML = html;
   
-  // Appends the tooltip inside the made-by-tag container so the hover triggers correctly
-  target.parentElement.appendChild(tooltip);
-});
+  // Attach tooltip inside the <a> tag for flawless hover triggering
+  target.appendChild(tooltip);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCredits);
+} else {
+  initCredits();
+}
