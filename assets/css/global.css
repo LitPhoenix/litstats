@@ -5,7 +5,7 @@
   --bg-glow: rgba(255, 100, 0, 0.02); 
   
   /* FROSTED GLASS VARIABLES */
-  --surface: rgba(255, 253, 253, 0.5); /* Header, Table */
+  --surface: rgba(255, 253, 253, 0.65); /* Header, Table */
   --surface-2: rgba(255, 245, 240, 0.55); 
   --border: rgba(255, 253, 253, 0.5);
   --input-bg: rgba(255, 253, 253, 0.75);
