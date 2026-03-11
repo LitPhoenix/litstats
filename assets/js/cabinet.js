@@ -1,5 +1,31 @@
 let globalPlayerData = null;
 
+function getPlusColourHex(colourName) {
+    const colours = {
+        'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55',
+        'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF',
+        'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000',
+        'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555',
+        'BLACK': '#000000', 'DARK_BLUE': '#0000AA'
+    };
+    return colours[colourName] || '#FF5555'; // Defaults to red
+}
+
+// Formats the rank string with the correct spans
+function formatRankText(rank, plusColour) {
+    if (!rank || rank === 'NON') return '';
+    const plusHex = getPlusColourHex(plusColour);
+    
+    if (rank.includes('++')) {
+        return `<span style="color: #FFAA00; background: rgba(255, 170, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">++</span>]</span>`;
+    } else if (rank.includes('+') && rank.includes('MVP')) {
+        return `<span style="color: #55FFFF; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">+</span>]</span>`;
+    } else if (rank.includes('VIP')) {
+        return `<span style="color: #55FF55; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[${rank}]</span>`;
+    }
+    return `<span style="color: #AAAAAA; background: rgba(170, 170, 170, 0.1); padding: 2px 6px; border-radius: 4px;">[${rank}]</span>`;
+}
+
 function populateFilters() {
     const select = document.getElementById('gameFilter');
     if (!globalPlayerData || !globalPlayerData.missingAchievements) return;
