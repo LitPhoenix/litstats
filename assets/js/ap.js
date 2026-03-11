@@ -10,26 +10,15 @@ const countryFlags = {
   'Turkey': 'tr', 'UK': 'gb', 'Ukraine': 'ua', 'USA': 'us'
 };
 
-let currentData = null;
-let allPlayersList = [];
-let processedCountries = [];
-let currentTab = 'players';
-let sortCol = 'rank', sortDir = 1;
-let playerMaxesCache = {}; 
-
-const BATCH_SIZE = 50;
-let currentFilteredPlayers = [];
-let playersRenderCount = 0;
-let currentFilteredCountries = [];
-let countriesRenderCount = 0;
+let currentData = null; let allPlayersList = []; let processedCountries = []; let currentTab = 'players';
+let sortCol = 'rank', sortDir = 1; let playerMaxesCache = {}; 
+const BATCH_SIZE = 50; let currentFilteredPlayers = []; let playersRenderCount = 0; let currentFilteredCountries = []; let countriesRenderCount = 0;
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentTab = btn.dataset.tab;
-    document.getElementById('panel-players').classList.add('hidden');
-    document.getElementById('panel-countries').classList.add('hidden');
+    btn.classList.add('active'); currentTab = btn.dataset.tab;
+    document.getElementById('panel-players').classList.add('hidden'); document.getElementById('panel-countries').classList.add('hidden');
     document.getElementById(`panel-${currentTab}`).classList.remove('hidden');
   });
 });
@@ -47,36 +36,21 @@ function getFlagHTML(c) {
 async function togglePlayerExpand(uuid) {
   const expandRow = document.getElementById(`expand-${uuid}`);
   if (!expandRow) return;
-
-  if (expandRow.classList.contains('open')) {
-    expandRow.classList.remove('open');
-    return;
-  }
-
+  if (expandRow.classList.contains('open')) { expandRow.classList.remove('open'); return; }
   document.querySelectorAll('.player-expanded-row').forEach(row => row.classList.remove('open'));
   expandRow.classList.add('open');
 
   const container = document.getElementById(`maxes-${uuid}`);
   const localPlayer = allPlayersList.find(p => p.uuid === uuid);
-  
-  if (localPlayer && localPlayer.maxGames) {
-    renderMaxesHTML(container, localPlayer.maxGames, uuid);
-    return;
-  }
-
-  if (playerMaxesCache[uuid]) {
-    renderMaxesHTML(container, playerMaxesCache[uuid], uuid);
-    return;
-  }
+  if (localPlayer && localPlayer.maxGames) { renderMaxesHTML(container, localPlayer.maxGames, uuid); return; }
+  if (playerMaxesCache[uuid]) { renderMaxesHTML(container, playerMaxesCache[uuid], uuid); return; }
 
   container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">Loading maxed games from network...</span>`;
-
   try {
     const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
     if (res.status === 429) throw new Error('RATE_LIMIT');
     const data = await res.json();
     if (data.error) throw new Error(data.error); 
-    
     playerMaxesCache[uuid] = data.maxGames || [];
     renderMaxesHTML(container, playerMaxesCache[uuid], uuid);
   } catch (e) {
@@ -86,46 +60,27 @@ async function togglePlayerExpand(uuid) {
 
 function getGameIconUrl(gameName) {
   if (gameName === "Max Seasonal") return "img/games/seasonal.png";
-  const iconMap = {
-    "Max Arcade": "Arcade-64.png", "Max Bed Wars": "BedWars-64.png", "Max Build Battle": "BuildBattle-64.png",
-    "Max Cops and Crims": "CVC-64.png", "Max Duels": "Duels-64.png", "Max Mega Walls": "MegaWalls-64.png",
-    "Max Murder Mystery": "MurderMystery-64.png", "Max Pit": "Pit-64.png", "Max Blitz": "SG-64.png",
-    "Max SkyBlock": "SkyBlock-64.png", "Max SkyWars": "Skywars-64.png", "Max Smash Heroes": "SmashHeroes-64.png",
-    "Max TNT Games": "TNT-64.png", "Max UHC": "UHC-64.png", "Max Warlords": "Warlords-64.png",
-    "Max Wool Games": "WoolGames-64.png", "Max Arena Brawl": "Arena-64.png", "Max Paintball": "Paintball-64.png",
-    "Max Quake": "Quakecraft-64.png", "Max VampireZ": "VampireZ-64.png", "Max Walls": "Walls-64.png",
-    "Max TKR": "TurboKartRacers-64.png", "Max Crazy Walls": "CrazyWalls-64.png", "Max SkyClash": "SkyClash-64.png"
-  };
+  const iconMap = { "Max Arcade": "Arcade-64.png", "Max Bed Wars": "BedWars-64.png", "Max Build Battle": "BuildBattle-64.png", "Max Cops and Crims": "CVC-64.png", "Max Duels": "Duels-64.png", "Max Mega Walls": "MegaWalls-64.png", "Max Murder Mystery": "MurderMystery-64.png", "Max Pit": "Pit-64.png", "Max Blitz": "SG-64.png", "Max SkyBlock": "SkyBlock-64.png", "Max SkyWars": "Skywars-64.png", "Max Smash Heroes": "SmashHeroes-64.png", "Max TNT Games": "TNT-64.png", "Max UHC": "UHC-64.png", "Max Warlords": "Warlords-64.png", "Max Wool Games": "WoolGames-64.png", "Max Arena Brawl": "Arena-64.png", "Max Paintball": "Paintball-64.png", "Max Quake": "Quakecraft-64.png", "Max VampireZ": "VampireZ-64.png", "Max Walls": "Walls-64.png", "Max TKR": "TurboKartRacers-64.png", "Max Crazy Walls": "CrazyWalls-64.png", "Max SkyClash": "SkyClash-64.png" };
   const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
   return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
 }
 
 function renderMaxesHTML(container, maxes, uuid) {
   if (maxes.length === 0) {
-    container.innerHTML = `
-      <span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span><br>
-      <a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">View Player Hub ➔</a>
-    `;
+    container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span><br><a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">View Player Hub ➔</a>`;
     return;
   }
   let html = `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
-  maxes.forEach(game => {
-    html += `<div class="mini-game-icon" title="${game}"><img src="${getGameIconUrl(game)}" onerror="this.style.opacity='0'"></div>`;
-  });
+  maxes.forEach(game => { html += `<div class="mini-game-icon" title="${game}"><img src="${getGameIconUrl(game)}" onerror="this.style.opacity='0'"></div>`; });
   html += `</div><a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Player Hub ➔</a>`;
   container.innerHTML = html;
 }
 
 function initPlayersRender(players) {
-  currentFilteredPlayers = players;
-  playersRenderCount = 0;
-  const tbody = document.getElementById('players-tbody');
-  tbody.innerHTML = '';
-  
+  currentFilteredPlayers = players; playersRenderCount = 0; const tbody = document.getElementById('players-tbody'); tbody.innerHTML = '';
   if (!players.length) {
     tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No players found.</td></tr>`;
-    document.getElementById('players-sentinel').classList.add('hidden');
-    return;
+    document.getElementById('players-sentinel').classList.add('hidden'); return;
   }
   renderNextPlayersBatch();
 }
@@ -134,64 +89,42 @@ function renderNextPlayersBatch() {
   const tbody = document.getElementById('players-tbody');
   const toRender = currentFilteredPlayers.slice(playersRenderCount, playersRenderCount + BATCH_SIZE);
   if (!toRender.length) return;
-
   const fragment = document.createDocumentFragment();
 
   toRender.forEach(p => {
     const rc = getRankClass(p.globalRank);
-    let gainHTML = p.monthly_gain === "NEW" ? `<span class="gain-new">NEW</span>` : 
-                   p.monthly_gain > 0 ? `<span class="gain-pos">+${fmt(p.monthly_gain)}</span>` : 
-                   p.monthly_gain < 0 ? `<span class="gain-neg">${fmt(p.monthly_gain)}</span>` : 
-                   `<span class="gain-zero">-</span>`;
+    let gainHTML = p.monthly_gain === "NEW" ? `<span class="gain-new">NEW</span>` : p.monthly_gain > 0 ? `<span class="gain-pos">+${fmt(p.monthly_gain)}</span>` : p.monthly_gain < 0 ? `<span class="gain-neg">${fmt(p.monthly_gain)}</span>` : `<span class="gain-zero">-</span>`;
+    let posHTML = p.posChange > 0 ? `<span class="position-indicator pos-up">▲ ${p.posChange}</span>` : p.posChange < 0 ? `<span class="position-indicator pos-down">▼ ${Math.abs(p.posChange)}</span>` : p.previousRank > 0 ? `<span class="position-indicator pos-same">=</span>` : '';
 
-    let posHTML = p.posChange > 0 ? `<span class="position-indicator pos-up">▲ ${p.posChange}</span>` : 
-                  p.posChange < 0 ? `<span class="position-indicator pos-down">▼ ${Math.abs(p.posChange)}</span>` : 
-                  p.previousRank > 0 ? `<span class="position-indicator pos-same">=</span>` : '';
-
-    const tr = document.createElement('tr');
-    tr.className = 'player-row';
-    tr.onclick = () => togglePlayerExpand(p.uuid);
+    const tr = document.createElement('tr'); tr.className = 'player-row'; tr.onclick = () => togglePlayerExpand(p.uuid);
     tr.innerHTML = `
-      <td style="text-align: center;"><span class="rank ${getRankClass(rank)}">${rank}</span></td>
-      <td><div class="flag-cell">${getFlagHTML(c.country)}<span class="country-name" style="font-weight:600; color:var(--text);">${c.country}</span></div></td>
-      <td class="ap-cell" style="text-align: right;">${c.score > 0 ? fmt(Math.round(c.score)) : '-'}</td>
-      <td style="padding-left: 40px;">
-        <div class="player-cell" style="gap:8px;">
-          <img class="player-avatar" style="width:24px;height:24px;border-radius:4px;" src="https://minotar.net/helm/${topP.username||'?'}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
-          <span class="country-name" style="font-weight:600; color:var(--text);">${topP.username || 'Unknown'}</span>
-        </div>
-      </td>
-      <td style="text-align:right; padding-right:20px;"><span class="expand-icon">▶</span></td>
+        <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank || ''} ${posHTML}</span></td>
+        <td>
+          <div class="player-cell">
+            <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
+            <span class="player-name">${p.username}</span>
+          </div>
+        </td>
+        <td><div class="flag-cell">${getFlagHTML(p.country)}<span class="country-name">${p.country}</span></div></td>
+        <td class="ap-cell" style="text-align: right;">${fmt(p.current_ap)}</td>
+        <td style="text-align: right;">${gainHTML}</td>
     `;
     fragment.appendChild(tr);
 
-    const expand = document.createElement('tr');
-    expand.className = 'player-expanded-row';
-    expand.id = `expand-${p.uuid}`;
+    const expand = document.createElement('tr'); expand.className = 'player-expanded-row'; expand.id = `expand-${p.uuid}`;
     expand.innerHTML = `<td colspan="5"><div class="maxes-container" id="maxes-${p.uuid}"></div></td>`;
     fragment.appendChild(expand);
   });
-
-  tbody.appendChild(fragment);
-  playersRenderCount += toRender.length;
-
-  if (playersRenderCount < currentFilteredPlayers.length) {
-    document.getElementById('players-sentinel').classList.remove('hidden');
-  } else {
-    document.getElementById('players-sentinel').classList.add('hidden');
-  }
+  tbody.appendChild(fragment); playersRenderCount += toRender.length;
+  if (playersRenderCount < currentFilteredPlayers.length) document.getElementById('players-sentinel').classList.remove('hidden');
+  else document.getElementById('players-sentinel').classList.add('hidden');
 }
 
 function initCountriesRender(countries) {
-  currentFilteredCountries = countries;
-  countriesRenderCount = 0;
-  const tbody = document.getElementById('countries-tbody');
-  tbody.innerHTML = '';
-
+  currentFilteredCountries = countries; countriesRenderCount = 0; const tbody = document.getElementById('countries-tbody'); tbody.innerHTML = '';
   if (!countries.length) {
     tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 30px; color: var(--text-3);">No countries found.</td></tr>`;
-    document.getElementById('countries-sentinel').classList.add('hidden');
-    return;
+    document.getElementById('countries-sentinel').classList.add('hidden'); return;
   }
   renderNextCountriesBatch();
 }
@@ -200,15 +133,11 @@ function renderNextCountriesBatch() {
   const tbody = document.getElementById('countries-tbody');
   const toRender = currentFilteredCountries.slice(countriesRenderCount, countriesRenderCount + BATCH_SIZE);
   if (!toRender.length) return;
-
   const fragment = document.createDocumentFragment();
 
   toRender.forEach((c) => {
-    const rank = c.globalRank;
-    const topP = c.top_players[0] || {};
-    
-    const tr = document.createElement('tr');
-    tr.className = 'country-row';
+    const rank = c.globalRank; const topP = c.top_players[0] || {};
+    const tr = document.createElement('tr'); tr.className = 'country-row';
     tr.innerHTML = `
       <td style="text-align: center;"><span class="rank ${getRankClass(rank)}">${rank}</span></td>
       <td><div class="flag-cell">${getFlagHTML(c.country)}<span class="country-name" style="font-weight:600; color:var(--text);">${c.country}</span></div></td>
@@ -218,13 +147,11 @@ function renderNextCountriesBatch() {
           <img class="player-avatar" style="width:24px;height:24px;border-radius:4px;" src="https://minotar.net/helm/${topP.username||'?'}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
           <span class="country-name" style="font-weight:600; color:var(--text);">${topP.username || 'Unknown'}</span>
         </div>
-      </td>>
       </td>
       <td style="text-align:right; padding-right:20px;"><span class="expand-icon">▶</span></td>
     `;
 
-    const expandRow = document.createElement('tr');
-    expandRow.className = 'country-players-row';
+    const expandRow = document.createElement('tr'); expandRow.className = 'country-players-row';
     let subPlayersHTML = c.top_players.slice(0, 10).map((sp, i) => `
         <div class="sub-player">
           <div class="sub-player-left">
@@ -237,32 +164,19 @@ function renderNextCountriesBatch() {
       `).join('');
 
     expandRow.innerHTML = `<td colspan="5"><div class="country-players-inner"><div class="sub-player-list">${subPlayersHTML}</div></div></td>`;
-
-    tr.addEventListener('click', () => {
-      tr.classList.toggle('open');
-      expandRow.classList.toggle('open');
-    });
-
-    fragment.appendChild(tr);
-    fragment.appendChild(expandRow);
+    tr.addEventListener('click', () => { tr.classList.toggle('open'); expandRow.classList.toggle('open'); });
+    fragment.appendChild(tr); fragment.appendChild(expandRow);
   });
-
-  tbody.appendChild(fragment);
-  countriesRenderCount += toRender.length;
-
-  if (countriesRenderCount < currentFilteredCountries.length) {
-    document.getElementById('countries-sentinel').classList.remove('hidden');
-  } else {
-    document.getElementById('countries-sentinel').classList.add('hidden');
-  }
+  tbody.appendChild(fragment); countriesRenderCount += toRender.length;
+  if (countriesRenderCount < currentFilteredCountries.length) document.getElementById('countries-sentinel').classList.remove('hidden');
+  else document.getElementById('countries-sentinel').classList.add('hidden');
 }
 
 async function loadData() {
   try {
     const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
     const res = await fetch(`ap_hunters_data.json?v=${currentHour}`);
-    
-    if (!res.ok) throw new Error('Data fetch failed');
+    if (!res.ok) throw new Error('Data fetch failed (File not found or network error)');
     currentData = await res.json();
     
     const tempPlayers = currentData.country_leaderboard.flatMap(c => c.top_players.map(p => ({...p, country: c.country})));
@@ -271,12 +185,7 @@ async function loadData() {
     
     allPlayersList = sortedByAp.map((p, idx) => {
       const prevIdx = sortedByPrev.findIndex(op => op.uuid === p.uuid);
-      return {
-        ...p,
-        globalRank: idx + 1,
-        previousRank: prevIdx + 1,
-        posChange: prevIdx >= 0 ? ((prevIdx + 1) - (idx + 1)) : 0
-      };
+      return { ...p, globalRank: idx + 1, previousRank: prevIdx + 1, posChange: prevIdx >= 0 ? ((prevIdx + 1) - (idx + 1)) : 0 };
     });
 
     const cMap = {};
@@ -308,7 +217,9 @@ async function loadData() {
     initPlayersRender(allPlayersList);
     initCountriesRender(processedCountries);
   } catch (err) {
+    console.error("LitStats Error:", err);
     document.getElementById('players-loading').classList.add('hidden');
+    document.getElementById('players-error').textContent = `Script Error: ${err.message}`;
     document.getElementById('players-error').classList.remove('hidden');
   }
 }
@@ -316,9 +227,7 @@ async function loadData() {
 const searchInput = document.getElementById('searchInput');
 
 function runLocalSearch(q) {
-  let fPlayers = allPlayersList;
-  let fCountries = processedCountries;
-
+  let fPlayers = allPlayersList; let fCountries = processedCountries;
   if (q) {
     fPlayers = fPlayers.filter(p => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
     fCountries = fCountries.filter(c => c.country.toLowerCase().includes(q));
@@ -329,39 +238,29 @@ function runLocalSearch(q) {
       if (fCountries.length) res.push(`${fCountries.length} countr${fCountries.length === 1 ? 'y' : 'ies'}`);
       document.getElementById('searchResults').innerHTML = `Found ${res.join(' and ')}`;
       document.getElementById('searchResults').classList.remove('hidden');
-      initPlayersRender(fPlayers);
-      initCountriesRender(fCountries);
+      initPlayersRender(fPlayers); initCountriesRender(fCountries);
     } else {
       document.getElementById('searchResults').innerHTML = `No local results found. Press <strong>Enter</strong> to search the network live.`;
       document.getElementById('searchResults').classList.remove('hidden');
-      initPlayersRender([]);
-      initCountriesRender([]);
+      initPlayersRender([]); initCountriesRender([]);
     }
   } else {
     document.getElementById('searchResults').classList.add('hidden');
     fPlayers.sort((a, b) => {
       let va = sortCol === 'rank' ? a.globalRank : sortCol === 'ap' ? a.current_ap : sortCol === 'gain' ? (a.monthly_gain === "NEW" ? 0 : a.monthly_gain) : sortCol === 'player' ? a.username.toLowerCase() : a.country.toLowerCase();
       let vb = sortCol === 'rank' ? b.globalRank : sortCol === 'ap' ? b.current_ap : sortCol === 'gain' ? (b.monthly_gain === "NEW" ? 0 : b.monthly_gain) : sortCol === 'player' ? b.username.toLowerCase() : b.country.toLowerCase();
-      if (va < vb) return -1 * sortDir;
-      if (va > vb) return 1 * sortDir;
-      return 0;
+      if (va < vb) return -1 * sortDir; if (va > vb) return 1 * sortDir; return 0;
     });
-    initPlayersRender(fPlayers);
-    initCountriesRender(fCountries);
+    initPlayersRender(fPlayers); initCountriesRender(fCountries);
   }
 }
 
 searchInput.addEventListener('input', function() { runLocalSearch(this.value.toLowerCase().trim()); });
-
 searchInput.addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
-    e.preventDefault();
-    const q = this.value.toLowerCase().trim();
-    if (!q) return;
-
+    e.preventDefault(); const q = this.value.toLowerCase().trim(); if (!q) return;
     let localPlayers = allPlayersList.filter(p => p.username.toLowerCase().includes(q) || p.country.toLowerCase().includes(q));
     let localCountries = processedCountries.filter(c => c.country.toLowerCase().includes(q));
-
     if (localPlayers.length === 0 && localCountries.length === 0) {
       document.getElementById('searchResults').textContent = `Searching network for "${q}"...`;
       document.getElementById('searchResults').classList.remove('hidden');
@@ -373,78 +272,48 @@ searchInput.addEventListener('keydown', function(e) {
 document.querySelectorAll('#players-table th[data-col]').forEach(th => {
   th.addEventListener('click', () => {
     const col = th.dataset.col;
-    if (sortCol === col) sortDir *= -1;
-    else { sortCol = col; sortDir = (col === 'rank' || col === 'ap' || col === 'gain') ? -1 : 1; }
-
+    if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = (col === 'rank' || col === 'ap' || col === 'gain') ? -1 : 1; }
     document.querySelectorAll('#players-table th').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
     th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
-    
     runLocalSearch(document.getElementById('searchInput').value.toLowerCase().trim());
   });
 });
 
 async function fetchLivePlayer(username) {
-  const qLower = username.toLowerCase();
-  const cacheKey = `litstats_live_${qLower}`;
-  const searchBox = document.getElementById('searchResults');
-
+  const qLower = username.toLowerCase(); const cacheKey = `litstats_live_${qLower}`; const searchBox = document.getElementById('searchResults');
   try {
     const cached = sessionStorage.getItem(cacheKey);
     if (cached) {
       const parsedCache = JSON.parse(cached);
-      if (Date.now() - parsedCache.timestamp < 10 * 60 * 1000) {
-        displayLiveResult(parsedCache.data);
-        searchBox.textContent = `Showing cached live data for ${parsedCache.data.actualName}`;
-        return;
-      }
+      if (Date.now() - parsedCache.timestamp < 10 * 60 * 1000) { displayLiveResult(parsedCache.data); searchBox.textContent = `Showing cached live data for ${parsedCache.data.actualName}`; return; }
     }
-
     const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${username}`);
     if (dbRes.status === 429) throw new Error('RATE_LIMIT');
     const dbData = await dbRes.json();
     if (dbData.code !== 'player.found') throw new Error('NOT_FOUND');
-    
-    const uuid = dbData.data.player.raw_id;
-    const actualName = dbData.data.player.username;
+    const uuid = dbData.data.player.raw_id; const actualName = dbData.data.player.username;
 
     searchBox.textContent = `Loading live stats for ${actualName}...`;
     const vRes = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
-    
     if (vRes.status === 429) throw new Error('RATE_LIMIT');
-    
     const vData = await vRes.json();
     if (vData.error === "Player not found on Hypixel") throw new Error('NOT_FOUND');
     if (vData.error) throw new Error('API_ERROR');
 
-    const finalData = {
-      actualName: actualName,
-      uuid: uuid,
-      achievementPoints: vData.achievementPoints || 0,
-      questsCompleted: vData.questsCompleted || 0,
-      maxGames: vData.maxGames || []
-    };
-
+    const finalData = { actualName: actualName, uuid: uuid, achievementPoints: vData.achievementPoints || 0, questsCompleted: vData.questsCompleted || 0, maxGames: vData.maxGames || [] };
     sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: finalData }));
     playerMaxesCache[uuid] = finalData.maxGames; 
 
-    displayLiveResult(finalData);
-    searchBox.textContent = `Showing live data for ${actualName}`;
-
+    displayLiveResult(finalData); searchBox.textContent = `Showing live data for ${actualName}`;
   } catch (e) {
-    if (e.message === 'NOT_FOUND') {
-      searchBox.textContent = `Player "${username}" not found on Hypixel.`;
-    } else if (e.message === 'RATE_LIMIT') {
-      searchBox.textContent = `Slow down! You are being rate-limited. Try again in a minute.`;
-    } else {
-      searchBox.textContent = `Error fetching data for "${username}". Try again later.`;
-    }
+    if (e.message === 'NOT_FOUND') searchBox.textContent = `Player "${username}" not found on Hypixel.`;
+    else if (e.message === 'RATE_LIMIT') searchBox.textContent = `Slow down! You are being rate-limited. Try again in a minute.`;
+    else searchBox.textContent = `Error fetching data for "${username}". Try again later.`;
   }
 }
 
 function displayLiveResult(data) {
-  const score = data.achievementPoints;
-  const tbody = document.getElementById('players-tbody');
-  
+  const score = data.achievementPoints; const tbody = document.getElementById('players-tbody');
   const trHTML = `
     <tr class="player-row" style="background: var(--accent-soft); border-left: 3px solid var(--accent);" onclick="togglePlayerExpand('${data.uuid}')">
       <td style="text-align: center;"><span class="rank" style="color: var(--accent); font-weight: bold;">LIVE</span></td>
@@ -462,32 +331,20 @@ function displayLiveResult(data) {
       <td colspan="5"><div class="maxes-container" id="maxes-${data.uuid}"></div></td>
     </tr>
   `;
-  
-  tbody.insertAdjacentHTML('afterbegin', trHTML);
-  document.querySelector('[data-tab="players"]').click();
+  tbody.insertAdjacentHTML('afterbegin', trHTML); document.querySelector('[data-tab="players"]').click();
 }
 
 const scrollObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      if (entry.target.id === 'players-sentinel' && currentTab === 'players' && playersRenderCount < currentFilteredPlayers.length) {
-        renderNextPlayersBatch();
-      } else if (entry.target.id === 'countries-sentinel' && currentTab === 'countries' && countriesRenderCount < currentFilteredCountries.length) {
-        renderNextCountriesBatch();
-      }
+      if (entry.target.id === 'players-sentinel' && currentTab === 'players' && playersRenderCount < currentFilteredPlayers.length) renderNextPlayersBatch();
+      else if (entry.target.id === 'countries-sentinel' && currentTab === 'countries' && countriesRenderCount < currentFilteredCountries.length) renderNextCountriesBatch();
     }
   });
 }, { rootMargin: '800px' });
+scrollObserver.observe(document.getElementById('players-sentinel')); scrollObserver.observe(document.getElementById('countries-sentinel'));
 
-scrollObserver.observe(document.getElementById('players-sentinel'));
-scrollObserver.observe(document.getElementById('countries-sentinel'));
-
-const sparkObserver = new ResizeObserver(entries => {
-  entries.forEach(entry => {
-    const height = entry.contentRect.height;
-    entry.target.style.setProperty('--spark-speed', `${Math.max(2.5, height / 100)}s`);
-  });
-});
+const sparkObserver = new ResizeObserver(entries => { entries.forEach(entry => { const height = entry.contentRect.height; entry.target.style.setProperty('--spark-speed', `${Math.max(2.5, height / 100)}s`); }); });
 document.querySelectorAll('.table-wrap').forEach(wrap => sparkObserver.observe(wrap));
 
 loadData();
