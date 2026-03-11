@@ -106,11 +106,22 @@
           <table id="countries-table" class="hidden">
             <thead>
               <tr>
-                <th class="rank">#</th>
-                <th>Country</th>
-                <th style="text-align: right;">Score</th>
-                <th>Top Player</th>
-                <th></th>
+                <th class="rank" style="width: 60px;">#</th>
+                <th style="width: 30%;">Country</th>
+                <th style="text-align: right; width: 25%;">
+                  <div class="tooltip-wrap" style="justify-content: flex-end; width: 100%;">
+                    Score
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 4px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <div class="tooltip-content" style="text-align: left;">
+                      <h4 style="color:var(--accent); font-weight:700; margin-bottom:8px;">Country Power Score</h4>
+                      <p style="margin-bottom:6px;"><strong>1. Baseline Subtraction:</strong> The 100th place global score is subtracted to act as a minimum skill filter.</p>
+                      <p style="margin-bottom:6px;"><strong>2. Diminishing Weights:</strong> Player 1 adds 100%, Player 2 adds 50%, Player 3 adds 25%, Player 4 adds 10%, Player 5 adds 5%.</p>
+                      <div class="formula">Total = (P₁ - B) + 0.5(P₂ - B) + ...</div>
+                    </div>
+                  </div>
+                </th>
+                <th style="padding-left: 40px; width: 35%;">Top Player</th>
+                <th style="width: 50px;"></th>
               </tr>
             </thead>
             <tbody id="countries-tbody"></tbody>
@@ -134,6 +145,7 @@
   <script src="assets/js/ap.js"></script>
 </body>
 </html>
+
 
 
 
