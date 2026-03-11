@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LitStats - Player Portfolio</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" sizes="32x32">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/global.css">
+  <style>
+    .portfolio-center { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center; }
+    .portfolio-center h1 { font-size: 36px; font-weight: 700; margin-bottom: 12px; }
+    .portfolio-center p { color: var(--text-2); margin-bottom: 32px; max-width: 400px; }
+    .search-wrap { display: flex; gap: 8px; width: 100%; max-width: 450px; }
+    .search-input { flex: 1; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px; color: var(--text); font-size: 15px; }
+    .search-input:focus { border-color: var(--accent); outline: none; }
+    .search-btn { background: var(--accent); color: #fff; border: none; padding: 0 24px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .search-btn:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 4px 12px var(--accent-soft); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
+        <div><div class="logo-text">LitStats</div></div>
+      </a>
+      <nav class="nav-links desktop-nav">
+        <a href="index.html" class="nav-btn">AP Leaderboard</a>
+        <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
+        <a href="portfolio.html" class="nav-btn active">Portfolio</a>
+      </nav>
+      <div class="header-controls">
+        <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="portfolio-center">
+      <h1>Lookup Player Portfolio</h1>
+      <p>Enter a Hypixel username or UUID to instantly generate a comprehensive cabinet of their maxed games and achievements.</p>
+      
+      <div class="search-wrap">
+        <input type="text" id="portSearch" class="search-input" placeholder="e.g. litphoenix" onkeydown="if(event.key==='Enter') goToCabinet()">
+        <button class="search-btn" onclick="goToCabinet()">Search</button>
+      </div>
+      <div id="portError" style="color: var(--red); margin-top: 12px; font-size: 13px; display:none;"></div>
+    </div>
+  </main>
+
+  <div class="bottom-fade"></div>
+  <div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
+
+  <script src="assets/js/global.js"></script>
+  <script src="assets/js/credits.js"></script>
+  <script>
+    async function goToCabinet() {
+      const val = document.getElementById('portSearch').value.trim();
+      const err = document.getElementById('portError');
+      if (!val) { err.textContent = "Please enter a username."; err.style.display = "block"; return; }
+      
+      err.style.display = "none";
+      const searchBtn = document.querySelector('.search-btn');
+      searchBtn.textContent = "Loading...";
+
+      try {
+        // Resolve Username to UUID instantly via PlayerDB
+        const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${val}`);
+        const dbData = await dbRes.json();
+        
+        if (dbData.code === 'player.found') {
+          window.location.href = `cabinet.html?uuid=${dbData.data.player.raw_id}`;
+        } else {
+          throw new Error();
+        }
+      } catch (e) {
+        err.textContent = "Minecraft player not found.";
+        err.style.display = "block";
+        searchBtn.textContent = "Search";
+      }
+    }
+  </script>
+</body>
+</html>
