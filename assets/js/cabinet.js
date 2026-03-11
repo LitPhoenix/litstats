@@ -138,14 +138,23 @@ function renderCabinet(data) {
     document.getElementById('p-avatar').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
     document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/bust/${data.uuid}.png`; };
     document.getElementById('p-name').textContent = data.username;
-    
+
+    // Update Rank
     const rankEl = document.getElementById('p-rank');
     if (data.rank && data.rank !== 'NON') {
-       rankEl.textContent = `[${data.rank}]`;
-       rankEl.style.display = 'inline-block';
+        rankEl.innerHTML = formatRankText(data.rank, data.rankPlusColor);
+        rankEl.style.display = 'inline-block';
     } else {
-       rankEl.style.display = 'none'; 
+        rankEl.style.display = 'none'; 
     }
+
+    // Update AP Badge (No trophy, added diamond)
+    const ap = data.achievementPoints || data.current_ap || 0;
+    document.getElementById('p-ap').innerHTML = `<img src="img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> ${Number(ap).toLocaleString()} AP`;
+    
+    // Update Max Count (No fire emoji)
+    const userMaxes = data.maxGames || [];
+    document.getElementById('p-max-count').textContent = `${userMaxes.length} / ${TOTAL_GAMES} Maxed`;
 
     const ap = data.achievementPoints || data.current_ap || 0;
     document.getElementById('p-ap').textContent = `${Number(ap).toLocaleString()} AP`;
