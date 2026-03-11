@@ -46,15 +46,45 @@ th.rank { text-align: center; }
 thead th.sort-asc::after { content: " ↓"; color: var(--accent); }
 thead th.sort-desc::after { content: " ↑"; color: var(--accent); }
 
-tbody tr.player-row { transition: all 0.2s ease-out; cursor: pointer; }
-/* Sleeker line update here */
-tbody tr.player-row td { border-bottom: none; position: relative; padding: 11px 16px; vertical-align: middle; }
-tbody tr.player-row td::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--border); transition: 0.2s; }
-tbody tr.player-row td:first-child::after { left: 24px; }
-tbody tr.player-row td:last-child::after { right: 24px; }
-tbody tr.player-row:hover td::after { background: var(--accent); }
+/* 1. Remove ugly vertical lines & fix vertical squishing globally */
+td, th {
+  border-left: none !important;
+  border-right: none !important;
+  padding: 14px 16px !important; 
+}
 
-tbody tr.player-row:hover, tbody tr.player-row.force-hover { background: var(--accent-soft); transform: translateX(4px); box-shadow: -4px 0 0 var(--accent); transition: all 0.1s ease-in; }
+/* 2. Apply the sleek custom bottom line to BOTH player and country rows */
+tbody tr.player-row td, 
+tbody tr.country-row td { 
+  border-bottom: none !important; 
+  position: relative; 
+  vertical-align: middle; 
+}
+
+/* 3. Draw the inset line */
+tbody tr.player-row td::after,
+tbody tr.country-row td::after { 
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--border); transition: 0.2s; 
+}
+
+/* 4. Shorten the line on the edges */
+tbody tr.player-row td:first-child::after,
+tbody tr.country-row td:first-child::after { left: 24px; }
+
+tbody tr.player-row td:last-child::after,
+tbody tr.country-row td:last-child::after { right: 24px; }
+
+/* 5. Hover colour change */
+tbody tr.player-row:hover td::after,
+tbody tr.country-row:hover td::after { background: var(--accent); }
+
+/* 6. Fix country row hover background */
+tbody tr.country-row:hover {
+  background: var(--accent-soft); 
+  transform: translateX(4px); 
+  box-shadow: -4px 0 0 var(--accent); 
+  transition: all 0.1s ease-in;
+}
 
 .rank { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text-3); }
 .rank-1 { color: var(--gold); font-weight: 700; font-size: 14px;}
