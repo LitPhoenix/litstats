@@ -1,11 +1,10 @@
 const litstatsCredits = [
-  { name: "respawnless", role: "Quest Country Data" },
-  { name: "Melongan", role: "Quest Country Data (Support)" },
+  { name: "Respawnless, Melongan, valericious", role: "Country Data" },
   { name: "Brooke", role: "Life Advice" },
+  { name: "Stuffy", role: "Maxed Games Logic" },
   { name: "Mo", role: "Life Advice & Icon Design" },
   { name: "C4PS", role: "Promo" },
   { name: "tobias49", role: "Maxed Game on Click Idea" },
-  { name: "valericious", role: "AP Country Data" },
   { name: "Unsplash", role: "Background Textures" },
   { name: "Minotar & Vzge", role: "Avatar Rendering APIs" },
   { name: "Nadeshiko", role: "Data Archiving" },
