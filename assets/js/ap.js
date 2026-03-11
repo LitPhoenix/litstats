@@ -101,7 +101,7 @@ function renderNextPlayersBatch() {
         <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank || ''} ${posHTML}</span></td>
         <td>
           <div class="player-cell">
-            <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
+            <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
             <span class="player-name">${p.username}</span>
           </div>
         </td>
@@ -144,7 +144,7 @@ function renderNextCountriesBatch() {
       <td class="ap-cell" style="text-align: right;">${c.score > 0 ? fmt(Math.round(c.score)) : '-'}</td>
       <td style="padding-left: 40px;">
         <div class="player-cell" style="gap:8px;">
-          <img class="player-avatar" style="width:24px;height:24px;border-radius:4px;" src="https://minotar.net/helm/${topP.username||'?'}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
+          <img class="player-avatar" style="width:24px;height:24px;border-radius:4px;" src="https://minotar.net/helm/${topP.username||'?'}/100" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
           <span class="country-name" style="font-weight:600; color:var(--text);">${topP.username || 'Unknown'}</span>
         </div>
       </td>
