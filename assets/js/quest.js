@@ -17,7 +17,7 @@ let currentTab = 'players';
 let sortCol = 'rank', sortDir = 1;
 let playerQuestCache = {}; 
 
-const BATCH_SIZE = 50;
+const BATCH_SIZE = 25;
 let currentFilteredPlayers = [];
 let playersRenderCount = 0;
 let currentFilteredCountries = [];
