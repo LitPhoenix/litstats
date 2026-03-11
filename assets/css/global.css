@@ -79,7 +79,7 @@ body:not([data-theme="dark"])::before {
     url('../../img/lq-bg-embers-light.jpg');
   background-size: cover; 
   background-position: center; 
-  filter: blur(2px); /* Unblurred so the foreground glass works */
+  filter: blur(8px); /* Unblurred so the foreground glass works */
   transform: scale(1.02); 
   animation: none; 
   pointer-events: none;
@@ -93,7 +93,7 @@ body[data-theme="dark"]::before {
     url('../../img/lq-bg-embers.jpg');
   background-size: cover; 
   background-position: center; 
-  filter: blur(2px) grayscale(20%); /* Unblurred so the foreground glass works */
+  filter: blur(8px) grayscale(20%); /* Unblurred so the foreground glass works */
   transform: scale(1.02); 
   animation: none; 
   pointer-events: none;
@@ -111,11 +111,13 @@ body[data-theme="dark"]::after {
 
 /* SHARED HEADER & NAVIGATION */
 header {
-  background: rgba(10, 5, 4, 0.25); 
-  backdrop-filter: blur(4px) saturate(120%);
-  -webkit-backdrop-filter: blur(4px) saturate(120%);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
   border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 100; transition: background-color 0.2s, border-color 0.2s;
 }
 
 body:not([data-theme="dark"]) header { background: rgba(255, 255, 255, 0.85); }
