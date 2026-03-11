@@ -31,7 +31,7 @@ kbd { background: var(--surface); border: 1px solid var(--border-strong); border
 
 .table-inner { background: var(--surface); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%); border-top: 1px solid var(--glass-edge); border-radius: calc(var(--radius) - 1px); display: flex; flex-direction: column; }
 
-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13.5px; table-layout: fixed; } /* Forces the table to obey strict widths */
 thead th:first-child { border-top-left-radius: calc(var(--radius) - 1px); }
 thead th:last-child { border-top-right-radius: calc(var(--radius) - 1px); }
 thead { background: rgba(0,0,0,0.2); }
