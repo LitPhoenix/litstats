@@ -6,10 +6,8 @@
   <meta property="og:title" content="LitStats">
   <meta property="og:description" content="Get instant access to comprehensive Hypixel player stats, rankings, and performance analytics.">
   <title>LitStats - AP Hunters by Country</title>
-  
   <link rel="icon" type="image/png" href="img/favicon.png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  
   <link rel="stylesheet" href="assets/css/global.css">
   <link rel="stylesheet" href="assets/css/leaderboard.css">
 </head>
@@ -21,13 +19,11 @@
         <img src="img/favicon.png" alt="LitStats" style="width: 32px; height: 32px; border-radius: 8px;">
         <div><div class="logo-text">LitStats</div></div>
       </a>
-      
       <nav class="nav-links desktop-nav">
-        <a href="index.html" class="nav-btn">AP Leaderboard</a>
+        <a href="index.html" class="nav-btn active">AP Leaderboard</a>
         <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
         <a href="portfolio.html" class="nav-btn">Portfolio</a>
       </nav>
-
       <div class="header-controls">
         <button class="mobile-menu-btn" onclick="document.getElementById('mobileNav').classList.toggle('open')">☰</button>
         <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme" onclick="toggleTheme()">☀️</button>
@@ -38,6 +34,7 @@
   <nav class="mobile-nav" id="mobileNav">
     <a href="index.html" class="nav-btn active">AP Leaderboard</a>
     <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
+    <a href="portfolio.html" class="nav-btn">Portfolio</a>
   </nav>
 
   <main>
@@ -72,14 +69,14 @@
         <div class="table-inner">
           <div class="loading-msg" id="players-loading">Loading leaderboard data...</div>
           <div class="error-msg hidden" id="players-error">Failed to load data.</div>
-          <table id="players-table" class="hidden">
+          <table id="players-table" class="hidden" style="table-layout: fixed; width: 100%;">
             <thead>
               <tr>
-                <th class="rank sort-desc" data-col="rank">#</th>
-                <th data-col="player">Player</th>
-                <th data-col="country">Country</th>
-                <th data-col="ap" style="text-align: right;">AP</th>
-                <th data-col="gain" style="text-align: right;">Gain</th>
+                <th class="rank sort-desc" data-col="rank" style="width: 10%;">#</th>
+                <th data-col="player" style="width: 35%;">Player</th>
+                <th data-col="country" style="width: 25%;">Country</th>
+                <th data-col="ap" style="text-align: right; width: 15%;">AP</th>
+                <th data-col="gain" style="text-align: right; width: 15%;">Gain</th>
               </tr>
             </thead>
             <tbody id="players-tbody"></tbody>
@@ -103,7 +100,7 @@
         <div class="spark-bg"></div>
         <div class="table-inner">
           <div class="loading-msg" id="countries-loading">Loading country data...</div>
-          <table id="countries-table" class="hidden">
+          <table id="countries-table" class="hidden" style="table-layout: fixed; width: 100%;">
             <thead>
               <tr>
                 <th class="rank" style="width: 10%;">#</th>
@@ -138,16 +135,10 @@
   </main>
 
   <div class="bottom-fade"></div>
-<div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
+  <div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
 
   <script src="assets/js/global.js"></script>
   <script src="assets/js/credits.js"></script>
   <script src="assets/js/ap.js"></script>
 </body>
 </html>
-
-
-
-
-
-
