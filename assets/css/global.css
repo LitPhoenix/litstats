@@ -48,7 +48,7 @@
   --glass-edge: rgba(255, 255, 255, 0.08); 
 }
 
-/* Base Body */
+/* Base Body - Overflow-x: hidden fixes the sideways scroll */
 body {
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
@@ -56,135 +56,86 @@ body {
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg); /* <-- THIS FIXES THE WHITE GLARE */
-}
-
-/* Light Mode Background */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -2;
   background-color: var(--bg);
-  background-image: 
-    radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%),
-    radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
-  background-size: 200% 200%;
-  animation: subtleFire 12s ease-in-out infinite alternate;
-  pointer-events: none;
+  overflow-x: hidden; 
 }
 
-/* Dark Mode Background Image */
-body[data-theme="dark"]::before {
-  background-color: #040201; 
-  /* This gradient is set to 0.7 opacity, allowing the image underneath to peek through */
-  background-image: 
-    linear-gradient(rgba(4, 2, 1, 0.70), rgba(4, 2, 1, 0.70)), 
-    url('../../img/bg-embers.jpg'); 
-  background-size: cover;
-  background-position: center;
-  filter: blur(12px) grayscale(20%); 
-  transform: scale(1.05); 
-  animation: none;
-  pointer-events: none;
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: -2; background-color: var(--bg);
+  background-image: radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%), radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
+  background-size: 200% 200%; animation: subtleFire 12s ease-in-out infinite alternate; pointer-events: none;
 }
 
-/* Dark Mode Glowing Embers (The Glassmorphism Engine) */
-body[data-theme="dark"]::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: 
-    radial-gradient(circle at 20% 10%, rgba(255, 81, 0, 0.08), transparent 40vw),
-    radial-gradient(circle at 80% 80%, rgba(255, 157, 0, 0.05), transparent 40vw),
-    radial-gradient(circle at 50% 50%, rgba(255, 60, 0, 0.04), transparent 60vw);
-  animation: emberPulseBg 6s infinite alternate ease-in-out;
-  pointer-events: none;
-}
-
-@keyframes subtleFire {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
-@keyframes emberPulseBg {
-  0% { opacity: 0.5; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.05); }
-}
-
-@keyframes emberPulse {
-  0% { box-shadow: 0 0 8px rgba(255, 81, 0, 0.1); }
-  50% { box-shadow: 0 0 18px rgba(255, 81, 0, 0.5); }
-  100% { box-shadow: 0 0 8px rgba(255, 81, 0, 0.1); }
-}
-
-/* Header */
-header {
-  background: rgba(15, 10, 8, 0.65); /* Darker to hide scrolling text */
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-/* Light Mode Background Image */
 body:not([data-theme="dark"])::before {
   background-image: linear-gradient(rgba(253, 250, 248, 0.8), rgba(253, 250, 248, 0.8)), url('../../img/bg-light.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 1;
-  filter: blur(8px);
+  background-size: cover; background-position: center; opacity: 1; filter: blur(8px);
 }
 
-.header-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+body[data-theme="dark"]::before {
+  background-color: #040201; 
+  background-image: linear-gradient(rgba(4, 2, 1, 0.80), rgba(4, 2, 1, 0.80)), url('../../img/bg-embers.jpg'); 
+  background-size: cover; background-position: center; filter: blur(12px) grayscale(20%); 
+  transform: scale(1.05); animation: none; pointer-events: none;
 }
 
+body[data-theme="dark"]::after {
+  content: ''; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(circle at 20% 10%, rgba(255, 81, 0, 0.08), transparent 40vw), radial-gradient(circle at 80% 80%, rgba(255, 157, 0, 0.05), transparent 40vw), radial-gradient(circle at 50% 50%, rgba(255, 60, 0, 0.04), transparent 60vw);
+  animation: emberPulseBg 6s infinite alternate ease-in-out; pointer-events: none;
+}
+
+@keyframes subtleFire { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+@keyframes emberPulseBg { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
+@keyframes emberPulse { 0% { box-shadow: 0 0 8px rgba(255, 81, 0, 0.1); } 50% { box-shadow: 0 0 18px rgba(255, 81, 0, 0.5); } 100% { box-shadow: 0 0 8px rgba(255, 81, 0, 0.1); } }
+
+/* --- SHARED HEADER & NAVIGATION --- */
+header {
+  background: rgba(10, 5, 4, 0.25); 
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100; transition: background-color 0.2s, border-color 0.2s;
+}
+
+body:not([data-theme="dark"]) header { background: rgba(255, 255, 255, 0.85); }
+
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .logo-text { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
-.logo-sub { font-size: 12px; color: var(--text-3); font-weight: 400; }
-
 .header-controls { display: flex; align-items: center; gap: 16px; }
 
-.nav-link {
-  font-size: 13px; font-weight: 600; color: var(--text-2); text-decoration: none; 
-  padding: 6px 12px; border-radius: 6px; transition: all 0.2s;
-}
+/* Nav Links - Centralised here so Portfolio page gets them */
+.nav-links { display: flex; gap: 8px; margin-right: auto; margin-left: 32px; }
+.nav-btn { color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px; transition: 0.2s; }
+.nav-btn:hover { background: var(--surface-2); color: var(--text); }
+.nav-btn.active { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(255, 81, 0, 0.2); }
 
-.nav-link:hover, .nav-link.active { background: var(--surface-2); color: var(--accent); }
+.mobile-menu-btn { display: none; background: transparent; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 4px; border-radius: 6px; }
+.mobile-menu-btn:hover { background: var(--surface-2); }
+.mobile-nav { display: none; flex-direction: column; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; gap: 8px; }
+.mobile-nav.open { display: flex; }
+
+@media (max-width: 768px) { .nav-links.desktop-nav { display: none; } .mobile-menu-btn { display: block; } }
 
 .theme-toggle {
   background: transparent; border: 1px solid var(--border); color: var(--text);
   width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 16px;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex; align-items: center; justify-content: center; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
 .theme-toggle:hover { background: var(--surface-2); border-color: var(--accent); transform: scale(1.1) rotate(15deg); }
 
 main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 100px; flex: 1; display: flex; flex-direction: column; width: 100%; }
+.bottom-fade { position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; background: linear-gradient(to top, var(--bg) 10%, transparent); pointer-events: none; z-index: 90; }
 
-.bottom-fade {
-  position: fixed; bottom: 0; left: 0; width: 100%; height: 80px;
-  background: linear-gradient(to top, var(--bg) 10%, transparent); pointer-events: none; z-index: 90;
-}
-
-.made-by-tag {
-  position: fixed; bottom: 12px; left: 16px; font-size: 11px; color: var(--text-3); z-index: 100;
-}
-
-.made-by-tag a { color: var(--accent); text-decoration: none; font-weight: 600; }
+/* --- HOVER CREDITS TOOLTIP --- */
+.made-by-tag { position: fixed; bottom: 12px; left: 16px; font-size: 11px; color: var(--text-3); z-index: 1000; }
+.made-by-tag a { color: var(--accent); text-decoration: none; font-weight: 600; cursor: help; }
 .made-by-tag a:hover { text-decoration: underline; }
 
-.credits-tooltip { position: absolute; bottom: 120%; left: 0; width: 260px; background: var(--surface); backdrop-filter: blur(12px); border: 1px solid var(--border-strong); border-radius: 8px; padding: 12px; box-shadow: var(--shadow); opacity: 0; visibility: hidden; transition: 0.2s; pointer-events: none; }
+.credits-tooltip {
+  position: absolute; bottom: 100%; left: 0; margin-bottom: 12px; width: 280px;
+  background: var(--surface); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--border-strong); border-radius: 12px; padding: 16px;
+  box-shadow: var(--shadow); opacity: 0; visibility: hidden; transition: 0.2s; pointer-events: none; text-align: left;
+}
 .made-by-tag:hover .credits-tooltip { opacity: 1; visibility: visible; transform: translateY(-5px); }
