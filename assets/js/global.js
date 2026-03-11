@@ -88,6 +88,15 @@ document.addEventListener('keydown', (e) => {
     if (e.key === '1') { const p = document.querySelector('[data-tab="players"]'); if(p) p.click(); return; }
     if (e.key === '2') { const c = document.querySelector('[data-tab="countries"]'); if(c) c.click(); return; }
     if (e.key === '/') {
+    if (e.key === 'Escape') {
+      const searchBox = document.getElementById('searchInput');
+      if (searchBox) {
+        searchBox.value = '';
+        searchBox.blur(); 
+        if (typeof runLocalSearch === "function") runLocalSearch(''); // resets table
+      }
+      return;
+    }
       e.preventDefault(); 
       const searchBox = document.getElementById('searchInput');
       if (searchBox) searchBox.focus();
