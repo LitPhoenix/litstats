@@ -131,8 +131,13 @@ header {
   transition: background-color 0.2s, border-color 0.2s;
 }
 
-body:not([data-theme="dark"]) header {
-  background: rgba(255, 255, 255, 0.85);
+/* Light Mode Background Image */
+body:not([data-theme="dark"])::before {
+  background-image: linear-gradient(rgba(253, 250, 248, 0.8), rgba(253, 250, 248, 0.8)), url('../../img/bg-light.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  filter: blur(8px);
 }
 
 .header-inner {
