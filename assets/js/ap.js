@@ -12,7 +12,7 @@ const countryFlags = {
 
 let currentData = null; let allPlayersList = []; let processedCountries = []; let currentTab = 'players';
 let sortCol = 'rank', sortDir = 1; let playerMaxesCache = {}; 
-const BATCH_SIZE = 50; let currentFilteredPlayers = []; let playersRenderCount = 0; let currentFilteredCountries = []; let countriesRenderCount = 0;
+const BATCH_SIZE = 25; let currentFilteredPlayers = []; let playersRenderCount = 0; let currentFilteredCountries = []; let countriesRenderCount = 0;
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
