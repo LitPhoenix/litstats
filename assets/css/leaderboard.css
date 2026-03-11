@@ -60,6 +60,8 @@ table {
 }
 
 thead { background: rgba(0,0,0,0.2); }
+body:not([data-theme="dark"]) thead { background: var(--accent-soft); }
+
 thead th { 
   padding: 14px 16px; /* Restored padding for headers */
   text-align: left; 
