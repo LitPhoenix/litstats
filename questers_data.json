@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-10T23:34:15.027Z",
+  "last_update": "2026-03-11T04:48:34.012Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -1155,7 +1155,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8939,
+      "score": 8956.4,
       "top_players": [
         {
           "username": "Th3three",
@@ -1169,9 +1169,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_quests": 21914,
+          "current_quests": 22001,
           "last_month_quests": 21846,
-          "monthly_gain": 68
+          "monthly_gain": 155
         }
       ]
     },
