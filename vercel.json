@@ -10,4 +10,10 @@
       ]
     }
   ]
+  "rewrites": [
+    {
+      "source": "/player/:id",
+      "destination": "/cabinet.html"
+    }
+  ]
 }
