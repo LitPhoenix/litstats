@@ -4,20 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>LitStats - Player Portfolio</title>
-  <meta name="title" content="LitStats - Player Portfolio">
+  <title>LitStats - Player Lookup</title>
+  <meta name="title" content="LitStats - Player Lookup">
   <meta name="description" content="Generate a comprehensive cabinet of Hypixel maxed games and missing achievements.">
   <meta name="theme-color" content="#ff5100">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://litstats.com/portfolio.html">
-  <meta property="og:title" content="LitStats - Player Portfolio">
+  <meta property="og:title" content="LitStats - Player Lookup">
   <meta property="og:description" content="Generate a comprehensive cabinet of Hypixel maxed games and missing achievements.">
   <meta property="og:image" content="https://litstats.com/img/lq-opengraph.png">
 
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://litstats.com/portfolio.html">
-  <meta property="twitter:title" content="LitStats - Player Portfolio">
+  <meta property="twitter:title" content="LitStats - Player Lookup">
   <meta property="twitter:description" content="Generate a comprehensive cabinet of Hypixel maxed games and missing achievements.">
   <meta property="twitter:image" content="https://litstats.com/img/lq-opengraph.png">
 
@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="assets/css/global.css">
   
   <style>
-    .portfolio-center { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 65vh; text-align: center; }
+    .portfolio-center { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 8vh; min-height: 80vh; text-align: center; }
     .portfolio-center h1 { font-size: 42px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
     .portfolio-center p { color: var(--text-2); margin-bottom: 40px; max-width: 480px; line-height: 1.5; }
     
@@ -69,7 +69,7 @@
       <nav class="nav-links desktop-nav">
         <a href="index.html" class="nav-btn">AP Leaderboard</a>
         <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
-        <a href="portfolio.html" class="nav-btn active">Portfolio</a>
+        <a href="portfolio.html" class="nav-btn active">Player Lookup</a>
       </nav>
       <div class="header-controls">
         <button class="mobile-menu-btn" onclick="document.getElementById('mobileNav').classList.toggle('open')">☰</button>
@@ -81,12 +81,12 @@
   <nav class="mobile-nav" id="mobileNav">
     <a href="index.html" class="nav-btn">AP Leaderboard</a>
     <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
-    <a href="portfolio.html" class="nav-btn active">Portfolio</a>
+    <a href="portfolio.html" class="nav-btn active">Player Lookup</a>
   </nav>
 
   <main>
     <div class="portfolio-center">
-      <h1>Lookup Player Portfolio</h1>
+      <h1>LitStats Player Lookup</h1>
       <p>Enter a Hypixel username or UUID to instantly generate a comprehensive cabinet of their maxed games and missing achievements.</p>
       
       <div class="search-wrap">
@@ -94,6 +94,21 @@
         <button class="search-btn" onclick="goToCabinet()">Search</button>
       </div>
       <div id="portError" style="color: var(--red); margin-top: 16px; font-size: 14px; font-weight: 600; display:none;"></div>
+
+      <div class="mini-lb-wrapper">
+        <h3 class="mini-lb-title">Current AP Leaders</h3>
+        <div class="mini-lb-fade-container">
+          <div class="table-inner" style="border-radius: var(--radius); overflow: hidden; background: var(--surface); backdrop-filter: blur(24px); border: 1px solid var(--border);">
+            <div id="mini-lb-content">
+              <div style="padding: 24px; color: var(--text-3); font-size: 14px;">Loading leaderboard data...</div>
+            </div>
+          </div>
+          <div class="fade-overlay">
+            <a href="index.html" class="view-more-btn">View Full Leaderboard ➔</a>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </main>
 
@@ -101,7 +116,6 @@
   <div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
 
   <script src="assets/js/global.js"></script>
-  <script src="assets/js/credits.js"></script>
   <script src="assets/js/credits.js"></script>
   <script>
     async function goToCabinet() {
@@ -128,6 +142,39 @@
         searchBtn.textContent = "Search";
       }
     }
+
+    // Mini Leaderboard Logic
+    async function loadMiniLeaderboard() {
+      try {
+        const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
+        const res = await fetch(`ap_hunters_data.json?v=${currentHour}`);
+        const data = await res.json();
+        
+        let allPlayers = [];
+        data.country_leaderboard.forEach(c => {
+          if (c.top_players) allPlayers.push(...c.top_players);
+        });
+        
+        const uniquePlayers = Array.from(new Map(allPlayers.map(p => [p.uuid, p])).values());
+        uniquePlayers.sort((a, b) => b.achievementPoints - a.achievementPoints);
+        
+        const top5 = uniquePlayers.slice(0, 5);
+        
+        const html = top5.map((p, index) => `
+          <div class="mini-row">
+            <span class="mini-rank">${index + 1}</span>
+            <img src="https://minotar.net/helm/${p.username}/32" alt="${p.username} avatar">
+            <span style="font-weight:600; font-size:14px; color: var(--text);">${p.username}</span>
+            <span class="mini-ap">${p.achievementPoints.toLocaleString()}</span>
+          </div>
+        `).join('');
+        
+        document.getElementById('mini-lb-content').innerHTML = html;
+      } catch (err) {
+        document.getElementById('mini-lb-content').innerHTML = `<div style="padding: 24px; color: var(--red); font-size: 14px;">Failed to load data.</div>`;
+      }
+    }
+    loadMiniLeaderboard();
   </script>
 </body>
 </html>
