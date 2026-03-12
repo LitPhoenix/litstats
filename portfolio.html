@@ -170,8 +170,13 @@
         `).join('');
         
         document.getElementById('mini-lb-content').innerHTML = html;
-      } catch (err) {
-        document.getElementById('mini-lb-content').innerHTML = `<div style="padding: 24px; color: var(--red); font-size: 14px;">Failed to load data.</div>`;
+    } catch (err) {
+        // Show error and add padding so it doesn't look cramped
+        document.getElementById('mini-lb-content').innerHTML = `<div style="padding: 32px 24px 60px; color: var(--red); font-weight: 600; font-size: 14px; text-align: center;">Failed to load player data.</div>`;
+        
+        // Hide the awkward fading button overlay so it stops overlapping
+        const overlay = document.querySelector('.fade-overlay');
+        if (overlay) overlay.style.display = 'none';
       }
     }
     loadMiniLeaderboard();
