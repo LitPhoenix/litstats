@@ -155,15 +155,9 @@ function renderCabinet(data) {
     // Update Max Count (No fire emoji)
     const userMaxes = data.maxGames || [];
     document.getElementById('p-max-count').textContent = `${userMaxes.length} / ${TOTAL_GAMES} Maxed`;
-
-    const ap = data.achievementPoints || data.current_ap || 0;
-    document.getElementById('p-ap').textContent = `${Number(ap).toLocaleString()} AP`;
     const percentage = Math.min(100, (ap / MAX_POSSIBLE_AP) * 100).toFixed(1);
     document.getElementById('p-ap-bar').style.width = `${percentage}%`;
     document.getElementById('p-ap-percent').textContent = `${percentage}%`;
-
-    const userMaxes = data.maxGames || [];
-    document.getElementById('p-max-count').textContent = `${userMaxes.length} / ${TOTAL_GAMES} Maxed`;
 
     const cabinetGrid = document.getElementById('cabinet-grid');
     let html = '';
