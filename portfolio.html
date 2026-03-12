@@ -118,29 +118,13 @@
   <script src="assets/js/global.js"></script>
   <script src="assets/js/credits.js"></script>
   <script>
-    async function goToCabinet() {
+function goToCabinet() {
       const val = document.getElementById('portSearch').value.trim();
       const err = document.getElementById('portError');
       if (!val) { err.textContent = "Please enter a username."; err.style.display = "block"; return; }
       
-      err.style.display = "none";
-      const searchBtn = document.querySelector('.search-btn');
-      searchBtn.textContent = "Loading...";
-
-      try {
-        const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${val}`);
-        const dbData = await dbRes.json();
-        
-        if (dbData.code === 'player.found') {
-          window.location.href = `cabinet.html?uuid=${dbData.data.player.raw_id}`;
-        } else {
-          throw new Error();
-        }
-      } catch (e) {
-        err.textContent = "Minecraft player not found.";
-        err.style.display = "block";
-        searchBtn.textContent = "Search";
-      }
+      // Instantly push the user to the clean URL format
+      window.location.href = `/player/${val}`;
     }
 
     // Mini Leaderboard Logic
