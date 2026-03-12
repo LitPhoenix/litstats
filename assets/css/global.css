@@ -5,7 +5,7 @@
   --bg-glow: rgba(255, 100, 0, 0.02); 
   
   /* FROSTED GLASS VARIABLES */
-  --surface: rgba(255, 253, 253, 0.65); /* Header, Table */
+  --surface: rgba(255, 253, 253, 0.55); /* Header, Table */
   --surface-2: rgba(255, 245, 240, 0.55); 
   --border: rgba(255, 253, 253, 0.5);
   --input-bg: rgba(255, 253, 253, 0.75);
@@ -31,9 +31,9 @@
 
 [data-theme="dark"] {
   --bg: #0a0504; 
-  --bg-glow: rgba(255, 60, 0, 0.04); 
+  --bg-glow: rgba(255, 75, 20, 0.04); 
   --surface: rgba(26, 19, 16, 0.55); /* FROSTED OPACITY VARIABLE */
-  --surface-2: rgba(38, 28, 24, 0.4);
+  --surface-2: rgba(14, 10, 8, 0.5);
   --border: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 98, 26, 0.15); 
   --text: #fdfaf8;
