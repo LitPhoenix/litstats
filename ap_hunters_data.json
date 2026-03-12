@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-11T22:32:54.877Z",
+  "last_update": "2026-03-12T02:33:17.283Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12614,
+      "score": 12616,
       "top_players": [
         {
           "username": "oJakey",
@@ -476,9 +476,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 29685,
+          "current_ap": 29705,
           "last_month_ap": 29570,
-          "monthly_gain": 115,
+          "monthly_gain": 135,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
@@ -1469,7 +1469,7 @@
     },
     {
       "country": "Denmark",
-      "score": 9305,
+      "score": 9310,
       "top_players": [
         {
           "username": "tobias49",
@@ -1507,9 +1507,9 @@
           "username": "STAYEZ",
           "uuid": "998d3241aec046ad9d5009f56d28e413",
           "country": "Denmark",
-          "current_ap": 30340,
+          "current_ap": 30350,
           "last_month_ap": 30315,
-          "monthly_gain": 25,
+          "monthly_gain": 35,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -3288,15 +3288,15 @@
     },
     {
       "country": "Moldova",
-      "score": 140,
+      "score": 155,
       "top_players": [
         {
           "username": "kenav",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25480,
+          "current_ap": 25495,
           "last_month_ap": 25425,
-          "monthly_gain": 55,
+          "monthly_gain": 70,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
