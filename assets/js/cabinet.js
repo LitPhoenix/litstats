@@ -78,7 +78,7 @@ function renderTodoGrid() {
             <span class="ach-title">${ach.title}</span>
             <span class="ach-desc">${ach.desc}</span>
             <span class="ach-reward">
-              <img src="img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> 
+              <img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> 
               ${ach.reward} AP
             </span>
           </div>
@@ -129,7 +129,7 @@ function getGameIconUrl(gameName) {
 
   const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
   
-  return `img/games/${filename}`;
+  return `/img/games/${filename}`;
 }
 
 function renderCabinet(data) {
@@ -149,11 +149,11 @@ function renderCabinet(data) {
         rankEl.style.display = 'none'; 
     }
 
-    // Update AP Badge (No trophy, added diamond)
+    // Update AP Badge
     const ap = data.achievementPoints || data.current_ap || 0;
-    document.getElementById('p-ap').innerHTML = `<img src="img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> ${Number(ap).toLocaleString()} AP`;
+    document.getElementById('p-ap').innerHTML = `<img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> ${Number(ap).toLocaleString()} AP`;
     
-    // Update Max Count (No fire emoji)
+    // Update Max Count
     const userMaxes = data.maxGames || [];
     document.getElementById('p-max-count').textContent = `${userMaxes.length} / ${TOTAL_GAMES} Maxed`;
     const percentage = Math.min(100, (ap / MAX_POSSIBLE_AP) * 100).toFixed(1);
@@ -243,7 +243,6 @@ async function initCabinet() {
   const urlParams = new URLSearchParams(window.location.search);
   let lookupId = urlParams.get('uuid');
 
-  // 1. Grab ID from the new clean URL if not in query params
   if (!lookupId || lookupId === "undefined") {
     const pathSegments = window.location.pathname.split('/').filter(Boolean);
     if ((pathSegments[0] === 'cabinet' || pathSegments[0] === 'player') && pathSegments[1]) {
@@ -259,7 +258,6 @@ async function initCabinet() {
   }
 
   try {
-    // 2. If it is a username (16 chars or less), fetch the UUID first
     let uuid = lookupId;
     if (lookupId.length <= 16) {
       document.getElementById('loader').textContent = "Resolving username...";
@@ -274,9 +272,9 @@ async function initCabinet() {
       }
     }
 
-    // 3. Proceed with the normal data fetch using the UUID
     const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-    const jsonRes = await fetch(`ap_hunters_data.json?v=${currentHour}`);
+    // Updated this to an absolute path
+    const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
     
     if (jsonRes.ok) {
         const localData = await jsonRes.json();
