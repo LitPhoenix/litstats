@@ -240,23 +240,40 @@ async function forceLiveFetch(uuid) {
 
 async function initCabinet() {
   const urlParams = new URLSearchParams(window.location.search);
-  let uuid = urlParams.get('uuid');
+  let lookupId = urlParams.get('uuid');
 
-  if (!uuid || uuid === "undefined") {
+  // 1. Grab ID from the new clean URL if not in query params
+  if (!lookupId || lookupId === "undefined") {
     const pathSegments = window.location.pathname.split('/').filter(Boolean);
-    if (pathSegments[0] === 'cabinet' && pathSegments[1]) {
-      uuid = pathSegments[1];
+    if ((pathSegments[0] === 'cabinet' || pathSegments[0] === 'player') && pathSegments[1]) {
+      lookupId = pathSegments[1];
     }
   }
 
-  if (!uuid || uuid === "undefined") {
+  if (!lookupId || lookupId === "undefined") {
     document.getElementById('loader').classList.add('hidden');
-    document.getElementById('errorBox').textContent = "No valid player UUID provided.";
+    document.getElementById('errorBox').textContent = "No valid player provided.";
     document.getElementById('errorBox').classList.remove('hidden');
     return;
   }
 
   try {
+    // 2. If it is a username (16 chars or less), fetch the UUID first
+    let uuid = lookupId;
+    if (lookupId.length <= 16) {
+      document.getElementById('loader').textContent = "Resolving username...";
+      const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${lookupId}`);
+      const dbData = await dbRes.json();
+      
+      if (dbData.code === 'player.found') {
+        uuid = dbData.data.player.raw_id;
+        document.getElementById('loader').textContent = "Summoning network data...";
+      } else {
+        throw new Error("Minecraft player not found.");
+      }
+    }
+
+    // 3. Proceed with the normal data fetch using the UUID
     const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
     const jsonRes = await fetch(`ap_hunters_data.json?v=${currentHour}`);
     
