@@ -179,3 +179,95 @@ main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 100px; flex: 1; dis
   box-shadow: var(--shadow); opacity: 0; visibility: hidden; transition: 0.2s; pointer-events: none; text-align: left;
 }
 .made-by-tag:hover .credits-tooltip { opacity: 1; visibility: visible; transform: translateY(-5px); }
+
+/* MINI LEADERBOARD ON PORTFOLIO (PLAYER LOOKUP) */
+.mini-lb-wrapper {
+  margin-top: 56px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+}
+
+.mini-lb-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-3);
+  margin-bottom: 12px;
+  padding-left: 12px;
+  font-weight: 700;
+}
+
+.mini-lb-fade-container {
+  position: relative;
+  max-height: 280px; 
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.fade-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--bg) 90%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 16px;
+  z-index: 10;
+}
+
+.view-more-btn {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
+
+.view-more-btn:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.mini-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.mini-row:last-child { border-bottom: none; }
+
+.mini-row img { 
+  width: 28px; 
+  height: 28px; 
+  border-radius: 6px; 
+  margin-right: 12px; 
+}
+
+.mini-rank { 
+  width: 28px; 
+  font-weight: 700; 
+  color: var(--text-3); 
+  font-size: 14px;
+}
+.mini-row:nth-child(1) .mini-rank { color: var(--gold); }
+.mini-row:nth-child(2) .mini-rank { color: var(--silver); }
+.mini-row:nth-child(3) .mini-rank { color: var(--bronze); }
+
+.mini-ap { 
+  margin-left: auto; 
+  font-family: 'DM Mono', monospace; 
+  font-weight: 700; 
+  color: var(--accent); 
+  font-size: 14px;
+}
