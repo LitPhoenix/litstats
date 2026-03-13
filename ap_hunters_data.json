@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-13T17:40:48.938Z",
+  "last_update": "2026-03-13T18:52:24.729Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1225,15 +1225,15 @@
     },
     {
       "country": "UK",
-      "score": 10008,
+      "score": 10028,
       "top_players": [
         {
           "username": "greaneye",
           "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
           "country": "UK",
-          "current_ap": 31410,
+          "current_ap": 31430,
           "last_month_ap": 31385,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -2278,9 +2278,9 @@
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25255,
+          "current_ap": 25265,
           "last_month_ap": 25215,
-          "monthly_gain": 40,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
@@ -3191,9 +3191,9 @@
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
-          "current_ap": 23020,
+          "current_ap": 23030,
           "last_month_ap": 23020,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR",
