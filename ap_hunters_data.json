@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-13T18:52:24.729Z",
+  "last_update": "2026-03-13T19:35:30.476Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -658,9 +658,9 @@
           "username": "tormin",
           "uuid": "dc2eaa964e0242589f2731a11aacea55",
           "country": "USA",
-          "current_ap": 26915,
+          "current_ap": 26920,
           "last_month_ap": 26875,
-          "monthly_gain": 40,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Blitz",
             "Max Cops and Crims",
@@ -2436,7 +2436,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2975,
+      "score": 2976,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2468,9 +2468,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26000,
+          "current_ap": 26005,
           "last_month_ap": 25815,
-          "monthly_gain": 185,
+          "monthly_gain": 190,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
