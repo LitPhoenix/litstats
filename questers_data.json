@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-13T10:43:42.534Z",
+  "last_update": "2026-03-13T11:36:53.344Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -686,6 +686,28 @@
       ]
     },
     {
+      "country": "Taiwan",
+      "score": 17378.8,
+      "top_players": [
+        {
+          "username": "Summer_Albert",
+          "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+          "country": "Taiwan",
+          "current_quests": 43745,
+          "last_month_quests": 43497,
+          "monthly_gain": 248
+        },
+        {
+          "username": "Itz_Pipi",
+          "uuid": "ae655706622d410cb36b9a8c4e1f1be4",
+          "country": "Taiwan",
+          "current_quests": 43149,
+          "last_month_quests": 42582,
+          "monthly_gain": 567
+        }
+      ]
+    },
+    {
       "country": "Chile",
       "score": 21466.8,
       "top_players": [
@@ -712,28 +734,6 @@
           "current_quests": 23508,
           "last_month_quests": 23508,
           "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Taiwan",
-      "score": 17369,
-      "top_players": [
-        {
-          "username": "Summer_Albert",
-          "uuid": "7638efa55b784c41ac34a4c59b2b86df",
-          "country": "Taiwan",
-          "current_quests": 43696,
-          "last_month_quests": 43497,
-          "monthly_gain": 199
-        },
-        {
-          "username": "Itz_Pipi",
-          "uuid": "ae655706622d410cb36b9a8c4e1f1be4",
-          "country": "Taiwan",
-          "current_quests": 43149,
-          "last_month_quests": 42582,
-          "monthly_gain": 567
         }
       ]
     },
