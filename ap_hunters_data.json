@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-13T14:48:47.920Z",
+  "last_update": "2026-03-13T15:50:29.763Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2689,15 +2689,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1025,
+      "score": 1045,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26375,
+          "current_ap": 26395,
           "last_month_ap": 26375,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Warlords",
             "Max Bed Wars",
