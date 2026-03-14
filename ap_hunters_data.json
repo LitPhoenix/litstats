@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-14T02:29:00.417Z",
+  "last_update": "2026-03-14T04:47:14.959Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1310,9 +1310,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 28975,
+          "current_ap": 28985,
           "last_month_ap": 28850,
-          "monthly_gain": 125,
+          "monthly_gain": 135,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -1647,6 +1647,18 @@
           ]
         },
         {
+          "username": "adjective_n0un",
+          "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
+          "country": "Canada",
+          "current_ap": 25020,
+          "last_month_ap": 24875,
+          "monthly_gain": 145,
+          "maxGames": [
+            "Max Pit",
+            "Max SkyBlock"
+          ]
+        },
+        {
           "username": "Crooder",
           "uuid": "266b09b979a345909824aa9d31ffe8ba",
           "country": "Canada",
@@ -1668,18 +1680,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "adjective_n0un",
-          "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
-          "country": "Canada",
-          "current_ap": 25000,
-          "last_month_ap": 24875,
-          "monthly_gain": 125,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyBlock"
           ]
         },
         {
@@ -3016,9 +3016,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 23825,
+          "current_ap": 23845,
           "last_month_ap": 23730,
-          "monthly_gain": 95,
+          "monthly_gain": 115,
           "maxGames": [
             "Max SkyBlock",
             "Max Bed Wars",
