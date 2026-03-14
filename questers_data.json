@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-14T21:33:03.705Z",
+  "last_update": "2026-03-14T22:32:51.682Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -199,15 +199,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 48845.8,
+      "score": 48862.8,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 107655,
+          "current_quests": 107697,
           "last_month_quests": 107580,
-          "monthly_gain": 75
+          "monthly_gain": 117
         },
         {
           "username": "ErtrycheZ",
@@ -229,17 +229,17 @@
           "username": "enoitna",
           "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
           "country": "France",
-          "current_quests": 29226,
+          "current_quests": 29228,
           "last_month_quests": 29226,
-          "monthly_gain": 0
+          "monthly_gain": 2
         },
         {
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_quests": 28094,
+          "current_quests": 28135,
           "last_month_quests": 27961,
-          "monthly_gain": 133
+          "monthly_gain": 174
         },
         {
           "username": "trql",
@@ -453,9 +453,9 @@
           "username": "Dadje",
           "uuid": "616eb57f51b441018734724efc998f53",
           "country": "USA",
-          "current_quests": 31324,
+          "current_quests": 31361,
           "last_month_quests": 31245,
-          "monthly_gain": 79
+          "monthly_gain": 116
         },
         {
           "username": "oJakey",
@@ -632,19 +632,19 @@
           "monthly_gain": 66
         },
         {
+          "username": "rantingbrit",
+          "uuid": "796cf0f4332c447d88a6fbfffbe0bd70",
+          "country": "UK",
+          "current_quests": 21337,
+          "last_month_quests": 21086,
+          "monthly_gain": 251
+        },
+        {
           "username": "xRyann_",
           "uuid": "b12c6b822faa4ebfaab429982dab58ed",
           "country": "UK",
           "current_quests": 21143,
           "last_month_quests": 21143,
-          "monthly_gain": 0
-        },
-        {
-          "username": "rantingbrit",
-          "uuid": "796cf0f4332c447d88a6fbfffbe0bd70",
-          "country": "UK",
-          "current_quests": 21086,
-          "last_month_quests": 21086,
           "monthly_gain": 0
         }
       ]
