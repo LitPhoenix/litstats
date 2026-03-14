@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-14T16:38:39.097Z",
+  "last_update": "2026-03-14T17:33:02.582Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2093,15 +2093,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5155,
+      "score": 5165,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30540,
+          "current_ap": 30550,
           "last_month_ap": 30490,
-          "monthly_gain": 50,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -3448,9 +3448,9 @@
           "username": "hentor5",
           "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
           "country": "Sweden",
-          "current_ap": 23215,
+          "current_ap": 23235,
           "last_month_ap": 23190,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max TKR"
           ]
