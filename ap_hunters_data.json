@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-15T14:37:01.802Z",
+  "last_update": "2026-03-15T15:35:46.283Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -720,9 +720,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26315,
+          "current_ap": 26325,
           "last_month_ap": 26160,
-          "monthly_gain": 155,
+          "monthly_gain": 165,
           "maxGames": [
             "Max Warlords",
             "Max Arcade",
@@ -2094,15 +2094,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5145,
+      "score": 5165,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30550,
+          "current_ap": 30570,
           "last_month_ap": 30490,
-          "monthly_gain": 60,
+          "monthly_gain": 80,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
