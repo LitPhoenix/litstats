@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-15T13:04:15.906Z",
+  "last_update": "2026-03-15T14:37:01.802Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -720,9 +720,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26300,
+          "current_ap": 26315,
           "last_month_ap": 26160,
-          "monthly_gain": 140,
+          "monthly_gain": 155,
           "maxGames": [
             "Max Warlords",
             "Max Arcade",
@@ -2437,7 +2437,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2880,
+      "score": 2885,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2469,9 +2469,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26005,
+          "current_ap": 26025,
           "last_month_ap": 25815,
-          "monthly_gain": 190,
+          "monthly_gain": 210,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
