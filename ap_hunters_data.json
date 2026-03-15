@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-15T02:49:13.396Z",
+  "last_update": "2026-03-15T05:11:23.849Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -606,10 +606,11 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27430,
+          "current_ap": 27455,
           "last_month_ap": 27295,
-          "monthly_gain": 135,
+          "monthly_gain": 160,
           "maxGames": [
+            "Max Cops and Crims",
             "Max VampireZ",
             "Max Bed Wars",
             "Max TKR",
@@ -1225,7 +1226,7 @@
     },
     {
       "country": "UK",
-      "score": 9924,
+      "score": 9925,
       "top_players": [
         {
           "username": "greaneye",
@@ -1310,9 +1311,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 28985,
+          "current_ap": 29015,
           "last_month_ap": 28850,
-          "monthly_gain": 135,
+          "monthly_gain": 165,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -3231,37 +3232,16 @@
       ]
     },
     {
-      "country": "Greece",
-      "score": 245,
-      "top_players": [
-        {
-          "username": "giorgy",
-          "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
-          "country": "Greece",
-          "current_ap": 25650,
-          "last_month_ap": 25625,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Paintball",
-            "Max Speed UHC",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Spain",
-      "score": 228,
+      "score": 263,
       "top_players": [
         {
           "username": "mudkipseas",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25560,
+          "current_ap": 25595,
           "last_month_ap": 25555,
-          "monthly_gain": 5,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -3283,6 +3263,27 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Greece",
+      "score": 245,
+      "top_players": [
+        {
+          "username": "giorgy",
+          "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
+          "country": "Greece",
+          "current_ap": 25650,
+          "last_month_ap": 25625,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Paintball",
+            "Max Speed UHC",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games"
           ]
         }
       ]
