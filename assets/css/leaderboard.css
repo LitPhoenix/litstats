@@ -27,7 +27,7 @@ kbd { background: var(--surface); border: 1px solid var(--border-strong); border
 .table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; min-height: 1200px; contain: layout paint; }
 
 
-/* SPARK MASK */
+/* SPARK MASK - CPU OPTIMISED */
 .spark-bg { 
   position: absolute; 
   inset: 0; 
@@ -38,17 +38,28 @@ kbd { background: var(--surface); border: 1px solid var(--border-strong); border
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); 
   -webkit-mask-composite: xor; 
   mask-composite: exclude; 
-  will-change: transform; /* Hardware accelerates the animation */
 }
+
 .spark-bg::before { 
   content: ''; 
-  position: absolute; top: 50%; left: 50%; width: 3000px; height: 3000px; 
-  margin-top: -1500px; margin-left: -1500px; 
-  background: conic-gradient(from var(--angle), transparent 85%, var(--red) 94%, var(--accent) 98%, #ffffff 100%); 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  width: 3000px; 
+  height: 3000px; 
+  margin-top: -1500px; 
+  margin-left: -1500px; 
+  /* Static gradient, no variable needed */
+  background: conic-gradient(from 0deg, transparent 85%, var(--red) 94%, var(--accent) 98%, #ffffff 100%); 
   animation: rotateSpark var(--spark-speed, 3s) linear infinite; 
-  will-change: transform; /* Hardware accelerates the animation */
+  will-change: transform; 
 }
-@keyframes rotateSpark { 0% { --angle: 0deg; } 100% { --angle: 360deg; } }
+
+/* Animate the physical rotation instead of the gradient math */
+@keyframes rotateSpark { 
+  0% { transform: rotate(0deg); } 
+  100% { transform: rotate(360deg); } 
+}
 
 .table-inner { 
   background: var(--surface); 
