@@ -70,7 +70,11 @@ body {
 body::before {
   content: ''; position: fixed; inset: 0; z-index: -2; background-color: var(--bg);
   background-image: radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%), radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
-  background-size: 200% 200%; animation: subtleFire 12s ease-in-out infinite alternate; pointer-events: none;
+  background-size: 100% 100%; /* Shrunk from 200% */
+  transform: scale(1.2); /* Scaled up so we can move it cleanly */
+  animation: subtleFire 12s ease-in-out infinite alternate; 
+  pointer-events: none;
+  will-change: transform; /* Tells the browser to prep this for performance */
 }
 
 /* Light Mode Background Image */
@@ -108,7 +112,10 @@ body[data-theme="dark"]::after {
   animation: emberPulseBg 6s infinite alternate ease-in-out; pointer-events: none;
 }
 
-@keyframes subtleFire { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
+@keyframes subtleFire { 
+  0% { transform: scale(1.2) translate(-2%, -2%); } 
+  100% { transform: scale(1.2) translate(2%, 2%); } 
+}
 @keyframes emberPulseBg { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
 @keyframes emberPulse { 0% { box-shadow: 0 0 8px rgba(255, 81, 0, 0.1); } 50% { box-shadow: 0 0 18px rgba(255, 81, 0, 0.5); } 100% { box-shadow: 0 0 8px rgba(255, 81, 0, 0.1); } }
 
