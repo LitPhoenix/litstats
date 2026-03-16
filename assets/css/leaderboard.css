@@ -23,41 +23,23 @@ kbd { background: var(--surface); border: 1px solid var(--border-strong); border
 .section-title { font-size: 15px; font-weight: 600; color: var(--text); }
 .section-hint { font-size: 12px; color: var(--text-3); }
 
-.table-wrap { position: relative; background: transparent; border-radius: var(--radius); box-shadow: var(--shadow); padding: 1px; z-index: 1; min-height: 1200px; contain: layout paint; }
-
-
-/* SPARK MASK - CPU OPTIMISED */
-.spark-bg { 
-  position: absolute; 
-  inset: 0; 
-  border-radius: inherit; 
-  z-index: -1; 
-  overflow: hidden; 
+.table-wrap { 
+  position: relative; 
+  border-radius: var(--radius); 
+  box-shadow: var(--shadow); 
   padding: 1px; 
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); 
-  -webkit-mask-composite: xor; 
-  mask-composite: exclude; 
+  z-index: 1; 
+  min-height: 1200px; 
+  contain: layout paint;
+  /* New CPU-Friendly Spark */
+  background: linear-gradient(90deg, rgba(255,255,255,0.1), var(--accent), var(--red), rgba(255,255,255,0.1));
+  background-size: 200% 100%;
+  animation: slideSpark 4s linear infinite;
 }
 
-.spark-bg::before { 
-  content: ''; 
-  position: absolute; 
-  top: 50%; 
-  left: 50%; 
-  width: 3000px; 
-  height: 3000px; 
-  margin-top: -1500px; 
-  margin-left: -1500px; 
-  /* Static gradient, no variable needed */
-  background: conic-gradient(from 0deg, transparent 85%, var(--red) 94%, var(--accent) 98%, #ffffff 100%); 
-  animation: rotateSpark var(--spark-speed, 3s) linear infinite; 
-  will-change: transform; 
-}
-
-/* Animate the physical rotation instead of the gradient math */
-@keyframes rotateSpark { 
-  0% { transform: rotate(0deg); } 
-  100% { transform: rotate(360deg); } 
+@keyframes slideSpark {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }
 
 .table-inner { 
