@@ -7,7 +7,8 @@ const countryFlags = {
   'New Zealand': 'nz', 'Norway': 'no', 'Poland': 'pl', 'Portugal': 'pt', 'Romania': 'ro',
   'Russia': 'ru', 'Saudi Arabia': 'sa', 'Serbia': 'rs', 'South Korea': 'kr', 'Spain': 'es',
   'Sweden': 'se', 'Switzerland': 'ch', 'Syria': 'sy', 'Taiwan': 'tw', 'The Netherlands': 'nl',
-  'Turkey': 'tr', 'UK': 'gb', 'Ukraine': 'ua', 'USA': 'us'
+  'Turkey': 'tr', 'UK': 'gb', 'Ukraine': 'ua', 'USA': 'us', 'Chile': 'cl',
+  'Bosnia and Herzegovina': 'ba', 'Slovakia': 'sk', 'Slovenia': 'si'
 };
 
 let currentData = null; let allPlayersList = []; let processedCountries = []; let currentTab = 'players';
@@ -60,9 +61,37 @@ async function togglePlayerExpand(uuid) {
 
 function getGameIconUrl(gameName) {
   if (gameName === "Max Seasonal") return "img/games/seasonal.png";
-  const iconMap = { "Max Arcade": "Arcade-64.png", "Max Bed Wars": "BedWars-64.png", "Max Build Battle": "BuildBattle-64.png", "Max Cops and Crims": "CVC-64.png", "Max Duels": "Duels-64.png", "Max Mega Walls": "MegaWalls-64.png", "Max Murder Mystery": "MurderMystery-64.png", "Max Pit": "Pit-64.png", "Max Blitz": "SG-64.png", "Max SkyBlock": "SkyBlock-64.png", "Max SkyWars": "Skywars-64.png", "Max Smash Heroes": "SmashHeroes-64.png", "Max TNT Games": "TNT-64.png", "Max UHC": "UHC-64.png", "Max Warlords": "Warlords-64.png", "Max Wool Games": "WoolGames-64.png", "Max Arena Brawl": "Arena-64.png", "Max Paintball": "Paintball-64.png", "Max Quake": "Quakecraft-64.png", "Max VampireZ": "VampireZ-64.png", "Max Walls": "Walls-64.png", "Max TKR": "TurboKartRacers-64.png", "Max Crazy Walls": "CrazyWalls-64.png", "Max SkyClash": "SkyClash-64.png" };
+
+  const iconMap = { 
+    "Max Arcade": "Arcade-64.png", 
+    "Max Bed Wars": "BedWars-64.png", 
+    "Max Build Battle": "BuildBattle-64.png", 
+    "Max Cops and Crims": "CVC-64.png", 
+    "Max Duels": "Duels-64.png", 
+    "Max Mega Walls": "MegaWalls-64.png", 
+    "Max Murder Mystery": "MurderMystery-64.png", 
+    "Max Pit": "Pit-64.png", 
+    "Max Blitz": "SG-64.png", 
+    "Max SkyBlock": "SkyBlock-64.png", 
+    "Max SkyWars": "Skywars-64.png", 
+    "Max Smash Heroes": "SmashHeroes-64.png", 
+    "Max TNT Games": "TNT-64.png", 
+    "Max UHC": "UHC-64.png", 
+    "Max Warlords": "Warlords-64.png", 
+    "Max Wool Games": "WoolGames-64.png", 
+    "Max Arena Brawl": "Arena-64.png", 
+    "Max Paintball": "Paintball-64.png", 
+    "Max Quake": "Quakecraft-64.png", 
+    "Max VampireZ": "VampireZ-64.png", 
+    "Max Walls": "Walls-64.png", 
+    "Max TKR": "TurboKartRacers-64.png", 
+    "Max Crazy Walls": "CrazyWalls-64.png", 
+    "Max SkyClash": "SkyClash-64.png" 
+  };
+
   const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
-  return `https://hypixel.net/styles/hypixel-v2/images/game-icons/${filename}`;
+  
+  return `img/games/${filename}`;
 }
 
 function renderMaxesHTML(container, maxes, uuid) {
