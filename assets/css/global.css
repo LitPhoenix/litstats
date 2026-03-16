@@ -68,13 +68,13 @@ body {
 }
 
 body::before {
-  content: ''; position: fixed; inset: 0; z-index: -2; background-color: var(--bg);
+  content: ''; 
+  position: fixed; 
+  inset: 0; 
+  z-index: -2; 
+  background-color: var(--bg);
   background-image: radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%), radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
-  background-size: 100% 100%; /* Shrunk from 200% */
-  transform: scale(1.2); /* Scaled up so we can move it cleanly */
-  animation: subtleFire 12s ease-in-out infinite alternate; 
-  pointer-events: none;
-  will-change: transform; /* Tells the browser to prep this for performance */
+  /* Animation and scaling completely removed to save CPU */
 }
 
 /* Light Mode Background Image */
