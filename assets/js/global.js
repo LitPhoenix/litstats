@@ -77,7 +77,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     const searchBox = document.getElementById('searchInput');
     if (searchBox) {
-      searchBox.value = '';
       searchBox.blur(); 
       if (typeof runLocalSearch === "function") runLocalSearch('');
     }
@@ -122,3 +121,14 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
+
+const leaderSearch = document.getElementById('searchInput');
+
+if (leaderSearch) {
+  leaderSearch.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      event.preventDefault(); // Blocks the browser from wiping the text
+      this.blur();            // Drops the focus ring
+    }
+  });
+}
