@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-16T15:07:05.089Z",
+  "last_update": "2026-03-16T17:08:49.945Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -383,7 +383,7 @@
     },
     {
       "country": "USA",
-      "score": 45183,
+      "score": 45190.6,
       "top_players": [
         {
           "username": "Trtx",
@@ -405,9 +405,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_quests": 45737,
+          "current_quests": 45775,
           "last_month_quests": 45421,
-          "monthly_gain": 316
+          "monthly_gain": 354
         },
         {
           "username": "MockBall",
@@ -627,9 +627,9 @@
           "username": "alpanyahu",
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "UK",
-          "current_quests": 22301,
+          "current_quests": 22467,
           "last_month_quests": 22235,
-          "monthly_gain": 66
+          "monthly_gain": 232
         },
         {
           "username": "rantingbrit",
