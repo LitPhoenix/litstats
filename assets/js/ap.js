@@ -8,7 +8,7 @@ const countryFlags = {
   'Russia': 'ru', 'Saudi Arabia': 'sa', 'Serbia': 'rs', 'South Korea': 'kr', 'Spain': 'es',
   'Sweden': 'se', 'Switzerland': 'ch', 'Syria': 'sy', 'Taiwan': 'tw', 'The Netherlands': 'nl',
   'Turkey': 'tr', 'UK': 'gb', 'Ukraine': 'ua', 'USA': 'us', 'Chile': 'cl',
-  'Bosnia and Herzegovina': 'ba', 'Slovakia': 'sk', 'Slovenia': 'si'
+  'Bosnia and Herzegovina': 'ba', 'Slovakia': 'sk', 'Slovenia': 'si', 'Lithuania': 'lt'
 };
 
 let currentData = null; let allPlayersList = []; let processedCountries = []; let currentTab = 'players';
