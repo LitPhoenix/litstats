@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-16T21:46:43.033Z",
+  "last_update": "2026-03-16T22:40:39.094Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -565,15 +565,15 @@
     },
     {
       "country": "UK",
-      "score": 35220.4,
+      "score": 35226,
       "top_players": [
         {
           "username": "Questologist",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
-          "current_quests": 48398,
+          "current_quests": 48426,
           "last_month_quests": 47890,
-          "monthly_gain": 508
+          "monthly_gain": 536
         },
         {
           "username": "Weeknd",
