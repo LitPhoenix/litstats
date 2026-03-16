@@ -119,24 +119,25 @@
   <script src="assets/js/credits.js"></script>
   <script>
 function goToCabinet() {
-      const val = document.getElementById('portSearch').value.trim();
-      const err = document.getElementById('portError');
-      if (!val) { err.textContent = "Please enter a username."; err.style.display = "block"; return; }
-      
-      // Instantly push the user to the clean URL format
-      window.location.href = `/player/${val}`;
-    }
+    const val = document.getElementById('portSearch').value.trim();
+    const err = document.getElementById('portError');
+    if (!val) { err.textContent = "Please enter a username."; err.style.display = "block"; return; }
+    
+    // The foolproof alternative: standard query parameters
+    window.location.href = `/cabinet?uuid=${val}`;
+}
 
-    // Mini Leaderboard Logic
-    async function loadMiniLeaderboard() {
-      try {
+// Mini Leaderboard Logic
+async function loadMiniLeaderboard() {
+    try {
         const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-        const res = await fetch(`ap_hunters_data.json?v=${currentHour}`);
+        // FIX: Added leading slash so it always checks the root directory
+        const res = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
         const data = await res.json();
         
         let allPlayers = [];
         data.country_leaderboard.forEach(c => {
-          if (c.top_players) allPlayers.push(...c.top_players);
+            if (c.top_players) allPlayers.push(...c.top_players);
         });
         
         const uniquePlayers = Array.from(new Map(allPlayers.map(p => [p.uuid, p])).values());
@@ -145,25 +146,23 @@ function goToCabinet() {
         const top5 = uniquePlayers.slice(0, 5);
         
         const html = top5.map((p, index) => `
-          <div class="mini-row">
+            <div class="mini-row">
             <span class="mini-rank">${index + 1}</span>
             <img src="https://minotar.net/helm/${p.username}/32" alt="${p.username} avatar">
             <span style="font-weight:600; font-size:14px; color: var(--text);">${p.username}</span>
             <span class="mini-ap">${p.achievementPoints.toLocaleString()}</span>
-          </div>
+            </div>
         `).join('');
         
         document.getElementById('mini-lb-content').innerHTML = html;
     } catch (err) {
-        // Show error and add padding so it doesn't look cramped
         document.getElementById('mini-lb-content').innerHTML = `<div style="padding: 32px 24px 60px; color: var(--red); font-weight: 600; font-size: 14px; text-align: center;">Failed to load player data.</div>`;
         
-        // Hide the awkward fading button overlay so it stops overlapping
         const overlay = document.querySelector('.fade-overlay');
         if (overlay) overlay.style.display = 'none';
-      }
     }
-    loadMiniLeaderboard();
+}
+loadMiniLeaderboard();
   </script>
 </body>
 </html>
