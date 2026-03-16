@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-16T13:24:09.677Z",
+  "last_update": "2026-03-16T15:07:04.845Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -659,9 +659,9 @@
           "username": "tormin",
           "uuid": "dc2eaa964e0242589f2731a11aacea55",
           "country": "USA",
-          "current_ap": 26990,
+          "current_ap": 27005,
           "last_month_ap": 26875,
-          "monthly_gain": 115,
+          "monthly_gain": 130,
           "maxGames": [
             "Max Blitz",
             "Max Cops and Crims",
@@ -1226,7 +1226,7 @@
     },
     {
       "country": "UK",
-      "score": 9925,
+      "score": 9926,
       "top_players": [
         {
           "username": "greaneye",
@@ -1292,6 +1292,19 @@
           ]
         },
         {
+          "username": "litphoenix",
+          "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
+          "country": "UK",
+          "current_ap": 29030,
+          "last_month_ap": 28850,
+          "monthly_gain": 180,
+          "maxGames": [
+            "Max VampireZ",
+            "Max TKR",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Evdia",
           "uuid": "aad6a2754e9c4744bd335213853f023f",
           "country": "UK",
@@ -1305,19 +1318,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "litphoenix",
-          "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
-          "country": "UK",
-          "current_ap": 29015,
-          "last_month_ap": 28850,
-          "monthly_gain": 165,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR",
-            "Max Build Battle"
           ]
         },
         {
