@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-17T22:40:03.312Z",
+  "last_update": "2026-03-17T23:38:46.602Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1394,9 +1394,9 @@
           "username": "Questologist",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
-          "current_ap": 24635,
+          "current_ap": 24565,
           "last_month_ap": 24620,
-          "monthly_gain": 15,
+          "monthly_gain": -55,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -3310,15 +3310,15 @@
     },
     {
       "country": "Turkey",
-      "score": 35,
+      "score": 60,
       "top_players": [
         {
           "username": "Melongan",
           "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
           "country": "Turkey",
-          "current_ap": 25440,
+          "current_ap": 25465,
           "last_month_ap": 25440,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max TNT Games",
             "Max Murder Mystery",
