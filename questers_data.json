@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-17T04:57:14.045Z",
+  "last_update": "2026-03-17T06:04:18.289Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -810,30 +810,16 @@
       ]
     },
     {
-      "country": "Luxembourg",
-      "score": 6721,
-      "top_players": [
-        {
-          "username": "Koide",
-          "uuid": "c577637912a84f44990877ceb86064d9",
-          "country": "Luxembourg",
-          "current_quests": 33605,
-          "last_month_quests": 33605,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
       "country": "Japan",
-      "score": 22198.6,
+      "score": 22234.8,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_quests": 33472,
+          "current_quests": 33653,
           "last_month_quests": 33472,
-          "monthly_gain": 0
+          "monthly_gain": 181
         },
         {
           "username": "Taich25",
@@ -857,6 +843,20 @@
           "country": "Japan",
           "current_quests": 22415,
           "last_month_quests": 22415,
+          "monthly_gain": 0
+        }
+      ]
+    },
+    {
+      "country": "Luxembourg",
+      "score": 6721,
+      "top_players": [
+        {
+          "username": "Koide",
+          "uuid": "c577637912a84f44990877ceb86064d9",
+          "country": "Luxembourg",
+          "current_quests": 33605,
+          "last_month_quests": 33605,
           "monthly_gain": 0
         }
       ]
