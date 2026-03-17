@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-17T17:08:45.014Z",
+  "last_update": "2026-03-17T19:09:40.189Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1226,7 +1226,7 @@
     },
     {
       "country": "UK",
-      "score": 9927,
+      "score": 9930,
       "top_players": [
         {
           "username": "greaneye",
@@ -1277,9 +1277,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29055,
+          "current_ap": 29065,
           "last_month_ap": 29055,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
@@ -2541,9 +2541,9 @@
           "username": "kawaa",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
-          "current_ap": 25165,
+          "current_ap": 25185,
           "last_month_ap": 25140,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
