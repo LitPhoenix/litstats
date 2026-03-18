@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-18T15:09:25.816Z",
+  "last_update": "2026-03-18T17:08:12.211Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -659,9 +659,9 @@
           "username": "tormin",
           "uuid": "dc2eaa964e0242589f2731a11aacea55",
           "country": "USA",
-          "current_ap": 27005,
+          "current_ap": 27020,
           "last_month_ap": 26875,
-          "monthly_gain": 130,
+          "monthly_gain": 145,
           "maxGames": [
             "Max Blitz",
             "Max Cops and Crims",
@@ -2294,15 +2294,15 @@
     },
     {
       "country": "Israel",
-      "score": 3909,
+      "score": 3954,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_ap": 28270,
+          "current_ap": 28315,
           "last_month_ap": 28260,
-          "monthly_gain": 10,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Arena Brawl",
             "Max Quake",
@@ -3060,9 +3060,9 @@
           "username": "ichhabevape",
           "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
           "country": "Unknown",
-          "current_ap": 23705,
+          "current_ap": 23730,
           "last_month_ap": 23705,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Seasonal"
           ]
