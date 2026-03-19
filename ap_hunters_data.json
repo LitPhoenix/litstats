@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-19T08:52:19.236Z",
+  "last_update": "2026-03-19T09:53:15.368Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -767,6 +767,21 @@
           ]
         },
         {
+          "username": "SnowmanHaqs",
+          "uuid": "cf0e056bfae246f48053bd7979772f63",
+          "country": "USA",
+          "current_ap": 25680,
+          "last_month_ap": 25425,
+          "monthly_gain": 255,
+          "maxGames": [
+            "Max Blitz",
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "NickIsOffline",
           "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
           "country": "USA",
@@ -777,21 +792,6 @@
             "Max Smash Heroes",
             "Max Warlords",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "SnowmanHaqs",
-          "uuid": "cf0e056bfae246f48053bd7979772f63",
-          "country": "USA",
-          "current_ap": 25660,
-          "last_month_ap": 25425,
-          "monthly_gain": 235,
-          "maxGames": [
-            "Max Blitz",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
