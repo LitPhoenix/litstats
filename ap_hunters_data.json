@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-19T22:35:36.859Z",
+  "last_update": "2026-03-19T23:36:03.244Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12499,
+      "score": 12504,
       "top_players": [
         {
           "username": "oJakey",
@@ -477,14 +477,16 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 29775,
+          "current_ap": 29825,
           "last_month_ap": 29570,
-          "monthly_gain": 205,
+          "monthly_gain": 255,
           "maxGames": [
             "Max UHC",
+            "Max Pit",
             "Max Blitz",
             "Max Speed UHC",
             "Max Walls",
+            "Max Arcade",
             "Max Murder Mystery",
             "Max VampireZ",
             "Max Bed Wars",
@@ -2360,9 +2362,9 @@
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25285,
+          "current_ap": 25290,
           "last_month_ap": 25215,
-          "monthly_gain": 70,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
