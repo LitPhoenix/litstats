@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-19T19:06:37.466Z",
+  "last_update": "2026-03-19T20:45:13.289Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -200,7 +200,8 @@
     "01834d8a3c7a49c796589979d7a9ab74": 23015,
     "c82a204b300f4b88888e4ab79e44920b": 23000,
     "c185afbbd692431a906131448e693f19": 22950,
-    "e4447d2895924f76986ac1ba4dcf183c": 22935
+    "e4447d2895924f76986ac1ba4dcf183c": 22935,
+    "b9aa26ec20b447a59a4ad10cc08a46fe": 22995
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -933,9 +934,9 @@
           "username": "SeaOtterFan",
           "uuid": "cdea33877a37413da44e365acc9f7a50",
           "country": "USA",
-          "current_ap": 24110,
+          "current_ap": 24130,
           "last_month_ap": 24110,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Smash Heroes",
             "Max Quake",
@@ -3211,6 +3212,17 @@
           "maxGames": [
             "Max VampireZ"
           ]
+        },
+        {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 22995,
+          "last_month_ap": 22995,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Duels"
+          ]
         }
       ]
     },
@@ -3539,23 +3551,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Slovenia",
-      "score": 0,
-      "top_players": [
-        {
-          "username": "Maribor",
-          "uuid": "e4447d2895924f76986ac1ba4dcf183c",
-          "country": "Slovenia",
-          "current_ap": 22935,
-          "last_month_ap": 22935,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Bed Wars"
           ]
         }
       ]
