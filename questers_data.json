@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-19T20:45:13.632Z",
+  "last_update": "2026-03-19T21:42:11.556Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -517,9 +517,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 22356,
+          "current_quests": 22366,
           "last_month_quests": 22286,
-          "monthly_gain": 70
+          "monthly_gain": 80
         },
         {
           "username": "culorfuj",
@@ -651,15 +651,15 @@
     },
     {
       "country": "Belgium",
-      "score": 9425.2,
+      "score": 9428.8,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 47126,
+          "current_quests": 47144,
           "last_month_quests": 46679,
-          "monthly_gain": 447
+          "monthly_gain": 465
         }
       ]
     },
