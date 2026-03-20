@@ -82,7 +82,9 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        let pct = ach.globalPercentage !== undefined ? Number(ach.globalPercentage).toFixed(1) : "0.0";
+        let pct = ach.gamePercentUnlocked !== undefined ? Number(ach.gamePercentUnlocked).toFixed(1) 
+        : ach.globalPercentUnlocked !== undefined ? Number(ach.globalPercentUnlocked).toFixed(1) 
+        : "0.0";
         let amountToReach = ach.nextTierAmount || ach.target || "?";
         let parsedDesc = ach.desc ? ach.desc.replace(/%%value%%/g, amountToReach) : "";
         
