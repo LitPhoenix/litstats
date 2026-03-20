@@ -102,8 +102,8 @@ function goToCabinet() {
     const err = document.getElementById('portError');
     if (!val) { err.textContent = "Please enter a username."; err.style.display = "block"; return; }
     
-    // Uses the True URL and adds a live fetch flag
-    window.location.href = `/player/${val}?live=true`;
+    // Standard query parameter. Clean and unbreakable.
+    window.location.href = `/cabinet?uuid=${val}`;
 }
 
 // Mini Leaderboard Logic
