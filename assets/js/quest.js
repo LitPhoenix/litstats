@@ -137,16 +137,20 @@ function renderNextPlayersBatch() {
     tr.className = 'player-row';
     tr.onclick = () => togglePlayerExpand(p.uuid);
     tr.innerHTML = `
-        <td style="text-align: center;"><span class="rank ${rc}">${p.globalRank || ''} ${posHTML}</span></td>
-        <td>
-          <div class="player-cell">
-            <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" alt="${p.username} avatar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
-            <span class="player-name">${p.username}</span>
-          </div>
-        </td>
-        <td><div class="flag-cell">${getFlagHTML(p.country)}<span class="country-name">${p.country}</span></div></td>
-        <td class="ap-cell" style="text-align: right;">${fmt(p.current_quests)}</td>
-        <td style="text-align: right;">${gainHTML}</td>
+      <td style="text-align: center;"><span class="rank ${getRankClass(rank)}">${rank}</span></td>
+      <td><div class="flag-cell">${getFlagHTML(c.country)}<span class="country-name" style="font-weight:600; color:var(--text);">${c.country}</span></div></td>
+      
+      <td class="ap-cell" style="text-align: right;" title="Weighted score based on the Top 5 players in this country">
+        ${c.score > 0 ? fmt(Math.round(c.score)) : '-'}
+      </td>
+      
+      <td style="padding-left: 40px;">
+        <div class="player-cell" style="gap:8px;">
+          <img class="player-avatar" style="width:24px;height:24px;border-radius:4px;" src="https://minotar.net/helm/${topP.username||'?'}/100" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
+          <span class="country-name" style="font-weight:600; color:var(--text);">${topP.username || 'Unknown'}</span>
+        </div>
+      </td>
+      <td style="text-align:right; padding-right:20px;"><span class="expand-icon">▶</span></td>
     `;
     fragment.appendChild(tr);
 
