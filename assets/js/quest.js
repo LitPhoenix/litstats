@@ -82,15 +82,22 @@ function renderQuestStatsHTML(container, data, uuid) {
   let html = `<div style="display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">`;
   
   if (data.topQuests && data.topQuests.length > 0) {
-    data.topQuests.forEach((q, i) => {
-      let medal = i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉';
-      html += `<div class="stat-pill"><span>${medal} ${q.game}</span> <b>${fmt(q.count)}</b></div>`;
-    });
+    // FIX A: Filter out 'Other' quests
+    const filteredQuests = data.topQuests.filter(q => q.game !== "Other").slice(0, 3);
+    
+    if (filteredQuests.length > 0) {
+        filteredQuests.forEach((q) => {
+          // FIX B: Replace medal emojis with the Bottle o' Enchanting image
+          html += `<div class="stat-pill"><span><img src="img/games/Bottle_o'_Enchanting.png" alt="EXP" style="width: 14px; height: 14px; object-fit: contain; vertical-align: middle; margin-right: 4px;"> ${q.game}</span> <b>${fmt(q.count)}</b></div>`;
+        });
+    } else {
+        html += `<span style="color:var(--text-3); font-size:12px;">No specific game quest data available.</span>`;
+    }
   } else {
     html += `<span style="color:var(--text-3); font-size:12px;">Detailed quest stats pending API sync.</span>`;
   }
   
-  html += `</div><a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Player Hub ➔</a>`;
+  html += `</div><a href="cabinet?uuid=${uuid}" class="cabinet-btn">Enter Player Hub ➔</a>`;
   container.innerHTML = html;
 }
 
