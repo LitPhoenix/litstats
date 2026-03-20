@@ -190,7 +190,7 @@ function renderNextCountriesBatch() {
   const fragment = document.createDocumentFragment();
 
   toRender.forEach((c) => {
-    // This is the line that went missing and caused the crash
+    // This correctly uses c.globalRank for countries
     const rank = c.globalRank;
     const topP = c.top_players[0] || {};
     
