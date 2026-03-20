@@ -152,11 +152,6 @@ function getGameIconUrl(gameName) {
 function renderCabinet(data) {
     document.title = `LitStats - ${data.username}'s Cabinet`;
     
-    // Stop JS from overriding the address bar if Vercel already handled it
-    if (!window.location.pathname.startsWith('/player/')) {
-        window.history.replaceState(null, '', `/player/${data.username}`);
-    }
-
     document.getElementById('p-avatar').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
     document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/bust/${data.uuid}.png`; };
     document.getElementById('p-name').textContent = data.username;
@@ -230,19 +225,8 @@ function renderCabinet(data) {
 }
 
 async function initCabinet() {
-  // Extract URL correctly for native routing
-  const pathSegments = window.location.pathname.split('/').filter(Boolean);
-  let lookupId = null;
-
-  if (pathSegments[0] === 'player' && pathSegments[1]) {
-      lookupId = pathSegments[1];
-  }
-
-  // Fallback for direct searches or older links using query parameters
-  if (!lookupId) {
-      const urlParams = new URLSearchParams(window.location.search);
-      lookupId = urlParams.get('uuid');
-  }
+  const urlParams = new URLSearchParams(window.location.search);
+  const lookupId = urlParams.get('uuid');
 
   if (!lookupId) {
     document.getElementById('loader').classList.add('hidden');
