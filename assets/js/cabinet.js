@@ -50,12 +50,10 @@ function renderTodoGrid() {
 
     let achs = [...globalPlayerData.missingAchievements];
     const sortVal = document.getElementById('sortFilter').value;
-    const filterVal = document.getElementById('gameFilter').value;
 
-    if (filterVal === 'no_comp') {
-        achs = achs.filter(a => !['Pit', 'UHC', 'Mega Walls'].includes(a.game));
-    } else if (filterVal !== 'all') {
-        achs = achs.filter(a => a.game === filterVal);
+    // Apply Checkbox filters (If empty, show all)
+    if (activeGameFilters.size > 0) {
+        achs = achs.filter(a => activeGameFilters.has(a.game));
     }
 
     if (sortVal === 'easiest') achs.sort((a, b) => a.reward - b.reward);
@@ -69,18 +67,14 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        // Hide 0.0% if missing from API
-        let percentHtml = ach.globalPercentage !== undefined && ach.globalPercentage > 0 
-            ? `<span class="ach-percent">${Number(ach.globalPercentage).toFixed(1)}%</span>` 
-            : '';
-        
-        // Handle tier amounts
+        // Force display of 0.0% if API doesn't provide it
+        let pct = ach.globalPercentage !== undefined ? Number(ach.globalPercentage).toFixed(1) : "0.0";
         let amountToReach = ach.nextTierAmount || ach.target || "?";
         let parsedDesc = ach.desc.replace(/%%value%%/g, amountToReach);
         
         return `
           <div class="ach-card">
-            ${percentHtml}
+            <span class="ach-percent">${pct}%</span>
             <div class="ach-card-header">
               <img src="${getGameIconUrl('Max ' + ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
               <span class="ach-game">${ach.game}</span>
@@ -251,6 +245,38 @@ async function forceLiveFetch(uuid) {
     }
 }
 
+let activeGameFilters = new Set();
+
+function populateFilters() {
+    const container = document.getElementById('gameFilterContainer');
+    if (!globalPlayerData || !globalPlayerData.missingAchievements) return;
+    
+    const games = [...new Set(globalPlayerData.missingAchievements.map(a => a.game))].sort();
+    
+    let html = `<div class="checkbox-grid">`;
+    games.forEach(g => { 
+        html += `
+          <label class="game-cb-label">
+            <input type="checkbox" value="${g}" onchange="toggleGameFilter(this)">
+            ${g}
+          </label>
+        `; 
+    });
+    html += `</div>`;
+    container.innerHTML = html;
+}
+
+function toggleGameFilter(checkbox) {
+    if (checkbox.checked) {
+        activeGameFilters.add(checkbox.value);
+        checkbox.parentElement.classList.add('active');
+    } else {
+        activeGameFilters.delete(checkbox.value);
+        checkbox.parentElement.classList.remove('active');
+    }
+    renderTodoGrid();
+}
+
 async function initCabinet() {
   const urlParams = new URLSearchParams(window.location.search);
   let lookupId = urlParams.get('uuid');
@@ -262,55 +288,48 @@ async function initCabinet() {
     }
   }
 
-  if (!lookupId || lookupId === "undefined") {
-    document.getElementById('loader').classList.add('hidden');
-    document.getElementById('errorBox').textContent = "No valid player provided.";
-    document.getElementById('errorBox').classList.remove('hidden');
-    return;
-  }
+  if (!lookupId || lookupId === "undefined") return;
 
   try {
     let uuid = lookupId;
     if (lookupId.length <= 16) {
-      document.getElementById('loader').textContent = "Resolving username...";
       const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${lookupId}`);
       const dbData = await dbRes.json();
-      
-      if (dbData.code === 'player.found') {
-        uuid = dbData.data.player.raw_id;
-        document.getElementById('loader').textContent = "Summoning network data...";
-      } else {
-        throw new Error("Minecraft player not found.");
-      }
+      if (dbData.code === 'player.found') uuid = dbData.data.player.raw_id;
     }
 
-    const forceLive = urlParams.get('live') === 'true';
-
-    if (!forceLive) {
-        const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-        const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
-        
-        if (jsonRes.ok) {
-            const localData = await jsonRes.json();
-            const localPlayer = localData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
-            if (localPlayer && localPlayer.maxGames) {
-                renderCabinet(localPlayer);
-                return; 
-            }
+    // Phase 1: INSTANT LOCAL LOAD
+    const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
+    const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
+    
+    if (jsonRes.ok) {
+        const localData = await jsonRes.json();
+        const localPlayer = localData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
+        if (localPlayer && localPlayer.maxGames) {
+            renderCabinet(localPlayer); // Renders skeleton and rank instantly
         }
     }
 
-    const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
-    if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
-    const data = await res.json();
-    
-    if (data.error) throw new Error(`API Error: ${data.error}`);
+    // Phase 2: AUTOMATIC LIVE FETCH (Runs silently in background)
+    document.getElementById('loader').textContent = "Updating live target priorities...";
+    document.getElementById('loader').classList.remove('hidden');
 
-    renderCabinet(data);
+    const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+    if (res.status !== 429) {
+        const data = await res.json();
+        if (!data.error) {
+            // Snapshot legacy games before overwriting
+            const legacyGamesList = ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"];
+            const preservedMaxes = (globalPlayerData?.maxGames || []).filter(g => legacyGamesList.includes(g));
+            data.maxGames = [...new Set([...(data.maxGames || []), ...preservedMaxes])];
+            
+            renderCabinet(data); // Re-renders with full achievements
+        }
+    }
+    document.getElementById('loader').classList.add('hidden');
+
   } catch (err) {
     document.getElementById('loader').classList.add('hidden');
-    document.getElementById('errorBox').textContent = err.message;
-    document.getElementById('errorBox').classList.remove('hidden');
   }
 }
 
