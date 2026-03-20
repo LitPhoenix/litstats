@@ -112,6 +112,7 @@ module.exports = async (req, res) => {
       }
       
       responseData.topQuests = Object.entries(questTotals)
+        .filter(([game, count]) => game !== "Other") // Filters out Other BEFORE slicing
         .map(([game, count]) => ({ game, count }))
         .sort((a, b) => b.count - a.count)
         .slice(0, 3);
