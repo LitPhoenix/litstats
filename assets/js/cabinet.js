@@ -15,12 +15,17 @@ function formatRankText(rank, plusColour) {
     if (!rank || rank === 'NON') return '';
     const plusHex = getPlusColourHex(plusColour);
     
-    if (rank.includes('++')) {
+    // Explicitly target Hypixel API rank strings to assign Aqua/Green properly
+    if (rank === 'MVP_PLUS_PLUS' || rank.includes('++')) {
         return `<span style="color: #FFAA00; background: rgba(255, 170, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">++</span>]</span>`;
-    } else if (rank.includes('+') && rank.includes('MVP')) {
+    } else if (rank === 'MVP_PLUS' || (rank.includes('+') && rank.includes('MVP'))) {
         return `<span style="color: #55FFFF; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">+</span>]</span>`;
-    } else if (rank.includes('VIP')) {
-        return `<span style="color: #55FF55; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[${rank}]</span>`;
+    } else if (rank === 'MVP') {
+        return `<span style="color: #55FFFF; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP]</span>`;
+    } else if (rank === 'VIP_PLUS') {
+        return `<span style="color: #55FF55; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[VIP<span style="color: ${plusHex}">+</span>]</span>`;
+    } else if (rank === 'VIP') {
+        return `<span style="color: #55FF55; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[VIP]</span>`;
     }
     return `<span style="color: #AAAAAA; background: rgba(170, 170, 170, 0.1); padding: 2px 6px; border-radius: 4px;">[${rank}]</span>`;
 }
