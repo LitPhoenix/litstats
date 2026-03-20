@@ -137,8 +137,11 @@ function getGameIconUrl(gameName) {
 
 function renderCabinet(data) {
     document.title = `LitStats - ${data.username}'s Cabinet`;
-    // Clean URL now that Vercel is handling the True URL rewrite
-    window.history.replaceState(null, '', `/player/${data.username}`);
+    
+    // Only update the URL if they are not already on the correct native path
+    if (!window.location.pathname.startsWith('/player/')) {
+        window.history.replaceState(null, '', `/player/${data.username}`);
+    }
 
     document.getElementById('p-avatar').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
     document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/bust/${data.uuid}.png`; };
