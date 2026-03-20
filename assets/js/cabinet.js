@@ -8,10 +8,9 @@ function getPlusColourHex(colourName) {
         'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555',
         'BLACK': '#000000', 'DARK_BLUE': '#0000AA'
     };
-    return colours[colourName] || '#FF5555'; // Defaults to red
+    return colours[colourName] || '#FF5555';
 }
 
-// Formats the rank string with the correct spans
 function formatRankText(rank, plusColour) {
     if (!rank || rank === 'NON') return '';
     const plusHex = getPlusColourHex(plusColour);
@@ -65,12 +64,12 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        // Hide 0.0% if the API doesn't actually provide a globalPercentage
+        // Hide 0.0% if missing from API
         let percentHtml = ach.globalPercentage !== undefined && ach.globalPercentage > 0 
             ? `<span class="ach-percent">${Number(ach.globalPercentage).toFixed(1)}%</span>` 
             : '';
         
-        // Handle %%value%%. If your backend provides ach.nextTierAmount or ach.target, it uses it. Otherwise "?".
+        // Handle tier amounts
         let amountToReach = ach.nextTierAmount || ach.target || "?";
         let parsedDesc = ach.desc.replace(/%%value%%/g, amountToReach);
         
@@ -134,19 +133,18 @@ function getGameIconUrl(gameName) {
   };
 
   const filename = iconMap[gameName] || gameName.replace('Max ', '').replace(/\s/g, '') + '-64.png';
-  
   return `/img/games/${filename}`;
 }
 
 function renderCabinet(data) {
     document.title = `LitStats - ${data.username}'s Cabinet`;
+    // Clean URL now that Vercel is handling the True URL rewrite
     window.history.replaceState(null, '', `/player/${data.username}`);
 
     document.getElementById('p-avatar').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
     document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/bust/${data.uuid}.png`; };
     document.getElementById('p-name').textContent = data.username;
 
-    // Update Rank
     const rankEl = document.getElementById('p-rank');
     if (data.rank && data.rank !== 'NON') {
         rankEl.innerHTML = formatRankText(data.rank, data.rankPlusColor);
@@ -155,11 +153,9 @@ function renderCabinet(data) {
         rankEl.style.display = 'none'; 
     }
 
-    // Update AP Badge
     const ap = data.achievementPoints || data.current_ap || 0;
     document.getElementById('p-ap').innerHTML = `<img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> ${Number(ap).toLocaleString()} AP`;
     
-    // Update Max Count
     const userMaxes = data.maxGames || [];
     document.getElementById('p-max-count').textContent = `${userMaxes.length} / ${TOTAL_GAMES} Maxed`;
     const percentage = Math.min(100, (ap / MAX_POSSIBLE_AP) * 100).toFixed(1);
@@ -230,7 +226,6 @@ async function forceLiveFetch(uuid) {
     document.getElementById('loader').classList.remove('hidden');
     document.getElementById('errorBox').classList.add('hidden');
 
-    // 1. Snapshot legacy games before wiping the board
     const legacyGamesList = ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"];
     const preservedMaxes = (globalPlayerData?.maxGames || []).filter(g => legacyGamesList.includes(g));
 
@@ -241,7 +236,6 @@ async function forceLiveFetch(uuid) {
         const data = await res.json();
         if (data.error) throw new Error(`API Error: ${data.error}`);
         
-        // 2. Merge the preserved legacy games back into the live data
         data.maxGames = [...new Set([...(data.maxGames || []), ...preservedMaxes])];
         
         renderCabinet(data);
@@ -285,16 +279,19 @@ async function initCabinet() {
       }
     }
 
-    const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-    // Updated this to an absolute path
-    const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
-    
-    if (jsonRes.ok) {
-        const localData = await jsonRes.json();
-        const localPlayer = localData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
-        if (localPlayer && localPlayer.maxGames) {
-            renderCabinet(localPlayer);
-            return; 
+    const forceLive = urlParams.get('live') === 'true';
+
+    if (!forceLive) {
+        const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
+        const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
+        
+        if (jsonRes.ok) {
+            const localData = await jsonRes.json();
+            const localPlayer = localData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
+            if (localPlayer && localPlayer.maxGames) {
+                renderCabinet(localPlayer);
+                return; 
+            }
         }
     }
 
