@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/player/:username",
-      "destination": "/cabinet.html"
+      "destination": "/cabinet"
     }
   ]
 }
