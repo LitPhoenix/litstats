@@ -224,12 +224,19 @@ async function forceLiveFetch(uuid) {
     document.getElementById('loader').classList.remove('hidden');
     document.getElementById('errorBox').classList.add('hidden');
 
+    // 1. Snapshot legacy games before wiping the board
+    const legacyGamesList = ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"];
+    const preservedMaxes = (globalPlayerData?.maxGames || []).filter(g => legacyGamesList.includes(g));
+
     try {
         const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
         if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
         
         const data = await res.json();
         if (data.error) throw new Error(`API Error: ${data.error}`);
+        
+        // 2. Merge the preserved legacy games back into the live data
+        data.maxGames = [...new Set([...(data.maxGames || []), ...preservedMaxes])];
         
         renderCabinet(data);
     } catch (err) {
