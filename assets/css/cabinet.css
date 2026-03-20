@@ -2,55 +2,44 @@ main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 100px; display: fle
 
 .profile-card { 
   background: var(--surface); 
-  backdrop-filter: blur(24px) saturate(150%); 
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
   border: 1px solid var(--border); 
   border-top: 1px solid var(--glass-edge); 
   border-radius: 16px; 
-  padding: 32px; 
-  
-  /* NEW: Cap the width and centre it perfectly */
+  padding: 24px 32px; 
   width: 100%; 
-  max-width: 600px; 
+  max-width: 1000px; /* Wider to accommodate horizontal layout */
   margin: 0 auto 40px auto; 
-  
-  display: flex; 
-  flex-direction: column; 
-  gap: 20px; 
   box-shadow: var(--shadow); 
   position: relative; 
   overflow: hidden; 
 }
-
 .profile-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), #e23719); }
+
+.profile-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+}
+
 .player-avatar { 
-  height: 90px; 
+  height: 80px; /* Slightly smaller for inline fit */
   width: auto; 
   object-fit: contain; 
   filter: drop-shadow(0 8px 12px rgba(0,0,0,0.5)); 
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
 }
-.player-avatar:hover { transform: translateY(-4px) scale(1.05); }
 
-.player-info { flex: 1; }
-.player-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-
-/* REMOVED the hardcoded #fbbf24 gold background so your JS colours work */
-.mc-rank { 
-  font-size: 13px; 
-  font-weight: 700; 
-  line-height: 1; 
-} 
-
-/* Shrink the text slightly to match the smaller avatar */
-.player-info h1 { 
-  font-size: 28px; 
-  font-weight: 700; 
-  color: var(--text); 
-  line-height: 1; 
-  margin: 0; 
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+.player-info { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  gap: 8px;
+  flex: 1;
 }
+
+.player-name-row { display: flex; align-items: baseline; gap: 12px; }
+.player-info h1 { font-size: 32px; font-weight: 700; color: var(--text); margin: 0; line-height: 1; }
+.mc-rank { font-size: 14px; font-weight: 700; }
 
 .stat-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .stat-pill { display: inline-flex; align-items: center; background: var(--surface-2); border: 1px solid var(--border-strong); padding: 6px 12px; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; color: var(--text); }
