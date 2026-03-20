@@ -33,6 +33,11 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
+  // NEW: Global Edge Caching (Browser caches for 1 min, Vercel caches globally for 5 mins)
+  res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=600');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   const { uuid } = req.query;
