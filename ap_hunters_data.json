@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-19T23:36:03.244Z",
+  "last_update": "2026-03-20T02:31:34.437Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -773,9 +773,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 25680,
+          "current_ap": 25700,
           "last_month_ap": 25425,
-          "monthly_gain": 255,
+          "monthly_gain": 275,
           "maxGames": [
             "Max Blitz",
             "Max Bed Wars",
@@ -3205,6 +3205,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 23020,
+          "last_month_ap": 22995,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
@@ -3213,17 +3224,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 23005,
-          "last_month_ap": 22995,
-          "monthly_gain": 10,
-          "maxGames": [
-            "Max Duels"
           ]
         }
       ]
