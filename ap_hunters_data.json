@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-20T18:35:15.118Z",
+  "last_update": "2026-03-20T20:22:38.925Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -537,9 +537,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28760,
+          "current_ap": 28765,
           "last_month_ap": 28760,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Warlords",
             "Max Walls",
@@ -647,6 +647,26 @@
           ]
         },
         {
+          "username": "tormin",
+          "uuid": "dc2eaa964e0242589f2731a11aacea55",
+          "country": "USA",
+          "current_ap": 27060,
+          "last_month_ap": 26875,
+          "monthly_gain": 185,
+          "maxGames": [
+            "Max Blitz",
+            "Max Cops and Crims",
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
@@ -656,25 +676,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars"
-          ]
-        },
-        {
-          "username": "tormin",
-          "uuid": "dc2eaa964e0242589f2731a11aacea55",
-          "country": "USA",
-          "current_ap": 27045,
-          "last_month_ap": 26875,
-          "monthly_gain": 170,
-          "maxGames": [
-            "Max Blitz",
-            "Max Cops and Crims",
-            "Max SkyBlock",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -708,9 +709,9 @@
           "username": "Saucers",
           "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
           "country": "USA",
-          "current_ap": 26595,
+          "current_ap": 26600,
           "last_month_ap": 26595,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max SkyBlock",
             "Max VampireZ",
@@ -1229,15 +1230,15 @@
     },
     {
       "country": "UK",
-      "score": 9933,
+      "score": 9938,
       "top_players": [
         {
           "username": "greaneye",
           "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
           "country": "UK",
-          "current_ap": 31430,
+          "current_ap": 31435,
           "last_month_ap": 31385,
-          "monthly_gain": 45,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1247,6 +1248,7 @@
             "Max Warlords",
             "Max Walls",
             "Max TNT Games",
+            "Max Murder Mystery",
             "Max VampireZ",
             "Max Bed Wars",
             "Max TKR",
