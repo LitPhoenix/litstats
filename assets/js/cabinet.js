@@ -65,18 +65,24 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        // FIX: Grab the achievement's specific global rarity, not the game's overall progress.
-        // Falls back to 0.0 if the API backend hasn't provided the globalPercentage field.
-        let percent = ach.globalPercentage !== undefined 
-            ? Number(ach.globalPercentage).toFixed(1) 
-            : '0.0';
+        // Hide 0.0% if the API doesn't actually provide a globalPercentage
+        let percentHtml = ach.globalPercentage !== undefined && ach.globalPercentage > 0 
+            ? `<span class="ach-percent">${Number(ach.globalPercentage).toFixed(1)}%</span>` 
+            : '';
+        
+        // Handle %%value%%. If your backend provides ach.nextTierAmount or ach.target, it uses it. Otherwise "?".
+        let amountToReach = ach.nextTierAmount || ach.target || "?";
+        let parsedDesc = ach.desc.replace(/%%value%%/g, amountToReach);
         
         return `
           <div class="ach-card">
-            <span class="ach-percent">${percent}%</span>
-            <span class="ach-game">${ach.game}</span>
+            ${percentHtml}
+            <div class="ach-card-header">
+              <img src="${getGameIconUrl('Max ' + ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
+              <span class="ach-game">${ach.game}</span>
+            </div>
             <span class="ach-title">${ach.title}</span>
-            <span class="ach-desc">${ach.desc}</span>
+            <span class="ach-desc">${parsedDesc}</span>
             <span class="ach-reward">
               <img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> 
               ${ach.reward} AP
