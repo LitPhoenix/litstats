@@ -1,4 +1,5 @@
 let globalPlayerData = null;
+let activeGameFilters = new Set();
 
 function getPlusColourHex(colourName) {
     const colours = {
@@ -15,7 +16,6 @@ function formatRankText(rank, plusColour) {
     if (!rank || rank === 'NON') return '';
     const plusHex = getPlusColourHex(plusColour);
     
-    // Explicitly target Hypixel API rank strings to assign Aqua/Green properly
     if (rank === 'MVP_PLUS_PLUS' || rank.includes('++')) {
         return `<span style="color: #FFAA00; background: rgba(255, 170, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">++</span>]</span>`;
     } else if (rank === 'MVP_PLUS' || (rank.includes('+') && rank.includes('MVP'))) {
@@ -31,17 +31,33 @@ function formatRankText(rank, plusColour) {
 }
 
 function populateFilters() {
-    const select = document.getElementById('gameFilter');
-    if (!globalPlayerData || !globalPlayerData.missingAchievements) return;
+    const container = document.getElementById('gameFilterContainer');
+    if (!container || !globalPlayerData || !globalPlayerData.missingAchievements) return;
     
     const games = [...new Set(globalPlayerData.missingAchievements.map(a => a.game))].sort();
     
-    let html = `<option value="all">Games: All</option>
-                <option value="no_comp">Games: Exclude Comp (Pit, UHC, MW)</option>
-                <option disabled>──────────</option>`;
-                
-    games.forEach(g => { html += `<option value="${g}">${g}</option>`; });
-    select.innerHTML = html;
+    let html = `<div class="checkbox-grid">`;
+    games.forEach(g => { 
+        html += `
+          <label class="game-cb-label">
+            <input type="checkbox" value="${g}" onchange="toggleGameFilter(this)">
+            ${g}
+          </label>
+        `; 
+    });
+    html += `</div>`;
+    container.innerHTML = html;
+}
+
+function toggleGameFilter(checkbox) {
+    if (checkbox.checked) {
+        activeGameFilters.add(checkbox.value);
+        checkbox.parentElement.classList.add('active');
+    } else {
+        activeGameFilters.delete(checkbox.value);
+        checkbox.parentElement.classList.remove('active');
+    }
+    renderTodoGrid();
 }
 
 function renderTodoGrid() {
@@ -49,9 +65,8 @@ function renderTodoGrid() {
     if (!globalPlayerData || !globalPlayerData.missingAchievements) return;
 
     let achs = [...globalPlayerData.missingAchievements];
-    const sortVal = document.getElementById('sortFilter').value;
+    const sortVal = document.getElementById('sortFilter') ? document.getElementById('sortFilter').value : 'easiest';
 
-    // Apply Checkbox filters (If empty, show all)
     if (activeGameFilters.size > 0) {
         achs = achs.filter(a => activeGameFilters.has(a.game));
     }
@@ -67,10 +82,9 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        // Force display of 0.0% if API doesn't provide it
         let pct = ach.globalPercentage !== undefined ? Number(ach.globalPercentage).toFixed(1) : "0.0";
         let amountToReach = ach.nextTierAmount || ach.target || "?";
-        let parsedDesc = ach.desc.replace(/%%value%%/g, amountToReach);
+        let parsedDesc = ach.desc ? ach.desc.replace(/%%value%%/g, amountToReach) : "";
         
         return `
           <div class="ach-card">
@@ -138,7 +152,7 @@ function getGameIconUrl(gameName) {
 function renderCabinet(data) {
     document.title = `LitStats - ${data.username}'s Cabinet`;
     
-    // Only update the URL if they are not already on the correct native path
+    // Stop JS from overriding the address bar if Vercel already handled it
     if (!window.location.pathname.startsWith('/player/')) {
         window.history.replaceState(null, '', `/player/${data.username}`);
     }
@@ -209,86 +223,25 @@ function renderCabinet(data) {
         renderTodoGrid();
     } else if (data.missingAchievements && data.missingAchievements.length === 0) {
         document.getElementById('todo-grid').innerHTML = `<span style="color:var(--text-3); padding: 20px; width: 100%; text-align: center;">No missing achievements found, or API data incomplete.</span>`;
-    } else {
-        document.getElementById('todo-grid').innerHTML = `
-          <div style="width: 100%; text-align: center; grid-column: 1 / -1; padding: 40px;">
-            <span style="color:var(--text-3); font-size: 14px;">Achievement tracking requires live data.</span><br><br>
-            <button class="nav-btn active" style="border:none; cursor:pointer;" onclick="forceLiveFetch('${data.uuid}')">Fetch Live Data</button>
-          </div>
-        `;
     }
 
     document.getElementById('loader').classList.add('hidden');
     document.getElementById('cabinet-content').classList.remove('hidden');
 }
 
-async function forceLiveFetch(uuid) {
-    document.getElementById('cabinet-content').classList.add('hidden');
-    document.getElementById('loader').textContent = "Fetching live achievement data...";
-    document.getElementById('loader').classList.remove('hidden');
-    document.getElementById('errorBox').classList.add('hidden');
-
-    const legacyGamesList = ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"];
-    const preservedMaxes = (globalPlayerData?.maxGames || []).filter(g => legacyGamesList.includes(g));
-
-    try {
-        const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
-        if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
-        
-        const data = await res.json();
-        if (data.error) throw new Error(`API Error: ${data.error}`);
-        
-        data.maxGames = [...new Set([...(data.maxGames || []), ...preservedMaxes])];
-        
-        renderCabinet(data);
-    } catch (err) {
-        document.getElementById('loader').classList.add('hidden');
-        document.getElementById('errorBox').textContent = err.message;
-        document.getElementById('errorBox').classList.remove('hidden');
-    }
-}
-
-let activeGameFilters = new Set();
-
-function populateFilters() {
-    const container = document.getElementById('gameFilterContainer');
-    if (!globalPlayerData || !globalPlayerData.missingAchievements) return;
-    
-    const games = [...new Set(globalPlayerData.missingAchievements.map(a => a.game))].sort();
-    
-    let html = `<div class="checkbox-grid">`;
-    games.forEach(g => { 
-        html += `
-          <label class="game-cb-label">
-            <input type="checkbox" value="${g}" onchange="toggleGameFilter(this)">
-            ${g}
-          </label>
-        `; 
-    });
-    html += `</div>`;
-    container.innerHTML = html;
-}
-
-function toggleGameFilter(checkbox) {
-    if (checkbox.checked) {
-        activeGameFilters.add(checkbox.value);
-        checkbox.parentElement.classList.add('active');
-    } else {
-        activeGameFilters.delete(checkbox.value);
-        checkbox.parentElement.classList.remove('active');
-    }
-    renderTodoGrid();
-}
-
 async function initCabinet() {
-  // 1. Extract username from the native Vercel URL path (e.g. /player/oJakey)
+  // Extract URL correctly for native routing
   const pathSegments = window.location.pathname.split('/').filter(Boolean);
-  const urlParams = new URLSearchParams(window.location.search);
-  
-  let lookupId = urlParams.get('uuid'); // Fallback for old internal links
+  let lookupId = null;
 
-  if (!lookupId && pathSegments[0] === 'player' && pathSegments[1]) {
-    lookupId = pathSegments[1];
+  if (pathSegments[0] === 'player' && pathSegments[1]) {
+      lookupId = pathSegments[1];
+  }
+
+  // Fallback for direct searches or older links using query parameters
+  if (!lookupId) {
+      const urlParams = new URLSearchParams(window.location.search);
+      lookupId = urlParams.get('uuid');
   }
 
   if (!lookupId) {
@@ -307,7 +260,7 @@ async function initCabinet() {
       if (dbData.code === 'player.found') uuid = dbData.data.player.raw_id;
     }
 
-    // Phase 1: INSTANT LOCAL LOAD (Draws the card and rank immediately)
+    // Phase 1: INSTANT LOCAL LOAD
     const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
     const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
     
@@ -315,11 +268,11 @@ async function initCabinet() {
         const localData = await jsonRes.json();
         const localPlayer = localData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
         if (localPlayer && localPlayer.maxGames) {
-            renderCabinet(localPlayer);
+            renderCabinet(localPlayer); 
         }
     }
 
-    // Phase 2: FORCED LIVE API FETCH (Runs automatically every visit)
+    // Phase 2: AUTOMATIC LIVE FETCH
     document.getElementById('loader').textContent = "Fetching live network data...";
     document.getElementById('loader').classList.remove('hidden');
 
@@ -329,7 +282,7 @@ async function initCabinet() {
     const data = await res.json();
     if (data.error) throw new Error(`API Error: ${data.error}`);
 
-    // Preserve legacy games
+    // Snapshot legacy games
     const legacyGamesList = ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"];
     const preservedMaxes = (globalPlayerData?.maxGames || []).filter(g => legacyGamesList.includes(g));
     data.maxGames = [...new Set([...(data.maxGames || []), ...preservedMaxes])];
