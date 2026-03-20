@@ -132,7 +132,6 @@ function goToCabinet() {
 async function loadMiniLeaderboard() {
     try {
         const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-        // FIX: Added leading slash so it always checks the root directory
         const res = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
         const data = await res.json();
         
@@ -146,21 +145,30 @@ async function loadMiniLeaderboard() {
         
         const top5 = uniquePlayers.slice(0, 5);
         
-        const html = top5.map((p, index) => `
-            <div class="mini-row">
-            <span class="mini-rank">${index + 1}</span>
-            <img src="https://minotar.net/helm/${p.username}/32" alt="${p.username} avatar">
-            <span style="font-weight:600; font-size:14px; color: var(--text);">${p.username}</span>
-            <span class="mini-ap">${p.achievementPoints.toLocaleString()}</span>
-            </div>
-        `).join('');
+        const html = `
+          <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <tbody>
+              ${top5.map((p, index) => `
+                <tr style="border-bottom: 1px solid var(--border); transition: 0.2s;">
+                  <td style="padding: 12px 16px; width: 40px; color: var(--text-3); font-weight: 700;">#${index + 1}</td>
+                  <td style="padding: 12px 16px; display: flex; align-items: center; gap: 12px;">
+                    <img src="https://minotar.net/helm/${p.username}/32" style="width: 24px; border-radius: 4px;">
+                    <span style="font-weight: 600; color: var(--text);">${p.username}</span>
+                  </td>
+                  <td style="padding: 12px 16px; font-weight: 700; color: var(--accent); text-align: right;">
+                    ${p.achievementPoints.toLocaleString()} AP
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
         
         document.getElementById('mini-lb-content').innerHTML = html;
+        // Make the overlay button point to the newly renamed leaderboard
+        document.querySelector('.view-more-btn').href = "leaderboard.html";
     } catch (err) {
-        document.getElementById('mini-lb-content').innerHTML = `<div style="padding: 32px 24px 60px; color: var(--red); font-weight: 600; font-size: 14px; text-align: center;">Failed to load player data.</div>`;
-        
-        const overlay = document.querySelector('.fade-overlay');
-        if (overlay) overlay.style.display = 'none';
+        document.getElementById('mini-lb-content').innerHTML = `<div style="padding: 32px 24px; color: var(--red); font-weight: 600; text-align: center;">Failed to map leaderboard data.</div>`;
     }
 }
 loadMiniLeaderboard();
