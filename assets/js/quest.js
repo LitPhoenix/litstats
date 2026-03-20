@@ -248,9 +248,11 @@ function renderNextCountriesBatch() {
 async function loadData() {
   try {
     const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-    const res = await fetch(`questers_data.json?v=${currentHour}`);
     
-    if (!res.ok) throw new Error('Data fetch failed');
+    // FIX: Added the leading slash so it explicitly looks in the root directory
+    const res = await fetch(`/questers_data.json?v=${currentHour}`);
+    
+    if (!res.ok) throw new Error(`HTTP Error ${res.status}: File missing or blocked`);
     currentData = await res.json();
     
     const tempPlayers = currentData.country_leaderboard.flatMap(c => c.top_players.map(p => ({...p, country: c.country})));
@@ -297,8 +299,13 @@ async function loadData() {
     initPlayersRender(allPlayersList);
     initCountriesRender(processedCountries);
   } catch (err) {
+    // FIX: Print the exact Javascript error to the screen so we stop guessing
+    console.error(err);
     document.getElementById('players-loading').classList.add('hidden');
-    document.getElementById('players-error').classList.remove('hidden');
+    
+    const errBox = document.getElementById('players-error');
+    errBox.textContent = `System Error: ${err.message}. Check console for details.`;
+    errBox.classList.remove('hidden');
   }
 }
 
