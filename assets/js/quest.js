@@ -88,7 +88,7 @@ function renderQuestStatsHTML(container, data, uuid) {
     if (filteredQuests.length > 0) {
         filteredQuests.forEach((q) => {
           // FIX B: Replace medal emojis with the xp image
-          html += `<div class="stat-pill"><span><img src="img/games/xp.png" alt="EXP" style="width: 14px; height: 14px; object-fit: contain; vertical-align: middle; margin-right: 4px;"> ${q.game}</span> <b>${fmt(q.count)}</b></div>`;
+          html += `<div class="stat-pill"><span><img src="img/xp.png" alt="EXP" style="width: 14px; height: 14px; object-fit: contain; vertical-align: middle; margin-right: 4px;"> ${q.game}</span> <b>${fmt(q.count)}</b></div>`;
         });
     } else {
         html += `<span style="color:var(--text-3); font-size:12px;">No specific game quest data available.</span>`;
