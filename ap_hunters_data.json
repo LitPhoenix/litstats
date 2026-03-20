@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-20T20:22:38.925Z",
+  "last_update": "2026-03-20T22:19:19.932Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1475,15 +1475,15 @@
     },
     {
       "country": "Denmark",
-      "score": 9223,
+      "score": 9238,
       "top_players": [
         {
           "username": "tobias49",
           "uuid": "24132c1e1e504da499e1c2953880acd9",
           "country": "Denmark",
-          "current_ap": 32145,
+          "current_ap": 32160,
           "last_month_ap": 32145,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Pit",
             "Max Mega Walls",
@@ -1747,7 +1747,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8166,
+      "score": 8169,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1811,9 +1811,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 26395,
+          "current_ap": 26420,
           "last_month_ap": 25895,
-          "monthly_gain": 500,
+          "monthly_gain": 525,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2790,9 +2790,9 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 24495,
+          "current_ap": 24500,
           "last_month_ap": 24115,
-          "monthly_gain": 380,
+          "monthly_gain": 385,
           "maxGames": [
             "Max Murder Mystery",
             "Max VampireZ",
@@ -3076,9 +3076,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 23625,
+          "current_ap": 23640,
           "last_month_ap": 23300,
-          "monthly_gain": 325,
+          "monthly_gain": 340,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
