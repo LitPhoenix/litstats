@@ -230,3 +230,16 @@ body:not([data-theme="dark"]) .expanded-content {
 body:not([data-theme="dark"]) .expanded-row td {
   color: var(--text);
 }
+
+.table-inner table, 
+#players-table, 
+#countries-table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.table-inner th, 
+.table-inner td {
+  border-left: none !important;
+  border-right: none !important;
+}
