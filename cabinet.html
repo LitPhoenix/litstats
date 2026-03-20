@@ -67,24 +67,28 @@
         </div>
       </div>
 
-      <div class="cabinet-wrapper" id="cabinet-grid"></div>
+      <div class="split-layout">
+        
+        <div class="cabinet-wrapper" id="cabinet-grid"></div>
 
-      <div class="todo-section">
-        <div class="todo-header">
-          <h2>Target Priorities</h2>
-          <div class="todo-controls">
-            <select id="sortFilter" class="todo-select" onchange="renderTodoGrid()">
-              <option value="easiest">Sort: Easiest First</option>
-              <option value="hardest">Sort: Hardest First</option>
-            </select>
-            <select id="gameFilter" class="todo-select" onchange="renderTodoGrid()">
-              <option value="all">Games: All</option>
-              <option value="no_comp">Games: Exclude Comp (Pit, UHC, MW)</option>
-            </select>
+        <div class="todo-section">
+          <div class="todo-header">
+            <h2>Target Priorities</h2>
+            <div class="todo-controls">
+              <select id="sortFilter" class="todo-select" onchange="renderTodoGrid()">
+                <option value="easiest">Sort: Easiest First</option>
+                <option value="hardest">Sort: Hardest First</option>
+              </select>
+              <select id="gameFilter" class="todo-select" onchange="renderTodoGrid()">
+                <option value="all">Games: All</option>
+                <option value="no_comp">Games: Exclude Comp (Pit, UHC, MW)</option>
+              </select>
+            </div>
           </div>
+
+          <div class="ach-grid" id="todo-grid"></div>
         </div>
 
-        <div class="ach-grid" id="todo-grid"></div>
       </div>
 
     </div>
