@@ -281,27 +281,33 @@ function toggleGameFilter(checkbox) {
 }
 
 async function initCabinet() {
+  // 1. Extract username from the native Vercel URL path (e.g. /player/oJakey)
+  const pathSegments = window.location.pathname.split('/').filter(Boolean);
   const urlParams = new URLSearchParams(window.location.search);
-  let lookupId = urlParams.get('uuid');
+  
+  let lookupId = urlParams.get('uuid'); // Fallback for old internal links
 
-  if (!lookupId || lookupId === "undefined") {
-    const pathSegments = window.location.pathname.split('/').filter(Boolean);
-    if ((pathSegments[0] === 'cabinet' || pathSegments[0] === 'player') && pathSegments[1]) {
-      lookupId = pathSegments[1];
-    }
+  if (!lookupId && pathSegments[0] === 'player' && pathSegments[1]) {
+    lookupId = pathSegments[1];
   }
 
-  if (!lookupId || lookupId === "undefined") return;
+  if (!lookupId) {
+    document.getElementById('loader').classList.add('hidden');
+    document.getElementById('errorBox').textContent = "No valid player provided.";
+    document.getElementById('errorBox').classList.remove('hidden');
+    return;
+  }
 
   try {
     let uuid = lookupId;
     if (lookupId.length <= 16) {
+      document.getElementById('loader').textContent = "Resolving username...";
       const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${lookupId}`);
       const dbData = await dbRes.json();
       if (dbData.code === 'player.found') uuid = dbData.data.player.raw_id;
     }
 
-    // Phase 1: INSTANT LOCAL LOAD
+    // Phase 1: INSTANT LOCAL LOAD (Draws the card and rank immediately)
     const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
     const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
     
@@ -309,30 +315,31 @@ async function initCabinet() {
         const localData = await jsonRes.json();
         const localPlayer = localData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
         if (localPlayer && localPlayer.maxGames) {
-            renderCabinet(localPlayer); // Renders skeleton and rank instantly
+            renderCabinet(localPlayer);
         }
     }
 
-    // Phase 2: AUTOMATIC LIVE FETCH (Runs silently in background)
-    document.getElementById('loader').textContent = "Updating live target priorities...";
+    // Phase 2: FORCED LIVE API FETCH (Runs automatically every visit)
+    document.getElementById('loader').textContent = "Fetching live network data...";
     document.getElementById('loader').classList.remove('hidden');
 
     const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
-    if (res.status !== 429) {
-        const data = await res.json();
-        if (!data.error) {
-            // Snapshot legacy games before overwriting
-            const legacyGamesList = ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"];
-            const preservedMaxes = (globalPlayerData?.maxGames || []).filter(g => legacyGamesList.includes(g));
-            data.maxGames = [...new Set([...(data.maxGames || []), ...preservedMaxes])];
-            
-            renderCabinet(data); // Re-renders with full achievements
-        }
-    }
-    document.getElementById('loader').classList.add('hidden');
+    if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
+    
+    const data = await res.json();
+    if (data.error) throw new Error(`API Error: ${data.error}`);
+
+    // Preserve legacy games
+    const legacyGamesList = ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"];
+    const preservedMaxes = (globalPlayerData?.maxGames || []).filter(g => legacyGamesList.includes(g));
+    data.maxGames = [...new Set([...(data.maxGames || []), ...preservedMaxes])];
+    
+    renderCabinet(data);
 
   } catch (err) {
     document.getElementById('loader').classList.add('hidden');
+    document.getElementById('errorBox').textContent = err.message;
+    document.getElementById('errorBox').classList.remove('hidden');
   }
 }
 
