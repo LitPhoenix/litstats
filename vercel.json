@@ -2,8 +2,8 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/player/(.*)",
-      "destination": "/cabinet.html"
+      "source": "/player/:username",
+      "destination": "/cabinet.html?uuid=:username"
     }
   ]
 }
