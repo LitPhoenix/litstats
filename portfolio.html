@@ -118,13 +118,14 @@
   <script src="assets/js/global.js"></script>
   <script src="assets/js/credits.js"></script>
   <script>
+    
 function goToCabinet() {
     const val = document.getElementById('portSearch').value.trim();
     const err = document.getElementById('portError');
     if (!val) { err.textContent = "Please enter a username."; err.style.display = "block"; return; }
     
-    // The foolproof alternative: standard query parameters
-    window.location.href = `/cabinet?uuid=${val}`;
+    // Uses the True URL and adds a live fetch flag
+    window.location.href = `/player/${val}?live=true`;
 }
 
 // Mini Leaderboard Logic
