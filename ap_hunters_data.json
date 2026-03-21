@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-20T22:19:19.932Z",
+  "last_update": "2026-03-21T01:07:04.862Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2932,6 +2932,19 @@
           ]
         },
         {
+          "username": "nonoooooooo",
+          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+          "country": "Unknown",
+          "current_ap": 24730,
+          "last_month_ap": 24660,
+          "monthly_gain": 70,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Sunta",
           "uuid": "c7b1528ce5604302a279c16e7e135038",
           "country": "Unknown",
@@ -2945,19 +2958,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "nonoooooooo",
-          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
-          "country": "Unknown",
-          "current_ap": 24700,
-          "last_month_ap": 24660,
-          "monthly_gain": 40,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Duels"
           ]
         },
         {
