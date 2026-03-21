@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-21T14:19:35.641Z",
+  "last_update": "2026-03-21T16:19:09.245Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -578,11 +578,12 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 27665,
+          "current_ap": 27690,
           "last_month_ap": 27570,
-          "monthly_gain": 95,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Pit",
+            "Max SkyWars",
             "Max SkyBlock",
             "Max Murder Mystery",
             "Max Bed Wars",
