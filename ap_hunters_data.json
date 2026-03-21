@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-21T16:19:09.245Z",
+  "last_update": "2026-03-21T18:30:44.455Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12504,
+      "score": 12485,
       "top_players": [
         {
           "username": "oJakey",
@@ -390,32 +390,7 @@
           "current_ap": 32475,
           "last_month_ap": 32475,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Pit",
-            "Max Mega Walls",
-            "Max SkyWars",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "vasiv",
@@ -424,32 +399,7 @@
           "current_ap": 32320,
           "last_month_ap": 32320,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max SkyWars",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal",
-            "Max Crazy Walls",
-            "Max SkyClash"
-          ]
+          "maxGames": []
         },
         {
           "username": "Dragons",
@@ -458,42 +408,16 @@
           "current_ap": 30735,
           "last_month_ap": 30735,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 29825,
+          "current_ap": 29630,
           "last_month_ap": 29570,
-          "monthly_gain": 255,
-          "maxGames": [
-            "Max UHC",
-            "Max Pit",
-            "Max Blitz",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
+          "monthly_gain": 60,
+          "maxGames": []
         },
         {
           "username": "Cabbiss",
@@ -502,18 +426,7 @@
           "current_ap": 29445,
           "last_month_ap": 29445,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Quake",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "Physiological",
@@ -522,32 +435,16 @@
           "current_ap": 29200,
           "last_month_ap": 29200,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Blitz",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28765,
+          "current_ap": 28760,
           "last_month_ap": 28760,
-          "monthly_gain": 5,
-          "maxGames": [
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Rcnnie",
@@ -556,11 +453,7 @@
           "current_ap": 28060,
           "last_month_ap": 28060,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "Boogatomyooga",
@@ -569,10 +462,7 @@
           "current_ap": 27940,
           "last_month_ap": 27700,
           "monthly_gain": 240,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "righter",
@@ -581,46 +471,16 @@
           "current_ap": 27690,
           "last_month_ap": 27570,
           "monthly_gain": 120,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyWars",
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "rory2",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27505,
+          "current_ap": 27485,
           "last_month_ap": 27440,
-          "monthly_gain": 65,
-          "maxGames": [
-            "Max Blitz",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "sirumair9505",
-          "uuid": "77edb6fda6ef4097914ddc698242fe04",
-          "country": "USA",
-          "current_ap": 27470,
-          "last_month_ap": 27295,
-          "monthly_gain": 175,
-          "maxGames": [
-            "Max Cops and Crims",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Seasonal"
-          ]
+          "monthly_gain": 45,
+          "maxGames": []
         },
         {
           "username": "C4PS",
@@ -629,12 +489,7 @@
           "current_ap": 27350,
           "last_month_ap": 27350,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "baseballaholic",
@@ -643,29 +498,16 @@
           "current_ap": 27320,
           "last_month_ap": 27320,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
-          "username": "tormin",
-          "uuid": "dc2eaa964e0242589f2731a11aacea55",
+          "username": "sirumair9505",
+          "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27060,
-          "last_month_ap": 26875,
-          "monthly_gain": 185,
-          "maxGames": [
-            "Max Blitz",
-            "Max Cops and Crims",
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "current_ap": 27295,
+          "last_month_ap": 27295,
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Kyralicious",
@@ -674,10 +516,16 @@
           "current_ap": 27050,
           "last_month_ap": 27050,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars"
-          ]
+          "maxGames": []
+        },
+        {
+          "username": "tormin",
+          "uuid": "dc2eaa964e0242589f2731a11aacea55",
+          "country": "USA",
+          "current_ap": 27045,
+          "last_month_ap": 26875,
+          "monthly_gain": 170,
+          "maxGames": []
         },
         {
           "username": "hjx",
@@ -686,60 +534,34 @@
           "current_ap": 26800,
           "last_month_ap": 26800,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Build Battle"
-          ]
+          "maxGames": []
         },
         {
           "username": "Mazk",
           "uuid": "059abcc217c2422f9d9f92e8dea2e607",
           "country": "USA",
-          "current_ap": 26755,
+          "current_ap": 26740,
           "last_month_ap": 26740,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max Blitz",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Saucers",
           "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
           "country": "USA",
-          "current_ap": 26600,
+          "current_ap": 26595,
           "last_month_ap": 26595,
-          "monthly_gain": 5,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Seasonal"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26475,
+          "current_ap": 26300,
           "last_month_ap": 26160,
-          "monthly_gain": 315,
-          "maxGames": [
-            "Max Warlords",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "monthly_gain": 140,
+          "maxGames": []
         },
         {
           "username": "Coduhy",
@@ -748,14 +570,7 @@
           "current_ap": 25935,
           "last_month_ap": 25935,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
-          ]
+          "maxGames": []
         },
         {
           "username": "Pocketing",
@@ -764,27 +579,7 @@
           "current_ap": 25825,
           "last_month_ap": 25825,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Speed UHC",
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "SnowmanHaqs",
-          "uuid": "cf0e056bfae246f48053bd7979772f63",
-          "country": "USA",
-          "current_ap": 25715,
-          "last_month_ap": 25425,
-          "monthly_gain": 290,
-          "maxGames": [
-            "Max Blitz",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "NickIsOffline",
@@ -793,29 +588,16 @@
           "current_ap": 25675,
           "last_month_ap": 25675,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Warlords",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "lyraava",
           "uuid": "6d84e8ed95b3452095221594b9e448fe",
           "country": "USA",
-          "current_ap": 25570,
+          "current_ap": 25560,
           "last_month_ap": 25405,
-          "monthly_gain": 165,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "monthly_gain": 155,
+          "maxGames": []
         },
         {
           "username": "Colerer",
@@ -824,11 +606,7 @@
           "current_ap": 25550,
           "last_month_ap": 25550,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Blitz",
-            "Max Walls",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "JurassicBox",
@@ -837,10 +615,7 @@
           "current_ap": 25485,
           "last_month_ap": 25485,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "kipanator",
@@ -849,13 +624,16 @@
           "current_ap": 25435,
           "last_month_ap": 25270,
           "monthly_gain": 165,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
+        },
+        {
+          "username": "SnowmanHaqs",
+          "uuid": "cf0e056bfae246f48053bd7979772f63",
+          "country": "USA",
+          "current_ap": 25425,
+          "last_month_ap": 25425,
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "needycatboy",
@@ -864,10 +642,7 @@
           "current_ap": 25405,
           "last_month_ap": 25310,
           "monthly_gain": 95,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "nrteu",
@@ -876,10 +651,7 @@
           "current_ap": 24775,
           "last_month_ap": 24775,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "combatively",
@@ -888,9 +660,7 @@
           "current_ap": 24600,
           "last_month_ap": 24550,
           "monthly_gain": 50,
-          "maxGames": [
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "ImWolf85",
@@ -899,10 +669,7 @@
           "current_ap": 24445,
           "last_month_ap": 24445,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Speed UHC",
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "animethighs68",
@@ -911,12 +678,7 @@
           "current_ap": 24200,
           "last_month_ap": 24200,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Crazy Walls"
-          ]
+          "maxGames": []
         },
         {
           "username": "recordheat",
@@ -925,14 +687,7 @@
           "current_ap": 24135,
           "last_month_ap": 24135,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Blitz",
-            "Max Paintball",
-            "Max Quake",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "SeaOtterFan",
@@ -941,26 +696,16 @@
           "current_ap": 24130,
           "last_month_ap": 24110,
           "monthly_gain": 20,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "ILoveMyDoggo2",
           "uuid": "9d98449f501a47359a05534728c621c1",
           "country": "USA",
-          "current_ap": 24060,
+          "current_ap": 24095,
           "last_month_ap": 24060,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "monthly_gain": 35,
+          "maxGames": []
         },
         {
           "username": "goyslopper_",
@@ -969,11 +714,7 @@
           "current_ap": 23965,
           "last_month_ap": 23965,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
-          ]
+          "maxGames": []
         },
         {
           "username": "A0E",
@@ -982,24 +723,16 @@
           "current_ap": 23835,
           "last_month_ap": 23835,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyWars",
-            "Max Walls"
-          ]
+          "maxGames": []
         },
         {
           "username": "Pqssible",
           "uuid": "9872248cdad742f785657dbf78d9c756",
           "country": "USA",
-          "current_ap": 23400,
+          "current_ap": 23390,
           "last_month_ap": 23400,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Seasonal"
-          ]
+          "monthly_gain": -10,
+          "maxGames": []
         },
         {
           "username": "oBeastia",
@@ -1008,10 +741,7 @@
           "current_ap": 23140,
           "last_month_ap": 23140,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Quake",
-            "Max Bed Wars"
-          ]
+          "maxGames": []
         },
         {
           "username": "Saubt",
@@ -1029,11 +759,7 @@
           "current_ap": 22950,
           "last_month_ap": 22950,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Blitz",
-            "Max Bed Wars",
-            "Max Duels"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -1048,31 +774,7 @@
           "current_ap": 32400,
           "last_month_ap": 32400,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Pit",
-            "Max Mega Walls",
-            "Max SkyWars",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "ErtrycheZ",
@@ -1081,24 +783,7 @@
           "current_ap": 31595,
           "last_month_ap": 31500,
           "monthly_gain": 95,
-          "maxGames": [
-            "Max Pit",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "Thomas1665",
@@ -1107,13 +792,7 @@
           "current_ap": 28815,
           "last_month_ap": 28815,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "Posey",
@@ -1122,17 +801,7 @@
           "current_ap": 28655,
           "last_month_ap": 28655,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "xPeyo",
@@ -1141,15 +810,7 @@
           "current_ap": 28260,
           "last_month_ap": 28260,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Walls",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "Uleb",
@@ -1158,11 +819,7 @@
           "current_ap": 27125,
           "last_month_ap": 27115,
           "monthly_gain": 10,
-          "maxGames": [
-            "Max TKR",
-            "Max Duels",
-            "Max Build Battle"
-          ]
+          "maxGames": []
         },
         {
           "username": "enoitna",
@@ -1171,30 +828,16 @@
           "current_ap": 26815,
           "last_month_ap": 26815,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
-          "username": "horri",
+          "username": "horrifying",
           "uuid": "04f4bddb99004950ab605a20f41c6a98",
           "country": "France",
-          "current_ap": 26070,
+          "current_ap": 26065,
           "last_month_ap": 26065,
-          "monthly_gain": 5,
-          "maxGames": [
-            "Max Blitz",
-            "Max SkyBlock",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Charcutier",
@@ -1203,16 +846,7 @@
           "current_ap": 25050,
           "last_month_ap": 25050,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "KaoriMiyazono",
@@ -1221,43 +855,22 @@
           "current_ap": 23830,
           "last_month_ap": 23830,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
-          ]
+          "maxGames": []
         }
       ]
     },
     {
       "country": "UK",
-      "score": 9938,
+      "score": 9933,
       "top_players": [
         {
           "username": "greaneye",
           "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
           "country": "UK",
-          "current_ap": 31435,
+          "current_ap": 31430,
           "last_month_ap": 31385,
-          "monthly_gain": 50,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal",
-            "Max SkyClash"
-          ]
+          "monthly_gain": 45,
+          "maxGames": []
         },
         {
           "username": "XandaPandaMC",
@@ -1266,18 +879,7 @@
           "current_ap": 30295,
           "last_month_ap": 30295,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "litphoenix",
@@ -1286,11 +888,7 @@
           "current_ap": 29070,
           "last_month_ap": 28850,
           "monthly_gain": 220,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR",
-            "Max Build Battle"
-          ]
+          "maxGames": []
         },
         {
           "username": "60c",
@@ -1299,16 +897,7 @@
           "current_ap": 29065,
           "last_month_ap": 29055,
           "monthly_gain": 10,
-          "maxGames": [
-            "Max Blitz",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Crazy Walls"
-          ]
+          "maxGames": []
         },
         {
           "username": "Evdia",
@@ -1317,14 +906,7 @@
           "current_ap": 29025,
           "last_month_ap": 29020,
           "monthly_gain": 5,
-          "maxGames": [
-            "Max Mega Walls",
-            "Max Blitz",
-            "Max SkyBlock",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "Fossilised",
@@ -1333,10 +915,7 @@
           "current_ap": 26755,
           "last_month_ap": 26715,
           "monthly_gain": 40,
-          "maxGames": [
-            "Max Warlords",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "KyRant",
@@ -1345,18 +924,7 @@
           "current_ap": 26080,
           "last_month_ap": 26080,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max Quake",
-            "Max Walls",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "puffleman3",
@@ -1365,9 +933,7 @@
           "current_ap": 25735,
           "last_month_ap": 25725,
           "monthly_gain": 10,
-          "maxGames": [
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "JinxRaider23",
@@ -1376,12 +942,7 @@
           "current_ap": 25520,
           "last_month_ap": 25520,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games"
-          ]
+          "maxGames": []
         },
         {
           "username": "Dyrh",
@@ -1390,11 +951,7 @@
           "current_ap": 25470,
           "last_month_ap": 25470,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "Questologist",
@@ -1403,14 +960,7 @@
           "current_ap": 24635,
           "last_month_ap": 24620,
           "monthly_gain": 15,
-          "maxGames": [
-            "Max Paintball",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games"
-          ]
+          "maxGames": []
         },
         {
           "username": "martinbelike",
@@ -1419,9 +969,7 @@
           "current_ap": 24315,
           "last_month_ap": 24315,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Mega Walls"
-          ]
+          "maxGames": []
         },
         {
           "username": "alpanyahu",
@@ -1430,21 +978,25 @@
           "current_ap": 23785,
           "last_month_ap": 23715,
           "monthly_gain": 70,
-          "maxGames": [
-            "Max Paintball"
-          ]
+          "maxGames": []
         },
         {
           "username": "Woomy",
           "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
           "country": "UK",
-          "current_ap": 23280,
+          "current_ap": 23375,
           "last_month_ap": 23280,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max TKR"
-          ]
+          "monthly_gain": 95,
+          "maxGames": []
+        },
+        {
+          "username": "CelsiusPeachVibe",
+          "uuid": "9899b3edf2364d318fe33c7278a2d4a8",
+          "country": "UK",
+          "current_ap": 23145,
+          "last_month_ap": 22820,
+          "monthly_gain": 325,
+          "maxGames": []
         },
         {
           "username": "xRyann_",
@@ -1453,24 +1005,7 @@
           "current_ap": 23065,
           "last_month_ap": 23065,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "CelsiusPeachVibe",
-          "uuid": "9899b3edf2364d318fe33c7278a2d4a8",
-          "country": "UK",
-          "current_ap": 22820,
-          "last_month_ap": 22820,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -1485,30 +1020,7 @@
           "current_ap": 32160,
           "last_month_ap": 32145,
           "monthly_gain": 15,
-          "maxGames": [
-            "Max Pit",
-            "Max Mega Walls",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "STAYEZ",
@@ -1517,21 +1029,7 @@
           "current_ap": 30370,
           "last_month_ap": 30315,
           "monthly_gain": 55,
-          "maxGames": [
-            "Max SkyWars",
-            "Max Blitz",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "ciyp",
@@ -1540,9 +1038,7 @@
           "current_ap": 23570,
           "last_month_ap": 23570,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -1557,25 +1053,7 @@
           "current_ap": 30980,
           "last_month_ap": 30980,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyWars",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
-          ]
+          "maxGames": []
         },
         {
           "username": "Andorite",
@@ -1584,15 +1062,7 @@
           "current_ap": 29490,
           "last_month_ap": 29410,
           "monthly_gain": 80,
-          "maxGames": [
-            "Max Warlords",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
-          ]
+          "maxGames": []
         },
         {
           "username": "enderdrxgon",
@@ -1601,28 +1071,16 @@
           "current_ap": 27940,
           "last_month_ap": 27940,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
-          "username": "FeedLiloToMarcel",
+          "username": "5beve",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
           "current_ap": 26815,
           "last_month_ap": 26780,
           "monthly_gain": 35,
-          "maxGames": [
-            "Max TNT Games",
-            "Max Bed Wars",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "DetectiveAndrew",
@@ -1631,10 +1089,7 @@
           "current_ap": 26585,
           "last_month_ap": 26585,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Mega Walls",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "mm_dm",
@@ -1643,15 +1098,7 @@
           "current_ap": 26010,
           "last_month_ap": 25970,
           "monthly_gain": 40,
-          "maxGames": [
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Build Battle"
-          ]
+          "maxGames": []
         },
         {
           "username": "adjective_n0un",
@@ -1660,22 +1107,7 @@
           "current_ap": 25030,
           "last_month_ap": 24875,
           "monthly_gain": 155,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyBlock"
-          ]
-        },
-        {
-          "username": "Crooder",
-          "uuid": "266b09b979a345909824aa9d31ffe8ba",
-          "country": "Canada",
-          "current_ap": 25015,
-          "last_month_ap": 25015,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "BenOuiMaxi",
@@ -1684,10 +1116,7 @@
           "current_ap": 25010,
           "last_month_ap": 25010,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "Hailette",
@@ -1696,12 +1125,16 @@
           "current_ap": 24910,
           "last_month_ap": 24910,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Quake",
-            "Max Warlords",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
+          "maxGames": []
+        },
+        {
+          "username": "Crooder",
+          "uuid": "266b09b979a345909824aa9d31ffe8ba",
+          "country": "Canada",
+          "current_ap": 24765,
+          "last_month_ap": 25015,
+          "monthly_gain": -250,
+          "maxGames": []
         },
         {
           "username": "Brano",
@@ -1710,13 +1143,7 @@
           "current_ap": 24715,
           "last_month_ap": 24715,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "pehi",
@@ -1725,30 +1152,22 @@
           "current_ap": 24000,
           "last_month_ap": 24000,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "mohtele",
           "uuid": "bde72daebb4640ae90ee096f26bb5f85",
           "country": "Canada",
-          "current_ap": 23455,
+          "current_ap": 23415,
           "last_month_ap": 23415,
-          "monthly_gain": 40,
-          "maxGames": [
-            "Max SkyBlock"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "The Netherlands",
-      "score": 8169,
+      "score": 8116,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1757,25 +1176,7 @@
           "current_ap": 31970,
           "last_month_ap": 31915,
           "monthly_gain": 55,
-          "maxGames": [
-            "Max Pit",
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "Paskwal",
@@ -1784,16 +1185,7 @@
           "current_ap": 27870,
           "last_month_ap": 27870,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "Ownerd",
@@ -1802,27 +1194,16 @@
           "current_ap": 26470,
           "last_month_ap": 26470,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Blitz",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 26420,
+          "current_ap": 25895,
           "last_month_ap": 25895,
-          "monthly_gain": 525,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Kinderfeest",
@@ -1831,12 +1212,7 @@
           "current_ap": 25475,
           "last_month_ap": 25460,
           "monthly_gain": 15,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyBlock",
-            "Max Bed Wars",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "SvenTerror",
@@ -1845,26 +1221,16 @@
           "current_ap": 25210,
           "last_month_ap": 25210,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max SkyClash"
-          ]
+          "maxGames": []
         },
         {
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24320,
+          "current_ap": 24295,
           "last_month_ap": 24220,
-          "monthly_gain": 100,
-          "maxGames": [
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max Duels"
-          ]
+          "monthly_gain": 75,
+          "maxGames": []
         },
         {
           "username": "Warido37",
@@ -1882,15 +1248,13 @@
           "current_ap": 23100,
           "last_month_ap": 23100,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Russia",
-      "score": 7140,
+      "score": 6973,
       "top_players": [
         {
           "username": "anrie",
@@ -1899,44 +1263,16 @@
           "current_ap": 32270,
           "last_month_ap": 32155,
           "monthly_gain": 115,
-          "maxGames": [
-            "Max UHC",
-            "Max Pit",
-            "Max Mega Walls",
-            "Max SkyWars",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "bubulS",
           "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
           "country": "Russia",
-          "current_ap": 25955,
+          "current_ap": 25620,
           "last_month_ap": 25620,
-          "monthly_gain": 335,
-          "maxGames": [
-            "Max Pit",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Seasonal"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Kqnfetka",
@@ -1945,11 +1281,7 @@
           "current_ap": 24475,
           "last_month_ap": 24475,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Speed UHC",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "morof",
@@ -1958,16 +1290,13 @@
           "current_ap": 24230,
           "last_month_ap": 24230,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Germany",
-      "score": 6915,
+      "score": 6905,
       "top_players": [
         {
           "username": "NightMan976",
@@ -1976,39 +1305,16 @@
           "current_ap": 30710,
           "last_month_ap": 30710,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Mega Walls",
-            "Max Smash Heroes",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
-          ]
+          "maxGames": []
         },
         {
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28415,
+          "current_ap": 28395,
           "last_month_ap": 28395,
-          "monthly_gain": 20,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max SkyBlock",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Smappy",
@@ -2017,29 +1323,22 @@
           "current_ap": 25825,
           "last_month_ap": 25825,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Wool Games"
-          ]
+          "maxGames": []
         },
         {
           "username": "Niko702",
           "uuid": "40884fdda30c4c26ba00abef570469e0",
           "country": "Germany",
-          "current_ap": 25340,
+          "current_ap": 25310,
           "last_month_ap": 25310,
-          "monthly_gain": 30,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Warlords",
-            "Max Seasonal"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Serbia",
-      "score": 6380,
+      "score": 6333,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2048,36 +1347,16 @@
           "current_ap": 30845,
           "last_month_ap": 30845,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR",
-            "Max SkyClash"
-          ]
+          "maxGames": []
         },
         {
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27285,
+          "current_ap": 27190,
           "last_month_ap": 27190,
-          "monthly_gain": 95,
-          "maxGames": [
-            "Max Mega Walls",
-            "Max Paintball",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Misqu",
@@ -2086,15 +1365,7 @@
           "current_ap": 24065,
           "last_month_ap": 24065,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max SkyClash"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -2109,22 +1380,7 @@
           "current_ap": 30580,
           "last_month_ap": 30490,
           "monthly_gain": 90,
-          "maxGames": [
-            "Max Pit",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -2133,24 +1389,13 @@
       "score": 5130,
       "top_players": [
         {
-          "username": "sillykittymeowww",
+          "username": "uDreamt",
           "uuid": "4b5257d509bc460f8a82a79510f17fc9",
           "country": "Poland",
           "current_ap": 30535,
           "last_month_ap": 30535,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Mega Walls",
-            "Max Paintball",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "zabolec",
@@ -2159,21 +1404,16 @@
           "current_ap": 23590,
           "last_month_ap": 23590,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "Paczuszka",
           "uuid": "6be718564437499fbb6242e17fbaa0c3",
           "country": "Poland",
-          "current_ap": 23455,
+          "current_ap": 23435,
           "last_month_ap": 23455,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max TKR"
-          ]
+          "monthly_gain": -20,
+          "maxGames": []
         },
         {
           "username": "rvba",
@@ -2182,88 +1422,6 @@
           "current_ap": 23180,
           "last_month_ap": 23410,
           "monthly_gain": -230,
-          "maxGames": [
-            "Max Paintball"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Israel",
-      "score": 3979,
-      "top_players": [
-        {
-          "username": "eliadbg",
-          "uuid": "56b991d1a9c243d7984df6e6a409cd59",
-          "country": "Israel",
-          "current_ap": 28340,
-          "last_month_ap": 28260,
-          "monthly_gain": 80,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Quake",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "Kickuxer",
-          "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
-          "country": "Israel",
-          "current_ap": 27130,
-          "last_month_ap": 27130,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Speed UHC",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "TinyRex",
-          "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
-          "country": "Israel",
-          "current_ap": 26130,
-          "last_month_ap": 26130,
-          "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
-          "username": "Ofek",
-          "uuid": "1121d718b08145fe8b8a3728639d6723",
-          "country": "Israel",
-          "current_ap": 24520,
-          "last_month_ap": 24520,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Speed UHC"
-          ]
-        },
-        {
-          "username": "alonmario1",
-          "uuid": "ba804eff1d3f48348048350cc686a3f6",
-          "country": "Israel",
-          "current_ap": 23780,
-          "last_month_ap": 23780,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "Slime",
-          "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
-          "country": "Israel",
-          "current_ap": 23495,
-          "last_month_ap": 23495,
-          "monthly_gain": 0,
           "maxGames": []
         }
       ]
@@ -2279,16 +1437,7 @@
           "current_ap": 28195,
           "last_month_ap": 28150,
           "monthly_gain": 45,
-          "maxGames": [
-            "Max Cops and Crims",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "MineElzu60",
@@ -2297,12 +1446,7 @@
           "current_ap": 27280,
           "last_month_ap": 27280,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
-          ]
+          "maxGames": []
         },
         {
           "username": "MatiasSiltanen",
@@ -2311,12 +1455,7 @@
           "current_ap": 26360,
           "last_month_ap": 26360,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -2331,16 +1470,7 @@
           "current_ap": 28890,
           "last_month_ap": 28890,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "Chevio",
@@ -2349,38 +1479,82 @@
           "current_ap": 26350,
           "last_month_ap": 26350,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25290,
+          "current_ap": 25285,
           "last_month_ap": 25215,
-          "monthly_gain": 75,
-          "maxGames": [
-            "Max Paintball",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Seasonal"
-          ]
+          "monthly_gain": 70,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Israel",
+      "score": 3909,
+      "top_players": [
+        {
+          "username": "eliadbg",
+          "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+          "country": "Israel",
+          "current_ap": 28270,
+          "last_month_ap": 28260,
+          "monthly_gain": 10,
+          "maxGames": []
+        },
+        {
+          "username": "Kickuxer",
+          "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
+          "country": "Israel",
+          "current_ap": 27130,
+          "last_month_ap": 27130,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "TinyRex",
+          "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
+          "country": "Israel",
+          "current_ap": 26130,
+          "last_month_ap": 26130,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Ofek",
+          "uuid": "1121d718b08145fe8b8a3728639d6723",
+          "country": "Israel",
+          "current_ap": 24545,
+          "last_month_ap": 24520,
+          "monthly_gain": 25,
+          "maxGames": []
+        },
+        {
+          "username": "alonmario1",
+          "uuid": "ba804eff1d3f48348048350cc686a3f6",
+          "country": "Israel",
+          "current_ap": 23780,
+          "last_month_ap": 23780,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Slime",
+          "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
+          "country": "Israel",
+          "current_ap": 23495,
+          "last_month_ap": 23495,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Croatia",
-      "score": 3761,
+      "score": 3749,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2389,43 +1563,25 @@
           "current_ap": 28470,
           "last_month_ap": 28470,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "Craftian9",
           "uuid": "0324177073ee43df82f3825488c83b60",
           "country": "Croatia",
-          "current_ap": 26780,
+          "current_ap": 26755,
           "last_month_ap": 26755,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Paintball",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
-          "username": "Mihannah",
+          "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
           "current_ap": 25440,
           "last_month_ap": 25440,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "noobay",
@@ -2434,31 +1590,22 @@
           "current_ap": 25195,
           "last_month_ap": 25195,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Quake",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Czech Republic",
-      "score": 2894,
+      "score": 2969,
       "top_players": [
         {
           "username": "ZenBenn",
           "uuid": "f9adb4d8fd664d4098d4e70bb3d15ee6",
           "country": "Czech Republic",
-          "current_ap": 27545,
+          "current_ap": 27620,
           "last_month_ap": 27620,
-          "monthly_gain": -75,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Warlords",
-            "Max TKR",
-            "Max Wool Games",
-            "Max SkyClash"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "ZERATHIX",
@@ -2467,9 +1614,7 @@
           "current_ap": 26585,
           "last_month_ap": 26550,
           "monthly_gain": 35,
-          "maxGames": [
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "valericious",
@@ -2478,11 +1623,7 @@
           "current_ap": 26060,
           "last_month_ap": 25815,
           "monthly_gain": 245,
-          "maxGames": [
-            "Max Blitz",
-            "Max SkyBlock",
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "koprr",
@@ -2491,36 +1632,25 @@
           "current_ap": 25195,
           "last_month_ap": 25195,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "Aldix",
           "uuid": "6a040159d71841129271ce291b226587",
           "country": "Czech Republic",
-          "current_ap": 24925,
+          "current_ap": 24915,
           "last_month_ap": 24925,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
+          "monthly_gain": -10,
+          "maxGames": []
         },
         {
           "username": "azyugo",
           "uuid": "3c38a419050345f2bce19bd3d1fc055c",
           "country": "Czech Republic",
-          "current_ap": 24180,
+          "current_ap": 24025,
           "last_month_ap": 24180,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max TNT Games",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
+          "monthly_gain": -155,
+          "maxGames": []
         }
       ]
     },
@@ -2535,13 +1665,7 @@
           "current_ap": 27220,
           "last_month_ap": 27180,
           "monthly_gain": 40,
-          "maxGames": [
-            "Max Speed UHC",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Crazy Walls"
-          ]
+          "maxGames": []
         },
         {
           "username": "kawaa",
@@ -2550,14 +1674,7 @@
           "current_ap": 25185,
           "last_month_ap": 25140,
           "monthly_gain": 45,
-          "maxGames": [
-            "Max Warlords",
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "FuyajouRuri",
@@ -2566,45 +1683,7 @@
           "current_ap": 24080,
           "last_month_ap": 24080,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Argentina",
-      "score": 1770,
-      "top_players": [
-        {
-          "username": "Sayapi",
-          "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
-          "country": "Argentina",
-          "current_ap": 26815,
-          "last_month_ap": 26600,
-          "monthly_gain": 215,
-          "maxGames": [
-            "Max VampireZ"
-          ]
-        },
-        {
-          "username": "Iaan",
-          "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
-          "country": "Argentina",
-          "current_ap": 26125,
-          "last_month_ap": 26105,
-          "monthly_gain": 20,
-          "maxGames": [
-            "Max SkyWars",
-            "Max TNT Games",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -2619,15 +1698,7 @@
           "current_ap": 27085,
           "last_month_ap": 27085,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Blitz",
-            "Max Smash Heroes",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "radicul",
@@ -2636,12 +1707,7 @@
           "current_ap": 25125,
           "last_month_ap": 25125,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "Bikkie",
@@ -2650,11 +1716,7 @@
           "current_ap": 24590,
           "last_month_ap": 24590,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "J2J",
@@ -2663,10 +1725,31 @@
           "current_ap": 23900,
           "last_month_ap": 23315,
           "monthly_gain": 585,
-          "maxGames": [
-            "Max Blitz",
-            "Max VampireZ"
-          ]
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Argentina",
+      "score": 1555,
+      "top_players": [
+        {
+          "username": "Sayapi",
+          "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
+          "country": "Argentina",
+          "current_ap": 26600,
+          "last_month_ap": 26600,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Iaan",
+          "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+          "country": "Argentina",
+          "current_ap": 26125,
+          "last_month_ap": 26105,
+          "monthly_gain": 20,
+          "maxGames": []
         }
       ]
     },
@@ -2705,11 +1788,7 @@
           "current_ap": 26395,
           "last_month_ap": 26375,
           "monthly_gain": 20,
-          "maxGames": [
-            "Max Warlords",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "NoHaxJustTaiwan",
@@ -2718,23 +1797,7 @@
           "current_ap": 23765,
           "last_month_ap": 23765,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max TKR",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "twww",
-          "uuid": "1ee8f444029b41db84a0b2a34415cdf0",
-          "country": "Taiwan",
-          "current_ap": 23415,
-          "last_month_ap": 23370,
-          "monthly_gain": 45,
-          "maxGames": [
-            "Max Walls",
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "yoyolin2007",
@@ -2743,10 +1806,40 @@
           "current_ap": 23165,
           "last_month_ap": 23165,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
+        },
+        {
+          "username": "twww",
+          "uuid": "1ee8f444029b41db84a0b2a34415cdf0",
+          "country": "Taiwan",
+          "current_ap": 23105,
+          "last_month_ap": 23370,
+          "monthly_gain": -265,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Syria",
+      "score": 790,
+      "top_players": [
+        {
+          "username": "3badh",
+          "uuid": "11f24315871f43f296d5daa2bfc4911d",
+          "country": "Syria",
+          "current_ap": 26195,
+          "last_month_ap": 26195,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "stevcn",
+          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+          "country": "Syria",
+          "current_ap": 24500,
+          "last_month_ap": 24115,
+          "monthly_gain": 385,
+          "maxGames": []
         }
       ]
     },
@@ -2761,45 +1854,7 @@
           "current_ap": 26110,
           "last_month_ap": 26110,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Syria",
-      "score": 700,
-      "top_players": [
-        {
-          "username": "3badh",
-          "uuid": "11f24315871f43f296d5daa2bfc4911d",
-          "country": "Syria",
-          "current_ap": 26105,
-          "last_month_ap": 26195,
-          "monthly_gain": -90,
-          "maxGames": [
-            "Max TNT Games",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "stevcn",
-          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
-          "country": "Syria",
-          "current_ap": 24500,
-          "last_month_ap": 24115,
-          "monthly_gain": 385,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Wool Games"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -2814,12 +1869,7 @@
           "current_ap": 26105,
           "last_month_ap": 26105,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "typefast",
@@ -2828,10 +1878,7 @@
           "current_ap": 24290,
           "last_month_ap": 24290,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -2846,19 +1893,15 @@
           "current_ap": 26040,
           "last_month_ap": 26040,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Blitz",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "Gamja_OwO",
           "uuid": "1cc68f64f4384b50bf846bf55bd2e1df",
           "country": "South Korea",
-          "current_ap": 23760,
+          "current_ap": 23755,
           "last_month_ap": 23760,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": []
         }
       ]
@@ -2874,92 +1917,61 @@
           "current_ap": 25865,
           "last_month_ap": 25865,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "sosal",
           "uuid": "14fc22531af545cf918eec7b30527272",
           "country": "Unknown",
-          "current_ap": 25030,
+          "current_ap": 24915,
           "last_month_ap": 25030,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "ToggleFly",
-          "uuid": "00eb09d164b54ab08114d119eebbb903",
-          "country": "Unknown",
-          "current_ap": 25025,
-          "last_month_ap": 25025,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "pumpkan",
-          "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
-          "country": "Unknown",
-          "current_ap": 24860,
-          "last_month_ap": 24860,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games"
-          ]
+          "monthly_gain": -115,
+          "maxGames": []
         },
         {
           "username": "Lilaaay",
           "uuid": "2e1884f69c294bd589e6d7709b100298",
           "country": "Unknown",
-          "current_ap": 24855,
+          "current_ap": 24845,
           "last_month_ap": 24855,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Quake",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "monthly_gain": -10,
+          "maxGames": []
         },
         {
-          "username": "nonoooooooo",
-          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+          "username": "pumpkan",
+          "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
           "country": "Unknown",
-          "current_ap": 24730,
-          "last_month_ap": 24660,
-          "monthly_gain": 70,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Duels"
-          ]
+          "current_ap": 24835,
+          "last_month_ap": 24860,
+          "monthly_gain": -25,
+          "maxGames": []
         },
         {
-          "username": "Sunta",
+          "username": "SongKangho",
           "uuid": "c7b1528ce5604302a279c16e7e135038",
           "country": "Unknown",
           "current_ap": 24700,
           "last_month_ap": 24700,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
-          ]
+          "maxGames": []
+        },
+        {
+          "username": "nonoooooooo",
+          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+          "country": "Unknown",
+          "current_ap": 24700,
+          "last_month_ap": 24660,
+          "monthly_gain": 40,
+          "maxGames": []
+        },
+        {
+          "username": "ToggleFly",
+          "uuid": "00eb09d164b54ab08114d119eebbb903",
+          "country": "Unknown",
+          "current_ap": 24700,
+          "last_month_ap": 25025,
+          "monthly_gain": -325,
+          "maxGames": []
         },
         {
           "username": "Stylee",
@@ -2968,9 +1980,7 @@
           "current_ap": 24455,
           "last_month_ap": 24455,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "Cluelesss",
@@ -2979,9 +1989,7 @@
           "current_ap": 24255,
           "last_month_ap": 24255,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "Xylim",
@@ -2999,13 +2007,7 @@
           "current_ap": 24035,
           "last_month_ap": 24035,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "tyelur",
@@ -3014,10 +2016,7 @@
           "current_ap": 23990,
           "last_month_ap": 23990,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "EuanKC",
@@ -3026,14 +2025,7 @@
           "current_ap": 23985,
           "last_month_ap": 23730,
           "monthly_gain": 255,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
-          ]
+          "maxGames": []
         },
         {
           "username": "ToastyOosty",
@@ -3042,11 +2034,7 @@
           "current_ap": 23760,
           "last_month_ap": 23640,
           "monthly_gain": 120,
-          "maxGames": [
-            "Max Pit",
-            "Max Warlords",
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "DirtyAvocado",
@@ -3055,38 +2043,25 @@
           "current_ap": 23750,
           "last_month_ap": 23750,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "ichhabevape",
           "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
           "country": "Unknown",
-          "current_ap": 23730,
+          "current_ap": 23705,
           "last_month_ap": 23705,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Seasonal"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 23640,
+          "current_ap": 23625,
           "last_month_ap": 23300,
-          "monthly_gain": 340,
-          "maxGames": [
-            "Max Paintball",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Crazy Walls"
-          ]
+          "monthly_gain": 325,
+          "maxGames": []
         },
         {
           "username": "Justin_Jefferson",
@@ -3095,26 +2070,16 @@
           "current_ap": 23590,
           "last_month_ap": 23590,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "Hacks",
           "uuid": "b5ab6db9366049ae8a9882927e46ce08",
           "country": "Unknown",
-          "current_ap": 23590,
+          "current_ap": 23575,
           "last_month_ap": 23590,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max Quake",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "monthly_gain": -15,
+          "maxGames": []
         },
         {
           "username": "titi2502",
@@ -3123,11 +2088,7 @@
           "current_ap": 23515,
           "last_month_ap": 23480,
           "monthly_gain": 35,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "MacchuPicchu",
@@ -3136,9 +2097,7 @@
           "current_ap": 23375,
           "last_month_ap": 23375,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "o3w",
@@ -3153,18 +2112,10 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23300,
+          "current_ap": 23230,
           "last_month_ap": 23250,
-          "monthly_gain": 50,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Walls",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Crazy Walls",
-            "Max SkyClash"
-          ]
+          "monthly_gain": -20,
+          "maxGames": []
         },
         {
           "username": "tommy042001",
@@ -3173,14 +2124,7 @@
           "current_ap": 23180,
           "last_month_ap": 23180,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "Khqled",
@@ -3189,10 +2133,7 @@
           "current_ap": 23140,
           "last_month_ap": 23140,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "InInk",
@@ -3201,22 +2142,7 @@
           "current_ap": 23030,
           "last_month_ap": 23020,
           "monthly_gain": 10,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max TKR",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 23020,
-          "last_month_ap": 22995,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "Huvo",
@@ -3225,9 +2151,16 @@
           "current_ap": 23015,
           "last_month_ap": 23015,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
+          "maxGames": []
+        },
+        {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 22995,
+          "last_month_ap": 22995,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -3242,45 +2175,7 @@
           "current_ap": 25790,
           "last_month_ap": 25790,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Spain",
-      "score": 263,
-      "top_players": [
-        {
-          "username": "mudkipseas",
-          "uuid": "dda3fc724a8f467b8a8033aadde1b569",
-          "country": "Spain",
-          "current_ap": 25595,
-          "last_month_ap": 25555,
-          "monthly_gain": 40,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "aphunterview",
-          "uuid": "11b8466e2c724fe994a00cada8112674",
-          "country": "Spain",
-          "current_ap": 25550,
-          "last_month_ap": 25550,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3295,13 +2190,31 @@
           "current_ap": 25650,
           "last_month_ap": 25625,
           "monthly_gain": 25,
-          "maxGames": [
-            "Max Paintball",
-            "Max Speed UHC",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games"
-          ]
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Spain",
+      "score": 228,
+      "top_players": [
+        {
+          "username": "julikabuwu",
+          "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+          "country": "Spain",
+          "current_ap": 25560,
+          "last_month_ap": 25555,
+          "monthly_gain": 5,
+          "maxGames": []
+        },
+        {
+          "username": "ArelyPEITUDA",
+          "uuid": "11b8466e2c724fe994a00cada8112674",
+          "country": "Spain",
+          "current_ap": 25550,
+          "last_month_ap": 25550,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -3316,12 +2229,7 @@
           "current_ap": 25495,
           "last_month_ap": 25425,
           "monthly_gain": 70,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Duels",
-            "Max Build Battle"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3336,15 +2244,7 @@
           "current_ap": 25490,
           "last_month_ap": 25440,
           "monthly_gain": 50,
-          "maxGames": [
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3359,11 +2259,7 @@
           "current_ap": 25180,
           "last_month_ap": 25180,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3378,11 +2274,7 @@
           "current_ap": 24740,
           "last_month_ap": 24740,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "xBxnny",
@@ -3391,12 +2283,7 @@
           "current_ap": 24600,
           "last_month_ap": 24600,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3408,12 +2295,10 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 24665,
+          "current_ap": 24630,
           "last_month_ap": 24600,
-          "monthly_gain": 65,
-          "maxGames": [
-            "Max Wool Games"
-          ]
+          "monthly_gain": 30,
+          "maxGames": []
         },
         {
           "username": "riyako",
@@ -3422,11 +2307,7 @@
           "current_ap": 23930,
           "last_month_ap": 23930,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3441,11 +2322,7 @@
           "current_ap": 24280,
           "last_month_ap": 24230,
           "monthly_gain": 50,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3469,9 +2346,7 @@
           "current_ap": 23235,
           "last_month_ap": 23190,
           "monthly_gain": 45,
-          "maxGames": [
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3483,9 +2358,9 @@
           "username": "SpaceDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
-          "current_ap": 23960,
+          "current_ap": 23920,
           "last_month_ap": 23950,
-          "monthly_gain": 10,
+          "monthly_gain": -30,
           "maxGames": []
         }
       ]
@@ -3498,9 +2373,9 @@
           "username": "nevqr",
           "uuid": "0ff62bf91bda4c6b92b8f2d0ca4ed835",
           "country": "Slovakia",
-          "current_ap": 23885,
+          "current_ap": 23670,
           "last_month_ap": 23670,
-          "monthly_gain": 215,
+          "monthly_gain": 0,
           "maxGames": []
         }
       ]
@@ -3516,12 +2391,7 @@
           "current_ap": 23540,
           "last_month_ap": 23540,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3536,9 +2406,7 @@
           "current_ap": 23330,
           "last_month_ap": 23330,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Arcade"
-          ]
+          "maxGames": []
         }
       ]
     },
@@ -3553,10 +2421,7 @@
           "current_ap": 23025,
           "last_month_ap": 23025,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "maxGames": []
         }
       ]
     }
