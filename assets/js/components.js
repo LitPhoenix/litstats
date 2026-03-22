@@ -23,4 +23,19 @@ const litHeader = `
   </nav>
 `;
 
+const litBanner = `
+<div id="lit-banner" class="top-banner hidden">
+  <div class="banner-content">
+    <span id="banner-text"></span>
+    <a href="#" id="banner-link" class="banner-btn hidden"></a>
+  </div>
+  <button class="banner-close" onclick="closeBanner()">✖</button>
+</div>
+`;
+
+// Prepend the banner to your existing header injection
+const litHeader = litBanner + `
+  <header>
+    `;
+
 document.write(litHeader);
