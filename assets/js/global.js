@@ -132,3 +132,51 @@ if (leaderSearch) {
     }
   });
 }
+
+// --- BANNER DATA ---
+const mainBanner = {
+  text: "🔥 Huge Update: The Quest Leaderboard is now live!",
+  btnText: "Check it out",
+  btnLink: "quest.html"
+};
+
+const randomBanners = [
+  { text: "Did you know? LitStats tracks over 20 different Hypixel games.", btnText: "", btnLink: "" },
+  { text: "Found a bug or have an idea? Let me know.", btnText: "My Profile", btnLink: "https://namemc.com/profile/litphoenix.1" },
+  { text: "Pro Tip: Click on a player in the leaderboard to instantly view their cabinet.", btnText: "", btnLink: "" }
+];
+
+// Toggle this between 'main' and 'random'
+let bannerMode = 'main'; 
+
+function initBanner() {
+  // If they already closed it this session, don't annoy them again
+  if (sessionStorage.getItem('litBannerClosed') === 'true') return;
+
+  const banner = document.getElementById('lit-banner');
+  if (!banner) return;
+
+  let data = bannerMode === 'main' ? mainBanner : randomBanners[Math.floor(Math.random() * randomBanners.length)];
+
+  document.getElementById('banner-text').textContent = data.text;
+  const btn = document.getElementById('banner-link');
+  
+  if (data.btnText && data.btnLink) {
+    btn.textContent = data.btnText;
+    btn.href = data.btnLink;
+    btn.classList.remove('hidden');
+  } else {
+    btn.classList.add('hidden');
+  }
+
+  banner.classList.remove('hidden');
+}
+
+function closeBanner() {
+  document.getElementById('lit-banner').classList.add('hidden');
+  // Save their preference to the current browser session
+  sessionStorage.setItem('litBannerClosed', 'true');
+}
+
+// Fire the logic when the page loads
+document.addEventListener('DOMContentLoaded', initBanner);
