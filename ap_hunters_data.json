@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-23T01:22:34.667Z",
+  "last_update": "2026-03-23T04:24:51.539Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2220,15 +2220,15 @@
     },
     {
       "country": "Moldova",
-      "score": 90,
+      "score": 115,
       "top_players": [
         {
           "username": "kenav",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25495,
+          "current_ap": 25520,
           "last_month_ap": 25425,
-          "monthly_gain": 70,
+          "monthly_gain": 95,
           "maxGames": []
         }
       ]
