@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-23T16:53:35.318Z",
+  "last_update": "2026-03-23T18:47:41.205Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -510,21 +510,21 @@
           "maxGames": []
         },
         {
+          "username": "tormin",
+          "uuid": "dc2eaa964e0242589f2731a11aacea55",
+          "country": "USA",
+          "current_ap": 27060,
+          "last_month_ap": 26875,
+          "monthly_gain": 185,
+          "maxGames": []
+        },
+        {
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
           "current_ap": 27050,
           "last_month_ap": 27050,
           "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
-          "username": "tormin",
-          "uuid": "dc2eaa964e0242589f2731a11aacea55",
-          "country": "USA",
-          "current_ap": 27045,
-          "last_month_ap": 26875,
-          "monthly_gain": 170,
           "maxGames": []
         },
         {
