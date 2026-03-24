@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-23T22:28:32.492Z",
+  "last_update": "2026-03-24T01:15:24.733Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12485,
+      "score": 12487,
       "top_players": [
         {
           "username": "oJakey",
@@ -396,9 +396,9 @@
           "username": "vasiv",
           "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
           "country": "USA",
-          "current_ap": 32320,
+          "current_ap": 32325,
           "last_month_ap": 32320,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": []
         },
         {
@@ -2001,6 +2001,15 @@
           "maxGames": []
         },
         {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 24060,
+          "last_month_ap": 23730,
+          "monthly_gain": 330,
+          "maxGames": []
+        },
+        {
           "username": "ni6a",
           "uuid": "f2b587fe0b2347dca0908d4832e047d5",
           "country": "Unknown",
@@ -2016,15 +2025,6 @@
           "current_ap": 23990,
           "last_month_ap": 23990,
           "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
-          "username": "EuanKC",
-          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
-          "country": "Unknown",
-          "current_ap": 23985,
-          "last_month_ap": 23730,
-          "monthly_gain": 255,
           "maxGames": []
         },
         {
