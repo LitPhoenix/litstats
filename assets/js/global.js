@@ -140,23 +140,37 @@ const mainBanner = {
   btnLink: "quest.html"
 };
 
+const emergencyBanner = {
+  text: "⚠️ Hypixel API is currently experiencing severe rate limits.",
+  btnText: "",
+  btnLink: ""
+};
+
 const randomBanners = [
   { text: "Did you know? LitStats tracks over 20 different Hypixel games.", btnText: "", btnLink: "" },
-  { text: "Found a bug or have an idea? Let me know.", btnText: "My Profile", btnLink: "https://namemc.com/profile/litphoenix.1" },
-  { text: "Pro Tip: Click on a player in the leaderboard to instantly view their cabinet.", btnText: "", btnLink: "" }
+  { text: "Found a bug or have an idea? Let me know.", btnText: "My Profile", btnLink: "https://namemc.com/profile/litphoenix.1" }
 ];
 
-// Toggle this between 'main' and 'random'
-let bannerMode = 'main'; 
+// Toggle: 'main', 'emergency', 'random', or 'off'
+let bannerMode = 'emergency'; 
+
+// Increment this string (e.g., 'v2', 'v3') to force the banner to reappear for users who closed an older one
+const bannerVersion = 'v1'; 
 
 function initBanner() {
-  // If they already closed it this session, don't annoy them again
-  if (sessionStorage.getItem('litBannerClosed') === 'true') return;
+  if (bannerMode === 'off') return; 
+  if (localStorage.getItem(`litBannerClosed_${bannerVersion}`) === 'true') return;
 
   const banner = document.getElementById('lit-banner');
   if (!banner) return;
 
-  let data = bannerMode === 'main' ? mainBanner : randomBanners[Math.floor(Math.random() * randomBanners.length)];
+  let data;
+  if (bannerMode === 'main') data = mainBanner;
+  else if (bannerMode === 'emergency') {
+    data = emergencyBanner;
+    banner.classList.add('emergency');
+  } 
+  else data = randomBanners[Math.floor(Math.random() * randomBanners.length)];
 
   document.getElementById('banner-text').textContent = data.text;
   const btn = document.getElementById('banner-link');
@@ -174,9 +188,7 @@ function initBanner() {
 
 function closeBanner() {
   document.getElementById('lit-banner').classList.add('hidden');
-  // Save their preference to the current browser session
-  sessionStorage.setItem('litBannerClosed', 'true');
+  localStorage.setItem(`litBannerClosed_${bannerVersion}`, 'true');
 }
 
-// Fire the logic when the page loads
 document.addEventListener('DOMContentLoaded', initBanner);
