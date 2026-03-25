@@ -141,9 +141,7 @@ const mainBanner = {
 };
 
 const emergencyBanner = {
-  text: "⚠️ Hypixel API is currently experiencing troubles.",
-  btnText: "",
-  btnLink: ""
+  text: "⚠️ Hypixel API is currently experiencing troubles."
 };
 
 const randomBanners = [
