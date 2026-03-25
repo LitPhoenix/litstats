@@ -1,4 +1,14 @@
-const litHeader = `
+const litBanner = `
+<div id="lit-banner" class="top-banner hidden">
+  <div class="banner-content">
+    <span id="banner-text"></span>
+    <a href="#" id="banner-link" class="banner-btn hidden"></a>
+  </div>
+  <button class="banner-close" onclick="closeBanner()">✖</button>
+</div>
+`;
+
+const litHeader = litBanner + `
   <header>
     <div class="header-inner">
       <a class="logo" href="index.html">
@@ -22,20 +32,5 @@ const litHeader = `
     <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
   </nav>
 `;
-
-const litBanner = `
-<div id="lit-banner" class="top-banner hidden">
-  <div class="banner-content">
-    <span id="banner-text"></span>
-    <a href="#" id="banner-link" class="banner-btn hidden"></a>
-  </div>
-  <button class="banner-close" onclick="closeBanner()">✖</button>
-</div>
-`;
-
-// Prepend the banner to your existing header injection
-const litHeader = litBanner + `
-  <header>
-    `;
 
 document.write(litHeader);
