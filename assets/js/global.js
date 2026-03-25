@@ -141,7 +141,7 @@ const mainBanner = {
 };
 
 const emergencyBanner = {
-  text: "⚠️ Hypixel API is currently experiencing severe rate limits.",
+  text: "⚠️ Hypixel API is currently experiencing troubles.",
   btnText: "",
   btnLink: ""
 };
