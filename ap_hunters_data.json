@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-25T22:33:46.566Z",
+  "last_update": "2026-03-26T01:27:07.482Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12507,
+      "score": 12509,
       "top_players": [
         {
           "username": "oJakey",
@@ -414,9 +414,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 29825,
+          "current_ap": 29845,
           "last_month_ap": 29570,
-          "monthly_gain": 255,
+          "monthly_gain": 275,
           "maxGames": []
         },
         {
@@ -510,21 +510,21 @@
           "maxGames": []
         },
         {
+          "username": "Kyralicious",
+          "uuid": "7456ccb5c8e24271a721a394191d0602",
+          "country": "USA",
+          "current_ap": 27100,
+          "last_month_ap": 27050,
+          "monthly_gain": 50,
+          "maxGames": []
+        },
+        {
           "username": "tormin",
           "uuid": "dc2eaa964e0242589f2731a11aacea55",
           "country": "USA",
           "current_ap": 27060,
           "last_month_ap": 26875,
           "monthly_gain": 185,
-          "maxGames": []
-        },
-        {
-          "username": "Kyralicious",
-          "uuid": "7456ccb5c8e24271a721a394191d0602",
-          "country": "USA",
-          "current_ap": 27050,
-          "last_month_ap": 27050,
-          "monthly_gain": 0,
           "maxGames": []
         },
         {
@@ -549,9 +549,9 @@
           "username": "Saucers",
           "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
           "country": "USA",
-          "current_ap": 26595,
+          "current_ap": 26600,
           "last_month_ap": 26595,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": []
         },
         {
@@ -975,9 +975,9 @@
           "username": "alpanyahu",
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "UK",
-          "current_ap": 23785,
+          "current_ap": 23795,
           "last_month_ap": 23715,
-          "monthly_gain": 70,
+          "monthly_gain": 80,
           "maxGames": []
         },
         {
