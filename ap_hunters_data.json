@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-27T01:26:44.068Z",
+  "last_update": "2026-03-27T04:34:04.972Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -522,9 +522,9 @@
           "username": "tormin",
           "uuid": "dc2eaa964e0242589f2731a11aacea55",
           "country": "USA",
-          "current_ap": 27060,
+          "current_ap": 27085,
           "last_month_ap": 26875,
-          "monthly_gain": 185,
+          "monthly_gain": 210,
           "maxGames": []
         },
         {
@@ -1836,9 +1836,9 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 24555,
+          "current_ap": 24570,
           "last_month_ap": 24115,
-          "monthly_gain": 440,
+          "monthly_gain": 455,
           "maxGames": []
         }
       ]
@@ -2220,15 +2220,15 @@
     },
     {
       "country": "Moldova",
-      "score": 115,
+      "score": 140,
       "top_players": [
         {
-          "username": "Lofaet",
+          "username": "kenav",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25520,
+          "current_ap": 25545,
           "last_month_ap": 25425,
-          "monthly_gain": 95,
+          "monthly_gain": 120,
           "maxGames": []
         }
       ]
