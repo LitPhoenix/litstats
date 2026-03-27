@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-27T14:51:54.918Z",
+  "last_update": "2026-03-27T16:43:38.447Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -100,7 +100,8 @@
     "2a8842a87cfe40fc8ed200f91908a7fa": 21140,
     "796cf0f4332c447d88a6fbfffbe0bd70": 21086,
     "4b48e58c5304407ab8c761fbe125ff3b": 20986,
-    "f24adae07cae47bd8f99bff313d97460": 20873
+    "f24adae07cae47bd8f99bff313d97460": 20873,
+    "7d92df9db6f04ef4b24ded24ae739198": 20924
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
@@ -899,7 +900,7 @@
     },
     {
       "country": "Australia",
-      "score": 15185.8,
+      "score": 11011.2,
       "top_players": [
         {
           "username": "Bikkie",
@@ -915,14 +916,6 @@
           "country": "Australia",
           "current_quests": 24148,
           "last_month_quests": 24148,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Kiwi2026",
-          "uuid": "f24adae07cae47bd8f99bff313d97460",
-          "country": "Australia",
-          "current_quests": 20873,
-          "last_month_quests": 20873,
           "monthly_gain": 0
         }
       ]
@@ -1008,6 +1001,14 @@
           "current_quests": 21571,
           "last_month_quests": 21380,
           "monthly_gain": 191
+        },
+        {
+          "username": "Champiez",
+          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+          "country": "Unknown",
+          "current_quests": 20924,
+          "last_month_quests": 20924,
+          "monthly_gain": 0
         }
       ]
     },
