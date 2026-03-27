@@ -3,403 +3,597 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minecraft Kit Inventory</title>
-<link href="https://fonts.cdnfonts.com/css/minecraft-ia" rel="stylesheet">
+<title>LitStats - Blitz Kits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/global.css">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+@font-face { font-family:'Mineglyph'; src:url('/assets/fonts/mineglyph-faithful.otf') format('opentype'); }
+.mc-tooltip,.level-btn,.count,.mc-title { font-family:'Mineglyph','Minecraft',monospace; }
+
+.item-wrapper { width:30px; height:30px; position:relative; }
+.item-wrapper img { width:100%; height:100%; image-rendering:pixelated; }
+.item-wrapper.enchanted::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(65deg,transparent 20%,rgba(160,65,255,.6) 50%,transparent 80%);
+  background-size:200% 200%; mix-blend-mode:screen;
+  animation:glint 2.5s infinite linear; z-index:2; pointer-events:none;
+}
+@keyframes glint { 0%{background-position:200% center} 100%{background-position:-200% center} }
 
 :root {
-  --mc-panel: #c6c6c6;
-  --mc-font: 'Minecraft', sans-serif;
+  --mc-panel:#c6c6c6; --mc-font:'Minecraft','Courier New',monospace;
+  --mc-border-light:#fff; --mc-border-dark:#555;
+  --mc-slot-bg:#8b8b8b; --mc-slot-dark:#373737;
 }
+main { display:flex; flex-direction:column; align-items:center; margin-top:40px; width:100%; font-family:var(--mc-font); image-rendering:pixelated; user-select:none; }
+.mc-container { background:var(--mc-panel); border:4px solid var(--mc-border-light); border-right-color:var(--mc-border-dark); border-bottom-color:var(--mc-border-dark); padding:12px; box-shadow:inset 2px 2px 0 #000,0 10px 30px rgba(0,0,0,.3); }
+.mc-title { color:#373737; font-size:16px; margin-bottom:8px; text-shadow:1px 1px 0 rgba(255,255,255,.5); }
 
-body {
-  background: #1a1a1a;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  font-family: var(--mc-font);
-  color: #fff;
-  image-rendering: pixelated;
-  user-select: none;
-}
+#chest-view { display:flex; flex-direction:column; }
+.chest-grid { display:grid; grid-template-columns:repeat(9,36px); grid-template-rows:repeat(5,36px); gap:2px; }
 
-#kit-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 15px;
-}
+#inventory-view { display:none; flex-direction:column; align-items:center; }
+#kit-header { display:flex; flex-direction:column; align-items:center; gap:12px; margin-bottom:15px; }
+#kit-name-display { font-size:1.5rem; text-shadow:2px 2px 0 rgba(0,0,0,.5); text-align:center; color:var(--text); }
+.level-selector { display:flex; gap:4px; background:rgba(0,0,0,.2); padding:6px; border-radius:4px; border:2px solid var(--border); }
+.level-btn { background:#555; color:#aaa; border:2px solid #222; border-top-color:#888; border-left-color:#888; width:32px; height:32px; font-family:var(--mc-font); font-size:16px; cursor:pointer; text-shadow:1px 1px 0 #000; }
+.level-btn:hover { background:#666; color:#fff; }
+.level-btn.active { background:#373737; color:#fff; border-color:#111; border-top-color:#222; border-left-color:#222; }
+.level-btn.p2 { background:#b8860b; color:#fff; border-color:#8b6508; border-top-color:#ffd700; border-left-color:#ffd700; width:40px; font-weight:bold; }
+.level-btn.p2:hover { background:#daa520; }
+.level-btn.p2.active { background:#8b6508; border-color:#553a00; border-top-color:#b8860b; border-left-color:#b8860b; }
 
-.arrow-btn {
-  background: none;
-  border: none;
-  color: #aaa;
-  font-size: 32px;
-  cursor: pointer;
-  font-family: var(--mc-font);
-}
+.top-section { display:flex; gap:12px; margin-bottom:15px; align-items:flex-start; }
+.armour-column { display:flex; flex-direction:column; gap:2px; }
+#player-box { width:120px; height:150px; background:#000; border:2px solid var(--mc-slot-dark); border-right-color:var(--mc-border-light); border-bottom-color:var(--mc-border-light); overflow:hidden; }
+.crafting-area { display:flex; flex-direction:column; margin-left:15px; margin-top:5px; }
+.crafting-layout { display:flex; align-items:center; gap:12px; }
+.crafting-grid { display:grid; grid-template-columns:repeat(2,36px); gap:2px; }
+.crafting-arrow { color:#8b8b8b; font-size:28px; text-shadow:2px 2px 0 #fff; margin-top:-4px; }
+.inv-grid { display:grid; grid-template-columns:repeat(9,36px); gap:2px; }
+.hotbar-spacer { height:8px; }
 
-.arrow-btn:hover:not(:disabled) { color: #fff; }
-.arrow-btn:disabled { opacity: 0.2; }
+.slot { width:36px; height:36px; background:var(--mc-slot-bg); border:2px solid var(--mc-slot-dark); border-right-color:var(--mc-border-light); border-bottom-color:var(--mc-border-light); display:flex; align-items:center; justify-content:center; position:relative; cursor:pointer; }
+.slot.locked { cursor:not-allowed; opacity:.5; }
+.slot:hover:not(.locked) { background:#bebebe; outline:2px solid #fff; z-index:10; }
+.slot img { width:30px; height:30px; image-rendering:pixelated; pointer-events:none; }
+.count { position:absolute; bottom:1px; right:2px; font-size:14px; color:#fff; text-shadow:1px 1px 0 #3f3f3f; pointer-events:none; z-index:2; }
 
-#kit-name {
-  font-size: 1.5rem;
-  text-shadow: 2px 2px 0 #000;
-  min-width: 300px;
-  text-align: center;
-}
+.mc-tooltip { display:none; position:fixed; z-index:9999; pointer-events:none; padding:8px 10px; background:rgba(16,0,16,.95); border:2px solid #2d0064; color:#fff; box-shadow:2px 2px 5px rgba(0,0,0,.5); }
+.mc-tooltip.show { display:block; }
+.tt-name { font-size:16px; display:block; }
+.tt-div  { height:2px; margin:6px 0; background:#4a0064; }
+.tt-line { font-size:14px; display:block; margin-top:4px; }
+.r-common{color:#fff} .r-uncommon{color:#55ff55} .r-rare{color:#5555ff} .r-epic{color:#ff55ff} .r-legendary{color:#ffaa00}
+.c-grey{color:#aaa} .c-yellow{color:#ffff55} .c-red{color:#ff5555}
 
-#inventory-container {
-  background: var(--mc-panel);
-  border: 4px solid #fff;
-  border-right-color: #555;
-  border-bottom-color: #555;
-  padding: 12px;
-  box-shadow: inset 2px 2px 0 #000;
-  transition: transform 0.1s ease-out, opacity 0.1s ease-out;
-}
-
-/* --- Top Section: Armour, Player, Crafting --- */
-.top-section {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 15px;
-  align-items: flex-start;
-}
-
-.armour-column {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-#player-box {
-  width: 120px;
-  height: 150px;
-  background: #000;
-  border: 2px solid #373737;
-  border-right-color: #fff;
-  border-bottom-color: #fff;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Crafting Layout */
-.crafting-area {
-  display: flex;
-  flex-direction: column;
-  margin-left: 15px;
-  margin-top: 5px;
-}
-
-.crafting-title {
-  color: #373737;
-  font-size: 14px;
-  margin-bottom: 5px;
-  text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
-}
-
-.crafting-layout {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.crafting-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 36px);
-  gap: 2px;
-}
-
-.crafting-arrow {
-  color: #8b8b8b;
-  font-size: 28px;
-  text-shadow: 2px 2px 0 #fff;
-  line-height: 1;
-  margin-top: -4px;
-}
-
-/* --- Slots --- */
-.inv-grid {
-  display: grid;
-  grid-template-columns: repeat(9, 36px);
-  gap: 2px;
-}
-
-.slot {
-  width: 36px;
-  height: 36px;
-  background: #8b8b8b;
-  border: 2px solid #373737;
-  border-right-color: #fff;
-  border-bottom-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.slot:hover {
-  background: #bebebe;
-  outline: 2px solid #fff;
-  z-index: 10;
-}
-
-.slot img {
-  width: 30px;
-  height: 30px;
-  image-rendering: pixelated;
-  pointer-events: none;
-}
-
-.count {
-  position: absolute;
-  bottom: 1px;
-  right: 2px;
-  font-size: 14px;
-  color: #fff;
-  text-shadow: 1px 1px 0 #3f3f3f;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.hotbar-spacer { height: 8px; }
-
-/* --- Tooltips --- */
-.mc-tooltip {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  pointer-events: none;
-  padding: 8px 10px;
-  background: rgba(16, 0, 16, 0.95);
-  border: 2px solid #2d0064;
-  image-rendering: pixelated;
-  color: #fff;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-}
-.mc-tooltip.show { display: block; }
-.tt-name { font-size: 16px; display: block; }
-.tt-div { height: 2px; margin: 6px 0; background: #4a0064; }
-.tt-line { font-size: 14px; display: block; margin-top: 4px; }
-
-.r-common { color: #fff; }
-.r-uncommon { color: #55ff55; }
-.r-rare { color: #5555ff; }
-.r-epic { color: #ff55ff; }
-.r-legendary { color: #ffaa00; }
-.c-grey { color: #aaa; }
-.c-yellow { color: #ffff55; }
-.c-purple { color: #ff55ff; }
-
+.back-btn { background:var(--accent); color:#fff; border:none; padding:8px 16px; border-radius:6px; font-weight:bold; cursor:pointer; margin-top:20px; transition:.2s; font-family:'DM Sans',sans-serif; }
+.back-btn:hover { filter:brightness(1.2); }
 </style>
 </head>
 <body>
-
-<div id="kit-header">
-  <button class="arrow-btn" id="prevBtn">◀</button>
-  <div id="kit-name">Loading...</div>
-  <button class="arrow-btn" id="nextBtn">▶</button>
-</div>
-
-<div id="inventory-container">
-  <div class="top-section">
-    <div class="armour-column" id="armour-slots"></div>
-
-    <div id="player-box">
-      <canvas id="player-canvas"></canvas>
-    </div>
-
-    <div class="crafting-area">
-      <div class="crafting-title">Crafting</div>
-      <div class="crafting-layout">
-        <div class="crafting-grid">
-          <div class="slot"></div><div class="slot"></div>
-          <div class="slot"></div><div class="slot"></div>
-        </div>
-        <div class="crafting-arrow">➔</div>
-        <div class="slot"></div>
+<script src="assets/js/components.js"></script>
+<main>
+  <div id="chest-view" class="mc-container">
+    <div class="mc-title">Kit Selector</div>
+    <div class="chest-grid" id="chest-grid"></div>
+  </div>
+  <div id="inventory-view">
+    <div id="kit-header">
+      <div id="kit-name-display">Loading...</div>
+      <div class="level-selector">
+        <button class="level-btn"        onclick="setLevel(0)">1</button>
+        <button class="level-btn"        onclick="setLevel(1)">2</button>
+        <button class="level-btn"        onclick="setLevel(2)">3</button>
+        <button class="level-btn"        onclick="setLevel(3)">4</button>
+        <button class="level-btn"        onclick="setLevel(4)">5</button>
+        <button class="level-btn"        onclick="setLevel(5)">6</button>
+        <button class="level-btn"        onclick="setLevel(6)">7</button>
+        <button class="level-btn"        onclick="setLevel(7)">8</button>
+        <button class="level-btn"        onclick="setLevel(8)">9</button>
+        <button class="level-btn active" onclick="setLevel(9)">10</button>
+        <button class="level-btn p2"     onclick="setLevel(10)">P2</button>
       </div>
     </div>
+    <div id="inventory-container" class="mc-container">
+      <div class="top-section">
+        <div class="armour-column" id="armour-slots"></div>
+        <div id="player-box"><canvas id="player-canvas"></canvas></div>
+        <div class="crafting-area">
+          <div class="mc-title">Crafting</div>
+          <div class="crafting-layout">
+            <div class="crafting-grid">
+              <div class="slot"></div><div class="slot"></div>
+              <div class="slot"></div><div class="slot"></div>
+            </div>
+            <div class="crafting-arrow">➔</div>
+            <div class="slot"></div>
+          </div>
+        </div>
+      </div>
+      <div id="bottom-section">
+        <div class="inv-grid" id="main-inv"></div>
+        <div class="hotbar-spacer"></div>
+        <div class="inv-grid" id="hotbar-inv"></div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="showChestView()">← Back to Kit Selector</button>
   </div>
-
-  <div id="bottom-section">
-    <div class="inv-grid" id="main-inv"></div>
-    <div class="hotbar-spacer"></div>
-    <div class="inv-grid" id="hotbar-inv"></div>
-  </div>
-</div>
-
+</main>
 <div class="mc-tooltip" id="tooltip"></div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/skinview3d@2.2.0/bundles/skinview3d.min.js"></script>
-
+<script src="assets/js/global.js"></script>
 <script>
-const ITEM_API = "https://api.minecraftitems.xyz/api/item/";
+// ════════════════════════════════════════════════════════════════════════════
+// API CONFIG
+// ════════════════════════════════════════════════════════════════════════════
+const API_BASE = "https://api.minecraftitems.xyz/api/item/";
+const API_KEY  = "mcapi_5cb1f0643162ea2f7b0aa174d27061cdfa1f35c318532b602a9bf86045063ff9";
+const API_SIZE = 4;
+const LEATHER_COLORS = { lime:"1688601", green:"31744", white:"16383998" };
 
-function item(id, name, rarity = 'common', stack = null, lines = []) {
-  return { id, name, rarity, stack, lines };
+function itemUrl(id, leatherDye=null, enchanted=false) {
+  let u = `${API_BASE}${id}?apiKey=${API_KEY}&size=${API_SIZE}`;
+  if (leatherDye) u += `&color=${LEATHER_COLORS[leatherDye]}`;
+  if (enchanted)  u += `&glint=true`;
+  return u;
 }
 
-const KITS = [
-  {
-    name: "Kit I - Starter",
-    armour: {
-      helmet: item('leather_helmet', 'Leather Helmet', 'common', null, [{text: '+1 Armour', cls: 'c-yellow'}]),
-      chestplate: item('leather_chestplate', 'Leather Chestplate', 'common', null, [{text: '+3 Armour', cls: 'c-yellow'}]),
-      leggings: item('leather_leggings', 'Leather Leggings', 'common', null, [{text: '+2 Armour', cls: 'c-yellow'}]),
-      boots: item('leather_boots', 'Leather Boots', 'common', null, [{text: '+1 Armour', cls: 'c-yellow'}])
-    },
-    hotbar: [
-      item('wooden_sword', 'Wooden Sword', 'common', null, [{text: '+4 Attack Damage', cls: 'c-yellow'}]),
-      item('bread', 'Bread', 'common', 16, [{text: 'Restores 5 hunger.', cls: 'c-grey'}])
-    ],
-    inv: [item('cobblestone', 'Cobblestone', 'common', 64)]
-  },
-  ...Array(9).fill().map((_, i) => ({
-    name: `Kit ${i+2} - Unlocked Soon`,
-    armour: {}, hotbar: [], inv: []
-  })),
-  {
-    name: "Kit XI - Prestige II ✦",
-    armour: {
-      helmet: item('diamond_helmet', 'Diamond Helmet', 'legendary', null, [{text: '+3 Armour', cls: 'c-yellow'}]),
-      chestplate: item('diamond_chestplate', 'Diamond Chestplate', 'legendary', null, [{text: '+8 Armour', cls: 'c-yellow'}]),
-      leggings: item('diamond_leggings', 'Diamond Leggings', 'legendary', null, [{text: '+6 Armour', cls: 'c-yellow'}]),
-      boots: item('diamond_boots', 'Diamond Boots', 'legendary', null, [{text: '+3 Armour', cls: 'c-yellow'}])
-    },
-    hotbar: [
-      item('diamond_sword', 'Diamond Sword', 'legendary', null, [{text: '+7 Attack Damage', cls: 'c-yellow'}]),
-      item('enchanted_golden_apple', 'Enchanted Golden Apple', 'epic', 64)
-    ],
-    inv: [item('nether_star', 'Nether Star', 'legendary', 9), item('beacon', 'Beacon', 'rare', 1)]
+// Block items needing a specific rotation path-segment for correct display
+// chest → /right gives a readable isometric front-facing angle
+// wither_skeleton_skull → /left gives a frontal face view instead of top-down
+function blockUrl(id, rotation='right') {
+  return `${API_BASE}${id}/size=${API_SIZE}/${rotation}?apiKey=${API_KEY}`;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ITEM DSL
+// ════════════════════════════════════════════════════════════════════════════
+
+// itm(id, name, rarity='common', stack=null, enchants=[], leatherDye=null)
+function itm(id, name, rarity='common', stack=null, enchants=[], leatherDye=null) {
+  return { id, name, rarity, stack,
+    lines: enchants.map(e=>({text:e,cls:'c-grey'})),
+    enchanted: enchants.length > 0,
+    customImg: null, leatherDye };
+}
+
+// Leather helpers — slot → leather_* id, with optional dye and enchants
+const _LIDS = {helmet:'leather_helmet',chestplate:'leather_chestplate',leggings:'leather_leggings',boots:'leather_boots'};
+function _lth(slot,name,dye,enc=[]) { return itm(_LIDS[slot],name,'common',null,enc,dye); }
+function lth(slot,name,enc=[]) { return _lth(slot,name,'white',enc); }  // plain/undyed
+function lim(slot,name,enc=[]) { return _lth(slot,name,'lime', enc); }  // lime dyed
+function grn(slot,name,enc=[]) { return _lth(slot,name,'green',enc); }  // green dyed
+
+// Potion helpers
+function pot(name,stack=null)  { return itm('potion',       name,'common',stack); }
+function spot(name,stack=null) { return itm('splash_potion',name,'common',stack); }
+
+const COMPASS = itm('compass','Compass','common');
+
+// ════════════════════════════════════════════════════════════════════════════
+// PATCH ENGINE
+// kit(patches) — define each level as ONLY what changes from the level above.
+// Slot keys: helmet|chestplate|leggings|boots  for armour
+//            h0–h7 for hotbar (h8 = compass, always auto-filled)
+//            i0–i26 for inventory
+// Set a key to null to remove it from that level onward.
+// ════════════════════════════════════════════════════════════════════════════
+function kit(patches) {
+  const levels = [];
+  let state = {};
+  for (const patch of patches) {
+    // deep-clone then apply patch
+    state = JSON.parse(JSON.stringify(state));
+    for (const [k,v] of Object.entries(patch)) {
+      if (v === null) delete state[k];
+      else state[k] = v;
+    }
+    const armour = {};
+    for (const k of ['helmet','chestplate','leggings','boots']) if (state[k]) armour[k]=state[k];
+    const hotbar = [];
+    for (let i=0;i<8;i++) hotbar.push(state[`h${i}`]||null);
+    hotbar.push(COMPASS);
+    const inv = [];
+    for (let i=0;i<27;i++) inv.push(state[`i${i}`]||null);
+    levels.push({armour,hotbar,inv});
   }
+  return levels;
+}
+
+const blankKitArray = () => Array(11).fill().map(()=>({armour:{},hotbar:[],inv:[]}));
+const levelNames = ["I","II","III","IV","V","VI","VII","VIII","IX","X","Prestige II"];
+
+// ════════════════════════════════════════════════════════════════════════════
+// KIT DATABASE
+// ════════════════════════════════════════════════════════════════════════════
+const KIT_DATABASE = {
+
+"Archer": kit([
+  {helmet:lth('helmet','Leather Helmet'),boots:lth('boots','Leather Boots'),h0:itm('bow','Bow','uncommon'),h1:itm('arrow','Arrow','common',16)},
+  {leggings:lth('leggings','Leather Leggings')},
+  {helmet:itm('iron_helmet','Iron Helmet','uncommon')},
+  {helmet:itm('iron_helmet','Iron Helmet','uncommon',null,['Protection I'])},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary'),h1:itm('arrow','Arrow','common',18)},
+  {h0:itm('bow','Bow','rare',null,['Power I']),h1:itm('arrow','Arrow','common',20)},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection I']),h1:itm('arrow','Arrow','common',22)},
+  {chestplate:lth('chestplate','Leather Chestplate'),h1:itm('arrow','Arrow','common',26)},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection I']),h1:itm('arrow','Arrow','common',30)},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection II']),h0:itm('bow','Bow','legendary',null,['Power II']),h1:itm('arrow','Arrow','common',48)},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection II']),h1:itm('arrow','Arrow','common',64)},
+]),
+
+"Ranger": kit([
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection I']),leggings:lth('leggings','Leather Leggings',['Protection I']),boots:itm('chainmail_boots','Chainmail Boots','uncommon',null,['Protection I']),h0:itm('bow','Bow','rare',null,['Power I']),h1:itm('arrow','Arrow','common',15)},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection II']),leggings:lth('leggings','Leather Leggings'),h1:itm('arrow','Arrow','common',16)},
+  {leggings:lth('leggings','Leather Leggings',['Protection I']),boots:itm('chainmail_boots','Chainmail Boots','uncommon',null,['Protection II']),h1:itm('arrow','Arrow','common',17)},
+  {chestplate:itm('chainmail_chestplate','Chainmail Chestplate','uncommon'),h1:itm('arrow','Arrow','common',18)},
+  {leggings:lth('leggings','Leather Leggings',['Protection II']),boots:itm('iron_boots','Iron Boots','uncommon'),h1:itm('arrow','Arrow','common',19)},
+  {chestplate:itm('chainmail_chestplate','Chainmail Chestplate','uncommon',null,['Protection I']),h1:itm('arrow','Arrow','common',20)},
+  {leggings:itm('golden_leggings','Gold Leggings','uncommon'),boots:itm('iron_boots','Iron Boots','uncommon',null,['Protection I']),h1:itm('arrow','Arrow','common',21)},
+  {chestplate:itm('chainmail_chestplate','Chainmail Chestplate','uncommon',null,['Protection II']),h1:itm('arrow','Arrow','common',22)},
+  {boots:itm('iron_boots','Iron Boots','uncommon',null,['Protection II']),h1:itm('arrow','Arrow','common',23)},
+  {boots:itm('diamond_boots','Diamond Boots','legendary'),h0:itm('bow','Bow','legendary',null,['Power I','Punch I']),h1:itm('arrow','Arrow','common',24)},
+  {boots:itm('diamond_boots','Diamond Boots','legendary',null,['Protection I']),h0:itm('wooden_axe','Wooden Axe','uncommon',null,['Unbreaking III']),h1:itm('bow','Bow','legendary',null,['Power I','Punch I']),h2:itm('arrow','Arrow','common',28)},
+]),
+
+"Horsetamer": kit([
+  {helmet:lth('helmet','Leather Helmet'),boots:lth('boots','Leather Boots'),h0:itm('wooden_axe','Wooden Axe','common',null,['Infinity I']),h1:itm('horse_spawn_egg','Horse Spawn Egg','rare'),h2:itm('apple','Apple','common',3),h3:itm('saddle','Saddle','uncommon')},
+  {leggings:lth('leggings','Leather Leggings'),boots:itm('chainmail_boots','Chainmail Boots','uncommon')},
+  {h0:itm('stone_axe','Stone Axe','uncommon',null,['Infinity I'])},
+  {chestplate:lth('chestplate','Leather Chestplate')},
+  {boots:itm('chainmail_boots','Chainmail Boots','uncommon',null,['Protection I'])},
+  {boots:itm('iron_boots','Iron Boots','uncommon')},
+  {h0:itm('iron_axe','Iron Axe','rare',null,['Infinity I']),h2:itm('apple','Apple','common',4)},
+  {boots:itm('diamond_boots','Diamond Boots','legendary')},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection I']),boots:itm('diamond_boots','Diamond Boots','legendary',null,['Protection I']),h2:itm('apple','Apple','common',6)},
+  {h0:itm('diamond_axe','Diamond Axe','legendary',null,['Infinity I']),boots:itm('diamond_boots','Diamond Boots','legendary',null,['Protection II']),h2:itm('apple','Apple','common',8)},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection II']),leggings:lth('leggings','Leather Leggings',['Protection I'])},
+]),
+
+"Armorer": kit([
+  {helmet:lth('helmet','Leather Helmet'),chestplate:lth('chestplate','Leather Chestplate',['Protection I','Blast Protection I']),leggings:lth('leggings','Leather Leggings',['Protection I','Fire Protection I']),boots:lth('boots','Leather Boots'),h0:itm('cookie','Cookie','common',1)},
+  {helmet:lth('helmet','Leather Helmet',['Protection I','Projectile Protection I']),h0:itm('cookie','Cookie','common',2)},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection II','Blast Protection I']),boots:lth('boots','Leather Boots',['Protection I','Feather Falling I']),h0:itm('cookie','Cookie','common',3)},
+  {helmet:lth('helmet','Leather Helmet',['Protection I','Projectile Protection II']),chestplate:lth('chestplate','Leather Chestplate',['Protection II','Blast Protection II']),boots:lth('boots','Leather Boots',['Protection I','Feather Falling II']),h0:itm('cookie','Cookie','common',4)},
+  {helmet:lth('helmet','Leather Helmet',['Protection II','Projectile Protection II']),chestplate:lth('chestplate','Leather Chestplate',['Protection III','Blast Protection III']),h0:itm('cookie','Cookie','common',5)},
+  {helmet:lth('helmet','Leather Helmet',['Protection II','Projectile Protection III']),leggings:lth('leggings','Leather Leggings',['Protection II','Fire Protection III']),boots:lth('boots','Leather Boots',['Protection I','Feather Falling III']),h0:itm('cookie','Cookie','common',6)},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection III','Blast Protection IV']),leggings:lth('leggings','Leather Leggings',['Protection III','Fire Protection IV']),boots:lth('boots','Leather Boots',['Protection II','Feather Falling III']),h0:itm('cookie','Cookie','common',7)},
+  {helmet:lth('helmet','Leather Helmet',['Protection II','Projectile Protection IV']),chestplate:lth('chestplate','Leather Chestplate',['Protection III','Blast Protection V']),h0:itm('cookie','Cookie','common',8)},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection IV','Blast Protection V']),leggings:lth('leggings','Leather Leggings',['Protection IV','Fire Protection V']),h0:itm('cookie','Cookie','common',9)},
+  {helmet:lth('helmet','Leather Helmet',['Protection II','Projectile Protection X']),chestplate:lth('chestplate','Leather Chestplate',['Protection IV','Blast Protection X']),leggings:lth('leggings','Leather Leggings',['Protection IV','Fire Protection X']),boots:lth('boots','Leather Boots',['Protection II','Feather Falling IV']),h0:itm('cookie','Cookie','common',10)},
+  {boots:lth('boots','Leather Boots',['Protection II','Feather Falling X']),h0:itm('cookie','Cookie','common',12),h1:itm('wooden_axe','Wooden Axe','uncommon',null,['Unbreaking III'])},
+]),
+
+"Baker": kit([
+  {helmet:lth('helmet','Leather Helmet'),h0:itm('wooden_sword','Wooden Sword','common'),h1:itm('bread','Bread','common',2),h2:itm('cake','Cake','common',1),h3:spot('Splash Potion of Resistance I (10s)')},
+  {chestplate:lth('chestplate','Leather Chestplate'),h1:itm('bread','Bread','common',4)},
+  {leggings:lth('leggings','Leather Leggings'),h1:itm('bread','Bread','common',6),h2:itm('cake','Cake','common',2)},
+  {boots:lth('boots','Leather Boots'),h1:itm('bread','Bread','common',8)},
+  {h1:itm('bread','Bread','common',10),h2:itm('cake','Cake','common',3),h3:spot('Splash Potion of Resistance I (10s)',2)},
+  {boots:lth('boots','Leather Boots',['Protection I']),h1:itm('bread','Bread','common',12)},
+  {h0:itm('stone_sword','Stone Sword','uncommon',null,['Unbreaking I']),h1:itm('bread','Bread','common',16)},
+  {boots:lth('boots','Leather Boots',['Protection II']),h1:itm('bread','Bread','common',20),h2:itm('cake','Cake','common',4),h3:spot('Splash Potion of Resistance I (10s)',3)},
+  {h0:itm('stone_sword','Stone Sword','uncommon'),boots:itm('iron_boots','Iron Boots','uncommon'),h1:itm('bread','Bread','common',24),h2:itm('cake','Cake','common',5)},
+  {h0:itm('iron_sword','Iron Sword','rare',null,['Unbreaking I']),boots:itm('iron_boots','Iron Boots','uncommon',null,['Protection I']),h1:itm('bread','Bread','common',32),h4:itm('golden_apple','Golden Apple','rare')},
+  {helmet:itm('iron_helmet','Iron Helmet','uncommon'),h3:spot('Splash Potion of Resistance I (10s)',4)},
+]),
+
+"Guardian": kit([
+  {chestplate:lth('chestplate','Leather Chestplate'),h0:itm('wooden_axe','Wooden Axe','common'),h1:pot('Potion of Healing I')},
+  {boots:lth('boots','Leather Boots')},
+  {leggings:lth('leggings','Leather Leggings')},
+  {helmet:lth('helmet','Leather Helmet'),h0:itm('stone_axe','Stone Axe','uncommon')},
+  {h2:pot('Potion of Health Boost I (2 hearts, 20 min)')},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection I']),h1:pot('Potion of Healing II')},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection II']),boots:lth('boots','Leather Boots',['Protection I'])},
+  {chestplate:itm('chainmail_chestplate','Chainmail Chestplate','uncommon',null,['Protection I']),boots:itm('iron_boots','Iron Boots','uncommon')},
+  {chestplate:itm('iron_chestplate','Iron Chestplate','uncommon'),boots:lth('boots','Leather Boots',['Protection II'])},
+  {h0:itm('iron_axe','Iron Axe','rare'),boots:itm('iron_boots','Iron Boots','uncommon'),h1:pot('Potion of Healing II',2)},
+  {h1:pot('Potion of Healing II & Resistance II (2s)',3)},
+]),
+
+"Hunter": kit([
+  {chestplate:lth('chestplate','Leather Chestplate'),leggings:lth('leggings','Leather Leggings'),h0:itm('bow','Bow','uncommon',null,['Unbreaking I']),h1:itm('wooden_axe','Wooden Axe','common'),h2:itm('arrow','Arrow','common',8)},
+  {h2:itm('arrow','Arrow','common',12)},
+  {h1:itm('wooden_sword','Wooden Sword','common')},
+  {h3:spot('Splash Potion of Speed II (8s)')},
+  {h0:itm('bow','Bow','uncommon'),h2:itm('arrow','Arrow','common',16)},
+  {leggings:lth('leggings','Leather Leggings',['Protection I']),h3:spot('Splash Potion of Speed II (8s)',2)},
+  {leggings:itm('golden_leggings','Gold Leggings','uncommon'),h1:itm('stone_sword','Stone Sword','uncommon',null,['Unbreaking I'])},
+  {h1:itm('stone_sword','Stone Sword','uncommon'),h3:spot('Splash Potion of Speed II (8s)',3)},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection I']),leggings:itm('chainmail_leggings','Chainmail Leggings','uncommon'),h0:itm('bow','Bow','rare',null,['Power I']),h2:itm('arrow','Arrow','common',20)},
+  {chestplate:itm('chainmail_chestplate','Chainmail Chestplate','uncommon',null,['Punch I']),leggings:itm('chainmail_leggings','Chainmail Leggings','uncommon',null,['Punch I']),h2:itm('arrow','Arrow','common',18),h3:spot('Splash Potion of Speed II (10s)',3)},
+  {h2:itm('arrow','Arrow','common',22),h3:spot('Splash Potion of Speed II (10s)',4)},
+]),
+
+"Hype Train": kit([
+  {helmet:lth('helmet','Leather Helmet'),h0:itm('stone_axe','Stone Axe','uncommon'),h1:itm('minecart','Minecart','common'),h2:itm('rail','Rail','common',16),h3:itm('powered_rail','Powered Rail','uncommon',3),h4:itm('redstone_torch','Redstone Torch','common',3)},
+  {chestplate:lth('chestplate','Leather Chestplate'),h2:itm('rail','Rail','common',20)},
+  {helmet:lth('helmet','Leather Helmet',['Projectile Protection I']),chestplate:lth('chestplate','Leather Chestplate',['Projectile Protection I']),h2:itm('rail','Rail','common',24)},
+  {h2:itm('rail','Rail','common',28),h5:itm('tnt','TNT','rare',1)},
+  {boots:lth('boots','Leather Boots'),h2:itm('rail','Rail','common',32)},
+  {h0:itm('iron_axe','Iron Axe','rare'),h2:itm('rail','Rail','common',36)},
+  {boots:lth('boots','Leather Boots',['Protection I']),h2:itm('rail','Rail','common',40),h3:itm('powered_rail','Powered Rail','uncommon',4),h4:itm('redstone_torch','Redstone Torch','common',4)},
+  {boots:lth('boots','Leather Boots',['Protection II']),h2:itm('rail','Rail','common',44),h3:itm('powered_rail','Powered Rail','uncommon',6),h4:itm('redstone_torch','Redstone Torch','common',6)},
+  {chestplate:lth('chestplate','Leather Chestplate',['Projectile Protection II']),boots:itm('iron_boots','Iron Boots','uncommon'),h0:itm('iron_axe','Iron Axe','rare'),h1:itm('fishing_rod','Fishing Rod','uncommon'),h2:itm('rail','Rail','common',48),h3:itm('powered_rail','Powered Rail','uncommon',8),h4:itm('redstone_torch','Redstone Torch','common',8),h5:itm('minecart','Minecart','common'),h6:itm('tnt','TNT','rare',2)},
+  {helmet:lth('helmet','Leather Helmet',['Projectile Protection II']),chestplate:lth('chestplate','Leather Chestplate',['Projectile Protection II']),leggings:lth('leggings','Leather Leggings',['Protection I']),boots:itm('iron_boots','Iron Boots','uncommon',null,['Protection I']),h0:itm('iron_sword','Iron Sword','rare'),h1:itm('fishing_rod','Fishing Rod','uncommon',null,['Silk Touch I','Unbreaking II']),h2:itm('rail','Rail','common',64),h3:itm('powered_rail','Powered Rail','uncommon',10),h4:itm('redstone_torch','Redstone Torch','common',10),h5:itm('minecart','Minecart','common'),h6:itm('chest_minecart','Storage Minecart','uncommon'),h7:itm('tnt','TNT','rare',3)},
+  {boots:itm('iron_boots','Iron Boots','uncommon',null,['Protection III'])},
+]),
+
+"Knight": kit([
+  {helmet:lth('helmet','Leather Helmet'),boots:itm('golden_boots','Golden Boots','uncommon'),h0:itm('wooden_sword','Wooden Sword','common')},
+  {chestplate:lth('chestplate','Leather Chestplate')},
+  {helmet:itm('golden_helmet','Golden Helmet','uncommon')},
+  {chestplate:lth('chestplate','Leather Chestplate',['Protection I'])},
+  {chestplate:itm('golden_chestplate','Golden Chestplate','uncommon'),h0:itm('stone_sword','Stone Sword','uncommon',null,['Unbreaking I'])},
+  {leggings:lth('leggings','Leather Leggings')},
+  {leggings:itm('golden_leggings','Golden Leggings','uncommon')},
+  {chestplate:itm('golden_chestplate','Golden Chestplate','uncommon',null,['Protection I']),leggings:itm('golden_leggings','Golden Leggings','uncommon',null,['Protection I']),h0:itm('stone_sword','Stone Sword','uncommon'),h1:itm('golden_carrot','Golden Carrot','uncommon',1)},
+  {helmet:itm('golden_helmet','Golden Helmet','uncommon',null,['Protection I']),boots:itm('golden_boots','Golden Boots','uncommon',null,['Protection I']),h1:itm('golden_carrot','Golden Carrot','uncommon',2)},
+  {chestplate:itm('golden_chestplate','Golden Chestplate','uncommon',null,['Protection II']),leggings:itm('golden_leggings','Golden Leggings','uncommon',null,['Protection II']),boots:itm('golden_boots','Golden Boots','uncommon',null,['Protection I']),h0:itm('iron_sword','Iron Sword','rare',null,['Unbreaking I']),h1:itm('golden_carrot','Golden Carrot','uncommon',3)},
+  {chestplate:itm('golden_chestplate','Golden Chestplate','uncommon',null,['Protection III']),boots:itm('golden_boots','Golden Boots','uncommon',null,['Protection II']),h1:itm('golden_carrot','Golden Carrot','uncommon',5)},
+]),
+
+"Fisherman": kit([
+  {helmet:lth('helmet','Leather Helmet'),h0:itm('fishing_rod','Fishing Rod','legendary',null,['Sharpness II','Unbreaking X']),h1:itm('cooked_cod','Cooked Fish','common',2)},
+  {helmet:itm('chainmail_helmet','Chainmail Helmet','uncommon'),h1:itm('cooked_cod','Cooked Fish','common',3)},
+  {h0:itm('fishing_rod','Fishing Rod','legendary',null,['Sharpness III','Unbreaking X'])},
+  {chestplate:lth('chestplate','Leather Chestplate'),h1:itm('cooked_cod','Cooked Fish','common',4)},
+  {leggings:lth('leggings','Leather Leggings')},
+  {boots:itm('iron_boots','Iron Boots','uncommon')},
+  {chestplate:itm('chainmail_chestplate','Chainmail Chestplate','uncommon'),leggings:itm('golden_leggings','Golden Leggings','uncommon')},
+  {h0:itm('fishing_rod','Fishing Rod','legendary',null,['Sharpness IV','Unbreaking X'])},
+  {leggings:itm('chainmail_leggings','Chainmail Leggings','uncommon'),h1:itm('cooked_cod','Cooked Fish','common',6)},
+  {boots:itm('diamond_boots','Diamond Boots','legendary'),h0:itm('fishing_rod','Fishing Rod','legendary',null,['Sharpness V','Unbreaking X','Luck of the Sea III']),h1:itm('cooked_cod','Cooked Fish','common',8)},
+  {boots:itm('diamond_boots','Diamond Boots','legendary',null,['Depth Strider I','Protection I']),h0:itm('fishing_rod','Fishing Rod','legendary',null,['Sharpness V','Unbreaking X','Luck of the Sea III','Lure III'])},
+]),
+
+"MeatMaster": kit([
+  {helmet:lth('helmet','Leather Helmet'),boots:lth('boots','Leather Boots'),h0:itm('wooden_sword','Wooden Sword','common',null,['Looting I']),h1:itm('cow_spawn_egg','Cow Spawn Egg','uncommon',2),h2:itm('cooked_beef','Steak','common',2)},
+  {helmet:lth('helmet','Leather Helmet',['Protection I']),boots:lth('boots','Leather Boots',['Protection I']),h2:itm('cooked_beef','Steak','common',4)},
+  {helmet:lth('helmet','Leather Helmet',['Protection II']),boots:itm('iron_boots','Iron Boots','uncommon'),h1:itm('cow_spawn_egg','Cow Spawn Egg','uncommon',3),h2:itm('cooked_beef','Steak','common',6)},
+  {helmet:itm('iron_helmet','Iron Helmet','uncommon'),h2:itm('cooked_beef','Steak','common',8)},
+  {helmet:itm('iron_helmet','Iron Helmet','uncommon',null,['Protection I']),h0:itm('wooden_sword','Wooden Sword','common',null,['Looting II']),h2:itm('cooked_beef','Steak','common',10)},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary'),h2:itm('cooked_beef','Steak','common',12)},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection I']),h0:itm('stone_sword','Stone Sword','uncommon',null,['Looting II']),h1:itm('cow_spawn_egg','Cow Spawn Egg','uncommon',4),h2:itm('cooked_beef','Steak','common',16)},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection II']),h2:itm('cooked_beef','Steak','common',20)},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection III']),h0:itm('stone_sword','Stone Sword','uncommon',null,['Looting III']),h1:itm('cow_spawn_egg','Cow Spawn Egg','uncommon',5),h2:itm('cooked_beef','Steak','common',24)},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection IV']),h0:itm('iron_sword','Iron Sword','rare',null,['Looting III']),h2:itm('cooked_beef','Steak','common',28),h3:itm('pig_spawn_egg','Pig Spawn Egg','uncommon'),h4:itm('saddle','Saddle','uncommon'),h5:itm('carrot_on_a_stick','Carrot on a Stick','uncommon')},
+  {boots:itm('iron_boots','Iron Boots','uncommon',null,['Protection I']),h1:itm('cow_spawn_egg','Cow Spawn Egg','uncommon',6),h2:itm('cooked_beef','Steak','common',32)},
+]),
+
+"Scout": kit([
+  {chestplate:lth('chestplate','Leather Chestplate'),h0:pot('Potion of Speed II (12s)',2),h1:spot('Splash Potion of Slowness II (8s)'),h2:spot('Splash Potion of Invisibility II (10s)')},
+  {helmet:lth('helmet','Leather Helmet')},
+  {helmet:lth('helmet','Leather Helmet',['Respiration I']),h0:pot('Potion of Speed II (14s)',2)},
+  {h0:pot('Potion of Speed II (14s)',4),h1:spot('Splash Potion of Slowness II (8s)',2)},
+  {helmet:lth('helmet','Leather Helmet',['Respiration II']),h0:pot('Potion of Speed II (14s)',3)},
+  {h0:pot('Potion of Speed II (16s)',3)},
+  {h3:pot('Potion of Regeneration II (10s)')},
+  {boots:lth('boots','Leather Boots'),h0:pot('Potion of Speed II (18s)',5),h1:spot('Splash Potion of Slowness II (6s)',2)},
+  {h1:spot('Splash Potion of Slowness II (8s)',2)},
+  {leggings:lth('leggings','Leather Leggings'),h0:pot('Potion of Speed II (20s)',5),h1:spot('Splash Potion of Slowness II (8s)',3),h3:pot('Potion of Regeneration II (10s)',2)},
+  {}, // P2 — no documented changes
+]),
+
+"Speleologist": kit([
+  {helmet:itm('iron_helmet','Iron Helmet','uncommon'),boots:lth('boots','Leather Boots'),h0:itm('iron_pickaxe','Iron Pickaxe','uncommon'),h1:itm('bowl','Bowl','common'),h2:itm('mooshroom_spawn_egg','Mooshroom Spawn Egg','uncommon',1)},
+  {boots:lth('boots','Leather Boots',['Protection I'])},
+  {boots:lth('boots','Leather Boots',['Protection II']),h2:itm('mooshroom_spawn_egg','Mooshroom Spawn Egg','uncommon',2)},
+  {boots:itm('iron_boots','Iron Boots','uncommon')},
+  {chestplate:lth('chestplate','Leather Chestplate'),h2:itm('mooshroom_spawn_egg','Mooshroom Spawn Egg','uncommon',3)},
+  {helmet:itm('iron_helmet','Iron Helmet','uncommon',null,['Protection I']),leggings:lth('leggings','Leather Leggings')},
+  {helmet:itm('iron_helmet','Iron Helmet','uncommon',null,['Protection II']),boots:itm('iron_boots','Iron Boots','uncommon',null,['Projectile Protection I']),h2:itm('mooshroom_spawn_egg','Mooshroom Spawn Egg','uncommon',1)},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary'),chestplate:lth('chestplate','Leather Chestplate'),h0:itm('iron_pickaxe','Iron Pickaxe','uncommon',null,['Sharpness I']),h2:itm('mooshroom_spawn_egg','Mooshroom Spawn Egg','uncommon',4)},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection I']),chestplate:lth('chestplate','Leather Chestplate',['Protection I']),leggings:lth('leggings','Leather Leggings',['Protection I'])},
+  {helmet:itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection II']),chestplate:lth('chestplate','Leather Chestplate',['Protection II']),leggings:lth('leggings','Leather Leggings',['Protection II']),boots:itm('iron_boots','Iron Boots','uncommon',null,['Projectile Protection II']),h0:itm('diamond_pickaxe','Diamond Pickaxe','legendary',null,['Sharpness I']),h2:itm('mooshroom_spawn_egg','Mooshroom Spawn Egg','uncommon',5)},
+  {chestplate:itm('golden_chestplate','Golden Chestplate','uncommon'),leggings:lth('leggings','Leather Leggings',['Protection I']),boots:itm('iron_boots','Iron Boots','uncommon',null,['Projectile Protection III'])},
+]),
+
+// Stubs — filled as data arrives
+"Farmer":blankKitArray(),"Troll":blankKitArray(),"Astronaut":blankKitArray(),
+"Shark":blankKitArray(),"RedDragon":blankKitArray(),"Toxicologist":blankKitArray(),
+"Donkeytamer":blankKitArray(),"Rogue":blankKitArray(),"Warlock":blankKitArray(),
+"Slimey Slime":blankKitArray(),"Snowman":blankKitArray(),"Golem":blankKitArray(),
+"Viking":blankKitArray(),"Shadow Knight":blankKitArray(),"Pigman":blankKitArray(),
+"Phoenix":blankKitArray(),"Paladin":blankKitArray(),"Necromancer":blankKitArray(),
+"Warrior":blankKitArray(),"Milkman":blankKitArray(),"Florist":blankKitArray(),
+"Diver":blankKitArray(),"Arachnologist":blankKitArray(),"Blaze":blankKitArray(),
+"Wolftamer":blankKitArray(),"Tim":blankKitArray(),"Rambo":blankKitArray(),
+"Creepertamer":blankKitArray(),
+};
+
+// ════════════════════════════════════════════════════════════════════════════
+// CHEST GRID  (5 rows × 9 = 45 slots)
+//
+// chest → blockUrl('chest','right') — isometric front-facing angle
+// wither_skeleton_skull → blockUrl('wither_skeleton_skull','left') — frontal skull
+// player_head (Shark) → Crafatar Steve face as customImg (API can't render generic head)
+// short_grass replaces tall_grass (avoids greyscale tinted block)
+// ════════════════════════════════════════════════════════════════════════════
+const chestMap = [
+  {id:'saddle',             name:'Horsetamer'},
+  {id:'arrow',              name:'Ranger'},
+  {id:'bow',                name:'Archer'},
+  {id:'iron_boots',         name:'Astronaut'},
+  {id:'witch_spawn_egg',    name:'Troll'},
+  {id:'cooked_beef',        name:'MeatMaster'},
+  {id:'iron_hoe',           name:'Farmer'},
+  {id:'player_head',        name:'Shark',        customImg:'https://crafatar.com/avatars/8667ba71b85a4004af54457a9734eed7?size=30&overlay'},
+  {id:'flint_and_steel',    name:'RedDragon'},
+  {id:'potion',             name:'Toxicologist'},
+  {id:'chest',              name:'Donkeytamer',  customImg:blockUrl('chest','right')},
+  {id:'wooden_sword',       name:'Rogue'},
+  {id:'potion',             name:'Warlock'},
+  {id:'slime_ball',         name:'Slimey Slime'},
+  {id:'snow_golem_spawn_egg',name:'Snowman'},
+  {id:'golden_apple',       name:'Golem'},
+  {id:'oak_boat',           name:'Viking'},
+  {id:'iron_pickaxe',       name:'Speleologist'},
+  {id:'wither_skeleton_skull',name:'Shadow Knight',customImg:blockUrl('wither_skeleton_skull','left')},
+  {id:'cake',               name:'Baker'},
+  {id:'golden_sword',       name:'Knight'},
+  {id:'cooked_porkchop',    name:'Pigman'},
+  {id:'potion',             name:'Guardian'},
+  {id:'feather',            name:'Phoenix'},
+  {id:'iron_chestplate',    name:'Paladin'},
+  {id:'rotten_flesh',       name:'Necromancer'},
+  {id:'potion',             name:'Scout'},
+  {id:'short_grass',        name:'Hunter'},
+  {id:'stone_sword',        name:'Warrior'},
+  {id:'minecart',           name:'Hype Train'},
+  {id:'fishing_rod',        name:'Fisherman'},
+  {id:'milk_bucket',        name:'Milkman'},
+  {id:'cactus',             name:'Florist'},
+  {id:'diamond_boots',      name:'Diver'},
+  {id:'spider_spawn_egg',   name:'Arachnologist'},
+  {id:'blaze_rod',          name:'Blaze'},
+  {id:'bone',               name:'Wolftamer'},
+  {id:'experience_bottle',  name:'Tim'},
+  {id:'snowball',           name:'Snowman'},
+  {id:'stick',              name:'Rambo'},
+  {id:'egg',                name:'Farmer'},
+  {id:'leather_chestplate', name:'Armorer'},
+  {id:'tnt',                name:'Creepertamer'},
+  null, // slot 43 — empty
+  // slot 44 — random cycle (built dynamically)
 ];
 
-// --- 3D Player Engine ---
-let viewer;
-function initPlayer() {
-  const canvas = document.getElementById("player-canvas");
-  if(viewer) return;
-  
-  try {
-    viewer = new skinview3d.SkinViewer({
-      canvas: canvas,
-      width: 120,
-      height: 150,
-      skin: "https://crafatar.com/skins/853c80ef3c3749fdaa49938b674adae6"
-    });
-    viewer.zoom = 0.8;
-    viewer.autoRotate = false;
-    
-    document.addEventListener("mousemove", (e) => {
-      if(!viewer || !viewer.playerObject) return;
-      const box = document.getElementById("player-box").getBoundingClientRect();
-      const cx = box.left + box.width / 2;
-      const cy = box.top + box.height / 2;
-      const x = (e.clientX - cx) / window.innerWidth;
-      const y = (e.clientY - cy) / window.innerHeight;
-      
-      viewer.playerObject.rotation.y = x * 3;
-      viewer.playerObject.rotation.x = y * 1.5;
-    });
-  } catch(e) { console.error("3D Load Failed:", e); }
-}
+const RANDOM_IDS = ['saddle','arrow','bow','iron_boots','witch_spawn_egg','cooked_beef','iron_hoe','flint_and_steel','potion','wooden_sword','slime_ball','golden_apple','oak_boat','iron_pickaxe','cake','golden_sword','cooked_porkchop','feather','iron_chestplate','rotten_flesh','short_grass','stone_sword','minecart','fishing_rod','milk_bucket','diamond_boots','spider_spawn_egg','blaze_rod','bone','experience_bottle','snowball','stick','egg','leather_chestplate','tnt'];
+let rndIdx=0, rndTimer=null;
 
-// --- Tooltip Event Delegation Engine ---
-const tooltip = document.getElementById('tooltip');
+let activeKitName=null, currentLevelIndex=9;
 
-function buildTooltip(it) {
-  let h = `<span class="tt-name r-${it.rarity}">${it.name}</span>`;
-  if (it.lines && it.lines.length) {
-    h += '<div class="tt-div"></div>';
-    for (const ln of it.lines) {
-      h += `<span class="tt-line ${ln.cls || ''}">${ln.text}</span>`;
+function initChest() {
+  const grid = document.getElementById('chest-grid');
+  let html='';
+  for (let i=0;i<45;i++) {
+    if (i===44) {
+      html+=`<div class="slot locked" id="random-slot" title="Random Kit"><div class="item-wrapper"><img id="random-img" src="${itemUrl(RANDOM_IDS[0])}" alt="?"></div></div>`;
+    } else if (!chestMap[i]) {
+      html+=`<div class="slot"></div>`;
+    } else {
+      const k=chestMap[i];
+      const img=k.customImg||itemUrl(k.id);
+      const td=JSON.stringify({id:k.id,name:k.name,rarity:'epic',stack:null,lines:[{text:'Click to view tiers',cls:'c-yellow'}],enchanted:false,customImg:k.customImg||null,leatherDye:null}).replace(/"/g,'&quot;');
+      html+=`<div class="slot" data-item="${td}" onclick="openKit('${k.name}')"><div class="item-wrapper"><img src="${img}" alt="${k.name}" onerror="this.style.display='none'"></div></div>`;
     }
   }
+  grid.innerHTML=html;
+  startRandom();
+}
+
+function startRandom() {
+  if (rndTimer) clearInterval(rndTimer);
+  rndTimer=setInterval(()=>{
+    rndIdx=(rndIdx+1)%RANDOM_IDS.length;
+    const img=document.getElementById('random-img');
+    if (img) img.src=itemUrl(RANDOM_IDS[rndIdx]);
+  },800);
+}
+
+function showChestView() {
+  document.getElementById('inventory-view').style.display='none';
+  document.getElementById('chest-view').style.display='flex';
+  activeKitName=null; tooltip.classList.remove('show'); startRandom();
+}
+
+function openKit(name) {
+  if (!KIT_DATABASE[name]) KIT_DATABASE[name]=blankKitArray();
+  activeKitName=name; setLevel(9);
+  if (rndTimer){clearInterval(rndTimer);rndTimer=null;}
+  document.getElementById('chest-view').style.display='none';
+  document.getElementById('inventory-view').style.display='flex';
+  setTimeout(initPlayer,50);
+}
+
+function setLevel(i) {
+  currentLevelIndex=i;
+  document.querySelectorAll('.level-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
+  renderInventory();
+}
+
+// Hotbar scoring: weapons first, then ranged, then utility
+function sortHotbar(raw) {
+  const hasEnch=(it,txt)=>it.lines&&it.lines.some(l=>l.text.toLowerCase().includes(txt));
+  const score=it=>{
+    const id=it.id.toLowerCase();
+    if (id.includes('_sword'))    return 1;
+    if (id.includes('_axe'))      return 2;
+    if (hasEnch(it,'sharpness'))  return 3;
+    if (id.includes('_pickaxe'))  return 4;
+    if (id==='stick'||id==='ghast_tear') return 5;
+    if (id==='bow')               return 6;
+    if (id==='fishing_rod')       return 7;
+    return 99;
+  };
+  const items=raw.filter(i=>i&&i.id&&i.id!=='compass');
+  items.sort((a,b)=>score(a)-score(b));
+  const out=Array(9).fill(null);
+  for(let i=0;i<8&&i<items.length;i++) out[i]=items[i];
+  out[8]=COMPASS;
+  return out;
+}
+
+function renderInventory() {
+  const d=KIT_DATABASE[activeKitName][currentLevelIndex];
+  document.getElementById('kit-name-display').innerHTML=`<span style="color:var(--accent)">${activeKitName}</span> ${levelNames[currentLevelIndex]}`;
+  document.getElementById('armour-slots').innerHTML=['helmet','chestplate','leggings','boots'].map(t=>makeSlotHtml(d.armour[t])).join('');
+  let m=''; for(let i=0;i<27;i++) m+=makeSlotHtml(d.inv[i]);
+  document.getElementById('main-inv').innerHTML=m;
+  const hb=sortHotbar(d.hotbar);
+  let h=''; for(let i=0;i<9;i++) h+=makeSlotHtml(hb[i]);
+  document.getElementById('hotbar-inv').innerHTML=h;
+}
+
+// Block IDs whose API textures don't work well with CSS mask-image clipping
+const BLOCK_IDS=new Set(['chest','tnt','cactus','wither_skeleton_skull','short_grass','minecart','chest_minecart','rail','powered_rail','redstone_torch']);
+
+function makeSlotHtml(it) {
+  if (!it||(!it.id&&!it.customImg)) return `<div class="slot"></div>`;
+  const img=it.customImg||itemUrl(it.id,it.leatherDye,it.enchanted);
+  const wrap=it.enchanted?'item-wrapper enchanted':'item-wrapper';
+  const isBlock=BLOCK_IDS.has(it.id);
+  // Only apply mask on non-block enchanted items (mask clips glint to sprite shape)
+  const mask=(!isBlock&&it.enchanted)?`style="-webkit-mask-image:url('${img}');mask-image:url('${img}');mask-size:contain;"`:'' ;
+  const ds=JSON.stringify(it).replace(/"/g,'&quot;');
+  let html=`<div class="slot" data-item="${ds}"><div class="${wrap}" ${mask}><img src="${img}" alt="${it.name}" onerror="this.style.display='none'"></div>`;
+  if (it.stack&&it.stack>1) html+=`<span class="count">${it.stack}</span>`;
+  return html+`</div>`;
+}
+
+const tooltip=document.getElementById('tooltip');
+function buildTooltip(it) {
+  let h=`<span class="tt-name r-${it.rarity}">${it.name}</span>`;
+  if (it.lines&&it.lines.length){h+='<div class="tt-div"></div>';for(const l of it.lines)h+=`<span class="tt-line ${l.cls||''}">${l.text}</span>`;}
   return h;
 }
+document.addEventListener('mouseover',e=>{const s=e.target.closest('.slot');if(!s)return;const d=s.getAttribute('data-item');if(!d)return;tooltip.innerHTML=buildTooltip(JSON.parse(d));tooltip.classList.add('show');});
+document.addEventListener('mousemove',e=>{if(!tooltip.classList.contains('show'))return;const p=15;let x=e.clientX+p,y=e.clientY+p;if(x+tooltip.offsetWidth>window.innerWidth)x=e.clientX-tooltip.offsetWidth-p;if(y+tooltip.offsetHeight>window.innerHeight)y=e.clientY-tooltip.offsetHeight-p;tooltip.style.left=x+'px';tooltip.style.top=y+'px';});
+document.addEventListener('mouseout',e=>{if(e.target.closest('.slot'))tooltip.classList.remove('show');});
 
-document.addEventListener('mouseover', e => {
-  const slot = e.target.closest('.slot');
-  if(!slot) return;
-  const data = slot.getAttribute('data-item');
-  if(!data) return;
-  
-  const it = JSON.parse(data);
-  tooltip.innerHTML = buildTooltip(it);
-  tooltip.classList.add('show');
-});
-
-document.addEventListener('mousemove', e => {
-  if(!tooltip.classList.contains('show')) return;
-  const pad = 15;
-  let x = e.clientX + pad;
-  let y = e.clientY + pad;
-  if (x + tooltip.offsetWidth > window.innerWidth) x = e.clientX - tooltip.offsetWidth - pad;
-  if (y + tooltip.offsetHeight > window.innerHeight) y = e.clientY - tooltip.offsetHeight - pad;
-  tooltip.style.left = x + 'px';
-  tooltip.style.top = y + 'px';
-});
-
-document.addEventListener('mouseout', e => {
-  if(e.target.closest('.slot')) tooltip.classList.remove('show');
-});
-
-// --- Slot Generator ---
-function makeSlotHtml(it) {
-  if (!it) return `<div class="slot"></div>`;
-  // Inject item data directly to HTML attribute to avoid listener drops on redraw
-  const dataStr = JSON.stringify(it).replace(/"/g, '&quot;');
-  let html = `<div class="slot" data-item="${dataStr}">`;
-  html += `<img src="${ITEM_API}${it.id}/size=4" alt="${it.name}" onerror="this.style.display='none'">`;
-  if (it.stack && it.stack > 1) html += `<span class="count">${it.stack}</span>`;
-  html += `</div>`;
-  return html;
+let viewer;
+function initPlayer() {
+  const c=document.getElementById('player-canvas');
+  if(viewer){viewer.setSize(120,150);return;}
+  try{
+    viewer=new skinview3d.SkinViewer({canvas:c,width:120,height:150,skin:'https://crafatar.com/skins/853c80ef3c3749fdaa49938b674adae6'});
+    viewer.zoom=0.8;viewer.autoRotate=false;
+    document.addEventListener('mousemove',e=>{
+      if(document.getElementById('inventory-view').style.display==='none')return;
+      if(!viewer?.playerObject)return;
+      const b=document.getElementById('player-box').getBoundingClientRect();
+      viewer.playerObject.rotation.y=((e.clientX-b.left-b.width/2)/window.innerWidth)*3;
+      viewer.playerObject.rotation.x=((e.clientY-b.top-b.height/2)/window.innerHeight)*1.5;
+    });
+  }catch(e){console.error('3D failed:',e);}
 }
 
-// --- Render Logic ---
-let currentKit = 0;
-
-function render() {
-  const kit = KITS[currentKit];
-  document.getElementById("kit-name").innerText = kit.name;
-  const container = document.getElementById("inventory-container");
-  
-  container.style.opacity = "0.7";
-  container.style.transform = "scale(0.98)";
-
-  setTimeout(() => {
-    document.getElementById('armour-slots').innerHTML = ['helmet', 'chestplate', 'leggings', 'boots']
-      .map(type => makeSlotHtml(kit.armour[type])).join('');
-
-    let mHtml = "";
-    for(let i=0; i<27; i++) mHtml += makeSlotHtml(kit.inv[i]);
-    document.getElementById("main-inv").innerHTML = mHtml;
-
-    let hHtml = "";
-    for(let i=0; i<9; i++) hHtml += makeSlotHtml(kit.hotbar[i]);
-    document.getElementById("hotbar-inv").innerHTML = hHtml;
-    
-    container.style.opacity = "1";
-    container.style.transform = "scale(1)";
-  }, 50);
-
-  document.getElementById("prevBtn").disabled = currentKit === 0;
-  document.getElementById("nextBtn").disabled = currentKit === KITS.length - 1;
-}
-
-document.getElementById("nextBtn").onclick = () => { if(currentKit < KITS.length-1) { currentKit++; render(); } };
-document.getElementById("prevBtn").onclick = () => { if(currentKit > 0) { currentKit--; render(); } };
-
-window.onload = () => {
-  initPlayer();
-  render();
-};
+window.onload=initChest;
 </script>
 </body>
 </html>
