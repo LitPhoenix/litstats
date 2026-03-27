@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-27T20:27:52.335Z",
+  "last_update": "2026-03-27T22:23:08.276Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2885,6 +2885,17 @@
           ]
         },
         {
+          "username": "ToggleFly",
+          "uuid": "00eb09d164b54ab08114d119eebbb903",
+          "country": "Unknown",
+          "current_ap": 25060,
+          "last_month_ap": 25025,
+          "monthly_gain": 35,
+          "maxGames": [
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "sosal",
           "uuid": "14fc22531af545cf918eec7b30527272",
           "country": "Unknown",
@@ -2894,17 +2905,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "ToggleFly",
-          "uuid": "00eb09d164b54ab08114d119eebbb903",
-          "country": "Unknown",
-          "current_ap": 25025,
-          "last_month_ap": 25025,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games"
           ]
         },
         {
