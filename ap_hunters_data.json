@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-28T12:33:07.882Z",
+  "last_update": "2026-03-28T14:24:47.698Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2192,15 +2192,15 @@
     },
     {
       "country": "Israel",
-      "score": 3963,
+      "score": 3983,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_ap": 28340,
+          "current_ap": 28360,
           "last_month_ap": 28260,
-          "monthly_gain": 80,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Arena Brawl",
             "Max Quake",
