@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-28T16:23:13.003Z",
+  "last_update": "2026-03-28T18:27:33.243Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -3198,6 +3198,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 23045,
+          "last_month_ap": 22995,
+          "monthly_gain": 50,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
@@ -3207,17 +3218,6 @@
           "maxGames": [
             "Max SkyBlock",
             "Max TKR",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 23020,
-          "last_month_ap": 22995,
-          "monthly_gain": 25,
-          "maxGames": [
             "Max Duels"
           ]
         },
@@ -3411,9 +3411,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 24710,
+          "current_ap": 24720,
           "last_month_ap": 24600,
-          "monthly_gain": 110,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Wool Games"
           ]
