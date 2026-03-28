@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-28T01:13:32.281Z",
+  "last_update": "2026-03-28T04:11:12.004Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -384,7 +384,7 @@
     },
     {
       "country": "USA",
-      "score": 45405,
+      "score": 45405.6,
       "top_players": [
         {
           "username": "Trtx",
@@ -398,9 +398,9 @@
           "username": "goyslopper_",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
-          "current_quests": 48162,
+          "current_quests": 48165,
           "last_month_quests": 48106,
-          "monthly_gain": 56
+          "monthly_gain": 59
         },
         {
           "username": "Respawnless",
@@ -936,7 +936,7 @@
     },
     {
       "country": "Unknown",
-      "score": 26114.8,
+      "score": 26194.2,
       "top_players": [
         {
           "username": "biwgtp",
@@ -950,9 +950,9 @@
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_quests": 28063,
+          "current_quests": 28076,
           "last_month_quests": 28019,
-          "monthly_gain": 44
+          "monthly_gain": 57
         },
         {
           "username": "JokeHit",
@@ -971,6 +971,14 @@
           "monthly_gain": 240
         },
         {
+          "username": "emperqr",
+          "uuid": "3f93a29a5a994f9397f1ac20fb18e652",
+          "country": "Unknown",
+          "current_quests": 22776,
+          "last_month_quests": 21899,
+          "monthly_gain": 877
+        },
+        {
           "username": "zsomi123",
           "uuid": "6ddd8bcbfa9f46a3b0e40dc47d9fe969",
           "country": "Unknown",
@@ -984,14 +992,6 @@
           "country": "Unknown",
           "current_quests": 22095,
           "last_month_quests": 22095,
-          "monthly_gain": 0
-        },
-        {
-          "username": "emperqr",
-          "uuid": "3f93a29a5a994f9397f1ac20fb18e652",
-          "country": "Unknown",
-          "current_quests": 21899,
-          "last_month_quests": 21899,
           "monthly_gain": 0
         },
         {
