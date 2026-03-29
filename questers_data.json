@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-29T10:29:55.715Z",
+  "last_update": "2026-03-29T12:39:44.961Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -1006,9 +1006,9 @@
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Unknown",
-          "current_quests": 20924,
+          "current_quests": 20955,
           "last_month_quests": 20924,
-          "monthly_gain": 0
+          "monthly_gain": 31
         }
       ]
     },
@@ -1142,15 +1142,15 @@
     },
     {
       "country": "Israel",
-      "score": 4614.6,
+      "score": 4620.6,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_quests": 23073,
+          "current_quests": 23103,
           "last_month_quests": 22967,
-          "monthly_gain": 106
+          "monthly_gain": 136
         }
       ]
     },
