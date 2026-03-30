@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-30T16:53:43.701Z",
+  "last_update": "2026-03-30T18:52:37.278Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1254,7 +1254,7 @@
     },
     {
       "country": "Russia",
-      "score": 7200,
+      "score": 7190,
       "top_players": [
         {
           "username": "anrie",
@@ -1269,9 +1269,9 @@
           "username": "bubulS",
           "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
           "country": "Russia",
-          "current_ap": 25955,
+          "current_ap": 25935,
           "last_month_ap": 25620,
-          "monthly_gain": 335,
+          "monthly_gain": 315,
           "maxGames": []
         },
         {
@@ -1596,7 +1596,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2973,
+      "score": 2966,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -1620,9 +1620,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26075,
+          "current_ap": 26050,
           "last_month_ap": 25815,
-          "monthly_gain": 260,
+          "monthly_gain": 235,
           "maxGames": []
         },
         {
@@ -1908,15 +1908,15 @@
     },
     {
       "country": "Unknown",
-      "score": 460,
+      "score": 435,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 25865,
+          "current_ap": 25840,
           "last_month_ap": 25865,
-          "monthly_gain": 0,
+          "monthly_gain": -25,
           "maxGames": []
         },
         {

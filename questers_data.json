@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-30T16:53:44.089Z",
+  "last_update": "2026-03-30T18:52:37.519Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 107580,
     "289e9f90a76640e0921c85dcd96385b5": 81381,
@@ -900,15 +900,15 @@
     },
     {
       "country": "Australia",
-      "score": 11011.2,
+      "score": 11011.8,
       "top_players": [
         {
           "username": "Bikkie",
           "uuid": "12ecedbce19b448cad38aa4f57f3afda",
           "country": "Australia",
-          "current_quests": 30908,
+          "current_quests": 30911,
           "last_month_quests": 30883,
-          "monthly_gain": 25
+          "monthly_gain": 28
         },
         {
           "username": "TotalDramaIsland",
@@ -936,7 +936,7 @@
     },
     {
       "country": "Unknown",
-      "score": 26194.2,
+      "score": 26195.4,
       "top_players": [
         {
           "username": "biwgtp",
@@ -950,9 +950,9 @@
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_quests": 28076,
+          "current_quests": 28082,
           "last_month_quests": 28019,
-          "monthly_gain": 57
+          "monthly_gain": 63
         },
         {
           "username": "JokeHit",
