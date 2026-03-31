@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-31T07:03:08.907Z",
+  "last_update": "2026-03-31T08:47:15.172Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -201,7 +201,8 @@
     "c82a204b300f4b88888e4ab79e44920b": 23000,
     "c185afbbd692431a906131448e693f19": 22950,
     "e4447d2895924f76986ac1ba4dcf183c": 22935,
-    "b9aa26ec20b447a59a4ad10cc08a46fe": 22995
+    "b9aa26ec20b447a59a4ad10cc08a46fe": 22995,
+    "7bfed5378957477bada8e64cf5fa99f1": 22955
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -1013,19 +1014,6 @@
           "last_month_ap": 23000,
           "monthly_gain": 0,
           "maxGames": []
-        },
-        {
-          "username": "kstay",
-          "uuid": "c185afbbd692431a906131448e693f19",
-          "country": "USA",
-          "current_ap": 22930,
-          "last_month_ap": 22950,
-          "monthly_gain": -20,
-          "maxGames": [
-            "Max Blitz",
-            "Max Bed Wars",
-            "Max Duels"
-          ]
         }
       ]
     },
@@ -2605,9 +2593,9 @@
           "username": "radicul",
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Australia",
-          "current_ap": 25105,
+          "current_ap": 25120,
           "last_month_ap": 25125,
-          "monthly_gain": -20,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Bed Wars",
             "Max TKR",
@@ -2966,9 +2954,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 24110,
+          "current_ap": 24115,
           "last_month_ap": 23730,
-          "monthly_gain": 380,
+          "monthly_gain": 385,
           "maxGames": [
             "Max SkyBlock",
             "Max Bed Wars",
@@ -3192,6 +3180,18 @@
           "maxGames": [
             "Max SkyBlock",
             "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 22955,
+          "last_month_ap": 22955,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Wool Games",
             "Max Duels"
           ]
         }
