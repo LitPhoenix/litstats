@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-31T14:55:58.920Z",
+  "last_update": "2026-03-31T16:49:23.530Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -382,7 +382,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12480,
+      "score": 12481,
       "top_players": [
         {
           "username": "oJakeyNow_",
@@ -454,9 +454,9 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_ap": 30715,
+          "current_ap": 30720,
           "last_month_ap": 30735,
-          "monthly_gain": -20,
+          "monthly_gain": -15,
           "maxGames": [
             "Max Paintball",
             "Max Cops and Crims",
@@ -1019,7 +1019,7 @@
     },
     {
       "country": "France",
-      "score": 11344,
+      "score": 11346,
       "top_players": [
         {
           "username": "Yann31_",
@@ -1097,9 +1097,9 @@
           "username": "Posey",
           "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
           "country": "France",
-          "current_ap": 28630,
+          "current_ap": 28650,
           "last_month_ap": 28655,
-          "monthly_gain": -25,
+          "monthly_gain": -5,
           "maxGames": [
             "Max SkyBlock",
             "Max Speed UHC",
@@ -2064,15 +2064,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5155,
+      "score": 5175,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30570,
+          "current_ap": 30590,
           "last_month_ap": 30490,
-          "monthly_gain": 80,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2131,9 +2131,9 @@
           "username": "Paczuszka",
           "uuid": "6be718564437499fbb6242e17fbaa0c3",
           "country": "Poland",
-          "current_ap": 23455,
+          "current_ap": 23435,
           "last_month_ap": 23455,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max TKR"
           ]
@@ -2997,9 +2997,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 23900,
+          "current_ap": 23905,
           "last_month_ap": 23300,
-          "monthly_gain": 600,
+          "monthly_gain": 605,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
