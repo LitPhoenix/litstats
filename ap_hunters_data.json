@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-01T07:09:36.812Z",
+  "last_update": "2026-04-01T08:55:25.419Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12551,
+      "score": 12555,
       "top_players": [
         {
           "username": "oJakeyNow_",
@@ -452,9 +452,9 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_ap": 30720,
+          "current_ap": 30735,
           "last_month_ap": 30720,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Paintball",
             "Max Cops and Crims",
@@ -3162,9 +3162,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
-          "current_ap": 23040,
+          "current_ap": 23050,
           "last_month_ap": 23040,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max VampireZ"
           ]
