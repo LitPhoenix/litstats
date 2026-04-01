@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-01T16:45:14.937Z",
+  "last_update": "2026-04-01T18:46:47.364Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1008,9 +1008,9 @@
           "username": "Saubt",
           "uuid": "c82a204b300f4b88888e4ab79e44920b",
           "country": "USA",
-          "current_ap": 23000,
+          "current_ap": 22990,
           "last_month_ap": 23000,
-          "monthly_gain": 0,
+          "monthly_gain": -10,
           "maxGames": []
         }
       ]
@@ -1204,15 +1204,15 @@
     },
     {
       "country": "UK",
-      "score": 9987,
+      "score": 9962,
       "top_players": [
         {
           "username": "greaneye",
           "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
           "country": "UK",
-          "current_ap": 31460,
+          "current_ap": 31435,
           "last_month_ap": 31460,
-          "monthly_gain": 0,
+          "monthly_gain": -25,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1716,7 +1716,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8213,
+      "score": 8214,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1779,9 +1779,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 26475,
+          "current_ap": 26490,
           "last_month_ap": 26465,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2324,9 +2324,9 @@
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25370,
+          "current_ap": 25380,
           "last_month_ap": 25370,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
@@ -2863,6 +2863,17 @@
           ]
         },
         {
+          "username": "pumpkan",
+          "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
+          "country": "Unknown",
+          "current_ap": 24915,
+          "last_month_ap": 24845,
+          "monthly_gain": 70,
+          "maxGames": [
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "Lilaaay",
           "uuid": "2e1884f69c294bd589e6d7709b100298",
           "country": "Unknown",
@@ -2876,17 +2887,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "pumpkan",
-          "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
-          "country": "Unknown",
-          "current_ap": 24845,
-          "last_month_ap": 24845,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games"
           ]
         },
         {
@@ -3162,9 +3162,9 @@
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
-          "current_ap": 23075,
+          "current_ap": 23085,
           "last_month_ap": 23030,
-          "monthly_gain": 45,
+          "monthly_gain": 55,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR",
@@ -3186,9 +3186,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 22990,
+          "current_ap": 23010,
           "last_month_ap": 22965,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -3372,9 +3372,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 24745,
+          "current_ap": 24760,
           "last_month_ap": 24745,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Wool Games"
           ]
