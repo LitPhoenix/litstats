@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-01T08:55:25.419Z",
+  "last_update": "2026-04-01T10:46:48.969Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1302,9 +1302,9 @@
           "username": "Fossilised",
           "uuid": "e3292ca36c5e43cbacd01c52adaca375",
           "country": "UK",
-          "current_ap": 26755,
+          "current_ap": 26730,
           "last_month_ap": 26755,
-          "monthly_gain": 0,
+          "monthly_gain": -25,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -1919,9 +1919,9 @@
           "username": "morof",
           "uuid": "4019260a28f544c2a35a0a1f35108a96",
           "country": "Russia",
-          "current_ap": 24285,
+          "current_ap": 24310,
           "last_month_ap": 24285,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2401,7 +2401,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2909,
+      "score": 2916,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2422,9 +2422,9 @@
           "username": "ZERATHIX",
           "uuid": "e37ccf10fe9643789745e0432ca096b2",
           "country": "Czech Republic",
-          "current_ap": 26565,
+          "current_ap": 26580,
           "last_month_ap": 26565,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max TKR"
           ]
@@ -3075,9 +3075,9 @@
           "username": "titi2502",
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "Unknown",
-          "current_ap": 23550,
+          "current_ap": 23570,
           "last_month_ap": 23550,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -3162,9 +3162,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
-          "current_ap": 23050,
+          "current_ap": 23060,
           "last_month_ap": 23040,
-          "monthly_gain": 10,
+          "monthly_gain": 20,
           "maxGames": [
             "Max VampireZ"
           ]
