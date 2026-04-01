@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-01T10:46:49.205Z",
+  "last_update": "2026-04-01T12:55:24.746Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -199,15 +199,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 48959,
+      "score": 48964.8,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 108009,
+          "current_quests": 108038,
           "last_month_quests": 108009,
-          "monthly_gain": 0
+          "monthly_gain": 29
         },
         {
           "username": "ErtrycheZ",
@@ -461,9 +461,9 @@
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_quests": 31072,
+          "current_quests": 31091,
           "last_month_quests": 31072,
-          "monthly_gain": 0
+          "monthly_gain": 19
         },
         {
           "username": "vasiv",
@@ -935,7 +935,7 @@
     },
     {
       "country": "Unknown",
-      "score": 26195.4,
+      "score": 26196.4,
       "top_players": [
         {
           "username": "biwgtp",
@@ -949,9 +949,9 @@
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_quests": 28082,
+          "current_quests": 28087,
           "last_month_quests": 28082,
-          "monthly_gain": 0
+          "monthly_gain": 5
         },
         {
           "username": "JokeHit",
@@ -1113,15 +1113,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 4860,
+      "score": 4870.8,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 24300,
+          "current_quests": 24354,
           "last_month_quests": 24300,
-          "monthly_gain": 0
+          "monthly_gain": 54
         }
       ]
     },
