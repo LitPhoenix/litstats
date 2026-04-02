@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-02T20:32:59.166Z",
+  "last_update": "2026-04-02T22:30:01.396Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1417,6 +1417,39 @@
       ]
     },
     {
+      "country": "Finland",
+      "score": 3986,
+      "top_players": [
+        {
+          "username": "Champiez",
+          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+          "country": "Finland",
+          "current_ap": 28215,
+          "last_month_ap": 28200,
+          "monthly_gain": 15,
+          "maxGames": []
+        },
+        {
+          "username": "MineElzu60",
+          "uuid": "559860c584174a7c90a8f79332802516",
+          "country": "Finland",
+          "current_ap": 27280,
+          "last_month_ap": 27280,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "MatiasSiltanen",
+          "uuid": "e9a871c29903474687b0b045edd35ae9",
+          "country": "Finland",
+          "current_ap": 26360,
+          "last_month_ap": 26350,
+          "monthly_gain": 10,
+          "maxGames": []
+        }
+      ]
+    },
+    {
       "country": "Israel",
       "score": 3974,
       "top_players": [
@@ -1472,39 +1505,6 @@
           "current_ap": 23495,
           "last_month_ap": 23495,
           "monthly_gain": 0,
-          "maxGames": []
-        }
-      ]
-    },
-    {
-      "country": "Finland",
-      "score": 3971,
-      "top_players": [
-        {
-          "username": "Champiez",
-          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-          "country": "Finland",
-          "current_ap": 28200,
-          "last_month_ap": 28200,
-          "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
-          "username": "MineElzu60",
-          "uuid": "559860c584174a7c90a8f79332802516",
-          "country": "Finland",
-          "current_ap": 27280,
-          "last_month_ap": 27280,
-          "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
-          "username": "MatiasSiltanen",
-          "uuid": "e9a871c29903474687b0b045edd35ae9",
-          "country": "Finland",
-          "current_ap": 26360,
-          "last_month_ap": 26350,
-          "monthly_gain": 10,
           "maxGames": []
         }
       ]
