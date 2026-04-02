@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-02T18:49:18.759Z",
+  "last_update": "2026-04-02T20:32:59.166Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12521,
+      "score": 12529,
       "top_players": [
         {
           "username": "oJakey",
@@ -395,9 +395,9 @@
           "username": "vasiv",
           "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
           "country": "USA",
-          "current_ap": 32330,
+          "current_ap": 32345,
           "last_month_ap": 32330,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": []
         },
         {
@@ -806,9 +806,9 @@
           "username": "Uleb",
           "uuid": "2baaec9272fd487294e673eb4ec35201",
           "country": "France",
-          "current_ap": 27100,
+          "current_ap": 27120,
           "last_month_ap": 27100,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": []
         },
         {
@@ -851,7 +851,7 @@
     },
     {
       "country": "UK",
-      "score": 9958,
+      "score": 9960,
       "top_players": [
         {
           "username": "greaneye",
@@ -884,9 +884,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29050,
+          "current_ap": 29070,
           "last_month_ap": 29050,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": []
         },
         {
@@ -947,9 +947,9 @@
           "username": "Questologist",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
-          "current_ap": 24655,
+          "current_ap": 24665,
           "last_month_ap": 24655,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": []
         },
         {
@@ -965,9 +965,9 @@
           "username": "alpanyahu",
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "UK",
-          "current_ap": 23790,
+          "current_ap": 23825,
           "last_month_ap": 23815,
-          "monthly_gain": -25,
+          "monthly_gain": 10,
           "maxGames": []
         },
         {
@@ -1034,15 +1034,15 @@
     },
     {
       "country": "Canada",
-      "score": 8449,
+      "score": 8424,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 30980,
+          "current_ap": 30955,
           "last_month_ap": 30980,
-          "monthly_gain": 0,
+          "monthly_gain": -25,
           "maxGames": []
         },
         {
@@ -1586,7 +1586,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2978,
+      "score": 2980,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -1610,9 +1610,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26095,
+          "current_ap": 26105,
           "last_month_ap": 26055,
-          "monthly_gain": 40,
+          "monthly_gain": 50,
           "maxGames": []
         },
         {
@@ -1721,7 +1721,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1543,
+      "score": 1545,
       "top_players": [
         {
           "username": "Sayapi",
@@ -1736,9 +1736,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26100,
+          "current_ap": 26105,
           "last_month_ap": 26100,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": []
         }
       ]
@@ -1769,15 +1769,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1015,
+      "score": 1035,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26420,
+          "current_ap": 26440,
           "last_month_ap": 26420,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": []
         },
         {
@@ -1940,9 +1940,9 @@
           "username": "nonoooooooo",
           "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
           "country": "Unknown",
-          "current_ap": 24730,
+          "current_ap": 24775,
           "last_month_ap": 24730,
-          "monthly_gain": 0,
+          "monthly_gain": 45,
           "maxGames": []
         },
         {
@@ -2219,15 +2219,15 @@
     },
     {
       "country": "Moldova",
-      "score": 120,
+      "score": 140,
       "top_players": [
         {
-          "username": "kenav",
+          "username": "Lofaet",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25525,
+          "current_ap": 25545,
           "last_month_ap": 25525,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": []
         }
       ]
