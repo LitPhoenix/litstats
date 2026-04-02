@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-02T10:50:28.001Z",
+  "last_update": "2026-04-02T12:54:28.816Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12501,
+      "score": 12521,
       "top_players": [
         {
           "username": "oJakey",
@@ -413,9 +413,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 29845,
+          "current_ap": 30045,
           "last_month_ap": 30020,
-          "monthly_gain": -175,
+          "monthly_gain": 25,
           "maxGames": []
         },
         {
@@ -512,9 +512,9 @@
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 27145,
+          "current_ap": 27155,
           "last_month_ap": 27145,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": []
         },
         {
