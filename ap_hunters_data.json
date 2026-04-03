@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-03T16:36:23.244Z",
+  "last_update": "2026-04-03T18:41:35.423Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1834,6 +1834,21 @@
       ]
     },
     {
+      "country": "Iraq",
+      "score": 705,
+      "top_players": [
+        {
+          "username": "Amony",
+          "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+          "country": "Iraq",
+          "current_ap": 26110,
+          "last_month_ap": 26090,
+          "monthly_gain": 20,
+          "maxGames": []
+        }
+      ]
+    },
+    {
       "country": "Ukraine",
       "score": 700,
       "top_players": [
@@ -1853,21 +1868,6 @@
           "current_ap": 24290,
           "last_month_ap": 24335,
           "monthly_gain": -45,
-          "maxGames": []
-        }
-      ]
-    },
-    {
-      "country": "Iraq",
-      "score": 685,
-      "top_players": [
-        {
-          "username": "Amony",
-          "uuid": "96f645ba026b4e45bc34dd8f0531334c",
-          "country": "Iraq",
-          "current_ap": 26090,
-          "last_month_ap": 26090,
-          "monthly_gain": 0,
           "maxGames": []
         }
       ]
