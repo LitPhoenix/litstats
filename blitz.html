@@ -31,15 +31,18 @@
 <style>
 @font-face { font-family: 'Vanilla'; src: url('assets/fonts/Minecraft.ttf'); }
 @font-face { font-family: 'Faithful'; src: url('assets/fonts/mineglyph-faithful.otf'); }
+.custom-font-class {
+  font-family: 'Faithful';
+  letter-spacing: 10px;
+}
 
 :root {
   --slot-size: 52px; 
   --mc-font: 'Faithful', 'Vanilla', 'Minecraft', monospace;
-  /* Adaptive Light/Dark Mode Colors */
   --mc-slot-bg: rgba(128, 128, 128, 0.15);
-  --mc-border-light: rgba(255, 255, 255, 0.4);
-  --mc-border-dark: rgba(0, 0, 0, 0.3);
-  --mc-slot-dark: rgba(0, 0, 0, 0.5);
+  --mc-border-light: rgba(255, 255, 255, 0.3);
+  --mc-border-dark: rgba(0, 0, 0, 0.15);
+  --mc-slot-dark: rgba(0, 0, 0, 0.763);
 }
 
 body.theme-classic {
@@ -52,7 +55,6 @@ main {
   image-rendering: pixelated; user-select: none; 
 }
 
-/* --- DEFAULT (MODERN) THEME --- */
 .mc-container {
   background: var(--surface);
   backdrop-filter: blur(16px);
@@ -62,8 +64,8 @@ main {
   box-shadow: 0 10px 40px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
-.mc-title { color: var(--text-2); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; font-family: 'DM Sans', sans-serif; }
-#kit-name-display { font-size: 2rem; font-weight: 700; text-align: center; color: var(--text); font-family: 'DM Sans', sans-serif; margin-bottom: 8px; }
+.mc-title { color: var(--text-2); font-size: 16px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; font-family: 'DM Sans', sans-serif; }
+#kit-name-display { font-size: 2rem; font-weight: 500; text-align: center; color: var(--text); font-family: 'DM Sans', sans-serif; margin-bottom: 8px; }
 .count, .tt-name, .tt-line { font-family: var(--mc-font); }
 
 #chest-view { display: flex; flex-direction: column; }
@@ -89,7 +91,7 @@ main {
 .level-btn.p2:hover { background: rgba(255, 170, 0, 0.1); }
 .level-btn.p2.active { background: linear-gradient(135deg, #ffaa00, #d48800); color: #fff; border-color: transparent; box-shadow: 0 0 12px rgba(255, 170, 0, 0.4); }
 
-.top-section { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.top-section { display: flex; gap: 2px; margin-bottom: 8px; align-items: flex-start; }
 .armour-column { display: flex; flex-direction: column; gap: 4px; }
 
 #player-box { 
@@ -98,30 +100,30 @@ main {
   border-radius: 4px; overflow: hidden; 
 }
 
-.crafting-area { display: flex; flex-direction: column; margin-left: auto; margin-top: 0; }
-.crafting-layout { display: flex; align-items: center; gap: 12px; }
+.crafting-area { display: flex; margin-top: 36px; flex-direction: column; margin-left: 36px; }
+.crafting-layout { display: flex; align-items: center; gap: 4px; }
 .crafting-arrow { color: var(--text-3); font-size: 24px; font-family: 'DM Sans', sans-serif; }
 
-/* INVERSED BORDERS FOR PRESSED-IN LOOK */
 .slot { 
   width: var(--slot-size); height: var(--slot-size); 
   background: var(--mc-slot-bg); 
   border: 2px solid var(--mc-slot-dark); border-right-color: var(--mc-border-light); border-bottom-color: var(--mc-border-light); 
-  border-radius: 2px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; 
+  border-radius: 4px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; 
 }
 .slot.locked { cursor: not-allowed; opacity: 0.3; filter: grayscale(100%); }
 .slot:hover:not(.locked) { background: rgba(128, 128, 128, 0.3); outline: 2px solid var(--accent); z-index: 10; }
 
 .item-wrapper { width: 80%; height: 80%; position: relative; display: flex; justify-content: center; align-items: center; }
 .item-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated; pointer-events: none; }
+.empty-armor { opacity: 0.3; pointer-events: none; }
 
-.count { position: absolute; bottom: 2px; right: 4px; font-size: 16px; color: #fff; text-shadow: 2px 2px 0 #3f3f3f; pointer-events: none; z-index: 2; }
+.count { position: absolute; bottom: 2px; right: 4px; font-size: 16px; color: #fff; text-shadow: 2px 2px 0 #3f3f3f; pointer-events: none; z-index: 5; }
 
 .item-wrapper.enchanted::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(65deg, transparent 20%, rgba(160,65,255,.7) 50%, transparent 80%);
   background-size: 200% 200%; mix-blend-mode: screen;
-  animation: glint 2.5s infinite linear; z-index: 2; pointer-events: none;
+  animation: glint 2.5s infinite linear; z-index: 4; pointer-events: none;
   -webkit-mask-image: var(--mask-img); mask-image: var(--mask-img);
   -webkit-mask-size: contain; mask-size: contain;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
@@ -131,7 +133,7 @@ main {
 
 .mc-tooltip { 
   display: none; position: fixed; z-index: 9999; pointer-events: none; 
-  padding: 4px 6px; color: #fff; background: rgba(16,0,16,.85); 
+  padding: 4px 6px; color: #fff; background: rgba(16,0,16,.85); letter-spacing: 0.05em;
   border: 2px solid #2d0064; border-radius: 0; font-family: var(--mc-font);
   box-shadow: 2px 0 0 0 #000, -2px 0 0 0 #000, 0 2px 0 0 #000, 0 -2px 0 0 #000;
 }
@@ -157,14 +159,13 @@ body.theme-classic .mc-container {
   border-right-color: #555; border-bottom-color: #555; padding: 8px;
   box-shadow: 0 0 0 2px #000, 0 10px 30px rgba(0,0,0,.3);
 }
-body.theme-classic .mc-title { color: #404040; font-family: var(--mc-font); text-shadow: none; font-size: 16px; text-transform: none; letter-spacing: normal; margin-left: 1px; margin-top: -6px; }
+body.theme-classic .mc-title { color: #404040; font-family: var(--mc-font); text-shadow: none; font-size: 16px; text-transform: none; letter-spacing: 0.05em; margin-left: 1px; margin-top: -6px; }
 body.theme-classic #kit-name-display { font-family: var(--mc-font); color: #fff; text-shadow: 2px 2px 0 rgba(0,0,0,.5); }
 
 body.theme-classic .chest-grid, body.theme-classic .inv-grid, body.theme-classic .crafting-grid { gap: 0; }
 body.theme-classic .armour-column { gap: 0; }
 body.theme-classic .hotbar-spacer { height: 8px; }
 
-/* INVERSED BORDERS FOR CLASSIC THEME */
 body.theme-classic .slot {
   background: #8b8b8b; border-radius: 0;
   border: 2px solid #373737; border-right-color: #fff; border-bottom-color: #fff;
@@ -173,42 +174,29 @@ body.theme-classic .slot:hover:not(.locked) { background: #bebebe; outline: none
 
 body.theme-classic .level-selector { background: transparent; border: none; padding: 0; gap: 2px; }
 
-/* BUTTON AUTO-WIDTH FIX */
 body.theme-classic .level-btn {
-  background: #8b8b8b;
-  color: #fff; 
+  background: #8b8b8b; color: #fff; 
   width: auto; min-width: 32px; height: 32px; padding: 0 6px;
   font-family: var(--mc-font); font-size: 16px; font-weight: normal; 
   cursor: pointer; text-shadow: 1px 1px 0 #000;
   display: flex; align-items: center; justify-content: center;
-  border: 2px solid #373737;
-  border-top-color: #fff;
-  border-left-color: #fff;
+  border: 2px solid #373737; border-top-color: #fff; border-left-color: #fff;
   border-radius: 0; box-shadow: none;
 }
-body.theme-classic .level-btn:hover { 
-  background: #bebebe; 
-  color: #ffff55; 
-}
+body.theme-classic .level-btn:hover { background: #bebebe; color: #ffff55; }
 body.theme-classic .level-btn.active { 
-  background: #555; 
-  color: #55ff55;
-  border-top-color: #373737; 
-  border-left-color: #373737; 
-  border-bottom-color: #fff; 
-  border-right-color: #fff; 
+  background: #555; color: #55ff55;
+  border-top-color: #373737; border-left-color: #373737; border-bottom-color: #fff; border-right-color: #fff; 
 }
-
-/* REMOVED FONT-WEIGHT BOLD TO PREVENT PIXELATION */
-body.theme-classic .level-btn.p2 { color: #ffaa00; }
+body.theme-classic .level-btn.p2 { color: #ffaa00; font-weight: normal; }
 body.theme-classic .level-btn.p2:hover { color: #daa520; background: #bebebe; }
 body.theme-classic .level-btn.p2.active { 
   color: #ffaa00; background: #555; 
-  border-top-color: #373737; border-left-color: #373737; 
-  border-bottom-color: #fff; border-right-color: #fff; 
+  border-top-color: #373737; border-left-color: #373737; border-bottom-color: #fff; border-right-color: #fff; 
 }
 
-body.theme-classic #player-box { border-radius: 0; width: 112px; height: 150px; }
+body.theme-classic #player-box { border-radius: 0; width: 112px; height: 144px; }
+body.theme-classic .crafting-area { margin-left: 12px; margin-top: 12px; }
 body.theme-classic .crafting-arrow { font-family: var(--mc-font); font-size: 28px; }
 body.theme-classic .count { right: -2px; bottom: -4px; }
 body.theme-classic .item-wrapper { width: 32px; height: 32px; }
@@ -315,23 +303,74 @@ input:checked + .slider:before { transform: translateX(16px); background-color: 
 <script src="assets/js/kits.js"></script>
 
 <script>
+// ============================================================================
+// ASSET ROUTER & FALLBACK LOGIC
+// ============================================================================
 const API_BASE = "https://api.minecraftitems.xyz/api/item/";
 const API_KEY  = "mcapi_5cb1f0643162ea2f7b0aa174d27061cdfa1f35c318532b602a9bf86045063ff9";
 const API_SIZE = 4;
-const LEATHER_COLORS = { lime:"1688601", green:"31744", white:"16383998" };
+const LEATHER_COLORS = { lime: "32CD32", green: "008000", white: "FFFFFF", default: "A06540" };
 
-function itemUrl(id, leatherDye=null, enchanted=false) {
-  let u = `${API_BASE}${id}?apiKey=${API_KEY}&size=${API_SIZE}`;
-  if (leatherDye) {
-    let colorVal = LEATHER_COLORS[leatherDye] || leatherDye;
-    if (String(colorVal).startsWith('#')) colorVal = parseInt(colorVal.replace('#', ''), 16);
-    u += `&color=${colorVal}`;
-  }
-  // Explicitly force glint off to override API cache bugs
-  if (enchanted) u += `&glint=true`;
-  else u += `&glint=false`;
+function getAssetUrl(it) {
+  if (!it) return '';
+  if (it.customImg) return it.customImg;
   
-  return u;
+  const id = (it.id || '').toLowerCase();
+  const nameLower = (it.name || '').toLowerCase();
+  
+  // Custom Overrides
+  if (nameLower.includes('health boost')) return 'img/blitz/items/Potion_of_Fire_Resistance.png';
+  if (nameLower === 'warlock' || nameLower.includes('harming')) return 'img/blitz/items/Splash_Potion_of_Harming.png';
+  if (nameLower === 'scout') return 'img/blitz/items/Potion_of_Speed.png';
+  if (nameLower.includes('speed')) return 'img/blitz/items/Potion_of_Swiftness.png';
+  if (nameLower.includes('shark') || id === 'player_head') return 'img/blitz/shark.png';
+  if (id === 'tall_grass' || id === 'grass' || id === 'short_grass') return 'img/blitz/items/Grass.png';
+
+  // Flat Leather Armour Router
+  if (id.startsWith('leather_')) {
+    let hex = 'A06540'; // Default brown
+    if (it.leatherDye) {
+      hex = LEATHER_COLORS[it.leatherDye] || it.leatherDye;
+      hex = hex.replace('#', '').toUpperCase();
+    }
+    return `img/blitz/items/${id}_${hex}.png`;
+  }
+
+  return `img/blitz/items/${id}.png`;
+}
+
+function makeSlotHtml(it, emptyType = null) {
+  if (!it || (!it.id && !it.customImg)) {
+    if (emptyType) {
+      const capType = emptyType.charAt(0).toUpperCase() + emptyType.slice(1);
+      return `<div class="slot"><div class="item-wrapper"><img src="img/blitz/Empty_Armor_Slot_${capType}.png" style="opacity:0.3; width:100%; height:100%; object-fit:contain; pointer-events:none;" alt="Empty ${capType}"></div></div>`;
+    }
+    return `<div class="slot"></div>`;
+  }
+  
+  const imgUrl = getAssetUrl(it);
+  const fallbackUrl = getApiFallback(it);
+  const wrap = it.enchanted ? 'item-wrapper enchanted' : 'item-wrapper';
+  const isBlock = BLOCK_IDS.has(it.id);
+  const mask = (!isBlock && it.enchanted) ? `style="--mask-img:url('${imgUrl}')"` : '';
+  const ds = JSON.stringify(it).replace(/"/g,'&quot;');
+  
+  const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';const w=this.closest('.item-wrapper');if(w)w.style.setProperty('--mask-img','none');}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
+
+  // Stupid simple. One wrapper, one image. No masks, no layers.
+  let html = `<div class="slot" data-item="${ds}">`;
+  html += `<div class="${wrap}" ${mask}>`;
+  html += `<img src="${imgUrl}" alt="${it.name}" style="width:100%; height:100%; object-fit:contain; image-rendering:pixelated;" onerror="${onErrorScript}">`;
+  html += `</div>`;
+  
+  if (it.stack && it.stack > 1) html += `<span class="count">${it.stack}</span>`;
+  html += `</div>`;
+  
+  return html;
+}
+
+function getApiFallback(it) {
+  return `${API_BASE}${it.id}?apiKey=${API_KEY}&size=${API_SIZE}&glint=false`;
 }
 
 const blankKitArray = () => Array(11).fill().map(()=>({armour:{},hotbar:[],inv:[]}));
@@ -379,35 +418,18 @@ function updateUrl(kitName) {
   }
 }
 
-function preloadAssets() {
-  setTimeout(() => {
-    const urls = new Set();
-    chestMap.forEach(k => { if (k) urls.add(k.customImg || itemUrl(k.id)); });
-    
-    if (window.KIT_DATABASE) {
-      Object.values(window.KIT_DATABASE).forEach(kitArray => {
-        if (!kitArray[0]) return;
-        const lvl = kitArray[0];
-        ['helmet','chestplate','leggings','boots'].forEach(p => { if (lvl.armour[p]) urls.add(itemUrl(lvl.armour[p].id, lvl.armour[p].leatherDye, lvl.armour[p].enchanted)); });
-        lvl.hotbar.forEach(i => { if (i) urls.add(itemUrl(i.id, i.leatherDye, i.enchanted)); });
-        lvl.inv.forEach(i => { if (i) urls.add(itemUrl(i.id, i.leatherDye, i.enchanted)); });
-      });
-    }
-    urls.forEach(url => { const img = new Image(); img.src = url; });
-  }, 500);
-}
-
+// --- CHEST & PRELOADING ---
 const chestMap = [
   {id:'saddle', name:'Horsetamer'}, {id:'arrow', name:'Ranger'}, {id:'bow', name:'Archer'}, {id:'iron_boots', name:'Astronaut'},
-  {id:'witch_spawn_egg', name:'Troll'}, {id:'cooked_beef', name:'MeatMaster'}, {id:'iron_hoe', name:'Farmer'},
+  {id:'witch_spawn_egg', name:'Troll'}, {id:'cooked_beef', name:'MeatMaster'}, {id:'iron_hoe', name:'Reaper'},
   {id:'player_head', name:'Shark', customImg:'img/blitz/shark.png', scale: 0.75}, {id:'flint_and_steel', name:'RedDragon'},
-  {id:'potion', name:'Toxicologist', customImg:'img/blitz/potion.png', stack: 2}, {id:'chest', name:'Donkeytamer', customImg:'img/blitz/chest.png'},
-  {id:'wooden_sword', name:'Rogue'}, {id:'potion', name:'Warlock', customImg:'img/blitz/potion.png'}, {id:'slime_ball', name:'Slimey Slime'},
-  {id:'snow_golem_spawn_egg',name:'Snowman'}, {id:'golden_apple', name:'Golem'}, {id:'oak_boat', name:'Viking'}, {id:'iron_pickaxe', name:'Speleologist'},
+  {id:'potion', name:'Toxicologist', customImg:'img/blitz/items/Splash_Potion_of_Poison.png', stack: 2}, {id:'chest', name:'Donkeytamer', customImg:'img/blitz/chest.png'},
+  {id:'wooden_sword', name:'Rogue'}, {id:'potion', name:'Warlock', customImg:'img/blitz/items/Splash_Potion_of_Harming.png'}, {id:'slime_ball', name:'Slimey Slime'},
+  {id:'ghast_spawn_egg',name:'Jockey'}, {id:'golden_apple', name:'Golem'}, {id:'oak_boat', name:'Viking'}, {id:'iron_pickaxe', name:'Speleologist'},
   {id:'wither_skeleton_skull',name:'Shadow Knight',customImg:'img/blitz/wither_skeleton_skull.png', scale: 0.75}, {id:'cake', name:'Baker'},
-  {id:'golden_sword', name:'Knight'}, {id:'cooked_porkchop', name:'Pigman'}, {id:'potion', name:'Guardian', customImg:'img/blitz/potion.png'},
+  {id:'golden_sword', name:'Knight'}, {id:'cooked_porkchop', name:'Pigman'}, {id:'potion', name:'Guardian', customImg:'img/blitz/items/Potion_of_Fire_Resistance.png'},
   {id:'feather', name:'Phoenix'}, {id:'iron_chestplate', name:'Paladin'}, {id:'rotten_flesh', name:'Necromancer'},
-  {id:'potion', name:'Scout', customImg:'img/blitz/potion.png', stack: 2}, {id:'short_grass', name:'Hunter'}, {id:'stone_sword', name:'Warrior'},
+  {id:'potion', name:'Scout', customImg:'img/blitz/items/Potion_of_Swiftness.png', stack: 2}, {id:'grass', name:'Hunter', customImg:'img/blitz/items/Grass.png'}, {id:'stone_sword', name:'Warrior'},
   {id:'minecart', name:'Hype Train'}, {id:'fishing_rod', name:'Fisherman'}, {id:'milk_bucket', name:'Milkman'},
   {id:'cactus', name:'Florist', customImg:'img/blitz/cactus.png'}, {id:'diamond_boots', name:'Diver'}, {id:'spider_spawn_egg', name:'Arachnologist'},
   {id:'blaze_rod', name:'Blaze'}, {id:'bone', name:'Wolftamer'}, {id:'experience_bottle', name:'Tim', stack: 3},
@@ -415,24 +437,44 @@ const chestMap = [
   {id:'tnt', name:'Creepertamer', customImg:'img/blitz/tnt.png'}, null,
 ];
 
-const RANDOM_IDS = ['saddle','arrow','bow','iron_boots','witch_spawn_egg','cooked_beef','iron_hoe','flint_and_steel','potion','wooden_sword','slime_ball','golden_apple','oak_boat','iron_pickaxe','cake','golden_sword','cooked_porkchop','feather','iron_chestplate','rotten_flesh','short_grass','stone_sword','minecart','fishing_rod','milk_bucket','diamond_boots','spider_spawn_egg','blaze_rod','bone','experience_bottle','snowball','stick','egg','leather_chestplate','tnt'];
+const RANDOM_IDS = ['saddle','arrow','bow','iron_boots','witch_spawn_egg','cooked_beef','iron_hoe','flint_and_steel','potion','wooden_sword','slime_ball','golden_apple','oak_boat','iron_pickaxe','cake','golden_sword','cooked_porkchop','feather','iron_chestplate','rotten_flesh','grass','stone_sword','minecart','fishing_rod','milk_bucket','diamond_boots','spider_spawn_egg','blaze_rod','bone','experience_bottle','snowball','stick','egg','leather_chestplate','tnt'];
 let rndIdx=0, rndTimer=null;
 let activeKitName=null, currentLevelIndex=9;
+
+function preloadAssets() {
+  const urls = new Set();
+  chestMap.forEach(k => { if (k) urls.add(getAssetUrl(k)); });
+  
+  if (window.KIT_DATABASE) {
+    Object.values(window.KIT_DATABASE).forEach(kitArray => {
+      const lvl = kitArray[9] || kitArray[0]; 
+      if (!lvl) return;
+      ['helmet','chestplate','leggings','boots'].forEach(p => { if (lvl.armour[p]) urls.add(getAssetUrl(lvl.armour[p])); });
+      lvl.hotbar.forEach(i => { if (i) urls.add(getAssetUrl(i)); });
+      lvl.inv.forEach(i => { if (i) urls.add(getAssetUrl(i)); });
+    });
+  }
+  urls.forEach(url => { const img = new Image(); img.src = url; });
+}
 
 function initChest() {
   const grid = document.getElementById('chest-grid');
   let html='';
   for (let i=0;i<45;i++) {
     if (i===44) {
-      html+=`<div class="slot locked" id="random-slot" title="Random Kit"><div class="item-wrapper"><img id="random-img" src="${itemUrl(RANDOM_IDS[0])}" alt="?"></div></div>`;
+      html+=`<div class="slot locked" id="random-slot" title="Random Kit"><div class="item-wrapper"><img id="random-img" src="${getAssetUrl({id: RANDOM_IDS[0]})}" alt="?"></div></div>`;
     } else if (!chestMap[i]) {
       html+=`<div class="slot"></div>`;
     } else {
       const k=chestMap[i];
-      const img=k.customImg||itemUrl(k.id);
+      const imgUrl = getAssetUrl(k);
+      const fallbackUrl = getApiFallback({id: k.id});
       const td=JSON.stringify({id:k.id,name:k.name,rarity:'uncommon',stack:k.stack||null,lines:[{text:'Click to view upgrades!',cls:'c-yellow'}],enchanted:false,customImg:k.customImg||null,leatherDye:null}).replace(/"/g,'&quot;');
       const scaleStr = k.scale ? `style="transform:scale(${k.scale})"` : '';
-      let inner = `<div class="item-wrapper"><img src="${img}" alt="${k.name}" ${scaleStr} onerror="this.style.display='none'"></div>`;
+      
+      const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
+
+      let inner = `<div class="item-wrapper"><img src="${imgUrl}" alt="${k.name}" ${scaleStr} onerror="${onErrorScript}"></div>`;
       if (k.stack && k.stack > 1) inner += `<span class="count">${k.stack}</span>`;
       html+=`<div class="slot" data-item="${td}" onclick="openKit('${k.name}')">${inner}</div>`;
     }
@@ -446,7 +488,7 @@ function startRandom() {
   rndTimer=setInterval(()=>{
     rndIdx=(rndIdx+1)%RANDOM_IDS.length;
     const img=document.getElementById('random-img');
-    if (img) img.src=itemUrl(RANDOM_IDS[rndIdx]);
+    if (img) img.src=getAssetUrl({id: RANDOM_IDS[rndIdx]});
   },800);
 }
 
@@ -472,7 +514,8 @@ function openKit(name, skipPush = false) {
 document.addEventListener('DOMContentLoaded', () => {
   initSettings();
   initChest();
-  preloadAssets();
+  
+  setTimeout(preloadAssets, 300);
 
   const pathParts = window.location.pathname.replace(/\/$/, '').split('/');
   const kitParam = pathParts[pathParts.length - 1];
@@ -527,7 +570,7 @@ function renderInventory() {
     document.getElementById('kit-name-display').innerHTML=`<span style="color:var(--accent)">${activeKitName}</span> ${activeLabel}`;
   }
 
-  document.getElementById('armour-slots').innerHTML=['helmet','chestplate','leggings','boots'].map(t=>makeSlotHtml(d.armour[t])).join('');
+  document.getElementById('armour-slots').innerHTML=['helmet','chestplate','leggings','boots'].map(t=>makeSlotHtml(d.armour[t], t)).join('');
   let m=''; for(let i=0;i<27;i++) m+=makeSlotHtml(d.inv[i]);
   document.getElementById('main-inv').innerHTML=m;
   const hb=sortHotbar(d.hotbar);
@@ -537,18 +580,54 @@ function renderInventory() {
   initPlayer();
 }
 
-const BLOCK_IDS=new Set(['chest','tnt','cactus','wither_skeleton_skull','short_grass','minecart','chest_minecart','rail','powered_rail','redstone_torch']);
+const BLOCK_IDS=new Set(['chest','tnt','cactus','wither_skeleton_skull','grass','minecart','chest_minecart','rail','powered_rail','redstone_torch']);
 
-function makeSlotHtml(it) {
-  if (!it||(!it.id&&!it.customImg)) return `<div class="slot"></div>`;
-  const img=it.customImg||itemUrl(it.id,it.leatherDye,it.enchanted);
-  const wrap=it.enchanted?'item-wrapper enchanted':'item-wrapper';
-  const isBlock=BLOCK_IDS.has(it.id);
-  const mask=(!isBlock&&it.enchanted)?`style="--mask-img:url('${img}')"`:'' ;
-  const ds=JSON.stringify(it).replace(/"/g,'&quot;');
-  let html=`<div class="slot" data-item="${ds}"><div class="${wrap}" ${mask}><img src="${img}" alt="${it.name}" onerror="this.style.display='none'"></div>`;
-  if (it.stack&&it.stack>1) html+=`<span class="count">${it.stack}</span>`;
-  return html+`</div>`;
+function makeSlotHtml(it, emptyType = null) {
+  if (!it || (!it.id && !it.customImg)) {
+    if (emptyType) {
+      const capType = emptyType.charAt(0).toUpperCase() + emptyType.slice(1);
+      return `<div class="slot"><div class="item-wrapper"><img src="img/blitz/Empty_Armor_Slot_${capType}.png" style="opacity:0.3; width:100%; height:100%; object-fit:contain; pointer-events:none;" alt="Empty ${capType}"></div></div>`;
+    }
+    return `<div class="slot"></div>`;
+  }
+  
+  const imgUrl = getAssetUrl(it);
+  const fallbackUrl = getApiFallback(it);
+  const wrap = it.enchanted ? 'item-wrapper enchanted' : 'item-wrapper';
+  const isBlock = BLOCK_IDS.has(it.id);
+  const mask = (!isBlock && it.enchanted) ? `style="--mask-img:url('${imgUrl}')"` : '';
+  const ds = JSON.stringify(it).replace(/"/g,'&quot;');
+  
+  const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';const w=this.closest('.item-wrapper');if(w)w.style.setProperty('--mask-img','none');}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
+
+  let html = `<div class="slot" data-item="${ds}">`;
+  html += `<div class="${wrap}" ${mask}>`;
+  
+  const isLeather = (it.id || '').startsWith('leather_');
+
+  if (isLeather || it.leatherDye) {
+    let hex = '#A06540'; // Default Minecraft leather brown
+    if (it.leatherDye) {
+      hex = LEATHER_COLORS[it.leatherDye] || it.leatherDye;
+      if (!String(hex).startsWith('#')) {
+        const parsed = parseInt(hex, 10);
+        hex = !isNaN(parsed) ? '#' + parsed.toString(16).padStart(6, '0') : '#A06540';
+      }
+    }
+    
+    html += `
+      <div style="position:absolute; inset:0; width:100%; height:100%; background-color:${hex}; -webkit-mask-image:url('${imgUrl}'); -webkit-mask-size:contain; -webkit-mask-position:center; -webkit-mask-repeat:no-repeat; mask-image:url('${imgUrl}'); mask-size:contain; mask-position:center; mask-repeat:no-repeat; z-index:1; pointer-events:none;"></div>
+      <img src="${imgUrl}" style="position:absolute; inset:0; width:100%; height:100%; z-index:2; object-fit:contain; mix-blend-mode:multiply; image-rendering:pixelated;" alt="${it.name}" onerror="${onErrorScript}">
+    `;
+  } else {
+    html += `<img src="${imgUrl}" alt="${it.name}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; image-rendering:pixelated;" onerror="${onErrorScript}">`;
+  }
+  
+  html += `</div>`;
+  if (it.stack && it.stack > 1) html += `<span class="count">${it.stack}</span>`;
+  html += `</div>`;
+  
+  return html;
 }
 
 const tooltip=document.getElementById('tooltip');
