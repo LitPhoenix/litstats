@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-03T04:29:31.615Z",
+  "last_update": "2026-04-03T07:04:26.983Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -656,9 +656,9 @@
           "username": "combatively",
           "uuid": "23498017b5654aa0b9949effbbdd147e",
           "country": "USA",
-          "current_ap": 24605,
+          "current_ap": 24610,
           "last_month_ap": 24605,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": []
         },
         {
@@ -755,15 +755,15 @@
     },
     {
       "country": "France",
-      "score": 11365,
+      "score": 11385,
       "top_players": [
         {
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_ap": 32375,
+          "current_ap": 32395,
           "last_month_ap": 32395,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": []
         },
         {
@@ -851,15 +851,15 @@
     },
     {
       "country": "UK",
-      "score": 9960,
+      "score": 9935,
       "top_players": [
         {
           "username": "greaneye",
           "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
           "country": "UK",
-          "current_ap": 31460,
+          "current_ap": 31435,
           "last_month_ap": 31460,
-          "monthly_gain": 0,
+          "monthly_gain": -25,
           "maxGames": []
         },
         {
@@ -929,9 +929,9 @@
           "username": "JinxRaider23",
           "uuid": "d297331b7ff9452babd6828871bc2636",
           "country": "UK",
-          "current_ap": 25510,
+          "current_ap": 25575,
           "last_month_ap": 25510,
-          "monthly_gain": 0,
+          "monthly_gain": 65,
           "maxGames": []
         },
         {
@@ -992,9 +992,9 @@
           "username": "xRyann_",
           "uuid": "b12c6b822faa4ebfaab429982dab58ed",
           "country": "UK",
-          "current_ap": 23065,
+          "current_ap": 23060,
           "last_month_ap": 23065,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": []
         }
       ]
@@ -2021,9 +2021,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 23905,
+          "current_ap": 23950,
           "last_month_ap": 23905,
-          "monthly_gain": 0,
+          "monthly_gain": 45,
           "maxGames": []
         },
         {
@@ -2126,6 +2126,15 @@
           "maxGames": []
         },
         {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 23085,
+          "last_month_ap": 23030,
+          "monthly_gain": 55,
+          "maxGames": []
+        },
+        {
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
@@ -2141,15 +2150,6 @@
           "current_ap": 23055,
           "last_month_ap": 23170,
           "monthly_gain": -115,
-          "maxGames": []
-        },
-        {
-          "username": "InInk",
-          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
-          "country": "Unknown",
-          "current_ap": 23030,
-          "last_month_ap": 23030,
-          "monthly_gain": 0,
           "maxGames": []
         },
         {
