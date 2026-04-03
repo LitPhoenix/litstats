@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-03T20:32:32.130Z",
+  "last_update": "2026-04-03T22:30:17.442Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1451,7 +1451,7 @@
     },
     {
       "country": "Israel",
-      "score": 3974,
+      "score": 3975,
       "top_players": [
         {
           "username": "eliadbg",
@@ -1475,9 +1475,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26130,
+          "current_ap": 26135,
           "last_month_ap": 26135,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": []
         },
         {
