@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-04T16:24:39.475Z",
+  "last_update": "2026-04-04T18:28:34.575Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -200,7 +200,8 @@
     "e3fc5b36a60f4ff1ac2df06405a20601": 23030,
     "c99fe76f6ed14f8a8b739d740a9674c3": 23025,
     "c82a204b300f4b88888e4ab79e44920b": 23000,
-    "7bfed5378957477bada8e64cf5fa99f1": 22965
+    "7bfed5378957477bada8e64cf5fa99f1": 22965,
+    "d61cd4e9fcf146d2bd1dd9b494405b07": 23000
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -912,6 +913,21 @@
           ]
         },
         {
+          "username": "SeaOtterFan",
+          "uuid": "cdea33877a37413da44e365acc9f7a50",
+          "country": "USA",
+          "current_ap": 24145,
+          "last_month_ap": 24125,
+          "monthly_gain": 20,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max Quake",
+            "Max SkyBlock",
+            "Max Bed Wars",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "recordheat",
           "uuid": "9f16e788457c44fc8c24b90167569420",
           "country": "USA",
@@ -924,21 +940,6 @@
             "Max Quake",
             "Max Walls",
             "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "SeaOtterFan",
-          "uuid": "cdea33877a37413da44e365acc9f7a50",
-          "country": "USA",
-          "current_ap": 24125,
-          "last_month_ap": 24125,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Bed Wars",
             "Max TKR"
           ]
         },
@@ -1004,15 +1005,6 @@
             "Max Quake",
             "Max Bed Wars"
           ]
-        },
-        {
-          "username": "Saubt",
-          "uuid": "c82a204b300f4b88888e4ab79e44920b",
-          "country": "USA",
-          "current_ap": 22990,
-          "last_month_ap": 23000,
-          "monthly_gain": -10,
-          "maxGames": []
         }
       ]
     },
@@ -1287,9 +1279,9 @@
           "username": "EvdiaNow_",
           "uuid": "aad6a2754e9c4744bd335213853f023f",
           "country": "UK",
-          "current_ap": 29005,
+          "current_ap": 29010,
           "last_month_ap": 29005,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Mega Walls",
             "Max Blitz",
@@ -1518,7 +1510,7 @@
     },
     {
       "country": "Canada",
-      "score": 8432,
+      "score": 8433,
       "top_players": [
         {
           "username": "Songgg",
@@ -1585,9 +1577,9 @@
           "username": "FeedLiloToMarcel",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
-          "current_ap": 26790,
+          "current_ap": 26795,
           "last_month_ap": 26790,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max TNT Games",
             "Max Bed Wars"
@@ -3196,6 +3188,19 @@
           "monthly_gain": 30,
           "maxGames": [
             "Max VampireZ"
+          ]
+        },
+        {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "Unknown",
+          "current_ap": 23000,
+          "last_month_ap": 23000,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels"
           ]
         }
       ]
