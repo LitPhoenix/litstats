@@ -318,7 +318,7 @@ function getAssetUrl(it) {
   const id = (it.id || '').toLowerCase();
   const nameLower = (it.name || '').toLowerCase();
   
-  // Custom Overrides
+  // Custom Local Substitutions
   if (nameLower.includes('health boost')) return 'img/blitz/items/Potion_of_Fire_Resistance.png';
   if (nameLower === 'warlock' || nameLower.includes('harming')) return 'img/blitz/items/Splash_Potion_of_Harming.png';
   if (nameLower === 'scout') return 'img/blitz/items/Potion_of_Speed.png';
@@ -326,20 +326,11 @@ function getAssetUrl(it) {
   if (nameLower.includes('shark') || id === 'player_head') return 'img/blitz/shark.png';
   if (id === 'tall_grass' || id === 'grass' || id === 'short_grass') return 'img/blitz/items/Grass.png';
 
-  // Flat Leather Armour Router
-  if (id.startsWith('leather_')) {
-    let hex = 'A06540'; // Default brown
-    if (it.leatherDye) {
-      hex = LEATHER_COLORS[it.leatherDye] || it.leatherDye;
-      hex = hex.replace('#', '').toUpperCase();
-    }
-    return `img/blitz/items/${id}_${hex}.png`;
-  }
-
   return `img/blitz/items/${id}.png`;
 }
 
 function makeSlotHtml(it, emptyType = null) {
+  // Empty armour placeholders
   if (!it || (!it.id && !it.customImg)) {
     if (emptyType) {
       const capType = emptyType.charAt(0).toUpperCase() + emptyType.slice(1);
@@ -357,10 +348,10 @@ function makeSlotHtml(it, emptyType = null) {
   
   const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';const w=this.closest('.item-wrapper');if(w)w.style.setProperty('--mask-img','none');}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
 
-  // Stupid simple. One wrapper, one image. No masks, no layers.
+  // Flat rendering. No CSS masks, no layers.
   let html = `<div class="slot" data-item="${ds}">`;
   html += `<div class="${wrap}" ${mask}>`;
-  html += `<img src="${imgUrl}" alt="${it.name}" style="width:100%; height:100%; object-fit:contain; image-rendering:pixelated;" onerror="${onErrorScript}">`;
+  html += `<img src="${imgUrl}" alt="${it.name}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; image-rendering:pixelated;" onerror="${onErrorScript}">`;
   html += `</div>`;
   
   if (it.stack && it.stack > 1) html += `<span class="count">${it.stack}</span>`;
