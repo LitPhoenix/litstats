@@ -146,11 +146,12 @@ const emergencyBanner = {
 
 const randomBanners = [
   { text: "Did you know? LitStats tracks over 20 different Hypixel games.", btnText: "", btnLink: "" },
-  { text: "Found a bug or have an idea? Let me know.", btnText: "My Profile", btnLink: "https://namemc.com/profile/litphoenix.1" }
+  { text: "Check out the Blitz kit selector (Still a Work in Progress!)", btnText: "", btnLink: "https://www.litstats.com/blitz/" },
+  { text: "Found a bug or have an idea? Let me know on Discord @litphoenix.", btnText: "Discord", btnLink: "https://app.discord.com" }
 ];
 
 // Toggle: 'main', 'emergency', 'random', or 'off'
-let bannerMode = 'emergency'; 
+let bannerMode = 'random'; 
 
 // Increment this string (e.g., 'v2', 'v3') to force the banner to reappear for users who closed an older one
 const bannerVersion = 'v1'; 
