@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-04T14:27:47.748Z",
+  "last_update": "2026-04-04T16:24:39.475Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2153,67 +2153,16 @@
       ]
     },
     {
-      "country": "Finland",
-      "score": 4001,
-      "top_players": [
-        {
-          "username": "Champiez",
-          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-          "country": "Finland",
-          "current_ap": 28215,
-          "last_month_ap": 28200,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max Cops and Crims",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "MineElzu60",
-          "uuid": "559860c584174a7c90a8f79332802516",
-          "country": "Finland",
-          "current_ap": 27280,
-          "last_month_ap": 27280,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "MatiasSiltanen",
-          "uuid": "e9a871c29903474687b0b045edd35ae9",
-          "country": "Finland",
-          "current_ap": 26350,
-          "last_month_ap": 26350,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Israel",
-      "score": 3993,
+      "score": 4013,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_ap": 28335,
+          "current_ap": 28355,
           "last_month_ap": 28335,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Arena Brawl",
             "Max Quake",
@@ -2280,6 +2229,57 @@
           "last_month_ap": 23495,
           "monthly_gain": 0,
           "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Finland",
+      "score": 4001,
+      "top_players": [
+        {
+          "username": "Champiez",
+          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+          "country": "Finland",
+          "current_ap": 28215,
+          "last_month_ap": 28200,
+          "monthly_gain": 15,
+          "maxGames": [
+            "Max Cops and Crims",
+            "Max Warlords",
+            "Max TNT Games",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
+          "username": "MineElzu60",
+          "uuid": "559860c584174a7c90a8f79332802516",
+          "country": "Finland",
+          "current_ap": 27280,
+          "last_month_ap": 27280,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
+          "username": "MatiasSiltanen",
+          "uuid": "e9a871c29903474687b0b045edd35ae9",
+          "country": "Finland",
+          "current_ap": 26350,
+          "last_month_ap": 26350,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels"
+          ]
         }
       ]
     },
@@ -2404,7 +2404,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2920,
+      "score": 2926,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2436,13 +2436,14 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26105,
+          "current_ap": 26130,
           "last_month_ap": 26055,
-          "monthly_gain": 50,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
             "Max Warlords",
+            "Max Bed Wars",
             "Max Duels"
           ]
         },
@@ -2765,15 +2766,15 @@
     },
     {
       "country": "Ukraine",
-      "score": 685,
+      "score": 690,
       "top_players": [
         {
           "username": "kawaiinex",
           "uuid": "11a41ffd6abc42f8b484e7534118a503",
           "country": "Ukraine",
-          "current_ap": 26080,
+          "current_ap": 26085,
           "last_month_ap": 26105,
-          "monthly_gain": -25,
+          "monthly_gain": -20,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2896,9 +2897,9 @@
           "username": "nonoooooooo",
           "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
           "country": "Unknown",
-          "current_ap": 24795,
+          "current_ap": 24820,
           "last_month_ap": 24730,
-          "monthly_gain": 65,
+          "monthly_gain": 90,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
@@ -3450,9 +3451,9 @@
           "username": "SpaceDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
-          "current_ap": 23945,
+          "current_ap": 23950,
           "last_month_ap": 23945,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": []
         }
       ]
