@@ -1,17 +1,26 @@
 "use strict";
 
 // ── Item constructors ────────────────────────────────────────────────────────
-function itm(id, name, rarity = 'common', stack = null, enchants = [], leatherDye = null) {
-  const lines = enchants.map(e => ({ text: e, cls: 'c-grey' }));
-  const enchanted = enchants.length > 0;
-  return { id, name, rarity, stack, lines, enchanted, customImg: null, leatherDye };
+function itm(id, name, rarity = 'common', stack = null, enchants = []) {
+  // Forces enchants to be an array, preventing crashes if a hex string is passed
+  const validEnchants = Array.isArray(enchants) ? enchants : [];
+  const lines = validEnchants.map(e => ({ text: e, cls: 'c-grey' }));
+  const enchanted = validEnchants.length > 0;
+  
+  return { id, name, rarity, stack, lines, enchanted, customImg: null };
 }
 
 const _LIDS = { helmet:'leather_helmet', chestplate:'leather_chestplate', leggings:'leather_leggings', boots:'leather_boots' };
-function _lth(slot, name, dye, enchants = []) { return itm(_LIDS[slot], name, 'common', null, enchants, dye); }
-function lth(slot, name, enchants = []) { return _lth(slot, name, 'white', enchants); }
-function lim(slot, name, enchants = []) { return _lth(slot, name, 'lime',  enchants); }
-function grn(slot, name, enchants = []) { return _lth(slot, name, 'green', enchants); }
+
+// Accepts the legacy dye argument but ignores it, mapping enchants correctly
+function _lth(slot, name, dyeOrEnchants, enchants = []) { 
+  const actualEnchants = Array.isArray(dyeOrEnchants) ? dyeOrEnchants : enchants;
+  return itm(_LIDS[slot], name, 'common', null, actualEnchants); 
+}
+
+function lth(slot, name, enchants = []) { return _lth(slot, name, null, enchants); }
+function lim(slot, name, enchants = []) { return _lth(slot, name, null, enchants); }
+function grn(slot, name, enchants = []) { return _lth(slot, name, null, enchants); }
 
 function pot(name, stack = null)  { return itm('potion',        name, 'common', stack); }
 function spot(name, stack = null) { return itm('splash_potion', name, 'common', stack); }
@@ -603,3 +612,45 @@ window.KIT_DATABASE = {
 ])
 
 };
+
+// --- BIND PRE-BAKED LEATHER ARMOUR ---
+for (const [kitName, levels] of Object.entries(window.KIT_DATABASE)) {
+  const applyCustomImg = (item, slotName) => {
+    if (!item || !item.id || !item.id.startsWith('leather_')) return;
+
+    let searchKey = kitName;
+
+    // Handle kits with per-piece coloring (Armorer, Florist)
+    if (kitName === 'Armorer' || kitName === 'Florist') {
+        // e.g., 'Armorer Helmet'
+        searchKey = `${kitName} ${slotName.charAt(0).toUpperCase() + slotName.slice(1)}`;
+    }
+    
+    // Fallback for SlimeySlime typo in your list vs kit name
+    if (searchKey === 'Slimey Slime') searchKey = 'SlimeySlime';
+
+    // Make safe: e.g., 'armorerhelmet', 'hypetrain', 'archer'
+    const safeKey = searchKey.toLowerCase().replace(/\s+/g, '');
+    
+    // Maps to: img/blitz/leather_armor/paladin_leather_chestplate.png
+    // Or: img/blitz/leather_armor/armorerhelmet_leather_helmet.png
+    item.customImg = `img/blitz/leather_armor/${safeKey}_${item.id}.png`;
+  };
+
+  levels.forEach(lvl => {
+    // Process equipped armour slots
+    ['helmet', 'chestplate', 'leggings', 'boots'].forEach(slot => {
+        applyCustomImg(lvl.armour[slot], slot);
+    });
+
+    // Process inventory/hotbar items. If leather is unequipped, we guess the slot based on the item ID.
+    const guessSlotAndApply = (item) => {
+        if (!item || !item.id || !item.id.startsWith('leather_')) return;
+        const guessedSlot = item.id.split('_')[1]; // e.g., 'leather_helmet' -> 'helmet'
+        applyCustomImg(item, guessedSlot);
+    };
+
+    lvl.hotbar.forEach(guessSlotAndApply);
+    lvl.inv.forEach(guessSlotAndApply);
+  });
+}
