@@ -5,24 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>LitStats - Blitz Kits</title>
-<meta name="title" content="LitStats - Blitz Kits">
-<meta name="description" content="View comprehensive Hypixel Blitz Survival Games kit upgrades, inventories, and prestige data.">
 <meta name="theme-color" content="#ff5100">
 
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://litstats.com/blitz">
-<meta property="og:title" content="LitStats - Blitz Kits">
-<meta property="og:description" content="View comprehensive Hypixel Blitz Survival Games kit upgrades, inventories, and prestige data.">
-<meta property="og:image" content="https://litstats.com/img/lq-opengraph.png">
-
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://litstats.com/blitz">
-<meta property="twitter:title" content="LitStats - Blitz Kits">
-<meta property="twitter:description" content="View comprehensive Hypixel Blitz Survival Games kit upgrades, inventories, and prestige data.">
-<meta property="twitter:image" content="https://litstats.com/img/lq-opengraph.png">
-
 <link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -31,13 +16,10 @@
 <style>
 @font-face { font-family: 'Vanilla'; src: url('assets/fonts/Minecraft.ttf'); }
 @font-face { font-family: 'Faithful'; src: url('assets/fonts/mineglyph-faithful.otf'); }
-.custom-font-class {
-  font-family: 'Faithful';
-  letter-spacing: 10px;
-}
+.custom-font-class { font-family: 'Faithful'; letter-spacing: 10px; }
 
 :root {
-  --slot-size: 52px; 
+  --slot-size: 52px;
   --mc-font: 'Faithful', 'Vanilla', 'Minecraft', monospace;
   --mc-slot-bg: rgba(128, 128, 128, 0.15);
   --mc-border-light: rgba(255, 255, 255, 0.3);
@@ -45,23 +27,18 @@
   --mc-slot-dark: rgba(0, 0, 0, 0.763);
 }
 
-body.theme-classic {
-  --slot-size: 36px;
-}
+body.theme-classic { --slot-size: 36px; }
 
-main { 
-  display: flex; flex-direction: column; align-items: center; 
-  margin-top: 40px; margin-bottom: 100px; width: 100%; 
-  image-rendering: pixelated; user-select: none; 
+main {
+  display: flex; flex-direction: column; align-items: center;
+  margin-top: 40px; margin-bottom: 100px; width: 100%;
+  image-rendering: pixelated; user-select: none;
 }
 
 .mc-container {
-  background: var(--surface);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+  background: var(--surface); backdrop-filter: blur(16px);
+  border: 1px solid var(--border); border-radius: 16px;
+  padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .mc-title { color: var(--text-2); font-size: 16px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; font-family: 'DM Sans', sans-serif; }
@@ -79,9 +56,9 @@ main {
 
 .level-selector { display: flex; gap: 6px; background: rgba(128, 128, 128, 0.1); padding: 8px; border-radius: 8px; border: 1px solid var(--border); }
 .level-btn {
-  background: rgba(128, 128, 128, 0.15); color: var(--text-2); border: 1px solid transparent; 
+  background: rgba(128, 128, 128, 0.15); color: var(--text-2); border: 1px solid transparent;
   width: auto; min-width: 36px; height: 36px; padding: 0 8px;
-  font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; 
+  font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600;
   cursor: pointer; border-radius: 6px; transition: 0.2s;
   display: flex; align-items: center; justify-content: center;
 }
@@ -94,21 +71,21 @@ main {
 .top-section { display: flex; gap: 2px; margin-bottom: 8px; align-items: flex-start; }
 .armour-column { display: flex; flex-direction: column; gap: 4px; }
 
-#player-box { 
-  width: 160px; height: 220px; background: rgba(128, 128, 128, 0.05); 
-  border: 2px solid var(--mc-slot-dark); border-right-color: var(--mc-border-light); border-bottom-color: var(--mc-border-light); 
-  border-radius: 4px; overflow: hidden; 
+#player-box {
+  width: 160px; height: 220px; background: rgba(128, 128, 128, 0.05);
+  border: 2px solid var(--mc-slot-dark); border-right-color: var(--mc-border-light); border-bottom-color: var(--mc-border-light);
+  border-radius: 4px; overflow: hidden;
 }
 
 .crafting-area { display: flex; margin-top: 36px; flex-direction: column; margin-left: 36px; }
 .crafting-layout { display: flex; align-items: center; gap: 4px; }
 .crafting-arrow { color: var(--text-3); font-size: 24px; font-family: 'DM Sans', sans-serif; }
 
-.slot { 
-  width: var(--slot-size); height: var(--slot-size); 
-  background: var(--mc-slot-bg); 
-  border: 2px solid var(--mc-slot-dark); border-right-color: var(--mc-border-light); border-bottom-color: var(--mc-border-light); 
-  border-radius: 4px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; 
+.slot {
+  width: var(--slot-size); height: var(--slot-size);
+  background: var(--mc-slot-bg);
+  border: 2px solid var(--mc-slot-dark); border-right-color: var(--mc-border-light); border-bottom-color: var(--mc-border-light);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;
 }
 .slot.locked { cursor: not-allowed; opacity: 0.3; filter: grayscale(100%); }
 .slot:hover:not(.locked) { background: rgba(128, 128, 128, 0.3); outline: 2px solid var(--accent); z-index: 10; }
@@ -131,8 +108,8 @@ main {
 }
 @keyframes glint { 0%{background-position:200% center} 100%{background-position:-200% center} }
 
-.mc-tooltip { 
-  display: none; position: fixed; z-index: 9999; pointer-events: none; 
+.mc-tooltip {
+  display: none; position: fixed; z-index: 9999; pointer-events: none;
   padding: 4px 6px; color: #fff; background: rgba(16,0,16,.85); letter-spacing: 0.05em;
   border: 2px solid #2d0064; border-radius: 0; font-family: var(--mc-font);
   box-shadow: 2px 0 0 0 #000, -2px 0 0 0 #000, 0 2px 0 0 #000, 0 -2px 0 0 #000;
@@ -145,63 +122,46 @@ main {
 .r-common{color:#fff} .r-uncommon{color:#55ff55} .r-rare{color:#5555ff} .r-epic{color:#ff55ff} .r-legendary{color:#ffaa00}
 .c-grey{color:#aaa} .c-yellow{color:#ffff55} .c-red{color:#ff5555}
 
-.back-btn { 
-  background: rgba(128, 128, 128, 0.1); color: var(--text); border: 1px solid var(--border); 
-  padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 24px; transition: 0.2s; font-family: 'DM Sans', sans-serif; 
+.back-btn {
+  background: rgba(128, 128, 128, 0.1); color: var(--text); border: 1px solid var(--border);
+  padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-top: 24px; transition: 0.2s; font-family: 'DM Sans', sans-serif;
 }
 .back-btn:hover { background: var(--accent); color: #fff; border-color: transparent; }
 
-/* ========================================================================== */
-/* --- CLASSIC (2013) THEME OVERRIDES ---                                     */
-/* ========================================================================== */
 body.theme-classic .mc-container {
-  background: #c6c6c6; border-radius: 0; backdrop-filter: none; border: 4px solid #fff; 
+  background: #c6c6c6; border-radius: 0; backdrop-filter: none; border: 4px solid #fff;
   border-right-color: #555; border-bottom-color: #555; padding: 8px;
   box-shadow: 0 0 0 2px #000, 0 10px 30px rgba(0,0,0,.3);
 }
 body.theme-classic .mc-title { color: #404040; font-family: var(--mc-font); text-shadow: none; font-size: 16px; text-transform: none; letter-spacing: 0.05em; margin-left: 1px; margin-top: -6px; }
 body.theme-classic #kit-name-display { font-family: var(--mc-font); color: #fff; text-shadow: 2px 2px 0 rgba(0,0,0,.5); }
-
 body.theme-classic .chest-grid, body.theme-classic .inv-grid, body.theme-classic .crafting-grid { gap: 0; }
 body.theme-classic .armour-column { gap: 0; }
 body.theme-classic .hotbar-spacer { height: 8px; }
-
-body.theme-classic .slot {
-  background: #8b8b8b; border-radius: 0;
-  border: 2px solid #373737; border-right-color: #fff; border-bottom-color: #fff;
-}
+body.theme-classic .slot { background: #8b8b8b; border-radius: 0; border: 2px solid #373737; border-right-color: #fff; border-bottom-color: #fff; }
 body.theme-classic .slot:hover:not(.locked) { background: #bebebe; outline: none; box-shadow: none; }
-
 body.theme-classic .level-selector { background: transparent; border: none; padding: 0; gap: 2px; }
-
 body.theme-classic .level-btn {
-  background: #8b8b8b; color: #fff; 
-  width: auto; min-width: 32px; height: 32px; padding: 0 6px;
-  font-family: var(--mc-font); font-size: 16px; font-weight: normal; 
-  cursor: pointer; text-shadow: 1px 1px 0 #000;
+  background: #8b8b8b; color: #fff; width: auto; min-width: 32px; height: 32px; padding: 0 6px;
+  font-family: var(--mc-font); font-size: 16px; font-weight: normal; cursor: pointer; text-shadow: 1px 1px 0 #000;
   display: flex; align-items: center; justify-content: center;
-  border: 2px solid #373737; border-top-color: #fff; border-left-color: #fff;
-  border-radius: 0; box-shadow: none;
+  border: 2px solid #373737; border-top-color: #fff; border-left-color: #fff; border-radius: 0; box-shadow: none;
 }
 body.theme-classic .level-btn:hover { background: #bebebe; color: #ffff55; }
-body.theme-classic .level-btn.active { 
-  background: #555; color: #55ff55;
-  border-top-color: #373737; border-left-color: #373737; border-bottom-color: #fff; border-right-color: #fff; 
+body.theme-classic .level-btn.active {
+  background: #555; color: #55ff55; border-top-color: #373737; border-left-color: #373737; border-bottom-color: #fff; border-right-color: #fff;
 }
 body.theme-classic .level-btn.p2 { color: #ffaa00; font-weight: normal; }
 body.theme-classic .level-btn.p2:hover { color: #daa520; background: #bebebe; }
-body.theme-classic .level-btn.p2.active { 
-  color: #ffaa00; background: #555; 
-  border-top-color: #373737; border-left-color: #373737; border-bottom-color: #fff; border-right-color: #fff; 
+body.theme-classic .level-btn.p2.active {
+  color: #ffaa00; background: #555; border-top-color: #373737; border-left-color: #373737; border-bottom-color: #fff; border-right-color: #fff;
 }
-
 body.theme-classic #player-box { border-radius: 0; width: 112px; height: 144px; }
 body.theme-classic .crafting-area { margin-left: 12px; margin-top: 12px; }
 body.theme-classic .crafting-arrow { font-family: var(--mc-font); font-size: 28px; }
 body.theme-classic .count { right: -2px; bottom: -4px; }
 body.theme-classic .item-wrapper { width: 32px; height: 32px; }
 
-/* --- SLEEK FLOATING SETTINGS PANEL --- */
 .blitz-settings {
   position: fixed; bottom: 24px; right: 24px;
   background: var(--surface); backdrop-filter: blur(16px);
@@ -210,13 +170,9 @@ body.theme-classic .item-wrapper { width: 32px; height: 32px; }
   box-shadow: 0 4px 24px rgba(0,0,0,0.2); font-family: 'DM Sans', sans-serif;
 }
 @media (max-width: 768px) {
-  .blitz-settings {
-    bottom: 16px; left: 50%; transform: translateX(-50%); right: auto;
-    width: 90%; max-width: 320px; justify-content: space-between; padding: 12px 16px;
-  }
+  .blitz-settings { bottom: 16px; left: 50%; transform: translateX(-50%); right: auto; width: 90%; max-width: 320px; justify-content: space-between; padding: 12px 16px; }
 }
 .setting-group { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--text-2); }
-
 .switch { position: relative; display: inline-block; width: 36px; height: 20px; }
 .switch input { opacity: 0; width: 0; height: 0; }
 .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(128,128,128,0.2); transition: .3s; border-radius: 20px; border: 1px solid var(--border-strong); }
@@ -301,15 +257,16 @@ input:checked + .slider:before { transform: translateX(16px); background-color: 
 <script src="https://cdn.jsdelivr.net/npm/skinview3d@2.2.0/bundles/skinview3d.min.js"></script>
 <script src="assets/js/global.js"></script>
 <script src="assets/js/kits.js"></script>
-
 <script>
 // ============================================================================
-// ASSET ROUTER & FALLBACK LOGIC
+// CORE LOGIC & DEBUGGING
 // ============================================================================
+console.log("Script initializing...");
+
 const API_BASE = "https://api.minecraftitems.xyz/api/item/";
 const API_KEY  = "mcapi_5cb1f0643162ea2f7b0aa174d27061cdfa1f35c318532b602a9bf86045063ff9";
 const API_SIZE = 4;
-const LEATHER_COLORS = { lime: "32CD32", green: "008000", white: "FFFFFF", default: "A06540" };
+const BLOCK_IDS=new Set(['chest','tnt','cactus','wither_skeleton_skull','grass','minecart','chest_minecart','rail','powered_rail','redstone_torch']);
 
 function getAssetUrl(it) {
   if (!it) return '';
@@ -318,7 +275,6 @@ function getAssetUrl(it) {
   const id = (it.id || '').toLowerCase();
   const nameLower = (it.name || '').toLowerCase();
   
-  // Custom Local Substitutions
   if (nameLower.includes('health boost')) return 'img/blitz/items/Potion_of_Fire_Resistance.png';
   if (nameLower === 'warlock' || nameLower.includes('harming')) return 'img/blitz/items/Splash_Potion_of_Harming.png';
   if (nameLower === 'scout') return 'img/blitz/items/Potion_of_Speed.png';
@@ -330,11 +286,12 @@ function getAssetUrl(it) {
 }
 
 function makeSlotHtml(it, emptyType = null) {
-  // Empty armour placeholders
   if (!it || (!it.id && !it.customImg)) {
     if (emptyType) {
       const capType = emptyType.charAt(0).toUpperCase() + emptyType.slice(1);
-      return `<div class="slot"><div class="item-wrapper"><img src="img/blitz/Empty_Armor_Slot_${capType}.png" style="opacity:0.3; width:100%; height:100%; object-fit:contain; pointer-events:none;" alt="Empty ${capType}"></div></div>`;
+      // Route empty slots through the dynamic path resolver
+      const emptyUrl = getAssetUrl({ customImg: `img/blitz/Empty_Armor_Slot_${capType}.png` });
+      return `<div class="slot"><div class="item-wrapper"><img src="${emptyUrl}" style="opacity:0.3; width:100%; height:100%; object-fit:contain; pointer-events:none;" alt="Empty ${capType}"></div></div>`;
     }
     return `<div class="slot"></div>`;
   }
@@ -346,9 +303,8 @@ function makeSlotHtml(it, emptyType = null) {
   const mask = (!isBlock && it.enchanted) ? `style="--mask-img:url('${imgUrl}')"` : '';
   const ds = JSON.stringify(it).replace(/"/g,'&quot;');
   
-  const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';const w=this.closest('.item-wrapper');if(w)w.style.setProperty('--mask-img','none');}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
+  const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';const w=this.closest('.item-wrapper');if(w)w.style.setProperty('--mask-img','none');}else{console.warn('Failed to load locally:', '${imgUrl}', 'falling back to API'); this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
 
-  // Flat rendering. No CSS masks, no layers.
   let html = `<div class="slot" data-item="${ds}">`;
   html += `<div class="${wrap}" ${mask}>`;
   html += `<img src="${imgUrl}" alt="${it.name}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; image-rendering:pixelated;" onerror="${onErrorScript}">`;
@@ -364,15 +320,44 @@ function getApiFallback(it) {
   return `${API_BASE}${it.id}?apiKey=${API_KEY}&size=${API_SIZE}&glint=false`;
 }
 
+function makeSlotHtml(it, emptyType = null) {
+  if (!it || (!it.id && !it.customImg)) {
+    if (emptyType) {
+      const capType = emptyType.charAt(0).toUpperCase() + emptyType.slice(1);
+      return `<div class="slot"><div class="item-wrapper"><img src="img/blitz/Empty_Armor_Slot_${capType}.png" style="opacity:0.3; width:100%; height:100%; object-fit:contain; pointer-events:none;" alt="Empty ${capType}"></div></div>`;
+    }
+    return `<div class="slot"></div>`;
+  }
+  
+  const imgUrl = getAssetUrl(it);
+  const fallbackUrl = getApiFallback(it);
+  const wrap = it.enchanted ? 'item-wrapper enchanted' : 'item-wrapper';
+  const isBlock = BLOCK_IDS.has(it.id);
+  const mask = (!isBlock && it.enchanted) ? `style="--mask-img:url('${imgUrl}')"` : '';
+  const ds = JSON.stringify(it).replace(/"/g,'&quot;');
+  
+  const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';const w=this.closest('.item-wrapper');if(w)w.style.setProperty('--mask-img','none');}else{console.warn('Failed to load locally:', '${imgUrl}', 'falling back to API'); this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
+
+  let html = `<div class="slot" data-item="${ds}">`;
+  html += `<div class="${wrap}" ${mask}>`;
+  html += `<img src="${imgUrl}" alt="${it.name}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; image-rendering:pixelated;" onerror="${onErrorScript}">`;
+  html += `</div>`;
+  
+  if (it.stack && it.stack > 1) html += `<span class="count">${it.stack}</span>`;
+  html += `</div>`;
+  
+  return html;
+}
+
 const blankKitArray = () => Array(11).fill().map(()=>({armour:{},hotbar:[],inv:[]}));
 
-// --- STATE MANAGEMENT ---
-const NUM_ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "P2"];
-const NUM_DIGIT = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "P2"];
 let useRoman = localStorage.getItem('blitz_roman') === 'true';
 let useClassic = localStorage.getItem('blitz_classic') === 'true';
+const NUM_ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "P2"];
+const NUM_DIGIT = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "P2"];
 
 function initSettings() {
+  console.log("Loading UI settings...");
   document.getElementById('toggleClassic').checked = useClassic;
   document.getElementById('toggleRoman').checked = useRoman;
   document.body.classList.toggle('theme-classic', useClassic);
@@ -380,6 +365,7 @@ function initSettings() {
 }
 
 function toggleClassicMode(isActive) {
+  console.log("Toggled Classic Mode:", isActive);
   useClassic = isActive;
   localStorage.setItem('blitz_classic', isActive);
   document.body.classList.toggle('theme-classic', isActive);
@@ -387,10 +373,11 @@ function toggleClassicMode(isActive) {
 }
 
 function toggleRomanNumerals(isActive) {
+  console.log("Toggled Roman Numerals:", isActive);
   useRoman = isActive;
   localStorage.setItem('blitz_roman', isActive);
   updateNumeralLabels();
-  if (activeKitName) renderInventory(); 
+  if (activeKitName) renderInventory();
 }
 
 function updateNumeralLabels() {
@@ -402,14 +389,15 @@ function updateNumeralLabels() {
 
 function updateUrl(kitName) {
   if (!kitName) {
-    window.history.pushState(null, '', '/blitz/');
+    // Strips the ?kit= parameter when going back to the chest
+    window.history.pushState(null, '', window.location.pathname);
   } else {
+    // Safely appends the kit name as a parameter
     const safeName = kitName.toLowerCase().replace(/\s+/g, '-');
-    window.history.pushState({kit: kitName}, '', `/blitz/${safeName}`);
+    window.history.pushState({kit: kitName}, '', `?kit=${safeName}`);
   }
 }
 
-// --- CHEST & PRELOADING ---
 const chestMap = [
   {id:'saddle', name:'Horsetamer'}, {id:'arrow', name:'Ranger'}, {id:'bow', name:'Archer'}, {id:'iron_boots', name:'Astronaut'},
   {id:'witch_spawn_egg', name:'Troll'}, {id:'cooked_beef', name:'MeatMaster'}, {id:'iron_hoe', name:'Reaper'},
@@ -427,7 +415,6 @@ const chestMap = [
   {id:'snowball', name:'Snowman'}, {id:'stick', name:'Rambo'}, {id:'egg', name:'Farmer'}, {id:'leather_chestplate', name:'Armorer'},
   {id:'tnt', name:'Creepertamer', customImg:'img/blitz/tnt.png'}, null,
 ];
-
 const RANDOM_IDS = ['saddle','arrow','bow','iron_boots','witch_spawn_egg','cooked_beef','iron_hoe','flint_and_steel','potion','wooden_sword','slime_ball','golden_apple','oak_boat','iron_pickaxe','cake','golden_sword','cooked_porkchop','feather','iron_chestplate','rotten_flesh','grass','stone_sword','minecart','fishing_rod','milk_bucket','diamond_boots','spider_spawn_egg','blaze_rod','bone','experience_bottle','snowball','stick','egg','leather_chestplate','tnt'];
 let rndIdx=0, rndTimer=null;
 let activeKitName=null, currentLevelIndex=9;
@@ -435,10 +422,9 @@ let activeKitName=null, currentLevelIndex=9;
 function preloadAssets() {
   const urls = new Set();
   chestMap.forEach(k => { if (k) urls.add(getAssetUrl(k)); });
-  
   if (window.KIT_DATABASE) {
     Object.values(window.KIT_DATABASE).forEach(kitArray => {
-      const lvl = kitArray[9] || kitArray[0]; 
+      const lvl = kitArray[9] || kitArray[0];
       if (!lvl) return;
       ['helmet','chestplate','leggings','boots'].forEach(p => { if (lvl.armour[p]) urls.add(getAssetUrl(lvl.armour[p])); });
       lvl.hotbar.forEach(i => { if (i) urls.add(getAssetUrl(i)); });
@@ -449,6 +435,7 @@ function preloadAssets() {
 }
 
 function initChest() {
+  console.log("Initializing Kit Selector chest...");
   const grid = document.getElementById('chest-grid');
   let html='';
   for (let i=0;i<45;i++) {
@@ -460,11 +447,9 @@ function initChest() {
       const k=chestMap[i];
       const imgUrl = getAssetUrl(k);
       const fallbackUrl = getApiFallback({id: k.id});
-      const td=JSON.stringify({id:k.id,name:k.name,rarity:'uncommon',stack:k.stack||null,lines:[{text:'Click to view upgrades!',cls:'c-yellow'}],enchanted:false,customImg:k.customImg||null,leatherDye:null}).replace(/"/g,'&quot;');
+      const td=JSON.stringify({id:k.id,name:k.name,rarity:'uncommon',stack:k.stack||null,lines:[{text:'Click to view upgrades!',cls:'c-yellow'}],enchanted:false,customImg:k.customImg||null}).replace(/"/g,'&quot;');
       const scaleStr = k.scale ? `style="transform:scale(${k.scale})"` : '';
-      
       const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
-
       let inner = `<div class="item-wrapper"><img src="${imgUrl}" alt="${k.name}" ${scaleStr} onerror="${onErrorScript}"></div>`;
       if (k.stack && k.stack > 1) inner += `<span class="count">${k.stack}</span>`;
       html+=`<div class="slot" data-item="${td}" onclick="openKit('${k.name}')">${inner}</div>`;
@@ -491,6 +476,7 @@ function showChestView() {
 }
 
 function openKit(name, skipPush = false) {
+  console.log("Opening kit:", name);
   if (!window.KIT_DATABASE) window.KIT_DATABASE = {};
   if (!window.KIT_DATABASE[name]) window.KIT_DATABASE[name] = blankKitArray();
   
@@ -505,13 +491,13 @@ function openKit(name, skipPush = false) {
 document.addEventListener('DOMContentLoaded', () => {
   initSettings();
   initChest();
-  
   setTimeout(preloadAssets, 300);
 
-  const pathParts = window.location.pathname.replace(/\/$/, '').split('/');
-  const kitParam = pathParts[pathParts.length - 1];
+  // Read the kit from the URL parameter instead of the folder path
+  const params = new URLSearchParams(window.location.search);
+  const kitParam = params.get('kit');
   
-  if (kitParam && kitParam !== 'blitz' && !kitParam.includes('.html')) {
+  if (kitParam) {
     if (window.KIT_DATABASE) {
       const kitName = Object.keys(window.KIT_DATABASE).find(k => k.toLowerCase().replace(/\s+/g, '-') === kitParam);
       if (kitName) openKit(kitName, true);
@@ -552,6 +538,7 @@ function sortHotbar(raw) {
 }
 
 function renderInventory() {
+  console.log("Rendering inventory:", activeKitName, "Level:", currentLevelIndex);
   const d=window.KIT_DATABASE[activeKitName][currentLevelIndex];
   const activeLabel = useRoman ? NUM_ROMAN[currentLevelIndex] : NUM_DIGIT[currentLevelIndex];
   
@@ -571,56 +558,9 @@ function renderInventory() {
   initPlayer();
 }
 
-const BLOCK_IDS=new Set(['chest','tnt','cactus','wither_skeleton_skull','grass','minecart','chest_minecart','rail','powered_rail','redstone_torch']);
-
-function makeSlotHtml(it, emptyType = null) {
-  if (!it || (!it.id && !it.customImg)) {
-    if (emptyType) {
-      const capType = emptyType.charAt(0).toUpperCase() + emptyType.slice(1);
-      return `<div class="slot"><div class="item-wrapper"><img src="img/blitz/Empty_Armor_Slot_${capType}.png" style="opacity:0.3; width:100%; height:100%; object-fit:contain; pointer-events:none;" alt="Empty ${capType}"></div></div>`;
-    }
-    return `<div class="slot"></div>`;
-  }
-  
-  const imgUrl = getAssetUrl(it);
-  const fallbackUrl = getApiFallback(it);
-  const wrap = it.enchanted ? 'item-wrapper enchanted' : 'item-wrapper';
-  const isBlock = BLOCK_IDS.has(it.id);
-  const mask = (!isBlock && it.enchanted) ? `style="--mask-img:url('${imgUrl}')"` : '';
-  const ds = JSON.stringify(it).replace(/"/g,'&quot;');
-  
-  const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';const w=this.closest('.item-wrapper');if(w)w.style.setProperty('--mask-img','none');}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
-
-  let html = `<div class="slot" data-item="${ds}">`;
-  html += `<div class="${wrap}" ${mask}>`;
-  
-  const isLeather = (it.id || '').startsWith('leather_');
-
-  if (isLeather || it.leatherDye) {
-    let hex = '#A06540'; // Default Minecraft leather brown
-    if (it.leatherDye) {
-      hex = LEATHER_COLORS[it.leatherDye] || it.leatherDye;
-      if (!String(hex).startsWith('#')) {
-        const parsed = parseInt(hex, 10);
-        hex = !isNaN(parsed) ? '#' + parsed.toString(16).padStart(6, '0') : '#A06540';
-      }
-    }
-    
-    html += `
-      <div style="position:absolute; inset:0; width:100%; height:100%; background-color:${hex}; -webkit-mask-image:url('${imgUrl}'); -webkit-mask-size:contain; -webkit-mask-position:center; -webkit-mask-repeat:no-repeat; mask-image:url('${imgUrl}'); mask-size:contain; mask-position:center; mask-repeat:no-repeat; z-index:1; pointer-events:none;"></div>
-      <img src="${imgUrl}" style="position:absolute; inset:0; width:100%; height:100%; z-index:2; object-fit:contain; mix-blend-mode:multiply; image-rendering:pixelated;" alt="${it.name}" onerror="${onErrorScript}">
-    `;
-  } else {
-    html += `<img src="${imgUrl}" alt="${it.name}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; image-rendering:pixelated;" onerror="${onErrorScript}">`;
-  }
-  
-  html += `</div>`;
-  if (it.stack && it.stack > 1) html += `<span class="count">${it.stack}</span>`;
-  html += `</div>`;
-  
-  return html;
-}
-
+// ============================================================================
+// TOOLTIP & 3D VIEWER LOGIC (RESTORED)
+// ============================================================================
 const tooltip=document.getElementById('tooltip');
 function buildTooltip(it) {
   let h=`<span class="tt-name r-${it.rarity}">${it.name}</span>`;
