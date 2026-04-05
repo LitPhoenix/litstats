@@ -300,7 +300,7 @@ window.KIT_DATABASE = {
 ]),
 
 "Shark": kit([
-  { helmet: itm('shark','Shark Head','rare',null,['Protection I','Depth Strider I','Respiration X']), chestplate: lth('chestplate','Leather Chestplate'), h0: itm('ghast_tear','Ghast Tear','uncommon',null,['Sharpness II']), h1: pot('Potion of Saturation I (20m)') },
+  { helmet: itm('shark','Shark Head','rare',null,['Protection I','Depth Strider I','Respiration X']), chestplate: lth('chestplate','Leather Chestplate'), h0: itm('ghast_tear','Shark Tooth','uncommon',null,['Sharpness II']), h1: pot('Potion of Saturation I (20m)') },
   { leggings: lth('leggings','Leather Leggings') },
   { helmet: itm('shark','Shark Head','rare',null,['Protection II','Depth Strider I','Respiration X']), h2: spot('Splash Potion of Hunger XX & Slowness I (8s)') },
   { boots: lth('boots','Leather Boots'), h0: itm('ghast_tear','Ghast Tear','uncommon',null,['Sharpness III']) },
@@ -308,8 +308,8 @@ window.KIT_DATABASE = {
   { helmet: itm('shark','Shark Head','rare',null,['Protection III','Depth Strider I','Respiration X']), chestplate: lth('chestplate','Leather Chestplate',['Protection I']) },
   { chestplate: lth('chestplate','Leather Chestplate',['Protection III']) },
   { helmet: itm('shark','Shark Head','rare',null,['Protection III','Depth Strider II','Respiration X']), chestplate: itm('chainmail_chestplate','Chainmail Chestplate','uncommon') },
-  { helmet: itm('shark','Shark Head','rare',null,['Protection IV','Depth Strider II','Respiration X']), h0: itm('ghast_tear','Ghast Tear','uncommon',null,['Sharpness IV']) },
-  { helmet: itm('shark','Shark Head','rare',null,['Protection V','Depth Strider II','Respiration X']), chestplate: itm('chainmail_chestplate','Chainmail Chestplate','uncommon',null,['Protection I']), h0: itm('ghast_tear','Ghast Tear','uncommon',null,['Sharpness V']), h2: spot('Splash Potion of Hunger XX & Slowness I (8s)',3) },
+  { helmet: itm('shark','Shark Head','rare',null,['Protection IV','Depth Strider II','Respiration X']), h0: itm('ghast_tear','Shark Tooth','uncommon',null,['Sharpness IV']) },
+  { helmet: itm('shark','Shark Head','rare',null,['Protection V','Depth Strider II','Respiration X']), chestplate: itm('chainmail_chestplate','Chainmail Chestplate','uncommon',null,['Protection I']), h0: itm('ghast_tear','Shark Tooth','uncommon',null,['Sharpness V']), h2: spot('Splash Potion of Hunger XX & Slowness I (8s)',3) },
   { chestplate: itm('chainmail_chestplate','Chainmail Chestplate','uncommon',null,['Protection II']), h2: spot('Splash Potion of Hunger XX & Slowness I (8s)',4) }
 ]),
 
@@ -619,12 +619,6 @@ for (const [kitName, levels] of Object.entries(window.KIT_DATABASE)) {
     if (!item || !item.id || !item.id.startsWith('leather_')) return;
 
     let searchKey = kitName;
-
-    // Handle kits with per-piece coloring (Armorer, Florist)
-    if (kitName === 'Armorer' || kitName === 'Florist') {
-        // e.g., 'Armorer Helmet'
-        searchKey = `${kitName} ${slotName.charAt(0).toUpperCase() + slotName.slice(1)}`;
-    }
     
     // Fallback for SlimeySlime typo in your list vs kit name
     if (searchKey === 'Slimey Slime') searchKey = 'SlimeySlime';
