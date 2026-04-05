@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-05T14:28:28.481Z",
+  "last_update": "2026-04-05T16:26:11.262Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -537,9 +537,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28745,
+          "current_ap": 28765,
           "last_month_ap": 28740,
-          "monthly_gain": 5,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Warlords",
             "Max Walls",
@@ -625,9 +625,9 @@
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 27390,
+          "current_ap": 27435,
           "last_month_ap": 27145,
-          "monthly_gain": 245,
+          "monthly_gain": 290,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ",
@@ -1005,9 +1005,9 @@
           "username": "oBeastia",
           "uuid": "92c736b5ae414125b4cacd89bf856a77",
           "country": "USA",
-          "current_ap": 23140,
+          "current_ap": 23120,
           "last_month_ap": 23140,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max Quake",
             "Max Bed Wars"
@@ -1719,7 +1719,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8245,
+      "score": 8235,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1752,9 +1752,9 @@
           "username": "Paskwal",
           "uuid": "6248c4ae570147369f5cd94192a55094",
           "country": "The Netherlands",
-          "current_ap": 27870,
+          "current_ap": 27850,
           "last_month_ap": 27870,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -2724,15 +2724,15 @@
     },
     {
       "country": "Iraq",
-      "score": 715,
+      "score": 720,
       "top_players": [
         {
           "username": "Amony",
           "uuid": "96f645ba026b4e45bc34dd8f0531334c",
           "country": "Iraq",
-          "current_ap": 26110,
+          "current_ap": 26115,
           "last_month_ap": 26090,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyBlock",
             "Max Bed Wars",
@@ -2892,9 +2892,9 @@
           "username": "nonoooooooo",
           "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
           "country": "Unknown",
-          "current_ap": 24880,
+          "current_ap": 24910,
           "last_month_ap": 24730,
-          "monthly_gain": 150,
+          "monthly_gain": 180,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
@@ -3011,9 +3011,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 23955,
+          "current_ap": 23960,
           "last_month_ap": 23905,
-          "monthly_gain": 50,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
@@ -3062,12 +3062,13 @@
           "username": "titi2502",
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "Unknown",
-          "current_ap": 23600,
+          "current_ap": 23605,
           "last_month_ap": 23550,
-          "monthly_gain": 50,
+          "monthly_gain": 55,
           "maxGames": [
             "Max VampireZ",
-            "Max TKR"
+            "Max TKR",
+            "Max Seasonal"
           ]
         },
         {
@@ -3280,15 +3281,15 @@
     },
     {
       "country": "Greece",
-      "score": 255,
+      "score": 260,
       "top_players": [
         {
           "username": "giorgy",
           "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
           "country": "Greece",
-          "current_ap": 25650,
+          "current_ap": 25655,
           "last_month_ap": 25650,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
