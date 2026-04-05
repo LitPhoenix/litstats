@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-05T16:26:11.262Z",
+  "last_update": "2026-04-05T18:30:31.821Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -500,9 +500,9 @@
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
-          "current_ap": 29440,
+          "current_ap": 29445,
           "last_month_ap": 29445,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Quake",
             "Max TNT Games",
@@ -512,7 +512,8 @@
             "Max TKR",
             "Max Wool Games",
             "Max Duels",
-            "Max Build Battle"
+            "Max Build Battle",
+            "Max Seasonal"
           ]
         },
         {
@@ -625,9 +626,9 @@
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 27435,
+          "current_ap": 27450,
           "last_month_ap": 27145,
-          "monthly_gain": 290,
+          "monthly_gain": 305,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ",
@@ -675,7 +676,8 @@
             "Max Bed Wars",
             "Max TKR",
             "Max Wool Games",
-            "Max Duels"
+            "Max Duels",
+            "Max Seasonal"
           ]
         },
         {
@@ -696,9 +698,9 @@
           "username": "Mazk",
           "uuid": "059abcc217c2422f9d9f92e8dea2e607",
           "country": "USA",
-          "current_ap": 26735,
+          "current_ap": 26740,
           "last_month_ap": 26730,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Blitz",
             "Max Bed Wars",
@@ -804,9 +806,9 @@
           "username": "lyraava",
           "uuid": "6d84e8ed95b3452095221594b9e448fe",
           "country": "USA",
-          "current_ap": 25650,
+          "current_ap": 25655,
           "last_month_ap": 25625,
-          "monthly_gain": 25,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1124,7 +1126,8 @@
             "Max VampireZ",
             "Max Bed Wars",
             "Max TKR",
-            "Max Wool Games"
+            "Max Wool Games",
+            "Max Seasonal"
           ]
         },
         {
@@ -1373,9 +1376,9 @@
           "username": "RuinsOfAlph",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
-          "current_ap": 24665,
+          "current_ap": 24670,
           "last_month_ap": 24655,
-          "monthly_gain": 10,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -1520,7 +1523,7 @@
     },
     {
       "country": "Canada",
-      "score": 8437,
+      "score": 8447,
       "top_players": [
         {
           "username": "Songgg",
@@ -1553,9 +1556,9 @@
           "username": "Andorite",
           "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
           "country": "Canada",
-          "current_ap": 29475,
+          "current_ap": 29495,
           "last_month_ap": 29470,
-          "monthly_gain": 5,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Warlords",
             "Max TNT Games",
@@ -1719,7 +1722,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8235,
+      "score": 8245,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1752,9 +1755,9 @@
           "username": "Paskwal",
           "uuid": "6248c4ae570147369f5cd94192a55094",
           "country": "The Netherlands",
-          "current_ap": 27850,
+          "current_ap": 27870,
           "last_month_ap": 27870,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -1828,9 +1831,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24360,
+          "current_ap": 24365,
           "last_month_ap": 24335,
-          "monthly_gain": 25,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
@@ -2401,9 +2404,9 @@
           "username": "noobay",
           "uuid": "a481c0951d3246169ebe1dd6f583d357",
           "country": "Croatia",
-          "current_ap": 25215,
+          "current_ap": 25220,
           "last_month_ap": 25195,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Quake",
             "Max TKR"
@@ -2519,9 +2522,9 @@
           "username": "kawaa",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
-          "current_ap": 25210,
+          "current_ap": 25215,
           "last_month_ap": 25205,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -3011,9 +3014,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 23960,
+          "current_ap": 23970,
           "last_month_ap": 23905,
-          "monthly_gain": 55,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
@@ -3140,9 +3143,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 23230,
+          "current_ap": 23245,
           "last_month_ap": 23170,
-          "monthly_gain": 60,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Duels"
           ]
@@ -3245,15 +3248,15 @@
     },
     {
       "country": "Spain",
-      "score": 323,
+      "score": 343,
       "top_players": [
         {
           "username": "mudkipseas",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25640,
+          "current_ap": 25660,
           "last_month_ap": 25615,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
