@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-05T20:23:01.650Z",
+  "last_update": "2026-04-05T22:22:23.243Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1523,15 +1523,15 @@
     },
     {
       "country": "Canada",
-      "score": 8447,
+      "score": 8452,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 30955,
+          "current_ap": 30960,
           "last_month_ap": 30980,
-          "monthly_gain": -25,
+          "monthly_gain": -20,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -1590,9 +1590,9 @@
           "username": "FeedLiloToMarcel",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
-          "current_ap": 26795,
+          "current_ap": 26800,
           "last_month_ap": 26790,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max TNT Games",
             "Max Bed Wars"
@@ -1696,9 +1696,9 @@
           "username": "pehi",
           "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
           "country": "Canada",
-          "current_ap": 24000,
+          "current_ap": 23980,
           "last_month_ap": 24000,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max Smash Heroes",
             "Max SkyBlock",
@@ -1816,9 +1816,9 @@
           "username": "SvenTerror",
           "uuid": "171faf6b54c045d884ba95f27049984f",
           "country": "The Netherlands",
-          "current_ap": 25210,
+          "current_ap": 25215,
           "last_month_ap": 25205,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Speed UHC",
             "Max Warlords",
@@ -2013,7 +2013,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6415,
+      "score": 6425,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2042,9 +2042,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27325,
+          "current_ap": 27345,
           "last_month_ap": 27280,
-          "monthly_gain": 45,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -3167,6 +3167,18 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 23170,
+          "last_month_ap": 22965,
+          "monthly_gain": 205,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Khqled",
           "uuid": "a4a83ccb4d7f45f0806bd7cbe48de984",
           "country": "Unknown",
@@ -3176,18 +3188,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 23130,
-          "last_month_ap": 22965,
-          "monthly_gain": 165,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
@@ -3305,15 +3305,15 @@
     },
     {
       "country": "Moldova",
-      "score": 155,
+      "score": 175,
       "top_players": [
         {
           "username": "Lofaet",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25550,
+          "current_ap": 25570,
           "last_month_ap": 25525,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
@@ -3532,9 +3532,9 @@
           "username": "7hu",
           "uuid": "6d1160f1c9104aa082c64487645e2c3d",
           "country": "Lithuania",
-          "current_ap": 23350,
+          "current_ap": 23355,
           "last_month_ap": 23350,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Arcade"
           ]
