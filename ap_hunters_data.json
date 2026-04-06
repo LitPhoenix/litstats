@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-06T14:41:52.894Z",
+  "last_update": "2026-04-06T16:37:01.669Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1724,15 +1724,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8246,
+      "score": 8275,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 31995,
+          "current_ap": 32020,
           "last_month_ap": 31970,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -1775,9 +1775,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 26565,
+          "current_ap": 26580,
           "last_month_ap": 26465,
-          "monthly_gain": 100,
+          "monthly_gain": 115,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
