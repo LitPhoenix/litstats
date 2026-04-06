@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-06T10:48:27.695Z",
+  "last_update": "2026-04-06T12:47:09.378Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -609,6 +609,19 @@
           ]
         },
         {
+          "username": "Kyralicious",
+          "uuid": "7456ccb5c8e24271a721a394191d0602",
+          "country": "USA",
+          "current_ap": 27490,
+          "last_month_ap": 27145,
+          "monthly_gain": 345,
+          "maxGames": [
+            "Max Blitz",
+            "Max VampireZ",
+            "Max Bed Wars"
+          ]
+        },
+        {
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
@@ -621,19 +634,6 @@
             "Max Bed Wars",
             "Max TKR",
             "Max Wool Games"
-          ]
-        },
-        {
-          "username": "Kyralicious",
-          "uuid": "7456ccb5c8e24271a721a394191d0602",
-          "country": "USA",
-          "current_ap": 27465,
-          "last_month_ap": 27145,
-          "monthly_gain": 320,
-          "maxGames": [
-            "Max Blitz",
-            "Max VampireZ",
-            "Max Bed Wars"
           ]
         },
         {
@@ -2897,9 +2897,9 @@
           "username": "nonoooooooo",
           "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
           "country": "Unknown",
-          "current_ap": 24910,
+          "current_ap": 24920,
           "last_month_ap": 24730,
-          "monthly_gain": 180,
+          "monthly_gain": 190,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
