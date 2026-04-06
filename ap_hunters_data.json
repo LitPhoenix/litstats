@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-06T12:47:09.378Z",
+  "last_update": "2026-04-06T14:41:52.894Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -3169,18 +3169,6 @@
           ]
         },
         {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 23190,
-          "last_month_ap": 22965,
-          "monthly_gain": 225,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
           "username": "Khqled",
           "uuid": "a4a83ccb4d7f45f0806bd7cbe48de984",
           "country": "Unknown",
@@ -3227,6 +3215,19 @@
             "Max SkyBlock",
             "Max Murder Mystery",
             "Max Bed Wars",
+            "Max Duels"
+          ]
+        },
+        {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "Unknown",
+          "current_ap": 23020,
+          "last_month_ap": 23000,
+          "monthly_gain": 20,
+          "maxGames": [
+            "Max Bed Wars",
+            "Max Wool Games",
             "Max Duels"
           ]
         }
