@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-06T09:01:38.173Z",
+  "last_update": "2026-04-06T10:48:27.695Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -835,6 +835,21 @@
           ]
         },
         {
+          "username": "kipanator",
+          "uuid": "8eb18a9227fb4b36947177babab261cd",
+          "country": "USA",
+          "current_ap": 25510,
+          "last_month_ap": 25440,
+          "monthly_gain": 70,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "JurassicBox",
           "uuid": "c08043d19f334a3e8189695cf356cd16",
           "country": "USA",
@@ -844,21 +859,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "kipanator",
-          "uuid": "8eb18a9227fb4b36947177babab261cd",
-          "country": "USA",
-          "current_ap": 25480,
-          "last_month_ap": 25440,
-          "monthly_gain": 40,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -1405,9 +1405,9 @@
           "username": "alpanyahu",
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "UK",
-          "current_ap": 23945,
+          "current_ap": 23960,
           "last_month_ap": 23815,
-          "monthly_gain": 130,
+          "monthly_gain": 145,
           "maxGames": [
             "Max Paintball"
           ]
@@ -2015,7 +2015,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6458,
+      "score": 6463,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2044,9 +2044,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27410,
+          "current_ap": 27420,
           "last_month_ap": 27280,
-          "monthly_gain": 130,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2624,9 +2624,9 @@
           "username": "Bikkie",
           "uuid": "12ecedbce19b448cad38aa4f57f3afda",
           "country": "Australia",
-          "current_ap": 24590,
+          "current_ap": 24595,
           "last_month_ap": 24590,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Pit",
             "Max VampireZ",
