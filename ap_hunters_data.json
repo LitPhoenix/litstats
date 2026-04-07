@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-07T01:21:48.559Z",
+  "last_update": "2026-04-07T04:26:23.953Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -747,9 +747,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 26015,
+          "current_ap": 26025,
           "last_month_ap": 25895,
-          "monthly_gain": 120,
+          "monthly_gain": 130,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -1642,18 +1642,6 @@
           ]
         },
         {
-          "username": "Crooder",
-          "uuid": "266b09b979a345909824aa9d31ffe8ba",
-          "country": "Canada",
-          "current_ap": 25015,
-          "last_month_ap": 25015,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max VampireZ"
-          ]
-        },
-        {
           "username": "BenOuiMaxi",
           "uuid": "0ca18b7f6cb74731865b69e5511f0ff1",
           "country": "Canada",
@@ -1663,6 +1651,18 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
+          ]
+        },
+        {
+          "username": "Crooder",
+          "uuid": "266b09b979a345909824aa9d31ffe8ba",
+          "country": "Canada",
+          "current_ap": 24995,
+          "last_month_ap": 25015,
+          "monthly_gain": -20,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max VampireZ"
           ]
         },
         {
@@ -2406,9 +2406,9 @@
           "username": "noobay",
           "uuid": "a481c0951d3246169ebe1dd6f583d357",
           "country": "Croatia",
-          "current_ap": 25220,
+          "current_ap": 25235,
           "last_month_ap": 25195,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Quake",
             "Max TKR"
@@ -2768,9 +2768,9 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 24735,
+          "current_ap": 24750,
           "last_month_ap": 24595,
-          "monthly_gain": 140,
+          "monthly_gain": 155,
           "maxGames": [
             "Max Murder Mystery",
             "Max VampireZ",
