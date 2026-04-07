@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-07T16:47:11.926Z",
+  "last_update": "2026-04-07T18:48:17.234Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2246,7 +2246,7 @@
     },
     {
       "country": "Finland",
-      "score": 4013,
+      "score": 4016,
       "top_players": [
         {
           "username": "Champiez",
@@ -2285,13 +2285,14 @@
           "username": "MatiasSiltanen",
           "uuid": "e9a871c29903474687b0b045edd35ae9",
           "country": "Finland",
-          "current_ap": 26355,
+          "current_ap": 26370,
           "last_month_ap": 26350,
-          "monthly_gain": 5,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Bed Wars",
             "Max Wool Games",
-            "Max Duels"
+            "Max Duels",
+            "Max Seasonal"
           ]
         }
       ]
@@ -2418,7 +2419,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2930,
+      "score": 2934,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2450,9 +2451,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26135,
+          "current_ap": 26150,
           "last_month_ap": 26055,
-          "monthly_gain": 80,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
