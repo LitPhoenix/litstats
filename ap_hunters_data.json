@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-07T12:57:36.837Z",
+  "last_update": "2026-04-07T15:01:56.181Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -595,6 +595,19 @@
           ]
         },
         {
+          "username": "Kyralicious",
+          "uuid": "7456ccb5c8e24271a721a394191d0602",
+          "country": "USA",
+          "current_ap": 27560,
+          "last_month_ap": 27145,
+          "monthly_gain": 415,
+          "maxGames": [
+            "Max Blitz",
+            "Max VampireZ",
+            "Max Bed Wars"
+          ]
+        },
+        {
           "username": "rory2",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
@@ -606,19 +619,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "Kyralicious",
-          "uuid": "7456ccb5c8e24271a721a394191d0602",
-          "country": "USA",
-          "current_ap": 27540,
-          "last_month_ap": 27145,
-          "monthly_gain": 395,
-          "maxGames": [
-            "Max Blitz",
-            "Max VampireZ",
-            "Max Bed Wars"
           ]
         },
         {
@@ -1351,9 +1351,9 @@
           "username": "JinxRaider23",
           "uuid": "d297331b7ff9452babd6828871bc2636",
           "country": "UK",
-          "current_ap": 25635,
+          "current_ap": 25655,
           "last_month_ap": 25510,
-          "monthly_gain": 125,
+          "monthly_gain": 145,
           "maxGames": [
             "Max SkyBlock",
             "Max Bed Wars",
