@@ -312,12 +312,6 @@ function makeSlotHtml(it, emptyType = null) {
     return `<div class="slot"></div>`;
   }
   
-function getStarHtml(count = 2) {
-  const prefix = window.location.pathname.includes('/blitz/') ? '../' : ''; // Reuse our URL path logic from earlier
-  const imgHtml = `<img src="${prefix}img/blitz/star_texture.png" class="tt-star" alt="✫">`;
-  return imgHtml.repeat(count);
-}
-
   const imgUrl = getAssetUrl(it);
   const fallbackUrl = getApiFallback(it);
   const wrap = it.enchanted ? 'item-wrapper enchanted' : 'item-wrapper';
@@ -559,35 +553,20 @@ function buildTooltip(it) {
   let displayName = it.name;
   let wrapperClass = `r-${it.rarity}`;
 
-  // Detect if the item is a piece of armour (reusing previous logic)
+  // Detect if the item is a piece of armour
   const isArmour = it.id && (it.id.includes('helmet') || it.id.includes('chestplate') || it.id.includes('leggings') || it.id.includes('boots'));
   
-  // Format for kit view (reusing previous logic)
+  // Apply formatting if we are viewing a specific kit
   if (activeKitName && isArmour) {
     const levelLabel = useRoman ? NUM_ROMAN[currentLevelIndex] : NUM_DIGIT[currentLevelIndex];
-    displayName = `${activeKitName}'s ${it.name} <span class="c-grey">(${levelLabel})</span>`;
-    wrapperClass = '';
+    
+    // Forces the hypixel standard: [White] Kit's Item [Grey] (Level)
+    displayName = `<span class="r-common">${activeKitName}'s ${it.name}</span> <span class="c-grey">(${levelLabel})</span>`;
+    wrapperClass = ''; // Clear the default wrapper class so our custom spans take over
   }
 
-  // --- NEW STAR LOGIC STARTS HERE ---
-  // If the data has a 'stars' property (e.g., from prestige), use that.
-  if (it.stars) {
-    displayName += getStarHtml(it.stars);
-  } else if (displayName.includes('✫✫')) {
-    // Find and replace the specific string "✫✫" with our image HTML
-    displayName = displayName.replace('✫✫', getStarHtml(2));
-  } else if (displayName.includes('✫')) {
-     // fallback for single stars
-    displayName = displayName.replace('✫', getStarHtml(1));
-  }
-  // --- NEW STAR LOGIC ENDS HERE ---
-
-  // Generate name line HTML
-  const rClassSpan = wrapperClass ? `<span class="${wrapperClass}">` : '';
-  const rClassClose = wrapperClass ? `</span>` : '';
-  let h = `<span class="tt-name">${rClassSpan}${displayName}${rClassClose}</span>`;
+  let h = `<span class="tt-name ${wrapperClass}">${displayName}</span>`;
   
-  // Generate lore HTML (reusing previous logic)
   if (it.lines && it.lines.length) {
     for (const l of it.lines) {
       h += `<span class="tt-line ${l.cls || ''}">${l.text}</span>`;
@@ -596,7 +575,6 @@ function buildTooltip(it) {
   
   return h;
 }
-
 document.addEventListener('mouseover',e=>{const s=e.target.closest('.slot');if(!s)return;const d=s.getAttribute('data-item');if(!d)return;tooltip.innerHTML=buildTooltip(JSON.parse(d));tooltip.classList.add('show');});
 document.addEventListener('mousemove',e=>{if(!tooltip.classList.contains('show'))return;const p=15;let x=e.clientX+p,y=e.clientY+p;if(x+tooltip.offsetWidth>window.innerWidth)x=e.clientX-tooltip.offsetWidth-p;if(y+tooltip.offsetHeight>window.innerHeight)y=e.clientY-tooltip.offsetHeight-p;tooltip.style.left=x+'px';tooltip.style.top=y+'px';});
 document.addEventListener('mouseout',e=>{if(e.target.closest('.slot'))tooltip.classList.remove('show');});
