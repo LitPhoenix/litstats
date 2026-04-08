@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-08T07:07:35.472Z",
+  "last_update": "2026-04-08T08:52:47.191Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -3117,21 +3117,12 @@
           ]
         },
         {
-          "username": "o3w",
-          "uuid": "d91eb87c945b490b82a2638c8cf5a291",
-          "country": "Unknown",
-          "current_ap": 23355,
-          "last_month_ap": 23355,
-          "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23320,
+          "current_ap": 23360,
           "last_month_ap": 23275,
-          "monthly_gain": 45,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3141,6 +3132,15 @@
             "Max Crazy Walls",
             "Max SkyClash"
           ]
+        },
+        {
+          "username": "o3w",
+          "uuid": "d91eb87c945b490b82a2638c8cf5a291",
+          "country": "Unknown",
+          "current_ap": 23355,
+          "last_month_ap": 23355,
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "ohDevil",
