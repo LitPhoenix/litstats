@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-08T16:52:32.827Z",
+  "last_update": "2026-04-08T19:03:32.078Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1724,7 +1724,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8281,
+      "score": 8287,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1775,9 +1775,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 26605,
+          "current_ap": 26630,
           "last_month_ap": 26465,
-          "monthly_gain": 140,
+          "monthly_gain": 165,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3154,6 +3154,18 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 23255,
+          "last_month_ap": 22965,
+          "monthly_gain": 290,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
@@ -3203,20 +3215,6 @@
           "monthly_gain": 55,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "xOptic",
-          "uuid": "8c8ba6d440554b1886ad1777c5066282",
-          "country": "Unknown",
-          "current_ap": 23090,
-          "last_month_ap": 23045,
-          "monthly_gain": 45,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Duels"
           ]
         },
         {
