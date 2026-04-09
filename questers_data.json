@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-08T22:31:01.071Z",
+  "last_update": "2026-04-09T01:13:09.133Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -199,7 +199,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49027.4,
+      "score": 49030,
       "top_players": [
         {
           "username": "Skorlex",
@@ -213,9 +213,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_quests": 40599,
+          "current_quests": 40612,
           "last_month_quests": 40540,
-          "monthly_gain": 59
+          "monthly_gain": 72
         },
         {
           "username": "Edzio",
@@ -285,7 +285,7 @@
     },
     {
       "country": "Canada",
-      "score": 39464.4,
+      "score": 39465.4,
       "top_players": [
         {
           "username": "Songgg",
@@ -299,9 +299,9 @@
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
-          "current_quests": 41635,
+          "current_quests": 41640,
           "last_month_quests": 41354,
-          "monthly_gain": 281
+          "monthly_gain": 286
         },
         {
           "username": "Motthe",
@@ -1099,15 +1099,15 @@
     },
     {
       "country": "Brazil",
-      "score": 5013,
+      "score": 5016,
       "top_players": [
         {
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_quests": 25065,
+          "current_quests": 25080,
           "last_month_quests": 24900,
-          "monthly_gain": 165
+          "monthly_gain": 180
         }
       ]
     },
