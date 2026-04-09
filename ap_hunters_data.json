@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-09T01:13:08.802Z",
+  "last_update": "2026-04-09T04:25:56.480Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -598,9 +598,9 @@
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 27635,
+          "current_ap": 27650,
           "last_month_ap": 27145,
-          "monthly_gain": 490,
+          "monthly_gain": 505,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ",
@@ -1435,20 +1435,6 @@
             "Max VampireZ",
             "Max TKR"
           ]
-        },
-        {
-          "username": "CelsiusPeachVibe",
-          "uuid": "9899b3edf2364d318fe33c7278a2d4a8",
-          "country": "UK",
-          "current_ap": 22820,
-          "last_month_ap": 22820,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
         }
       ]
     },
@@ -2015,7 +2001,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6483,
+      "score": 6490,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2044,9 +2030,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27460,
+          "current_ap": 27475,
           "last_month_ap": 27280,
-          "monthly_gain": 180,
+          "monthly_gain": 195,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2407,9 +2393,9 @@
           "username": "noobay",
           "uuid": "a481c0951d3246169ebe1dd6f583d357",
           "country": "Croatia",
-          "current_ap": 25240,
+          "current_ap": 25255,
           "last_month_ap": 25195,
-          "monthly_gain": 45,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Quake",
             "Max TKR"
@@ -3215,6 +3201,20 @@
           "monthly_gain": 55,
           "maxGames": [
             "Max VampireZ"
+          ]
+        },
+        {
+          "username": "xOptic",
+          "uuid": "8c8ba6d440554b1886ad1777c5066282",
+          "country": "Unknown",
+          "current_ap": 23090,
+          "last_month_ap": 23045,
+          "monthly_gain": 45,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Duels"
           ]
         },
         {
