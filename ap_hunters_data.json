@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-10T16:41:32.776Z",
+  "last_update": "2026-04-10T18:40:31.693Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -612,9 +612,9 @@
           "username": "rory2",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27550,
+          "current_ap": 27555,
           "last_month_ap": 27535,
-          "monthly_gain": 15,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
@@ -2756,9 +2756,9 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 24810,
+          "current_ap": 24830,
           "last_month_ap": 24595,
-          "monthly_gain": 215,
+          "monthly_gain": 235,
           "maxGames": [
             "Max Murder Mystery",
             "Max VampireZ",
@@ -3055,9 +3055,9 @@
           "username": "titi2502",
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "Unknown",
-          "current_ap": 23605,
+          "current_ap": 23615,
           "last_month_ap": 23550,
-          "monthly_gain": 55,
+          "monthly_gain": 65,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -3183,6 +3183,21 @@
           ]
         },
         {
+          "username": "CANTGUARDVALP",
+          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+          "country": "Unknown",
+          "current_ap": 23175,
+          "last_month_ap": 23140,
+          "monthly_gain": 35,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Khqled",
           "uuid": "a4a83ccb4d7f45f0806bd7cbe48de984",
           "country": "Unknown",
@@ -3192,21 +3207,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "CANTGUARDVALP",
-          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
-          "country": "Unknown",
-          "current_ap": 23140,
-          "last_month_ap": 23140,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -3237,9 +3237,9 @@
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
-          "current_ap": 23065,
+          "current_ap": 23090,
           "last_month_ap": 23000,
-          "monthly_gain": 65,
+          "monthly_gain": 90,
           "maxGames": [
             "Max Bed Wars",
             "Max Wool Games",
