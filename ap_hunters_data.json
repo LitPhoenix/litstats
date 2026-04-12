@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-12T18:34:34.637Z",
+  "last_update": "2026-04-12T20:25:40.026Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -383,7 +383,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12567,
+      "score": 12570,
       "top_players": [
         {
           "username": "oJakeyNow_",
@@ -479,9 +479,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30255,
+          "current_ap": 30285,
           "last_month_ap": 30020,
-          "monthly_gain": 235,
+          "monthly_gain": 265,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -1907,9 +1907,9 @@
           "username": "morof",
           "uuid": "4019260a28f544c2a35a0a1f35108a96",
           "country": "Russia",
-          "current_ap": 24675,
+          "current_ap": 24695,
           "last_month_ap": 24285,
-          "monthly_gain": 390,
+          "monthly_gain": 410,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2398,9 +2398,9 @@
           "username": "noobay",
           "uuid": "a481c0951d3246169ebe1dd6f583d357",
           "country": "Croatia",
-          "current_ap": 25325,
+          "current_ap": 25340,
           "last_month_ap": 25195,
-          "monthly_gain": 130,
+          "monthly_gain": 145,
           "maxGames": [
             "Max Quake",
             "Max TKR"
@@ -3151,6 +3151,18 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 23370,
+          "last_month_ap": 22965,
+          "monthly_gain": 405,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "o3w",
           "uuid": "d91eb87c945b490b82a2638c8cf5a291",
           "country": "Unknown",
@@ -3158,18 +3170,6 @@
           "last_month_ap": 23355,
           "monthly_gain": 0,
           "maxGames": []
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 23345,
-          "last_month_ap": 22965,
-          "monthly_gain": 380,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels"
-          ]
         },
         {
           "username": "xOptic",
