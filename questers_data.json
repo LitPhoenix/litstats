@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-12T20:25:40.238Z",
+  "last_update": "2026-04-12T22:24:20.841Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -199,7 +199,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49056.8,
+      "score": 49061.6,
       "top_players": [
         {
           "username": "Skorlex",
@@ -213,9 +213,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_quests": 40612,
+          "current_quests": 40636,
           "last_month_quests": 40540,
-          "monthly_gain": 72
+          "monthly_gain": 96
         },
         {
           "username": "Edzio",
@@ -253,9 +253,9 @@
           "username": "titi2502",
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "France",
-          "current_quests": 25900,
+          "current_quests": 25915,
           "last_month_quests": 25831,
-          "monthly_gain": 69
+          "monthly_gain": 84
         },
         {
           "username": "TournamentTokens",
@@ -383,7 +383,7 @@
     },
     {
       "country": "USA",
-      "score": 45456.4,
+      "score": 45514.2,
       "top_players": [
         {
           "username": "Trtx",
@@ -405,9 +405,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_quests": 45827,
+          "current_quests": 46116,
           "last_month_quests": 45827,
-          "monthly_gain": 0
+          "monthly_gain": 289
         },
         {
           "username": "MockBall",
@@ -611,9 +611,9 @@
           "username": "Fossilised",
           "uuid": "e3292ca36c5e43cbacd01c52adaca375",
           "country": "UK",
-          "current_quests": 23965,
+          "current_quests": 24004,
           "last_month_quests": 23965,
-          "monthly_gain": 0
+          "monthly_gain": 39
         },
         {
           "username": "CelsiusPeachVibe",
@@ -739,7 +739,7 @@
     },
     {
       "country": "Finland",
-      "score": 13833.4,
+      "score": 13867,
       "top_players": [
         {
           "username": "Mol_o",
@@ -753,9 +753,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_quests": 28734,
+          "current_quests": 28902,
           "last_month_quests": 28734,
-          "monthly_gain": 0
+          "monthly_gain": 168
         }
       ]
     },
