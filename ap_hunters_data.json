@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-12T01:26:57.159Z",
+  "last_update": "2026-04-12T04:40:10.033Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1821,9 +1821,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24400,
+          "current_ap": 24415,
           "last_month_ap": 24335,
-          "monthly_gain": 65,
+          "monthly_gain": 80,
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
@@ -2004,7 +2004,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6580,
+      "score": 6623,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2033,9 +2033,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27670,
+          "current_ap": 27755,
           "last_month_ap": 27280,
-          "monthly_gain": 390,
+          "monthly_gain": 475,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2515,9 +2515,9 @@
           "username": "kawaa",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
-          "current_ap": 25215,
+          "current_ap": 25240,
           "last_month_ap": 25205,
-          "monthly_gain": 10,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -3022,9 +3022,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 23915,
+          "current_ap": 23950,
           "last_month_ap": 23790,
-          "monthly_gain": 125,
+          "monthly_gain": 160,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -3110,9 +3110,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23400,
+          "current_ap": 23415,
           "last_month_ap": 23275,
-          "monthly_gain": 125,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3124,6 +3124,21 @@
           ]
         },
         {
+          "username": "CANTGUARDVALP",
+          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+          "country": "Unknown",
+          "current_ap": 23395,
+          "last_month_ap": 23140,
+          "monthly_gain": 255,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "MacchuPicchu",
           "uuid": "3d55b88551fe48d997bae3412cd8aa72",
           "country": "Unknown",
@@ -3132,21 +3147,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max TKR"
-          ]
-        },
-        {
-          "username": "CANTGUARDVALP",
-          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
-          "country": "Unknown",
-          "current_ap": 23365,
-          "last_month_ap": 23140,
-          "monthly_gain": 225,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -3188,9 +3188,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
-          "current_ap": 23220,
+          "current_ap": 23225,
           "last_month_ap": 23165,
-          "monthly_gain": 55,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Pit",
             "Max Bed Wars",
