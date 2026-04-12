@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-12T16:27:58.848Z",
+  "last_update": "2026-04-12T18:34:34.637Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -713,9 +713,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26610,
+          "current_ap": 26615,
           "last_month_ap": 26575,
-          "monthly_gain": 35,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Warlords",
             "Max Arcade",
@@ -748,9 +748,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 26205,
+          "current_ap": 26255,
           "last_month_ap": 25895,
-          "monthly_gain": 310,
+          "monthly_gain": 360,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -1712,7 +1712,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8277,
+      "score": 8278,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1793,9 +1793,9 @@
           "username": "Kinderfeest",
           "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
           "country": "The Netherlands",
-          "current_ap": 25460,
+          "current_ap": 25475,
           "last_month_ap": 25450,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock",
@@ -2237,7 +2237,7 @@
     },
     {
       "country": "Finland",
-      "score": 4019,
+      "score": 4025,
       "top_players": [
         {
           "username": "Champiez",
@@ -2276,9 +2276,9 @@
           "username": "MatiasSiltanen",
           "uuid": "e9a871c29903474687b0b045edd35ae9",
           "country": "Finland",
-          "current_ap": 26370,
+          "current_ap": 26395,
           "last_month_ap": 26350,
-          "monthly_gain": 20,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Bed Wars",
             "Max Wool Games",
@@ -2834,15 +2834,15 @@
     },
     {
       "country": "Unknown",
-      "score": 435,
+      "score": 455,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 25840,
+          "current_ap": 25860,
           "last_month_ap": 25840,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2878,9 +2878,9 @@
           "username": "nonoooooooo",
           "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
           "country": "Unknown",
-          "current_ap": 25005,
+          "current_ap": 25030,
           "last_month_ap": 24730,
-          "monthly_gain": 275,
+          "monthly_gain": 300,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
@@ -3227,6 +3227,19 @@
           ]
         },
         {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "Unknown",
+          "current_ap": 23100,
+          "last_month_ap": 23000,
+          "monthly_gain": 100,
+          "maxGames": [
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
@@ -3235,19 +3248,6 @@
           "monthly_gain": 55,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "Quent120",
-          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
-          "country": "Unknown",
-          "current_ap": 23090,
-          "last_month_ap": 23000,
-          "monthly_gain": 90,
-          "maxGames": [
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels"
           ]
         }
       ]
