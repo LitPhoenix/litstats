@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-12T14:34:53.658Z",
+  "last_update": "2026-04-12T16:27:58.848Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -943,9 +943,9 @@
           "username": "SeaOtterFan",
           "uuid": "cdea33877a37413da44e365acc9f7a50",
           "country": "USA",
-          "current_ap": 24150,
+          "current_ap": 24170,
           "last_month_ap": 24125,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Smash Heroes",
             "Max Quake",
@@ -2066,15 +2066,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5255,
+      "score": 5270,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30660,
+          "current_ap": 30675,
           "last_month_ap": 30590,
-          "monthly_gain": 70,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -3033,6 +3033,15 @@
           ]
         },
         {
+          "username": "ichhabevape",
+          "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
+          "country": "Unknown",
+          "current_ap": 23755,
+          "last_month_ap": 23735,
+          "monthly_gain": 20,
+          "maxGames": []
+        },
+        {
           "username": "DirtyAvocado",
           "uuid": "8d167f27157d488394f6b6142ccc16be",
           "country": "Unknown",
@@ -3045,15 +3054,6 @@
             "Max TKR",
             "Max Duels"
           ]
-        },
-        {
-          "username": "ichhabevape",
-          "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
-          "country": "Unknown",
-          "current_ap": 23740,
-          "last_month_ap": 23735,
-          "monthly_gain": 5,
-          "maxGames": []
         },
         {
           "username": "titi2502",
