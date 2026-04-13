@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-13T20:44:07.521Z",
+  "last_update": "2026-04-13T22:36:16.870Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -655,9 +655,9 @@
           "username": "baseballaholic",
           "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
           "country": "USA",
-          "current_ap": 27330,
+          "current_ap": 27335,
           "last_month_ap": 27300,
-          "monthly_gain": 30,
+          "monthly_gain": 35,
           "maxGames": [
             "Max TKR"
           ]
@@ -796,9 +796,9 @@
           "username": "NickIsOffline",
           "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
           "country": "USA",
-          "current_ap": 25675,
+          "current_ap": 25670,
           "last_month_ap": 25675,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Smash Heroes",
             "Max Warlords",
@@ -972,9 +972,9 @@
           "username": "BlackIceZane",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
-          "current_ap": 24000,
+          "current_ap": 24015,
           "last_month_ap": 23970,
-          "monthly_gain": 30,
+          "monthly_gain": 45,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -2411,7 +2411,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2920,
+      "score": 2923,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2443,9 +2443,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26165,
+          "current_ap": 26175,
           "last_month_ap": 26055,
-          "monthly_gain": 110,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -2657,9 +2657,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 24930,
+          "current_ap": 24940,
           "last_month_ap": 24860,
-          "monthly_gain": 70,
+          "monthly_gain": 80,
           "maxGames": []
         }
       ]
@@ -2761,9 +2761,9 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 24885,
+          "current_ap": 24900,
           "last_month_ap": 24595,
-          "monthly_gain": 290,
+          "monthly_gain": 305,
           "maxGames": [
             "Max Murder Mystery",
             "Max VampireZ",
@@ -3523,9 +3523,9 @@
           "username": "nevqr",
           "uuid": "0ff62bf91bda4c6b92b8f2d0ca4ed835",
           "country": "Slovakia",
-          "current_ap": 23860,
+          "current_ap": 23865,
           "last_month_ap": 23885,
-          "monthly_gain": -25,
+          "monthly_gain": -20,
           "maxGames": []
         }
       ]
