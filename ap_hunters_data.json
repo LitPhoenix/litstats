@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-13T11:11:18.313Z",
+  "last_update": "2026-04-13T13:03:30.000Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -581,9 +581,9 @@
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 27750,
+          "current_ap": 27765,
           "last_month_ap": 27145,
-          "monthly_gain": 605,
+          "monthly_gain": 620,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ",
@@ -1712,7 +1712,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8284,
+      "score": 8288,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1763,9 +1763,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 26690,
+          "current_ap": 26705,
           "last_month_ap": 26465,
-          "monthly_gain": 225,
+          "monthly_gain": 240,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2548,15 +2548,15 @@
     },
     {
       "country": "Argentina",
-      "score": 1800,
+      "score": 1805,
       "top_players": [
         {
           "username": "Sayapi",
           "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
           "country": "Argentina",
-          "current_ap": 26820,
+          "current_ap": 26825,
           "last_month_ap": 26815,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max VampireZ"
           ]
