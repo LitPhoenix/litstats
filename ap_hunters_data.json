@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-13T01:29:46.705Z",
+  "last_update": "2026-04-13T04:52:35.977Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -383,7 +383,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12570,
+      "score": 12572,
       "top_players": [
         {
           "username": "oJakeyNow_",
@@ -479,9 +479,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30285,
+          "current_ap": 30300,
           "last_month_ap": 30020,
-          "monthly_gain": 265,
+          "monthly_gain": 280,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -2656,9 +2656,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 24885,
+          "current_ap": 24930,
           "last_month_ap": 24860,
-          "monthly_gain": 25,
+          "monthly_gain": 70,
           "maxGames": []
         }
       ]
@@ -3108,6 +3108,21 @@
           ]
         },
         {
+          "username": "CANTGUARDVALP",
+          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+          "country": "Unknown",
+          "current_ap": 23430,
+          "last_month_ap": 23140,
+          "monthly_gain": 290,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
@@ -3122,21 +3137,6 @@
             "Max TKR",
             "Max Crazy Walls",
             "Max SkyClash"
-          ]
-        },
-        {
-          "username": "CANTGUARDVALP",
-          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
-          "country": "Unknown",
-          "current_ap": 23415,
-          "last_month_ap": 23140,
-          "monthly_gain": 275,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
