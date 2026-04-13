@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-13T19:02:34.187Z",
+  "last_update": "2026-04-13T20:44:07.521Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -383,7 +383,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12573,
+      "score": 12574,
       "top_players": [
         {
           "username": "oJakeyNow_",
@@ -479,9 +479,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30315,
+          "current_ap": 30325,
           "last_month_ap": 30020,
-          "monthly_gain": 295,
+          "monthly_gain": 305,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -581,9 +581,9 @@
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 27785,
+          "current_ap": 27810,
           "last_month_ap": 27145,
-          "monthly_gain": 640,
+          "monthly_gain": 665,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ",
@@ -741,7 +741,8 @@
             "Max VampireZ",
             "Max Bed Wars",
             "Max TKR",
-            "Max Duels"
+            "Max Duels",
+            "Max Seasonal"
           ]
         },
         {
@@ -2398,9 +2399,9 @@
           "username": "noobay",
           "uuid": "a481c0951d3246169ebe1dd6f583d357",
           "country": "Croatia",
-          "current_ap": 25340,
+          "current_ap": 25345,
           "last_month_ap": 25195,
-          "monthly_gain": 145,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Quake",
             "Max TKR"
@@ -2410,7 +2411,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2916,
+      "score": 2920,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2442,9 +2443,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26150,
+          "current_ap": 26165,
           "last_month_ap": 26055,
-          "monthly_gain": 95,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -2863,6 +2864,19 @@
           ]
         },
         {
+          "username": "nonoooooooo",
+          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+          "country": "Unknown",
+          "current_ap": 25040,
+          "last_month_ap": 24730,
+          "monthly_gain": 310,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "sosal",
           "uuid": "14fc22531af545cf918eec7b30527272",
           "country": "Unknown",
@@ -2872,19 +2886,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "nonoooooooo",
-          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
-          "country": "Unknown",
-          "current_ap": 25030,
-          "last_month_ap": 24730,
-          "monthly_gain": 300,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Duels"
           ]
         },
         {
@@ -3102,9 +3103,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 23470,
+          "current_ap": 23485,
           "last_month_ap": 23170,
-          "monthly_gain": 300,
+          "monthly_gain": 315,
           "maxGames": [
             "Max Duels"
           ]
@@ -3177,9 +3178,9 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 23275,
+          "current_ap": 23285,
           "last_month_ap": 23045,
-          "monthly_gain": 230,
+          "monthly_gain": 240,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
