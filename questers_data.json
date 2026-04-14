@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-14T01:27:19.059Z",
+  "last_update": "2026-04-14T04:39:09.295Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -935,7 +935,7 @@
     },
     {
       "country": "Unknown",
-      "score": 26227.2,
+      "score": 26247.2,
       "top_players": [
         {
           "username": "biwgtp",
@@ -965,9 +965,9 @@
           "username": "MI7RAN",
           "uuid": "fe0d23d926054c62921afa2d71a3cc2c",
           "country": "Unknown",
-          "current_quests": 25195,
+          "current_quests": 25295,
           "last_month_quests": 25195,
-          "monthly_gain": 0
+          "monthly_gain": 100
         },
         {
           "username": "emperqr",
