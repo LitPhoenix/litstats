@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-14T15:07:15.485Z",
+  "last_update": "2026-04-14T16:56:17.463Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -824,6 +824,21 @@
           ]
         },
         {
+          "username": "kipanator",
+          "uuid": "8eb18a9227fb4b36947177babab261cd",
+          "country": "USA",
+          "current_ap": 25555,
+          "last_month_ap": 25440,
+          "monthly_gain": 115,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "Colerer",
           "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
           "country": "USA",
@@ -834,21 +849,6 @@
             "Max Blitz",
             "Max Walls",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "kipanator",
-          "uuid": "8eb18a9227fb4b36947177babab261cd",
-          "country": "USA",
-          "current_ap": 25540,
-          "last_month_ap": 25440,
-          "monthly_gain": 100,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -1908,9 +1908,9 @@
           "username": "morof",
           "uuid": "4019260a28f544c2a35a0a1f35108a96",
           "country": "Russia",
-          "current_ap": 24725,
+          "current_ap": 24745,
           "last_month_ap": 24285,
-          "monthly_gain": 440,
+          "monthly_gain": 460,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
