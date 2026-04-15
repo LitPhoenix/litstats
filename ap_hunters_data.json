@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-15T15:00:21.981Z",
+  "last_update": "2026-04-15T16:54:32.726Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1340,6 +1340,20 @@
           ]
         },
         {
+          "username": "JinxRaider23",
+          "uuid": "d297331b7ff9452babd6828871bc2636",
+          "country": "UK",
+          "current_ap": 25770,
+          "last_month_ap": 25510,
+          "monthly_gain": 260,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "puffleman3",
           "uuid": "2f066b0e58fd4db6a24bfbce5ab5bdb4",
           "country": "UK",
@@ -1348,20 +1362,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max TKR"
-          ]
-        },
-        {
-          "username": "JinxRaider23",
-          "uuid": "d297331b7ff9452babd6828871bc2636",
-          "country": "UK",
-          "current_ap": 25720,
-          "last_month_ap": 25510,
-          "monthly_gain": 210,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games"
           ]
         },
         {
@@ -1992,9 +1992,9 @@
           "username": "Niko702",
           "uuid": "40884fdda30c4c26ba00abef570469e0",
           "country": "Germany",
-          "current_ap": 25385,
+          "current_ap": 25400,
           "last_month_ap": 25335,
-          "monthly_gain": 50,
+          "monthly_gain": 65,
           "maxGames": [
             "Max SkyBlock",
             "Max Warlords",
@@ -3009,9 +3009,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 23985,
+          "current_ap": 24000,
           "last_month_ap": 23905,
-          "monthly_gain": 80,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
