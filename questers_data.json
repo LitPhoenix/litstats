@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-16T18:59:48.627Z",
+  "last_update": "2026-04-16T20:40:25.661Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -1177,15 +1177,15 @@
     },
     {
       "country": "Greece",
-      "score": 4200,
+      "score": 4201.8,
       "top_players": [
         {
           "username": "giorgy",
           "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
           "country": "Greece",
-          "current_quests": 21000,
+          "current_quests": 21009,
           "last_month_quests": 21000,
-          "monthly_gain": 0
+          "monthly_gain": 9
         }
       ]
     }
