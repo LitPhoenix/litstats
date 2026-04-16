@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-16T15:19:00.904Z",
+  "last_update": "2026-04-16T17:04:38.755Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -261,9 +261,9 @@
           "username": "TournamentTokens",
           "uuid": "52206b9a3e8446c995fa9f2d4e8c0078",
           "country": "France",
-          "current_quests": 25369,
+          "current_quests": 25399,
           "last_month_quests": 25263,
-          "monthly_gain": 106
+          "monthly_gain": 136
         },
         {
           "username": "21septembre",
@@ -1141,15 +1141,15 @@
     },
     {
       "country": "Israel",
-      "score": 4632.8,
+      "score": 4649.6,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_quests": 23164,
+          "current_quests": 23248,
           "last_month_quests": 23107,
-          "monthly_gain": 57
+          "monthly_gain": 141
         }
       ]
     },
