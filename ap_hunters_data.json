@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-16T20:40:25.281Z",
+  "last_update": "2026-04-16T22:32:22.479Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1213,7 +1213,7 @@
     },
     {
       "country": "UK",
-      "score": 9985,
+      "score": 9986,
       "top_players": [
         {
           "username": "greaneye",
@@ -1265,9 +1265,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29090,
+          "current_ap": 29095,
           "last_month_ap": 29050,
-          "monthly_gain": 40,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
@@ -1406,7 +1406,7 @@
           ]
         },
         {
-          "username": "alpanyahu",
+          "username": "TheZetaMale",
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "UK",
           "current_ap": 23975,
@@ -3073,6 +3073,18 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 23605,
+          "last_month_ap": 22965,
+          "monthly_gain": 640,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Justin_Jefferson",
           "uuid": "9dccd818228640bfa33174d8dc86dfb7",
           "country": "Unknown",
@@ -3098,18 +3110,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 23590,
-          "last_month_ap": 22965,
-          "monthly_gain": 625,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
@@ -3179,9 +3179,9 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 23295,
+          "current_ap": 23305,
           "last_month_ap": 23045,
-          "monthly_gain": 250,
+          "monthly_gain": 260,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -3221,9 +3221,9 @@
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
-          "current_ap": 23130,
+          "current_ap": 23140,
           "last_month_ap": 23000,
-          "monthly_gain": 130,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Bed Wars",
             "Max Wool Games",
