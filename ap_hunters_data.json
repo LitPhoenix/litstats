@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-16T17:04:38.411Z",
+  "last_update": "2026-04-16T18:59:48.436Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1344,9 +1344,9 @@
           "username": "JinxRaider23",
           "uuid": "d297331b7ff9452babd6828871bc2636",
           "country": "UK",
-          "current_ap": 25785,
+          "current_ap": 25800,
           "last_month_ap": 25510,
-          "monthly_gain": 275,
+          "monthly_gain": 290,
           "maxGames": [
             "Max SkyBlock",
             "Max Bed Wars",
@@ -3101,6 +3101,18 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 23550,
+          "last_month_ap": 22965,
+          "monthly_gain": 585,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
@@ -3108,18 +3120,6 @@
           "last_month_ap": 23170,
           "monthly_gain": 350,
           "maxGames": [
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 23500,
-          "last_month_ap": 22965,
-          "monthly_gain": 535,
-          "maxGames": [
-            "Max Wool Games",
             "Max Duels"
           ]
         },
