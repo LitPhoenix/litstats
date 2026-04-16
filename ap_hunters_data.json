@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-15T22:34:37.156Z",
+  "last_update": "2026-04-16T01:29:41.969Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -997,13 +997,14 @@
           "username": "Pqssible",
           "uuid": "9872248cdad742f785657dbf78d9c756",
           "country": "USA",
-          "current_ap": 23400,
+          "current_ap": 23415,
           "last_month_ap": 23380,
-          "monthly_gain": 20,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Bed Wars",
             "Max TKR",
-            "Max Wool Games"
+            "Max Wool Games",
+            "Max Seasonal"
           ]
         },
         {
@@ -2291,7 +2292,7 @@
     },
     {
       "country": "Norway",
-      "score": 3905,
+      "score": 3909,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -2334,9 +2335,9 @@
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25440,
+          "current_ap": 25455,
           "last_month_ap": 25370,
-          "monthly_gain": 70,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
@@ -2472,9 +2473,9 @@
           "username": "Aldix",
           "uuid": "6a040159d71841129271ce291b226587",
           "country": "Czech Republic",
-          "current_ap": 24990,
+          "current_ap": 25000,
           "last_month_ap": 24985,
-          "monthly_gain": 5,
+          "monthly_gain": 15,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -3114,9 +3115,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 23435,
+          "current_ap": 23460,
           "last_month_ap": 22965,
-          "monthly_gain": 470,
+          "monthly_gain": 495,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
