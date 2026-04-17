@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-17T16:44:45.168Z",
+  "last_update": "2026-04-17T18:44:11.882Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -203,7 +203,8 @@
     "7bfed5378957477bada8e64cf5fa99f1": 22965,
     "d61cd4e9fcf146d2bd1dd9b494405b07": 23000,
     "8c8ba6d440554b1886ad1777c5066282": 23045,
-    "6f5ceade0f984d8fbf6bed73765101cc": 23140
+    "6f5ceade0f984d8fbf6bed73765101cc": 23140,
+    "3d12e102ea444d4d8b269bebacd720f0": 23340
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -383,7 +384,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12515,
+      "score": 12517,
       "top_players": [
         {
           "username": "oJakeyNow_",
@@ -479,9 +480,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30395,
+          "current_ap": 30415,
           "last_month_ap": 30020,
-          "monthly_gain": 375,
+          "monthly_gain": 395,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -1425,18 +1426,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Warlords",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "xRyann_",
-          "uuid": "b12c6b822faa4ebfaab429982dab58ed",
-          "country": "UK",
-          "current_ap": 23060,
-          "last_month_ap": 23065,
-          "monthly_gain": -5,
-          "maxGames": [
-            "Max VampireZ",
             "Max TKR"
           ]
         }
@@ -3117,9 +3106,9 @@
           "username": "CANTGUARDVALP",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
-          "current_ap": 23550,
+          "current_ap": 23560,
           "last_month_ap": 23140,
-          "monthly_gain": 410,
+          "monthly_gain": 420,
           "maxGames": [
             "Max Murder Mystery",
             "Max Bed Wars",
@@ -3175,6 +3164,19 @@
           "last_month_ap": 23355,
           "monthly_gain": 0,
           "maxGames": []
+        },
+        {
+          "username": "XxTrialxX",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 23340,
+          "last_month_ap": 23340,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
         },
         {
           "username": "xOptic",
