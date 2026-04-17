@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-17T14:49:13.437Z",
+  "last_update": "2026-04-17T16:44:45.168Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2473,9 +2473,9 @@
           "username": "Aldix",
           "uuid": "6a040159d71841129271ce291b226587",
           "country": "Czech Republic",
-          "current_ap": 25000,
+          "current_ap": 25010,
           "last_month_ap": 24985,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -3114,6 +3114,21 @@
           ]
         },
         {
+          "username": "CANTGUARDVALP",
+          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+          "country": "Unknown",
+          "current_ap": 23550,
+          "last_month_ap": 23140,
+          "monthly_gain": 410,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
@@ -3122,21 +3137,6 @@
           "monthly_gain": 360,
           "maxGames": [
             "Max Duels"
-          ]
-        },
-        {
-          "username": "CANTGUARDVALP",
-          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
-          "country": "Unknown",
-          "current_ap": 23505,
-          "last_month_ap": 23140,
-          "monthly_gain": 365,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
