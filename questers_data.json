@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-17T12:56:22.002Z",
+  "last_update": "2026-04-17T14:49:13.671Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -651,15 +651,15 @@
     },
     {
       "country": "Belgium",
-      "score": 9563.4,
+      "score": 9575.2,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 47817,
+          "current_quests": 47876,
           "last_month_quests": 47286,
-          "monthly_gain": 531
+          "monthly_gain": 590
         }
       ]
     },
@@ -739,7 +739,7 @@
     },
     {
       "country": "Finland",
-      "score": 13867,
+      "score": 13899.8,
       "top_players": [
         {
           "username": "Mol_o",
@@ -753,9 +753,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_quests": 28902,
+          "current_quests": 29066,
           "last_month_quests": 28734,
-          "monthly_gain": 168
+          "monthly_gain": 332
         }
       ]
     },
@@ -1005,9 +1005,9 @@
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Unknown",
-          "current_quests": 21342,
+          "current_quests": 21427,
           "last_month_quests": 21018,
-          "monthly_gain": 324
+          "monthly_gain": 409
         }
       ]
     },
