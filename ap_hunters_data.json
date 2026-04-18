@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-18T16:28:36.485Z",
+  "last_update": "2026-04-18T18:34:49.410Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -385,7 +385,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12518,
+      "score": 12519,
       "top_players": [
         {
           "username": "oJakeyNow_",
@@ -481,9 +481,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30430,
+          "current_ap": 30440,
           "last_month_ap": 30020,
-          "monthly_gain": 410,
+          "monthly_gain": 420,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -2403,7 +2403,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2879,
+      "score": 2885,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2435,9 +2435,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26225,
+          "current_ap": 26250,
           "last_month_ap": 26055,
-          "monthly_gain": 170,
+          "monthly_gain": 195,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -3001,6 +3001,19 @@
           ]
         },
         {
+          "username": "ToastyOosty",
+          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+          "country": "Unknown",
+          "current_ap": 24010,
+          "last_month_ap": 23790,
+          "monthly_gain": 220,
+          "maxGames": [
+            "Max Pit",
+            "Max Warlords",
+            "Max VampireZ"
+          ]
+        },
+        {
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
@@ -3013,19 +3026,6 @@
             "Max VampireZ",
             "Max TKR",
             "Max Crazy Walls"
-          ]
-        },
-        {
-          "username": "ToastyOosty",
-          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
-          "country": "Unknown",
-          "current_ap": 24000,
-          "last_month_ap": 23790,
-          "monthly_gain": 210,
-          "maxGames": [
-            "Max Pit",
-            "Max Warlords",
-            "Max VampireZ"
           ]
         },
         {
@@ -3136,9 +3136,9 @@
           "username": "XxTrialxX",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
-          "current_ap": 23425,
+          "current_ap": 23450,
           "last_month_ap": 23340,
-          "monthly_gain": 85,
+          "monthly_gain": 110,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
