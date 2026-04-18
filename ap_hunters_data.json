@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-18T20:26:40.993Z",
+  "last_update": "2026-04-18T22:24:20.638Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1505,7 +1505,7 @@
     },
     {
       "country": "Canada",
-      "score": 8397,
+      "score": 8398,
       "top_players": [
         {
           "username": "Songgg",
@@ -1584,9 +1584,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26605,
+          "current_ap": 26625,
           "last_month_ap": 26590,
-          "monthly_gain": 15,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -3058,9 +3058,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 23645,
+          "current_ap": 23655,
           "last_month_ap": 22965,
-          "monthly_gain": 680,
+          "monthly_gain": 690,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -3077,6 +3077,17 @@
             "Max VampireZ",
             "Max TKR",
             "Max Seasonal"
+          ]
+        },
+        {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 23610,
+          "last_month_ap": 23170,
+          "monthly_gain": 440,
+          "maxGames": [
+            "Max Duels"
           ]
         },
         {
@@ -3108,17 +3119,6 @@
           ]
         },
         {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 23570,
-          "last_month_ap": 23170,
-          "monthly_gain": 400,
-          "maxGames": [
-            "Max Duels"
-          ]
-        },
-        {
           "username": "CANTGUARDVALP",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
@@ -3137,9 +3137,9 @@
           "username": "XxTrialxX",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
-          "current_ap": 23450,
+          "current_ap": 23500,
           "last_month_ap": 23340,
-          "monthly_gain": 110,
+          "monthly_gain": 160,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
@@ -3474,9 +3474,9 @@
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Italy",
-          "current_ap": 24505,
+          "current_ap": 24530,
           "last_month_ap": 24390,
-          "monthly_gain": 115,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Murder Mystery",
             "Max Bed Wars",
