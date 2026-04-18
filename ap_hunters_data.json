@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-18T10:32:54.178Z",
+  "last_update": "2026-04-18T12:38:33.194Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1703,19 +1703,20 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8226,
+      "score": 8251,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 32020,
+          "current_ap": 32045,
           "last_month_ap": 31970,
-          "monthly_gain": 50,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
             "Max Paintball",
+            "Max Quake",
             "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
@@ -2647,10 +2648,12 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25050,
+          "current_ap": 25065,
           "last_month_ap": 24860,
-          "monthly_gain": 190,
-          "maxGames": []
+          "monthly_gain": 205,
+          "maxGames": [
+            "Max Duels"
+          ]
         }
       ]
     },
