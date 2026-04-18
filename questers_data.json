@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-18T12:38:33.391Z",
+  "last_update": "2026-04-18T14:35:54.268Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -899,15 +899,15 @@
     },
     {
       "country": "Australia",
-      "score": 11020.8,
+      "score": 11021.6,
       "top_players": [
         {
           "username": "Bikkie",
           "uuid": "12ecedbce19b448cad38aa4f57f3afda",
           "country": "Australia",
-          "current_quests": 30915,
+          "current_quests": 30919,
           "last_month_quests": 30911,
-          "monthly_gain": 4
+          "monthly_gain": 8
         },
         {
           "username": "TotalDramaIsland",
