@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-19T07:07:35.638Z",
+  "last_update": "2026-04-19T08:43:22.222Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2975,6 +2975,19 @@
           "maxGames": []
         },
         {
+          "username": "ToastyOosty",
+          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+          "country": "Unknown",
+          "current_ap": 24060,
+          "last_month_ap": 23790,
+          "monthly_gain": 270,
+          "maxGames": [
+            "Max Pit",
+            "Max Warlords",
+            "Max VampireZ"
+          ]
+        },
+        {
           "username": "tyelur",
           "uuid": "b2cbfed76872468fac2842af0cd4877b",
           "country": "Unknown",
@@ -2983,19 +2996,6 @@
           "monthly_gain": 65,
           "maxGames": [
             "Max Paintball",
-            "Max VampireZ"
-          ]
-        },
-        {
-          "username": "ToastyOosty",
-          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
-          "country": "Unknown",
-          "current_ap": 24045,
-          "last_month_ap": 23790,
-          "monthly_gain": 255,
-          "maxGames": [
-            "Max Pit",
-            "Max Warlords",
             "Max VampireZ"
           ]
         },
