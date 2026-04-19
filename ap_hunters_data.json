@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-19T04:45:03.283Z",
+  "last_update": "2026-04-19T07:07:35.638Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -385,7 +385,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12496,
+      "score": 12477,
       "top_players": [
         {
           "username": "oJakeyNow_",
@@ -1025,7 +1025,7 @@
     },
     {
       "country": "France",
-      "score": 11320,
+      "score": 11301,
       "top_players": [
         {
           "username": "Yann31_",
@@ -1215,7 +1215,7 @@
     },
     {
       "country": "UK",
-      "score": 9963,
+      "score": 9944,
       "top_players": [
         {
           "username": "greaneye",
@@ -1434,7 +1434,7 @@
     },
     {
       "country": "Denmark",
-      "score": 9163,
+      "score": 9148,
       "top_players": [
         {
           "username": "tobias49",
@@ -1505,7 +1505,7 @@
     },
     {
       "country": "Canada",
-      "score": 8379,
+      "score": 8360,
       "top_players": [
         {
           "username": "Songgg",
@@ -1613,9 +1613,9 @@
           "username": "adjective_n0un",
           "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
           "country": "Canada",
-          "current_ap": 25065,
+          "current_ap": 25080,
           "last_month_ap": 25005,
-          "monthly_gain": 60,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock"
@@ -1704,7 +1704,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8223,
+      "score": 8204,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1848,7 +1848,7 @@
     },
     {
       "country": "Russia",
-      "score": 7100,
+      "score": 7085,
       "top_players": [
         {
           "username": "anrie",
@@ -1925,7 +1925,7 @@
     },
     {
       "country": "Germany",
-      "score": 6796,
+      "score": 6779,
       "top_players": [
         {
           "username": "NightMan976",
@@ -1998,7 +1998,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6555,
+      "score": 6540,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2059,7 +2059,7 @@
     },
     {
       "country": "Hungary",
-      "score": 5220,
+      "score": 5210,
       "top_players": [
         {
           "username": "mustangk",
@@ -2090,7 +2090,7 @@
     },
     {
       "country": "Poland",
-      "score": 5060,
+      "score": 5050,
       "top_players": [
         {
           "username": "uDreamt",
@@ -2150,7 +2150,7 @@
     },
     {
       "country": "Israel",
-      "score": 3953,
+      "score": 3935,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2230,7 +2230,7 @@
     },
     {
       "country": "Finland",
-      "score": 3940,
+      "score": 3923,
       "top_players": [
         {
           "username": "Champiez",
@@ -2283,7 +2283,7 @@
     },
     {
       "country": "Norway",
-      "score": 3890,
+      "score": 3873,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -2340,7 +2340,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3668,
+      "score": 3653,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2377,9 +2377,9 @@
           "username": "noobay",
           "uuid": "a481c0951d3246169ebe1dd6f583d357",
           "country": "Croatia",
-          "current_ap": 25455,
+          "current_ap": 25465,
           "last_month_ap": 25195,
-          "monthly_gain": 260,
+          "monthly_gain": 270,
           "maxGames": [
             "Max Blitz",
             "Max Quake",
@@ -2404,7 +2404,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2859,
+      "score": 2841,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2489,7 +2489,7 @@
     },
     {
       "country": "Japan",
-      "score": 1795,
+      "score": 1785,
       "top_players": [
         {
           "username": "CowKou",
@@ -2542,7 +2542,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1730,
+      "score": 1715,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2573,7 +2573,7 @@
     },
     {
       "country": "Australia",
-      "score": 1640,
+      "score": 1630,
       "top_players": [
         {
           "username": "TotalDramaIsland",
@@ -2635,7 +2635,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1070,
+      "score": 1060,
       "top_players": [
         {
           "username": "GusNow_",
@@ -2661,7 +2661,7 @@
     },
     {
       "country": "Taiwan",
-      "score": 1005,
+      "score": 995,
       "top_players": [
         {
           "username": "Summer_Albert",
@@ -2717,7 +2717,7 @@
     },
     {
       "country": "Iraq",
-      "score": 660,
+      "score": 650,
       "top_players": [
         {
           "username": "Amony",
@@ -2738,7 +2738,7 @@
     },
     {
       "country": "Syria",
-      "score": 650,
+      "score": 640,
       "top_players": [
         {
           "username": "3badh",
@@ -2770,7 +2770,7 @@
     },
     {
       "country": "Ukraine",
-      "score": 630,
+      "score": 620,
       "top_players": [
         {
           "username": "kawaiinex",
@@ -2802,7 +2802,7 @@
     },
     {
       "country": "South Korea",
-      "score": 585,
+      "score": 575,
       "top_players": [
         {
           "username": "Hounce",
@@ -2830,7 +2830,7 @@
     },
     {
       "country": "Unknown",
-      "score": 405,
+      "score": 395,
       "top_players": [
         {
           "username": "Rayjer",
@@ -3122,9 +3122,9 @@
           "username": "CANTGUARDVALP",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
-          "current_ap": 23560,
+          "current_ap": 23580,
           "last_month_ap": 23140,
-          "monthly_gain": 420,
+          "monthly_gain": 440,
           "maxGames": [
             "Max Murder Mystery",
             "Max Bed Wars",
@@ -3269,7 +3269,7 @@
     },
     {
       "country": "Ecuador",
-      "score": 335,
+      "score": 325,
       "top_players": [
         {
           "username": "SATURNO",
@@ -3286,7 +3286,7 @@
     },
     {
       "country": "Spain",
-      "score": 298,
+      "score": 283,
       "top_players": [
         {
           "username": "julikabuwu",
@@ -3322,7 +3322,7 @@
     },
     {
       "country": "Moldova",
-      "score": 210,
+      "score": 200,
       "top_players": [
         {
           "username": "Lofaet",
@@ -3342,7 +3342,7 @@
     },
     {
       "country": "Greece",
-      "score": 200,
+      "score": 190,
       "top_players": [
         {
           "username": "giorgy",
@@ -3363,7 +3363,7 @@
     },
     {
       "country": "Turkey",
-      "score": 80,
+      "score": 70,
       "top_players": [
         {
           "username": "Melongan",
