@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-19T10:32:15.972Z",
+  "last_update": "2026-04-19T12:38:04.544Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -205,7 +205,8 @@
     "8c8ba6d440554b1886ad1777c5066282": 23045,
     "6f5ceade0f984d8fbf6bed73765101cc": 23140,
     "3d12e102ea444d4d8b269bebacd720f0": 23340,
-    "92d13bad96ba4a959d1d3cd40a70cec7": 23095
+    "92d13bad96ba4a959d1d3cd40a70cec7": 23095,
+    "93b354235bd44e9a8ebf43763d90c96a": 23895
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -1215,7 +1216,7 @@
     },
     {
       "country": "UK",
-      "score": 9944,
+      "score": 9951,
       "top_players": [
         {
           "username": "greaneye",
@@ -1247,9 +1248,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30470,
+          "current_ap": 30485,
           "last_month_ap": 30290,
-          "monthly_gain": 180,
+          "monthly_gain": 195,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -2387,12 +2388,12 @@
           ]
         },
         {
-          "username": "Mihannah",
+          "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25440,
+          "current_ap": 24815,
           "last_month_ap": 25440,
-          "monthly_gain": 0,
+          "monthly_gain": -625,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3030,6 +3031,17 @@
           ]
         },
         {
+          "username": "DarkSilent",
+          "uuid": "93b354235bd44e9a8ebf43763d90c96a",
+          "country": "Unknown",
+          "current_ap": 23895,
+          "last_month_ap": 23895,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max SkyClash"
+          ]
+        },
+        {
           "username": "ichhabevape",
           "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
           "country": "Unknown",
@@ -3249,20 +3261,6 @@
             "Max SkyBlock",
             "Max TKR",
             "Max Duels"
-          ]
-        },
-        {
-          "username": "Jyahp",
-          "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
-          "country": "Unknown",
-          "current_ap": 23095,
-          "last_month_ap": 23095,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyBlock",
-            "Max VampireZ",
-            "Max Bed Wars"
           ]
         }
       ]
