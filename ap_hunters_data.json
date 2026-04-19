@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-19T16:29:17.932Z",
+  "last_update": "2026-04-19T18:35:21.620Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1506,7 +1506,7 @@
     },
     {
       "country": "Canada",
-      "score": 8360,
+      "score": 8362,
       "top_players": [
         {
           "username": "Songgg",
@@ -1573,12 +1573,13 @@
           "username": "5bEVE",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
-          "current_ap": 26800,
+          "current_ap": 26815,
           "last_month_ap": 26790,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": [
             "Max TNT Games",
-            "Max Bed Wars"
+            "Max Bed Wars",
+            "Max Seasonal"
           ]
         },
         {
