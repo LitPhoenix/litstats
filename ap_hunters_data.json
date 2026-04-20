@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-20T16:55:28.026Z",
+  "last_update": "2026-04-20T18:52:43.429Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1347,14 +1347,15 @@
           "username": "JinxRaider23",
           "uuid": "d297331b7ff9452babd6828871bc2636",
           "country": "UK",
-          "current_ap": 25830,
+          "current_ap": 25845,
           "last_month_ap": 25510,
-          "monthly_gain": 320,
+          "monthly_gain": 335,
           "maxGames": [
             "Max SkyBlock",
             "Max Bed Wars",
             "Max TKR",
-            "Max Wool Games"
+            "Max Wool Games",
+            "Max Duels"
           ]
         },
         {
@@ -2285,7 +2286,7 @@
     },
     {
       "country": "Norway",
-      "score": 3873,
+      "score": 3876,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -2328,9 +2329,9 @@
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25485,
+          "current_ap": 25500,
           "last_month_ap": 25370,
-          "monthly_gain": 115,
+          "monthly_gain": 130,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
