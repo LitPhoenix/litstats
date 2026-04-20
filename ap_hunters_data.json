@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-20T20:37:38.190Z",
+  "last_update": "2026-04-20T22:35:09.677Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -3084,11 +3084,24 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 23655,
+          "current_ap": 23695,
           "last_month_ap": 23170,
-          "monthly_gain": 485,
+          "monthly_gain": 525,
           "maxGames": [
             "Max Duels"
+          ]
+        },
+        {
+          "username": "XxTrialxX",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 23630,
+          "last_month_ap": 23340,
+          "monthly_gain": 290,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
           ]
         },
         {
@@ -3117,19 +3130,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "XxTrialxX",
-          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
-          "country": "Unknown",
-          "current_ap": 23615,
-          "last_month_ap": 23340,
-          "monthly_gain": 275,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
           ]
         },
         {
