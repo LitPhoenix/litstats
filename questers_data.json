@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-21T15:05:59.955Z",
+  "last_update": "2026-04-21T16:49:14.149Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -199,15 +199,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49129.2,
+      "score": 49142.2,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 108654,
+          "current_quests": 108695,
           "last_month_quests": 108009,
-          "monthly_gain": 645
+          "monthly_gain": 686
         },
         {
           "username": "ErtrycheZ",
@@ -237,9 +237,9 @@
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_quests": 28363,
+          "current_quests": 28387,
           "last_month_quests": 28286,
-          "monthly_gain": 77
+          "monthly_gain": 101
         },
         {
           "username": "trql",
@@ -1141,15 +1141,15 @@
     },
     {
       "country": "Israel",
-      "score": 4657,
+      "score": 4664.4,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_quests": 23285,
+          "current_quests": 23322,
           "last_month_quests": 23107,
-          "monthly_gain": 178
+          "monthly_gain": 215
         }
       ]
     },
