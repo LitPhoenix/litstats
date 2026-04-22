@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-21T22:32:06.432Z",
+  "last_update": "2026-04-22T01:25:48.550Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -199,7 +199,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49142.2,
+      "score": 49142.8,
       "top_players": [
         {
           "username": "Skorlex",
@@ -213,9 +213,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_quests": 40664,
+          "current_quests": 40667,
           "last_month_quests": 40540,
-          "monthly_gain": 124
+          "monthly_gain": 127
         },
         {
           "username": "Edzio",
@@ -369,21 +369,21 @@
     },
     {
       "country": "Croatia",
-      "score": 11728.8,
+      "score": 11741,
       "top_players": [
         {
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_quests": 58644,
+          "current_quests": 58705,
           "last_month_quests": 58589,
-          "monthly_gain": 55
+          "monthly_gain": 116
         }
       ]
     },
     {
       "country": "USA",
-      "score": 45562.6,
+      "score": 45575.2,
       "top_players": [
         {
           "username": "Trtx",
@@ -405,9 +405,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_quests": 46203,
+          "current_quests": 46266,
           "last_month_quests": 45827,
-          "monthly_gain": 376
+          "monthly_gain": 439
         },
         {
           "username": "MockBall",
@@ -739,7 +739,7 @@
     },
     {
       "country": "Finland",
-      "score": 13914.6,
+      "score": 13933,
       "top_players": [
         {
           "username": "Mol_o",
@@ -753,9 +753,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_quests": 29140,
+          "current_quests": 29232,
           "last_month_quests": 28734,
-          "monthly_gain": 406
+          "monthly_gain": 498
         }
       ]
     },
