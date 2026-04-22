@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-22T16:50:30.069Z",
+  "last_update": "2026-04-22T18:59:37.555Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2003,7 +2003,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6550,
+      "score": 6560,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2032,9 +2032,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27805,
+          "current_ap": 27825,
           "last_month_ap": 27280,
-          "monthly_gain": 525,
+          "monthly_gain": 545,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -3057,6 +3057,19 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 23755,
+          "last_month_ap": 22965,
+          "monthly_gain": 790,
+          "maxGames": [
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "DirtyAvocado",
           "uuid": "8d167f27157d488394f6b6142ccc16be",
           "country": "Unknown",
@@ -3067,19 +3080,6 @@
             "Max Arena Brawl",
             "Max Bed Wars",
             "Max TKR",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 23740,
-          "last_month_ap": 22965,
-          "monthly_gain": 775,
-          "maxGames": [
-            "Max TKR",
-            "Max Wool Games",
             "Max Duels"
           ]
         },
@@ -3477,9 +3477,9 @@
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Italy",
-          "current_ap": 24530,
+          "current_ap": 24545,
           "last_month_ap": 24390,
-          "monthly_gain": 140,
+          "monthly_gain": 155,
           "maxGames": [
             "Max Murder Mystery",
             "Max Bed Wars",
