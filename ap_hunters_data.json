@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-22T04:40:02.915Z",
+  "last_update": "2026-04-22T07:20:46.985Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2408,7 +2408,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2841,
+      "score": 2849,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2429,9 +2429,9 @@
           "username": "ZERATHIX",
           "uuid": "e37ccf10fe9643789745e0432ca096b2",
           "country": "Czech Republic",
-          "current_ap": 26595,
+          "current_ap": 26610,
           "last_month_ap": 26565,
-          "monthly_gain": 30,
+          "monthly_gain": 45,
           "maxGames": [
             "Max TKR"
           ]
