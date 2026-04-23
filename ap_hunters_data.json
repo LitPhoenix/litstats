@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-23T18:56:35.218Z",
+  "last_update": "2026-04-23T20:44:28.123Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -598,9 +598,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 27735,
+          "current_ap": 27750,
           "last_month_ap": 27710,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -1204,9 +1204,9 @@
           "username": "KaoriMiyazono",
           "uuid": "1b8b7e076bcb4795b21a408197d4ded7",
           "country": "France",
-          "current_ap": 23830,
+          "current_ap": 23820,
           "last_month_ap": 23830,
-          "monthly_gain": 0,
+          "monthly_gain": -10,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -3060,6 +3060,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 23755,
+          "last_month_ap": 23170,
+          "monthly_gain": 585,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "DirtyAvocado",
           "uuid": "8d167f27157d488394f6b6142ccc16be",
           "country": "Unknown",
@@ -3074,23 +3085,12 @@
           ]
         },
         {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 23745,
-          "last_month_ap": 23170,
-          "monthly_gain": 575,
-          "maxGames": [
-            "Max Duels"
-          ]
-        },
-        {
           "username": "XxTrialxX",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
-          "current_ap": 23710,
+          "current_ap": 23740,
           "last_month_ap": 23340,
-          "monthly_gain": 370,
+          "monthly_gain": 400,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
