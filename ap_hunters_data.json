@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-23T17:10:24.768Z",
+  "last_update": "2026-04-23T18:56:35.218Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1142,9 +1142,9 @@
           "username": "Uleb",
           "uuid": "2baaec9272fd487294e673eb4ec35201",
           "country": "France",
-          "current_ap": 27200,
+          "current_ap": 27225,
           "last_month_ap": 27100,
-          "monthly_gain": 100,
+          "monthly_gain": 125,
           "maxGames": [
             "Max TKR",
             "Max Duels",
@@ -1709,7 +1709,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8214,
+      "score": 8224,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1743,9 +1743,9 @@
           "username": "Paskwal",
           "uuid": "6248c4ae570147369f5cd94192a55094",
           "country": "The Netherlands",
-          "current_ap": 27890,
+          "current_ap": 27910,
           "last_month_ap": 27870,
-          "monthly_gain": 20,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
