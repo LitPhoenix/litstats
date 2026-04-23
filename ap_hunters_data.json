@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-23T13:00:59.693Z",
+  "last_update": "2026-04-23T15:31:08.831Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1709,7 +1709,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8204,
+      "score": 8211,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1743,9 +1743,9 @@
           "username": "Paskwal",
           "uuid": "6248c4ae570147369f5cd94192a55094",
           "country": "The Netherlands",
-          "current_ap": 27870,
+          "current_ap": 27885,
           "last_month_ap": 27870,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -3077,9 +3077,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 23725,
+          "current_ap": 23745,
           "last_month_ap": 23170,
-          "monthly_gain": 555,
+          "monthly_gain": 575,
           "maxGames": [
             "Max Duels"
           ]
