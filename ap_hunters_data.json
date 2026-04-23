@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-23T20:44:28.123Z",
+  "last_update": "2026-04-23T22:35:46.932Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -387,7 +387,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12494,
+      "score": 12501,
       "top_players": [
         {
           "username": "oJakeyNow_",
@@ -460,9 +460,9 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_ap": 30810,
+          "current_ap": 30835,
           "last_month_ap": 30720,
-          "monthly_gain": 90,
+          "monthly_gain": 115,
           "maxGames": [
             "Max Paintball",
             "Max Cops and Crims",
@@ -470,6 +470,7 @@
             "Max SkyBlock",
             "Max Warlords",
             "Max TNT Games",
+            "Max Arcade",
             "Max Murder Mystery",
             "Max VampireZ",
             "Max Bed Wars",
@@ -1438,7 +1439,7 @@
     },
     {
       "country": "Denmark",
-      "score": 9148,
+      "score": 9135,
       "top_players": [
         {
           "username": "tobias49",
@@ -1476,9 +1477,9 @@
           "username": "STAYEZ",
           "uuid": "998d3241aec046ad9d5009f56d28e413",
           "country": "Denmark",
-          "current_ap": 30370,
+          "current_ap": 30345,
           "last_month_ap": 30370,
-          "monthly_gain": 0,
+          "monthly_gain": -25,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
