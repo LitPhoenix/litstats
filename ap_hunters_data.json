@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-23T15:31:08.831Z",
+  "last_update": "2026-04-23T17:10:24.768Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1709,7 +1709,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8211,
+      "score": 8214,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1743,9 +1743,9 @@
           "username": "Paskwal",
           "uuid": "6248c4ae570147369f5cd94192a55094",
           "country": "The Netherlands",
-          "current_ap": 27885,
+          "current_ap": 27890,
           "last_month_ap": 27870,
-          "monthly_gain": 15,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -2656,15 +2656,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 995,
+      "score": 1020,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26460,
+          "current_ap": 26485,
           "last_month_ap": 26420,
-          "monthly_gain": 40,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Warlords",
             "Max Bed Wars",
@@ -3246,6 +3246,18 @@
           ]
         },
         {
+          "username": "22charizard",
+          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+          "country": "Unknown",
+          "current_ap": 23135,
+          "last_month_ap": 23110,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Pit",
+            "Max Bed Wars"
+          ]
+        },
+        {
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
@@ -3256,18 +3268,6 @@
             "Max SkyBlock",
             "Max TKR",
             "Max Duels"
-          ]
-        },
-        {
-          "username": "22charizard",
-          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
-          "country": "Unknown",
-          "current_ap": 23110,
-          "last_month_ap": 23110,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max Bed Wars"
           ]
         }
       ]
