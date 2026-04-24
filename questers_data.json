@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-23T22:35:47.295Z",
+  "last_update": "2026-04-24T01:30:14.708Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -199,15 +199,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49183.4,
+      "score": 49185,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 108795,
+          "current_quests": 108803,
           "last_month_quests": 108009,
-          "monthly_gain": 786
+          "monthly_gain": 794
         },
         {
           "username": "ErtrycheZ",
@@ -437,9 +437,9 @@
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
-          "current_quests": 34412,
+          "current_quests": 34414,
           "last_month_quests": 34321,
-          "monthly_gain": 91
+          "monthly_gain": 93
         },
         {
           "username": "sirumair9505",
@@ -493,9 +493,9 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_quests": 24347,
+          "current_quests": 24353,
           "last_month_quests": 23999,
-          "monthly_gain": 348
+          "monthly_gain": 354
         },
         {
           "username": "zeytrixx",
@@ -565,7 +565,7 @@
     },
     {
       "country": "UK",
-      "score": 35593.4,
+      "score": 35594,
       "top_players": [
         {
           "username": "RuinsOfAlph",
@@ -603,9 +603,9 @@
           "username": "EvdiaNow_",
           "uuid": "aad6a2754e9c4744bd335213853f023f",
           "country": "UK",
-          "current_quests": 24223,
+          "current_quests": 24226,
           "last_month_quests": 24125,
-          "monthly_gain": 98
+          "monthly_gain": 101
         },
         {
           "username": "Fossilised",
@@ -1155,7 +1155,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 9080.4,
+      "score": 9081.8,
       "top_players": [
         {
           "username": "Th3three",
@@ -1169,9 +1169,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_quests": 22621,
+          "current_quests": 22628,
           "last_month_quests": 22307,
-          "monthly_gain": 314
+          "monthly_gain": 321
         }
       ]
     },

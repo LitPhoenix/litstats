@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-23T22:35:46.932Z",
+  "last_update": "2026-04-24T01:30:14.470Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1994,7 +1994,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6560,
+      "score": 6575,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2023,9 +2023,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27825,
+          "current_ap": 27855,
           "last_month_ap": 27280,
-          "monthly_gain": 545,
+          "monthly_gain": 575,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2631,15 +2631,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 1060,
+      "score": 1085,
       "top_players": [
         {
           "username": "GusNow_",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26525,
+          "current_ap": 26550,
           "last_month_ap": 26495,
-          "monthly_gain": 30,
+          "monthly_gain": 55,
           "maxGames": []
         },
         {
@@ -3037,6 +3037,19 @@
           ]
         },
         {
+          "username": "XxTrialxX",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 23790,
+          "last_month_ap": 23340,
+          "monthly_gain": 450,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
@@ -3083,19 +3096,6 @@
             "Max Bed Wars",
             "Max TKR",
             "Max Duels"
-          ]
-        },
-        {
-          "username": "XxTrialxX",
-          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
-          "country": "Unknown",
-          "current_ap": 23740,
-          "last_month_ap": 23340,
-          "monthly_gain": 400,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
           ]
         },
         {
@@ -3328,15 +3328,15 @@
     },
     {
       "country": "Moldova",
-      "score": 215,
+      "score": 280,
       "top_players": [
         {
           "username": "Lofaet",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25680,
+          "current_ap": 25745,
           "last_month_ap": 25525,
-          "monthly_gain": 155,
+          "monthly_gain": 220,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
