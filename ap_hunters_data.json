@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-25T01:23:50.255Z",
+  "last_update": "2026-04-25T04:29:35.820Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -884,9 +884,9 @@
           "username": "nrteu",
           "uuid": "6d3ec92d80ed4cf3aded1c5d7db7dfe3",
           "country": "USA",
-          "current_ap": 24775,
+          "current_ap": 24990,
           "last_month_ap": 24775,
-          "monthly_gain": 0,
+          "monthly_gain": 215,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2974,9 +2974,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24080,
+          "current_ap": 24085,
           "last_month_ap": 23790,
-          "monthly_gain": 290,
+          "monthly_gain": 295,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -3235,6 +3235,18 @@
           ]
         },
         {
+          "username": "22charizard",
+          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+          "country": "Unknown",
+          "current_ap": 23145,
+          "last_month_ap": 23110,
+          "monthly_gain": 35,
+          "maxGames": [
+            "Max Pit",
+            "Max Bed Wars"
+          ]
+        },
+        {
           "username": "Khqled",
           "uuid": "a4a83ccb4d7f45f0806bd7cbe48de984",
           "country": "Unknown",
@@ -3244,18 +3256,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "22charizard",
-          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
-          "country": "Unknown",
-          "current_ap": 23135,
-          "last_month_ap": 23110,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Pit",
-            "Max Bed Wars"
           ]
         },
         {
@@ -3274,33 +3274,16 @@
       ]
     },
     {
-      "country": "Ecuador",
-      "score": 325,
-      "top_players": [
-        {
-          "username": "SATURNO",
-          "uuid": "be11708dcb0946bd9608d29af61269ec",
-          "country": "Ecuador",
-          "current_ap": 25790,
-          "last_month_ap": 25790,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Spain",
-      "score": 323,
+      "score": 333,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25745,
+          "current_ap": 25755,
           "last_month_ap": 25615,
-          "monthly_gain": 130,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -3322,6 +3305,23 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Ecuador",
+      "score": 325,
+      "top_players": [
+        {
+          "username": "SATURNO",
+          "uuid": "be11708dcb0946bd9608d29af61269ec",
+          "country": "Ecuador",
+          "current_ap": 25790,
+          "last_month_ap": 25790,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max VampireZ"
           ]
         }
       ]
