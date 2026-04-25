@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-25T18:36:43.270Z",
+  "last_update": "2026-04-25T20:29:12.622Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1143,9 +1143,9 @@
           "username": "Uleb",
           "uuid": "2baaec9272fd487294e673eb4ec35201",
           "country": "France",
-          "current_ap": 27245,
+          "current_ap": 27260,
           "last_month_ap": 27100,
-          "monthly_gain": 145,
+          "monthly_gain": 160,
           "maxGames": [
             "Max TKR",
             "Max Duels",
@@ -3222,6 +3222,18 @@
           ]
         },
         {
+          "username": "22charizard",
+          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+          "country": "Unknown",
+          "current_ap": 23205,
+          "last_month_ap": 23110,
+          "monthly_gain": 95,
+          "maxGames": [
+            "Max Pit",
+            "Max Bed Wars"
+          ]
+        },
+        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -3232,18 +3244,6 @@
             "Max Bed Wars",
             "Max Wool Games",
             "Max Duels"
-          ]
-        },
-        {
-          "username": "22charizard",
-          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
-          "country": "Unknown",
-          "current_ap": 23145,
-          "last_month_ap": 23110,
-          "monthly_gain": 35,
-          "maxGames": [
-            "Max Pit",
-            "Max Bed Wars"
           ]
         },
         {
