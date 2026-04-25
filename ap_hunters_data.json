@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-25T10:36:33.430Z",
+  "last_update": "2026-04-25T12:39:48.983Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2279,7 +2279,7 @@
     },
     {
       "country": "Norway",
-      "score": 3883,
+      "score": 3885,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -2322,9 +2322,9 @@
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25525,
+          "current_ap": 25535,
           "last_month_ap": 25370,
-          "monthly_gain": 155,
+          "monthly_gain": 165,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
@@ -2646,9 +2646,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25105,
+          "current_ap": 25115,
           "last_month_ap": 24860,
-          "monthly_gain": 245,
+          "monthly_gain": 255,
           "maxGames": [
             "Max Duels"
           ]
