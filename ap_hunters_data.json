@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-26T16:32:26.412Z",
+  "last_update": "2026-04-26T18:37:36.555Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2461,9 +2461,9 @@
           "username": "Aldix",
           "uuid": "6a040159d71841129271ce291b226587",
           "country": "Czech Republic",
-          "current_ap": 25020,
+          "current_ap": 25040,
           "last_month_ap": 24985,
-          "monthly_gain": 35,
+          "monthly_gain": 55,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -3029,9 +3029,9 @@
           "username": "XxTrialxX",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
-          "current_ap": 23940,
+          "current_ap": 23960,
           "last_month_ap": 23340,
-          "monthly_gain": 600,
+          "monthly_gain": 620,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
@@ -3050,6 +3050,19 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 23815,
+          "last_month_ap": 22965,
+          "monthly_gain": 850,
+          "maxGames": [
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
@@ -3057,19 +3070,6 @@
           "last_month_ap": 23170,
           "monthly_gain": 645,
           "maxGames": [
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 23805,
-          "last_month_ap": 22965,
-          "monthly_gain": 840,
-          "maxGames": [
-            "Max TKR",
-            "Max Wool Games",
             "Max Duels"
           ]
         },
@@ -3417,9 +3417,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 24825,
+          "current_ap": 24865,
           "last_month_ap": 24745,
-          "monthly_gain": 80,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Wool Games"
           ]
