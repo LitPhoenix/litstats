@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-26T20:29:23.102Z",
+  "last_update": "2026-04-26T22:28:36.811Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1843,15 +1843,15 @@
     },
     {
       "country": "Russia",
-      "score": 7085,
+      "score": 7110,
       "top_players": [
         {
           "username": "anrie",
           "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
           "country": "Russia",
-          "current_ap": 32305,
+          "current_ap": 32330,
           "last_month_ap": 32305,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -2386,9 +2386,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25145,
+          "current_ap": 25150,
           "last_month_ap": 25440,
-          "monthly_gain": -295,
+          "monthly_gain": -290,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3050,26 +3050,26 @@
           ]
         },
         {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 23815,
-          "last_month_ap": 22965,
-          "monthly_gain": 850,
+          "current_ap": 23865,
+          "last_month_ap": 23170,
+          "monthly_gain": 695,
           "maxGames": [
-            "Max TKR",
-            "Max Wool Games",
             "Max Duels"
           ]
         },
         {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 23815,
-          "last_month_ap": 23170,
-          "monthly_gain": 645,
+          "current_ap": 23830,
+          "last_month_ap": 22965,
+          "monthly_gain": 865,
           "maxGames": [
+            "Max TKR",
+            "Max Wool Games",
             "Max Duels"
           ]
         },
@@ -3225,9 +3225,9 @@
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
-          "current_ap": 23220,
+          "current_ap": 23260,
           "last_month_ap": 23110,
-          "monthly_gain": 110,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Pit",
             "Max Bed Wars"
@@ -3328,15 +3328,15 @@
     },
     {
       "country": "Moldova",
-      "score": 300,
+      "score": 320,
       "top_players": [
         {
           "username": "kenaet",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
-          "current_ap": 25765,
+          "current_ap": 25785,
           "last_month_ap": 25525,
-          "monthly_gain": 240,
+          "monthly_gain": 260,
           "maxGames": [
             "Max VampireZ",
             "Max Bed Wars",
