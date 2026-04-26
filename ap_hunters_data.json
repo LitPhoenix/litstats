@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-26T14:37:35.140Z",
+  "last_update": "2026-04-26T16:32:26.412Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -387,7 +387,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12501,
+      "score": 12502,
       "top_players": [
         {
           "username": "oJakey",
@@ -484,9 +484,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30545,
+          "current_ap": 30555,
           "last_month_ap": 30020,
-          "monthly_gain": 525,
+          "monthly_gain": 535,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -1028,7 +1028,7 @@
     },
     {
       "country": "France",
-      "score": 11301,
+      "score": 11311,
       "top_players": [
         {
           "username": "Yann31_",
@@ -1067,9 +1067,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_ap": 31620,
+          "current_ap": 31640,
           "last_month_ap": 31570,
-          "monthly_gain": 50,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Pit",
             "Max Blitz",
@@ -2844,6 +2844,19 @@
           ]
         },
         {
+          "username": "nonoooooooo",
+          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+          "country": "Unknown",
+          "current_ap": 25060,
+          "last_month_ap": 24730,
+          "monthly_gain": 330,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
@@ -2852,19 +2865,6 @@
           "monthly_gain": -15,
           "maxGames": [
             "Max Wool Games"
-          ]
-        },
-        {
-          "username": "nonoooooooo",
-          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
-          "country": "Unknown",
-          "current_ap": 25040,
-          "last_month_ap": 24730,
-          "monthly_gain": 310,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Duels"
           ]
         },
         {
