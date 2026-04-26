@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-25T22:26:53.593Z",
+  "last_update": "2026-04-26T01:44:15.804Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -390,7 +390,7 @@
       "score": 12501,
       "top_players": [
         {
-          "username": "oJakeyNow_",
+          "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
           "current_ap": 32475,
@@ -1218,7 +1218,7 @@
     },
     {
       "country": "UK",
-      "score": 9956,
+      "score": 9964,
       "top_players": [
         {
           "username": "greaneye",
@@ -1250,9 +1250,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30495,
+          "current_ap": 30510,
           "last_month_ap": 30290,
-          "monthly_gain": 205,
+          "monthly_gain": 220,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -2386,9 +2386,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25125,
+          "current_ap": 25145,
           "last_month_ap": 25440,
-          "monthly_gain": -315,
+          "monthly_gain": -295,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3026,6 +3026,19 @@
           ]
         },
         {
+          "username": "XxTrialxX",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 23900,
+          "last_month_ap": 23340,
+          "monthly_gain": 560,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "DarkSilent",
           "uuid": "93b354235bd44e9a8ebf43763d90c96a",
           "country": "Unknown",
@@ -3037,16 +3050,14 @@
           ]
         },
         {
-          "username": "XxTrialxX",
-          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 23865,
-          "last_month_ap": 23340,
-          "monthly_gain": 525,
+          "current_ap": 23815,
+          "last_month_ap": 23170,
+          "monthly_gain": 645,
           "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
+            "Max Duels"
           ]
         },
         {
@@ -3059,17 +3070,6 @@
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 23790,
-          "last_month_ap": 23170,
-          "monthly_gain": 620,
-          "maxGames": [
             "Max Duels"
           ]
         },
@@ -3209,9 +3209,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
-          "current_ap": 23270,
+          "current_ap": 23280,
           "last_month_ap": 23165,
-          "monthly_gain": 105,
+          "monthly_gain": 115,
           "maxGames": [
             "Max Pit",
             "Max Bed Wars",
@@ -3225,9 +3225,9 @@
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
-          "current_ap": 23205,
+          "current_ap": 23220,
           "last_month_ap": 23110,
-          "monthly_gain": 95,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Pit",
             "Max Bed Wars"
