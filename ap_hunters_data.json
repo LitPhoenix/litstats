@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-27T15:31:13.144Z",
+  "last_update": "2026-04-27T17:15:29.222Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2280,7 +2280,7 @@
     },
     {
       "country": "Norway",
-      "score": 3886,
+      "score": 3890,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -2323,9 +2323,9 @@
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25540,
+          "current_ap": 25555,
           "last_month_ap": 25370,
-          "monthly_gain": 170,
+          "monthly_gain": 185,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
@@ -2387,9 +2387,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25150,
+          "current_ap": 25160,
           "last_month_ap": 25440,
-          "monthly_gain": -290,
+          "monthly_gain": -280,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3030,9 +3030,9 @@
           "username": "XxTrialxX",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
-          "current_ap": 23960,
+          "current_ap": 23965,
           "last_month_ap": 23340,
-          "monthly_gain": 620,
+          "monthly_gain": 625,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
@@ -3238,13 +3238,14 @@
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
-          "current_ap": 23170,
+          "current_ap": 23195,
           "last_month_ap": 23000,
-          "monthly_gain": 170,
+          "monthly_gain": 195,
           "maxGames": [
             "Max Bed Wars",
             "Max Wool Games",
-            "Max Duels"
+            "Max Duels",
+            "Max Seasonal"
           ]
         },
         {
@@ -3481,9 +3482,9 @@
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Italy",
-          "current_ap": 24545,
+          "current_ap": 24555,
           "last_month_ap": 24390,
-          "monthly_gain": 155,
+          "monthly_gain": 165,
           "maxGames": [
             "Max Murder Mystery",
             "Max Bed Wars",
