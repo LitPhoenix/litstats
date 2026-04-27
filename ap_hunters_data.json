@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-27T19:04:46.207Z",
+  "last_update": "2026-04-27T20:52:59.287Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -387,7 +387,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12502,
+      "score": 12508,
       "top_players": [
         {
           "username": "oJakey",
@@ -460,15 +460,16 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_ap": 30835,
+          "current_ap": 30860,
           "last_month_ap": 30720,
-          "monthly_gain": 115,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
             "Max SkyBlock",
             "Max Warlords",
+            "Max Walls",
             "Max TNT Games",
             "Max Arcade",
             "Max Murder Mystery",
@@ -1171,7 +1172,7 @@
           ]
         },
         {
-          "username": "horrifying",
+          "username": "horri",
           "uuid": "04f4bddb99004950ab605a20f41c6a98",
           "country": "France",
           "current_ap": 26070,
@@ -1511,7 +1512,7 @@
     },
     {
       "country": "Canada",
-      "score": 8388,
+      "score": 8391,
       "top_players": [
         {
           "username": "Songgg",
@@ -1544,9 +1545,9 @@
           "username": "Andorite",
           "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
           "country": "Canada",
-          "current_ap": 29570,
+          "current_ap": 29575,
           "last_month_ap": 29470,
-          "monthly_gain": 100,
+          "monthly_gain": 105,
           "maxGames": [
             "Max Warlords",
             "Max TNT Games",
@@ -3030,9 +3031,9 @@
           "username": "XxTrialxX",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
-          "current_ap": 23965,
+          "current_ap": 23985,
           "last_month_ap": 23340,
-          "monthly_gain": 625,
+          "monthly_gain": 645,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
@@ -3226,9 +3227,9 @@
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
-          "current_ap": 23260,
+          "current_ap": 23275,
           "last_month_ap": 23110,
-          "monthly_gain": 150,
+          "monthly_gain": 165,
           "maxGames": [
             "Max Pit",
             "Max Bed Wars"
