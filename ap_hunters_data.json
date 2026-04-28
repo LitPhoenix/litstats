@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-27T22:41:04.326Z",
+  "last_update": "2026-04-28T01:55:17.931Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -387,7 +387,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12508,
+      "score": 12509,
       "top_players": [
         {
           "username": "oJakey",
@@ -485,9 +485,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30555,
+          "current_ap": 30570,
           "last_month_ap": 30020,
-          "monthly_gain": 535,
+          "monthly_gain": 550,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -1996,7 +1996,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6598,
+      "score": 6608,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -2025,9 +2025,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 27900,
+          "current_ap": 27920,
           "last_month_ap": 27280,
-          "monthly_gain": 620,
+          "monthly_gain": 640,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -3013,6 +3013,19 @@
           ]
         },
         {
+          "username": "XxTrialxX",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 24015,
+          "last_month_ap": 23340,
+          "monthly_gain": 675,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
@@ -3025,19 +3038,6 @@
             "Max VampireZ",
             "Max TKR",
             "Max Crazy Walls"
-          ]
-        },
-        {
-          "username": "XxTrialxX",
-          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
-          "country": "Unknown",
-          "current_ap": 23985,
-          "last_month_ap": 23340,
-          "monthly_gain": 645,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
           ]
         },
         {
