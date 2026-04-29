@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-29T20:53:25.264Z",
+  "last_update": "2026-04-29T22:46:40.108Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1512,7 +1512,7 @@
     },
     {
       "country": "Canada",
-      "score": 8391,
+      "score": 8392,
       "top_players": [
         {
           "username": "Songgg",
@@ -1579,9 +1579,9 @@
           "username": "5bEVE",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
-          "current_ap": 26815,
+          "current_ap": 26830,
           "last_month_ap": 26790,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max TNT Games",
             "Max Bed Wars",
@@ -3054,6 +3054,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 23900,
+          "last_month_ap": 23170,
+          "monthly_gain": 730,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "DarkSilent",
           "uuid": "93b354235bd44e9a8ebf43763d90c96a",
           "country": "Unknown",
@@ -3062,17 +3073,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max SkyClash"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 23885,
-          "last_month_ap": 23170,
-          "monthly_gain": 715,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
