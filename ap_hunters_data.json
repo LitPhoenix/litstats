@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-29T17:17:49.297Z",
+  "last_update": "2026-04-29T19:09:36.124Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -800,6 +800,24 @@
           ]
         },
         {
+          "username": "lyraava",
+          "uuid": "6d84e8ed95b3452095221594b9e448fe",
+          "country": "USA",
+          "current_ap": 25675,
+          "last_month_ap": 25625,
+          "monthly_gain": 50,
+          "maxGames": [
+            "Max Arena Brawl",
+            "Max Smash Heroes",
+            "Max Paintball",
+            "Max SkyBlock",
+            "Max Speed UHC",
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "NickIsOffline",
           "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
           "country": "USA",
@@ -809,24 +827,6 @@
           "maxGames": [
             "Max Smash Heroes",
             "Max Warlords",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "lyraava",
-          "uuid": "6d84e8ed95b3452095221594b9e448fe",
-          "country": "USA",
-          "current_ap": 25655,
-          "last_month_ap": 25625,
-          "monthly_gain": 30,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max VampireZ",
             "Max TKR"
           ]
         },
@@ -2338,7 +2338,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3690,
+      "score": 3693,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2375,9 +2375,9 @@
           "username": "noobay",
           "uuid": "a481c0951d3246169ebe1dd6f583d357",
           "country": "Croatia",
-          "current_ap": 25615,
+          "current_ap": 25625,
           "last_month_ap": 25195,
-          "monthly_gain": 420,
+          "monthly_gain": 430,
           "maxGames": [
             "Max Blitz",
             "Max Quake",
@@ -3029,9 +3029,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 24000,
+          "current_ap": 24025,
           "last_month_ap": 23905,
-          "monthly_gain": 95,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
