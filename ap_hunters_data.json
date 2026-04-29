@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-29T08:00:49.877Z",
+  "last_update": "2026-04-29T10:06:30.174Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -1845,15 +1845,15 @@
     },
     {
       "country": "Russia",
-      "score": 7110,
+      "score": 7130,
       "top_players": [
         {
           "username": "anrie",
           "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
           "country": "Russia",
-          "current_ap": 32330,
+          "current_ap": 32350,
           "last_month_ap": 32305,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max UHC",
             "Max Pit",
