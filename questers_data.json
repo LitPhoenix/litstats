@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-29T22:46:40.500Z",
+  "last_update": "2026-04-30T01:57:26.772Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 108009,
     "289e9f90a76640e0921c85dcd96385b5": 81407,
@@ -369,15 +369,15 @@
     },
     {
       "country": "Croatia",
-      "score": 11777,
+      "score": 11803.6,
       "top_players": [
         {
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_quests": 58885,
+          "current_quests": 59018,
           "last_month_quests": 58589,
-          "monthly_gain": 296
+          "monthly_gain": 429
         }
       ]
     },
@@ -664,6 +664,28 @@
       ]
     },
     {
+      "country": "Taiwan",
+      "score": 17983,
+      "top_players": [
+        {
+          "username": "Summer_Albert",
+          "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+          "country": "Taiwan",
+          "current_quests": 46524,
+          "last_month_quests": 44744,
+          "monthly_gain": 1780
+        },
+        {
+          "username": "Itz_Pipi",
+          "uuid": "ae655706622d410cb36b9a8c4e1f1be4",
+          "country": "Taiwan",
+          "current_quests": 43391,
+          "last_month_quests": 43391,
+          "monthly_gain": 0
+        }
+      ]
+    },
+    {
       "country": "Czech Republic",
       "score": 14477.8,
       "top_players": [
@@ -681,28 +703,6 @@
           "country": "Czech Republic",
           "current_quests": 25883,
           "last_month_quests": 25883,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Taiwan",
-      "score": 17973.4,
-      "top_players": [
-        {
-          "username": "Summer_Albert",
-          "uuid": "7638efa55b784c41ac34a4c59b2b86df",
-          "country": "Taiwan",
-          "current_quests": 46476,
-          "last_month_quests": 44744,
-          "monthly_gain": 1732
-        },
-        {
-          "username": "Itz_Pipi",
-          "uuid": "ae655706622d410cb36b9a8c4e1f1be4",
-          "country": "Taiwan",
-          "current_quests": 43391,
-          "last_month_quests": 43391,
           "monthly_gain": 0
         }
       ]
