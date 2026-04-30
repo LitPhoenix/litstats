@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-30T19:06:45.657Z",
+  "last_update": "2026-04-30T20:51:46.968Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32470,
     "3de9779b0ed34ca196575639b57e2c3b": 32395,
@@ -2528,7 +2528,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1730,
+      "score": 1740,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2545,9 +2545,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26195,
+          "current_ap": 26215,
           "last_month_ap": 26100,
-          "monthly_gain": 95,
+          "monthly_gain": 115,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
