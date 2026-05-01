@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-01T20:42:19.690Z",
+  "last_update": "2026-05-01T22:41:45.014Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109037,
     "289e9f90a76640e0921c85dcd96385b5": 81483,
@@ -509,9 +509,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 22711,
+          "current_quests": 22751,
           "last_month_quests": 22711,
-          "monthly_gain": 0
+          "monthly_gain": 40
         },
         {
           "username": "Nightire",
@@ -863,15 +863,15 @@
     },
     {
       "country": "Sweden",
-      "score": 11198.4,
+      "score": 11210.2,
       "top_players": [
         {
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Sweden",
-          "current_quests": 32820,
+          "current_quests": 32879,
           "last_month_quests": 32820,
-          "monthly_gain": 0
+          "monthly_gain": 59
         },
         {
           "username": "Reeedly",
