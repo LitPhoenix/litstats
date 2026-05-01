@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-01T11:03:08.913Z",
+  "last_update": "2026-05-01T12:55:55.241Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2629,9 +2629,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25160,
+          "current_ap": 25185,
           "last_month_ap": 25140,
-          "monthly_gain": 20,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Duels"
           ]
@@ -3272,6 +3272,26 @@
       ]
     },
     {
+      "country": "Moldova",
+      "score": 335,
+      "top_players": [
+        {
+          "username": "kenaet",
+          "uuid": "4b431497b4094a1d8e15335e81454c4a",
+          "country": "Moldova",
+          "current_ap": 25800,
+          "last_month_ap": 25785,
+          "monthly_gain": 15,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Spain",
       "score": 333,
       "top_players": [
@@ -3320,26 +3340,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Moldova",
-      "score": 320,
-      "top_players": [
-        {
-          "username": "kenaet",
-          "uuid": "4b431497b4094a1d8e15335e81454c4a",
-          "country": "Moldova",
-          "current_ap": 25785,
-          "last_month_ap": 25785,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max Duels",
-            "Max Build Battle"
           ]
         }
       ]
