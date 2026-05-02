@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-02T14:41:57.369Z",
+  "last_update": "2026-05-02T16:37:19.934Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1012,7 +1012,7 @@
     },
     {
       "country": "France",
-      "score": 11311,
+      "score": 11313,
       "top_players": [
         {
           "username": "Yann31_",
@@ -1091,9 +1091,9 @@
           "username": "Posey",
           "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
           "country": "France",
-          "current_ap": 28655,
+          "current_ap": 28675,
           "last_month_ap": 28655,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max SkyBlock",
             "Max Speed UHC",
@@ -3416,9 +3416,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 24890,
+          "current_ap": 24905,
           "last_month_ap": 24865,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Wool Games"
           ]
