@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-02T01:47:50.980Z",
+  "last_update": "2026-05-02T04:53:19.373Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -625,11 +625,12 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27515,
+          "current_ap": 27555,
           "last_month_ap": 27515,
-          "monthly_gain": 0,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Cops and Crims",
+            "Max Arcade",
             "Max VampireZ",
             "Max Bed Wars",
             "Max TKR",
@@ -3192,9 +3193,9 @@
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
-          "current_ap": 23285,
+          "current_ap": 23305,
           "last_month_ap": 23275,
-          "monthly_gain": 10,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Pit",
             "Max Bed Wars"
