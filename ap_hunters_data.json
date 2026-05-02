@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-01T22:41:44.631Z",
+  "last_update": "2026-05-02T01:47:50.980Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -3189,6 +3189,18 @@
           ]
         },
         {
+          "username": "22charizard",
+          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+          "country": "Unknown",
+          "current_ap": 23285,
+          "last_month_ap": 23275,
+          "monthly_gain": 10,
+          "maxGames": [
+            "Max Pit",
+            "Max Bed Wars"
+          ]
+        },
+        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -3216,18 +3228,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "22charizard",
-          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
-          "country": "Unknown",
-          "current_ap": 23275,
-          "last_month_ap": 23275,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max Bed Wars"
           ]
         },
         {
