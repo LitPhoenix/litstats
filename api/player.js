@@ -76,6 +76,7 @@ module.exports = async (req, res) => {
       username: profile.displayname || "Unknown",
       uuid: profile.uuid,
       rank: getPlayerRank(profile),
+      rankPlusColor: profile.rankPlusColor || 'RED',
       achievementPoints: profile.achievementPoints || 0,
       questsCompleted: 0, 
       maxGames: [],
@@ -167,7 +168,12 @@ module.exports = async (req, res) => {
             } else {
               isMaxed = false;
               responseData.missingAchievements.push({
-                game: game.name, title: ach.name, desc: ach.description, reward: ach.points
+                game: game.name, 
+                title: ach.name, 
+                desc: ach.description, 
+                reward: ach.points,
+                isOneTime: true, // Flag to hide tier text
+                globalPct: ach.globalPercentUnlocked // Grab the API's global percentage
               });
             }
           }
@@ -186,7 +192,13 @@ module.exports = async (req, res) => {
               } else {
                 isMaxed = false;
                 responseData.missingAchievements.push({
-                  game: game.name, title: `${ach.name} (Tier ${tier.amount})`, desc: ach.description, reward: tier.points
+                  game: game.name, 
+                  title: ach.name, // Keep base name clean
+                  desc: ach.description, 
+                  reward: tier.points,
+                  tier: tier.tier, // Actual tier (1-5)
+                  amount: tier.amount, // Required amount to complete
+                  currentAmt: playerAmt // Player's current progress
                 });
               }
             }
