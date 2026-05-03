@@ -63,7 +63,7 @@ main {
 .player-name-row { display: flex; align-items: baseline; gap: 12px; }
 
 .mc-rank { 
-  font-size: 14px; 
+  font-size: 20px; 
   font-weight: 700; 
   line-height: 1; 
 } 
