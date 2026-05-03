@@ -19,7 +19,13 @@ function formatRankText(rank, plusColour) {
     // Strip any existing brackets to prevent [[YOUTUBE]]
     const cleanRank = rank.replace(/\[|\]/g, ''); 
 
-    if (cleanRank === 'MVP_PLUS_PLUS' || cleanRank.includes('++')) {
+    if (cleanRank === 'STAFF' || cleanRank.includes('staff')) {
+        return `<span style="color: #FF5555; background: rgba(255, 0, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[<span style="color:#FFAA00">ዞ</span>]</span>`;
+    } else if (cleanRank === 'YOUTUBER' || cleanRank.includes('youtube')) {
+        return `<span style="color: #FF5555; background: rgba(255, 0, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[<span style="color:#FFFFFF">YOUTUBE</span>]</span>`;
+    } else if (cleanRank.includes('PIG')) {
+        return `<span style="color: #FF55FF; background: rgba(255, 85, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[PIG<span style="color:#00FFFF">+++</span>]</span>`;
+    } else if (cleanRank === 'MVP_PLUS_PLUS' || cleanRank.includes('++')) {
         return `<span style="color: #FFAA00; background: rgba(255, 170, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">++</span>]</span>`;
     } else if (cleanRank === 'MVP_PLUS' || (cleanRank.includes('+') && cleanRank.includes('MVP'))) {
         return `<span style="color: #55FFFF; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">+</span>]</span>`;
