@@ -20,18 +20,30 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/global.css">
 
+
+
 <style>
 @font-face { font-family: 'Vanilla'; src: url('assets/fonts/Minecraft.ttf'); }
 @font-face { font-family: 'Faithful'; src: url('assets/fonts/mineglyph-faithful.otf'); }
 .custom-font-class { font-family: 'Faithful'; letter-spacing: 10px; }
 
 :root {
-  --slot-size: 52px;
+  --slot-size: 40px;
   --mc-font: 'Faithful', 'Vanilla', 'Minecraft', monospace;
   --mc-slot-bg: rgba(168, 168, 168, 0.1);
   --mc-border-light: rgba(235, 235, 235, 0.204);
   --mc-border-dark: rgba(0, 0, 0, 0.15);
   --mc-slot-dark: rgba(0, 0, 0, 0.541);
+}
+
+main {
+  zoom: 0.9; /* default — no zoom on mobile */
+}
+
+@media (min-width: 768px) {
+  main {
+    zoom: 1.5; /* only zoom on tablet and up */
+  }
 }
 
 body.theme-classic { --slot-size: 36px; }
@@ -101,7 +113,7 @@ main {
 .item-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated; pointer-events: none; }
 .empty-armor { opacity: 0.3; pointer-events: none; }
 
-.count { position: absolute; bottom: 2px; right: 4px; font-size: 16px; color: #fff; text-shadow: 2px 2px 0 #3f3f3f; pointer-events: none; z-index: 5; }
+.count { position: absolute; bottom: -3px; right: -4px; font-size: 16px; color: #fff; text-shadow: 2px 2px 0 #3f3f3f; pointer-events: none; z-index: 5; }
 
 .item-wrapper.enchanted::after {
   content: ''; position: absolute; inset: 0;
@@ -293,10 +305,16 @@ function getAssetUrl(it) {
   const nameLower = (it.name || '').toLowerCase();
   
   if (nameLower.includes('health boost')) return 'img/blitz/items/Potion_of_Fire_Resistance.png';
-  if (nameLower === 'warlock' || nameLower.includes('harming')) return 'img/blitz/items/Splash_Potion_of_Harming.png';
+  if (nameLower.includes('harming')) return 'img/blitz/items/Splash_Potion_of_Harming.png';
   if (nameLower === 'scout') return 'img/blitz/items/Potion_of_Speed.png';
+  if (nameLower.includes('of wither'))  return 'img/blitz/items/Splash_Potion_of_Weakness.png';
+  if (nameLower.includes('of invisibility'))  return 'img/blitz/items/Splash_Potion_of_Invisibility.png';
+  if (nameLower.includes('splash potion of speed'))  return 'img/blitz/items/Splash_Potion_of_Swiftness.png';
   if (nameLower.includes('of speed'))  return 'img/blitz/items/Potion_of_Swiftness.png';
+  if (nameLower.includes('splash potion of resistance'))  return 'img/blitz/items/Splash_Potion_of_Resistance.png';
+  if (nameLower.includes('of resistance'))  return 'img/blitz/items/Potion_of_Resistance.png';
   if (nameLower === 'shark head' || id === 'player_head') return 'img/blitz/shark.png';
+  if (nameLower === 'armorer')  return 'img/blitz/items/leather_armor/armorer_leather_chestplate.png';
   if (id === 'tall_grass' || id === 'grass' || id === 'short_grass') return 'img/blitz/items/Grass.png';
 
   return `img/blitz/items/${id}.png`;
@@ -475,7 +493,18 @@ function openKit(name, skipPush = false) {
   setTimeout(initPlayer,50);
 }
 
+function setZoom() {
+  const base = 500;
+  const zoom = Math.min(Math.max(window.innerWidth / base, 0.5), 1.5);
+  document.querySelector('main').style.zoom = zoom;
+  document.querySelector('.blitz-settings').style.zoom = zoom;
+  document.getElementById('tooltip').style.zoom = zoom;
+  window._uiZoom = zoom; // store for tooltip math
+}
+window.addEventListener('resize', setZoom);
+
 document.addEventListener('DOMContentLoaded', () => {
+  setZoom();
   initSettings();
   initChest();
   setTimeout(preloadAssets, 300);
@@ -553,16 +582,34 @@ function buildTooltip(it) {
   let displayName = it.name;
   let wrapperClass = `r-${it.rarity}`;
 
-  // Detect if the item is a piece of armour
-  const isArmour = it.id && (it.id.includes('helmet') || it.id.includes('chestplate') || it.id.includes('leggings') || it.id.includes('boots'));
+  const isSkullOrShark = it.id && (it.id.includes('skull') || it.id.includes('shark'));
   
-  // Apply formatting if we are viewing a specific kit
+  const isArmour = it.id && (
+    it.id.includes('helmet') || 
+    it.id.includes('chestplate') || 
+    it.id.includes('leggings') || 
+    it.id.includes('boots') || 
+    it.id.includes('skull') || 
+    it.id.includes('shark') || 
+    it.id.includes('sword') || 
+    it.id.includes('axe') || 
+    it.id.includes('bow')
+  );
+  
   if (activeKitName && isArmour) {
     const levelLabel = useRoman ? NUM_ROMAN[currentLevelIndex] : NUM_DIGIT[currentLevelIndex];
     
-    // Forces the hypixel standard: [White] Kit's Item [Grey] (Level)
-    displayName = `<span class="r-common">${activeKitName}'s ${it.name}</span> <span class="c-grey">(${levelLabel})</span>`;
-    wrapperClass = ''; // Clear the default wrapper class so our custom spans take over
+    // Using includes() is safer in case there are hidden spaces in the kit name strings
+    const isGoldKit = activeKitName.includes('P2') || activeKitName.includes('✫✫');
+    const baseItemName = isSkullOrShark ? it.name : `${activeKitName}'s ${it.name}`;
+    
+    if (isGoldKit) {
+      displayName = `${baseItemName} (${levelLabel})`;
+      wrapperClass = 'r-legendary'; 
+    } else {
+      displayName = `<span class="r-common">${baseItemName}</span> <span class="c-grey">(${levelLabel})</span>`;
+      wrapperClass = ''; 
+    }
   }
 
   let h = `<span class="tt-name ${wrapperClass}">${displayName}</span>`;
