@@ -91,7 +91,7 @@ main {
 .armour-column { display: flex; flex-direction: column; gap: 4px; }
 
 #player-box {
-  width: 160px; height: 220px; background: rgba(128, 128, 128, 0.05);
+  width: 140px; height: 172px; background: rgba(128, 128, 128, 0.05);
   border: 2px solid var(--mc-slot-dark); border-right-color: var(--mc-border-light); border-bottom-color: var(--mc-border-light);
   border-radius: 4px; overflow: hidden;
 }
@@ -623,7 +623,20 @@ function buildTooltip(it) {
   return h;
 }
 document.addEventListener('mouseover',e=>{const s=e.target.closest('.slot');if(!s)return;const d=s.getAttribute('data-item');if(!d)return;tooltip.innerHTML=buildTooltip(JSON.parse(d));tooltip.classList.add('show');});
-document.addEventListener('mousemove',e=>{if(!tooltip.classList.contains('show'))return;const p=15;let x=e.clientX+p,y=e.clientY+p;if(x+tooltip.offsetWidth>window.innerWidth)x=e.clientX-tooltip.offsetWidth-p;if(y+tooltip.offsetHeight>window.innerHeight)y=e.clientY-tooltip.offsetHeight-p;tooltip.style.left=x+'px';tooltip.style.top=y+'px';});
+document.addEventListener('mousemove', e => {
+  if (!tooltip.classList.contains('show')) return;
+  const z = window._uiZoom || 1;
+  const p = 15;
+  const tw = tooltip.offsetWidth * z;
+  const th = tooltip.offsetHeight * z;
+  let x = e.clientX + p;
+  let y = e.clientY + p;
+  if (x + tw > window.innerWidth)  x = e.clientX - tw - p;
+  if (y + th > window.innerHeight) y = e.clientY - th - p;
+  // divide by zoom because fixed coords are in pre-zoom space
+  tooltip.style.left = (x / z) + 'px';
+  tooltip.style.top  = (y / z) + 'px';
+});
 document.addEventListener('mouseout',e=>{if(e.target.closest('.slot'))tooltip.classList.remove('show');});
 
 let viewer;
