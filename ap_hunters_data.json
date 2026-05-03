@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-02T22:31:32.547Z",
+  "last_update": "2026-05-03T01:50:59.305Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -3009,6 +3009,19 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 24030,
+          "last_month_ap": 23910,
+          "monthly_gain": 120,
+          "maxGames": [
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
@@ -3024,25 +3037,12 @@
           ]
         },
         {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 24020,
-          "last_month_ap": 23910,
-          "monthly_gain": 110,
-          "maxGames": [
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 23910,
+          "current_ap": 23930,
           "last_month_ap": 23900,
-          "monthly_gain": 10,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Duels"
           ]
