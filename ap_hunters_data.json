@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-03T12:45:21.668Z",
+  "last_update": "2026-05-03T14:41:55.001Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -842,9 +842,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25555,
+          "current_ap": 25580,
           "last_month_ap": 25555,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Smash Heroes",
             "Max Bed Wars",
@@ -2982,6 +2982,19 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 24085,
+          "last_month_ap": 23910,
+          "monthly_gain": 175,
+          "maxGames": [
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "tyelur",
           "uuid": "b2cbfed76872468fac2842af0cd4877b",
           "country": "Unknown",
@@ -3006,19 +3019,6 @@
             "Max Paintball",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 24035,
-          "last_month_ap": 23910,
-          "monthly_gain": 125,
-          "maxGames": [
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
