@@ -16,18 +16,22 @@ function formatRankText(rank, plusColour) {
     if (!rank || rank === 'NON') return '';
     const plusHex = getPlusColourHex(plusColour);
     
-    if (rank === 'MVP_PLUS_PLUS' || rank.includes('++')) {
+    // Strip any existing brackets to prevent [[YOUTUBE]]
+    const cleanRank = rank.replace(/\[|\]/g, ''); 
+
+    if (cleanRank === 'MVP_PLUS_PLUS' || cleanRank.includes('++')) {
         return `<span style="color: #FFAA00; background: rgba(255, 170, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">++</span>]</span>`;
-    } else if (rank === 'MVP_PLUS' || (rank.includes('+') && rank.includes('MVP'))) {
+    } else if (cleanRank === 'MVP_PLUS' || (cleanRank.includes('+') && cleanRank.includes('MVP'))) {
         return `<span style="color: #55FFFF; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">+</span>]</span>`;
-    } else if (rank === 'MVP') {
+    } else if (cleanRank === 'MVP') {
         return `<span style="color: #55FFFF; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP]</span>`;
-    } else if (rank === 'VIP_PLUS') {
+    } else if (cleanRank === 'VIP_PLUS' || (cleanRank.includes('+') && cleanRank.includes('VIP'))) {
         return `<span style="color: #55FF55; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[VIP<span style="color: ${plusHex}">+</span>]</span>`;
-    } else if (rank === 'VIP') {
+    } else if (cleanRank === 'VIP') {
         return `<span style="color: #55FF55; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[VIP]</span>`;
     }
-    return `<span style="color: #AAAAAA; background: rgba(170, 170, 170, 0.1); padding: 2px 6px; border-radius: 4px;">[${rank}]</span>`;
+    
+    return `<span style="color: #AAAAAA; background: rgba(170, 170, 170, 0.1); padding: 2px 6px; border-radius: 4px;">[${cleanRank}]</span>`;
 }
 
 function populateFilters() {
@@ -82,12 +86,28 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        let pct = ach.gamePercentUnlocked !== undefined ? Number(ach.gamePercentUnlocked).toFixed(1) 
-        : ach.globalPercentUnlocked !== undefined ? Number(ach.globalPercentUnlocked).toFixed(1) 
-        : "0.0";
-        let amountToReach = ach.nextTierAmount || ach.target || "?";
-        let parsedDesc = ach.desc ? ach.desc.replace(/%%value%%/g, amountToReach) : "";
+        // 1. Force-clean the title to prevent cached backend errors from bleeding through
+        let cleanTitle = ach.title ? ach.title.replace(/\s*\(Tier\s*\d+\)/gi, '').trim() : "Unknown";
         
+        // 2. Only append the Tier if the backend confirms it is a tiered achievement
+        let finalTitle = cleanTitle;
+        if (ach.tier) {
+            finalTitle = `${cleanTitle} (Tier ${ach.tier})`;
+        }
+
+        // 3. Target all possible Hypixel placeholders and inject the amount
+        let displayTarget = ach.amount || ach.target || 1;
+        let parsedDesc = ach.desc || "";
+        parsedDesc = parsedDesc.replace(/%%value%%|%tieramount%|\?/gi, displayTarget);
+
+        // 4. Percentage calculation
+        let pct = "0.0";
+        if (ach.globalPct !== undefined) {
+            pct = Number(ach.globalPct).toFixed(1);
+        } else if (ach.currentAmt !== undefined && ach.amount > 0) {
+            pct = Math.min(100, (ach.currentAmt / ach.amount) * 100).toFixed(1);
+        }
+
         return `
           <div class="ach-card">
             <span class="ach-percent">${pct}%</span>
@@ -95,7 +115,7 @@ function renderTodoGrid() {
               <img src="${getGameIconUrl('Max ' + ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
               <span class="ach-game">${ach.game}</span>
             </div>
-            <span class="ach-title">${ach.title}</span>
+            <span class="ach-title">${finalTitle}</span>
             <span class="ach-desc">${parsedDesc}</span>
             <span class="ach-reward">
               <img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> 
