@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-04T17:22:46.852Z",
+  "last_update": "2026-05-04T19:14:21.538Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1495,7 +1495,7 @@
     },
     {
       "country": "Canada",
-      "score": 8395,
+      "score": 8402,
       "top_players": [
         {
           "username": "Songgg",
@@ -1545,9 +1545,9 @@
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
-          "current_ap": 28055,
+          "current_ap": 28085,
           "last_month_ap": 28055,
-          "monthly_gain": 0,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Blitz",
             "Max Arena Brawl",
@@ -3203,6 +3203,20 @@
           ]
         },
         {
+          "username": "Jyahp",
+          "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
+          "country": "Unknown",
+          "current_ap": 23285,
+          "last_month_ap": 23265,
+          "monthly_gain": 20,
+          "maxGames": [
+            "Max Pit",
+            "Max SkyBlock",
+            "Max VampireZ",
+            "Max Bed Wars"
+          ]
+        },
+        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -3230,20 +3244,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "Jyahp",
-          "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
-          "country": "Unknown",
-          "current_ap": 23280,
-          "last_month_ap": 23265,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyBlock",
-            "Max VampireZ",
-            "Max Bed Wars"
           ]
         },
         {
