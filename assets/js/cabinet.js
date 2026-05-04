@@ -12,19 +12,36 @@ function getPlusColourHex(colourName) {
     return colours[colourName] || '#FF5555';
 }
 
+// Determines the base color for the player's name based on their rank[cite: 5]
+function getRankBaseColourHex(rank) {
+    if (!rank || rank === 'NON') return 'var(--text)';
+    const clean = rank.replace(/\[|\]/g, ''); 
+    if (clean.includes('++') || clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; // Gold
+    if (clean.includes('MVP')) return '#55FFFF'; // Aqua
+    if (clean.includes('VIP')) return '#55FF55'; // Green
+    if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; // Red
+    if (clean.includes('PIG') || clean.includes('INNIT')) return '#FF55FF'; // Pink
+    return 'var(--text)';
+}
+
 function formatRankText(rank, plusColour) {
     if (!rank || rank === 'NON') return '';
     const plusHex = getPlusColourHex(plusColour);
     
-    // Strip any existing brackets to prevent [[YOUTUBE]]
     const cleanRank = rank.replace(/\[|\]/g, ''); 
 
     if (cleanRank === 'STAFF' || cleanRank.includes('staff')) {
-        return `<span style="color: #FF5555; background: rgba(255, 0, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[<span style="color:#FFAA00">ዞ</span>]</span>`;
-    } else if (cleanRank === 'YOUTUBER' || cleanRank.includes('youtube')) {
+        return `<span style="color: #FF5555; background: rgba(255, 0, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[<span style="color:#FFAA00">Y</span>]</span>`;
+    } else if (cleanRank === 'YOUTUBE' || cleanRank.includes('youtube')) {
         return `<span style="color: #FF5555; background: rgba(255, 0, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[<span style="color:#FFFFFF">YOUTUBE</span>]</span>`;
+    } else if (cleanRank === 'MOJANG' || cleanRank.includes('mojang')) {
+        return `<span style="color: #FFAA00; background: rgba(255, 170, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[MOJANG]</span>`;
+    } else if (cleanRank === 'EVENTS' || cleanRank.includes('event')) {
+        return `<span style="color: #FFAA00; background: rgba(255, 170, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[EVENTS]</span>`;
     } else if (cleanRank.includes('PIG')) {
         return `<span style="color: #FF55FF; background: rgba(255, 85, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[PIG<span style="color:#00FFFF">+++</span>]</span>`;
+    } else if (cleanRank.includes('INNIT')) {
+        return `<span style="color: #FF55FF; background: rgba(255, 85, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[INNIT]</span>`;
     } else if (cleanRank === 'MVP_PLUS_PLUS' || cleanRank.includes('++')) {
         return `<span style="color: #FFAA00; background: rgba(255, 170, 0, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP<span style="color: ${plusHex}">++</span>]</span>`;
     } else if (cleanRank === 'MVP_PLUS' || (cleanRank.includes('+') && cleanRank.includes('MVP'))) {
@@ -32,9 +49,9 @@ function formatRankText(rank, plusColour) {
     } else if (cleanRank === 'MVP') {
         return `<span style="color: #55FFFF; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[MVP]</span>`;
     } else if (cleanRank === 'VIP_PLUS' || (cleanRank.includes('+') && cleanRank.includes('VIP'))) {
-        return `<span style="color: #55FF55; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[VIP<span style="color: ${plusHex}">+</span>]</span>`;
+        return `<span style="color: #55FF55; background: rgba(85, 255, 85, 0.1); padding: 2px 6px; border-radius: 4px;">[VIP<span style="color: ${plusHex}">+</span>]</span>`;
     } else if (cleanRank === 'VIP') {
-        return `<span style="color: #55FF55; background: rgba(85, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px;">[VIP]</span>`;
+        return `<span style="color: #55ff55; background: rgba(85, 255, 85, 0.1); padding: 2px 6px; border-radius: 4px;">[VIP]</span>`;
     }
     
     return `<span style="color: #AAAAAA; background: rgba(170, 170, 170, 0.1); padding: 2px 6px; border-radius: 4px;">[${cleanRank}]</span>`;
@@ -92,21 +109,17 @@ function renderTodoGrid() {
     }
 
     container.innerHTML = achs.map(ach => {
-        // 1. Force-clean the title to prevent cached backend errors from bleeding through
         let cleanTitle = ach.title ? ach.title.replace(/\s*\(Tier\s*\d+\)/gi, '').trim() : "Unknown";
         
-        // 2. Only append the Tier if the backend confirms it is a tiered achievement
         let finalTitle = cleanTitle;
         if (ach.tier) {
-            finalTitle = `${cleanTitle} (Tier ${ach.tier})`;
+            finalTitle = `${cleanTitle}`;
         }
 
-        // 3. Target all possible Hypixel placeholders and inject the amount
         let displayTarget = ach.amount || ach.target || 1;
         let parsedDesc = ach.desc || "";
         parsedDesc = parsedDesc.replace(/%%value%%|%tieramount%|\?/gi, displayTarget);
 
-        // 4. Percentage calculation
         let pct = "0.0";
         if (ach.globalPct !== undefined) {
             pct = Number(ach.globalPct).toFixed(1);
@@ -114,19 +127,55 @@ function renderTodoGrid() {
             pct = Math.min(100, (ach.currentAmt / ach.amount) * 100).toFixed(1);
         }
 
+        // --- NEW TIER NOTCH & PROGRESS LOGIC ---
+        let percentHtml = `<span class="ach-percent">${pct}%</span>`;
+        let tierHtml = '';
+        let progressHtml = '';
+        let cardClasses = 'ach-card';
+
+if (ach.tier) {
+            cardClasses += ' has-tier'; // Adds extra bottom padding
+            percentHtml = ''; 
+
+            // 1. Build the progress bar
+            progressHtml = `
+              <div class="ach-progress-container" title="${ach.currentAmt || 0} / ${ach.amount}">
+                  <div class="ach-progress-fill" style="width: ${pct}%;"></div>
+              </div>
+            `;
+
+            // 2. Build the 5-notch bottom indicator (Sequential Buildup)
+            // Color sequence: Green -> Gold -> Orange -> Dark Orange -> Red
+            const notchColors = ['var(--tier-1)', 'var(--tier-2)', 'var(--tier-3)', 'var(--tier-4)', 'var(--tier-5)'];
+            
+            let notches = '';
+            for(let i = 1; i <= 5; i++) {
+                let isActive = i <= ach.tier;
+                let bg = isActive ? notchColors[i - 1] : 'var(--border)';
+                let op = isActive ? '1' : '0.4';
+                
+                notches += `<div class="tier-notch" style="background: ${bg}; opacity: ${op};"></div>`;
+            }
+            tierHtml = `<div class="tier-notch-container">${notches}</div>`;
+        }
+
         return `
-          <div class="ach-card">
-            <span class="ach-percent">${pct}%</span>
+          <div class="${cardClasses}">
+            ${percentHtml}
             <div class="ach-card-header">
               <img src="${getGameIconUrl('Max ' + ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
               <span class="ach-game">${ach.game}</span>
             </div>
             <span class="ach-title">${finalTitle}</span>
             <span class="ach-desc">${parsedDesc}</span>
-            <span class="ach-reward">
-              <img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> 
-              ${ach.reward} AP
-            </span>
+            ${progressHtml}
+            <div class="ach-card-footer">
+              <span class="ach-reward">
+                <img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> 
+                ${ach.reward} AP
+              </span>
+            </div>
+            ${tierHtml}
           </div>
         `;
     }).join('');
@@ -182,7 +231,11 @@ function renderCabinet(data) {
     
     document.getElementById('p-avatar').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
     document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/bust/${data.uuid}.png`; };
-    document.getElementById('p-name').textContent = data.username;
+    
+    // Inject the player's name and set it to match their rank color
+    const nameEl = document.getElementById('p-name');
+    nameEl.textContent = data.username;
+    nameEl.style.color = getRankBaseColourHex(data.rank);
 
     const rankEl = document.getElementById('p-rank');
     if (data.rank && data.rank !== 'NON') {
@@ -218,10 +271,12 @@ function renderCabinet(data) {
         
         if (!isAchieved && data.gamePercentages) {
             const percent = data.gamePercentages[game] || 0;
-            innerHtml = `<div class="slot-progress"><div class="slot-fill" style="width: ${percent}%;"></div></div>`;
+            
+            // Uses the new custom tier variables for a consistent look
+            let color = percent >= 80 ? 'var(--tier-1)' : percent >= 40 ? 'var(--tier-2)' : 'var(--tier-4)';
+            
+            innerHtml = `<div class="slot-progress"><div class="slot-fill" style="width: ${percent}%; background-color: ${color};"></div></div>`;
             tooltip = `${game.replace('Max ', '')} - ${percent}% Complete`;
-        } else if (!isAchieved) {
-            tooltip = `${game.replace('Max ', '')} - API Data Pending`;
         }
 
         html += `
@@ -294,7 +349,6 @@ async function initCabinet() {
     const data = await res.json();
     if (data.error) throw new Error(`API Error: ${data.error}`);
 
-    // Snapshot legacy games
     const legacyGamesList = ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"];
     const preservedMaxes = (globalPlayerData?.maxGames || []).filter(g => legacyGamesList.includes(g));
     data.maxGames = [...new Set([...(data.maxGames || []), ...preservedMaxes])];
