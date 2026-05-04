@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-04T20:59:13.276Z",
+  "last_update": "2026-05-04T22:49:01.195Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12514,
+      "score": 12515,
       "top_players": [
         {
           "username": "oJakey",
@@ -479,9 +479,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30615,
+          "current_ap": 30625,
           "last_month_ap": 30615,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -594,9 +594,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 27790,
+          "current_ap": 27820,
           "last_month_ap": 27765,
-          "monthly_gain": 25,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
