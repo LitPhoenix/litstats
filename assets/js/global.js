@@ -146,7 +146,7 @@ const emergencyBanner = {
 
 const randomBanners = [
   { text: "Did you know? LitStats tracks over 20 different Hypixel games.", btnText: "", btnLink: "" },
-  { text: "Check out the Blitz kit selector (Still a Work in Progress!)", btnText: "", btnLink: "https://www.litstats.com/blitz/" },
+  { text: "Check out the Blitz kit selector (Still a Work in Progress!)", btnText: "", btnLink: "https://www.litstats.com/blitz.html/" },
   { text: "Found a bug or have an idea? Let me know on Discord @litphoenix.", btnText: "Discord", btnLink: "https://app.discord.com" }
 ];
 
