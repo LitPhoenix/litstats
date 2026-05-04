@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-04T13:22:03.954Z",
+  "last_update": "2026-05-04T15:55:35.996Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2470,15 +2470,15 @@
     },
     {
       "country": "Japan",
-      "score": 1810,
+      "score": 1830,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_ap": 27275,
+          "current_ap": 27295,
           "last_month_ap": 27275,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Speed UHC",
             "Max Bed Wars",
