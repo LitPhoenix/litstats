@@ -12,7 +12,6 @@ function getPlayerRank(player) {
   return 'NON';
 }
 
-// Safely handle Hypixel API random Cloudflare HTML blocks
 async function safeFetchJSON(url, options = {}) {
   const res = await fetch(url, options);
   if (res.status === 429) return { rateLimited: true };
@@ -27,16 +26,11 @@ async function safeFetchJSON(url, options = {}) {
 }
 
 module.exports = async (req, res) => {
-  // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
-
-  // NEW: Global Edge Caching (Browser caches for 1 min, Vercel caches globally for 5 mins)
   res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=600');
-
-  if (req.method === 'OPTIONS') return res.status(200).end();
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
@@ -47,7 +41,6 @@ module.exports = async (req, res) => {
   if (!API_KEY) return res.status(500).json({ error: "Server missing API Key" });
 
   try {
-    // 1. Fetch Global Achievements Template
     if (!cachedTemplate || Date.now() - templateFetchTime > 3600000) {
       try {
         const tData = await safeFetchJSON('https://api.hypixel.net/v2/resources/achievements');
@@ -60,7 +53,6 @@ module.exports = async (req, res) => {
       }
     }
 
-    // 2. Fetch Player Data
     const pData = await safeFetchJSON(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } });
     
     if (pData.rateLimited) return res.status(429).json({ error: "Hypixel API Rate Limit. Try again shortly." });
@@ -82,10 +74,10 @@ module.exports = async (req, res) => {
       maxGames: [],
       topQuests: [],
       gamePercentages: {},
-      missingAchievements: []
+      missingAchievements: [],
+      recentAchievements: [] 
     };
 
-    // --- QUEST CALCULATION ---
     if (profile.quests) {
       const questTotals = {};
       const qMap = {
@@ -113,42 +105,41 @@ module.exports = async (req, res) => {
       }
       
       responseData.topQuests = Object.entries(questTotals)
-        .filter(([game, count]) => game !== "Other") // Filters out Other BEFORE slicing
+        .filter(([game, count]) => game !== "Other")
         .map(([game, count]) => ({ game, count }))
         .sort((a, b) => b.count - a.count)
         .slice(0, 3);
     }
 
-    // --- AP MAXES & PERCENTAGES CALCULATION ---
-    if (cachedTemplate) {
-      const gameMappings = [
-        { internal: "uhc", name: "UHC", badge: "Max UHC" },
-        { internal: "pit", name: "Pit", badge: "Max Pit" },
-        { internal: "walls3", name: "Mega Walls", badge: "Max Mega Walls" },
-        { internal: "skywars", name: "SkyWars", badge: "Max SkyWars" },
-        { internal: "blitz", name: "Blitz", badge: "Max Blitz" },
-        { internal: "arena", name: "Arena Brawl", badge: "Max Arena Brawl" },
-        { internal: "supersmash", name: "Smash Heroes", badge: "Max Smash Heroes" },
-        { internal: "paintball", name: "Paintball", badge: "Max Paintball" },
-        { internal: "copsandcrims", name: "Cops and Crims", badge: "Max Cops and Crims" },
-        { internal: "quake", name: "Quake", badge: "Max Quake" },
-        { internal: "skyblock", name: "SkyBlock", badge: "Max SkyBlock" },
-        { internal: "speeduhc", name: "Speed UHC", badge: "Max Speed UHC" },
-        { internal: "warlords", name: "Warlords", badge: "Max Warlords" },
-        { internal: "walls", name: "Walls", badge: "Max Walls" },
-        { internal: "tntgames", name: "TNT Games", badge: "Max TNT Games" },
-        { internal: "arcade", name: "Arcade", badge: "Max Arcade" },
-        { internal: "murdermystery", name: "Murder Mystery", badge: "Max Murder Mystery" },
-        { internal: "vampirez", name: "VampireZ", badge: "Max VampireZ" },
-        { internal: "bedwars", name: "Bed Wars", badge: "Max Bed Wars" },
-        { internal: "gingerbread", name: "TKR", badge: "Max TKR" },
-        { internal: "woolgames", name: "Wool Games", badge: "Max Wool Games" },
-        { internal: "duels", name: "Duels", badge: "Max Duels" },
-        { internal: "buildbattle", name: "Build Battle", badge: "Max Build Battle" },
-        { internal: "truecombat", name: "Crazy Walls", badge: "Max Crazy Walls", legacy: true },
-        { internal: "skyclash", name: "SkyClash", badge: "Max SkyClash", legacy: true }
-      ];
+    const gameMappings = [
+      { internal: "uhc", name: "UHC", badge: "Max UHC" },
+      { internal: "pit", name: "Pit", badge: "Max Pit" },
+      { internal: "walls3", name: "Mega Walls", badge: "Max Mega Walls" },
+      { internal: "skywars", name: "SkyWars", badge: "Max SkyWars" },
+      { internal: "blitz", name: "Blitz", badge: "Max Blitz" },
+      { internal: "arena", name: "Arena Brawl", badge: "Max Arena Brawl" },
+      { internal: "supersmash", name: "Smash Heroes", badge: "Max Smash Heroes" },
+      { internal: "paintball", name: "Paintball", badge: "Max Paintball" },
+      { internal: "copsandcrims", name: "Cops and Crims", badge: "Max Cops and Crims" },
+      { internal: "quake", name: "Quake", badge: "Max Quake" },
+      { internal: "skyblock", name: "SkyBlock", badge: "Max SkyBlock" },
+      { internal: "speeduhc", name: "Speed UHC", badge: "Max Speed UHC" },
+      { internal: "warlords", name: "Warlords", badge: "Max Warlords" },
+      { internal: "walls", name: "Walls", badge: "Max Walls" },
+      { internal: "tntgames", name: "TNT Games", badge: "Max TNT Games" },
+      { internal: "arcade", name: "Arcade", badge: "Max Arcade" },
+      { internal: "murdermystery", name: "Murder Mystery", badge: "Max Murder Mystery" },
+      { internal: "vampirez", name: "VampireZ", badge: "Max VampireZ" },
+      { internal: "bedwars", name: "Bed Wars", badge: "Max Bed Wars" },
+      { internal: "gingerbread", name: "TKR", badge: "Max TKR" },
+      { internal: "woolgames", name: "Wool Games", badge: "Max Wool Games" },
+      { internal: "duels", name: "Duels", badge: "Max Duels" },
+      { internal: "buildbattle", name: "Build Battle", badge: "Max Build Battle" },
+      { internal: "truecombat", name: "Crazy Walls", badge: "Max Crazy Walls", legacy: true },
+      { internal: "skyclash", name: "SkyClash", badge: "Max SkyClash", legacy: true }
+    ];
 
+    if (cachedTemplate) {
       for (const game of gameMappings) {
         const tGame = cachedTemplate[game.internal];
         if (!tGame) continue;
@@ -159,7 +150,7 @@ module.exports = async (req, res) => {
 
         if (tGame.one_time) {
           for (const [key, ach] of Object.entries(tGame.one_time)) {
-            if (ach.legacy) continue; // Exclude legacy achievements
+            if (ach.legacy) continue; 
             totalPossible++;
             const fullId = `${game.internal}_${key.toLowerCase()}`;
             
@@ -172,8 +163,8 @@ module.exports = async (req, res) => {
                 title: ach.name, 
                 desc: ach.description, 
                 reward: ach.points,
-                isOneTime: true, // Flag to hide tier text
-                globalPct: ach.globalPercentUnlocked // Grab the API's global percentage
+                isOneTime: true,
+                globalPct: ach.gamePercentUnlocked 
               });
             }
           }
@@ -181,9 +172,12 @@ module.exports = async (req, res) => {
 
         if (tGame.tiered) {
           for (const [key, ach] of Object.entries(tGame.tiered)) {
-            if (ach.legacy) continue; // Exclude legacy achievements
+            if (ach.legacy) continue; 
             const fullId = `${game.internal}_${key.toLowerCase()}`;
             const playerAmt = tieredPlayer[fullId] || 0;
+
+            let allTiers = ach.tiers.map((t, index) => ({ tier: t.tier || index + 1, amount: t.amount, reward: t.points }));
+            let isAchMaxed = true;
 
             for (const tier of ach.tiers) {
               totalPossible++;
@@ -191,16 +185,18 @@ module.exports = async (req, res) => {
                 playerUnlocked++;
               } else {
                 isMaxed = false;
-                responseData.missingAchievements.push({
-                  game: game.name, 
-                  title: ach.name, // Keep base name clean
-                  desc: ach.description, 
-                  reward: tier.points,
-                  tier: tier.tier, // Actual tier (1-5)
-                  amount: tier.amount, // Required amount to complete
-                  currentAmt: playerAmt // Player's current progress
-                });
+                isAchMaxed = false;
               }
+            }
+
+            if (!isAchMaxed) {
+                responseData.missingAchievements.push({
+                    game: game.name, 
+                    title: ach.name, 
+                    desc: ach.description, 
+                    allTiers: allTiers,
+                    currentAmt: playerAmt
+                });
             }
           }
         }
@@ -214,6 +210,36 @@ module.exports = async (req, res) => {
     }
 
     responseData.missingAchievements.sort((a, b) => a.reward - b.reward);
+
+// --- FAST RECENT ACHIEVEMENTS EXTRACTOR (HASH MAP) ---
+    const achDictionary = {};
+    if (cachedTemplate) {
+      for (const [categoryId, tGame] of Object.entries(cachedTemplate)) {
+        const gameMap = gameMappings.find(g => g.internal === categoryId);
+        const gameName = gameMap ? gameMap.name : categoryId;
+        
+        if (tGame.one_time) {
+          for (const [key, ach] of Object.entries(tGame.one_time)) {
+            achDictionary[`${categoryId}_${key.toLowerCase()}`] = { game: gameName, title: ach.name, desc: ach.description, reward: ach.points };
+          }
+        }
+      }
+    }
+
+    const newestFirstIds = [...cleanOneTime].reverse(); 
+    for (const fullId of newestFirstIds) {
+      if (achDictionary[fullId]) {
+        responseData.recentAchievements.push(achDictionary[fullId]);
+      } else {
+        // FALLBACK: If the dictionary misses, print the raw ID to the screen so you know it's working!
+        responseData.recentAchievements.push({
+           game: "Unknown", 
+           title: fullId, 
+           desc: "Raw ID (Not in dictionary)", 
+           reward: 0 
+        });
+      }
+    }
 
     return res.status(200).json(responseData);
 
