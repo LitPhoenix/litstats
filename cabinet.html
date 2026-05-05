@@ -18,61 +18,116 @@
 
   <script src="assets/js/components.js"></script>
 
-  <main>
-    <div id="loader" class="loading-msg">Summoning network data...</div>
-    <div id="errorBox" class="loading-msg hidden" style="color: var(--red);"></div>
+<main>
+  <div id="loader" class="loading-msg">Summoning network data...</div>
+  <div id="errorBox" class="loading-msg hidden" style="color: var(--red);"></div>
 
-    <div id="cabinet-content" class="hidden" style="width: 100%;">
-      
-      <div class="profile-card">
-        <div class="profile-top">
-          <img id="p-avatar" class="player-avatar" src="" alt="Avatar">
-          <div class="player-info">
-            <div class="player-name-row">
-              <span class="mc-rank" id="p-rank" style="display:none;"></span>
-              <h1 id="p-name">Loading...</h1>
-            </div>
-            <div class="stat-row">
-              <div class="stat-pill"><span></span> <b id="p-ap">0 AP</b></div>
-              <div class="stat-pill"><b id="p-max-count">0 / 26 Maxed</b></div>
-            </div>
+  <div id="cabinet-content" class="hidden" style="width: 100%;">
+    
+    <div class="profile-card">
+      <div class="profile-top">
+        <img id="p-avatar" class="player-avatar" src="" alt="Avatar">
+        <div class="player-info">
+          <div class="player-name-row">
+            <span class="mc-rank" id="p-rank" style="display:none;"></span>
+            <h1 id="p-name">Loading...</h1>
           </div>
-        </div>
-        
-        <div class="ap-progress-container">
-          <div class="ap-labels">
-            <span>Achievement Point Progress</span>
-            <span id="p-ap-percent">0%</span>
-          </div>
-          <div class="ap-bar-bg">
-            <div class="ap-bar-fill" id="p-ap-bar" style="width: 0%;"></div>
+          <div class="stat-row">
+            <div class="stat-pill"><span></span> <span id="p-ap">0 AP</span></div>
+            <div class="stat-pill"><span id="p-max-count">0 / 26 Maxed</span></div>
           </div>
         </div>
       </div>
+      
+      <div class="ap-progress-container">
+        <div class="ap-labels">
+          <span>Achievement Point Progress</span>
+          <span id="p-ap-percent">0%</span>
+        </div>
+        <div class="ap-bar-bg">
+          <div class="ap-bar-fill" id="p-ap-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
 
-      <div class="split-layout">
-        
+    <!-- GLOBAL TOOLBAR FOR LAYOUT CONTROL -->
+    <div class="global-toolbar">
+      <button class="todo-select" id="toggleMaxedBtn" onclick="toggleMaxedGames()">Hide Game Badges</button>
+    </div>
+
+    <!-- SIDE-BY-SIDE LAYOUT -->
+    <div class="split-layout">
+      
+      <!-- LEFT COLUMN: Maxed Games -->
+      <div id="maxed-column" class="maxed-col">
         <div class="cabinet-wrapper" id="cabinet-grid"></div>
+      </div>
 
-        <div class="todo-section">
-          <div class="todo-header">
-            <h2>Target Priorities</h2>
-            <div class="todo-controls">
-              <select id="sortFilter" class="todo-select" onchange="renderTodoGrid()">
-                <option value="easiest">Sort: Easiest First</option>
-                <option value="hardest">Sort: Hardest First</option>
+      <!-- RIGHT COLUMN: Dashboard -->
+      <div id="dashboard-column" class="dash-col-main">
+        
+        <div class="todo-header" style="flex-direction: column; align-items: flex-start;">
+          <div style="display:flex; justify-content: space-between; width: 100%; align-items: center;">
+            <h2>Incomplete</h2>
+            <div class="todo-controls tooltip-container">
+              <label class="toggle-switch">
+                <input type="checkbox" id="excludeComp" onchange="toggleExcludeComp()">
+                <span class="slider"></span>
+              </label>
+              <span style="font-size: 13px; font-weight: 600; color: var(--text-2);">Exclude Comp</span>
+              <div class="tooltip-text">
+                Competitive Games (Mega Walls, UHC, The Pit) restrict recently unbanned players from joining for a set duration.
+              </div>
+            </div>
+          </div>
+          <div id="gameFilterContainer" style="width: 100%;"></div>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Column 1: Tiered -->
+          <div class="dash-col">
+            <div class="col-header">
+              <h3>Tiered Progress</h3>
+              <select id="sortTiered" class="todo-select" onchange="renderDashboard()">
+                <option value="closest">Closest to Target</option>
+                <option value="furthest">Furthest from Target</option>
               </select>
             </div>
-            <div id="gameFilterContainer"></div>
+            <div class="ach-grid-col" id="col-tiered"></div>
+            <button class="show-more-btn" id="btn-more-tiered" onclick="limits.tiered += 10; renderDashboard();">Show More</button>
           </div>
 
-          <div class="ach-grid" id="todo-grid"></div>
+          <!-- Column 2: Challenges -->
+          <div class="dash-col">
+            <div class="col-header">
+              <h3>Challenges</h3>
+              <select id="sortChallenge" class="todo-select" onchange="renderDashboard()">
+                <option value="easiest">Highest Global %</option>
+                <option value="hardest">Lowest Global %</option>
+              </select>
+            </div>
+            <div class="ach-grid-col" id="col-challenge"></div>
+            <button class="show-more-btn" id="btn-more-chal" onclick="limits.challenge += 10; renderDashboard();">Show More</button>
+          </div>
+
+          <!-- Column 3: Recent History -->
+          <div class="dash-col history-col">
+            <div class="col-header">
+              <h3>History</h3>
+              <select id="sortRecent" class="todo-select" onchange="renderDashboard()">
+                <option value="newest">Most Recent</option>
+                <option value="oldest">Earliest</option>
+              </select>
+            </div>
+            <div class="ach-grid-col history-grid" id="col-recent"></div>
+            <button class="show-more-btn" id="btn-more-rec" onclick="limits.recent += 20; renderDashboard();" style="max-width: 300px; margin: 0 auto;">Show More</button>
+          </div>
         </div>
 
       </div>
-
     </div>
-  </main>
+  </div>
+</main>
 
   <div class="bottom-fade"></div>
   <div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
