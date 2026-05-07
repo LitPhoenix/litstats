@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-06T22:40:36.122Z",
+  "last_update": "2026-05-07T01:55:35.839Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12516,
+      "score": 12518,
       "top_players": [
         {
           "username": "oJakey",
@@ -479,9 +479,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30640,
+          "current_ap": 30655,
           "last_month_ap": 30615,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -3037,6 +3037,21 @@
           ]
         },
         {
+          "username": "CATBOYSILVER",
+          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+          "country": "Unknown",
+          "current_ap": 23935,
+          "last_month_ap": 23815,
+          "monthly_gain": 120,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
@@ -3045,21 +3060,6 @@
           "monthly_gain": 30,
           "maxGames": [
             "Max Duels"
-          ]
-        },
-        {
-          "username": "CATBOYSILVER",
-          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
-          "country": "Unknown",
-          "current_ap": 23915,
-          "last_month_ap": 23815,
-          "monthly_gain": 100,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
