@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-08T19:04:26.019Z",
+  "last_update": "2026-05-08T20:46:39.811Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12538,
+      "score": 12546,
       "top_players": [
         {
           "username": "oJakey",
@@ -451,6 +451,29 @@
           ]
         },
         {
+          "username": "Sharsherah",
+          "uuid": "7289394c9ad843b48213c3e338e1490f",
+          "country": "USA",
+          "current_ap": 30890,
+          "last_month_ap": 30615,
+          "monthly_gain": 275,
+          "maxGames": [
+            "Max UHC",
+            "Max Pit",
+            "Max Blitz",
+            "Max Speed UHC",
+            "Max Walls",
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
@@ -473,29 +496,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "Sharsherah",
-          "uuid": "7289394c9ad843b48213c3e338e1490f",
-          "country": "USA",
-          "current_ap": 30855,
-          "last_month_ap": 30615,
-          "monthly_gain": 240,
-          "maxGames": [
-            "Max UHC",
-            "Max Pit",
-            "Max Blitz",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -1128,9 +1128,9 @@
           "username": "Uleb",
           "uuid": "2baaec9272fd487294e673eb4ec35201",
           "country": "France",
-          "current_ap": 27295,
+          "current_ap": 27305,
           "last_month_ap": 27295,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max TKR",
             "Max Duels",
