@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-08T17:02:22.631Z",
+  "last_update": "2026-05-08T19:04:26.019Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12533,
+      "score": 12538,
       "top_players": [
         {
           "username": "oJakey",
@@ -479,9 +479,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30810,
+          "current_ap": 30855,
           "last_month_ap": 30615,
-          "monthly_gain": 195,
+          "monthly_gain": 240,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -751,9 +751,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 26330,
+          "current_ap": 26355,
           "last_month_ap": 26305,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -2642,15 +2642,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1035,
+      "score": 1040,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26500,
+          "current_ap": 26505,
           "last_month_ap": 26500,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Warlords",
             "Max Bed Wars",
@@ -3037,6 +3037,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 23945,
+          "last_month_ap": 23900,
+          "monthly_gain": 45,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "CATBOYSILVER",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
@@ -3049,17 +3060,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 23930,
-          "last_month_ap": 23900,
-          "monthly_gain": 30,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
