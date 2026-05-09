@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-09T16:41:45.997Z",
+  "last_update": "2026-05-09T18:44:28.403Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109037,
     "289e9f90a76640e0921c85dcd96385b5": 81483,
@@ -199,15 +199,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49285.2,
+      "score": 49305.6,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 109173,
+          "current_quests": 109275,
           "last_month_quests": 109037,
-          "monthly_gain": 136
+          "monthly_gain": 238
         },
         {
           "username": "ErtrycheZ",
@@ -269,9 +269,9 @@
           "username": "21septembre",
           "uuid": "2d0095e5a83242649f088f3f20846f07",
           "country": "France",
-          "current_quests": 23976,
+          "current_quests": 23980,
           "last_month_quests": 23976,
-          "monthly_gain": 0
+          "monthly_gain": 4
         },
         {
           "username": "Locowi",
@@ -509,9 +509,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 22876,
+          "current_quests": 22931,
           "last_month_quests": 22711,
-          "monthly_gain": 165
+          "monthly_gain": 220
         },
         {
           "username": "Nightire",
@@ -899,15 +899,15 @@
     },
     {
       "country": "Australia",
-      "score": 11022.4,
+      "score": 11023.2,
       "top_players": [
         {
           "username": "Bikkie",
           "uuid": "12ecedbce19b448cad38aa4f57f3afda",
           "country": "Australia",
-          "current_quests": 30923,
+          "current_quests": 30927,
           "last_month_quests": 30920,
-          "monthly_gain": 3
+          "monthly_gain": 7
         },
         {
           "username": "TotalDramaIsland",
@@ -1005,9 +1005,9 @@
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Unknown",
-          "current_quests": 21517,
+          "current_quests": 21522,
           "last_month_quests": 21483,
-          "monthly_gain": 34
+          "monthly_gain": 39
         }
       ]
     },
