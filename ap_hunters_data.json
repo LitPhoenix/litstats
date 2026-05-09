@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-09T18:44:28.198Z",
+  "last_update": "2026-05-09T20:35:40.826Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2947,6 +2947,20 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 24225,
+          "last_month_ap": 23910,
+          "monthly_gain": 315,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Xylim",
           "uuid": "f94ade5012374648b0423fc0b66cac0a",
           "country": "Unknown",
@@ -2954,20 +2968,6 @@
           "last_month_ap": 24220,
           "monthly_gain": 0,
           "maxGames": []
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 24215,
-          "last_month_ap": 23910,
-          "monthly_gain": 305,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
         },
         {
           "username": "ToastyOosty",
@@ -3251,9 +3251,9 @@
           "username": "violetlamb93",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "Unknown",
-          "current_ap": 23190,
+          "current_ap": 23215,
           "last_month_ap": 23155,
-          "monthly_gain": 35,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Bed Wars",
             "Max Duels",
@@ -3481,9 +3481,9 @@
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Italy",
-          "current_ap": 24635,
+          "current_ap": 24660,
           "last_month_ap": 24600,
-          "monthly_gain": 35,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Murder Mystery",
             "Max Bed Wars",
