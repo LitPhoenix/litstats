@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-09T01:54:43.618Z",
+  "last_update": "2026-05-09T05:02:18.623Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12577,
+      "score": 12596,
       "top_players": [
         {
           "username": "oJakey",
@@ -454,9 +454,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 31015,
+          "current_ap": 31090,
           "last_month_ap": 30615,
-          "monthly_gain": 400,
+          "monthly_gain": 475,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -566,6 +566,24 @@
           ]
         },
         {
+          "username": "righter",
+          "uuid": "396c6009191449f691fc86e6d60f7243",
+          "country": "USA",
+          "current_ap": 28000,
+          "last_month_ap": 27765,
+          "monthly_gain": 235,
+          "maxGames": [
+            "Max Pit",
+            "Max SkyWars",
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "Boogatomyooga",
           "uuid": "343139d84b91435c90a6d0054a709ca5",
           "country": "USA",
@@ -588,24 +606,6 @@
             "Max Blitz",
             "Max VampireZ",
             "Max Bed Wars"
-          ]
-        },
-        {
-          "username": "righter",
-          "uuid": "396c6009191449f691fc86e6d60f7243",
-          "country": "USA",
-          "current_ap": 27940,
-          "last_month_ap": 27765,
-          "monthly_gain": 175,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyWars",
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -3052,9 +3052,9 @@
           "username": "CATBOYSILVER",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
-          "current_ap": 23935,
+          "current_ap": 23955,
           "last_month_ap": 23815,
-          "monthly_gain": 120,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Murder Mystery",
             "Max Bed Wars",
@@ -3221,9 +3221,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
-          "current_ap": 23290,
+          "current_ap": 23345,
           "last_month_ap": 23280,
-          "monthly_gain": 10,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Pit",
             "Max Bed Wars",
