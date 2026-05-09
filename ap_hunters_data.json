@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-08T22:45:38.680Z",
+  "last_update": "2026-05-09T01:54:43.618Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12557,
+      "score": 12577,
       "top_players": [
         {
           "username": "oJakey",
@@ -454,9 +454,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 30935,
+          "current_ap": 31015,
           "last_month_ap": 30615,
-          "monthly_gain": 320,
+          "monthly_gain": 400,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -702,9 +702,9 @@
           "username": "Mazk",
           "uuid": "059abcc217c2422f9d9f92e8dea2e607",
           "country": "USA",
-          "current_ap": 26765,
+          "current_ap": 26800,
           "last_month_ap": 26765,
-          "monthly_gain": 0,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Blitz",
             "Max Bed Wars",
@@ -2959,10 +2959,11 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24180,
+          "current_ap": 24205,
           "last_month_ap": 23910,
-          "monthly_gain": 270,
+          "monthly_gain": 295,
           "maxGames": [
+            "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
             "Max Duels"
@@ -3040,9 +3041,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 23945,
+          "current_ap": 23970,
           "last_month_ap": 23900,
-          "monthly_gain": 45,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Duels"
           ]
