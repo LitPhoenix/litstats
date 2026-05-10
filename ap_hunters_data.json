@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-09T22:33:57.675Z",
+  "last_update": "2026-05-10T01:54:18.294Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -657,9 +657,9 @@
           "username": "baseballaholic",
           "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
           "country": "USA",
-          "current_ap": 27335,
+          "current_ap": 27350,
           "last_month_ap": 27335,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max TKR"
           ]
@@ -2642,15 +2642,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1040,
+      "score": 1065,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26505,
+          "current_ap": 26530,
           "last_month_ap": 26500,
-          "monthly_gain": 5,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Warlords",
             "Max Bed Wars",
@@ -2973,9 +2973,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24180,
+          "current_ap": 24195,
           "last_month_ap": 24135,
-          "monthly_gain": 45,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -3418,9 +3418,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 24945,
+          "current_ap": 24965,
           "last_month_ap": 24865,
-          "monthly_gain": 80,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Wool Games"
           ]
