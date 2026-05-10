@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-10T05:30:31.350Z",
+  "last_update": "2026-05-10T07:56:42.350Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1495,7 +1495,7 @@
     },
     {
       "country": "Canada",
-      "score": 8402,
+      "score": 8415,
       "top_players": [
         {
           "username": "Songgg",
@@ -1528,9 +1528,9 @@
           "username": "Andorite",
           "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
           "country": "Canada",
-          "current_ap": 29575,
+          "current_ap": 29600,
           "last_month_ap": 29575,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Warlords",
             "Max TNT Games",
@@ -3038,6 +3038,21 @@
           ]
         },
         {
+          "username": "CATBOYSILVER",
+          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+          "country": "Unknown",
+          "current_ap": 23975,
+          "last_month_ap": 23815,
+          "monthly_gain": 160,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
@@ -3046,21 +3061,6 @@
           "monthly_gain": 70,
           "maxGames": [
             "Max Duels"
-          ]
-        },
-        {
-          "username": "CATBOYSILVER",
-          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
-          "country": "Unknown",
-          "current_ap": 23965,
-          "last_month_ap": 23815,
-          "monthly_gain": 150,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
