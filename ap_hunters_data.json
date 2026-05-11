@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-10T22:37:37.948Z",
+  "last_update": "2026-05-11T02:03:52.416Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -569,9 +569,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28015,
+          "current_ap": 28035,
           "last_month_ap": 27765,
-          "monthly_gain": 250,
+          "monthly_gain": 270,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -612,9 +612,9 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27600,
+          "current_ap": 27650,
           "last_month_ap": 27515,
-          "monthly_gain": 85,
+          "monthly_gain": 135,
           "maxGames": [
             "Max Cops and Crims",
             "Max Arcade",
@@ -622,6 +622,7 @@
             "Max Bed Wars",
             "Max TKR",
             "Max Wool Games",
+            "Max Build Battle",
             "Max Seasonal"
           ]
         },
@@ -1243,6 +1244,7 @@
             "Max Smash Heroes",
             "Max Paintball",
             "Max Quake",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
