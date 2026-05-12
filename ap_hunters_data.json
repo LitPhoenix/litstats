@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-12T19:28:59.893Z",
+  "last_update": "2026-05-12T21:10:59.391Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -556,9 +556,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28150,
+          "current_ap": 28170,
           "last_month_ap": 27765,
-          "monthly_gain": 385,
+          "monthly_gain": 405,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -3185,6 +3185,20 @@
           ]
         },
         {
+          "username": "xOptic",
+          "uuid": "8c8ba6d440554b1886ad1777c5066282",
+          "country": "Unknown",
+          "current_ap": 23370,
+          "last_month_ap": 23345,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "o3w",
           "uuid": "d91eb87c945b490b82a2638c8cf5a291",
           "country": "Unknown",
@@ -3203,20 +3217,6 @@
           "maxGames": [
             "Max Pit",
             "Max Bed Wars"
-          ]
-        },
-        {
-          "username": "xOptic",
-          "uuid": "8c8ba6d440554b1886ad1777c5066282",
-          "country": "Unknown",
-          "current_ap": 23345,
-          "last_month_ap": 23345,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Duels"
           ]
         },
         {
