@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-11T22:46:17.936Z",
+  "last_update": "2026-05-12T02:00:06.828Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -553,6 +553,24 @@
           ]
         },
         {
+          "username": "righter",
+          "uuid": "396c6009191449f691fc86e6d60f7243",
+          "country": "USA",
+          "current_ap": 28145,
+          "last_month_ap": 27765,
+          "monthly_gain": 380,
+          "maxGames": [
+            "Max Pit",
+            "Max SkyWars",
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "Rcnnie",
           "uuid": "f13bced3fe9044a6831e0496c0cab1e9",
           "country": "USA",
@@ -563,24 +581,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "righter",
-          "uuid": "396c6009191449f691fc86e6d60f7243",
-          "country": "USA",
-          "current_ap": 28055,
-          "last_month_ap": 27765,
-          "monthly_gain": 290,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyWars",
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -630,9 +630,9 @@
           "username": "stupidcake77",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27570,
+          "current_ap": 27590,
           "last_month_ap": 27555,
-          "monthly_gain": 15,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
@@ -1497,7 +1497,7 @@
     },
     {
       "country": "Canada",
-      "score": 8415,
+      "score": 8417,
       "top_players": [
         {
           "username": "Songgg",
@@ -1547,9 +1547,9 @@
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
-          "current_ap": 28085,
+          "current_ap": 28095,
           "last_month_ap": 28055,
-          "monthly_gain": 30,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Blitz",
             "Max Arena Brawl",
@@ -2941,9 +2941,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24295,
+          "current_ap": 24320,
           "last_month_ap": 23910,
-          "monthly_gain": 385,
+          "monthly_gain": 410,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
@@ -3010,6 +3010,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 24040,
+          "last_month_ap": 23900,
+          "monthly_gain": 140,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "ni6a",
           "uuid": "f2b587fe0b2347dca0908d4832e047d5",
           "country": "Unknown",
@@ -3037,17 +3048,6 @@
             "Max VampireZ",
             "Max TKR",
             "Max Crazy Walls"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 24015,
-          "last_month_ap": 23900,
-          "monthly_gain": 115,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
@@ -3146,9 +3146,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23420,
+          "current_ap": 23450,
           "last_month_ap": 23415,
-          "monthly_gain": 5,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3250,7 +3250,7 @@
           ]
         },
         {
-          "username": "violetlamb93",
+          "username": "PileatedSnagret",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "Unknown",
           "current_ap": 23225,
