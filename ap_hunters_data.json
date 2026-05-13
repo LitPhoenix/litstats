@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-12T22:53:38.630Z",
+  "last_update": "2026-05-13T02:05:34.231Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1204,7 +1204,7 @@
     },
     {
       "country": "UK",
-      "score": 9989,
+      "score": 10001,
       "top_players": [
         {
           "username": "greaneye",
@@ -1236,9 +1236,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30560,
+          "current_ap": 30585,
           "last_month_ap": 30535,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1830,15 +1830,15 @@
     },
     {
       "country": "Russia",
-      "score": 7200,
+      "score": 7225,
       "top_players": [
         {
           "username": "anrie",
           "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
           "country": "Russia",
-          "current_ap": 32420,
+          "current_ap": 32445,
           "last_month_ap": 32370,
-          "monthly_gain": 50,
+          "monthly_gain": 75,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -1855,6 +1855,7 @@
             "Max Warlords",
             "Max Walls",
             "Max TNT Games",
+            "Max Arcade",
             "Max VampireZ",
             "Max Bed Wars",
             "Max TKR",
@@ -3013,9 +3014,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24040,
+          "current_ap": 24050,
           "last_month_ap": 23900,
-          "monthly_gain": 140,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Duels"
           ]
@@ -3199,6 +3200,22 @@
           ]
         },
         {
+          "username": "tommy042001",
+          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+          "country": "Unknown",
+          "current_ap": 23365,
+          "last_month_ap": 23280,
+          "monthly_gain": 85,
+          "maxGames": [
+            "Max Pit",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "o3w",
           "uuid": "d91eb87c945b490b82a2638c8cf5a291",
           "country": "Unknown",
@@ -3217,22 +3234,6 @@
           "maxGames": [
             "Max Pit",
             "Max Bed Wars"
-          ]
-        },
-        {
-          "username": "tommy042001",
-          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
-          "country": "Unknown",
-          "current_ap": 23345,
-          "last_month_ap": 23280,
-          "monthly_gain": 65,
-          "maxGames": [
-            "Max Pit",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
