@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-13T14:06:24.603Z",
+  "last_update": "2026-05-13T17:56:07.683Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -3175,6 +3175,20 @@
           ]
         },
         {
+          "username": "xOptic",
+          "uuid": "8c8ba6d440554b1886ad1777c5066282",
+          "country": "Unknown",
+          "current_ap": 23395,
+          "last_month_ap": 23345,
+          "monthly_gain": 50,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max Bed Wars",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "MacchuPicchu",
           "uuid": "3d55b88551fe48d997bae3412cd8aa72",
           "country": "Unknown",
@@ -3183,20 +3197,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max TKR"
-          ]
-        },
-        {
-          "username": "xOptic",
-          "uuid": "8c8ba6d440554b1886ad1777c5066282",
-          "country": "Unknown",
-          "current_ap": 23370,
-          "last_month_ap": 23345,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Bed Wars",
-            "Max Duels"
           ]
         },
         {
@@ -3254,9 +3254,9 @@
           "username": "PileatedSnagret",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "Unknown",
-          "current_ap": 23240,
+          "current_ap": 23265,
           "last_month_ap": 23155,
-          "monthly_gain": 85,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Bed Wars",
             "Max Duels",
