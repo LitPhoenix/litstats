@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-13T02:05:34.231Z",
+  "last_update": "2026-05-13T06:42:58.586Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -630,9 +630,9 @@
           "username": "stupidcake77",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27590,
+          "current_ap": 27605,
           "last_month_ap": 27555,
-          "monthly_gain": 35,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
@@ -716,9 +716,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26675,
+          "current_ap": 26700,
           "last_month_ap": 26650,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Warlords",
             "Max Arcade",
@@ -1304,9 +1304,9 @@
           "username": "Fossilised",
           "uuid": "e3292ca36c5e43cbacd01c52adaca375",
           "country": "UK",
-          "current_ap": 26740,
+          "current_ap": 26765,
           "last_month_ap": 26740,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -1497,15 +1497,15 @@
     },
     {
       "country": "Canada",
-      "score": 8417,
+      "score": 8452,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 30960,
+          "current_ap": 30995,
           "last_month_ap": 30960,
-          "monthly_gain": 0,
+          "monthly_gain": 35,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -3147,9 +3147,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23450,
+          "current_ap": 23475,
           "last_month_ap": 23415,
-          "monthly_gain": 35,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
