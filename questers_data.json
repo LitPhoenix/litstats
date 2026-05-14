@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-14T06:41:48.882Z",
+  "last_update": "2026-05-14T10:06:55.173Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109037,
     "289e9f90a76640e0921c85dcd96385b5": 81483,
@@ -1155,8 +1155,16 @@
     },
     {
       "country": "The Netherlands",
-      "score": 9111.8,
+      "score": 9123.4,
       "top_players": [
+        {
+          "username": "iiris",
+          "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
+          "country": "The Netherlands",
+          "current_quests": 22836,
+          "last_month_quests": 22630,
+          "monthly_gain": 206
+        },
         {
           "username": "Th3three",
           "uuid": "af193f3ea82148489129dc9d32f8dc67",
@@ -1164,14 +1172,6 @@
           "current_quests": 22781,
           "last_month_quests": 22781,
           "monthly_gain": 0
-        },
-        {
-          "username": "iiris",
-          "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
-          "country": "The Netherlands",
-          "current_quests": 22778,
-          "last_month_quests": 22630,
-          "monthly_gain": 148
         }
       ]
     },
