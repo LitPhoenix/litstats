@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-14T10:06:54.796Z",
+  "last_update": "2026-05-14T13:29:31.085Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12648,
+      "score": 12651,
       "top_players": [
         {
           "username": "oJakey",
@@ -477,10 +477,11 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_ap": 30860,
+          "current_ap": 30885,
           "last_month_ap": 30860,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
+            "Max Blitz",
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
