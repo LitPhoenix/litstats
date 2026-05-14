@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-14T16:09:30.813Z",
+  "last_update": "2026-05-14T19:28:37.010Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -557,9 +557,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28190,
+          "current_ap": 28260,
           "last_month_ap": 27765,
-          "monthly_gain": 425,
+          "monthly_gain": 495,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -3000,6 +3000,32 @@
           ]
         },
         {
+          "username": "jenidu",
+          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+          "country": "Unknown",
+          "current_ap": 24075,
+          "last_month_ap": 24025,
+          "monthly_gain": 50,
+          "maxGames": [
+            "Max Paintball",
+            "Max Walls",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Crazy Walls"
+          ]
+        },
+        {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 24065,
+          "last_month_ap": 23900,
+          "monthly_gain": 165,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "tyelur",
           "uuid": "b2cbfed76872468fac2842af0cd4877b",
           "country": "Unknown",
@@ -3009,17 +3035,6 @@
           "maxGames": [
             "Max Paintball",
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 24050,
-          "last_month_ap": 23900,
-          "monthly_gain": 150,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
@@ -3035,21 +3050,6 @@
             "Max Paintball",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "jenidu",
-          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
-          "country": "Unknown",
-          "current_ap": 24035,
-          "last_month_ap": 24025,
-          "monthly_gain": 10,
-          "maxGames": [
-            "Max Paintball",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Crazy Walls"
           ]
         },
         {
