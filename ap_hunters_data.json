@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-15T17:23:17.152Z",
+  "last_update": "2026-05-15T19:16:39.777Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -557,9 +557,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28290,
+          "current_ap": 28320,
           "last_month_ap": 27765,
-          "monthly_gain": 525,
+          "monthly_gain": 555,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2787,15 +2787,15 @@
     },
     {
       "country": "South Korea",
-      "score": 575,
+      "score": 550,
       "top_players": [
         {
           "username": "Hounce",
           "uuid": "6333479985aa448392625f6a5a6876c0",
           "country": "South Korea",
-          "current_ap": 26040,
+          "current_ap": 26015,
           "last_month_ap": 26040,
-          "monthly_gain": 0,
+          "monthly_gain": -25,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ",
@@ -2987,6 +2987,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 24100,
+          "last_month_ap": 23900,
+          "monthly_gain": 200,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "XxTrialxX",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
@@ -2997,17 +3008,6 @@
             "Max UHC",
             "Max Blitz",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 24085,
-          "last_month_ap": 23900,
-          "monthly_gain": 185,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
