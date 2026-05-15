@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-15T20:52:02.341Z",
+  "last_update": "2026-05-15T22:48:28.390Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -613,12 +613,13 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27650,
+          "current_ap": 27665,
           "last_month_ap": 27515,
-          "monthly_gain": 135,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Cops and Crims",
             "Max Arcade",
+            "Max Murder Mystery",
             "Max VampireZ",
             "Max Bed Wars",
             "Max TKR",
@@ -1562,7 +1563,7 @@
           ]
         },
         {
-          "username": "5bEVE",
+          "username": "GlennCraigMeyer",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
           "current_ap": 26855,
@@ -2646,15 +2647,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1075,
+      "score": 1100,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26540,
+          "current_ap": 26565,
           "last_month_ap": 26500,
-          "monthly_gain": 40,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Warlords",
             "Max Bed Wars",
@@ -2990,9 +2991,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24125,
+          "current_ap": 24150,
           "last_month_ap": 23900,
-          "monthly_gain": 225,
+          "monthly_gain": 250,
           "maxGames": [
             "Max Duels"
           ]
