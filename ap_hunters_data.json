@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-15T19:16:39.777Z",
+  "last_update": "2026-05-15T20:52:02.341Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1427,7 +1427,7 @@
     },
     {
       "country": "Denmark",
-      "score": 9145,
+      "score": 9158,
       "top_players": [
         {
           "username": "tobias49",
@@ -1465,9 +1465,9 @@
           "username": "STAYEZ",
           "uuid": "998d3241aec046ad9d5009f56d28e413",
           "country": "Denmark",
-          "current_ap": 30365,
+          "current_ap": 30390,
           "last_month_ap": 30365,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2943,9 +2943,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24360,
+          "current_ap": 24375,
           "last_month_ap": 23910,
-          "monthly_gain": 450,
+          "monthly_gain": 465,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
@@ -2990,9 +2990,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24100,
+          "current_ap": 24125,
           "last_month_ap": 23900,
-          "monthly_gain": 200,
+          "monthly_gain": 225,
           "maxGames": [
             "Max Duels"
           ]
