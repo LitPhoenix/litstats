@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-17T05:49:32.242Z",
+  "last_update": "2026-05-17T08:12:02.520Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2137,7 +2137,7 @@
     },
     {
       "country": "Finland",
-      "score": 3953,
+      "score": 3940,
       "top_players": [
         {
           "username": "Champiez",
@@ -2162,9 +2162,9 @@
           "username": "MineElzu60",
           "uuid": "559860c584174a7c90a8f79332802516",
           "country": "Finland",
-          "current_ap": 27280,
+          "current_ap": 27255,
           "last_month_ap": 27280,
-          "monthly_gain": 0,
+          "monthly_gain": -25,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
