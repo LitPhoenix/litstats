@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-16T22:37:03.171Z",
+  "last_update": "2026-05-17T02:00:39.132Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -557,9 +557,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28390,
+          "current_ap": 28425,
           "last_month_ap": 27765,
-          "monthly_gain": 625,
+          "monthly_gain": 660,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -3239,6 +3239,19 @@
           ]
         },
         {
+          "username": "PileatedSnagret",
+          "uuid": "d8c93138750f4388a3a99bd98b03192b",
+          "country": "Unknown",
+          "current_ap": 23280,
+          "last_month_ap": 23155,
+          "monthly_gain": 125,
+          "maxGames": [
+            "Max Bed Wars",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -3250,19 +3263,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "PileatedSnagret",
-          "uuid": "d8c93138750f4388a3a99bd98b03192b",
-          "country": "Unknown",
-          "current_ap": 23280,
-          "last_month_ap": 23155,
-          "monthly_gain": 125,
-          "maxGames": [
-            "Max Bed Wars",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -3423,9 +3423,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 25015,
+          "current_ap": 25030,
           "last_month_ap": 24865,
-          "monthly_gain": 150,
+          "monthly_gain": 165,
           "maxGames": [
             "Max Wool Games"
           ]
