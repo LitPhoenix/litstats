@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-17T18:54:13.561Z",
+  "last_update": "2026-05-17T20:40:13.641Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109037,
     "289e9f90a76640e0921c85dcd96385b5": 81483,
@@ -790,15 +790,15 @@
     },
     {
       "country": "Hong Kong",
-      "score": 11831.2,
+      "score": 11871.2,
       "top_players": [
         {
           "username": "epicercaner",
           "uuid": "39b5964b6e924774b8aa1aaf676d4cf3",
           "country": "Hong Kong",
-          "current_quests": 35620,
+          "current_quests": 35820,
           "last_month_quests": 35620,
-          "monthly_gain": 0
+          "monthly_gain": 200
         },
         {
           "username": "0HfLUfFIE",
@@ -936,7 +936,7 @@
     },
     {
       "country": "Unknown",
-      "score": 26267,
+      "score": 26268,
       "top_players": [
         {
           "username": "biwgtp",
@@ -950,9 +950,9 @@
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_quests": 28206,
+          "current_quests": 28211,
           "last_month_quests": 28203,
-          "monthly_gain": 3
+          "monthly_gain": 8
         },
         {
           "username": "JokeHit",
