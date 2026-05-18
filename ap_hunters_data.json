@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-18T14:54:32.722Z",
+  "last_update": "2026-05-18T17:53:03.804Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -671,9 +671,9 @@
           "username": "tormin",
           "uuid": "dc2eaa964e0242589f2731a11aacea55",
           "country": "USA",
-          "current_ap": 27085,
+          "current_ap": 27100,
           "last_month_ap": 27085,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Blitz",
             "Max Cops and Crims",
