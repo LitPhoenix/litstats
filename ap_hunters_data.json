@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-18T02:12:11.163Z",
+  "last_update": "2026-05-18T07:56:08.499Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -557,9 +557,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28425,
+          "current_ap": 28460,
           "last_month_ap": 27765,
-          "monthly_gain": 660,
+          "monthly_gain": 695,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -718,9 +718,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26700,
+          "current_ap": 26725,
           "last_month_ap": 26650,
-          "monthly_gain": 50,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Warlords",
             "Max Arcade",
@@ -3178,6 +3178,22 @@
           ]
         },
         {
+          "username": "tommy042001",
+          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+          "country": "Unknown",
+          "current_ap": 23400,
+          "last_month_ap": 23280,
+          "monthly_gain": 120,
+          "maxGames": [
+            "Max Pit",
+            "Max Bed Wars",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
@@ -3189,22 +3205,6 @@
             "Max Murder Mystery",
             "Max Bed Wars",
             "Max Duels"
-          ]
-        },
-        {
-          "username": "tommy042001",
-          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
-          "country": "Unknown",
-          "current_ap": 23385,
-          "last_month_ap": 23280,
-          "monthly_gain": 105,
-          "maxGames": [
-            "Max Pit",
-            "Max Bed Wars",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
