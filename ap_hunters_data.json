@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-18T21:07:47.941Z",
+  "last_update": "2026-05-18T22:49:00.682Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -3219,6 +3219,18 @@
           ]
         },
         {
+          "username": "22charizard",
+          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+          "country": "Unknown",
+          "current_ap": 23365,
+          "last_month_ap": 23275,
+          "monthly_gain": 90,
+          "maxGames": [
+            "Max Pit",
+            "Max Bed Wars"
+          ]
+        },
+        {
           "username": "o3w",
           "uuid": "d91eb87c945b490b82a2638c8cf5a291",
           "country": "Unknown",
@@ -3226,18 +3238,6 @@
           "last_month_ap": 23355,
           "monthly_gain": 0,
           "maxGames": []
-        },
-        {
-          "username": "22charizard",
-          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
-          "country": "Unknown",
-          "current_ap": 23355,
-          "last_month_ap": 23275,
-          "monthly_gain": 80,
-          "maxGames": [
-            "Max Pit",
-            "Max Bed Wars"
-          ]
         },
         {
           "username": "PileatedSnagret",
