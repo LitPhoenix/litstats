@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-18T22:49:00.881Z",
+  "last_update": "2026-05-19T02:16:58.290Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109037,
     "289e9f90a76640e0921c85dcd96385b5": 81483,
@@ -254,17 +254,17 @@
           "username": "titi2502",
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "France",
-          "current_quests": 25924,
+          "current_quests": 25992,
           "last_month_quests": 25924,
-          "monthly_gain": 0
+          "monthly_gain": 68
         },
         {
           "username": "TournamentTokens",
           "uuid": "52206b9a3e8446c995fa9f2d4e8c0078",
           "country": "France",
-          "current_quests": 25501,
+          "current_quests": 25524,
           "last_month_quests": 25399,
-          "monthly_gain": 102
+          "monthly_gain": 125
         },
         {
           "username": "21septembre",
@@ -1108,15 +1108,15 @@
     },
     {
       "country": "Brazil",
-      "score": 5038.6,
+      "score": 5042,
       "top_players": [
         {
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_quests": 25193,
+          "current_quests": 25210,
           "last_month_quests": 25129,
-          "monthly_gain": 64
+          "monthly_gain": 81
         }
       ]
     },
