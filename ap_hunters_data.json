@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-19T19:45:11.399Z",
+  "last_update": "2026-05-19T21:12:20.232Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2851,9 +2851,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25045,
+          "current_ap": 25060,
           "last_month_ap": 25045,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Wool Games"
           ]
