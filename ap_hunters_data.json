@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-22T19:23:09.214Z",
+  "last_update": "2026-05-22T21:04:02.712Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1546,9 +1546,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26630,
+          "current_ap": 26635,
           "last_month_ap": 26625,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -2479,7 +2479,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1763,
+      "score": 1765,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2496,9 +2496,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26240,
+          "current_ap": 26245,
           "last_month_ap": 26215,
-          "monthly_gain": 25,
+          "monthly_gain": 30,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
