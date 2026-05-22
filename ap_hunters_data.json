@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-22T21:04:02.712Z",
+  "last_update": "2026-05-22T22:51:06.135Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1469,15 +1469,15 @@
     },
     {
       "country": "Canada",
-      "score": 8534,
+      "score": 8569,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31075,
+          "current_ap": 31110,
           "last_month_ap": 30960,
-          "monthly_gain": 115,
+          "monthly_gain": 150,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2955,6 +2955,20 @@
           ]
         },
         {
+          "username": "CATBOYSILVER",
+          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+          "country": "Unknown",
+          "current_ap": 24085,
+          "last_month_ap": 23815,
+          "monthly_gain": 270,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
@@ -2967,20 +2981,6 @@
             "Max VampireZ",
             "Max TKR",
             "Max Crazy Walls"
-          ]
-        },
-        {
-          "username": "CATBOYSILVER",
-          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
-          "country": "Unknown",
-          "current_ap": 24060,
-          "last_month_ap": 23815,
-          "monthly_gain": 245,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
