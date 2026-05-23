@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-23T02:00:46.040Z",
+  "last_update": "2026-05-23T05:40:19.516Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1470,15 +1470,15 @@
     },
     {
       "country": "Canada",
-      "score": 8569,
+      "score": 8579,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31110,
+          "current_ap": 31120,
           "last_month_ap": 30960,
-          "monthly_gain": 150,
+          "monthly_gain": 160,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -3492,9 +3492,9 @@
           "username": "0HfLUfFIE",
           "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
           "country": "Hong Kong",
-          "current_ap": 23535,
+          "current_ap": 23540,
           "last_month_ap": 23535,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Paintball",
             "Max Warlords",
