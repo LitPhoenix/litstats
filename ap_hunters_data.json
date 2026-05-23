@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-23T08:06:24.283Z",
+  "last_update": "2026-05-23T12:59:32.436Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -201,7 +201,8 @@
     "0cfa3f33d16f46949ae6e5a4a1ea547d": 23160,
     "a4a83ccb4d7f45f0806bd7cbe48de984": 23140,
     "e3fc5b36a60f4ff1ac2df06405a20601": 23120,
-    "d8c93138750f4388a3a99bd98b03192b": 23155
+    "d8c93138750f4388a3a99bd98b03192b": 23155,
+    "01834d8a3c7a49c796589979d7a9ab74": 23145
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -1470,15 +1471,15 @@
     },
     {
       "country": "Canada",
-      "score": 8579,
+      "score": 8589,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31120,
+          "current_ap": 31130,
           "last_month_ap": 30960,
-          "monthly_gain": 160,
+          "monthly_gain": 170,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -1874,7 +1875,7 @@
     },
     {
       "country": "Germany",
-      "score": 6781,
+      "score": 6783,
       "top_players": [
         {
           "username": "NightMan976",
@@ -1920,9 +1921,9 @@
           "username": "Smappy",
           "uuid": "9d3220330bfa402987411bf9baf75309",
           "country": "Germany",
-          "current_ap": 25810,
+          "current_ap": 25815,
           "last_month_ap": 25810,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max VampireZ",
             "Max Wool Games"
@@ -3050,9 +3051,9 @@
           "username": "titi2502",
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "Unknown",
-          "current_ap": 23700,
+          "current_ap": 23725,
           "last_month_ap": 23615,
-          "monthly_gain": 85,
+          "monthly_gain": 110,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -3201,15 +3202,14 @@
           ]
         },
         {
-          "username": "Khqled",
-          "uuid": "a4a83ccb4d7f45f0806bd7cbe48de984",
+          "username": "Huvo",
+          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
-          "current_ap": 23140,
-          "last_month_ap": 23140,
+          "current_ap": 23145,
+          "last_month_ap": 23145,
           "monthly_gain": 0,
           "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
+            "Max VampireZ"
           ]
         }
       ]
