@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-23T14:54:51.095Z",
+  "last_update": "2026-05-23T16:51:16.459Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2228,7 +2228,7 @@
     },
     {
       "country": "Norway",
-      "score": 3895,
+      "score": 3898,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -2270,9 +2270,9 @@
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25575,
+          "current_ap": 25585,
           "last_month_ap": 25555,
-          "monthly_gain": 20,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
@@ -3080,9 +3080,9 @@
           "username": "Justin_Jefferson",
           "uuid": "9dccd818228640bfa33174d8dc86dfb7",
           "country": "Unknown",
-          "current_ap": 23565,
+          "current_ap": 23575,
           "last_month_ap": 23590,
-          "monthly_gain": -25,
+          "monthly_gain": -15,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ"
@@ -3205,9 +3205,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
-          "current_ap": 23145,
+          "current_ap": 23150,
           "last_month_ap": 23145,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max VampireZ"
           ]
