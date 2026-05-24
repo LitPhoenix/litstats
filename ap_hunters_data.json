@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-23T22:43:29.659Z",
+  "last_update": "2026-05-24T02:08:39.598Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -606,9 +606,9 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27725,
+          "current_ap": 27735,
           "last_month_ap": 27515,
-          "monthly_gain": 210,
+          "monthly_gain": 220,
           "maxGames": [
             "Max Cops and Crims",
             "Max Arcade",
@@ -2870,6 +2870,20 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 24445,
+          "last_month_ap": 23910,
+          "monthly_gain": 535,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
@@ -2886,26 +2900,12 @@
           ]
         },
         {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 24420,
-          "last_month_ap": 23910,
-          "monthly_gain": 510,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24325,
+          "current_ap": 24350,
           "last_month_ap": 23900,
-          "monthly_gain": 425,
+          "monthly_gain": 450,
           "maxGames": [
             "Max Duels"
           ]
