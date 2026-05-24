@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-24T16:53:01.244Z",
+  "last_update": "2026-05-24T19:01:36.292Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2228,15 +2228,15 @@
     },
     {
       "country": "Norway",
-      "score": 3889,
+      "score": 3894,
       "top_players": [
         {
           "username": "Lumenoz",
           "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
           "country": "Norway",
-          "current_ap": 28890,
+          "current_ap": 28895,
           "last_month_ap": 28890,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max SkyBlock",
             "Max VampireZ",
