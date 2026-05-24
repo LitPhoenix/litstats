@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-24T20:43:53.061Z",
+  "last_update": "2026-05-24T22:47:34.102Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1110,9 +1110,9 @@
           "username": "Uleb",
           "uuid": "2baaec9272fd487294e673eb4ec35201",
           "country": "France",
-          "current_ap": 27310,
+          "current_ap": 27335,
           "last_month_ap": 27295,
-          "monthly_gain": 15,
+          "monthly_gain": 40,
           "maxGames": [
             "Max TKR",
             "Max Duels",
@@ -1185,7 +1185,7 @@
     },
     {
       "country": "UK",
-      "score": 9984,
+      "score": 9986,
       "top_players": [
         {
           "username": "greaneye",
@@ -1237,9 +1237,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29095,
+          "current_ap": 29100,
           "last_month_ap": 29095,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
@@ -2571,45 +2571,20 @@
       ]
     },
     {
-      "country": "New Zealand",
-      "score": 1110,
-      "top_players": [
-        {
-          "username": "wub_wub_wub79",
-          "uuid": "d33a4d925db84c30a28e528239471102",
-          "country": "New Zealand",
-          "current_ap": 26585,
-          "last_month_ap": 26570,
-          "monthly_gain": 15,
-          "maxGames": []
-        },
-        {
-          "username": "ILiveInAWall",
-          "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
-          "country": "New Zealand",
-          "current_ap": 25210,
-          "last_month_ap": 25140,
-          "monthly_gain": 70,
-          "maxGames": [
-            "Max Duels"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Taiwan",
-      "score": 1095,
+      "score": 1135,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26570,
+          "current_ap": 26610,
           "last_month_ap": 26500,
-          "monthly_gain": 70,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Warlords",
-            "Max TKR"
+            "Max TKR",
+            "Max Build Battle"
           ]
         },
         {
@@ -2647,6 +2622,32 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "New Zealand",
+      "score": 1110,
+      "top_players": [
+        {
+          "username": "wub_wub_wub79",
+          "uuid": "d33a4d925db84c30a28e528239471102",
+          "country": "New Zealand",
+          "current_ap": 26585,
+          "last_month_ap": 26570,
+          "monthly_gain": 15,
+          "maxGames": []
+        },
+        {
+          "username": "ILiveInAWall",
+          "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+          "country": "New Zealand",
+          "current_ap": 25210,
+          "last_month_ap": 25140,
+          "monthly_gain": 70,
+          "maxGames": [
+            "Max Duels"
           ]
         }
       ]
@@ -2820,9 +2821,9 @@
           "username": "pumpkan",
           "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
           "country": "Unknown",
-          "current_ap": 24960,
+          "current_ap": 24985,
           "last_month_ap": 24935,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -2862,9 +2863,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24455,
+          "current_ap": 24465,
           "last_month_ap": 23910,
-          "monthly_gain": 545,
+          "monthly_gain": 555,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
