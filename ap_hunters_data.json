@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-25T08:12:24.567Z",
+  "last_update": "2026-05-25T12:56:51.893Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1368,9 +1368,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24305,
+          "current_ap": 24320,
           "last_month_ap": 24295,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Mega Walls"
           ]
@@ -2097,15 +2097,15 @@
     },
     {
       "country": "Finland",
-      "score": 3944,
+      "score": 3949,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28295,
+          "current_ap": 28300,
           "last_month_ap": 28275,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2786,9 +2786,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25235,
+          "current_ap": 25245,
           "last_month_ap": 25045,
-          "monthly_gain": 190,
+          "monthly_gain": 200,
           "maxGames": [
             "Max Wool Games"
           ]
