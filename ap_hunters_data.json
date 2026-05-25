@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-25T20:57:56.708Z",
+  "last_update": "2026-05-25T22:52:21.219Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -787,9 +787,9 @@
           "username": "Colerer",
           "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
           "country": "USA",
-          "current_ap": 25760,
+          "current_ap": 25800,
           "last_month_ap": 25550,
-          "monthly_gain": 210,
+          "monthly_gain": 250,
           "maxGames": [
             "Max Blitz",
             "Max Walls",
@@ -1548,9 +1548,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26635,
+          "current_ap": 26640,
           "last_month_ap": 26625,
-          "monthly_gain": 10,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -2863,9 +2863,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24485,
+          "current_ap": 24495,
           "last_month_ap": 23910,
-          "monthly_gain": 575,
+          "monthly_gain": 585,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
@@ -3308,15 +3308,15 @@
     },
     {
       "country": "Turkey",
-      "score": 60,
+      "score": 65,
       "top_players": [
         {
           "username": "Melongan",
           "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
           "country": "Turkey",
-          "current_ap": 25535,
+          "current_ap": 25540,
           "last_month_ap": 25535,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max TNT Games",
             "Max Murder Mystery",
