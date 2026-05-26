@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-25T22:52:21.219Z",
+  "last_update": "2026-05-26T02:07:49.408Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1140,9 +1140,9 @@
           "username": "horri",
           "uuid": "04f4bddb99004950ab605a20f41c6a98",
           "country": "France",
-          "current_ap": 26210,
+          "current_ap": 26225,
           "last_month_ap": 26070,
-          "monthly_gain": 140,
+          "monthly_gain": 155,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -1471,7 +1471,7 @@
     },
     {
       "country": "Canada",
-      "score": 8570,
+      "score": 8571,
       "top_players": [
         {
           "username": "Songgg",
@@ -1548,9 +1548,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26640,
+          "current_ap": 26650,
           "last_month_ap": 26625,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -2904,9 +2904,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24375,
+          "current_ap": 24390,
           "last_month_ap": 23900,
-          "monthly_gain": 475,
+          "monthly_gain": 490,
           "maxGames": [
             "Max Duels"
           ]
