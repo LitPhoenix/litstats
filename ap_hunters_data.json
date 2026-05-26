@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-26T18:17:08.579Z",
+  "last_update": "2026-05-26T21:29:03.809Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -550,9 +550,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28485,
+          "current_ap": 28530,
           "last_month_ap": 27765,
-          "monthly_gain": 720,
+          "monthly_gain": 765,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -799,6 +799,7 @@
             "Max Arena Brawl",
             "Max Smash Heroes",
             "Max Paintball",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max VampireZ",
@@ -1213,6 +1214,7 @@
             "Max Smash Heroes",
             "Max Paintball",
             "Max Quake",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -1642,7 +1644,9 @@
           "current_ap": 23525,
           "last_month_ap": 23475,
           "monthly_gain": 50,
-          "maxGames": []
+          "maxGames": [
+            "Max SkyBlock"
+          ]
         }
       ]
     },
@@ -1662,6 +1666,7 @@
             "Max Arena Brawl",
             "Max Paintball",
             "Max Quake",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -2640,6 +2645,7 @@
           "last_month_ap": 26130,
           "monthly_gain": 5,
           "maxGames": [
+            "Max SkyBlock",
             "Max Wool Games",
             "Max Build Battle",
             "Max Seasonal"
@@ -2878,9 +2884,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24390,
+          "current_ap": 24395,
           "last_month_ap": 23900,
-          "monthly_gain": 490,
+          "monthly_gain": 495,
           "maxGames": [
             "Max Duels"
           ]
@@ -3088,6 +3094,7 @@
           "monthly_gain": 155,
           "maxGames": [
             "Max Pit",
+            "Max SkyBlock",
             "Max VampireZ"
           ]
         },
