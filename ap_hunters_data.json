@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-27T02:15:07.774Z",
+  "last_update": "2026-05-27T07:56:43.235Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -823,9 +823,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25585,
+          "current_ap": 25600,
           "last_month_ap": 25555,
-          "monthly_gain": 30,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -1554,6 +1554,7 @@
           "monthly_gain": 5,
           "maxGames": [
             "Max Quake",
+            "Max SkyBlock",
             "Max Warlords",
             "Max VampireZ",
             "Max TKR",
@@ -1642,9 +1643,9 @@
           "username": "mohtele",
           "uuid": "bde72daebb4640ae90ee096f26bb5f85",
           "country": "Canada",
-          "current_ap": 23525,
+          "current_ap": 23535,
           "last_month_ap": 23475,
-          "monthly_gain": 50,
+          "monthly_gain": 60,
           "maxGames": [
             "Max SkyBlock"
           ]
@@ -1930,7 +1931,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6690,
+      "score": 6700,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -1959,9 +1960,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 28115,
+          "current_ap": 28135,
           "last_month_ap": 27925,
-          "monthly_gain": 190,
+          "monthly_gain": 210,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -1991,15 +1992,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5320,
+      "score": 5330,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30795,
+          "current_ap": 30805,
           "last_month_ap": 30705,
-          "monthly_gain": 90,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2874,6 +2875,7 @@
           "last_month_ap": 24400,
           "monthly_gain": 25,
           "maxGames": [
+            "Max SkyBlock",
             "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
