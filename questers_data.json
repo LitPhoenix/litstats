@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-26T23:01:31.908Z",
+  "last_update": "2026-05-27T02:15:08.003Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109037,
     "289e9f90a76640e0921c85dcd96385b5": 81483,
@@ -652,15 +652,15 @@
     },
     {
       "country": "Belgium",
-      "score": 9723.2,
+      "score": 9741.2,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 48616,
+          "current_quests": 48706,
           "last_month_quests": 48200,
-          "monthly_gain": 416
+          "monthly_gain": 506
         }
       ]
     },
@@ -936,7 +936,7 @@
     },
     {
       "country": "Unknown",
-      "score": 26359.8,
+      "score": 26362.6,
       "top_players": [
         {
           "username": "biwgtp",
@@ -966,9 +966,9 @@
           "username": "MI7RAN",
           "uuid": "fe0d23d926054c62921afa2d71a3cc2c",
           "country": "Unknown",
-          "current_quests": 25300,
+          "current_quests": 25314,
           "last_month_quests": 25300,
-          "monthly_gain": 0
+          "monthly_gain": 14
         },
         {
           "username": "emperqr",
@@ -1094,15 +1094,15 @@
     },
     {
       "country": "Peru",
-      "score": 5179.6,
+      "score": 5196.8,
       "top_players": [
         {
           "username": "wittyhope",
           "uuid": "141e5144694046eaa7e536ed70cc1595",
           "country": "Peru",
-          "current_quests": 25898,
+          "current_quests": 25984,
           "last_month_quests": 25898,
-          "monthly_gain": 0
+          "monthly_gain": 86
         }
       ]
     },
