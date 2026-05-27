@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-27T21:46:18.258Z",
+  "last_update": "2026-05-27T23:09:58.950Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1654,15 +1654,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8233,
+      "score": 8223,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 32060,
+          "current_ap": 32050,
           "last_month_ap": 32045,
-          "monthly_gain": 15,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2847,9 +2847,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24505,
+          "current_ap": 24495,
           "last_month_ap": 23910,
-          "monthly_gain": 595,
+          "monthly_gain": 585,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
@@ -2888,9 +2888,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24395,
+          "current_ap": 24405,
           "last_month_ap": 23900,
-          "monthly_gain": 495,
+          "monthly_gain": 505,
           "maxGames": [
             "Max Duels"
           ]
@@ -3381,9 +3381,9 @@
           "username": "xBxnny",
           "uuid": "82fc95c49afc4b8182b6cefeac42874e",
           "country": "Chile",
-          "current_ap": 24610,
+          "current_ap": 24600,
           "last_month_ap": 24585,
-          "monthly_gain": 25,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Paintball",
             "Max Warlords",
