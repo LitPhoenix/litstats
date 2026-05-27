@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-27T14:54:39.889Z",
+  "last_update": "2026-05-27T18:20:28.229Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2178,9 +2178,9 @@
           "username": "Ofek",
           "uuid": "1121d718b08145fe8b8a3728639d6723",
           "country": "Israel",
-          "current_ap": 24495,
+          "current_ap": 24500,
           "last_month_ap": 24495,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max UHC",
             "Max Speed UHC"
@@ -2212,15 +2212,15 @@
     },
     {
       "country": "Norway",
-      "score": 3894,
+      "score": 3904,
       "top_players": [
         {
           "username": "Lumenoz",
           "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
           "country": "Norway",
-          "current_ap": 28895,
+          "current_ap": 28905,
           "last_month_ap": 28890,
-          "monthly_gain": 5,
+          "monthly_gain": 15,
           "maxGames": [
             "Max SkyBlock",
             "Max VampireZ",
@@ -2887,9 +2887,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24405,
+          "current_ap": 24395,
           "last_month_ap": 23900,
-          "monthly_gain": 505,
+          "monthly_gain": 495,
           "maxGames": [
             "Max Duels"
           ]
@@ -2928,6 +2928,21 @@
           "maxGames": []
         },
         {
+          "username": "jenidu",
+          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+          "country": "Unknown",
+          "current_ap": 24105,
+          "last_month_ap": 24025,
+          "monthly_gain": 80,
+          "maxGames": [
+            "Max Paintball",
+            "Max Walls",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Crazy Walls"
+          ]
+        },
+        {
           "username": "XxTrialxX",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
@@ -2952,21 +2967,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "jenidu",
-          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
-          "country": "Unknown",
-          "current_ap": 24080,
-          "last_month_ap": 24025,
-          "monthly_gain": 55,
-          "maxGames": [
-            "Max Paintball",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Crazy Walls"
           ]
         },
         {
