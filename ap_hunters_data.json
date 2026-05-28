@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-28T06:11:01.888Z",
+  "last_update": "2026-05-28T11:30:24.815Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -482,6 +482,7 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
+            "Max SkyBlock",
             "Max Warlords",
             "Max Walls",
             "Max TNT Games",
@@ -1009,6 +1010,7 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -2629,9 +2631,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25210,
+          "current_ap": 25225,
           "last_month_ap": 25140,
-          "monthly_gain": 70,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Duels"
           ]
@@ -2860,6 +2862,22 @@
           ]
         },
         {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 24455,
+          "last_month_ap": 24400,
+          "monthly_gain": 55,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Stylee",
           "uuid": "6d481389154d4421ae0d47533b8ce8d3",
           "country": "Unknown",
@@ -2868,22 +2886,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "EuanKC",
-          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
-          "country": "Unknown",
-          "current_ap": 24445,
-          "last_month_ap": 24400,
-          "monthly_gain": 45,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -3051,9 +3053,9 @@
           "username": "Hacks",
           "uuid": "b5ab6db9366049ae8a9882927e46ce08",
           "country": "Unknown",
-          "current_ap": 23625,
+          "current_ap": 23675,
           "last_month_ap": 23590,
-          "monthly_gain": 35,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
