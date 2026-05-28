@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-27T23:09:58.950Z",
+  "last_update": "2026-05-28T01:59:17.510Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -740,6 +740,7 @@
           "monthly_gain": 80,
           "maxGames": [
             "Max Blitz",
+            "Max SkyBlock",
             "Max Arcade",
             "Max Wool Games",
             "Max Duels",
@@ -2203,9 +2204,9 @@
           "username": "Slime",
           "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
           "country": "Israel",
-          "current_ap": 23590,
+          "current_ap": 23605,
           "last_month_ap": 23495,
-          "monthly_gain": 95,
+          "monthly_gain": 110,
           "maxGames": []
         }
       ]
@@ -2332,7 +2333,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2833,
+      "score": 2839,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2364,9 +2365,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26255,
+          "current_ap": 26280,
           "last_month_ap": 26250,
-          "monthly_gain": 5,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
@@ -2888,9 +2889,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24405,
+          "current_ap": 24395,
           "last_month_ap": 23900,
-          "monthly_gain": 505,
+          "monthly_gain": 495,
           "maxGames": [
             "Max Duels"
           ]
@@ -3077,9 +3078,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23475,
+          "current_ap": 23485,
           "last_month_ap": 23415,
-          "monthly_gain": 60,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
