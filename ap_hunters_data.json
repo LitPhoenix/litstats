@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-29T21:45:30.381Z",
+  "last_update": "2026-05-29T23:04:29.203Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1179,7 +1179,7 @@
     },
     {
       "country": "UK",
-      "score": 9987,
+      "score": 9992,
       "top_players": [
         {
           "username": "greaneye",
@@ -1210,9 +1210,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30590,
+          "current_ap": 30600,
           "last_month_ap": 30535,
-          "monthly_gain": 55,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1383,9 +1383,9 @@
           "username": "Woomy",
           "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
           "country": "UK",
-          "current_ap": 23445,
+          "current_ap": 23455,
           "last_month_ap": 23255,
-          "monthly_gain": 190,
+          "monthly_gain": 200,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -2470,15 +2470,15 @@
     },
     {
       "country": "Argentina",
-      "score": 1750,
+      "score": 1765,
       "top_players": [
         {
           "username": "Sayapi",
           "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
           "country": "Argentina",
-          "current_ap": 26840,
+          "current_ap": 26850,
           "last_month_ap": 26830,
-          "monthly_gain": 10,
+          "monthly_gain": 20,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -2487,9 +2487,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26245,
+          "current_ap": 26255,
           "last_month_ap": 26215,
-          "monthly_gain": 30,
+          "monthly_gain": 40,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -2810,9 +2810,9 @@
           "username": "pumpkan",
           "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
           "country": "Unknown",
-          "current_ap": 24985,
+          "current_ap": 24990,
           "last_month_ap": 24935,
-          "monthly_gain": 50,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Wool Games"
           ]
