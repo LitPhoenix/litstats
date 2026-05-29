@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-29T07:52:26.655Z",
+  "last_update": "2026-05-29T11:20:21.964Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109037,
     "289e9f90a76640e0921c85dcd96385b5": 81483,
@@ -101,7 +101,8 @@
     "e2bf0a2f2cf24fc29512511ddc10201a": 21206,
     "b12c6b822faa4ebfaab429982dab58ed": 21148,
     "4b48e58c5304407ab8c761fbe125ff3b": 21009,
-    "d33a4d925db84c30a28e528239471102": 21022
+    "d33a4d925db84c30a28e528239471102": 21022,
+    "c820b113e30c4c129812db60b1601f52": 21065
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
@@ -596,9 +597,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 23101,
+          "current_quests": 23106,
           "last_month_quests": 22711,
-          "monthly_gain": 390
+          "monthly_gain": 395
         },
         {
           "username": "Nightire",
@@ -1011,12 +1012,12 @@
           "monthly_gain": 106
         },
         {
-          "username": "wub_wub_wub79",
-          "uuid": "d33a4d925db84c30a28e528239471102",
+          "username": "latehrs",
+          "uuid": "c820b113e30c4c129812db60b1601f52",
           "country": "Unknown",
-          "current_quests": 21045,
-          "last_month_quests": 21022,
-          "monthly_gain": 23
+          "current_quests": 21065,
+          "last_month_quests": 21065,
+          "monthly_gain": 0
         }
       ]
     },
