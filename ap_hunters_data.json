@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-30T02:01:15.006Z",
+  "last_update": "2026-05-30T05:51:05.763Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2810,9 +2810,9 @@
           "username": "pumpkan",
           "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
           "country": "Unknown",
-          "current_ap": 24990,
+          "current_ap": 25010,
           "last_month_ap": 24935,
-          "monthly_gain": 55,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -2949,6 +2949,20 @@
           ]
         },
         {
+          "username": "CATBOYSILVER",
+          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+          "country": "Unknown",
+          "current_ap": 24095,
+          "last_month_ap": 23815,
+          "monthly_gain": 280,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "XxTrialxX",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
@@ -2959,20 +2973,6 @@
             "Max UHC",
             "Max Blitz",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "CATBOYSILVER",
-          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
-          "country": "Unknown",
-          "current_ap": 24085,
-          "last_month_ap": 23815,
-          "monthly_gain": 270,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
