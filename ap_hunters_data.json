@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-29T23:04:29.203Z",
+  "last_update": "2026-05-30T02:01:15.006Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -551,9 +551,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28555,
+          "current_ap": 28570,
           "last_month_ap": 27765,
-          "monthly_gain": 790,
+          "monthly_gain": 805,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -1383,9 +1383,9 @@
           "username": "Woomy",
           "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
           "country": "UK",
-          "current_ap": 23455,
+          "current_ap": 23475,
           "last_month_ap": 23255,
-          "monthly_gain": 200,
+          "monthly_gain": 220,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -2863,6 +2863,22 @@
           ]
         },
         {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 24455,
+          "last_month_ap": 24400,
+          "monthly_gain": 55,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Stylee",
           "uuid": "6d481389154d4421ae0d47533b8ce8d3",
           "country": "Unknown",
@@ -2871,22 +2887,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "EuanKC",
-          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
-          "country": "Unknown",
-          "current_ap": 24445,
-          "last_month_ap": 24400,
-          "monthly_gain": 45,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -2915,9 +2915,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24255,
+          "current_ap": 24270,
           "last_month_ap": 24135,
-          "monthly_gain": 120,
+          "monthly_gain": 135,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
