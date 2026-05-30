@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-30T16:52:45.573Z",
+  "last_update": "2026-05-30T18:59:26.141Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2775,9 +2775,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25280,
+          "current_ap": 25290,
           "last_month_ap": 25045,
-          "monthly_gain": 235,
+          "monthly_gain": 245,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -3166,18 +3166,6 @@
           "maxGames": []
         },
         {
-          "username": "PileatedSnagret",
-          "uuid": "d8c93138750f4388a3a99bd98b03192b",
-          "country": "Unknown",
-          "current_ap": 23295,
-          "last_month_ap": 23155,
-          "monthly_gain": 140,
-          "maxGames": [
-            "Max Duels",
-            "Max Build Battle"
-          ]
-        },
-        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -3188,6 +3176,18 @@
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
+          ]
+        },
+        {
+          "username": "PileatedSnagret",
+          "uuid": "d8c93138750f4388a3a99bd98b03192b",
+          "country": "Unknown",
+          "current_ap": 23295,
+          "last_month_ap": 23155,
+          "monthly_gain": 140,
+          "maxGames": [
+            "Max Duels",
+            "Max Build Battle"
           ]
         },
         {
