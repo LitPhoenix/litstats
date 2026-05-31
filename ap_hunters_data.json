@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-31T10:08:34.492Z",
+  "last_update": "2026-05-31T13:13:38.095Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2138,7 +2138,7 @@
     },
     {
       "country": "Israel",
-      "score": 3925,
+      "score": 3929,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2174,9 +2174,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26145,
+          "current_ap": 26160,
           "last_month_ap": 26135,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": []
         },
         {
@@ -2632,9 +2632,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25250,
+          "current_ap": 25270,
           "last_month_ap": 25140,
-          "monthly_gain": 110,
+          "monthly_gain": 130,
           "maxGames": [
             "Max Duels"
           ]
