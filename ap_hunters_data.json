@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-31T07:39:37.319Z",
+  "last_update": "2026-05-31T10:08:34.492Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1131,12 +1131,12 @@
           ]
         },
         {
-          "username": "horri",
+          "username": "horrifying",
           "uuid": "04f4bddb99004950ab605a20f41c6a98",
           "country": "France",
-          "current_ap": 26230,
+          "current_ap": 26240,
           "last_month_ap": 26070,
-          "monthly_gain": 160,
+          "monthly_gain": 170,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -2138,7 +2138,7 @@
     },
     {
       "country": "Israel",
-      "score": 3923,
+      "score": 3925,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2174,9 +2174,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26135,
+          "current_ap": 26145,
           "last_month_ap": 26135,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": []
         },
         {
