@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-31T02:30:15.162Z",
+  "last_update": "2026-05-31T07:39:37.319Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -1647,9 +1647,9 @@
           "username": "mohtele",
           "uuid": "bde72daebb4640ae90ee096f26bb5f85",
           "country": "Canada",
-          "current_ap": 23545,
+          "current_ap": 23555,
           "last_month_ap": 23475,
-          "monthly_gain": 70,
+          "monthly_gain": 80,
           "maxGames": [
             "Max SkyBlock"
           ]
@@ -1936,7 +1936,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6700,
+      "score": 6713,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -1965,9 +1965,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 28135,
+          "current_ap": 28160,
           "last_month_ap": 27925,
-          "monthly_gain": 210,
+          "monthly_gain": 235,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2775,9 +2775,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25290,
+          "current_ap": 25305,
           "last_month_ap": 25045,
-          "monthly_gain": 245,
+          "monthly_gain": 260,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -2904,9 +2904,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24335,
+          "current_ap": 24340,
           "last_month_ap": 24135,
-          "monthly_gain": 200,
+          "monthly_gain": 205,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -2949,6 +2949,19 @@
           ]
         },
         {
+          "username": "Battalius",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 24110,
+          "last_month_ap": 24090,
+          "monthly_gain": 20,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "CATBOYSILVER",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
@@ -2960,19 +2973,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "XxTrialxX",
-          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
-          "country": "Unknown",
-          "current_ap": 24090,
-          "last_month_ap": 24090,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
           ]
         },
         {
