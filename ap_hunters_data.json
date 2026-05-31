@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-05-31T16:57:07.046Z",
+  "last_update": "2026-05-31T19:03:05.299Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32475,
     "3de9779b0ed34ca196575639b57e2c3b": 32400,
@@ -2681,9 +2681,9 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 24985,
+          "current_ap": 24995,
           "last_month_ap": 24985,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Murder Mystery",
             "Max VampireZ",
@@ -3259,15 +3259,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 315,
+      "score": 330,
       "top_players": [
         {
           "username": "SATURNO",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 25790,
+          "current_ap": 25805,
           "last_month_ap": 25790,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max VampireZ"
           ]
