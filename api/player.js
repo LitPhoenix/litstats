@@ -26,8 +26,23 @@ async function safeFetchJSON(url, options = {}) {
 }
 
 module.exports = async (req, res) => {
+  const allowedOrigins = ['https://www.litstats.com', 'https://litstats.com', 'http://localhost:3000', 'http://127.0.0.1:3000'];
+  const requestOrigin = req.headers.origin || req.headers.referer || '';
+
+  // 1. CHECK
+  const secureToken = req.headers['x-litstats-auth'];
+  const expectedToken = process.env.CLOUDFLARE_AUTH_TOKEN;
+
+  if (secureToken !== expectedToken) {
+      return res.status(403).json({ error: "Access Denied: Direct origin bypass detected." });
+  }
+
+  // 2. Browser CORS
+  const isAllowed = allowedOrigins.some(origin => requestOrigin.startsWith(origin));
+  const corsOrigin = isAllowed ? requestOrigin : allowedOrigins[0];
+
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', corsOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
   res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=600');
@@ -211,7 +226,7 @@ module.exports = async (req, res) => {
 
     responseData.missingAchievements.sort((a, b) => a.reward - b.reward);
 
-// --- FAST RECENT ACHIEVEMENTS EXTRACTOR (HASH MAP) ---
+    // --- FAST RECENT ACHIEVEMENTS EXTRACTOR (HASH MAP) ---
     const achDictionary = {};
     if (cachedTemplate) {
       for (const [categoryId, tGame] of Object.entries(cachedTemplate)) {
@@ -223,6 +238,14 @@ module.exports = async (req, res) => {
             achDictionary[`${categoryId}_${key.toLowerCase()}`] = { game: gameName, title: ach.name, desc: ach.description, reward: ach.points };
           }
         }
+        if (tGame.tiered) {
+          for (const [key, ach] of Object.entries(tGame.tiered)) {
+            ach.tiers.forEach((t, index) => {
+              const tierNum = t.tier || index + 1;
+              achDictionary[`${categoryId}_${key.toLowerCase()}_${tierNum}`] = { game: gameName, title: ach.name, desc: ach.description, reward: t.points };
+            });
+          }
+        }
       }
     }
 
@@ -231,7 +254,6 @@ module.exports = async (req, res) => {
       if (achDictionary[fullId]) {
         responseData.recentAchievements.push(achDictionary[fullId]);
       } else {
-        // FALLBACK: If the dictionary misses, print the raw ID to the screen so you know it's working!
         responseData.recentAchievements.push({
            game: "Unknown", 
            title: fullId, 
