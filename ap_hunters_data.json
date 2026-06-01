@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-01T09:11:34.208Z",
+  "last_update": "2026-06-01T15:47:55.937Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1306,10 +1306,11 @@
           "username": "JinxRaider23",
           "uuid": "d297331b7ff9452babd6828871bc2636",
           "country": "UK",
-          "current_ap": 25880,
+          "current_ap": 25890,
           "last_month_ap": 25880,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
+            "Max SkyBlock",
             "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
@@ -2498,15 +2499,15 @@
     },
     {
       "country": "Australia",
-      "score": 1620,
+      "score": 1630,
       "top_players": [
         {
           "username": "TotalDramaIsland",
           "uuid": "dbb5f49cc2394912b1ca89783632d068",
           "country": "Australia",
-          "current_ap": 27095,
+          "current_ap": 27105,
           "last_month_ap": 27095,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Blitz",
             "Max Smash Heroes",
