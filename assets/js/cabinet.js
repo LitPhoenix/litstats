@@ -395,7 +395,6 @@ async function initCabinet() {
         document.getElementById('loader').classList.remove('hidden');
     }
 
-    const cacheBuster = Date.now();
         // Proxy
     const res = await fetch(`https://api.litstats.com/api/player?uuid=${uuid}`);
     if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
