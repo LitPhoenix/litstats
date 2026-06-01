@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-01T15:47:55.937Z",
+  "last_update": "2026-06-01T20:10:24.585Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -750,9 +750,9 @@
           "username": "Coduhy",
           "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
           "country": "USA",
-          "current_ap": 25960,
+          "current_ap": 25965,
           "last_month_ap": 25960,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
@@ -1463,15 +1463,15 @@
     },
     {
       "country": "Canada",
-      "score": 8666,
+      "score": 8676,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31220,
+          "current_ap": 31230,
           "last_month_ap": 31220,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -3238,6 +3238,23 @@
       ]
     },
     {
+      "country": "Ecuador",
+      "score": 330,
+      "top_players": [
+        {
+          "username": "SATURNO",
+          "uuid": "be11708dcb0946bd9608d29af61269ec",
+          "country": "Ecuador",
+          "current_ap": 25805,
+          "last_month_ap": 25805,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Moldova",
       "score": 330,
       "top_players": [
@@ -3252,23 +3269,6 @@
             "Max VampireZ",
             "Max Duels",
             "Max Build Battle"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Ecuador",
-      "score": 330,
-      "top_players": [
-        {
-          "username": "SATURNO",
-          "uuid": "be11708dcb0946bd9608d29af61269ec",
-          "country": "Ecuador",
-          "current_ap": 25805,
-          "last_month_ap": 25805,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
           ]
         }
       ]
