@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-02T18:00:39.475Z",
+  "last_update": "2026-06-02T20:48:52.162Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -547,9 +547,9 @@
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_quests": 31524,
+          "current_quests": 31533,
           "last_month_quests": 31495,
-          "monthly_gain": 29
+          "monthly_gain": 38
         },
         {
           "username": "vasiv",
@@ -994,20 +994,20 @@
           "monthly_gain": 0
         },
         {
+          "username": "Champiez",
+          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+          "country": "Unknown",
+          "current_quests": 21692,
+          "last_month_quests": 21589,
+          "monthly_gain": 103
+        },
+        {
           "username": "seriuz",
           "uuid": "34f5e925a1454ed5b08a357fd96b7eec",
           "country": "Unknown",
           "current_quests": 21676,
           "last_month_quests": 21676,
           "monthly_gain": 0
-        },
-        {
-          "username": "Champiez",
-          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-          "country": "Unknown",
-          "current_quests": 21667,
-          "last_month_quests": 21589,
-          "monthly_gain": 78
         },
         {
           "username": "latehrs",
