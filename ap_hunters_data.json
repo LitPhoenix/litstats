@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-02T13:48:27.922Z",
+  "last_update": "2026-06-02T18:00:39.072Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1360,9 +1360,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24335,
+          "current_ap": 24345,
           "last_month_ap": 24320,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Mega Walls"
           ]
@@ -2774,9 +2774,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25305,
+          "current_ap": 25315,
           "last_month_ap": 25305,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -2933,6 +2933,21 @@
           "maxGames": []
         },
         {
+          "username": "jenidu",
+          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+          "country": "Unknown",
+          "current_ap": 24115,
+          "last_month_ap": 24110,
+          "monthly_gain": 5,
+          "maxGames": [
+            "Max Paintball",
+            "Max Walls",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Crazy Walls"
+          ]
+        },
+        {
           "username": "Battalius",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
@@ -2943,21 +2958,6 @@
             "Max UHC",
             "Max Blitz",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "jenidu",
-          "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
-          "country": "Unknown",
-          "current_ap": 24110,
-          "last_month_ap": 24110,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Crazy Walls"
           ]
         },
         {
