@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-02T08:21:20.106Z",
+  "last_update": "2026-06-02T13:48:27.922Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2933,6 +2933,19 @@
           "maxGames": []
         },
         {
+          "username": "Battalius",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 24110,
+          "last_month_ap": 24110,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
@@ -2945,19 +2958,6 @@
             "Max VampireZ",
             "Max TKR",
             "Max Crazy Walls"
-          ]
-        },
-        {
-          "username": "Battalius",
-          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
-          "country": "Unknown",
-          "current_ap": 24110,
-          "last_month_ap": 24110,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
           ]
         },
         {
