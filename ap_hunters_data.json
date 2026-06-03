@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-03T14:21:43.871Z",
+  "last_update": "2026-06-03T19:42:26.936Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -549,9 +549,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28595,
+          "current_ap": 28615,
           "last_month_ap": 28585,
-          "monthly_gain": 10,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2027,15 +2027,15 @@
     },
     {
       "country": "Poland",
-      "score": 5050,
+      "score": 5060,
       "top_players": [
         {
           "username": "Sylveonnnnn",
           "uuid": "4b5257d509bc460f8a82a79510f17fc9",
           "country": "Poland",
-          "current_ap": 30525,
+          "current_ap": 30535,
           "last_month_ap": 30525,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
