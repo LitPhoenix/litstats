@@ -119,7 +119,7 @@ async function loadMiniLeaderboard() {
         });
         
         const uniquePlayers = Array.from(new Map(allPlayers.map(p => [p.uuid, p])).values());
-        uniquePlayers.sort((a, b) => b.achievementPoints - a.achievementPoints);
+        uniquePlayers.sort((a, b) => b.current_ap - a.current_ap);
         
         const top5 = uniquePlayers.slice(0, 5);
         
