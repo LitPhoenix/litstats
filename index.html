@@ -74,7 +74,7 @@
       <div id="portError" style="color: var(--red); margin-top: 16px; font-size: 14px; font-weight: 600; display:none;"></div>
 
       <div class="mini-lb-wrapper">
-        <h3 class="mini-lb-title">Current AP Leaders</h3>
+        <h3 class="mini-lb-title">Current Top AP</h3>
         <div class="mini-lb-fade-container">
           <div class="table-inner" style="border-radius: var(--radius); overflow: hidden; background: var(--surface); backdrop-filter: blur(24px); border: 1px solid var(--border);">
             <div id="mini-lb-content">
@@ -110,7 +110,7 @@ function goToCabinet() {
 async function loadMiniLeaderboard() {
     try {
         const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-        const res = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
+        const res = await fetch(`ap_hunters_data.json?v=${currentHour}`);
         const data = await res.json();
         
         let allPlayers = [];
@@ -134,7 +134,7 @@ async function loadMiniLeaderboard() {
                     <span style="font-weight: 600; color: var(--text);">${p.username}</span>
                   </td>
                   <td style="padding: 12px 16px; font-weight: 700; color: var(--accent); text-align: right;">
-                    ${p.achievementPoints.toLocaleString()} AP
+                    ${p.current_ap.toLocaleString()} AP
                   </td>
                 </tr>
               `).join('')}
@@ -143,7 +143,6 @@ async function loadMiniLeaderboard() {
         `;
         
         document.getElementById('mini-lb-content').innerHTML = html;
-        // Make the overlay button point to the newly renamed leaderboard
         document.querySelector('.view-more-btn').href = "leaderboard.html";
     } catch (err) {
         document.getElementById('mini-lb-content').innerHTML = `<div style="padding: 32px 24px; color: var(--red); font-weight: 600; text-align: center;">Failed to map leaderboard data.</div>`;
