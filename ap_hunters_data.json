@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-03T22:24:17.537Z",
+  "last_update": "2026-06-04T02:39:14.959Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -549,9 +549,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28615,
+          "current_ap": 28650,
           "last_month_ap": 28585,
-          "monthly_gain": 30,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -1935,7 +1935,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6713,
+      "score": 6735,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -1964,9 +1964,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 28160,
+          "current_ap": 28205,
           "last_month_ap": 28160,
-          "monthly_gain": 0,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2085,15 +2085,15 @@
     },
     {
       "country": "Finland",
-      "score": 3949,
+      "score": 3974,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28300,
+          "current_ap": 28325,
           "last_month_ap": 28300,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2862,6 +2862,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 24460,
+          "last_month_ap": 24435,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
@@ -2886,17 +2897,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 24435,
-          "last_month_ap": 24435,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
@@ -3242,7 +3242,7 @@
       "score": 330,
       "top_players": [
         {
-          "username": "SATURNO",
+          "username": "Saturno",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
           "current_ap": 25805,
