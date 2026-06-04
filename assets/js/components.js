@@ -19,6 +19,7 @@ const litHeader = litBanner + `
         <a href="index.html" class="nav-btn">Player Lookup</a>
         <a href="leaderboard.html" class="nav-btn">AP Leaderboard</a>
         <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
+        <a href="blitz.html" class="nav-btn">Blitz P2</a>
       </nav>
       <div class="header-controls">
         <button class="mobile-menu-btn" onclick="document.getElementById('mobileNav').classList.toggle('open')">☰</button>
@@ -30,6 +31,7 @@ const litHeader = litBanner + `
     <a href="index.html" class="nav-btn">Player Lookup</a>
     <a href="leaderboard.html" class="nav-btn">AP Leaderboard</a>
     <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
+    <a href="blitz.html" class="nav-btn">Blitz P2</a>
   </nav>
 `;
 
