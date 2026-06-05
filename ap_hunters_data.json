@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-05T19:31:36.786Z",
+  "last_update": "2026-06-05T21:18:20.725Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -873,9 +873,9 @@
           "username": "combatively",
           "uuid": "23498017b5654aa0b9949effbbdd147e",
           "country": "USA",
-          "current_ap": 24635,
+          "current_ap": 24640,
           "last_month_ap": 24635,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max TKR"
           ]
@@ -1360,9 +1360,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24385,
+          "current_ap": 24390,
           "last_month_ap": 24320,
-          "monthly_gain": 65,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Mega Walls"
           ]
@@ -2085,15 +2085,15 @@
     },
     {
       "country": "Finland",
-      "score": 3974,
+      "score": 3989,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28325,
+          "current_ap": 28340,
           "last_month_ap": 28300,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2631,9 +2631,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25320,
+          "current_ap": 25325,
           "last_month_ap": 25305,
-          "monthly_gain": 15,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Duels"
           ]
