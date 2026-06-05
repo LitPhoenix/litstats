@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-04T23:01:39.504Z",
+  "last_update": "2026-06-05T02:14:37.817Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1177,7 +1177,7 @@
     },
     {
       "country": "UK",
-      "score": 10019,
+      "score": 10026,
       "top_players": [
         {
           "username": "greaneye",
@@ -1208,9 +1208,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30640,
+          "current_ap": 30655,
           "last_month_ap": 30610,
-          "monthly_gain": 30,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1360,9 +1360,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24365,
+          "current_ap": 24375,
           "last_month_ap": 24320,
-          "monthly_gain": 45,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Mega Walls"
           ]
