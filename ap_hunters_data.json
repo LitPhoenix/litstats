@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-06T20:54:54.478Z",
+  "last_update": "2026-06-06T22:55:44.114Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -549,9 +549,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28700,
+          "current_ap": 28730,
           "last_month_ap": 28585,
-          "monthly_gain": 115,
+          "monthly_gain": 145,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2561,15 +2561,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1135,
+      "score": 1175,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26610,
+          "current_ap": 26650,
           "last_month_ap": 26610,
-          "monthly_gain": 0,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Warlords",
             "Max TKR",
