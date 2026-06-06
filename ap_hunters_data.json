@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-06T16:59:41.830Z",
+  "last_update": "2026-06-06T19:05:14.660Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1540,9 +1540,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26650,
+          "current_ap": 26660,
           "last_month_ap": 26650,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -2138,7 +2138,7 @@
     },
     {
       "country": "Israel",
-      "score": 3961,
+      "score": 3974,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2162,9 +2162,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27195,
+          "current_ap": 27220,
           "last_month_ap": 27130,
-          "monthly_gain": 65,
+          "monthly_gain": 90,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
