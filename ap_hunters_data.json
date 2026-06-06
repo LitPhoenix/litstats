@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-06T09:54:20.445Z",
+  "last_update": "2026-06-06T11:17:16.551Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2137,7 +2137,7 @@
     },
     {
       "country": "Israel",
-      "score": 3929,
+      "score": 3949,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2161,9 +2161,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27130,
+          "current_ap": 27170,
           "last_month_ap": 27130,
-          "monthly_gain": 0,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
