@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-06T19:05:14.660Z",
+  "last_update": "2026-06-06T20:54:54.478Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1164,9 +1164,9 @@
           "username": "KaoriMiyazono",
           "uuid": "1b8b7e076bcb4795b21a408197d4ded7",
           "country": "France",
-          "current_ap": 23825,
+          "current_ap": 23830,
           "last_month_ap": 23825,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -2086,15 +2086,15 @@
     },
     {
       "country": "Finland",
-      "score": 3989,
+      "score": 4009,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28340,
+          "current_ap": 28360,
           "last_month_ap": 28300,
-          "monthly_gain": 40,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2138,7 +2138,7 @@
     },
     {
       "country": "Israel",
-      "score": 3974,
+      "score": 3986,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2162,9 +2162,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27220,
+          "current_ap": 27245,
           "last_month_ap": 27130,
-          "monthly_gain": 90,
+          "monthly_gain": 115,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
