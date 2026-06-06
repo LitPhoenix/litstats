@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-06T15:06:26.124Z",
+  "last_update": "2026-06-06T16:59:41.830Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1865,7 +1865,7 @@
     },
     {
       "country": "Germany",
-      "score": 6769,
+      "score": 6774,
       "top_players": [
         {
           "username": "NightMan976",
@@ -1890,12 +1890,13 @@
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28415,
+          "current_ap": 28425,
           "last_month_ap": 28415,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Smash Heroes",
             "Max Paintball",
+            "Max SkyBlock",
             "Max Warlords",
             "Max TNT Games",
             "Max Murder Mystery",
