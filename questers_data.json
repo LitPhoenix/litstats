@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-07T10:22:46.789Z",
+  "last_update": "2026-06-07T13:20:35.824Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -863,15 +863,15 @@
     },
     {
       "country": "Sweden",
-      "score": 11308.6,
+      "score": 11314.6,
       "top_players": [
         {
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Sweden",
-          "current_quests": 33268,
+          "current_quests": 33298,
           "last_month_quests": 33095,
-          "monthly_gain": 173
+          "monthly_gain": 203
         },
         {
           "username": "Reeedly",
@@ -1121,15 +1121,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 4943,
+      "score": 4961.2,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 24715,
+          "current_quests": 24806,
           "last_month_quests": 24715,
-          "monthly_gain": 0
+          "monthly_gain": 91
         }
       ]
     },
