@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-07T17:05:44.140Z",
+  "last_update": "2026-06-07T19:06:36.497Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1463,7 +1463,7 @@
     },
     {
       "country": "Canada",
-      "score": 8696,
+      "score": 8700,
       "top_players": [
         {
           "username": "Songgg",
@@ -1512,9 +1512,9 @@
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
-          "current_ap": 28100,
+          "current_ap": 28115,
           "last_month_ap": 28100,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Blitz",
             "Max Arena Brawl",
@@ -2561,17 +2561,18 @@
     },
     {
       "country": "Taiwan",
-      "score": 1175,
+      "score": 1190,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26650,
+          "current_ap": 26665,
           "last_month_ap": 26610,
-          "monthly_gain": 40,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Warlords",
+            "Max Murder Mystery",
             "Max TKR",
             "Max Build Battle"
           ]
