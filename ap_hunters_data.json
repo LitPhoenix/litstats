@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-07T02:33:15.353Z",
+  "last_update": "2026-06-07T07:47:50.935Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1778,9 +1778,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23180,
+          "current_ap": 23195,
           "last_month_ap": 23160,
-          "monthly_gain": 20,
+          "monthly_gain": 35,
           "maxGames": []
         }
       ]
@@ -1864,6 +1864,67 @@
       ]
     },
     {
+      "country": "Serbia",
+      "score": 6778,
+      "top_players": [
+        {
+          "username": "NEmQnjA",
+          "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+          "country": "Serbia",
+          "current_ap": 30845,
+          "last_month_ap": 30845,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Pit",
+            "Max Blitz",
+            "Max Arena Brawl",
+            "Max Smash Heroes",
+            "Max Paintball",
+            "Max Quake",
+            "Max Speed UHC",
+            "Max Warlords",
+            "Max Walls",
+            "Max TNT Games",
+            "Max VampireZ",
+            "Max TKR",
+            "Max SkyClash"
+          ]
+        },
+        {
+          "username": "Breesily",
+          "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+          "country": "Serbia",
+          "current_ap": 28290,
+          "last_month_ap": 28160,
+          "monthly_gain": 130,
+          "maxGames": [
+            "Max Mega Walls",
+            "Max Paintball",
+            "Max Walls",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "Misqu",
+          "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+          "country": "Serbia",
+          "current_ap": 24065,
+          "last_month_ap": 24065,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Paintball",
+            "Max Quake",
+            "Max Speed UHC",
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR",
+            "Max SkyClash"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Germany",
       "score": 6774,
       "top_players": [
@@ -1930,67 +1991,6 @@
             "Max SkyBlock",
             "Max Warlords",
             "Max Seasonal"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Serbia",
-      "score": 6755,
-      "top_players": [
-        {
-          "username": "NEmQnjA",
-          "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
-          "country": "Serbia",
-          "current_ap": 30845,
-          "last_month_ap": 30845,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR",
-            "Max SkyClash"
-          ]
-        },
-        {
-          "username": "Breesily",
-          "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
-          "country": "Serbia",
-          "current_ap": 28245,
-          "last_month_ap": 28160,
-          "monthly_gain": 85,
-          "maxGames": [
-            "Max Mega Walls",
-            "Max Paintball",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "Misqu",
-          "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
-          "country": "Serbia",
-          "current_ap": 24065,
-          "last_month_ap": 24065,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max SkyClash"
           ]
         }
       ]
@@ -2866,9 +2866,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 24475,
+          "current_ap": 24495,
           "last_month_ap": 24455,
-          "monthly_gain": 20,
+          "monthly_gain": 40,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
