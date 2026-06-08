@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-08T20:01:33.593Z",
+  "last_update": "2026-06-08T21:52:18.254Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -469,7 +469,7 @@
     },
     {
       "country": "USA",
-      "score": 45787,
+      "score": 45794.8,
       "top_players": [
         {
           "username": "Trtx",
@@ -499,9 +499,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "USA",
-          "current_quests": 44898,
+          "current_quests": 44937,
           "last_month_quests": 44612,
-          "monthly_gain": 286
+          "monthly_gain": 325
         },
         {
           "username": "QuestCompleted",
