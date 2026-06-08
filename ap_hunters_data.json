@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-08T02:37:30.277Z",
+  "last_update": "2026-06-08T08:45:47.728Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2138,7 +2138,7 @@
     },
     {
       "country": "Israel",
-      "score": 4000,
+      "score": 4005,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2162,9 +2162,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27290,
+          "current_ap": 27300,
           "last_month_ap": 27130,
-          "monthly_gain": 160,
+          "monthly_gain": 170,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
@@ -2905,9 +2905,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24410,
+          "current_ap": 24425,
           "last_month_ap": 24375,
-          "monthly_gain": 35,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
