@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-09T19:56:54.690Z",
+  "last_update": "2026-06-09T21:31:03.511Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1226,6 +1226,19 @@
           ]
         },
         {
+          "username": "litphoenix",
+          "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
+          "country": "UK",
+          "current_ap": 29105,
+          "last_month_ap": 29080,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max VampireZ",
+            "Max TKR",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
@@ -1240,19 +1253,6 @@
             "Max TKR",
             "Max Wool Games",
             "Max Crazy Walls"
-          ]
-        },
-        {
-          "username": "litphoenix",
-          "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
-          "country": "UK",
-          "current_ap": 29105,
-          "last_month_ap": 29080,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR",
-            "Max Build Battle"
           ]
         },
         {
@@ -2138,7 +2138,7 @@
     },
     {
       "country": "Israel",
-      "score": 4025,
+      "score": 4033,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2162,9 +2162,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27340,
+          "current_ap": 27355,
           "last_month_ap": 27130,
-          "monthly_gain": 210,
+          "monthly_gain": 225,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
@@ -3167,6 +3167,18 @@
           "maxGames": []
         },
         {
+          "username": "PileatedSnagret",
+          "uuid": "d8c93138750f4388a3a99bd98b03192b",
+          "country": "Unknown",
+          "current_ap": 23295,
+          "last_month_ap": 23295,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -3177,18 +3189,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "PileatedSnagret",
-          "uuid": "d8c93138750f4388a3a99bd98b03192b",
-          "country": "Unknown",
-          "current_ap": 23295,
-          "last_month_ap": 23295,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
