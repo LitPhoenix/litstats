@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-09T06:13:30.851Z",
+  "last_update": "2026-06-09T10:52:49.132Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1177,7 +1177,7 @@
     },
     {
       "country": "UK",
-      "score": 10017,
+      "score": 10019,
       "top_players": [
         {
           "username": "greaneye",
@@ -1246,9 +1246,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 29080,
+          "current_ap": 29105,
           "last_month_ap": 29080,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -3112,9 +3112,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
-          "current_ap": 23420,
+          "current_ap": 23425,
           "last_month_ap": 23405,
-          "monthly_gain": 15,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Pit",
             "Max TKR",
