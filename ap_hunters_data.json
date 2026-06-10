@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-10T18:25:55.351Z",
+  "last_update": "2026-06-10T21:52:18.539Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -531,6 +531,23 @@
           ]
         },
         {
+          "username": "righter",
+          "uuid": "396c6009191449f691fc86e6d60f7243",
+          "country": "USA",
+          "current_ap": 28770,
+          "last_month_ap": 28585,
+          "monthly_gain": 185,
+          "maxGames": [
+            "Max Pit",
+            "Max SkyWars",
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
@@ -543,23 +560,6 @@
             "Max TNT Games",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "righter",
-          "uuid": "396c6009191449f691fc86e6d60f7243",
-          "country": "USA",
-          "current_ap": 28760,
-          "last_month_ap": 28585,
-          "monthly_gain": 175,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyWars",
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -2853,9 +2853,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24610,
+          "current_ap": 24615,
           "last_month_ap": 24550,
-          "monthly_gain": 60,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
