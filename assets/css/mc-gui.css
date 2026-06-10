@@ -1,0 +1,94 @@
+@font-face { font-family: 'Vanilla'; src: url('../fonts/Minecraft.ttf'); }
+@font-face { font-family: 'Faithful'; src: url('../fonts/mineglyph-faithful.otf'); }
+
+:root {
+  --slot-size: 40px;
+  --mc-font: 'Faithful', 'Vanilla', 'Minecraft', monospace;
+  --mc-slot-bg: rgba(168, 168, 168, 0.1);
+  --mc-border-light: rgba(235, 235, 235, 0.204);
+  --mc-border-dark: rgba(0, 0, 0, 0.15);
+  --mc-slot-dark: rgba(0, 0, 0, 0.541);
+  --grid-gap: 4px;
+}
+
+body.theme-classic {
+  --slot-size: 36px;
+  --grid-gap: 0px;
+}
+
+main.mc-scale-engine {
+  display: flex; flex-direction: column; align-items: center;
+  margin-top: 40px; margin-bottom: 100px; width: 100%;
+  image-rendering: pixelated; user-select: none;
+  zoom: 0.9;
+}
+
+@media (min-width: 768px) {
+  main.mc-scale-engine { zoom: 1.5; }
+}
+
+.mc-container {
+  background: var(--surface); backdrop-filter: blur(16px);
+  border: 1px solid var(--border); border-radius: 16px;
+  padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.mc-title { color: var(--text-2); font-size: 16px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; font-family: 'DM Sans', sans-serif; }
+
+/* Dynamic Grid System */
+.mc-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 9), var(--slot-size));
+  grid-template-rows: repeat(var(--rows, auto), var(--slot-size));
+  gap: var(--grid-gap);
+}
+
+.slot {
+  width: var(--slot-size); height: var(--slot-size);
+  background: var(--mc-slot-bg);
+  border: 2px solid var(--mc-slot-dark); border-right-color: var(--mc-border-light); border-bottom-color: var(--mc-border-light);
+  border-radius: 4px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;
+}
+.slot.locked { cursor: not-allowed; opacity: 0.3; filter: grayscale(100%); }
+.slot:hover:not(.locked) { background: rgba(128, 128, 128, 0.3); outline: 2px solid var(--accent); z-index: 10; }
+
+.item-wrapper { width: 80%; height: 80%; position: relative; display: flex; justify-content: center; align-items: center; }
+.item-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated; pointer-events: none; }
+.count { position: absolute; bottom: -3px; right: -4px; font-size: 16px; color: #fff; text-shadow: 2px 2px 0 #3f3f3f; pointer-events: none; z-index: 5; font-family: var(--mc-font); }
+
+.item-wrapper.enchanted::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(65deg, transparent 20%, rgba(160,65,255,.7) 50%, transparent 80%);
+  background-size: 200% 200%; mix-blend-mode: screen;
+  animation: glint 2.5s infinite linear; z-index: 4; pointer-events: none;
+  -webkit-mask-image: var(--mask-img); mask-image: var(--mask-img);
+  -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+}
+@keyframes glint { 0%{background-position:200% center} 100%{background-position:-200% center} }
+
+.mc-tooltip {
+  display: none; position: fixed; z-index: 9999; pointer-events: none;
+  padding: 2px 6px 4px 6px; color: #fff; background: rgba(16,0,16,.85); letter-spacing: 0.05em;
+  border: 2px solid #2d0064; border-radius: 0; font-family: var(--mc-font);
+  box-shadow: 2px 0 0 0 #000, -2px 0 0 0 #000, 0 2px 0 0 #000, 0 -2px 0 0 #000;
+}
+.mc-tooltip.show { display: block; }
+.tt-name { font-size: 16px; display: block; text-shadow: none; line-height: 1.4; margin-bottom: 3px; font-family: var(--mc-font); }
+.tt-line { font-size: 16px; display: block; margin-top: 0; line-height: 1.4; text-shadow: none; font-family: var(--mc-font); }
+
+.r-common{color:#fff} .r-uncommon{color:#55ff55} .r-rare{color:#5555ff} .r-epic{color:#ff55ff} .r-legendary{color:#ffaa00}
+.c-grey{color:#aaa} .c-yellow{color:#ffff55} .c-red{color:#ff5555}
+
+/* Classic Theme Overrides */
+body.theme-classic .mc-container {
+  background: #c6c6c6; border-radius: 0; backdrop-filter: none; border: 4px solid #fff;
+  border-right-color: #555; border-bottom-color: #555; padding: 8px;
+  box-shadow: 0 0 0 2px #000, 0 10px 30px rgba(0,0,0,.3);
+}
+body.theme-classic .mc-title { color: #404040; font-family: var(--mc-font); text-shadow: none; font-size: 16px; text-transform: none; letter-spacing: 0.05em; margin-left: 1px; margin-top: -6px; }
+body.theme-classic .slot { background: #8b8b8b; border-radius: 0; border: 2px solid #373737; border-right-color: #fff; border-bottom-color: #fff; }
+body.theme-classic .slot:hover:not(.locked) { background: #bebebe; outline: none; box-shadow: none; }
+body.theme-classic .count { right: -2px; bottom: -4px; }
+body.theme-classic .item-wrapper { width: 32px; height: 32px; }
