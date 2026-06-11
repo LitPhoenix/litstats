@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-11T02:37:43.953Z",
+  "last_update": "2026-06-11T08:28:22.461Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -701,9 +701,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26730,
+          "current_ap": 26740,
           "last_month_ap": 26730,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Warlords",
             "Max Arcade",
@@ -1463,15 +1463,15 @@
     },
     {
       "country": "Canada",
-      "score": 8700,
+      "score": 8720,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31260,
+          "current_ap": 31280,
           "last_month_ap": 31220,
-          "monthly_gain": 40,
+          "monthly_gain": 60,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",

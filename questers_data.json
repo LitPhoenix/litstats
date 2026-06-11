@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-11T02:37:44.331Z",
+  "last_update": "2026-06-11T08:28:22.671Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -665,7 +665,7 @@
     },
     {
       "country": "Taiwan",
-      "score": 18586.2,
+      "score": 18648,
       "top_players": [
         {
           "username": "Summer_Albert",
@@ -679,9 +679,9 @@
           "username": "Itz_Pipi",
           "uuid": "ae655706622d410cb36b9a8c4e1f1be4",
           "country": "Taiwan",
-          "current_quests": 44351,
+          "current_quests": 44660,
           "last_month_quests": 44351,
-          "monthly_gain": 0
+          "monthly_gain": 309
         }
       ]
     },
@@ -1070,6 +1070,20 @@
       ]
     },
     {
+      "country": "Peru",
+      "score": 5204.6,
+      "top_players": [
+        {
+          "username": "wittyhope",
+          "uuid": "141e5144694046eaa7e536ed70cc1595",
+          "country": "Peru",
+          "current_quests": 26023,
+          "last_month_quests": 25984,
+          "monthly_gain": 39
+        }
+      ]
+    },
+    {
       "country": "Romania",
       "score": 9440,
       "top_players": [
@@ -1087,20 +1101,6 @@
           "country": "Romania",
           "current_quests": 21206,
           "last_month_quests": 21206,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Peru",
-      "score": 5196.8,
-      "top_players": [
-        {
-          "username": "wittyhope",
-          "uuid": "141e5144694046eaa7e536ed70cc1595",
-          "country": "Peru",
-          "current_quests": 25984,
-          "last_month_quests": 25984,
           "monthly_gain": 0
         }
       ]
