@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-12T21:24:59.112Z",
+  "last_update": "2026-06-12T23:07:57.186Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -534,9 +534,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28790,
+          "current_ap": 28815,
           "last_month_ap": 28585,
-          "monthly_gain": 205,
+          "monthly_gain": 230,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -747,6 +747,20 @@
           ]
         },
         {
+          "username": "Pocketing",
+          "uuid": "281aef4684e94e759c7860a055549fe7",
+          "country": "USA",
+          "current_ap": 26030,
+          "last_month_ap": 25825,
+          "monthly_gain": 205,
+          "maxGames": [
+            "Max Paintball",
+            "Max Speed UHC",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "Coduhy",
           "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
           "country": "USA",
@@ -759,20 +773,6 @@
             "Max Duels",
             "Max Build Battle",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "Pocketing",
-          "uuid": "281aef4684e94e759c7860a055549fe7",
-          "country": "USA",
-          "current_ap": 25825,
-          "last_month_ap": 25825,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Speed UHC",
-            "Max VampireZ",
-            "Max TKR"
           ]
         },
         {
@@ -3127,10 +3127,11 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 23395,
+          "current_ap": 23410,
           "last_month_ap": 23395,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
+            "Max SkyBlock",
             "Max Murder Mystery",
             "Max Duels"
           ]
