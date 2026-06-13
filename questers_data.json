@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-13T17:11:10.832Z",
+  "last_update": "2026-06-13T19:07:49.873Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -739,7 +739,7 @@
     },
     {
       "country": "Finland",
-      "score": 14195.6,
+      "score": 14316.2,
       "top_players": [
         {
           "username": "Mol_o",
@@ -753,9 +753,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_quests": 29928,
+          "current_quests": 30531,
           "last_month_quests": 29928,
-          "monthly_gain": 0
+          "monthly_gain": 603
         }
       ]
     },
@@ -811,15 +811,15 @@
     },
     {
       "country": "Japan",
-      "score": 22268.6,
+      "score": 22355.4,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_quests": 33822,
+          "current_quests": 34256,
           "last_month_quests": 33822,
-          "monthly_gain": 0
+          "monthly_gain": 434
         },
         {
           "username": "Taich25",
@@ -935,7 +935,7 @@
     },
     {
       "country": "Unknown",
-      "score": 26372.4,
+      "score": 26376.8,
       "top_players": [
         {
           "username": "biwgtp",
@@ -965,9 +965,9 @@
           "username": "MI7RAN",
           "uuid": "fe0d23d926054c62921afa2d71a3cc2c",
           "country": "Unknown",
-          "current_quests": 25329,
+          "current_quests": 25351,
           "last_month_quests": 25314,
-          "monthly_gain": 15
+          "monthly_gain": 37
         },
         {
           "username": "emperqr",
