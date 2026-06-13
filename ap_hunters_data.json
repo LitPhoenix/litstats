@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-13T02:13:35.247Z",
+  "last_update": "2026-06-13T07:40:18.360Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -497,9 +497,9 @@
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
-          "current_ap": 29470,
+          "current_ap": 29480,
           "last_month_ap": 29470,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Quake",
             "Max TNT Games",
@@ -750,9 +750,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26030,
+          "current_ap": 26040,
           "last_month_ap": 25825,
-          "monthly_gain": 205,
+          "monthly_gain": 215,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -1463,15 +1463,15 @@
     },
     {
       "country": "Canada",
-      "score": 8720,
+      "score": 8730,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31280,
+          "current_ap": 31290,
           "last_month_ap": 31220,
-          "monthly_gain": 60,
+          "monthly_gain": 70,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2086,7 +2086,7 @@
     },
     {
       "country": "Israel",
-      "score": 4100,
+      "score": 4115,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2110,9 +2110,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27490,
+          "current_ap": 27520,
           "last_month_ap": 27130,
-          "monthly_gain": 360,
+          "monthly_gain": 390,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
@@ -2633,9 +2633,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25345,
+          "current_ap": 25365,
           "last_month_ap": 25305,
-          "monthly_gain": 40,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Duels"
           ]
