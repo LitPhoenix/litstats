@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-14T21:00:16.620Z",
+  "last_update": "2026-06-14T22:59:56.226Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -516,9 +516,9 @@
           "username": "Physiological",
           "uuid": "8b87c1da0a114a988235c7f54bf48b51",
           "country": "USA",
-          "current_ap": 29220,
+          "current_ap": 29250,
           "last_month_ap": 29220,
-          "monthly_gain": 0,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Blitz",
             "Max Smash Heroes",
@@ -1779,9 +1779,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23205,
+          "current_ap": 23220,
           "last_month_ap": 23160,
-          "monthly_gain": 45,
+          "monthly_gain": 60,
           "maxGames": []
         }
       ]
