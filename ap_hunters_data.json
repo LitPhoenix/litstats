@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-14T15:43:11.360Z",
+  "last_update": "2026-06-14T17:09:16.542Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1178,7 +1178,7 @@
     },
     {
       "country": "UK",
-      "score": 10019,
+      "score": 10020,
       "top_players": [
         {
           "username": "greaneye",
@@ -1260,9 +1260,9 @@
           "username": "Evdia",
           "uuid": "aad6a2754e9c4744bd335213853f023f",
           "country": "UK",
-          "current_ap": 29040,
+          "current_ap": 29060,
           "last_month_ap": 29040,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Mega Walls",
             "Max Blitz",
