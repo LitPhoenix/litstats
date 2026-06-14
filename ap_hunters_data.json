@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-14T13:27:57.183Z",
+  "last_update": "2026-06-14T15:43:11.360Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -664,6 +664,7 @@
           "maxGames": [
             "Max Blitz",
             "Max Cops and Crims",
+            "Max SkyBlock",
             "Max Murder Mystery",
             "Max VampireZ",
             "Max TKR",
@@ -2086,7 +2087,7 @@
     },
     {
       "country": "Israel",
-      "score": 4170,
+      "score": 4175,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2110,9 +2111,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27630,
+          "current_ap": 27640,
           "last_month_ap": 27130,
-          "monthly_gain": 500,
+          "monthly_gain": 510,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
@@ -2633,9 +2634,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25410,
+          "current_ap": 25415,
           "last_month_ap": 25305,
-          "monthly_gain": 105,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Duels"
           ]
