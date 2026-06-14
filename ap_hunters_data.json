@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-14T08:09:04.234Z",
+  "last_update": "2026-06-14T11:50:12.396Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2165,7 +2165,7 @@
     },
     {
       "country": "Finland",
-      "score": 4113,
+      "score": 4138,
       "top_players": [
         {
           "username": "Champiez",
@@ -2190,9 +2190,9 @@
           "username": "MineElzu60",
           "uuid": "559860c584174a7c90a8f79332802516",
           "country": "Finland",
-          "current_ap": 27480,
+          "current_ap": 27530,
           "last_month_ap": 27255,
-          "monthly_gain": 225,
+          "monthly_gain": 275,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2633,9 +2633,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25390,
+          "current_ap": 25410,
           "last_month_ap": 25305,
-          "monthly_gain": 85,
+          "monthly_gain": 105,
           "maxGames": [
             "Max Duels"
           ]
