@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-13T22:54:18.161Z",
+  "last_update": "2026-06-14T02:36:40.552Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1371,9 +1371,9 @@
           "username": "TheZetaMale",
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "UK",
-          "current_ap": 24120,
+          "current_ap": 24130,
           "last_month_ap": 24120,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Paintball"
           ]
@@ -2086,7 +2086,7 @@
     },
     {
       "country": "Israel",
-      "score": 4143,
+      "score": 4160,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2110,9 +2110,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27575,
+          "current_ap": 27610,
           "last_month_ap": 27130,
-          "monthly_gain": 445,
+          "monthly_gain": 480,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
