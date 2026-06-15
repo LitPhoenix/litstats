@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-15T02:41:23.478Z",
+  "last_update": "2026-06-15T09:52:45.899Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -516,9 +516,9 @@
           "username": "Physiological",
           "uuid": "8b87c1da0a114a988235c7f54bf48b51",
           "country": "USA",
-          "current_ap": 29250,
+          "current_ap": 29260,
           "last_month_ap": 29220,
-          "monthly_gain": 30,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Blitz",
             "Max Smash Heroes",
@@ -2562,15 +2562,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1210,
+      "score": 1220,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26690,
+          "current_ap": 26700,
           "last_month_ap": 26610,
-          "monthly_gain": 80,
+          "monthly_gain": 90,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
