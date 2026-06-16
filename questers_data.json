@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-16T14:52:53.292Z",
+  "last_update": "2026-06-16T19:28:29.658Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -261,9 +261,9 @@
           "username": "TournamentTokens",
           "uuid": "52206b9a3e8446c995fa9f2d4e8c0078",
           "country": "France",
-          "current_quests": 25604,
+          "current_quests": 25622,
           "last_month_quests": 25524,
-          "monthly_gain": 80
+          "monthly_gain": 98
         },
         {
           "username": "21septembre",
@@ -595,9 +595,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 23274,
+          "current_quests": 23294,
           "last_month_quests": 23128,
-          "monthly_gain": 146
+          "monthly_gain": 166
         },
         {
           "username": "Nightire",
@@ -1056,6 +1056,20 @@
       ]
     },
     {
+      "country": "Peru",
+      "score": 5206.2,
+      "top_players": [
+        {
+          "username": "wittyhope",
+          "uuid": "141e5144694046eaa7e536ed70cc1595",
+          "country": "Peru",
+          "current_quests": 26031,
+          "last_month_quests": 25984,
+          "monthly_gain": 47
+        }
+      ]
+    },
+    {
       "country": "Philippines",
       "score": 5205.2,
       "top_players": [
@@ -1066,20 +1080,6 @@
           "current_quests": 26026,
           "last_month_quests": 26026,
           "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Peru",
-      "score": 5204.6,
-      "top_players": [
-        {
-          "username": "wittyhope",
-          "uuid": "141e5144694046eaa7e536ed70cc1595",
-          "country": "Peru",
-          "current_quests": 26023,
-          "last_month_quests": 25984,
-          "monthly_gain": 39
         }
       ]
     },
