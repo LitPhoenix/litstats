@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-15T22:11:32.313Z",
+  "last_update": "2026-06-16T02:44:29.200Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -534,14 +534,15 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 28865,
+          "current_ap": 28890,
           "last_month_ap": 28585,
-          "monthly_gain": 280,
+          "monthly_gain": 305,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
             "Max SkyBlock",
             "Max Murder Mystery",
+            "Max VampireZ",
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
@@ -2087,7 +2088,7 @@
     },
     {
       "country": "Israel",
-      "score": 4175,
+      "score": 4190,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2111,9 +2112,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27640,
+          "current_ap": 27670,
           "last_month_ap": 27130,
-          "monthly_gain": 510,
+          "monthly_gain": 540,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
