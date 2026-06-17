@@ -66,7 +66,7 @@ async function togglePlayerExpand(uuid) {
   container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">Loading quest stats from network...</span>`;
 
   try {
-    const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+    const res = await fetch(`/api/player?uuid=${uuid}`);
     if (res.status === 429) throw new Error('RATE_LIMIT');
     const data = await res.json();
     if (data.error) throw new Error(data.error); 
@@ -250,7 +250,7 @@ async function loadData() {
     const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
     
     // FIX: Added the leading slash so it explicitly looks in the root directory
-    const res = await fetch(`/questers_data.json?v=${currentHour}`);
+    const res = await fetch(`questers_data.json?v=${currentHour}`);
     
     if (!res.ok) throw new Error(`HTTP Error ${res.status}: File missing or blocked`);
     currentData = await res.json();
@@ -404,7 +404,7 @@ async function fetchLivePlayer(username) {
     const actualName = dbData.data.player.username;
 
     searchBox.textContent = `Loading live stats for ${actualName}...`;
-    const vRes = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+    const res = await fetch(`/api/player?uuid=${uuid}`);
     
     if (vRes.status === 429) throw new Error('RATE_LIMIT');
     const vData = await vRes.json();
