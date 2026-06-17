@@ -13,7 +13,7 @@ const chestMap = [
     {id:'minecart', name:'Hype Train'}, {id:'fishing_rod', name:'Fisherman'}, {id:'milk_bucket', name:'Milkman'},
     {id:'cactus', name:'Florist', customImg:'img/blitz/cactus.png'}, {id:'diamond_boots', name:'Diver'}, {id:'spider_spawn_egg', name:'Arachnologist'},
     {id:'blaze_rod', name:'Blaze'}, {id:'bone', name:'Wolftamer'}, {id:'experience_bottle', name:'Tim', stack: 3},
-    {id:'snowball', name:'Snowman'}, {id:'stick', name:'Rambo'}, {id:'egg', name:'Farmer'}, {id:'leather_chestplate', name:'Armorer', customImg:'img/blitz/items/leather_armor/armorer_leather_chestplate.png'},
+    {id:'snowball', name:'Snowman'}, {id:'stick', name:'Rambo'}, {id:'egg', name:'Farmer'}, {id:'leather_chestplate', name:'Armorer', customImg:'img/blitz/leather_armor/armorer_leather_chestplate.png'},
     {id:'tnt', name:'Creepertamer', customImg:'img/blitz/tnt.png'}, null,
 ];
 const RANDOM_IDS = ['saddle','arrow','bow','iron_boots','witch_spawn_egg','cooked_beef','iron_hoe','flint_and_steel','potion','wooden_sword','slime_ball','golden_apple','oak_boat','iron_pickaxe','cake','golden_sword','cooked_porkchop','feather','iron_chestplate','rotten_flesh','grass','stone_sword','minecart','fishing_rod','milk_bucket','diamond_boots','spider_spawn_egg','blaze_rod','bone','experience_bottle','snowball','stick','egg','leather_chestplate','tnt'];
@@ -52,7 +52,7 @@ function getBlitzAssetUrl(it) {
     if (nameLower.includes('of resistance')) return 'img/blitz/items/Potion_of_Resistance.png';
     if (nameLower === 'scout') return 'img/blitz/items/Potion_of_Speed.png';
     if (nameLower === 'shark head' || id === 'player_head') return 'img/blitz/shark.png';
-    if (nameLower === 'armorer') return 'img/blitz/items/leather_armor/armorer_leather_chestplate.png';
+    if (nameLower === 'armorer') return 'img/blitz/leather_armor/armorer_leather_chestplate.png';
     if (id === 'tall_grass' || id === 'grass' || id === 'short_grass') return 'img/blitz/items/Grass.png';
 
     return `img/blitz/items/${id}.png`;
@@ -83,9 +83,15 @@ function updateNumeralLabels() {
     const labels = useRoman ? NUM_ROMAN : NUM_DIGIT;
     const colorClasses = ['2','2','2','a','a','e','e','c','c','4','6'];
     document.querySelectorAll('.level-btn').forEach((btn, i) => {
-        btn.textContent = labels[i];
         btn.classList.remove('level-color-2','level-color-a','level-color-e','level-color-c','level-color-4','level-color-6');
         btn.classList.add(`level-color-${colorClasses[i]}`);
+        if (i === 10) {
+            btn.innerHTML = `<img src="img/blitz/star_texture.png" class="p2-star" alt="*"><img src="img/blitz/star_texture.png" class="p2-star" alt="*">`;
+            btn.classList.add('p2');
+        } else {
+            btn.textContent = labels[i];
+            btn.classList.remove('p2');
+        }
     });
 }
 
@@ -100,10 +106,9 @@ function initChest() {
         } else {
             const k = chestMap[i];
             const imgUrl = getBlitzAssetUrl(k);
-            const fallbackUrl = MCEngine.getApiFallback({id: k.id});
             const td = JSON.stringify({id:k.id, name:k.name, rarity:'uncommon', stack:k.stack||null, lines:[{text:'Click to view upgrades!', cls:'c-yellow'}], enchanted:false, customImg:k.customImg||null}).replace(/"/g,'&quot;');
             const scaleStr = k.scale ? `style="transform:scale(${k.scale})"` : '';
-            const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
+            const onErrorScript = "this.style.opacity='0';";
             
             let inner = `<div class="item-wrapper"><img src="${imgUrl}" alt="${k.name}" ${scaleStr} onerror="${onErrorScript}"></div>`;
             if (k.stack && k.stack > 1) inner += `<span class="count">${k.stack}</span>`;
@@ -150,7 +155,8 @@ function openKit(name, skipPush = false) {
             btn.style.display = 'flex';
         });
     }
-    
+
+    setLevel(9);
     if (rndTimer) { clearInterval(rndTimer); rndTimer = null; }
     
     document.getElementById('chest-view').style.display = 'none';
@@ -172,9 +178,11 @@ function setLevel(i) {
 function renderInventory() {
     const d = window.KIT_DATABASE[activeKitName][currentLevelIndex];
     const activeLabel = useRoman ? NUM_ROMAN[currentLevelIndex] : NUM_DIGIT[currentLevelIndex];
+    const prestigeStars = currentLevelIndex === 10 ? `<img src="img/blitz/star_texture.png" class="kit-title-p2-star" alt="*"><img src="img/blitz/star_texture.png" class="kit-title-p2-star" alt="*">` : '';
     
+    const displayLabel = currentLevelIndex === 10 ? '' : activeLabel;
     document.getElementById('kit-name-display').innerHTML = useClassic ? 
-        `${activeKitName} ${activeLabel}` : `<span style="color:var(--accent)">${activeKitName}</span> ${activeLabel}`;
+        `${activeKitName} ${prestigeStars} ${displayLabel}` : `<span style="color:var(--text)">${activeKitName}</span> ${prestigeStars} ${displayLabel}`;
 
     document.getElementById('armour-slots').innerHTML = ['helmet','chestplate','leggings','boots']
         .map(t => MCEngine.makeSlotHtml(d.armour[t], getBlitzAssetUrl(d.armour[t]), t)).join('');
@@ -198,8 +206,9 @@ function sortHotbar(raw) {
         if (hasEnch(it,'sharpness')) return 3;
         if (id.includes('_pickaxe')) return 4;
         if (id==='stick' || id==='ghast_tear') return 5;
-        if (id==='bow') return 6;
-        if (id==='fishing_rod') return 7;
+        if (id.includes('_shovel')) return 6;
+        if (id==='bow') return 7;
+        if (id==='fishing_rod') return 8;
         return 99;
     };
     const items = raw.filter(i => i && i.id && i.id !== 'compass');
@@ -210,9 +219,54 @@ function sortHotbar(raw) {
     return out;
 }
 
+// Helper: extract effect and duration from potion/item name for tooltip
+function getPotionEffectText(it) {
+    if (!it) return null;
+    const raw = ((it && it.rawName) || it.name || '').trim();
+    if (!raw.toLowerCase().includes('potion')) return null;
+
+    // If the name contains parentheses, use the parenthetical content as duration
+    const m = raw.match(/^(.*)\(([^)]+)\)\s*$/);
+    let effectPart = raw;
+    let duration = '';
+    if (m) {
+        effectPart = m[1].trim();
+        duration = m[2].trim();
+    }
+
+    // Remove leading "Potion of" or "Splash Potion of" and keep the rest as effect name
+    effectPart = effectPart.replace(/^(splash potion of|potion of)\s+/i, '').trim();
+
+    // Split into individual effects (split on &, commas, or ' and '), normalize spacing
+    const parts = effectPart.split(/\s*(?:&|,|and)\s*/i).map(s => s.trim()).filter(Boolean);
+
+    // Determine durations: if a parenthetical duration exists, use for all parts.
+    // Otherwise mark known instant potions (healing/harming) as 'instant'.
+    const instantKeywords = ['healing', 'harming', 'instant', 'milk'];
+    return parts.map(p => {
+        let dur = duration || '';
+        if (!dur) {
+            const lower = p.toLowerCase();
+            if (instantKeywords.some(k => lower.includes(k))) dur = 'Instant';
+        }
+        return { effect: p, duration: dur };
+    });
+}
+
 // Tooltip formatting override specific to Blitz
 document.addEventListener('tt-format', (e) => {
     const it = e.detail.item;
+    // If this is a potion, append grey lines for each effect with its duration
+    const potionInfos = getPotionEffectText(it);
+    if (potionInfos && potionInfos.length) {
+        if (!it.lines) it.lines = [];
+        for (const pi of potionInfos) {
+            const lineText = pi.duration ? `${pi.effect} (${pi.duration})` : `${pi.effect}`;
+            if (!it.lines.some(l => l && l.text && l.text.indexOf(pi.effect) !== -1)) {
+                it.lines.push({ text: lineText, cls: 'c-grey' });
+            }
+        }
+    }
     let displayName = it.name;
     let wrapperClass = `r-${it.rarity}`;
     
@@ -221,11 +275,12 @@ document.addEventListener('tt-format', (e) => {
     
     if (activeKitName && isArmour) {
         const levelLabel = useRoman ? NUM_ROMAN[currentLevelIndex] : NUM_DIGIT[currentLevelIndex];
-        const isGoldKit = activeKitName.includes('P2') || activeKitName.includes('✫✫');
+        const isGoldKit = currentLevelIndex === 10 || activeKitName.includes('P2') || activeKitName.includes('✫✫');
         const baseItemName = isSkullOrShark ? it.name : `${activeKitName}'s ${it.name}`;
+        const stars = `<img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*"><img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*">`;
         
         if (isGoldKit) {
-            displayName = `${baseItemName} (${levelLabel})`;
+            displayName = `<span style="color:#FFAA00">${baseItemName}</span> <span style="color:#FFAA00">(${stars})</span>`;
             wrapperClass = 'r-legendary'; 
         } else {
             displayName = `<span class="r-common">${baseItemName}</span> <span class="c-grey">(${levelLabel})</span>`;
