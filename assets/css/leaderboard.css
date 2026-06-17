@@ -54,7 +54,7 @@ kbd { background: var(--surface); border: 1px solid var(--border-strong); border
     transparent 51%, 
     transparent 100%
   );
-  background-size: 200vw 200vw;
+  background-size: 400vw 400vw;
   animation: slashSpark 4s linear infinite;
 }
 
