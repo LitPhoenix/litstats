@@ -33,7 +33,10 @@ module.exports = async (req, res) => {
   const secureToken = req.headers['x-litstats-auth'];
   const expectedToken = process.env.CLOUDFLARE_AUTH_TOKEN;
 
-  if (secureToken !== expectedToken) {
+  // Skip the token check if running locally
+  const isLocalDev = !process.env.VERCEL_ENV || process.env.NODE_ENV === 'development';
+
+  if (!isLocalDev && secureToken !== expectedToken) {
       return res.status(403).json({ error: "Access Denied: Direct origin bypass detected." });
   }
 
@@ -49,8 +52,22 @@ module.exports = async (req, res) => {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  const { uuid } = req.query;
-  if (!uuid) return res.status(400).json({ error: "Missing UUID" });
+  const { uuid, name } = req.query;
+  let targetUuid = uuid;
+
+  // Resolve Username to UUID if needed
+  if (name && !uuid) {
+    try {
+      const mojangRes = await fetch(`https://api.mojang.com/users/profiles/minecraft/${name}`);
+      if (!mojangRes.ok) return res.status(404).json({ error: "Player not found on Mojang" });
+      const mojangData = await mojangRes.json();
+      targetUuid = mojangData.id;
+    } catch (e) {
+      return res.status(500).json({ error: "Mojang API error" });
+    }
+  }
+
+  if (!targetUuid) return res.status(400).json({ error: "Missing UUID or Name" });
 
   const API_KEY = process.env.HYPIXEL_API_KEY;
   if (!API_KEY) return res.status(500).json({ error: "Server missing API Key" });
@@ -68,7 +85,7 @@ module.exports = async (req, res) => {
       }
     }
 
-    const pData = await safeFetchJSON(`https://api.hypixel.net/v2/player?uuid=${uuid}`, { headers: { 'API-Key': API_KEY } });
+    const pData = await safeFetchJSON(`https://api.hypixel.net/v2/player?uuid=${targetUuid}`, { headers: { 'API-Key': API_KEY } });
     
     if (pData.rateLimited) return res.status(429).json({ error: "Hypixel API Rate Limit. Try again shortly." });
     if (!pData.success) return res.status(400).json({ error: pData.cause || "Hypixel API Error" });
@@ -84,6 +101,7 @@ module.exports = async (req, res) => {
       uuid: profile.uuid,
       rank: getPlayerRank(profile),
       rankPlusColor: profile.rankPlusColor || 'RED',
+      monthlyRankColor: profile.monthlyRankColor || 'GOLD',
       achievementPoints: profile.achievementPoints || 0,
       questsCompleted: 0, 
       maxGames: [],
@@ -262,6 +280,35 @@ module.exports = async (req, res) => {
         });
       }
     }
+
+    // --- BLITZ KITS EXTRACTOR ---
+    const hg = profile.stats?.HungerGames || {};
+    const packages = hg.packages || [];
+    const blitzKits = {};
+    
+    // Hypixel's exact internal kit names (including spaces)
+    const kitList = ["horsetamer", "ranger", "archer", "astronaut", "troll", "meatmaster", "reaper", "shark", "reddragon", "toxicologist", "donkeytamer", "rogue", "warlock", "slimeyslime", "jockey", "golem", "viking", "speleologist", "shadow knight", "baker", "knight", "pigman", "guardian", "phoenix", "paladin", "necromancer", "scout", "hunter", "warrior", "hype train", "fisherman", "milkman", "florist", "diver", "arachnologist", "blaze", "wolftamer", "tim", "snowman", "rambo", "farmer", "armorer", "creepertamer"];
+    
+    // Hypixel default free kits (start at level 1 automatically)
+    const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist"]);
+    
+    for (const kit of kitList) {
+        let level = defaultKits.has(kit) ? 1 : 0;
+        
+        if (packages.includes(kit) || packages.includes(`${kit}_1`)) level = 1; 
+        
+        for (let i = 2; i <= 10; i++) {
+            if (packages.includes(`${kit}_${i}`)) level = i;
+        }
+        
+        const prestige = hg[`prestige_${kit}`] || 0; 
+        if (prestige >= 2 && level === 10) level = 11; 
+        
+        // Strip spaces so the frontend can match it perfectly
+        const safeName = kit.replace(/\s+/g, '');
+        blitzKits[safeName] = level;
+    }
+    responseData.blitzKits = blitzKits;
 
     return res.status(200).json(responseData);
 
