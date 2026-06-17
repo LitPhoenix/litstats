@@ -174,7 +174,7 @@ main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 100px; flex: 1; dis
   left: 0; 
   width: 100%; /* Changed from 100vw to fix side scroll */
   height: 80px; 
-  background: linear-gradient(to top, var(--bg) 10%, transparent); 
+  /* background: linear-gradient(to top, var(--bg) 10%, transparent);  */
   pointer-events: none; 
   z-index: 90;
 }
