@@ -1,13 +1,30 @@
 "use strict";
 
+// Map max durabilities for items that have limited uses in Blitz
+const MAX_DURABILITY = {
+  'bow': 384,
+  'wooden_sword': 59,
+  'stone_axe': 131,
+  'flint_and_steel': 64
+};
+
 // ── Item constructors ────────────────────────────────────────────────────────
-function itm(id, name, rarity = 'common', stack = null, enchants = []) {
-  // Forces enchants to be an array, preventing crashes if a hex string is passed
+function itm(id, name, rarity = 'common', stack = null, enchants = [], options = {}) {
   const validEnchants = Array.isArray(enchants) ? enchants : [];
-  const lines = validEnchants.map(e => ({ text: e, cls: 'c-grey' }));
-  const enchanted = validEnchants.length > 0;
   
-  return { id, name, rarity, stack, lines, enchanted, customImg: null };
+  // Filter out the old manual "X uses" strings so they don't duplicate
+  const cleanEnchants = validEnchants.filter(e => !e.match(/\d+\suses?/));
+  const lines = cleanEnchants.map(e => ({ text: e, cls: 'c-grey' }));
+  
+  if (options.durability) {
+    const max = MAX_DURABILITY[id] || "?";
+    // Appends the requested format to the item's lore
+    lines.push({ text: `Durability: ${options.durability} / ${max}`, cls: 'c-grey' }); 
+  }
+  
+  const enchanted = cleanEnchants.length > 0;
+  
+  return { id, name, rarity, stack, lines, enchanted, customImg: null, ...options };
 }
 
 const _LIDS = { helmet:'leather_helmet', chestplate:'leather_chestplate', leggings:'leather_leggings', boots:'leather_boots' };
@@ -22,8 +39,9 @@ function lth(slot, name, enchants = []) { return _lth(slot, name, null, enchants
 function lim(slot, name, enchants = []) { return _lth(slot, name, null, enchants); }
 function grn(slot, name, enchants = []) { return _lth(slot, name, null, enchants); }
 
-function pot(name, stack = null)  { return itm('potion',        name, 'common', stack); }
-function spot(name, stack = null) { return itm('splash_potion', name, 'common', stack); }
+function _stripTrailingParens(s) { if (!s) return s; return s.replace(/\s*\([^)]*\)\s*$/, ''); }
+function pot(name, stack = null)  { const raw = name; const clean = _stripTrailingParens(name); const it = itm('potion', clean, 'common', stack); it.rawName = raw; return it; }
+function spot(name, stack = null) { const raw = name; const clean = _stripTrailingParens(name); const it = itm('splash_potion', clean, 'common', stack); it.rawName = raw; return it; }
 
 const COMPASS = itm('compass', 'Compass', 'common');
 
@@ -76,17 +94,17 @@ function kit(patches) {
 window.KIT_DATABASE = {
 
 "Archer": kit([
-  { helmet: lth('helmet','Leather Helmet'), boots: _lth('boots', 'Leather Boots', '#ff0000'), h0: itm('bow','Bow','uncommon'), h1: itm('arrow','Arrow','common',16) },
-  { leggings: lth('leggings','Leather Leggings') },
-  { helmet: itm('iron_helmet','Iron Helmet','uncommon') },
-  { helmet: itm('iron_helmet','Iron Helmet','uncommon',null,['Protection I']) },
-  { helmet: itm('diamond_helmet','Diamond Helmet','legendary'), h1: itm('arrow','Arrow','common',18) },
-  { h0: itm('bow','Bow','rare',null,['Power I']), h1: itm('arrow','Arrow','common',20) },
-  { helmet: itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection I']), h1: itm('arrow','Arrow','common',22) },
-  { chestplate: lth('chestplate','Leather Chestplate'), h1: itm('arrow','Arrow','common',26) },
-  { chestplate: lth('chestplate','Leather Chestplate',['Protection I']), h1: itm('arrow','Arrow','common',30) },
-  { helmet: itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection II']), h0: itm('bow','Bow','legendary',null,['Power II']), h1: itm('arrow','Arrow','common',48) },
-  { chestplate: lth('chestplate','Leather Chestplate',['Protection II']), h1: itm('arrow','Arrow','common',64) }
+  { helmet: lth('helmet','Leather Helmet'), boots: _lth('boots', 'Leather Boots'), h0: itm('bow','Bow','uncommon'), h1: itm('arrow','Arrow','common',18) },
+  { leggings: lth('leggings','Leather Leggings'), h1: itm('arrow','Arrow','common',20) },
+  { helmet: itm('iron_helmet','Iron Helmet','uncommon'), h1: itm('arrow','Arrow','common',22) },
+  { helmet: itm('iron_helmet','Iron Helmet','uncommon',null,['Protection I']), h1: itm('arrow','Arrow','common',24) },
+  { helmet: itm('diamond_helmet','Diamond Helmet','legendary'), h1: itm('arrow','Arrow','common',26) },
+  { h0: itm('bow','Bow','rare',null,['Power I']), h1: itm('arrow','Arrow','common',28) },
+  { helmet: itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection I']), h1: itm('arrow','Arrow','common',30) },
+  { chestplate: lth('chestplate','Leather Chestplate'), h1: itm('arrow','Arrow','common',32) },
+  { chestplate: lth('chestplate','Leather Chestplate',['Protection I']), h1: itm('arrow','Arrow','common',34) },
+  { helmet: itm('diamond_helmet','Diamond Helmet','legendary',null,['Protection II']), h0: itm('bow','Bow','legendary',null,['Power II']), h1: itm('arrow','Arrow','common',36) },
+  { chestplate: lth('chestplate','Leather Chestplate',['Protection II']), h1: itm('arrow','Arrow','common',48) }
 ]),
 
 "Ranger": kit([
@@ -188,16 +206,16 @@ window.KIT_DATABASE = {
 ]),
 
 "Knight": kit([
-  { helmet: lth('helmet','Leather Helmet'), boots: itm('golden_boots','Golden Boots','uncommon'), h0: itm('wooden_sword','Wooden Sword','common') },
+  { helmet: itm('golden_helmet','Golden Helmet'), boots: itm('golden_boots','Golden Boots','uncommon'), h0: itm('golden_sword','Golden Sword','common') },
   { chestplate: lth('chestplate','Leather Chestplate') },
-  { helmet: itm('golden_helmet','Golden Helmet','uncommon') },
-  { chestplate: lth('chestplate','Leather Chestplate',['Protection I']) },
-  { chestplate: itm('golden_chestplate','Golden Chestplate','uncommon'), h0: itm('stone_sword','Stone Sword','uncommon',null,['Unbreaking I']) },
   { leggings: lth('leggings','Leather Leggings') },
+  { chestplate: itm('golden_chestplate','Golden Chestplate') },
+  { h0: itm('stone_sword','Stone Sword','uncommon',null,['Unbreaking I']) },
   { leggings: itm('golden_leggings','Golden Leggings','uncommon') },
-  { chestplate: itm('golden_chestplate','Golden Chestplate','uncommon',null,['Protection I']), leggings: itm('golden_leggings','Golden Leggings','uncommon',null,['Protection I']), h0: itm('stone_sword','Stone Sword','uncommon'), h1: itm('golden_carrot','Golden Carrot','uncommon',1) },
+  { h0: itm('stone_sword','Stone Sword','uncommon',null) },
+  { chestplate: itm('golden_chestplate','Golden Chestplate','uncommon',null,['Protection I']), leggings: itm('golden_leggings','Golden Leggings','uncommon',null,['Protection I']), h1: itm('golden_carrot','Golden Carrot','uncommon',1) },
   { helmet: itm('golden_helmet','Golden Helmet','uncommon',null,['Protection I']), boots: itm('golden_boots','Golden Boots','uncommon',null,['Protection I']), h1: itm('golden_carrot','Golden Carrot','uncommon',2) },
-  { chestplate: itm('golden_chestplate','Golden Chestplate','uncommon',null,['Protection II']), leggings: itm('golden_leggings','Golden Leggings','uncommon',null,['Protection II']), boots: itm('golden_boots','Golden Boots','uncommon',null,['Protection I']), h0: itm('iron_sword','Iron Sword','rare',null,['Unbreaking I']), h1: itm('golden_carrot','Golden Carrot','uncommon',3) },
+  { chestplate: itm('golden_chestplate','Golden Chestplate','uncommon',null,['Protection II']), leggings: itm('golden_leggings','Golden Leggings','uncommon',null,['Protection II']), h0: itm('iron_sword','Iron Sword','rare',null,['Unbreaking I']), h1: itm('golden_carrot','Golden Carrot','uncommon',3) },
   { chestplate: itm('golden_chestplate','Golden Chestplate','uncommon',null,['Protection III']), boots: itm('golden_boots','Golden Boots','uncommon',null,['Protection II']), h1: itm('golden_carrot','Golden Carrot','uncommon',5) }
 ]),
 
@@ -319,11 +337,11 @@ window.KIT_DATABASE = {
   { boots: lth('boots','Leather Boots',['Fire Protection III']), h0: itm('stone_axe','Stone Axe','uncommon'), h1: itm('magma_cube_spawn_egg','Magma Cube Egg','uncommon',2) },
   { leggings: lth('leggings','Leather Leggings'), boots: itm('iron_boots','Iron Boots','uncommon') },
   { leggings: lth('leggings','Leather Leggings',['Fire Protection III']), boots: itm('iron_boots','Iron Boots','uncommon',null,['Fire Protection III']), h2: spot('Splash Potion of Fire Resistance II (17s)',2) },
-  { helmet: lth('helmet','Leather Helmet',['Protection I','Fire Protection III']), h3: itm('flint_and_steel','Flint and Steel','uncommon',null,['1 use']) },
-  { helmet: itm('iron_helmet','Iron Helmet','uncommon'), h1: itm('magma_cube_spawn_egg','Magma Cube Egg','uncommon',3), h3: itm('flint_and_steel','Flint and Steel','uncommon',null,['2 uses']) },
+  { helmet: lth('helmet','Leather Helmet',['Protection I','Fire Protection III']), h3: itm('flint_and_steel','Flint and Steel','uncommon',null,['1 use'], {durability: 1}) },
+  { helmet: itm('iron_helmet','Iron Helmet','uncommon'), h1: itm('magma_cube_spawn_egg','Magma Cube Egg','uncommon',3), h3: itm('flint_and_steel','Flint and Steel','uncommon',null,['2 uses'], {durability: 2}) },
   { helmet: itm('iron_helmet','Iron Helmet','uncommon',null,['Fire Protection III']), h0: itm('stone_sword','Stone Sword','uncommon',null,['Unbreaking I']) },
-  { chestplate: itm('chainmail_chestplate','Chainmail Chestplate','uncommon',null,['Fire Protection III']), h0: itm('stone_sword','Stone Sword','uncommon'), h2: spot('Splash Potion of Fire Resistance II (17s)',3), h3: itm('flint_and_steel','Flint and Steel','uncommon',null,['3 uses']) },
-  { helmet: itm('diamond_helmet','Diamond Helmet','legendary',null,['Fire Protection III']), h1: itm('magma_cube_spawn_egg','Magma Cube Egg','uncommon',4), h3: itm('flint_and_steel','Flint and Steel','uncommon',null,['5 uses']) },
+  { chestplate: itm('chainmail_chestplate','Chainmail Chestplate','uncommon',null,['Fire Protection III']), h0: itm('stone_sword','Stone Sword','uncommon'), h2: spot('Splash Potion of Fire Resistance II (17s)',3), h3: itm('flint_and_steel','Flint and Steel','uncommon',null,['3 uses'], {durability: 3}) },
+  { helmet: itm('diamond_helmet','Diamond Helmet','legendary',null,['Fire Protection III']), h1: itm('magma_cube_spawn_egg','Magma Cube Egg','uncommon',4), h3: itm('flint_and_steel','Flint and Steel','uncommon',null,['5 uses'], {durability: 5}) },
   { h0: itm('iron_sword','Iron Sword','rare',null,['Unbreaking I']) }
 ]),
 
@@ -357,15 +375,15 @@ window.KIT_DATABASE = {
 
 "Rogue": kit([
   { helmet: lth('helmet','Leather Helmet'), chestplate: lth('chestplate','Leather Chestplate'), boots: lth('boots','Leather Boots'), h0: itm('wooden_sword','Wooden Sword','common') },
-  { h1: itm('wooden_sword','Wooden Sword','common',null,['Knockback III','1 use']) },
+  { h1: itm('wooden_sword','Wooden Sword','common',null,['Knockback III','1 use'], {durability: 1}) },
   { boots: lth('boots','Leather Boots',['Feather Falling II']), h2: spot('Splash Potion of Weakness III (9s)') },
   { boots: lth('boots','Leather Boots',['Feather Falling III']), h3: spot('Splash Potion of Invisibility II & Speed I (9s)') },
-  { boots: itm('iron_boots','Iron Boots','uncommon',null,['Feather Falling III']), h0: itm('wooden_sword','Wooden Sword','common',null,['Knockback I']), h1: itm('wooden_sword','Wooden Sword','common',null,['Knockback IV','1 use']) },
+  { boots: itm('iron_boots','Iron Boots','uncommon',null,['Feather Falling III']), h0: itm('wooden_sword','Wooden Sword','common',null,['Knockback I']), h1: itm('wooden_sword','Wooden Sword','common',null,['Knockback IV','1 use'], {durability: 1}) },
   { h2: spot('Splash Potion of Weakness III (9s)',2), h3: spot('Splash Potion of Invisibility II & Speed I (9s)',2) },
-  { h0: itm('stone_sword','Stone Sword','uncommon',null,['Knockback I']), h4: itm('bow','Bow','uncommon',null,['Punch I','3 uses']), h5: itm('arrow','Arrow','common',3) },
-  { h1: itm('wooden_sword','Wooden Sword','common',null,['Knockback V','1 use']), h4: itm('bow','Bow','uncommon',null,['Power I','Punch I','4 uses']), h5: itm('arrow','Arrow','common',4) },
-  { leggings: lth('leggings','Leather Leggings'), h4: itm('bow','Bow','uncommon',null,['Power I','Punch II','4 uses']), h5: itm('arrow','Arrow','common',5) },
-  { h0: itm('iron_sword','Iron Sword','rare',null,['Knockback I']), h2: spot('Splash Potion of Weakness III (9s)',3), h3: spot('Splash Potion of Invisibility II & Speed I (9s)',3), h4: itm('bow','Bow','uncommon',null,['Power III','Punch III','4 uses']) },
+  { h0: itm('stone_sword','Stone Sword','uncommon',null,['Knockback I']), h4: itm('bow','Bow','uncommon',null,['Punch I','3 uses'], {durability: 3}), h5: itm('arrow','Arrow','common',3) },
+  { h1: itm('wooden_sword','Wooden Sword','common',null,['Knockback V','1 use'], {durability: 1}), h4: itm('bow','Bow','uncommon',null,['Power I','Punch I','4 uses'], {durability: 4}), h5: itm('arrow','Arrow','common',4) },
+  { leggings: lth('leggings','Leather Leggings'), h4: itm('bow','Bow','uncommon',null,['Power I','Punch II','4 uses'], {durability: 4}), h5: itm('arrow','Arrow','common',5) },
+  { h0: itm('iron_sword','Iron Sword','rare',null,['Knockback I']), h2: spot('Splash Potion of Weakness III (9s)',3), h3: spot('Splash Potion of Invisibility II & Speed I (9s)',3), h4: itm('bow','Bow','uncommon',null,['Power III','Punch III','4 uses'], {durability: 4}) },
   { boots: itm('iron_boots','Iron Boots','uncommon',null,['Protection II','Feather Falling IV']) }
 ]),
 
@@ -462,13 +480,13 @@ window.KIT_DATABASE = {
   { boots: itm('golden_boots', 'Gold Boots', 'uncommon', null, ['Protection I']) },
   { helmet: itm('golden_helmet', 'Gold Helmet', 'uncommon', null, ['Protection I']), h1: itm('arrow', 'Arrow', 'common', 6) },
   { boots: itm('golden_boots', 'Gold Boots', 'uncommon', null, ['Protection II']) },
-  { h0: itm('bow', 'Bow', 'rare', null, ['Flame I', '9 uses']), h1: itm('arrow', 'Arrow', 'common', 8) },
+  { h0: itm('bow', 'Bow', 'rare', null, ['Flame I', '9 uses'], {durability: 9}), h1: itm('arrow', 'Arrow', 'common', 8) },
   { helmet: itm('golden_helmet', 'Gold Helmet', 'uncommon', null, ['Protection I', 'Fire Protection I']), chestplate: lth('chestplate', 'Leather Chestplate'), leggings: lth('leggings', 'Leather Leggings') },
-  { h0: itm('bow', 'Bow', 'rare', null, ['Flame I', '10 uses']), helmet: itm('golden_helmet', 'Gold Helmet', 'uncommon', null, ['Protection I', 'Fire Protection II']), h1: itm('arrow', 'Arrow', 'common', 9) },
+  { h0: itm('bow', 'Bow', 'rare', null, ['Flame I', '10 uses'], {durability: 10}), helmet: itm('golden_helmet', 'Gold Helmet', 'uncommon', null, ['Protection I', 'Fire Protection II']), h1: itm('arrow', 'Arrow', 'common', 9) },
   { chestplate: lth('chestplate', 'Leather Chestplate', ['Fire Protection I']), boots: itm('golden_boots', 'Gold Boots', 'uncommon', null, ['Protection III']) },
-  { h0: itm('golden_sword', 'Gold Sword', 'uncommon', null, ['Unbreaking I']), h1: itm('bow', 'Bow', 'rare', null, ['Flame I', '11 uses']), helmet: itm('golden_helmet', 'Gold Helmet', 'uncommon', null, ['Protection I', 'Fire Protection III']), leggings: lth('leggings', 'Leather Leggings', ['Fire Protection I']), h2: itm('arrow', 'Arrow', 'common', 10) },
+  { h0: itm('golden_sword', 'Gold Sword', 'uncommon', null, ['Unbreaking I']), h1: itm('bow', 'Bow', 'rare', null, ['Flame I', '11 uses'], {durability: 11}), helmet: itm('golden_helmet', 'Gold Helmet', 'uncommon', null, ['Protection I', 'Fire Protection III']), leggings: lth('leggings', 'Leather Leggings', ['Fire Protection I']), h2: itm('arrow', 'Arrow', 'common', 10) },
   { h0: itm('golden_sword', 'Gold Sword', 'rare', null, ['Sharpness I', 'Unbreaking I']), boots: itm('golden_boots', 'Gold Boots', 'uncommon', null, ['Protection IV']) },
-  { h0: itm('golden_sword', 'Gold Sword', 'rare', null, ['Sharpness I', 'Unbreaking III']), h1: itm('bow', 'Bow', 'rare', null, ['Flame I', '13 uses']), chestplate: itm('golden_chestplate', 'Gold Chestplate', 'uncommon'), h2: itm('arrow', 'Arrow', 'common', 12) }
+  { h0: itm('golden_sword', 'Gold Sword', 'rare', null, ['Sharpness I', 'Unbreaking III']), h1: itm('bow', 'Bow', 'rare', null, ['Flame I', '13 uses'], {durability: 13}), chestplate: itm('golden_chestplate', 'Gold Chestplate', 'uncommon'), h2: itm('arrow', 'Arrow', 'common', 12) }
 ]),
 
 "Paladin": kit([
@@ -486,17 +504,17 @@ window.KIT_DATABASE = {
 ]),
 
 "Necromancer": kit([
-  { h0: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '10 uses']), helmet: itm('chainmail_helmet', 'Chainmail Helmet', 'uncommon'), boots: itm('chainmail_boots', 'Chainmail Boots', 'uncommon'), h1: itm('zombie_spawn_egg', 'Zombie Egg', 'uncommon', 1), h2: itm('arrow', 'Arrow', 'common', 10) },
-  { h0: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '11 uses']), boots: itm('chainmail_boots', 'Chainmail Boots', 'uncommon', null, ['Projectile Protection I']), h2: itm('skeleton_spawn_egg', 'Skeleton Egg', 'uncommon', 1), h3: itm('arrow', 'Arrow', 'common', 11) },
-  { h0: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '12 uses']), helmet: itm('chainmail_helmet', 'Chainmail Helmet', 'uncommon', null, ['Projectile Protection I']), h3: itm('arrow', 'Arrow', 'common', 12) },
-  { h0: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '13 uses']), leggings: itm('chainmail_leggings', 'Chainmail Leggings', 'uncommon'), h3: itm('arrow', 'Arrow', 'common', 13) },
-  { h0: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '14 uses']), leggings: itm('chainmail_leggings', 'Chainmail Leggings', 'uncommon', null, ['Projectile Protection I']), h3: itm('arrow', 'Arrow', 'common', 14) },
-  { h0: itm('iron_shovel', 'Iron Shovel', 'uncommon'), h1: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '15 uses']), h2: itm('skeleton_spawn_egg', 'Skeleton Egg', 'uncommon', 1), h3: itm('zombie_spawn_egg', 'Zombie Egg', 'uncommon', 1), h4: itm('arrow', 'Arrow', 'common', 15) },
-  { h1: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '16 uses']), h3: itm('zombie_spawn_egg', 'Zombie Egg', 'uncommon', 2), h4: itm('arrow', 'Arrow', 'common', 16) },
-  { h0: itm('diamond_shovel', 'Diamond Shovel', 'rare'), h1: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '17 uses']), boots: itm('iron_boots', 'Iron Boots', 'uncommon', null, ['Projectile Protection I']), h4: itm('arrow', 'Arrow', 'common', 17) },
-  { h1: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '18 uses']), chestplate: itm('chainmail_chestplate', 'Chainmail Chestplate', 'uncommon'), h4: itm('arrow', 'Arrow', 'common', 18) },
-  { h0: itm('diamond_shovel', 'Diamond Shovel', 'rare', null, ['Sharpness I']), h1: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '19 uses']), chestplate: itm('chainmail_chestplate', 'Chainmail Chestplate', 'uncommon', null, ['Projectile Protection I']), h2: itm('skeleton_spawn_egg', 'Skeleton Egg', 'uncommon', 2), h4: itm('arrow', 'Arrow', 'common', 19) },
-  { h1: itm('bow', 'Bow', 'uncommon', null, ['Punch I', '20 uses']), h3: itm('zombie_spawn_egg', 'Zombie Egg', 'uncommon', 3), h4: itm('arrow', 'Arrow', 'common', 20) }
+  { h0: itm('bow', 'Bow', 'common', null, ['Punch I', '10 uses'], {durability: 10}), helmet: itm('chainmail_helmet', 'Chainmail Helmet', 'common'), boots: itm('chainmail_boots', 'Chainmail Boots', 'common'), h1: itm('zombie_spawn_egg', 'Zombie Egg', 'common', 1), h2: itm('arrow', 'Arrow', 'common', 10) },
+  { h0: itm('bow', 'Bow', 'common', null, ['Punch I', '11 uses'], {durability: 11}), boots: itm('chainmail_boots', 'Chainmail Boots', 'common', null, ['Projectile Protection I']), h2: itm('skeleton_spawn_egg', 'Skeleton Egg', 'common', 1), h3: itm('arrow', 'Arrow', 'common', 11) },
+  { h0: itm('bow', 'Bow', 'common', null, ['Punch I', '12 uses'], {durability: 12}), helmet: itm('chainmail_helmet', 'Chainmail Helmet', 'common', null, ['Projectile Protection I']), h3: itm('arrow', 'Arrow', 'common', 12) },
+  { h0: itm('bow', 'Bow', 'common', null, ['Punch I', '13 uses'], {durability: 13}), leggings: itm('chainmail_leggings', 'Chainmail Leggings', 'common'), h3: itm('arrow', 'Arrow', 'common', 13) },
+  { h0: itm('bow', 'Bow', 'common', null, ['Punch I', '14 uses'], {durability: 14}), leggings: itm('chainmail_leggings', 'Chainmail Leggings', 'common', null, ['Projectile Protection I']), h3: itm('arrow', 'Arrow', 'common', 14) },
+  { h0: itm('iron_shovel', 'Iron Spade', 'common'), h1: itm('bow', 'Bow', 'common', null, ['Punch I', '15 uses'], {durability: 15}), h2: itm('skeleton_spawn_egg', 'Skeleton Egg', 'common', 1), h3: itm('zombie_spawn_egg', 'Zombie Egg', 'common', 1), h4: itm('arrow', 'Arrow', 'common', 15) },
+  { h1: itm('bow', 'Bow', 'common', null, ['Punch I', '16 uses'], {durability: 16}), h3: itm('zombie_spawn_egg', 'Zombie Egg', 'common', 2), h4: itm('arrow', 'Arrow', 'common', 16) },
+  { h0: itm('diamond_shovel', 'Diamond Spade', 'common'), h1: itm('bow', 'Bow', 'common', null, ['Punch I', '17 uses'], {durability: 17}), boots: itm('iron_boots', 'Iron Boots', 'common', null, ['Projectile Protection I']), h4: itm('arrow', 'Arrow', 'common', 17) },
+  { h1: itm('bow', 'Bow', 'common', null, ['Punch I', '18 uses'], {durability: 18}), chestplate: itm('chainmail_chestplate', 'Chainmail Chestplate', 'common'), h4: itm('arrow', 'Arrow', 'common', 18) },
+  { h0: itm('diamond_shovel', 'Diamond Spade', 'common', null, ['Sharpness I']), h1: itm('bow', 'Bow', 'common', null, ['Punch I', '19 uses'], {durability: 19}), chestplate: itm('chainmail_chestplate', 'Chainmail Chestplate', 'common', null, ['Projectile Protection I']), h2: itm('skeleton_spawn_egg', 'Skeleton Egg', 'common', 2), h4: itm('arrow', 'Arrow', 'common', 19) },
+  { h1: itm('bow', 'Bow', 'common', null, ['Punch I', '20 uses'], {durability: 20}), h3: itm('zombie_spawn_egg', 'Zombie Egg', 'common', 3), h4: itm('arrow', 'Arrow', 'common', 20) }
 ]),
 
 "Warrior": kit([
@@ -566,21 +584,21 @@ window.KIT_DATABASE = {
   { leggings: itm('golden_leggings', 'Gold Leggings', 'uncommon') },
   { chestplate: lth('chestplate', 'Leather Chestplate', ['Protection I']), h1: itm('spider_spawn_egg', 'Spider Egg', 'uncommon', 4) },
   { h0: itm('iron_sword', 'Iron Sword', 'rare', null, ['Unbreaking I']), leggings: itm('chainmail_leggings', 'Chainmail Leggings', 'uncommon'), h1: itm('spider_spawn_egg', 'Spider Egg', 'uncommon', 5) },
-  { chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon') }
+  { chestplate: itm('chainmail_chestplate', 'Chain Chestplate', 'uncommon') }
 ]),
 
 "Blaze": kit([
-  { h0: itm('wooden_sword', 'Wooden Sword', 'common'), h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '1 use']), boots: lth('boots', 'Leather Boots', ['Fire Protection II']), h2: itm('blaze_spawn_egg', 'Blaze Egg', 'rare', 1) },
+  { h0: itm('wooden_sword', 'Wooden Sword', 'common'), h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '1 use'], {durability: 1}), boots: lth('boots', 'Leather Boots', ['Fire Protection II']), h2: itm('blaze_spawn_egg', 'Blaze Egg', 'rare', 1) },
   { h2: itm('blaze_spawn_egg', 'Blaze Egg', 'rare', 2) },
   { chestplate: lth('chestplate', 'Leather Chestplate', ['Fire Protection I']) },
   { chestplate: lth('chestplate', 'Leather Chestplate', ['Fire Protection II']) },
   { leggings: lth('leggings', 'Leather Leggings', ['Fire Protection I']) },
   { h0: itm('stone_sword', 'Stone Sword', 'uncommon', null, ['Unbreaking I']) },
   { chestplate: lth('chestplate', 'Leather Chestplate', ['Protection I', 'Fire Protection III']) },
-  { chestplate: lth('chestplate', 'Leather Chestplate', ['Protection I', 'Fire Protection IV']), h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '3 uses']), h2: itm('blaze_spawn_egg', 'Blaze Egg', 'rare', 3) },
-  { helmet: lth('helmet', 'Leather Helmet', ['Fire Protection II']), chestplate: itm('golden_chestplate', 'Gold Chestplate', 'uncommon', null, ['Fire Protection V']), h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '4 uses']) },
-  { h0: itm('iron_sword', 'Iron Sword', 'rare', null, ['Unbreaking I']), chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon', null, ['Fire Protection X']), h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '5 uses']) },
-  { h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '6 uses']), h2: itm('blaze_spawn_egg', 'Blaze Egg', 'rare', 4) }
+  { chestplate: lth('chestplate', 'Leather Chestplate', ['Protection I', 'Fire Protection IV']), h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '3 uses'], {durability: 3}), h2: itm('blaze_spawn_egg', 'Blaze Egg', 'rare', 3) },
+  { helmet: lth('helmet', 'Leather Helmet', ['Fire Protection II']), chestplate: itm('golden_chestplate', 'Gold Chestplate', 'uncommon', null, ['Fire Protection V']), h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '4 uses'], {durability: 4}) },
+  { h0: itm('iron_sword', 'Iron Sword', 'rare', null, ['Unbreaking I']), chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon', null, ['Fire Protection X']), h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '5 uses'], {durability: 5}) },
+  { h1: itm('stone_axe', 'Stone Axe', 'uncommon', null, ['Fire Aspect I', '6 uses'], {durability: 6}), h2: itm('blaze_spawn_egg', 'Blaze Egg', 'rare', 4) }
 ]),
 
 "Wolftamer": kit([
@@ -608,7 +626,7 @@ window.KIT_DATABASE = {
   { leggings: itm('iron_leggings', 'Iron Leggings', 'uncommon', null, ['Protection I']), h1: itm('experience_bottle', 'EXP Bottle', 'common', 15) },
   { leggings: itm('iron_leggings', 'Iron Leggings', 'uncommon', null, ['Protection II']) },
   { h0: itm('stone_sword', 'Stone Sword', 'uncommon'), h3: itm('rabbit_spawn_egg', 'Rabbit Egg', 'uncommon'), leggings: itm('diamond_leggings', 'Diamond Leggings', 'legendary'), boots: lth('boots', 'Leather Boots'), h1: itm('experience_bottle', 'EXP Bottle', 'common', 18), h2: itm('apple', 'Apple', 'common', 5) },
-  { h0: itm('stone_sword', 'Stone Sword', 'uncommon', null, ['Unbreaking I']), h1: itm('experience_bottle', 'EXP Bottle', 'common', 24) }
+  { h0: itm('stone_sword', 'Stone Sword', 'uncommon', null, ['Unbreaking I']), helmet: itm('leather_helmet', 'Leather Helmet', 'uncommon', null, ['Protection I']), h1: itm('experience_bottle', 'EXP Bottle', 'common', 24) }
 ]),
 
 "Creepertamer": kit([
@@ -635,7 +653,7 @@ window.KIT_DATABASE = {
   { h0: itm('stone_sword', 'Stone Sword', 'uncommon', null, ['Unbreaking I']), h2: itm('egg', 'Egg', 'common', 8), h3: itm('cooked_chicken', 'Cooked Chicken', 'common', 8) },
   { h0: itm('stone_sword', 'Stone Sword', 'uncommon'), chestplate: lth('chestplate', 'Leather Chestplate'), h2: itm('egg', 'Egg', 'common', 10) },
   { leggings: itm('iron_leggings', 'Iron Leggings', 'uncommon'), h2: itm('egg', 'Egg', 'common', 12) },
-  { h0: itm('iron_sword', 'Iron Sword', 'rare', null, ['Unbreaking I']), h2: itm('egg', 'Egg', 'common', 16), h3: itm('cooked_chicken', 'Cooked Chicken', 'common', 16) },
+  { h0: itm('iron_sword', 'Iron Sword', 'rare', null, ['Unbreaking I']), h1: itm('chicken_spawn_egg', 'Chicken Egg', 'uncommon', 4), h2: itm('egg', 'Egg', 'common', 16), h3: itm('cooked_chicken', 'Cooked Chicken', 'common', 16) },
   { helmet: lth('helmet', 'Leather Helmet', ['Protection I']), chestplate: lth('chestplate', 'Leather Chestplate', ['Protection I']), h3: itm('cooked_chicken', 'Cooked Chicken', 'common', 17) }
 ]),
 
@@ -682,9 +700,9 @@ for (const [kitName, levels] of Object.entries(window.KIT_DATABASE)) {
     // Make safe: e.g., 'armorerhelmet', 'hypetrain', 'archer'
     const safeKey = searchKey.toLowerCase().replace(/\s+/g, '');
     
-    // Maps to: img/blitz/items/leather_armor/paladin_leather_chestplate.png
-    // Or: img/blitz/items/leather_armor/armorerhelmet_leather_helmet.png
-    item.customImg = `img/blitz/items/leather_armor/${safeKey}_${item.id}.png`;
+    // Maps to: img/blitz/leather_armor/paladin_leather_chestplate.png
+    // Or: img/blitz/leather_armor/armorerhelmet_leather_helmet.png
+    item.customImg = `img/blitz/leather_armor/${safeKey}_${item.id}.png`;
   };
 
   levels.forEach(lvl => {
