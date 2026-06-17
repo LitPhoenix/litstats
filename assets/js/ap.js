@@ -48,7 +48,7 @@ async function togglePlayerExpand(uuid) {
 
   container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">Loading maxed games from network...</span>`;
   try {
-    const res = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+    const res = await fetch(`/api/player?uuid=${uuid}`);
     if (res.status === 429) throw new Error('RATE_LIMIT');
     const data = await res.json();
     if (data.error) throw new Error(data.error); 
@@ -323,7 +323,7 @@ async function fetchLivePlayer(username) {
     const uuid = dbData.data.player.raw_id; const actualName = dbData.data.player.username;
 
     searchBox.textContent = `Loading live stats for ${actualName}...`;
-    const vRes = await fetch(`https://litstats.vercel.app/api/player?uuid=${uuid}`);
+    const vRes = await fetch(`/api/player?uuid=${uuid}`);
     if (vRes.status === 429) throw new Error('RATE_LIMIT');
     const vData = await vRes.json();
     if (vData.error === "Player not found on Hypixel") throw new Error('NOT_FOUND');
