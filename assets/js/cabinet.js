@@ -4,30 +4,73 @@ let isCompExcluded = false;
 let maxedHidden = false;
 const compGames = ["Mega Walls", "Pit", "UHC"];
 
+// Custom tags DB
+const TAG_DB = {
+    "Kill Secured": { type: "Broken", tip: "Currently bugged and does not track." },
+    "Mountain of Wool": { type: "Coin", cost: "50,000", tip: "Buy the wool weaver perk." },
+    "Block Runner": { type: "Map", tip: "Best done on Map A." }
+};
+
+let ignoredAchs = JSON.parse(localStorage.getItem('litstats_ignored')) || [];
+let bookmarkedAchs = JSON.parse(localStorage.getItem('litstats_bookmarked')) || [];
+let viewMode = 'all'; // 'all', 'ignored', 'bookmarks'
+
 window.activeTierView = {}; 
 window.limits = { tiered: 10, challenge: 10, recent: 20 };
+
+window.toggleViewMode = function(mode) {
+    if (viewMode === mode) viewMode = 'all';
+    else viewMode = mode;
+    renderDashboard();
+};
+
+window.toggleIgnore = function(uniqueId) {
+    if (!ignoredAchs.includes(uniqueId)) {
+        if (!confirm("Are you sure you want to hide this achievement?")) return;
+        ignoredAchs.push(uniqueId);
+        bookmarkedAchs = bookmarkedAchs.filter(i => i !== uniqueId); // Remove from bookmarks if ignored
+    } else {
+        ignoredAchs = ignoredAchs.filter(i => i !== uniqueId);
+    }
+    localStorage.setItem('litstats_ignored', JSON.stringify(ignoredAchs));
+    localStorage.setItem('litstats_bookmarked', JSON.stringify(bookmarkedAchs));
+    renderDashboard();
+};
+
+window.toggleBookmark = function(uniqueId) {
+    if (!bookmarkedAchs.includes(uniqueId)) {
+        bookmarkedAchs.push(uniqueId);
+        ignoredAchs = ignoredAchs.filter(i => i !== uniqueId); // Remove from ignored if bookmarked
+    } else {
+        bookmarkedAchs = bookmarkedAchs.filter(i => i !== uniqueId);
+    }
+    localStorage.setItem('litstats_bookmarked', JSON.stringify(bookmarkedAchs));
+    localStorage.setItem('litstats_ignored', JSON.stringify(ignoredAchs));
+    renderDashboard();
+};
 
 function getPlusColourHex(colourName) {
     const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
     return colours[colourName] || '#FF5555';
 }
 
-function getRankBaseColourHex(rank) {
+function getRankBaseColourHex(rank, monthlyRankColor) {
     if (!rank || rank === 'NON') return 'var(--text-3)';
     const clean = rank.replace(/\[|\]/g, ''); 
-    if (clean.includes('++') || clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
-    if (clean.includes('MVP')) return '#55FFFF'; 
+    if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+    if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
+    if (clean.includes('MVP')) return '#36e9e9'; 
     if (clean.includes('VIP')) return '#55FF55'; 
     if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
     if (clean.includes('PIG') || clean.includes('INNIT')) return '#FF55FF'; 
     return 'var(--text-2)';
 }
 
-function formatRankText(rank, plusColour) {
+function formatRankText(rank, plusColour, monthlyRankColor) {
     if (!rank || rank === 'NON') return '';
     const plusHex = getPlusColourHex(plusColour);
     const cleanRank = rank.replace(/\[|\]/g, ''); 
-    const baseColor = getRankBaseColourHex(rank);
+    const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
 
     let formatted = cleanRank;
     if (cleanRank === 'STAFF' || cleanRank.includes('staff')) formatted = `<span style="color:#FFAA00">ዞ</span>`;
@@ -58,25 +101,27 @@ function getGameIconUrl(gameName) {
 
 function toggleMaxedGames() {
     maxedHidden = !maxedHidden;
-    document.getElementById('cabinet-grid').style.display = maxedHidden ? 'none' : 'flex';
     document.getElementById('maxed-column').classList.toggle('collapsed', maxedHidden);
-    document.getElementById('toggleMaxedBtn').innerText = maxedHidden ? "Show Game Badges" : "Hide Game Badges";
+    const toggleBtn = document.getElementById('toggleMaxedBtn');
+    toggleBtn.innerText = maxedHidden ? "Show Max Games" : "Hide Max Games";
+    toggleBtn.setAttribute('aria-pressed', maxedHidden ? 'true' : 'false');
 }
 
 function toggleGameFilter(gameName) {
     if (isCompExcluded && compGames.includes(gameName)) return;
     activeGameFilters.has(gameName) ? activeGameFilters.delete(gameName) : activeGameFilters.add(gameName);
     
-    // Visually toggle standard filter icons
     document.querySelectorAll('.filter-icon-btn').forEach(btn => {
         let name = btn.getAttribute('title');
         btn.classList.toggle('active', activeGameFilters.has(name));
     });
 
-    // Visually toggle maxed game cabinet badges
     document.querySelectorAll('.game-badge').forEach(badge => {
-        let name = badge.querySelector('span').innerText;
-        badge.classList.toggle('active-filter', activeGameFilters.has(name));
+        let nameSpan = badge.querySelector('span');
+        if (nameSpan) {
+            let name = nameSpan.innerText;
+            badge.classList.toggle('active-filter', activeGameFilters.has(name));
+        }
     });
 
     renderDashboard();
@@ -87,8 +132,11 @@ function toggleExcludeComp() {
     if (isCompExcluded) compGames.forEach(g => activeGameFilters.delete(g));
     
     document.querySelectorAll('.game-badge').forEach(badge => {
-        let name = badge.querySelector('span').innerText;
-        if (isCompExcluded && compGames.includes(name)) badge.classList.remove('active-filter');
+        let nameSpan = badge.querySelector('span');
+        if (nameSpan) {
+            let name = nameSpan.innerText;
+            if (isCompExcluded && compGames.includes(name)) badge.classList.remove('active-filter');
+        }
     });
 
     populateFilters();
@@ -134,7 +182,39 @@ function renderDashboard() {
     let tiered = [];
     let challenges = [];
 
+    // Button States
+    const igBtn = document.getElementById('ignoredToggleBtn');
+    const bkBtn = document.getElementById('bookmarkToggleBtn');
+    if (igBtn) igBtn.innerText = viewMode === 'ignored' ? "View All" : `Show Ignored (${ignoredAchs.length})`;
+    if (igBtn) igBtn.classList.toggle('active', viewMode === 'ignored');
+    if (bkBtn) bkBtn.innerText = viewMode === 'bookmarks' ? "View All" : `Bookmarks (${bookmarkedAchs.length})`;
+    if (bkBtn) bkBtn.classList.toggle('active', viewMode === 'bookmarks');
+
     allMissing.forEach(ach => {
+        let uniqueId = btoa(encodeURIComponent(ach.title)); 
+        ach.uniqueId = uniqueId;
+
+        let isIgnored = ignoredAchs.includes(uniqueId);
+        let isBookmarked = bookmarkedAchs.includes(uniqueId);
+
+        // View Mode Filter Logic
+        if (viewMode === 'ignored' && !isIgnored) return;
+        if (viewMode === 'bookmarks' && !isBookmarked) return;
+        if (viewMode === 'all' && isIgnored) return;
+
+        // Process custom tags
+        let tagsHtml = '';
+        let tipHtml = '';
+        const tagData = TAG_DB[ach.title];
+        if (tagData) {
+            let colour = tagData.type === 'Broken' ? 'var(--red)' : tagData.type === 'Map' ? 'var(--green)' : 'var(--gold)';
+            let costStr = tagData.cost ? ` (${tagData.cost})` : '';
+            tagsHtml = `<span class="sleek-tag" style="--tag-color: ${colour};">${tagData.type}${costStr}</span>`;
+            if (tagData.tip) tipHtml = `<div class="ach-tip"><i>Tip: ${tagData.tip}</i></div>`;
+        }
+        ach.tagsHtml = tagsHtml;
+        ach.tipHtml = tipHtml;
+        
         let isChallenge = ach.isOneTime || (ach.globalPct !== undefined && ach.currentAmt === undefined && !ach.allTiers);
 
         if (isChallenge) {
@@ -143,25 +223,19 @@ function renderDashboard() {
         } else {
             if (!ach.allTiers) ach.allTiers = [{ tier: ach.tier || 1, amount: ach.amount || 1, reward: ach.reward || 0 }];
 
-            // Generate an immutable Base64 ID for this achievement 
-            let uniqueId = btoa(encodeURIComponent(ach.title)); 
-            
             let missingTiers = ach.allTiers.filter(t => (ach.currentAmt || 0) < t.amount);
             let firstMissing = missingTiers.length ? missingTiers[0].tier : 5;
             
-            // Look up using the unique Base64 ID
             let viewingTierNum = window.activeTierView[uniqueId] || firstMissing;
             let targetTierObj = ach.allTiers.find(t => t.tier === viewingTierNum) || ach.allTiers[0];
 
             let targetAmt = targetTierObj.amount;
             let trueCurrentAmt = ach.currentAmt || 0;
             
-            // Logic for calculating 100% past tiers
             let displayAmt = Math.min(trueCurrentAmt, targetAmt);
             let pct = Math.min(100, (displayAmt / targetAmt) * 100);
             let isCompleted = trueCurrentAmt >= targetAmt;
 
-            // Anchor Sorting to the user's actual missing tier so cards don't fly around
             let trueMissingObj = ach.allTiers.find(t => t.tier === firstMissing) || ach.allTiers[0];
             let sortAmt = Math.min(trueCurrentAmt, trueMissingObj.amount);
             let sortPct = Math.min(100, (sortAmt / trueMissingObj.amount) * 100);
@@ -185,9 +259,43 @@ function renderDashboard() {
     const sortRec = document.getElementById('sortRecent').value;
     if (sortRec === 'oldest') recents.reverse(); 
 
-    // Render Tiered Column
+    // Helper for rendering cards
+    const generateCard = (ach, isTiered, progressBlock, notches) => {
+        let isIgnored = ignoredAchs.includes(ach.uniqueId);
+        let isBookmarked = bookmarkedAchs.includes(ach.uniqueId);
+        let ignoreText = isIgnored ? 'Restore' : 'Ignore';
+        let bookmarkClass = isBookmarked ? 'active-bookmark' : '';
+        let bookmarkIcon = isBookmarked ? '★' : '☆';
+
+        return `
+          <div class="ach-card ${isTiered ? 'has-tier' : ''}">
+            ${!isTiered ? `<span class="ach-percent">${ach.calcPct.toFixed(2)}%</span>` : ''}
+            <div class="ach-card-header">
+              <img src="${getGameIconUrl(ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
+              <span class="ach-game">${ach.game.replace('Max ', '')}</span>
+            </div>
+            
+            <span class="ach-title">${ach.title} ${ach.tagsHtml}</span>
+            <span class="ach-desc">${ach.desc}</span>
+            ${ach.tipHtml}
+            
+            ${progressBlock}
+
+            <div class="ach-card-footer">
+              <span class="ach-reward"><img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> ${isTiered ? ach.activeReward : ach.reward} AP</span>
+              <div class="ach-actions">
+                <button onclick="toggleBookmark('${ach.uniqueId}')" class="ach-action-btn ${bookmarkClass}" title="Bookmark">${bookmarkIcon}</button>
+                <button onclick="toggleIgnore('${ach.uniqueId}')" class="ach-action-btn" title="${ignoreText}">${ignoreText}</button>
+              </div>
+            </div>
+            ${isTiered ? `<div class="tier-notch-container">${notches}</div>` : ''}
+          </div>
+        `;
+    };
+
     document.getElementById('col-tiered').innerHTML = tiered.slice(0, limits.tiered).map(ach => {
         let parsedDesc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, ach.targetAmt);
+        ach.desc = parsedDesc;
         
         let progressText = ach.isCompleted ? `${ach.targetAmt} / ${ach.targetAmt}` : `${ach.displayAmt} / ${ach.targetAmt}`;
         let barClass = ach.isCompleted ? "ach-progress-fill completed-tier" : "ach-progress-fill";
@@ -198,50 +306,22 @@ function renderDashboard() {
             let op = isPastOrCurrent ? '1' : '0.3';
             let bg = isPastOrCurrent ? `var(--tier-${i})` : 'var(--border)';
             let glow = (i === ach.viewingTierNum) ? `box-shadow: 0 0 6px var(--tier-${i}); transform: scaleY(1.3);` : '';
-            // Passes the immutable Base64 ID into the click function
             notches += `<div class="tier-notch" style="background: ${bg}; opacity: ${op}; ${glow}" onclick="setTierView('${ach.uniqueId}', ${i})"></div>`;
         }
 
-        return `
-          <div class="ach-card has-tier">
-            <div class="ach-card-header">
-              <img src="${getGameIconUrl(ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
-              <span class="ach-game">${ach.game.replace('Max ', '')}</span>
-            </div>
-            <span class="ach-title" style="display:flex; justify-content:space-between; align-items:center;">
-              ${ach.title} <span style="font-size:10px; color:var(--text-3); font-weight:700;">TIER ${ach.viewingTierNum}</span>
-            </span>
-            <span class="ach-desc">${parsedDesc}</span>
+        let progressBlock = `
             <div class="ach-progress-container"><div class="${barClass}" style="width: ${ach.calcPct.toFixed(2)}%;"></div></div>
             <div class="tier-progress-text">${progressText} (${ach.calcPct.toFixed(2)}%)</div>
-            <div class="ach-card-footer">
-              <span class="ach-reward"><img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> ${ach.activeReward} AP</span>
-            </div>
-            <div class="tier-notch-container">${notches}</div>
-          </div>
         `;
+
+        return generateCard(ach, true, progressBlock, notches);
     }).join('');
 
-    // Render Challenges Column
     document.getElementById('col-challenge').innerHTML = challenges.slice(0, limits.challenge).map(ach => {
-        let parsedDesc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, "1");
-        return `
-          <div class="ach-card">
-            <span class="ach-percent">${ach.calcPct.toFixed(2)}%</span>
-            <div class="ach-card-header">
-              <img src="${getGameIconUrl(ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
-              <span class="ach-game">${ach.game.replace('Max ', '')}</span>
-            </div>
-            <span class="ach-title">${ach.title}</span>
-            <span class="ach-desc">${parsedDesc}</span>
-            <div class="ach-card-footer">
-              <span class="ach-reward"><img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> ${ach.reward} AP</span>
-            </div>
-          </div>
-        `;
+        ach.desc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, "1");
+        return generateCard(ach, false, '', '');
     }).join('');
 
-    // Render History Column
     if (!globalPlayerData.recentAchievements) {
         document.getElementById('col-recent').innerHTML = `<span style="color:var(--text-3); font-size: 13px;">Awaiting Vercel Cache... recentAchievements missing from API payload.</span>`;
     } else if (recents.length === 0) {
@@ -269,15 +349,50 @@ function renderDashboard() {
     document.getElementById('btn-more-rec').style.display = limits.recent < recents.length ? 'block' : 'none';
 }
 
-const MAX_POSSIBLE_AP = 32475; 
+const MAX_POSSIBLE_AP = 32510; 
 const TOTAL_GAMES = 26;
 const trophyStructure = [
   { name: "4th Tier", classes: "legendary", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
-  { name: "3rd Tier", classes: "epic", games: ["Max Smash Heroes", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
+  { name: "3rd Tier", classes: "epic", games: ["Max Smash Heroes", "Max Bed Wars", "Max Cops and Crims", "Max Quake", "Max Paintball", "Max Arena Brawl"] },
   { name: "2nd Tier", classes: "rare", games: ["Max SkyBlock", "Max Speed UHC", "Max Warlords", "Max Walls", "Max TNT Games", "Max Arcade"] },
-  { name: "1st Tier", classes: "common", games: ["Max Murder Mystery", "Max VampireZ", "Max Bed Wars", "Max TKR", "Max Wool Games", "Max Duels", "Max Build Battle"] },
+  { name: "1st Tier", classes: "common", games: ["Max Murder Mystery", "Max VampireZ", "Max TKR", "Max Wool Games", "Max Duels", "Max Build Battle"] },
   { name: "Time Limited", classes: "legacy", isLegacy: true, games: ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"] }
 ];
+
+function getApColor(ap) {
+    const apColors = [
+        { ap: 0, hex: '#ffeeff' },      // Pale pink
+        { ap: 5000, hex: '#ffb3ff' },   // Light pink
+        { ap: 10000, hex: '#df80ff' },  // Pink-purple
+        { ap: 15000, hex: '#9933ff' },  // Purple
+        { ap: 20000, hex: '#3366ff' },  // Royal Blue
+        { ap: 25000, hex: '#00bfff' },  // Deep Sky Blue
+        { ap: 29000, hex: '#00e6ff' },  // Cyan
+        { ap: 32000, hex: '#99ffff' }   // Pale Cyan
+    ];
+
+    let lower = apColors[0], upper = apColors[apColors.length - 1];
+    for (let i = 0; i < apColors.length - 1; i++) {
+        if (ap >= apColors[i].ap && ap <= apColors[i+1].ap) {
+            lower = apColors[i];
+            upper = apColors[i+1];
+            break;
+        }
+    }
+    
+    if (ap >= upper.ap) return upper.hex;
+    if (ap <= lower.ap) return lower.hex;
+    
+    const factor = (ap - lower.ap) / (upper.ap - lower.ap);
+    const hex2rgb = h => [parseInt(h.slice(1,3),16), parseInt(h.slice(3,5),16), parseInt(h.slice(5,7),16)];
+    const l = hex2rgb(lower.hex), u = hex2rgb(upper.hex);
+    
+    const r = Math.round(l[0] + factor * (u[0] - l[0]));
+    const g = Math.round(l[1] + factor * (u[1] - l[1]));
+    const b = Math.round(l[2] + factor * (u[2] - l[2]));
+    
+    return `rgb(${r}, ${g}, ${b})`;
+}
 
 function renderCabinet(data) {
     document.title = `LitStats - ${data.username}'s Cabinet`;
@@ -290,18 +405,33 @@ function renderCabinet(data) {
     
     const nameEl = document.getElementById('p-name');
     nameEl.textContent = data.username;
-    nameEl.style.color = getRankBaseColourHex(data.rank);
+    nameEl.style.color = getRankBaseColourHex(data.rank, data.monthlyRankColor);
 
     const rankEl = document.getElementById('p-rank');
     if (data.rank && data.rank !== 'NON') {
-        rankEl.innerHTML = formatRankText(data.rank, data.rankPlusColor);
+        rankEl.innerHTML = formatRankText(data.rank, data.rankPlusColor, data.monthlyRankColor);
         rankEl.style.display = 'inline-block';
     } else {
         rankEl.style.display = 'none'; 
     }
 
     const ap = data.achievementPoints || data.current_ap || 0;
-    document.getElementById('p-ap').innerHTML = `<img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain; transform:translateY(2px);"> <span style="font-weight:400; font-family:'DM Sans', sans-serif; color:var(--text);">${Number(ap).toLocaleString()} AP</span>`;
+    
+    // Smooth interpolator matching your scale precisely
+    const dynamicColor = getApColor(ap);
+    const dynamicGlow = dynamicColor.replace('rgb', 'rgba').replace(')', ', 0.35)');
+
+    let displayAp = ap >= 1000 ? (ap / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : ap;
+    
+    const apPillHTML = `
+        <div class="ap-stat-pill" style="--ap-color: ${dynamicColor}; --ap-glow: ${dynamicGlow};">
+            <div class="ap-stat-pill-inner">
+                <img src="img/diamond.png" style="width: 16px; height: 16px; filter: drop-shadow(0 0 4px var(--ap-glow));">
+                <span id="p-ap">${displayAp} AP</span>
+            </div>
+        </div>
+    `;
+    document.getElementById('p-ap-container').innerHTML = apPillHTML;
     
     const userMaxes = data.maxGames || [];
     document.getElementById('p-max-count').innerHTML = `<span style="font-weight:400; font-family:'DM Sans', sans-serif; color:var(--text);">${userMaxes.length} / ${TOTAL_GAMES} Maxed</span>`;
@@ -314,9 +444,10 @@ function renderCabinet(data) {
     let html = '';
 
     trophyStructure.forEach(tier => {
+      const badgeRowClass = `badge-row count-${tier.games.length}`;
       html += `<div class="tier-group ${tier.classes} ${tier.isLegacy ? 'legacy' : ''}">`;
       html += `<div class="tier-header"><span class="tier-label">${tier.name}</span></div>`;
-      html += `<div class="badge-row">`;
+      html += `<div class="${badgeRowClass}">`;
       
       tier.games.forEach(game => {
         const isAchieved = userMaxes.includes(game);
@@ -332,8 +463,7 @@ function renderCabinet(data) {
             tooltip = `${cleanGameName} - ${Number(percent).toFixed(2)}% Complete`;
         }
 
-        // Changed click logic to ALWAYS fire for maxed games
-        let clickLogic = `onclick="toggleGameFilter('${cleanGameName}')"`;
+        let clickLogic = isAchieved ? '' : `onclick="toggleGameFilter('${cleanGameName}')"`;
 
         html += `
           <div class="game-badge ${statusClass}" title="${tooltip}" ${clickLogic}>
@@ -395,8 +525,7 @@ async function initCabinet() {
         document.getElementById('loader').classList.remove('hidden');
     }
 
-        // Proxy
-    const res = await fetch(`https://api.litstats.com/api/player?uuid=${uuid}`);
+    const res = await fetch(`/api/player?uuid=${uuid}`);
     if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
     
     const data = await res.json();
