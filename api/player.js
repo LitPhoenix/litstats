@@ -36,8 +36,15 @@ module.exports = async (req, res) => {
   // Skip the token check if running locally
   const isLocalDev = !process.env.VERCEL_ENV || process.env.NODE_ENV === 'development';
 
-  if (!isLocalDev && secureToken !== expectedToken) {
-      return res.status(403).json({ error: "Access Denied: Direct origin bypass detected." });
+  if (!isLocalDev) {
+      if (secureToken !== expectedToken) {
+          return res.status(403).json({ error: "Access Denied: Direct origin bypass detected." });
+      }
+      
+      // Block humans typing the URL directly into their browser
+      if (!allowedOrigins.some(origin => requestOrigin.startsWith(origin))) {
+          return res.status(403).json({ error: "Access Denied: Direct browser visits are blocked." });
+      }
   }
 
   // 2. Browser CORS
