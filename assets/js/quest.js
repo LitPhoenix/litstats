@@ -66,8 +66,14 @@ async function togglePlayerExpand(uuid) {
   container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">Loading quest stats from network...</span>`;
 
   try {
-    const res = await fetch(`/api/player?uuid=${uuid}`);
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const apiUrl = isLocal 
+        ? `/api/player?uuid=${uuid}` 
+        : `https://api.litstats.com/api/player?uuid=${uuid}`;
+
+    const res = await fetch(apiUrl);
     if (res.status === 429) throw new Error('RATE_LIMIT');
+    
     const data = await res.json();
     if (data.error) throw new Error(data.error); 
     
@@ -404,7 +410,13 @@ async function fetchLivePlayer(username) {
     const actualName = dbData.data.player.username;
 
     searchBox.textContent = `Loading live stats for ${actualName}...`;
-    const res = await fetch(`/api/player?uuid=${uuid}`);
+    
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const apiUrl = isLocal 
+        ? `/api/player?uuid=${uuid}` 
+        : `https://api.litstats.com/api/player?uuid=${uuid}`;
+        
+    const vRes = await fetch(apiUrl);
     
     if (vRes.status === 429) throw new Error('RATE_LIMIT');
     const vData = await vRes.json();
