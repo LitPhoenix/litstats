@@ -525,8 +525,19 @@ async function initCabinet() {
         document.getElementById('loader').classList.remove('hidden');
     }
 
-    const res = await fetch(`/api/player?uuid=${uuid}`);
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const apiUrl = isLocal 
+        ? `/api/player?uuid=${uuid}` 
+        : `https://api.litstats.com/api/player?uuid=${uuid}`;
+        
+    const res = await fetch(apiUrl);
     if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
+
+    if (!res.ok || res.headers.get("content-type")?.includes("text/html")) {
+        const errorHtml = await res.text();
+        console.error("API returned HTML instead of JSON:", errorHtml);
+        throw new Error(`API failed with status: ${res.status}. Check browser console.`);
+    }
     
     const data = await res.json();
     if (data.error) throw new Error(`API Error: ${data.error}`);
