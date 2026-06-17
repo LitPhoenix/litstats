@@ -33,8 +33,12 @@
             <h1 id="p-name">Loading...</h1>
           </div>
           <div class="stat-row">
-            <div class="stat-pill"><span></span> <span id="p-ap">0 AP</span></div>
-            <div class="stat-pill"><span id="p-max-count">0 / 26 Maxed</span></div>
+            <!-- New AP Pill Design -->
+            <div id="p-ap-container"></div>
+            
+            <div class="stat-pill maxed-stat-pill">
+              <span id="p-max-count">0 / 26 Maxed</span>
+            </div>
           </div>
         </div>
       </div>
@@ -51,8 +55,9 @@
     </div>
 
     <!-- GLOBAL TOOLBAR FOR LAYOUT CONTROL -->
-    <div class="global-toolbar">
-      <button class="todo-select" id="toggleMaxedBtn" onclick="toggleMaxedGames()">Hide Game Badges</button>
+    <div class="global-toolbar" style="gap: 12px; display: flex;">
+      <button class="todo-select" id="toggleQuestBtn" onclick="window.location.href='quest.html'">Switch to Quests</button>
+      <button class="todo-select" id="toggleMaxedBtn" onclick="toggleMaxedGames()">Hide Max Games</button>
     </div>
 
     <!-- SIDE-BY-SIDE LAYOUT -->
@@ -83,14 +88,19 @@
           <div id="gameFilterContainer" style="width: 100%;"></div>
         </div>
 
+        <div style="width: 100%; display: flex; justify-content: flex-end; gap: 12px; margin-top: 12px;">
+          <button class="todo-select" onclick="toggleViewMode('bookmarks')" id="bookmarkToggleBtn">Show Bookmarks (0)</button>
+          <button class="todo-select" onclick="toggleViewMode('ignored')" id="ignoredToggleBtn">Show Ignored (0)</button>
+        </div>
+
         <div class="dashboard-grid">
           <!-- Column 1: Tiered -->
           <div class="dash-col">
             <div class="col-header">
-              <h3>Tiered Progress</h3>
+              <h3><img src="img/diamond_block.png" alt="" style="width:18px; vertical-align:middle; margin-right:8px;">Tiered</h3>
               <select id="sortTiered" class="todo-select" onchange="renderDashboard()">
-                <option value="closest">Closest to Target</option>
-                <option value="furthest">Furthest from Target</option>
+                <option value="closest">Closest</option>
+                <option value="furthest">Furthest</option>
               </select>
             </div>
             <div class="ach-grid-col" id="col-tiered"></div>
@@ -100,10 +110,10 @@
           <!-- Column 2: Challenges -->
           <div class="dash-col">
             <div class="col-header">
-              <h3>Challenges</h3>
+              <h3><img src="img/diamond.png" alt="" style="width:18px; vertical-align:middle; margin-right:8px;">Challenge</h3>
               <select id="sortChallenge" class="todo-select" onchange="renderDashboard()">
-                <option value="easiest">Highest Global %</option>
-                <option value="hardest">Lowest Global %</option>
+                <option value="easiest">Most Achieved</option>
+                <option value="hardest">Least Achieved</option>
               </select>
             </div>
             <div class="ach-grid-col" id="col-challenge"></div>
