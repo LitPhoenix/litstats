@@ -151,7 +151,7 @@ const randomBanners = [
 ];
 
 // Toggle: 'main', 'emergency', 'random', or 'off'
-let bannerMode = 'emergency'; 
+let bannerMode = 'random'; 
 
 // Increment this string (e.g., 'v2', 'v3') to force the banner to reappear for users who closed an older one
 const bannerVersion = 'v1'; 
