@@ -54,6 +54,9 @@
 .level-btn.p2 { color: #ffaa00; border-color: rgba(255, 170, 0, 0.3); }
 .level-btn.p2:hover { background: rgba(255, 170, 0, 0.1); }
 .level-btn.p2.active { background: linear-gradient(135deg, #ffaa00, #d48800); color: #fff; border-color: transparent; box-shadow: 0 0 12px rgba(255, 170, 0, 0.4); }
+.level-btn.p2 .p2-star { height: 10px; width: auto; margin: 0 1px; display: inline-block; vertical-align: middle; }
+.kit-title-p2-star { height: 18px; width: auto; vertical-align: middle; margin: 0 1px; }
+.tt-p2-star { height: 12px; width: auto; vertical-align: middle; margin: 0 1px; }
 .level-btn.level-color-2 { color: #00AA00; }
 .level-btn.level-color-a { color: #55FF55; }
 .level-btn.level-color-e { color: #FFFF55; }
@@ -67,16 +70,48 @@
 body.theme-classic .hotbar-spacer { height: 8px; }
 
 #player-box {
-  width: 140px; height: 172px; background: rgba(128, 128, 128, 0.05);
-  border: 2px solid var(--mc-slot-dark); border-right-color: var(--mc-border-light); border-bottom-color: var(--mc-border-light);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px; height: 172px; 
+  background-color: #2a2a2a;
+  border: 2px solid var(--mc-slot-dark); 
+  border-right-color: var(--mc-border-light); 
+  border-bottom-color: var(--mc-border-light);
   border-radius: 4px; overflow: hidden;
 }
 body.theme-classic #player-box { border-radius: 0; width: 112px; height: 144px; }
 
+#skin-username {
+  position: absolute;
+  top: -4px;
+  width: 90%;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: var(--mc-font), 'DM Mono', monospace;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+  text-shadow: 2px 2px 0 #3f3f3f;
+  z-index: 10;
+  cursor: text;
+}
+
+#skin-username:focus {
+  color: #ffaa00; /* MC Gold */
+}
+
+#player-canvas {
+  display: block;
+}
+
 .crafting-area { display: flex; margin-top: 36px; flex-direction: column; margin-left: 36px; }
 .crafting-layout { display: flex; align-items: center; gap: 4px; }
 .crafting-arrow { color: var(--text-3); font-size: 24px; font-family: 'DM Sans', sans-serif; }
-body.theme-classic .crafting-area { margin-left: 12px; margin-top: 12px; }
+body.theme-classic .crafting-area { margin-left: 16px; margin-top: 22px; }
 body.theme-classic .crafting-arrow { font-family: var(--mc-font); font-size: 28px; }
 
 .back-btn {
@@ -85,22 +120,7 @@ body.theme-classic .crafting-arrow { font-family: var(--mc-font); font-size: 28p
 }
 .back-btn:hover { background: var(--accent); color: #fff; border-color: transparent; }
 
-body.theme-classic .level-selector { background: transparent; border: none; padding: 0; gap: 2px; }
-body.theme-classic .level-btn {
-  background: #8b8b8b; color: #fff; width: auto; min-width: 32px; height: 32px; padding: 0 6px;
-  font-family: var(--mc-font); font-size: 16px; font-weight: normal; cursor: pointer; text-shadow: 1px 1px 0 #000;
-  display: flex; align-items: center; justify-content: center;
-  border: 2px solid #373737; border-top-color: #fff; border-left-color: #fff; border-radius: 0; box-shadow: none;
-}
-body.theme-classic .level-btn:hover { background: #bebebe; color: #ffff55; }
-body.theme-classic .level-btn.active {
-  background: #555; color: #55ff55; border-top-color: #373737; border-left-color: #373737; border-bottom-color: #fff; border-right-color: #fff;
-}
-body.theme-classic .level-btn.p2 { color: #ffaa00; font-weight: normal; }
-body.theme-classic .level-btn.p2:hover { color: #daa520; background: #bebebe; }
-body.theme-classic .level-btn.p2.active {
-  color: #ffaa00; background: #555; border-top-color: #373737; border-left-color: #373737; border-bottom-color: #fff; border-right-color: #fff;
-}
+/* Keep the normal button selector styling even in Classic UI mode. */
 
 body.theme-classic .level-btn.level-color-2 { color: #00AA00; }
 body.theme-classic .level-btn.level-color-a { color: #55FF55; }
@@ -158,7 +178,10 @@ input:checked + .slider:before { transform: translateX(16px); background-color: 
     <div id="inventory-container" class="mc-container">
       <div class="top-section">
         <div class="armour-column" id="armour-slots"></div>
-        <div id="player-box"><canvas id="player-canvas"></canvas></div>
+        <div id="player-box">
+          <input type="text" id="skin-username" value="Username" spellcheck="false">
+          <canvas id="player-canvas"></canvas>
+        </div>
         <div class="crafting-area">
           <div class="mc-title">Crafting</div>
           <div class="crafting-layout">
@@ -198,8 +221,7 @@ input:checked + .slider:before { transform: translateX(16px); background-color: 
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/skinview3d@2.2.0/bundles/skinview3d.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/skinview3d@3.0.0/bundles/skinview3d.bundle.js"></script>
 <script src="assets/js/global.js"></script>
 <script src="assets/js/kits.js"></script>
 <script src="assets/js/mc-engine.js"></script>
