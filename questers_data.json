@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-18T20:10:43.443Z",
+  "last_update": "2026-06-18T23:29:25.646Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -383,7 +383,7 @@
     },
     {
       "country": "UK",
-      "score": 35863.4,
+      "score": 35903.8,
       "top_players": [
         {
           "username": "Dead_Space_2",
@@ -413,9 +413,9 @@
           "username": "Shazombie",
           "uuid": "66923dc43af644bba499071739732284",
           "country": "UK",
-          "current_quests": 33607,
+          "current_quests": 33809,
           "last_month_quests": 33293,
-          "monthly_gain": 314
+          "monthly_gain": 516
         },
         {
           "username": "Evdia",
@@ -595,9 +595,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 23294,
+          "current_quests": 23317,
           "last_month_quests": 23128,
-          "monthly_gain": 166
+          "monthly_gain": 189
         },
         {
           "username": "Nightire",
