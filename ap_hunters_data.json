@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-18T12:46:15.564Z",
+  "last_update": "2026-06-18T16:51:48.637Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1191,7 +1191,7 @@
     },
     {
       "country": "UK",
-      "score": 10043,
+      "score": 10048,
       "top_players": [
         {
           "username": "greaneye",
@@ -1243,9 +1243,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 29105,
+          "current_ap": 29125,
           "last_month_ap": 29080,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -1787,6 +1787,15 @@
             "Max Quake",
             "Max Duels"
           ]
+        },
+        {
+          "username": "warido37",
+          "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
+          "country": "The Netherlands",
+          "current_ap": 23230,
+          "last_month_ap": 23160,
+          "monthly_gain": 70,
+          "maxGames": []
         }
       ]
     },
@@ -2606,18 +2615,6 @@
             "Max Walls",
             "Max VampireZ"
           ]
-        },
-        {
-          "username": "yoyolin2007",
-          "uuid": "4b03948c422f4f11b0d55170b640a673",
-          "country": "Taiwan",
-          "current_ap": 23165,
-          "last_month_ap": 23165,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
         }
       ]
     },
@@ -2943,9 +2940,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 24130,
+          "current_ap": 24140,
           "last_month_ap": 24110,
-          "monthly_gain": 20,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
@@ -3350,9 +3347,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 25040,
+          "current_ap": 25060,
           "last_month_ap": 25040,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Wool Games"
           ]
