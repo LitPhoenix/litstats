@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-18T02:38:02.765Z",
+  "last_update": "2026-06-18T08:31:12.449Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -200,7 +200,8 @@
     "5fd7ec031e054a01b18c2aca29cf1a23": 23180,
     "01834d8a3c7a49c796589979d7a9ab74": 23170,
     "4b03948c422f4f11b0d55170b640a673": 23165,
-    "0cfa3f33d16f46949ae6e5a4a1ea547d": 23160
+    "0cfa3f33d16f46949ae6e5a4a1ea547d": 23160,
+    "92c736b5ae414125b4cacd89bf856a77": 23185
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -986,6 +987,17 @@
             "Max TKR",
             "Max Wool Games",
             "Max Seasonal"
+          ]
+        },
+        {
+          "username": "oBeastia",
+          "uuid": "92c736b5ae414125b4cacd89bf856a77",
+          "country": "USA",
+          "current_ap": 23185,
+          "last_month_ap": 23185,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Quake"
           ]
         }
       ]
@@ -1775,15 +1787,6 @@
             "Max Quake",
             "Max Duels"
           ]
-        },
-        {
-          "username": "warido37",
-          "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
-          "country": "The Netherlands",
-          "current_ap": 23220,
-          "last_month_ap": 23160,
-          "monthly_gain": 60,
-          "maxGames": []
         }
       ]
     },
@@ -2088,7 +2091,7 @@
     },
     {
       "country": "Israel",
-      "score": 4208,
+      "score": 4209,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2124,9 +2127,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26160,
+          "current_ap": 26165,
           "last_month_ap": 26160,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": []
         },
         {
@@ -2472,7 +2475,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1758,
+      "score": 1768,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2489,9 +2492,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26255,
+          "current_ap": 26275,
           "last_month_ap": 26255,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
