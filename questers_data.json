@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-19T02:53:48.149Z",
+  "last_update": "2026-06-19T08:59:16.607Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -383,15 +383,15 @@
     },
     {
       "country": "UK",
-      "score": 35903.8,
+      "score": 35905,
       "top_players": [
         {
           "username": "Dead_Space_2",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
-          "current_quests": 50064,
+          "current_quests": 50070,
           "last_month_quests": 50063,
-          "monthly_gain": 1
+          "monthly_gain": 7
         },
         {
           "username": "Weeknd",
