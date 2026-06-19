@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-18T23:29:25.283Z",
+  "last_update": "2026-06-19T02:53:47.882Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -704,10 +704,11 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26755,
+          "current_ap": 26765,
           "last_month_ap": 26730,
-          "monthly_gain": 25,
+          "monthly_gain": 35,
           "maxGames": [
+            "Max SkyBlock",
             "Max Warlords",
             "Max Arcade",
             "Max Murder Mystery",
@@ -1191,7 +1192,7 @@
     },
     {
       "country": "UK",
-      "score": 10029,
+      "score": 10046,
       "top_players": [
         {
           "username": "greaneye",
@@ -1222,9 +1223,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30700,
+          "current_ap": 30735,
           "last_month_ap": 30610,
-          "monthly_gain": 90,
+          "monthly_gain": 125,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1671,15 +1672,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8207,
+      "score": 8232,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 32060,
+          "current_ap": 32085,
           "last_month_ap": 32060,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
