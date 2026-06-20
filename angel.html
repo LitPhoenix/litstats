@@ -1,8 +1,9 @@
-et<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <title>LitStats - Angel's Descent</title>
 <link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -11,39 +12,11 @@ et<!DOCTYPE html>
 <link rel="stylesheet" href="assets/css/mc-gui.css">
 
 <style>
-  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(12px); }
-  .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .nav-controls { display: flex; align-items: center; gap: 20px; }
-  .icon-btn { background: transparent; border: none; color: var(--text-2); cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-  .icon-btn:hover { color: var(--accent); }
-  
-  .item-wrapper.enchanted::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(65deg, transparent 20%, rgba(160,65,255,.7) 50%, transparent 80%);
-    background-size: 200% 200%; mix-blend-mode: screen;
-    animation: glint 2.5s infinite linear; z-index: 4; pointer-events: none;
-    -webkit-mask-image: var(--mask-img); mask-image: var(--mask-img);
-    -webkit-mask-size: contain; mask-size: contain;
-    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    -webkit-mask-position: center; mask-position: center;
-  }
-  @keyframes glint { 0%{background-position:200% center} 100%{background-position:-200% center} }
-  
   .mc-title { margin-top: 4px; margin-bottom: 4px; }
 </style>
 </head>
-<body class="theme-classic">
-
-<header class="navbar">
-  <a href="index.html" class="logo-area">
-    <img src="img/lq-favicon.png" alt="LitStats" style="width: 24px; border-radius: 4px;">
-    <span style="font-weight: 700; color: var(--text); font-family: 'DM Sans', sans-serif;">LitStats</span>
-  </a>
-  <div class="nav-controls">
-    <a href="index.html" style="color: var(--text-2); text-decoration: none; font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif;">Search</a>
-    <button id="theme-toggle" class="icon-btn">☼</button>
-  </div>
-</header>
+<body>
+<script src="assets/js/components.js"></script>
 
 <main class="mc-scale-engine">
   <div class="mc-container">
@@ -52,483 +25,73 @@ et<!DOCTYPE html>
   </div>
 </main>
 
+<script src="assets/js/global.js"></script>
 <script src="assets/js/mc-engine.js"></script>
 <script>
-  // Paste your exported config from the builder right here
 const menuConfig = {
   "title": "Angel's Descent",
   "cols": 9,
   "rows": 18,
   "data": [
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "gold_nugget",
-      "rawName": "&aAvarice V",
-      "rawLore": "&8Permanent Upgrade\n\n&6+25% &7SkyWars Coins.\n\n&7Cost: &91 Opal\n&eClick to upgrade!",
-      "enchanted": true
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "magma_cream",
-      "rawName": "&aTenacity",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "cocoa_beans",
-      "rawName": "&aGrand Slam",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "golden_helmet",
-      "rawName": "&aKing's Projectile Trail",
-      "rawLore": "&8New Cosmetic\n\n&7Show off like a true king with this\n&7amazing Projectile Trail.\n\n&7Cost: &91 Opal\n&eClick to Purchase!",
-      "enchanted": false
-    },
-    {
-      "id": "prismarine_crystals",
-      "rawName": "&aSoul Seeker V",
-      "rawLore": "&8Permanent Upgrade\n\n&7Earn &a+10% Souls &7at the end of the\n&7game.\n\n&7Cost: &91 Opal\n&eClick to upgrade!",
-      "enchanted": false
-    },
-    {
-      "id": "writable_book",
-      "rawName": "&aSigma Emblem",
-      "rawLore": "&8New Emblem",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    {
-      "id": "iron_pickaxe",
-      "rawName": "&aMediculous Miner",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "golden_sword",
-      "rawName": "&aFlex Kill Messages",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "wither_skeleton_skull",
-      "rawName": "&aAngel's Offering",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "gold_ingot",
-      "rawName": "&aMidas' Gift",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "compass",
-      "rawName": "&aHide and Seek",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "white_stained_glass",
-      "rawName": "&aVaporized Kill Effect",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "redstone",
-      "rawName": "&aFirst Blood",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "enchanting_table",
-      "rawName": "&aFortune Teller",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "purple_dye",
-      "rawName": "&aPurple Tornado Kill Effect",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "ender_eye",
-      "rawName": "&aFalling Angel Cloak",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "piston_head",
-      "rawName": "&aPiston Cage",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "flint_and_steel",
-      "rawName": "&aSteel Quiver",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "pink_wool",
-      "rawName": "&aSuper Sheep Victory Dance",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "spider_eye",
-      "rawName": "&aCorrupted Coinage",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "book",
-      "rawName": "&aLibrarian",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "golden_apple",
-      "rawName": "&aLuckier Charm",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "brewing_stand",
-      "rawName": "&aApothecary",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "ender_pearl",
-      "rawName": "&aSorcerer's Spell",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "NETHer_star",
-      "rawName": "&aFruit Finder",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    }
+    null, { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "gold_nugget", "rawName": "&aAvarice V", "rawLore": "&8Permanent Upgrade\n\n&6+25% &7SkyWars Coins.\n\n&7Cost: &91 Opal\n&eClick to upgrade!", "enchanted": true },
+    null, null, { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "magma_cream", "rawName": "&aTenacity", "rawLore": "", "enchanted": false },
+    { "id": "cocoa_beans", "rawName": "&aGrand Slam", "rawLore": "", "enchanted": false },
+    { "id": "golden_helmet", "rawName": "&aKing's Projectile Trail", "rawLore": "&8New Cosmetic\n\n&7Show off like a true king with this\n&7amazing Projectile Trail.\n\n&7Cost: &91 Opal\n&eClick to Purchase!", "enchanted": false },
+    { "id": "prismarine_crystals", "rawName": "&aSoul Seeker V", "rawLore": "&8Permanent Upgrade\n\n&7Earn &a+10% Souls &7at the end of the\n&7game.\n\n&7Cost: &91 Opal\n&eClick to upgrade!", "enchanted": false },
+    { "id": "writable_book", "rawName": "&aSigma Emblem", "rawLore": "&8New Emblem", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null, null,
+    { "id": "iron_pickaxe", "rawName": "&aMediculous Miner", "rawLore": "", "enchanted": false }, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "golden_sword", "rawName": "&aFlex Kill Messages", "rawLore": "", "enchanted": false },
+    { "id": "wither_skeleton_skull", "rawName": "&aAngel's Offering", "rawLore": "", "enchanted": false },
+    { "id": "gold_ingot", "rawName": "&aMidas' Gift", "rawLore": "", "enchanted": false },
+    { "id": "compass", "rawName": "&aHide and Seek", "rawLore": "", "enchanted": false },
+    { "id": "white_stained_glass", "rawName": "&aVaporized Kill Effect", "rawLore": "", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null,
+    { "id": "redstone", "rawName": "&aFirst Blood", "rawLore": "", "enchanted": false }, null, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null,
+    { "id": "enchanting_table", "rawName": "&aFortune Teller", "rawLore": "", "enchanted": false }, null,
+    { "id": "purple_dye", "rawName": "&aPurple Tornado Kill Effect", "rawLore": "", "enchanted": false },
+    { "id": "ender_eye", "rawName": "&aFalling Angel Cloak", "rawLore": "", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "piston_head", "rawName": "&aPiston Cage", "rawLore": "", "enchanted": false },
+    { "id": "flint_and_steel", "rawName": "&aSteel Quiver", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "pink_wool", "rawName": "&aSuper Sheep Victory Dance", "rawLore": "", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null,
+    { "id": "spider_eye", "rawName": "&aCorrupted Coinage", "rawLore": "", "enchanted": false },
+    { "id": "book", "rawName": "&aLibrarian", "rawLore": "", "enchanted": false },
+    { "id": "golden_apple", "rawName": "&aLuckier Charm", "rawLore": "", "enchanted": false },
+    { "id": "brewing_stand", "rawName": "&aApothecary", "rawLore": "", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null, null, null,
+    { "id": "ender_pearl", "rawName": "&aSorcerer's Spell", "rawLore": "", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null, null, null,
+    { "id": "NETHer_star", "rawName": "&aFruit Finder", "rawLore": "", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null, null, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null, null, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null, null, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null, null, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null, null, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }, null, null, null, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }
   ]
 };
-
 
   function parseMinecraftColors(text) {
     if (!text || text.trim() === '') return '&nbsp;';
@@ -554,7 +117,6 @@ const menuConfig = {
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Apply config settings
     document.getElementById('display-title').innerText = menuConfig.title;
     const grid = document.getElementById('menu-grid');
     grid.style.setProperty('--cols', menuConfig.cols);
@@ -566,7 +128,6 @@ const menuConfig = {
     for (let i = 0; i < totalSlots; i++) {
       const item = menuConfig.data[i];
       if (!item) {
-        // No placeholder, just an empty slot
         html += `<div class="slot"></div>`;
       } else {
         html += MCEngine.makeSlotHtml(item, MCEngine.getApiFallback(item));
