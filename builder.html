@@ -7,16 +7,20 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   @font-face { font-family: 'Faithful'; src: url('assets/fonts/mineglyph-faithful.otf'); }
-  :root { --bg: #121212; --surface: #1e1e1e; --border: #333; --accent: #ff5100; --text: #fff; --text-2: #aaa; --mc-font: 'Faithful', monospace; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; margin: 0; padding: 20px; display: flex; gap: 20px; }
+  @keyframes obfuscate { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
   
-  .grid-container { flex: 1; overflow-x: auto; }
-  .grid-controls { display: flex; gap: 10px; margin-bottom: 16px; align-items: center; flex-wrap: wrap; }
+  :root { --bg: #121212; --surface: #1e1e1e; --border: #333; --accent: #ff5100; --text: #fff; --text-2: #aaa; --mc-font: 'Faithful', monospace; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; gap: 20px; align-items: center; }
+  
+  .workspace { display: flex; gap: 20px; justify-content: center; width: 100%; max-width: 1200px; }
+  
+  .grid-container { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+  .grid-controls { display: flex; gap: 10px; margin-bottom: 16px; align-items: center; flex-wrap: wrap; width: 100%; max-width: 500px; }
   .grid-controls input { padding: 6px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: #fff; border-radius: 4px; }
   .grid-controls .short-input { width: 60px; }
   
-  .mc-grid { display: grid; gap: 0px; background: #c6c6c6; padding: 10px; border: 4px solid #fff; border-right-color: #555; border-bottom-color: #555; width: fit-content; }
-  .slot { width: 36px; height: 36px; background: #8b8b8b; border: 2px solid #373737; border-right-color: #fff; border-bottom-color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
+  .mc-grid { display: grid; gap: 0px; background: #c6c6c6; padding: 10px; border: 4px solid #fff; border-right-color: #555; border-bottom-color: #555; width: fit-content; margin: 0 auto; }
+  .slot { width: 36px; height: 36px; background: #8b8b8b; border: 2px solid #373737; border-right-color: #fff; border-bottom-color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; box-sizing: border-box; }
   .slot:hover { background: #bebebe; z-index: 10; }
   .slot img { max-width: 80%; max-height: 80%; image-rendering: pixelated; pointer-events: none; }
   .slot.selected { outline: 2px solid #55ff55; outline-offset: -2px; z-index: 10; }
@@ -26,53 +30,64 @@
   button { background: var(--accent); color: #fff; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; }
   button:hover { filter: brightness(1.1); }
   
-  .colour-guide { font-size: 12px; color: var(--text-2); background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; line-height: 1.5; }
-  pre { background: #000; padding: 10px; border-radius: 6px; overflow-x: auto; font-size: 12px; border: 1px solid var(--border); max-height: 150px; white-space: pre-wrap; }
+  .colour-guide { font-size: 11px; color: var(--text-2); background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; line-height: 1.6; }
+  pre { background: #000; padding: 10px; border-radius: 6px; overflow: auto; font-size: 12px; border: 1px solid var(--border); min-height: 150px; max-height: 600px; white-space: pre-wrap; resize: vertical; }
+
+  .lower-panel { width: 100%; max-width: 900px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-sizing: border-box; margin-top: 10px; display: flex; flex-direction: column; gap: 15px; }
 
   .mc-tooltip { display: none; position: fixed; z-index: 9999; pointer-events: none; padding: 2px 6px 4px 6px; color: #fff; background: rgba(16,0,16,.85); border: 2px solid #2d0064; font-family: var(--mc-font); box-shadow: 2px 0 0 0 #000, -2px 0 0 0 #000, 0 2px 0 0 #000, 0 -2px 0 0 #000; }
   .mc-tooltip.show { display: block; }
-  .tt-name { font-size: 16px; display: block; margin-bottom: 3px; text-shadow: 2px 2px 0 rgba(0,0,0,0.8); }
-  .tt-line { font-size: 16px; display: block; margin-top: 0; text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px; }
+  
+  /* Text shadows managed strictly through specific components to separate underline from strikethrough lines */
+  .tt-name, .tt-line { font-size: 16px; display: block; margin-top: 0; min-height: 16px; }
+  .tt-name span, .tt-line span { text-shadow: 2px 2px 0 rgba(0,0,0,0.8); }
+  .tt-name span.no-shadow, .tt-line span.no-shadow { text-shadow: none; }
+  
+  .obfuscated { animation: obfuscate 0.1s infinite step-end; }
 </style>
 </head>
 <body>
 
-<div class="grid-container">
-  <div class="grid-controls">
-    <h2>Menu Builder</h2>
-    <label style="margin-left:auto">Title: <input type="text" id="menu-title" value="Angel's Descent"></label>
-    <label>Cols: <input type="number" id="grid-cols" class="short-input" value="9" min="1" onchange="buildGrid()"></label>
-    <label>Rows: <input type="number" id="grid-rows" class="short-input" value="18" min="1" onchange="buildGrid()"></label>
+<div class="workspace">
+  <div class="grid-container">
+    <div class="grid-controls">
+      <h2>Menu Builder</h2>
+      <label style="margin-left:auto">Title: <input type="text" id="menu-title" value="Angel's Descent"></label>
+      <label>Cols: <input type="number" id="grid-cols" class="short-input" value="9" min="1" onchange="buildGrid()"></label>
+      <label>Rows: <input type="number" id="grid-rows" class="short-input" value="18" min="1" onchange="buildGrid()"></label>
+    </div>
+    <div class="mc-grid" id="builder-grid"></div>
   </div>
-  <div class="mc-grid" id="builder-grid"></div>
+
+  <div class="editor-panel">
+    <h3>Edit Slot <span id="current-slot">None</span></h3>
+    <p style="font-size: 12px; color: var(--text-2); margin-top:-10px;">Arrow keys to move. Ctrl+C to copy slot, Ctrl+V to paste.</p>
+    <label>Item ID (e.g. gold_nugget) <input type="text" id="edit-id" placeholder="leave blank for empty slot"></label>
+    <label>Title <input type="text" id="edit-name" placeholder="&cAvarice V"></label>
+    <label>Lore (One line per row) <textarea id="edit-lore" rows="5" placeholder="&7Permanent Upgrade\n\n&6+25% &7SkyWars Coins."></textarea></label>
+    <label style="display: flex; gap: 10px; align-items: center;"><input type="checkbox" id="edit-ench" style="width: auto;"> Glowing (Enchanted)</label>
+
+    <button onclick="saveSlot()">Save to Slot</button>
+    <hr style="border-color: var(--border); width: 100%;">
+    
+    <button onclick="exportData()" style="background: #55ff55; color: #000;">Export Config</button>
+    <p style="font-size: 12px; margin:0; color: var(--text-2);">Copy this text and paste it into the <code>const menuConfig = {...}</code> variable.</p>
+    <pre id="export-output">Your config will appear here...</pre>
+
+    <div class="colour-guide" style="margin-top: 5px;">
+      <strong>MC Colours:</strong><br>
+      &0 Blk &1 D.Blu &2 D.Grn &3 D.Aqua &4 D.Red &5 D.Purp &6 Gold &7 Gry<br>
+      &8 D.Gry &9 Blu &a Grn &b Aqua &c Red &d L.Purp &e Yel &f Wht<br>
+      <strong>Formatting:</strong> &l Bold, &o Italic, &m Strikethrough, &n Underline, &k Magic, &r Reset
+    </div>
+  </div>
 </div>
 
-<div class="editor-panel">
-  <h3>Edit Slot <span id="current-slot">None</span></h3>
-  <label>Item ID (e.g. gold_nugget) <input type="text" id="edit-id" placeholder="leave blank for empty slot"></label>
-  <label>Title <input type="text" id="edit-name" placeholder="&cAvarice V"></label>
-  <label>Lore (One line per row) <textarea id="edit-lore" rows="5" placeholder="&7Permanent Upgrade\n\n&6+25% &7SkyWars Coins."></textarea></label>
-  <label style="display: flex; gap: 10px; align-items: center;"><input type="checkbox" id="edit-ench" style="width: auto;"> Glowing (Enchanted)</label>
-
-  <button onclick="saveSlot()">Save to Slot</button>
-  <hr style="border-color: var(--border); width: 100%;">
-  
-  <button onclick="exportData()" style="background: #55ff55; color: #000;">Export Config</button>
-  <p style="font-size: 12px; margin:0; color: var(--text-2);">Copy this text and paste it into the <code>const menuConfig = {...}</code> variable.</p>
-  <pre id="export-output">Your config will appear here...</pre>
-
-  <hr style="border-color: var(--border); width: 100%;">
-  
+<div class="lower-panel">
   <h3>Import Config</h3>
-  <textarea id="import-input" rows="3" placeholder="Paste existing menuConfig object here..."></textarea>
-  <button onclick="importData()" style="background: #333; border: 1px solid #555;">Load Config</button>
-
-  <div class="colour-guide" style="margin-top: 15px;">
-    <strong>MC Colours:</strong><br>
-    &0 Blk &1 D.Blu &2 D.Grn &3 D.Aqua &4 D.Red &5 D.Purp &6 Gold &7 Gry<br>
-    &8 D.Gry &9 Blu &a Grn &b Aqua &c Red &d L.Purp &e Yel &f Wht<br>
-    <strong>Formatting:</strong> &l Bold, &r Reset
-  </div>
+  <p style="font-size: 12px; margin:0; color: var(--text-2);">Paste your existing menuConfig configuration block below to parse and load it back into the interface grid layout.</p>
+  <textarea id="import-input" rows="8" placeholder="Paste existing menuConfig object here..."></textarea>
+  <button onclick="importData()" style="background: #333; border: 1px solid #555; width: fit-content; padding: 10px 24px;">Load Config</button>
 </div>
 
 <div class="mc-tooltip" id="tooltip"></div>
@@ -80,6 +95,7 @@
 <script>
   let gridData = [];
   let activeIndex = null;
+  let copiedSlotData = null;
   const gridEl = document.getElementById('builder-grid');
   const tooltip = document.getElementById('tooltip');
 
@@ -111,13 +127,22 @@
       gridEl.appendChild(div);
       updateVisual(i);
     }
+    
+    if (activeIndex !== null) {
+      if (activeIndex >= totalSlots) {
+        activeIndex = null;
+        document.getElementById('current-slot').innerText = 'None';
+      } else {
+        gridEl.children[activeIndex].classList.add('selected');
+      }
+    }
   }
 
   function selectSlot(index, el) {
-    if (activeIndex === index) return; // Prevent overwriting typed data
-    
     document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
-    el.classList.add('selected');
+    if (!el) el = gridEl.children[index];
+    if (el) el.classList.add('selected');
+    
     activeIndex = index;
     document.getElementById('current-slot').innerText = `#${index}`;
 
@@ -146,9 +171,10 @@
 
   function updateVisual(index) {
     const slot = gridEl.children[index];
+    if (!slot) return;
     const data = gridData[index];
     if (!data) {
-      slot.innerHTML = ''; // No placeholder
+      slot.innerHTML = '';
       return;
     }
     slot.innerHTML = `<img src="https://api.minecraftitems.xyz/api/item/${data.id}?size=2">`;
@@ -159,19 +185,61 @@
     const colorMap = { '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' };
     
     let html = '';
-    let currentStyle = 'color: #AAAAAA;';
-    let parts = text.split(/(?=&[0-9a-flr])/i);
+    let currentStyles = { color: '#AAAAAA', bold: false, italic: false, strike: false, underline: false, magic: false };
+    let parts = text.split(/(?=&[0-9a-fklmnor])/i);
+
+    function buildStyleString(s) {
+      let str = `color: ${s.color};`;
+      if (s.bold) str += ' font-weight: bold;';
+      if (s.italic) str += ' font-style: italic;';
+      
+      let deco = [];
+      if (s.strike) deco.push('line-through');
+      if (s.underline) deco.push('underline');
+      if (deco.length > 0) {
+        str += ` text-decoration: ${deco.join(' ')}; text-decoration-thickness: 2px;`;
+        if (s.strike) {
+          // Shifting line-through up 1px vertically via an offset rule
+          str += ' text-decoration-skip-ink: none; text-decoration-offset: -1px;';
+        }
+      }
+      return str;
+    }
 
     for (let part of parts) {
         if (part.startsWith('&') && part.length >= 2) {
             let code = part[1].toLowerCase();
             let textContent = part.substring(2);
-            if (colorMap[code]) { currentStyle = `color: ${colorMap[code]};`; } 
-            else if (code === 'l') { currentStyle += ` font-weight: bold;`; } 
-            else if (code === 'r') { currentStyle = `color: #AAAAAA; font-weight: normal;`; }
-            html += `<span style="${currentStyle}">${textContent}</span>`;
+            
+            if (colorMap[code]) { 
+              currentStyles.color = colorMap[code]; 
+            } else if (code === 'l') { 
+              currentStyles.bold = true; 
+            } else if (code === 'o') { 
+              currentStyles.italic = true; 
+            } else if (code === 'm') { 
+              currentStyles.strike = true; 
+            } else if (code === 'n') { 
+              currentStyles.underline = true; 
+            } else if (code === 'k') { 
+              currentStyles.magic = true; 
+            } else if (code === 'r') { 
+              currentStyles = { color: '#AAAAAA', bold: false, italic: false, strike: false, underline: false, magic: false }; 
+            }
+            
+            let classes = [];
+            if (currentStyles.magic) classes.push('obfuscated');
+            if (currentStyles.strike) classes.push('no-shadow');
+            let classStr = classes.length > 0 ? ` class="${classes.join(' ')}"` : '';
+            
+            html += `<span style="${buildStyleString(currentStyles)}"${classStr}>${textContent}</span>`;
         } else {
-            html += `<span style="${currentStyle}">${part}</span>`;
+            let classes = [];
+            if (currentStyles.magic) classes.push('obfuscated');
+            if (currentStyles.strike) classes.push('no-shadow');
+            let classStr = classes.length > 0 ? ` class="${classes.join(' ')}"` : '';
+            
+            html += `<span style="${buildStyleString(currentStyles)}"${classStr}>${part}</span>`;
         }
     }
     return html;
@@ -256,6 +324,52 @@
       alert("Invalid format. Make sure you paste the exact config object or the full 'const menuConfig = {...};' block.");
     }
   }
+
+  window.addEventListener('keydown', (e) => {
+    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
+      return; 
+    }
+
+    const cols = parseInt(document.getElementById('grid-cols').value) || 9;
+    const rows = parseInt(document.getElementById('grid-rows').value) || 18;
+    const totalSlots = cols * rows;
+
+    if (activeIndex === null && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+      selectSlot(0);
+      e.preventDefault();
+      return;
+    }
+
+    if (e.key === 'ArrowLeft') {
+      if (activeIndex > 0) selectSlot(activeIndex - 1);
+      e.preventDefault();
+    } else if (e.key === 'ArrowRight') {
+      if (activeIndex < totalSlots - 1) selectSlot(activeIndex + 1);
+      e.preventDefault();
+    } else if (e.key === 'ArrowUp') {
+      if (activeIndex - cols >= 0) selectSlot(activeIndex - cols);
+      e.preventDefault();
+    } else if (e.key === 'ArrowDown') {
+      if (activeIndex + cols < totalSlots) selectSlot(activeIndex + cols);
+      e.preventDefault();
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c') {
+      if (activeIndex !== null && gridData[activeIndex]) {
+        copiedSlotData = JSON.parse(JSON.stringify(gridData[activeIndex]));
+      } else {
+        copiedSlotData = null;
+      }
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v') {
+      if (activeIndex !== null) {
+        gridData[activeIndex] = copiedSlotData ? JSON.parse(JSON.stringify(copiedSlotData)) : null;
+        updateVisual(activeIndex);
+        selectSlot(activeIndex);
+      }
+    }
+  });
 
   buildGrid();
 </script>
