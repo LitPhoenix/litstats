@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LitStats Menu Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: 'Faithful'; src: url('assets/fonts/mineglyph-faithful.otf'); }
+  :root { --bg: #121212; --surface: #1e1e1e; --border: #333; --accent: #ff5100; --text: #fff; --text-2: #aaa; --mc-font: 'Faithful', monospace; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; margin: 0; padding: 20px; display: flex; gap: 20px; }
+  
+  .grid-container { flex: 1; overflow-x: auto; }
+  .grid-controls { display: flex; gap: 10px; margin-bottom: 16px; align-items: center; flex-wrap: wrap; }
+  .grid-controls input { padding: 6px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: #fff; border-radius: 4px; }
+  .grid-controls .short-input { width: 60px; }
+  
+  .mc-grid { display: grid; gap: 0px; background: #c6c6c6; padding: 10px; border: 4px solid #fff; border-right-color: #555; border-bottom-color: #555; width: fit-content; }
+  .slot { width: 36px; height: 36px; background: #8b8b8b; border: 2px solid #373737; border-right-color: #fff; border-bottom-color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
+  .slot:hover { background: #bebebe; z-index: 10; }
+  .slot img { max-width: 80%; max-height: 80%; image-rendering: pixelated; pointer-events: none; }
+  .slot.selected { outline: 2px solid #55ff55; outline-offset: -2px; z-index: 10; }
+
+  .editor-panel { width: 380px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 15px; height: fit-content; position: sticky; top: 20px; max-height: 95vh; overflow-y: auto; }
+  input, textarea { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); padding: 10px; border-radius: 6px; font-family: inherit; width: 100%; box-sizing: border-box; }
+  button { background: var(--accent); color: #fff; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+  button:hover { filter: brightness(1.1); }
+  
+  .colour-guide { font-size: 12px; color: var(--text-2); background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; line-height: 1.5; }
+  pre { background: #000; padding: 10px; border-radius: 6px; overflow-x: auto; font-size: 12px; border: 1px solid var(--border); max-height: 150px; white-space: pre-wrap; }
+
+  .mc-tooltip { display: none; position: fixed; z-index: 9999; pointer-events: none; padding: 2px 6px 4px 6px; color: #fff; background: rgba(16,0,16,.85); border: 2px solid #2d0064; font-family: var(--mc-font); box-shadow: 2px 0 0 0 #000, -2px 0 0 0 #000, 0 2px 0 0 #000, 0 -2px 0 0 #000; }
+  .mc-tooltip.show { display: block; }
+  .tt-name { font-size: 16px; display: block; margin-bottom: 3px; text-shadow: 2px 2px 0 rgba(0,0,0,0.8); }
+  .tt-line { font-size: 16px; display: block; margin-top: 0; text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px; }
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <div class="grid-controls">
+    <h2>Menu Builder</h2>
+    <label style="margin-left:auto">Title: <input type="text" id="menu-title" value="Angel's Descent"></label>
+    <label>Cols: <input type="number" id="grid-cols" class="short-input" value="9" min="1" onchange="buildGrid()"></label>
+    <label>Rows: <input type="number" id="grid-rows" class="short-input" value="18" min="1" onchange="buildGrid()"></label>
+  </div>
+  <div class="mc-grid" id="builder-grid"></div>
+</div>
+
+<div class="editor-panel">
+  <h3>Edit Slot <span id="current-slot">None</span></h3>
+  <label>Item ID (e.g. gold_nugget) <input type="text" id="edit-id" placeholder="leave blank for empty slot"></label>
+  <label>Title <input type="text" id="edit-name" placeholder="&cAvarice V"></label>
+  <label>Lore (One line per row) <textarea id="edit-lore" rows="5" placeholder="&7Permanent Upgrade\n\n&6+25% &7SkyWars Coins."></textarea></label>
+  <label style="display: flex; gap: 10px; align-items: center;"><input type="checkbox" id="edit-ench" style="width: auto;"> Glowing (Enchanted)</label>
+
+  <button onclick="saveSlot()">Save to Slot</button>
+  <hr style="border-color: var(--border); width: 100%;">
+  
+  <button onclick="exportData()" style="background: #55ff55; color: #000;">Export Config</button>
+  <p style="font-size: 12px; margin:0; color: var(--text-2);">Copy this text and paste it into the <code>const menuConfig = {...}</code> variable.</p>
+  <pre id="export-output">Your config will appear here...</pre>
+
+  <hr style="border-color: var(--border); width: 100%;">
+  
+  <h3>Import Config</h3>
+  <textarea id="import-input" rows="3" placeholder="Paste existing menuConfig object here..."></textarea>
+  <button onclick="importData()" style="background: #333; border: 1px solid #555;">Load Config</button>
+
+  <div class="colour-guide" style="margin-top: 15px;">
+    <strong>MC Colours:</strong><br>
+    &0 Blk &1 D.Blu &2 D.Grn &3 D.Aqua &4 D.Red &5 D.Purp &6 Gold &7 Gry<br>
+    &8 D.Gry &9 Blu &a Grn &b Aqua &c Red &d L.Purp &e Yel &f Wht<br>
+    <strong>Formatting:</strong> &l Bold, &r Reset
+  </div>
+</div>
+
+<div class="mc-tooltip" id="tooltip"></div>
+
+<script>
+  let gridData = [];
+  let activeIndex = null;
+  const gridEl = document.getElementById('builder-grid');
+  const tooltip = document.getElementById('tooltip');
+
+  function buildGrid() {
+    const cols = parseInt(document.getElementById('grid-cols').value) || 9;
+    const rows = parseInt(document.getElementById('grid-rows').value) || 18;
+    const totalSlots = cols * rows;
+    
+    gridEl.style.gridTemplateColumns = `repeat(${cols}, 36px)`;
+    gridEl.style.gridTemplateRows = `repeat(${rows}, 36px)`;
+    gridEl.innerHTML = '';
+    
+    if (gridData.length < totalSlots) {
+        gridData = [...gridData, ...Array(totalSlots - gridData.length).fill(null)];
+    } else {
+        gridData = gridData.slice(0, totalSlots);
+    }
+
+    for (let i = 0; i < totalSlots; i++) {
+      const div = document.createElement('div');
+      div.className = 'slot';
+      div.dataset.index = i;
+      div.onclick = () => selectSlot(i, div);
+      
+      div.addEventListener('mouseover', (e) => showTooltip(e, i));
+      div.addEventListener('mousemove', moveTooltip);
+      div.addEventListener('mouseout', () => tooltip.classList.remove('show'));
+      
+      gridEl.appendChild(div);
+      updateVisual(i);
+    }
+  }
+
+  function selectSlot(index, el) {
+    if (activeIndex === index) return; // Prevent overwriting typed data
+    
+    document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    activeIndex = index;
+    document.getElementById('current-slot').innerText = `#${index}`;
+
+    const data = gridData[index];
+    document.getElementById('edit-id').value = data?.id || '';
+    document.getElementById('edit-name').value = data?.rawName || '';
+    document.getElementById('edit-lore').value = data?.rawLore || '';
+    document.getElementById('edit-ench').checked = data?.enchanted || false;
+  }
+
+  function saveSlot() {
+    if (activeIndex === null) return;
+    const id = document.getElementById('edit-id').value.trim();
+    if (!id) {
+      gridData[activeIndex] = null;
+    } else {
+      gridData[activeIndex] = {
+        id: id,
+        rawName: document.getElementById('edit-name').value,
+        rawLore: document.getElementById('edit-lore').value,
+        enchanted: document.getElementById('edit-ench').checked
+      };
+    }
+    updateVisual(activeIndex);
+  }
+
+  function updateVisual(index) {
+    const slot = gridEl.children[index];
+    const data = gridData[index];
+    if (!data) {
+      slot.innerHTML = ''; // No placeholder
+      return;
+    }
+    slot.innerHTML = `<img src="https://api.minecraftitems.xyz/api/item/${data.id}?size=2">`;
+  }
+
+  function parseMinecraftColors(text) {
+    if (!text || text.trim() === '') return '&nbsp;';
+    const colorMap = { '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' };
+    
+    let html = '';
+    let currentStyle = 'color: #AAAAAA;';
+    let parts = text.split(/(?=&[0-9a-flr])/i);
+
+    for (let part of parts) {
+        if (part.startsWith('&') && part.length >= 2) {
+            let code = part[1].toLowerCase();
+            let textContent = part.substring(2);
+            if (colorMap[code]) { currentStyle = `color: ${colorMap[code]};`; } 
+            else if (code === 'l') { currentStyle += ` font-weight: bold;`; } 
+            else if (code === 'r') { currentStyle = `color: #AAAAAA; font-weight: normal;`; }
+            html += `<span style="${currentStyle}">${textContent}</span>`;
+        } else {
+            html += `<span style="${currentStyle}">${part}</span>`;
+        }
+    }
+    return html;
+  }
+
+  function showTooltip(e, index) {
+      const data = gridData[index];
+      if (!data) return;
+      
+      let html = `<span class="tt-name">${parseMinecraftColors(data.rawName || '&f' + data.id)}</span>`;
+      if (data.rawLore) {
+          const lines = data.rawLore.split('\n');
+          for (let l of lines) {
+              html += `<span class="tt-line">${parseMinecraftColors(l)}</span>`;
+          }
+      }
+      tooltip.innerHTML = html;
+      tooltip.classList.add('show');
+      moveTooltip(e);
+  }
+
+  function moveTooltip(e) {
+      if (!tooltip.classList.contains('show')) return;
+      let x = e.clientX + 15;
+      let y = e.clientY + 15;
+      if (x + tooltip.offsetWidth > window.innerWidth) x = e.clientX - tooltip.offsetWidth - 15;
+      if (y + tooltip.offsetHeight > window.innerHeight) y = e.clientY - tooltip.offsetHeight - 15;
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+  }
+
+  function exportData() {
+    const dataArray = gridData.map(item => {
+        if (!item) return null;
+        return {
+            id: item.id,
+            rawName: item.rawName,
+            rawLore: item.rawLore,
+            enchanted: item.enchanted
+        };
+    });
+    
+    let lastReal = dataArray.length - 1;
+    while(lastReal >= 0 && dataArray[lastReal] === null) lastReal--;
+    
+    const finalConfig = {
+      title: document.getElementById('menu-title').value || "Menu Title",
+      cols: parseInt(document.getElementById('grid-cols').value) || 9,
+      rows: parseInt(document.getElementById('grid-rows').value) || 18,
+      data: dataArray.slice(0, lastReal + 1)
+    };
+    
+    document.getElementById('export-output').textContent = `const menuConfig = ${JSON.stringify(finalConfig, null, 2)};`;
+  }
+
+  function importData() {
+    try {
+      const rawText = document.getElementById('import-input').value.trim();
+      const jsonString = rawText.replace(/^const\s+menuConfig\s*=\s*/, '').replace(/;$/, '');
+      const config = JSON.parse(jsonString);
+
+      document.getElementById('menu-title').value = config.title || "Menu Title";
+      document.getElementById('grid-cols').value = config.cols || 9;
+      document.getElementById('grid-rows').value = config.rows || 18;
+
+      buildGrid();
+
+      gridData = [];
+      for (let i = 0; i < (config.cols * config.rows); i++) {
+        gridData[i] = config.data[i] || null;
+      }
+
+      activeIndex = null;
+      document.getElementById('current-slot').innerText = 'None';
+      
+      for (let i = 0; i < gridData.length; i++) {
+        updateVisual(i);
+      }
+      
+      document.getElementById('import-input').value = '';
+    } catch (err) {
+      alert("Invalid format. Make sure you paste the exact config object or the full 'const menuConfig = {...};' block.");
+    }
+  }
+
+  buildGrid();
+</script>
+</body>
+</html>
