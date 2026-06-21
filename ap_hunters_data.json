@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-21T17:19:14.567Z",
+  "last_update": "2026-06-21T19:14:55.052Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1794,9 +1794,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23315,
+          "current_ap": 23335,
           "last_month_ap": 23160,
-          "monthly_gain": 155,
+          "monthly_gain": 175,
           "maxGames": []
         }
       ]
@@ -3282,15 +3282,15 @@
     },
     {
       "country": "Greece",
-      "score": 165,
+      "score": 230,
       "top_players": [
         {
           "username": "giorgy",
           "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
           "country": "Greece",
-          "current_ap": 25655,
+          "current_ap": 25720,
           "last_month_ap": 25655,
-          "monthly_gain": 0,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
