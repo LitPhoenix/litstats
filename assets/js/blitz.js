@@ -193,7 +193,7 @@ function calculateTotalCoins(kits, prestiges, currentCoins, starsArray = []) {
             
             const pLvl = prestiges[kit] || 0;
             if (pLvl >= 1) pTotal += 2000000;
-            if (pLvl >= 2) pTotal += 5000000; 
+            if (pLvl >= 2) pTotal += 500000; 
         }
     }
     
@@ -240,7 +240,7 @@ function calculateKitCoins(kitName, level, pLvl) {
     }
     
     if (pLvl >= 1) prestige += 2000000;
-    if (pLvl >= 2) prestige += 5000000;
+    if (pLvl >= 2) prestige += 500000;
     
     return {
         total: (unlock + upgrades + prestige).toLocaleString(),
