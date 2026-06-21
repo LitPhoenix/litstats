@@ -2,13 +2,12 @@ const MCEngine = {
     API_BASE: "https://api.minecraftitems.xyz/api/item/",
     API_KEY: "mcapi_5cb1f0643162ea2f7b0aa174d27061cdfa1f35c318532b602a9bf86045063ff9",
     BLOCK_IDS: new Set(['chest','tnt','cactus','wither_skeleton_skull','grass','minecart','chest_minecart','rail','powered_rail','redstone_torch']),
-    viewer: null,
+    viewers: {},
 
     getApiFallback(it) {
         return `${this.API_BASE}${it.id}?apiKey=${this.API_KEY}&size=4&glint=false`;
     },
 
-    // Add this helper inside MCEngine or global scope
     makeSlotHtml(it, imgUrl, emptyType = null) {
         if (!it || (!it.id && !it.customImg)) {
             if (emptyType) {
@@ -20,20 +19,20 @@ const MCEngine = {
         }
         
         const fallbackUrl = this.getApiFallback(it);
-        const wrap = it.enchanted ? 'item-wrapper enchanted' : 'item-wrapper';
         const isBlock = this.BLOCK_IDS.has(it.id);
+        
+        const wrap = it.enchanted ? 'item-wrapper enchanted' : 'item-wrapper';
         const mask = (!isBlock && it.enchanted) ? `style="--mask-img:url('${imgUrl}')"` : '';
-        const ds = JSON.stringify(it).replace(/"/g,'&quot;');
+        const td = JSON.stringify(it).replace(/"/g,'&quot;');
+        
+        let html = `<div class="slot" data-item="${td}">`;
+        html += `<div class="${wrap}" ${mask}>`;
         
         const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';const w=this.closest('.item-wrapper');if(w)w.style.setProperty('--mask-img','none');}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
-
-    
-        let html = `<div class="slot" data-item="${ds}">`;
-        html += `<div class="${wrap}" ${mask}>`;
-        html += `<img src="${imgUrl}" ... >`;
+        html += `<img src="${imgUrl}" alt="item" onerror="${onErrorScript}">`;
+        
         html += `</div>`;
         
-        // NEW: Durability Bar logic
         if (it.durability !== undefined) {
             const color = it.durability > 50 ? '#55ff55' : (it.durability > 20 ? '#ffff55' : '#ff0000');
             html += `<div class="durability-bar" style="width:90%; height:4px; background:#000; position:absolute; bottom:2px; border:2px solid #000; border-top:none; border-radius:2px; overflow:hidden; border-left:none; border-right:none;">
@@ -71,7 +70,6 @@ const MCEngine = {
             const d = s.getAttribute('data-item');
             if (!d) return;
             
-            // Fire custom event so specific pages can format the tooltip text
             const event = new CustomEvent('tt-format', { detail: { item: JSON.parse(d), html: '' }});
             document.dispatchEvent(event);
             
@@ -98,88 +96,57 @@ const MCEngine = {
         });
     },
 
-    initPlayerCanvas(canvasId, boxId, isClassic) {
+    initPlayerCanvas(canvasId, boxId) {
         const c = document.getElementById(canvasId);
-        const box = document.getElementById(boxId);
-        if (!c || !box) return;
+        if (!c || this.viewers[canvasId]) return;
         
-        const b = box.getBoundingClientRect();
-        const sizeX = b.width || (isClassic ? 112 : 140);
-        const sizeY = b.height || (isClassic ? 144 : 172);
+        const isMain = canvasId === 'player-canvas-main';
         
-        if (this.viewer) {
-            this.viewer.setSize(sizeX, sizeY);
-            return;
-        }
+        // Strictly hardcoded base dimensions so they NEVER rely on DOM rendering
+        const sizeX = isMain ? 100 : 112;
+        const sizeY = isMain ? 160 : 144;
         
         try {
-            this.viewer = new skinview3d.SkinViewer({
-                canvas: c, 
-                width: sizeX, 
-                height: sizeY, 
-                skin: 'img/skin.png',
-                enableControls: false, // Disables clicking and dragging
-                devicePixelRatio: window.devicePixelRatio 
+            const viewer = new skinview3d.SkinViewer({
+                canvas: c, width: sizeX, height: sizeY, skin: 'img/skin.png',
+                enableControls: false, devicePixelRatio: window.devicePixelRatio 
             });
             
-            this.viewer.zoom = 0.55; 
-            this.viewer.autoRotate = false;
+            // ==========================================================
+            // 3D SKIN CUSTOMIZATION GUIDE
+            // ==========================================================
+            // To make the skin LARGER or SMALLER, change the `viewer.zoom` value below.
+            //   - isMain controls the Main Menu box. (E.g. 1.3 to zoom way in)
+            //   - !isMain controls the Specific Kit Info box.
+            //
+            // To move the skin UP or DOWN, change `viewer.playerObject.position.y`.
+            //   - A lower number (e.g., -4) moves the model DOWN.
+            //   - A higher number (e.g., 0) moves the model UP.
+            // ==========================================================
+            viewer.zoom = isMain ? 0.9 : 0.85; 
+            viewer.playerObject.position.y = isMain ? 1.6 : -2;
             
-            if (!this.trackingActive) {
-                // Mouse tracking
+            viewer.autoRotate = false;
+            this.viewers[canvasId] = viewer;
+            
+            const cachedName = localStorage.getItem('blitz_skin_username');
+            if (cachedName) viewer.loadSkin(`https://minotar.net/skin/${cachedName}`);
+
+            const box = document.getElementById(boxId);
+            if (box) {
                 document.addEventListener('mousemove', e => {
-                    if(!this.viewer || !this.viewer.playerObject) return;
+                    if(!viewer || !viewer.playerObject || box.offsetWidth === 0) return;
+                    const cb = box.getBoundingClientRect();
                     
-                    const currentBox = document.getElementById(boxId);
-                    if (!currentBox) return;
-
-                    const cb = currentBox.getBoundingClientRect();
-                    if(cb.width === 0) return; 
-                    
-                    const boxCenterX = cb.left + (cb.width / 2);
-                    const boxCenterY = cb.top + (cb.height / 2);
-                    
-                    let mouseX = (e.clientX - boxCenterX) / (window.innerWidth / 2);
-                    let mouseY = (e.clientY - boxCenterY) / (window.innerHeight / 2);
-
-                    this.viewer.playerObject.skin.head.rotation.y = mouseX * 0.8;
-                    this.viewer.playerObject.skin.head.rotation.x = mouseY * 0.5;
-                    
-                    // Increased horizontal body movement for less stiffness
-                    this.viewer.playerObject.rotation.y = mouseX * 0.6;
-                    this.viewer.playerObject.rotation.x = mouseY * 0.15; 
+                    let mouseX = (e.clientX - (cb.left + cb.width/2)) / (window.innerWidth/2);
+                    let mouseY = (e.clientY - (cb.top + cb.height/2)) / (window.innerHeight/2);
+                    viewer.playerObject.skin.head.rotation.y = Math.max(-0.5, Math.min(0.5, mouseX * 0.8));
+                    viewer.playerObject.skin.head.rotation.x = mouseY * 0.5;
+                    viewer.playerObject.rotation.y = Math.max(-0.5, Math.min(0.5, mouseX * 0.6));
+                    viewer.playerObject.rotation.x = mouseY * 0.15; 
                 });
-
-                this.viewer.playerObject.position.y = -2;
-
-                // Username input handling & Caching
-                const usernameInput = document.getElementById('skin-username');
-                if (usernameInput) {
-                    // 1. Check cache when the viewer loads
-                    const cachedName = localStorage.getItem('blitz_skin_username');
-                    if (cachedName) {
-                        usernameInput.value = cachedName;
-                        this.viewer.loadSkin(`https://minotar.net/skin/${cachedName}`);
-                    }
-
-                    // Highlight text automatically
-                    usernameInput.addEventListener('click', e => e.target.select());
-                    
-                    // Fetch new skin and save to cache on Enter
-                    usernameInput.addEventListener('keydown', e => {
-                        if (e.key === 'Enter') {
-                            const name = e.target.value.trim();
-                            if (name) {
-                                localStorage.setItem('blitz_skin_username', name); // Save to cache
-                                this.viewer.loadSkin(`https://minotar.net/skin/${name}`);
-                            }
-                            usernameInput.blur(); 
-                        }
-                    });
-                }
-
-                this.trackingActive = true;
             }
+
         } catch(err) {
             console.error('3D Skin Viewer failed to load:', err);
         }
@@ -187,9 +154,7 @@ const MCEngine = {
 };
 
 window.addEventListener('resize', () => MCEngine.setZoom());
-
 document.addEventListener('DOMContentLoaded', () => {
-    // Permanent comment: Tooltip needs to render before zoom so it doesn't scale the off centre
     MCEngine.initTooltip();
     MCEngine.setZoom();
 });
