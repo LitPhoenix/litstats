@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-21T02:39:41.005Z",
+  "last_update": "2026-06-21T08:21:55.768Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -636,9 +636,9 @@
           "username": "baseballaholic",
           "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
           "country": "USA",
-          "current_ap": 27435,
+          "current_ap": 27445,
           "last_month_ap": 27435,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max TKR"
           ]
@@ -1881,7 +1881,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6790,
+      "score": 6793,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -1910,9 +1910,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 28360,
+          "current_ap": 28365,
           "last_month_ap": 28160,
-          "monthly_gain": 200,
+          "monthly_gain": 205,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2637,9 +2637,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25440,
+          "current_ap": 25455,
           "last_month_ap": 25305,
-          "monthly_gain": 135,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Duels"
           ]
@@ -2909,9 +2909,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24425,
+          "current_ap": 24450,
           "last_month_ap": 24375,
-          "monthly_gain": 50,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
