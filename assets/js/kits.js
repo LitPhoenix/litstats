@@ -47,10 +47,10 @@ const COMPASS = itm('compass', 'Compass', 'common');
 
 // ── Patch engine ─────────────────────────────────────────────────────────────
 function applyPatch(base, patch) {
-  const out = JSON.parse(JSON.stringify(base)); 
+  const out = Object.assign({}, base);
   for (const [k, v] of Object.entries(patch)) {
-    if (v === null) { delete out[k]; }
-    else            { out[k] = v;   }
+    if (v === null) delete out[k];
+    else out[k] = v;
   }
   return out;
 }
@@ -249,8 +249,8 @@ window.KIT_DATABASE = {
 
 "Scout": kit([
   { chestplate: lth('chestplate','Leather Chestplate'), h0: pot('Potion of Speed II (12s)',2), h1: spot('Splash Potion of Slowness II (8s)'), h2: spot('Splash Potion of Invisibility II (10s)') },
-  { helmet: lth('helmet','Leather Helmet') },
-  { helmet: lth('helmet','Leather Helmet',['Respiration I']), h0: pot('Potion of Speed II (14s)',2) },
+  { helmet: lth('helmet','Leather Helmet',['Respiration I']) },
+  { h0: pot('Potion of Speed II (14s)',2) },
   { h0: pot('Potion of Speed II (14s)',4), h1: spot('Splash Potion of Slowness II (8s)',2) },
   { helmet: lth('helmet','Leather Helmet',['Respiration II']), h0: pot('Potion of Speed II (14s)',3) },
   { h0: pot('Potion of Speed II (16s)',3) },
@@ -258,7 +258,7 @@ window.KIT_DATABASE = {
   { boots: lth('boots','Leather Boots'), h0: pot('Potion of Speed II (18s)',5), h1: spot('Splash Potion of Slowness II (6s)',2) },
   { h1: spot('Splash Potion of Slowness II (8s)',2) },
   { leggings: lth('leggings','Leather Leggings'), h0: pot('Potion of Speed II (20s)',5), h1: spot('Splash Potion of Slowness II (8s)',3), h3: pot('Potion of Regeneration II (10s)',2) },
-  {} 
+  { h0: itm('wooden_axe', 'Wooden Axe', 'common', null, ['Unbreaking III']), h1: pot('Potion of Speed II (20s)',5), h2: spot('Splash Potion of Slowness II (8s)',3), h3: spot('Splash Potion of Invisibility II (10s)'), h4: pot('Potion of Regeneration II (10s)',2) } 
 ]),
 
 "Speleologist": kit([
@@ -400,8 +400,8 @@ window.KIT_DATABASE = {
   { chestplate: itm('golden_chestplate', 'Gold Chestplate', 'uncommon', null, ['Protection II', 'Unbreaking X']), boots: lth('boots', 'Leather Boots', ['Protection I']) },
   { chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon', null, ['Unbreaking X']), boots: lth('boots', 'Leather Boots', ['Protection II']) },
   { chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon', null, ['Protection I', 'Unbreaking X']), boots: itm('iron_boots', 'Iron Boots', 'uncommon') },
-  { chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon', null, ['Protection II', 'Unbreaking X']) },
-  { chestplate: itm('diamond_chestplate', 'Diamond Chestplate', 'legendary', null, ['Unbreaking X']), h1: spot('Splash Potion of Strength I & Slowness I (7s)', 3) },
+  { h0: itm('stone_sword', 'Stone Sword', 'common', null, ['Unbreaking X']), chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon', null, ['Protection II', 'Unbreaking X']) },
+  { h0: itm('stone_sword', 'Stone Sword'), chestplate: itm('diamond_chestplate', 'Diamond Chestplate', 'legendary', null, ['Unbreaking X']), h1: spot('Splash Potion of Strength I & Slowness I (7s)', 3) },
   { h1: spot('Splash Potion of Strength I & Slowness I (7s)', 4) }
 ]),
 
@@ -568,7 +568,7 @@ window.KIT_DATABASE = {
   { helmet: itm('golden_helmet', 'Gold Helmet', 'uncommon', null, ['Respiration III', 'Aqua Affinity I']), chestplate: lth('chestplate', 'Leather Chestplate') },
   { h0: itm('stone_sword', 'Stone Sword', 'uncommon', null, ['Unbreaking I']), boots: itm('iron_boots', 'Iron Boots', 'uncommon', null, ['Protection I', 'Depth Strider II']) },
   { helmet: itm('golden_helmet', 'Gold Helmet', 'uncommon', null, ['Protection I', 'Respiration III', 'Aqua Affinity I']), boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Protection I', 'Depth Strider II']) },
-  { boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Protection II', 'Depth Strider II']) },
+  { boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Protection II', 'Depth Strider II']), h0: itm('stone_sword', 'Stone Sword', 'uncommon', null) },
   { helmet: itm('golden_helmet', 'Gold Helmet', 'uncommon', null, ['Protection II', 'Respiration III', 'Aqua Affinity I']), boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Protection II', 'Depth Strider III']) },
   { chestplate: lth('chestplate', 'Leather Chestplate', ['Protection I']), leggings: lth('leggings', 'Leather Leggings', ['Protection I']) }
 ]),
@@ -626,7 +626,7 @@ window.KIT_DATABASE = {
   { leggings: itm('iron_leggings', 'Iron Leggings', 'uncommon', null, ['Protection I']), h1: itm('experience_bottle', 'EXP Bottle', 'common', 15) },
   { leggings: itm('iron_leggings', 'Iron Leggings', 'uncommon', null, ['Protection II']) },
   { h0: itm('stone_sword', 'Stone Sword', 'uncommon'), h3: itm('rabbit_spawn_egg', 'Rabbit Egg', 'uncommon'), leggings: itm('diamond_leggings', 'Diamond Leggings', 'legendary'), boots: lth('boots', 'Leather Boots'), h1: itm('experience_bottle', 'EXP Bottle', 'common', 18), h2: itm('apple', 'Apple', 'common', 5) },
-  { h0: itm('stone_sword', 'Stone Sword', 'uncommon', null, ['Unbreaking I']), helmet: itm('leather_helmet', 'Leather Helmet', 'uncommon', null, ['Protection I']), h1: itm('experience_bottle', 'EXP Bottle', 'common', 24) }
+  { helmet: lth('helmet', 'Leather Helmet', ['Protection I']), h1: itm('experience_bottle', 'EXP Bottle', 'common', 24) }
 ]),
 
 "Creepertamer": kit([
