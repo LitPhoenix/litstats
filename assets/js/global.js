@@ -5,11 +5,11 @@ function initTheme() {
   if (savedTheme === 'light') {
     document.body.classList.add('light-theme');
     document.body.removeAttribute('data-theme');
-    if (themeBtn) themeBtn.textContent = '🌙'; 
+    if (themeBtn) themeBtn.innerHTML = moonIcon; 
   } else {
     document.body.classList.remove('light-theme');
     document.body.setAttribute('data-theme', 'dark');
-    if (themeBtn) themeBtn.textContent = '☀️'; 
+    if (themeBtn) themeBtn.innerHTML = sunIcon; 
     localStorage.setItem('litstats_theme', 'dark');
   }
 }
@@ -22,14 +22,16 @@ function toggleTheme() {
     document.body.classList.remove('light-theme');
     document.body.setAttribute('data-theme', 'dark');
     localStorage.setItem('litstats_theme', 'dark');
-    if (themeBtn) themeBtn.textContent = '☀️';
+    if (themeBtn) themeBtn.innerHTML = sunIcon;
   } else {
     document.body.classList.add('light-theme');
     document.body.removeAttribute('data-theme');
     localStorage.setItem('litstats_theme', 'light');
-    if (themeBtn) themeBtn.textContent = '🌙';
+    if (themeBtn) themeBtn.innerHTML = moonIcon;
   }
 }
+
+document.addEventListener('DOMContentLoaded', initTheme);
 
 initTheme();
 
