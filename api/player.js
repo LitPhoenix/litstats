@@ -9,6 +9,10 @@ function getPlayerRank(player) {
     const ranks = { 'MVP_PLUS': 'MVP+', 'MVP': 'MVP', 'VIP_PLUS': 'VIP+', 'VIP': 'VIP' };
     return ranks[player.newPackageRank] || 'NON';
   }
+  if (player.packageRank) {
+    const ranks = { 'MVP_PLUS': 'MVP+', 'MVP': 'MVP', 'VIP_PLUS': 'VIP+', 'VIP': 'VIP' };
+    return ranks[player.packageRank] || 'NON';
+  }
   return 'NON';
 }
 
@@ -29,7 +33,7 @@ module.exports = async (req, res) => {
   const allowedOrigins = ['https://www.litstats.com', 'https://litstats.com', 'http://localhost:3000', 'http://127.0.0.1:3000'];
   const requestOrigin = req.headers.origin || req.headers.referer || '';
 
-  // 1. CHECK
+  // 1. CHECK AUTH
   const secureToken = req.headers['x-litstats-auth'];
   const expectedToken = process.env.CLOUDFLARE_AUTH_TOKEN;
 
@@ -40,14 +44,13 @@ module.exports = async (req, res) => {
       if (secureToken !== expectedToken) {
           return res.status(403).json({ error: "Access Denied: Direct origin bypass detected." });
       }
-      
       // Block humans typing the URL directly into their browser
       if (!allowedOrigins.some(origin => requestOrigin.startsWith(origin))) {
           return res.status(403).json({ error: "Access Denied: Direct browser visits are blocked." });
       }
   }
 
-  // 2. Browser CORS
+  // 2. BROWSER CORS
   const isAllowed = allowedOrigins.some(origin => requestOrigin.startsWith(origin));
   const corsOrigin = isAllowed ? requestOrigin : allowedOrigins[0];
 
@@ -62,7 +65,7 @@ module.exports = async (req, res) => {
   const { uuid, name } = req.query;
   let targetUuid = uuid;
 
-  // Resolve Username to UUID if needed
+  // Resolve Username to UUID if needed (for Cabinet compatibility)
   if (name && !uuid) {
     try {
       const mojangRes = await fetch(`https://api.mojang.com/users/profiles/minecraft/${name}`);
@@ -80,6 +83,7 @@ module.exports = async (req, res) => {
   if (!API_KEY) return res.status(500).json({ error: "Server missing API Key" });
 
   try {
+    // Check and Fetch Achievement Template Cache
     if (!cachedTemplate || Date.now() - templateFetchTime > 3600000) {
       try {
         const tData = await safeFetchJSON('https://api.hypixel.net/v2/resources/achievements');
@@ -92,6 +96,7 @@ module.exports = async (req, res) => {
       }
     }
 
+    // Fetch Master Hypixel Profile
     const pData = await safeFetchJSON(`https://api.hypixel.net/v2/player?uuid=${targetUuid}`, { headers: { 'API-Key': API_KEY } });
     
     if (pData.rateLimited) return res.status(429).json({ error: "Hypixel API Rate Limit. Try again shortly." });
@@ -103,21 +108,27 @@ module.exports = async (req, res) => {
     const cleanOneTime = rawOneTime.filter(item => typeof item === 'string');
     const tieredPlayer = profile.achievements || {};
 
+    // --- SHARED PAYLOAD INIT ---
     const responseData = {
       username: profile.displayname || "Unknown",
       uuid: profile.uuid,
       rank: getPlayerRank(profile),
       rankPlusColor: profile.rankPlusColor || 'RED',
       monthlyRankColor: profile.monthlyRankColor || 'GOLD',
+      
+      // Cabinet Specifics
       achievementPoints: profile.achievementPoints || 0,
       questsCompleted: 0, 
       maxGames: [],
       topQuests: [],
       gamePercentages: {},
       missingAchievements: [],
-      recentAchievements: [] 
+      recentAchievements: []
     };
 
+    // ==========================================
+    // CABINET DATA PARSING (QUESTS & ACHS)
+    // ==========================================
     if (profile.quests) {
       const questTotals = {};
       const qMap = {
@@ -251,7 +262,6 @@ module.exports = async (req, res) => {
 
     responseData.missingAchievements.sort((a, b) => a.reward - b.reward);
 
-    // --- FAST RECENT ACHIEVEMENTS EXTRACTOR (HASH MAP) ---
     const achDictionary = {};
     if (cachedTemplate) {
       for (const [categoryId, tGame] of Object.entries(cachedTemplate)) {
@@ -288,34 +298,99 @@ module.exports = async (req, res) => {
       }
     }
 
-    // --- BLITZ KITS EXTRACTOR ---
+    // ==========================================
+    // BLITZ KITS & COMBAT PARSING
+    // ==========================================
     const hg = profile.stats?.HungerGames || {};
     const packages = hg.packages || [];
     const blitzKits = {};
+    const blitzPrestiges = {};
+    const kitStats = {};
     
-    // Hypixel's exact internal kit names (including spaces)
+    responseData.currentCoins = parseInt(hg.coins) || 0;
+
+    responseData.overallStats = {
+        kills: hg.kills || 0,
+        deaths: hg.deaths || 0,
+        wins: hg.wins || 0,
+        wins_teams: hg.wins_teams || 0,
+        timePlayed: hg.time_played || hg.timePlaying || 0,
+        currentKit: hg.defaultkit || hg.auto_spawn_kit || 'None'
+    };
+
+    const starCosts = {
+        'assassin': 10000, 'wobbuffet': 20000, 'vaulthunter': 15000, 'witherwarrior': 10000,
+        'gremlin': 5000, 'roulette': 10000, 'invoker': 10000, 'ironman': 10000,
+        'nuke': 15000, 'ninja': 5000, 'robinhood': 10000, 'supplies': 10000,
+        'shotgun': 20000, 'koolmove': 20000, 'lockdown': 5000, 'time_warp': 10000,
+        'acid_rain': 15000, 'infection': 15000, 'pickpocket': 5000, 'ragnarok': 10000,
+        'gladiator': 10000, 'zookeeper': 10000, 'switcheroo': 10000
+    };
+    const starsUnlocked = [];
+    for (const p of packages) {
+        if (starCosts[p]) starsUnlocked.push(p);
+    }
+    responseData.blitzStars = starsUnlocked;
+    
     const kitList = ["horsetamer", "ranger", "archer", "astronaut", "troll", "meatmaster", "reaper", "shark", "reddragon", "toxicologist", "donkeytamer", "rogue", "warlock", "slimeyslime", "jockey", "golem", "viking", "speleologist", "shadow knight", "baker", "knight", "pigman", "guardian", "phoenix", "paladin", "necromancer", "scout", "hunter", "warrior", "hype train", "fisherman", "milkman", "florist", "diver", "arachnologist", "blaze", "wolftamer", "tim", "snowman", "rambo", "farmer", "armorer", "creepertamer"];
-    
-    // Hypixel default free kits (start at level 1 automatically)
-    const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist"]);
+    const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist", "rambo", "guardian", "hype train"]);
+    const ultimateKits = new Set(["phoenix", "warrior", "donkeytamer", "milkman", "ranger"]);
     
     for (const kit of kitList) {
         let level = defaultKits.has(kit) ? 1 : 0;
-        
-        if (packages.includes(kit) || packages.includes(`${kit}_1`)) level = 1; 
-        
-        for (let i = 2; i <= 10; i++) {
-            if (packages.includes(`${kit}_${i}`)) level = i;
+        if (packages.includes(kit)) level = 1; 
+        for (let i = 1; i <= 9; i++) {
+            if (packages.includes(`${kit}_${i}`)) level = i + 1;
         }
         
-        const prestige = hg[`prestige_${kit}`] || 0; 
-        if (prestige >= 2 && level === 10) level = 11; 
+        if (hg[kit] !== undefined && (hg[kit] + 1) > level) {
+            level = hg[kit] + 1;
+        }
         
-        // Strip spaces so the frontend can match it perfectly
+        if (ultimateKits.has(kit)) {
+            const xp = hg[`exp_${kit}`];
+            if (xp !== undefined) {
+                if (level === 0) level = 1;
+                if (xp >= 10000) level = 10;
+                else if (xp >= 5000) level = 9;
+                else if (xp >= 2500) level = 8;
+                else if (xp >= 2000) level = 7;
+                else if (xp >= 1500) level = 6;
+                else if (xp >= 1000) level = 5;
+                else if (xp >= 500) level = 4;
+                else if (xp >= 250) level = 3;
+                else if (xp >= 100) level = 2;
+            }
+        }
+        
         const safeName = kit.replace(/\s+/g, '');
+        let pLvl = hg[`p${safeName}`] || 0;
+        if (pLvl >= 2 && level === 10) level = 11; 
+        
         blitzKits[safeName] = level;
+        blitzPrestiges[safeName] = pLvl;
+
+        const kitLower = kit.toLowerCase();
+        const kitWinsSolo = hg[`wins_${kitLower}`] || hg[`${kitLower}_wins`] || 0;
+        const kitWinsTeams = hg[`wins_teams_${kitLower}`] || hg[`${kitLower}_wins_teams`] || 0;
+        const kitWinsTotal = kitWinsSolo + kitWinsTeams;
+        const kitGames = hg[`games_played_${kitLower}`] || hg[`games_${kitLower}`] || 0;
+        
+        // Formula: Losses = Games - Wins (Treating Deaths as Losses for KD Math)
+        let kitLosses = kitGames - kitWinsTotal;
+        if (kitLosses < 0) kitLosses = 0; 
+
+        kitStats[safeName] = {
+            kills: hg[`kills_${kitLower}`] || hg[`${kitLower}_kills`] || 0,
+            losses: kitLosses,
+            wins: kitWinsTotal,
+            timePlayed: hg[`time_played_${kitLower}`] || hg[`timePlaying_${kitLower}`] || 0
+        };
     }
+    
     responseData.blitzKits = blitzKits;
+    responseData.blitzPrestiges = blitzPrestiges;
+    responseData.kitStats = kitStats;
 
     return res.status(200).json(responseData);
 
