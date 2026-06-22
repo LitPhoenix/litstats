@@ -1,395 +1,359 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<title>LitStats - Murder Mystery</title>
-<link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-<link rel="stylesheet" href="assets/css/global.css">
-<link rel="stylesheet" href="assets/css/mc-gui.css">
-
-<style>
-  .mc-title { margin-top: 4px; margin-bottom: 4px; }
+:root {
+  --bg: #fdfaf8;
+  --bg-glow: rgba(255, 100, 0, 0.02); 
   
-  /* Top Icon Tabs Styling */
-  .gui-icon-tabs {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 20px;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 12px;
-    border-radius: 4px;
-    border: 2px solid #333;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .gui-icon-tab {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #2e2e2e;
-    border: 2px solid #555;
-    padding: 8px 16px;
-    cursor: pointer;
-    text-decoration: none;
-    min-width: 90px;
-    transition: background 0.1s;
-  }
-  .gui-icon-tab:hover {
-    background: #3c3c3c;
-    border-color: #888;
-  }
-  .gui-icon-tab.active {
-    background: #55FF55;
-    border-color: #FFF;
-  }
-  .gui-icon-tab .tab-icon {
-    width: 32px;
-    height: 32px;
-    image-rendering: pixelated;
-    margin-bottom: 4px;
-  }
-  .gui-icon-tab .tab-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: #DDD;
-  }
-  .gui-icon-tab.active .tab-label {
-    color: #000;
-  }
-</style>
-</head>
-<body>
-<script src="assets/js/components.js"></script>
-
-<div class="gui-icon-tabs">
-  <a href="#classic" class="gui-icon-tab" id="tab-classic" onclick="switchMode('classic')">
-    <img src="img/iron_sword.png" alt="Classic" class="tab-icon" onerror="this.src='assets/img/fallback_sword.png'">
-    <span class="tab-label">Classic</span>
-  </a>
-  <a href="#infection" class="gui-icon-tab" id="tab-infection" onclick="switchMode('infection')">
-    <img src="img/rotten_flesh.png" alt="Infection" class="tab-icon" onerror="this.src='assets/img/fallback_flesh.png'">
-    <span class="tab-label">Infection</span>
-  </a>
-  <a href="#assassins" class="gui-icon-tab" id="tab-assassins" onclick="switchMode('assassins')">
-    <img src="img/filled_map.png" alt="Assassins" class="tab-icon" onerror="this.src='assets/img/fallback_map.png'">
-    <span class="tab-label">Assassins</span>
-  </a>
-</div>
-
-<main class="mc-scale-engine">
-  <div class="mc-container">
-    <div class="mc-title" id="display-title">Descent Into Madness</div>
-    <div class="mc-grid" id="menu-grid"></div>
-  </div>
-</main>
-
-<script src="assets/js/global.js"></script>
-<script src="assets/js/mc-engine.js"></script>
-<script>
-const modesData = {
-  "classic": [
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "bow", "rawName": "&aFirst Steps", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Collect 10 Gold and earn a Bow.\n\n&7Progress: &a✔\n\n&7&oGold spawns on the ground during\n&7&othe game. Having 10 Gold in your\n&7&oinventory earns you a Bow and\n&7&oArrow, which gives you one chance\n&7&oto stop the Murderer.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "diamond_sword", "rawName": "&aSneaky", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill players as the Murderer.\n\n&7Progress: &a3/3\n\n&7&oThe Murderer's goal is to kill\n&7&oeveryone without anyone figuring\n&7&oout who they are. It's best to kill\n&7&opeople when no one else is looking!\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "gold_ingot", "rawName": "&aHigh Roller", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Spend Gold.\n\n&7Progress: &a20/20\n\n&7&oBesides Bow and Arrows, Gold can\n&7&oalso be spent on maps for other\n&7&oitems and perks, such as\n&7&oConsumables or Traps.\n\n&7Reward\n&8+&bCoffin Close Death Cry\n\n&aCompleted!", "enchanted": false },
-    { "id": "apple", "rawName": "&aLocal Specialty", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Use Consumables.\n\n&7Progress: &a5/5\n\n&7&oOn some maps you are able to\n&7&opurchase Consumables for low\n&7&oamounts of Gold. They have a variety\n&7&oof effects that can get you out of a\n&7&opinch.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "red_stained_glass_pane", "rawName": "&aCornucopia", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Use Consumables on different maps.\n\n&7Progress: &a5/5\n\n&7&oOn Darkfall and Library you can find\n&7&oMystery Potions. When consumed,\n&7&oMystery Potions can either provide\n&7&oyou with a helpful or harmful effect.\n&7&oWatch out!\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "bow", "rawName": "&aLegacy", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Pick up a Detective Bow and shoot\n&7the Murderer.\n\n&7Progress: &a✔\n\n&7&oThe Detective drops their Bow on\n&7&odeath. Any Innocent player can then\n&7&opick it up, at which point their job\n&7&obecomes to shoot the Murderer.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "clock", "rawName": "&aSurvival", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Win games due to the timer running\n&7out as Innocent.\n\n&7Progress: &a✔\n\n&7&oOnce 2 non-Murderers remain, all\n&7&oplayers will be shown on the map.\n&7&oOnce 1 player is remaining, the\n&7&oMurderer gets Speed I.\n\n&7Reward\n&8+&bCampfire Leftovers Knife Skin\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "iron_sword", "rawName": "&aClassic / Double Up!", "rawLore": "&aYou are currently viewing this!", "enchanted": true, "isTabSwitch": "classic" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "red_stained_glass_pane", "rawName": "&aSerial Trapper", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers with Traps on\n&7different maps.\n\n&7Progress: &a3/3\n\n&7&oTraps give you a chance to kill the\n&7&oMurderer without a Bow, but you\n&7&ohave to lure them into one first!\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "string", "rawName": "&aTrapping 101", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Activate Traps.\n\n&7Progress: &a5/5\n\n&7&oCertain maps have deadly Traps that\n&7&ocan be activated with Gold. If you\n&7&oknow who the Murderer is, try and\n&7&olure them into a Trap to kill them!\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "arrow", "rawName": "&aQuickdraw", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers with a Bow.\n\n&7Progress: &a3/3\n\n&7&oClassic mode has one Murderer, while\n&7&oDouble Up! has two. Killing all\n&7&oMurderers wins the game for\n&7&osurviving Innocents and Detectives.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "rotten_flesh", "rawName": "&aInfection", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "infection" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "iron_sword", "rawName": "&aDeadly Precision", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill players with Knife Throws as the\n&7Murderer.\n\n&7Progress: &a10/10\n\n&7&oRight click with a Knife to throw it.\n&7&oKnives have a cooldown of 10\n&7&oseconds between throws.\n\n&7Reward\n&8+&bUnsubtle Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "filled_map", "rawName": "&aAssassins", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "assassins" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "filled_map", "rawName": "&aJob Search", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Pick up dropped Detective Bows.\n\n&7Progress: &a15/15\n\n&7&oThis map can be an invaluable tool\n&7&ofor finding dropped Detective Bows,\n&7&obut it can also help Murderers find\n&7&oInnocents in the last 30 seconds of\n&7&oa game!\n\n&7Reward\n&8+&6Shred Knife Skin\n\n&aCompleted!", "enchanted": false },
-    { "id": "emerald", "rawName": "&aHero of the Day", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers as an Innocent.\n\n&7Progress: &a4/4\n\n&7&oKilling the Murderer as an Innocent\n&7&omakes you the \"Hero\". This can\n&7&oeither be done with a Bow or Trap kill.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "leather", "rawName": "&aMakeshift Shield", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Block a Murderer's Knife Throw with\n&7an Arrow.\n\n&7Progress: &a5/5\n\n&7&oArrows and Thrown Knives will collide\n&7&oif they hit one another, stopping both.\n\n&7Reward\n&8+&6Wither Skull Projectile Trail\n\n&aCompleted!", "enchanted": false },
-    { "id": "blaze_rod", "rawName": "&aPythagorean Disposal", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Get double kills with Knife Throws.\n\n&7Progress: &a3/3\n\n&7&oThrown Knives will pierce through\n&76otargets, meaning you can kill multiple\n&7&oplayers with just one throw if lined\n&7&oup properly.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "bone_meal", "rawName": "&aPane-Killer", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill players with knives thrown\n&7through glass panes.\n\n&7Progress: &a4/4\n\n&7&oKnives will crack and pass through\n&7&oGlass Panes when thrown. Knives can\n&7&oalso pass through Barrier blocks.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "feather", "rawName": "&aLawmaker", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers as the Detective.\n\n&7Progress: &a15/15\n\n&7&oThe Detective does not earn\n&7&oanything upon collecting 10 or more\n&7&oGold as they already have a Bow and\n&7&oinfinite Arrows. Use this Gold\n&7&oelsewhere, like on Traps or\n&7&oConsumables.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "golden_sword", "rawName": "&aBloodlust", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill players as the Murderer.\n\n&7Progress: &a100/100\n\n&7&oFind a strategy that suits you. Some\n&7&oare aggressive Murderers who kill\n&7&oeveryone they see. Others are more\n&76omethodical and wait for the right\n&7&oopportunities so they are not found.\n\n&7Reward:\n&8+&5Puddle Death Cry\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "diamond", "rawName": "&aTruly Mad", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Win games.\n\n&7Progress: &a100/100\n\n&7&oPut all of your acquired knowledge\n&7&oto the test for one final challenge.\n\n&7Reward\n&8+&5Creeper Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }
-  ],
-  "infection": [
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "gold_ingot", "rawName": "&aReloaded", "rawLore": "&8Infection Challenge\n\n&7Collect 6 Gold as a Survivor and\n&7earn extra Arrows.\n\n&7Progress: &a✔\n\n&7&oCollecting 6 Gold as a Survivor will\n&7&oearn you 24 extra Arrows. As the\n&7&ogame progresses, you will likely run\n&7&oout of Arrows, so it's important to\n&7&oget more!\n\n&7Reward\n&8+&bUnadorned Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "iron_sword", "rawName": "&aClassic / Double Up!", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "classic" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "rotten_flesh", "rawName": "&aFirst of Many", "rawLore": "&8Infection Challenge\n\n&7Kill an Infected.\n\n&7Progress: &a✔\n\n&7&oYou can easily distinguish Infected\n&7&oby their skin, lack of an Iron\n&7&oChestplate, and both Speed and Jump\n&7&oBoost effects.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "bone", "rawName": "&aOne of Us", "rawLore": "&8Infection Challenge\n\n&7Infect Survivors.\n\n&7Progress: &a2/2\n\n&7&oTry to sneak up on and pick off lone\n&7&oSurvivors. Once there are no\n&7&oSurvivors left, the Infected win!\n&7&oRemember, you will resp*awn as long\n&7&oas the Alpha is alive.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "gunpowder", "rawName": "&aMowing Down", "rawLore": "&8Infection Challenge\n\n&7Kill Infected.\n\n&7Progress: &a4/4\n\n&7&oInfected have the advantage in a\n&7&oclose-quarters battle. Use your\n&7&oBow's range to your advantage!\n\n&7Reward\n&8+&bStatic Death Cry\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "rotten_flesh", "rawName": "&aInfection", "rawLore": "&aYou are currently viewing this!\n&bRight-click to toggle favorite!", "enchanted": true, "isTabSwitch": "infection" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "spider_eye", "rawName": "&aDistant Transmission", "rawLore": "&8Infection Challenge\n\n&7Infect a player with a Knife Throw.\n\n&7Progress: &a✔\n\n&7&oIt can be quite difficult to infect\n&7&oSurvivors as their Bows out-range\n&7&oyou. Use your limited Knife Throws\n&7&owisely to help secure kills you\n&7&ootherwise couldn't have gotten.\n\n&7Reward\n&8+&510,000 Spoons Knife Skin\n\n&aCompleted!", "enchanted": false },
-    { "id": "iron_sword", "rawName": "&aViral Knife", "rawLore": "&8Infection Challenge\n\n&7Collect 5 Gold as an Infected and\n&7earn a Knife Throw.\n\n&7Progress: &a✔\n\n&7&oCollecting 5 Gold as an Infected will\n&7&oearn you a single Knife Throw. Right\n&7&oclick with the Knife in your hand to\n&7&othrow it.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "iron_chestplate", "rawName": "&aPost Pandemic", "rawLore": "&8Infection Challenge\n\n&7Win a game as a Survivor.\n\n&7Progress: &a✔\n\n&7&oSurvivors win by lasting until the\n&7&ogame timer runs out or when all\n&7&oInfected are dead.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "filled_map", "rawName": "&aAssassins", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "assassins" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null, null, null,
-    { "id": "wheat_seeds", "rawName": "&aCutting the Roots", "rawLore": "&8Infection Challenge\n\n&7Kill or reveal the Alpha.\n\n&7Progress: &a2/2\n\n&7&oRevealing and killing the Alpha stops\n&7&oInfected from respawning. Once the\n&7&oAlpha and all Infected are dead, the\n&7&oremaining Survivors win.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "poisonous_potato", "rawName": "&aExponentiation", "rawLore": "&8Infection Challenge\n\n&7Infect Survivors.\n\n&7Progress: &a25/25\n\n&7&oSince Infected respawn indefinitely\n&7&ountil the Alpha dies, they are able to\n&7&omake far more risky plays.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "glowstone_dust", "rawName": "&aHold Your Ground", "rawLore": "&8Infection Challenge\n\n&7Kill 5 Infected in a single game.\n\n&7Progress: &a2/2\n\n&7&oYou can shoot thrown Knives out of\n&7&othe air with Arrows, but it's also\n&7&opossible to dodge them. It's not easy\n&7&ofor Infected to earn Knife Throws!\n\n&7Reward\n&8+&5Floral Gravestone\n\n&aCompleted!", "enchanted": false },
-    { "id": "wooden_sword", "rawName": "&aPatient Zero", "rawLore": "&8Infection Challenge\n\n&7Win a game as the Alpha.\n\n&7Progress: &a✔\n\n&7&oIf you are unrevealed as the Alpha, \n&7&oit's best to stay away from Infected\n&7&oand to act as much like a Survivor\n&7&oas possible.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "fermented_spider_eye", "rawName": "&aSilver Bullet", "rawLore": "&8Infection Challenge\n\n&7Kill or reveal the Alpha.\n\n&7Progress: &a15/15\n\n&7&oRevealing and killing the Alpha stops\n&7&oInfected players from respawning.\n&7&oOnce the Alpha and all Infected are\n&7&odead, Survivors win.\n\n&7Reward\n&8+&6Glitch Projectile Trail\n\n&aCompleted!", "enchanted": false },
-    { "id": "diamond_sword", "rawName": "&aLurking Contagion", "rawLore": "&8Infection Challenge\n\n&7Infect Survivors as Alpha while not\n&7yet revealed.\n\n&7Progress: &a30/30\n\n&7&oThe Alpha can throw their Knife an\n&7&oinfinite number of times, but it has a\n&7&o15-second cooldown.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "diamond_helmet", "rawName": "&aCrowd Control", "rawLore": "&8Infection Challenge\n\n&7Kill Infected.\n\n&7Progress: &a33/33\n\n&7&oAreas of the map that only need to\n&7&obe defended from a single direction\n&7&oare great for surviving long term.\n\n&7Reward\n&8+&5Up in Flames Death Cry\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "diamond_shovel", "rawName": "&aContagion Contained", "rawLore": "&8Infection Challenge\n\n&7Win games as a Survivor.\n\n&7Progress: &a25/25\n\n&7&oIf the Alpha hasn't infected any\n&7&oSurvivors in 30 seconds, their\n&7&olocation will be shown on the map.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "water_bottle", "rawName": "&aDouble Dosage", "rawLore": "&8Infection Challenge\n\n&7Reveal AND kill the Alpha in a single\n&7game.\n\n&7Progress: &a2/2\n\n&7&oAs a Survivor, if the Alpha hasn't\n&7&obeen revealed, shoot other\n&7&oSurvivors who you suspet are\n&7&oactually the Alpha.\n\n&7Reward\n&8+&6Gold Spray Painted Shovel Knife Skin\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "diamond", "rawName": "&aTotal Outbreak", "rawLore": "&8Infection Challenge\n\n&7Infect 8 Survivors in a single game\n&7as the Alpha.\n\n&7Progress: &a✔\n\n&7&oPut all of your acquired knowledge\n&7&oto the test for one final challenge.\n\n&7Reward\n&8+&6Botanic Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }
-  ],
-  "assassins": [
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "map", "rawName": "&aFirst Job", "rawLore": "&8Assassins Challenge\n\n&7Kill your Target.\n\n&7Progress: &a✔\n\n&7&oAt the start of the match you will\n&7&oreceive a Kill Contract. Once you kill\n&7&oyour Target, you will get a new one.\n&7&oWatch out, as your Target can also\n&7&okill you!\n\n&7Reward\n&8+&bHumble Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "iron_sword", "rawName": "&aClassic / Double Up!", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "classic" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "bow", "rawName": "&aArmed", "rawLore": "&8Assassins Challenge\n\n&7Collect 5 Gold and earn a Bow.\n\n&7Progress: &a✔\n\n&7&oYou only need to collect 5 Gold to\n&7&oearn a Bow and Arrow. Use it as\n&7&oanother ranged option to kill your\n&7&oTarget or Assassin.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "rotten_flesh", "rawName": "&aInfection", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "infection" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "iron_shovel", "rawName": "&aSlaughterhouse", "rawLore": "&8Assassins Challenge\n\n&7Kill 3 players in a single game.\n\n&7Progress: &a✔\n\n&7&oKilling a player rewards you with 1\n&7&oGold. You can either save up for a\n&7&oBow or spend it on maps with\n&7&opurchasable items.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "gold_ingot", "rawName": "&aClean Job", "rawLore": "&8Assassins Challenge\n\n&7Win a game.\n\n&7Progress: &a✔\n\n&7&oThe game ends once 2 players\n&7&oremain. Only the players with at least\n&7&o1 kill get a win.\n\n&7Reward\n&8+&aFragile Plant Knife Skin\n\n&aCompleted!", "enchanted": false },
-    { "id": "iron_sword", "rawName": "&aSelf-Defense", "rawLore": "&8Assassins Challenge\n\n&7Kill your Assassin.\n\n&7Progress: &a✔\n\n&7&oOne other player in the match will\n&7&ohave you as their Target. When they\n&7&oget close to you, the edges of your\n&7&oscreen will turn red. Try to kill them\n&7&obefore they kill you!\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "feather", "rawName": "&aEye on Prey", "rawLore": "&8Assassins Challenge\n\n&7Kill players with a Bow.\n\n&7Progress: &a2/2\n\n&7&oSimilar to Knives, Bows can only be\n&7&oused to kill your Target or Assassin.\n&7&oHitting anyone else will stun you for\n&7&o5 seconds.\n\n&7Reward\n&8+&bSigh Death Cry\n\n&aCompleted!", "enchanted": false },
-    { "id": "string", "rawName": "&aCollateral Damage", "rawLore": "&8Assassins Challenge\n\n&7Kill neutral players with Traps.\n\n&7Progress: &a2/2\n\n&7&oTraps are the only way to kill\n&7&oplayers who are neither your\n&7&oTarget nor Assassin.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "filled_map", "rawName": "&aAssassins", "rawLore": "&aYou are currently viewing this!\n&bRight-click to toggle favorite!", "enchanted": true, "isTabSwitch": "assassins" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "redstone", "rawName": "&aBounty Hunter", "rawLore": "&8Assassins Challenge\n\n&7Kill your Target.\n\n&7Progress: &a15/15\n\n&7&oWhen you kill your Target, you\n&7&oreceive whoever their Target was as\n&7&oyour new Target.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "wooden_axe", "rawName": "&aDual Proficiency", "rawLore": "&8Assassins Challenge\n\n&7Kill a player with melee and a Knife\n&7Throw in a single game.\n\n&7Progress: &a3/3\n\n&7&oRight click with a Knife to throw it.\n&7&oKnives have a cooldown of 5\n&7&oseconds between throws.\n\n&7Reward\n&8+&6Derailed Projectile Trail\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "stick", "rawName": "&aHuntsman", "rawLore": "&8Assassins Challenge\n\n&7Kill players with a Bow.\n\n&7Progress: &a6/6\n\n&7&oArrows and thrown Knives will knock\n&7&oeach other out of the air.\n\n&7Reward\n&8+&5Warrior Gravestone\n\n&aCompleted!", "enchanted": false },
-    { "id": "diamond_sword", "rawName": "&aDead or Alive", "rawLore": "&8Assassins Challenge\n\n&7Kill your Assassin.\n\n&7Progress: &a15/15\n\n&7&oWhen you are nearing your Assassin,\n&7&oa heartbeat sound will begin to play.\n&7&oThe closer you get, the faster it\n&7&obecomes. It also shows above your\n&7&ohotbar.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "firework_star", "rawName": "&aGrand Slam", "rawLore": "&8Assassins Challenge\n\n&7Kill a player with melee, a Knife\n&7Throw, a Bow, and a Trap in a single\n&7game.\n\n&7Progress: &a✔\n\n&7&oThrown Knives can pierce through\n&7&oplayers and glass panes.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "ender_pearl", "rawName": "&aDeath Defy", "rawLore": "&8Assassins Challenge\n\n&7Kill your Assassin while stunned.\n\n&7Progress: &a✔\n\n&7&oWhile stunned, your movement is much\n&7&oslower and you are unable to use\n&7&oyour Knife. However, there are\n&7&oother ways to kill players while in\n&7&othis state.\n\n&7Reward\n&8+&6Double Death Scythe Knife Skin\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "golden_hoe", "rawName": "&aSeasoned Hitman", "rawLore": "&8Assassins Challenge\n\n&7Kill players.\n\n&7Progress: &a100/100\n\n&7&oOnce 5 players remain, all players\n&7&oare shown on the map.\n\n&7Reward\n&8+&5Greed Death Cry\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "diamond", "rawName": "&aCrimson Joy", "rawLore": "&8Assassins Challenge\n\n&7Kill 7 players in a single game.\n\n&7Progress: &a✔\n\n&7&oPut all of your acquired knowledge\n&7&oto the test for one final challenge!\n\n&7Reward\n&8+&6Niche Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }
-  ]
-};
-
-const layoutConfig = { "cols": 9, "rows": 8 };
-
-function parseMinecraftColors(text) {
-  if (!text || text.trim() === '') return '&nbsp;';
+  /* FROSTED GLASS VARIABLES */
+  --surface: rgba(255, 253, 253, 0.55); /* Header, Table */
+  --surface-2: rgba(255, 245, 240, 0.55); 
+  --border: rgba(221, 208, 208, 0.5);
+  --input-bg: rgba(255, 253, 253, 0.75);
+  --glass-edge: rgba(255, 253, 253, 0.5);
   
-  const colorMap = { 
-      '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', 
-      '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', 
-      '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 
-      'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' 
-  };
-  
-  let html = '';
-  let state = { color: '#AAAAAA', bold: false, italic: false, underline: false, strikethrough: false };
+  --border-strong: #e0c5b4;
+  --text: #1a1512;
+  --text-2: #5c4d45;
+  --text-3: #998073;
+  --accent: #ff5100;
+  --accent-soft: rgba(255, 81, 0, 0.08);
+  --accent-2: #ff8400;
+  --gold: #f59e0b;
+  --silver: #94a3b8;
+  --bronze: #cd7f32;
+  --green: #10b981;
+  --green-soft: #ecfdf5;
+  --red: #ef4444;
+  --red-soft: #fff5f5;
+  --shadow: 0 4px 16px rgba(255, 81, 0, 0.04), 0 8px 32px rgba(0,0,0,0.04);
+  --radius: 12px;
 
-  function buildStyleString(s) {
-      let styles = `color: ${s.color};`;
-      if (s.bold) styles += ' font-weight: bold;';
-      if (s.italic) styles += ' font-style: italic;';
-      let decoration = [];
-      if (s.underline) decoration.push('underline');
-      if (s.strikethrough) decoration.push('line-through');
-      if (decoration.length > 0) styles += ` text-decoration: ${decoration.join(' ')};`;
-      return styles;
-  }
-
-  let parts = text.split(/(?=&[0-9a-flmno-r])/i);
-
-  for (let part of parts) {
-      if (part.startsWith('&') && part.length >= 2) {
-          let code = part[1].toLowerCase();
-          let textContent = part.substring(2);
-
-          if (colorMap[code]) { 
-              state.color = colorMap[code]; 
-              state.bold = false; state.italic = false; state.underline = false; state.strikethrough = false;
-          } 
-          else if (code === 'l') { state.bold = true; } 
-          else if (code === 'm') { state.strikethrough = true; }
-          else if (code === 'n') { state.underline = true; }
-          else if (code === 'o') { state.italic = true; }
-          else if (code === 'r') { 
-              state.color = '#AAAAAA'; state.bold = false; state.italic = false; state.underline = false; state.strikethrough = false;
-          }
-          html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
-      } else {
-          html += `<span style="${buildStyleString(state)}">${part}</span>`;
-      }
-  }
-  return html;
+  --tier-1: #10b981; /* Green */
+  --tier-2: #eab308; /* Light Yellow/Gold */
+  --tier-3: #ff8400; /* Orange */
+  --tier-4: #ff5100; /* Red-Orange */
+  --tier-5: #991b1b; /* Dark Red */
 }
 
-function renderGrid(mode) {
-  const grid = document.getElementById('menu-grid');
-  grid.style.setProperty('--cols', layoutConfig.cols);
-  grid.style.setProperty('--rows', layoutConfig.rows);
-  
-  let html = '';
-  const totalSlots = layoutConfig.cols * layoutConfig.rows;
-  const data = modesData[mode] || [];
-  
-  for (let i = 0; i < totalSlots; i++) {
-    const item = data[i];
-    if (!item) {
-      html += `<div class="slot"></div>`;
-    } else {
-      // Intercept item generation to listen for internal slot clicks
-      let slotHtml = MCEngine.makeSlotHtml(item, MCEngine.getApiFallback(item));
-      if (item.isTabSwitch) {
-        slotHtml = slotHtml.replace('<div class="item"', `<div class="item" onclick="window.location.hash='${item.isTabSwitch}'" style="cursor: pointer;"`);
-      }
-      html += slotHtml;
-    }
-  }
-  grid.innerHTML = html;
+[data-theme="dark"] {
+  --bg: #0a0504; 
+  --bg-glow: rgba(255, 75, 20, 0.04); 
+  --surface: rgba(26, 19, 16, 0.55); /* FROSTED OPACITY VARIABLE */
+  --surface-2: rgba(14, 10, 8, 0.5);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 98, 26, 0.15); 
+  --text: #fdfaf8;
+  --text-2: #c4b5ae;
+  --text-3: #8a786f;
+  --accent: #ff621a;
+  --accent-soft: rgba(255, 98, 26, 0.15);
+  --accent-2: #ff9d00;
+  --green: #3fb950;
+  --green-soft: rgba(46, 160, 67, 0.15);
+  --red: #f85149;
+  --red-soft: rgba(248, 81, 73, 0.1);
+  --input-bg: rgba(15, 10, 8, 0.6);
+  --shadow: 0 16px 40px rgba(0,0,0,0.8);
+  --glass-edge: rgba(255, 255, 255, 0.08); 
+  --tier-1: #3fb950; /* Green */
+  --tier-2: #facc15; /* Bright Yellow */
+  --tier-3: #ff7300; /* Orange */
+  --tier-4: #ff351a; /* Red-Orange */
+  --tier-5: #c71212; /* Dark Red */
 }
 
-function switchMode(mode) {
-  if (!modesData[mode]) return;
-  
-  document.querySelectorAll('.gui-icon-tab').forEach(tab => tab.classList.remove('active'));
-  const activeTab = document.getElementById(`tab-${mode}`);
-  if (activeTab) activeTab.classList.add('active');
-  
-  renderGrid(mode);
+/* SIDEWAYS SCROLL FIX: Changed 100vw to 100% */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  let currentMode = window.location.hash.replace('#', '').toLowerCase();
-  if (!modesData[currentMode]) currentMode = 'classic';
-  
-  switchMode(currentMode);
-});
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+}
 
-window.addEventListener('hashchange', () => {
-  let currentMode = window.location.hash.replace('#', '').toLowerCase();
-  if (modesData[currentMode]) switchMode(currentMode);
-});
+body::before {
+  content: ''; 
+  position: fixed; 
+  inset: 0; 
+  z-index: -2; 
+  background-color: var(--bg);
+  background-image: radial-gradient(circle at 15% 50%, var(--bg-glow), transparent 40%), radial-gradient(circle at 85% 30%, var(--bg-glow), transparent 40%);
+  /* Animation and scaling completely removed to save CPU */
+}
 
-document.addEventListener('tt-format', (e) => {
-  const it = e.detail.item;
-  let h = `<span class="tt-name" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8);">${parseMinecraftColors(it.rawName || '&f' + it.id)}</span>`;
-  
-  if (it.rawLore) {
-      const lines = it.rawLore.split('\n');
-      for (const l of lines) {
-          h += `<span class="tt-line" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px;">${parseMinecraftColors(l)}</span>`;
-      }
-  }
-  e.detail.html = h;
-});
-</script>
-</body>
-</html>
+/* Light Mode Background Image */
+body:not([data-theme="dark"])::before {
+  content: ''; position: fixed; inset: 0; z-index: -2;
+  background-color: var(--bg);
+  background-image: 
+    linear-gradient(rgba(255, 234, 219, 0.4), rgba(253, 250, 248, 0.85)), 
+    url('../../img/lq-bg-embers-light.jpg');
+  background-size: cover; 
+  background-position: center; 
+  filter: blur(16px) grayscale(10%);
+  transform: scale(1.02); 
+  animation: none; 
+  pointer-events: none;
+}
+
+/* DARK MODE: Obsidian Glass Background */
+body[data-theme="dark"]::before {
+  background-color: #040201; 
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(4, 2, 1, 0.85)), 
+    url('../../img/lq-bg-embers.jpg');
+  background-size: cover; 
+  background-position: center; 
+  filter: blur(20px) grayscale(40%); /* Unblurred so the foreground glass works */
+  transform: scale(1.02); 
+  animation: none; 
+  pointer-events: none;
+}
+
+body[data-theme="dark"]::after {
+  content: ''; position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(circle at 20% 10%, rgba(255, 81, 0, 0.08), transparent 40vw), radial-gradient(circle at 80% 80%, rgba(255, 157, 0, 0.05), transparent 40vw), radial-gradient(circle at 50% 50%, rgba(255, 60, 0, 0.04), transparent 60vw);
+  animation: emberPulseBg 6s infinite alternate ease-in-out; pointer-events: none;
+}
+
+@keyframes subtleFire { 
+  0% { transform: scale(1.2) translate(-2%, -2%); } 
+  100% { transform: scale(1.2) translate(2%, 2%); } 
+}
+@keyframes emberPulseBg { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
+@keyframes emberPulse { 0% { box-shadow: 0 0 8px rgba(255, 81, 0, 0.1); } 50% { box-shadow: 0 0 18px rgba(255, 81, 0, 0.5); } 100% { box-shadow: 0 0 8px rgba(255, 81, 0, 0.1); } }
+
+/* SHARED HEADER & NAVIGATION */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-text { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+.header-controls { display: flex; align-items: center; gap: 16px; }
+
+.nav-links { display: flex; gap: 8px; margin-right: auto; margin-left: 32px; }
+.nav-btn { color: var(--text-2); text-decoration: none; font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px; transition: 0.2s; }
+.nav-btn:hover { background: var(--surface-2); color: var(--text); }
+.nav-btn.active { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(255, 81, 0, 0.2); }
+
+.mobile-menu-btn { display: none; background: transparent; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 4px; border-radius: 6px; }
+.mobile-menu-btn:hover { background: var(--surface-2); }
+.mobile-nav { display: none; flex-direction: column; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; gap: 8px; }
+.mobile-nav.open { display: flex; }
+
+@media (max-width: 768px) { .nav-links.desktop-nav { display: none; } .mobile-menu-btn { display: block; } }
+
+.theme-toggle {
+  background: transparent; border: 1px solid var(--border); color: var(--text);
+  width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 16px;
+  display: flex; align-items: center; justify-content: center; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.theme-toggle:hover { background: var(--surface-2); border-color: var(--accent); transform: scale(1.1) rotate(15deg); }
+
+main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 100px; flex: 1; display: flex; flex-direction: column; width: 100%; }
+
+/* FIXED FOOTER SYSTEM */
+.bottom-fade { 
+  position: fixed; 
+  bottom: env(safe-area-inset-bottom);
+  left: 0; 
+  width: 100%; /* Changed from 100vw to fix side scroll */
+  height: 80px; 
+  /* background: linear-gradient(to top, var(--bg) 10%, transparent);  */
+  pointer-events: none; 
+  z-index: 90;
+}
+
+.made-by-tag { 
+  position: fixed !important; 
+  bottom: 12px; 
+  left: 16px; 
+  font-size: 11px; 
+  color: var(--text-3); 
+  z-index: 9999 !important; /* Forced to the very top layer */
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+}
+.made-by-tag a { color: var(--accent); text-decoration: none; font-weight: 600; cursor: help; position: relative; }
+.made-by-tag a:hover { text-decoration: underline; }
+
+.credits-tooltip {
+  position: absolute; bottom: 100%; left: 0; margin-bottom: 16px; min-width: 280px; width: max-content;
+  background: var(--surface); backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--border-strong); border-radius: 12px; padding: 16px;
+  box-shadow: var(--shadow); opacity: 0; visibility: hidden; transition: 0.2s; pointer-events: none; text-align: left;
+}
+.made-by-tag:hover .credits-tooltip { opacity: 1; visibility: visible; transform: translateY(-5px); }
+
+/* MINI LEADERBOARD ON PORTFOLIO (PLAYER LOOKUP) */
+.mini-lb-wrapper {
+  margin-top: 112px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+}
+
+.mini-lb-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-3);
+  margin-bottom: 12px;
+  padding-left: 12px;
+  font-weight: 700;
+}
+
+.mini-lb-fade-container {
+  position: relative;
+  max-height: 280px; 
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.fade-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--bg) 90%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 16px;
+  z-index: 10;
+}
+
+.view-more-btn {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
+
+.view-more-btn:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.mini-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.mini-row:last-child { border-bottom: none; }
+
+.mini-row img { 
+  width: 28px; 
+  height: 28px; 
+  border-radius: 6px; 
+  margin-right: 12px; 
+}
+
+.mini-rank { 
+  width: 28px; 
+  font-weight: 700; 
+  color: var(--text-3); 
+  font-size: 14px;
+}
+.mini-row:nth-child(1) .mini-rank { color: var(--gold); }
+.mini-row:nth-child(2) .mini-rank { color: var(--silver); }
+.mini-row:nth-child(3) .mini-rank { color: var(--bronze); }
+
+.mini-ap { 
+  margin-left: auto; 
+  font-family: 'DM Mono', monospace; 
+  font-weight: 700; 
+  color: var(--accent); 
+  font-size: 14px;
+}
+
+/* --- TOP BANNER --- */
+.top-banner {
+  background: linear-gradient(90deg, var(--accent), #e23719);
+  color: #fff;
+  padding: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 2000;
+  width: 100%;
+}
+.top-banner.emergency {
+  background: #dc2626; /* Solid red */
+}
+.top-banner.hidden {
+  display: none !important;
+}
+.banner-spacer { width: 60px; } /* Balances the X button width */
+.banner-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.banner-btn {
+  background: rgba(0,0,0,0.25);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 12px;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+.banner-btn:hover { background: rgba(0,0,0,0.4); color: #fff; }
+.banner-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 20px; /* Fat hitbox */
+  height: 100%;
+  opacity: 0.8;
+}
+.banner-close:hover { opacity: 1; transform: scale(1.1); }
+
+/* Universal LitStats Footer */
+.site-footer {
+  margin-top: 80px; padding: 40px 20px;
+  background: var(--bg); backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border); text-align: center;
+  font-family: 'DM Sans', sans-serif; width: 100%;
+}
+.footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.footer-brand { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 20px; font-weight: 700; color: #fff; }
+.footer-logo { width: 28px; height: 28px; object-fit: contain; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+.footer-links a { color: var(--text-2); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.footer-links a:hover { color: var(--accent); }
+.footer-copyright { color: var(--text-3); font-size: 13px; margin-top: 10px; }
