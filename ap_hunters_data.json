@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-22T02:43:15.758Z",
+  "last_update": "2026-06-22T09:39:08.600Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12623,
+      "score": 12624,
       "top_players": [
         {
           "username": "oJakey",
@@ -451,9 +451,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 31300,
+          "current_ap": 31305,
           "last_month_ap": 31300,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -827,9 +827,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25650,
+          "current_ap": 25665,
           "last_month_ap": 25600,
-          "monthly_gain": 50,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
