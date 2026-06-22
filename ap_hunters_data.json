@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-21T21:05:00.987Z",
+  "last_update": "2026-06-22T02:43:15.758Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1192,7 +1192,7 @@
     },
     {
       "country": "UK",
-      "score": 10081,
+      "score": 10089,
       "top_players": [
         {
           "username": "greaneye",
@@ -1223,9 +1223,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30805,
+          "current_ap": 30820,
           "last_month_ap": 30610,
-          "monthly_gain": 195,
+          "monthly_gain": 210,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1397,9 +1397,9 @@
           "username": "Woomy",
           "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
           "country": "UK",
-          "current_ap": 23475,
+          "current_ap": 23530,
           "last_month_ap": 23475,
-          "monthly_gain": 0,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -1794,9 +1794,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23350,
+          "current_ap": 23355,
           "last_month_ap": 23160,
-          "monthly_gain": 190,
+          "monthly_gain": 195,
           "maxGames": []
         }
       ]
@@ -1881,7 +1881,7 @@
     },
     {
       "country": "Serbia",
-      "score": 6793,
+      "score": 6815,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -1910,9 +1910,9 @@
           "username": "Breesily",
           "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
           "country": "Serbia",
-          "current_ap": 28365,
+          "current_ap": 28410,
           "last_month_ap": 28160,
-          "monthly_gain": 205,
+          "monthly_gain": 250,
           "maxGames": [
             "Max Mega Walls",
             "Max Paintball",
@@ -2871,9 +2871,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 24580,
+          "current_ap": 24600,
           "last_month_ap": 24455,
-          "monthly_gain": 125,
+          "monthly_gain": 145,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -2887,11 +2887,24 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24515,
+          "current_ap": 24520,
           "last_month_ap": 24435,
-          "monthly_gain": 80,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Duels"
+          ]
+        },
+        {
+          "username": "ToastyOosty",
+          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+          "country": "Unknown",
+          "current_ap": 24460,
+          "last_month_ap": 24375,
+          "monthly_gain": 85,
+          "maxGames": [
+            "Max Pit",
+            "Max Warlords",
+            "Max VampireZ"
           ]
         },
         {
@@ -2902,19 +2915,6 @@
           "last_month_ap": 24450,
           "monthly_gain": 0,
           "maxGames": [
-            "Max VampireZ"
-          ]
-        },
-        {
-          "username": "ToastyOosty",
-          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
-          "country": "Unknown",
-          "current_ap": 24450,
-          "last_month_ap": 24375,
-          "monthly_gain": 75,
-          "maxGames": [
-            "Max Pit",
-            "Max Warlords",
             "Max VampireZ"
           ]
         },
@@ -2996,9 +2996,9 @@
           "username": "ni6a",
           "uuid": "f2b587fe0b2347dca0908d4832e047d5",
           "country": "Unknown",
-          "current_ap": 24035,
+          "current_ap": 24045,
           "last_month_ap": 24035,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
