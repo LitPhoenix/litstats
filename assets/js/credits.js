@@ -3,6 +3,7 @@ const litstatsCredits = [
   { name: "Stuffy", role: "Maxed Games Logic" },
   { name: "Mo", role: "Life Advice & Icon Design" },
   { name: "tobias49", role: "Feature Ideas" },
+  { name: "Melongan", role: "Angel's Descent and MM Trees" },
   { name: "Unsplash", role: "Background Textures" },
   { name: "Minotar & Vzge", role: "Avatar Rendering APIs" },
   { name: "Nadeshiko", role: "Data Archiving" },
