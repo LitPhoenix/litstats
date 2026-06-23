@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-23T14:26:01.667Z",
+  "last_update": "2026-06-23T17:45:49.432Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1795,9 +1795,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23380,
+          "current_ap": 23400,
           "last_month_ap": 23160,
-          "monthly_gain": 220,
+          "monthly_gain": 240,
           "maxGames": []
         }
       ]
@@ -2578,15 +2578,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1195,
+      "score": 1200,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26700,
+          "current_ap": 26705,
           "last_month_ap": 26610,
-          "monthly_gain": 90,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
