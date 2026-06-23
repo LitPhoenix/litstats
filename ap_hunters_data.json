@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-23T17:45:49.432Z",
+  "last_update": "2026-06-23T19:50:15.464Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1376,9 +1376,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24395,
+          "current_ap": 24420,
           "last_month_ap": 24320,
-          "monthly_gain": 75,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Mega Walls"
           ]
@@ -1795,9 +1795,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23400,
+          "current_ap": 23410,
           "last_month_ap": 23160,
-          "monthly_gain": 240,
+          "monthly_gain": 250,
           "maxGames": []
         }
       ]
@@ -1857,9 +1857,9 @@
           "username": "morof",
           "uuid": "4019260a28f544c2a35a0a1f35108a96",
           "country": "Russia",
-          "current_ap": 24795,
+          "current_ap": 24825,
           "last_month_ap": 24795,
-          "monthly_gain": 0,
+          "monthly_gain": 30,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2182,15 +2182,15 @@
     },
     {
       "country": "Finland",
-      "score": 4119,
+      "score": 4134,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28385,
+          "current_ap": 28400,
           "last_month_ap": 28300,
-          "monthly_gain": 85,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2840,6 +2840,20 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 24710,
+          "last_month_ap": 24550,
+          "monthly_gain": 160,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Sunta",
           "uuid": "c7b1528ce5604302a279c16e7e135038",
           "country": "Unknown",
@@ -2852,20 +2866,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 24700,
-          "last_month_ap": 24550,
-          "monthly_gain": 150,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
@@ -2888,9 +2888,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24545,
+          "current_ap": 24565,
           "last_month_ap": 24435,
-          "monthly_gain": 110,
+          "monthly_gain": 130,
           "maxGames": [
             "Max Duels"
           ]
