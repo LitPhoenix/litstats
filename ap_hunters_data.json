@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-24T19:26:53.980Z",
+  "last_update": "2026-06-24T21:17:40.516Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1361,9 +1361,9 @@
           "username": "Dead_Space_2",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
-          "current_ap": 24755,
+          "current_ap": 24760,
           "last_month_ap": 24755,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -1620,9 +1620,9 @@
           "username": "Hailette",
           "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
           "country": "Canada",
-          "current_ap": 24950,
+          "current_ap": 24970,
           "last_month_ap": 24910,
-          "monthly_gain": 40,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Quake",
             "Max Warlords",
@@ -1795,9 +1795,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23495,
+          "current_ap": 23505,
           "last_month_ap": 23160,
-          "monthly_gain": 335,
+          "monthly_gain": 345,
           "maxGames": []
         }
       ]
@@ -2578,15 +2578,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1200,
+      "score": 1205,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26705,
+          "current_ap": 26710,
           "last_month_ap": 26610,
-          "monthly_gain": 95,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -2872,9 +2872,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24620,
+          "current_ap": 24645,
           "last_month_ap": 24435,
-          "monthly_gain": 185,
+          "monthly_gain": 210,
           "maxGames": [
             "Max Duels"
           ]
