@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-24T17:48:11.894Z",
+  "last_update": "2026-06-24T19:26:53.980Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -535,9 +535,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29010,
+          "current_ap": 29020,
           "last_month_ap": 28585,
-          "monthly_gain": 425,
+          "monthly_gain": 435,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2843,9 +2843,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24740,
+          "current_ap": 24755,
           "last_month_ap": 24550,
-          "monthly_gain": 190,
+          "monthly_gain": 205,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
@@ -2869,6 +2869,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 24620,
+          "last_month_ap": 24435,
+          "monthly_gain": 185,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
@@ -2882,17 +2893,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 24605,
-          "last_month_ap": 24435,
-          "monthly_gain": 170,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
@@ -3101,6 +3101,19 @@
           ]
         },
         {
+          "username": "xOptic",
+          "uuid": "8c8ba6d440554b1886ad1777c5066282",
+          "country": "Unknown",
+          "current_ap": 23450,
+          "last_month_ap": 23395,
+          "monthly_gain": 55,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Jyahp",
           "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
           "country": "Unknown",
@@ -3126,19 +3139,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "xOptic",
-          "uuid": "8c8ba6d440554b1886ad1777c5066282",
-          "country": "Unknown",
-          "current_ap": 23425,
-          "last_month_ap": 23395,
-          "monthly_gain": 30,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Duels"
           ]
         },
         {
@@ -3212,15 +3212,15 @@
     },
     {
       "country": "Spain",
-      "score": 328,
+      "score": 338,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25810,
+          "current_ap": 25820,
           "last_month_ap": 25795,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
