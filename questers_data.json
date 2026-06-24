@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-24T10:41:23.536Z",
+  "last_update": "2026-06-24T14:05:49.114Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -811,15 +811,15 @@
     },
     {
       "country": "Japan",
-      "score": 22355.4,
+      "score": 22356,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_quests": 34256,
+          "current_quests": 34259,
           "last_month_quests": 33822,
-          "monthly_gain": 434
+          "monthly_gain": 437
         },
         {
           "username": "Taich25",
