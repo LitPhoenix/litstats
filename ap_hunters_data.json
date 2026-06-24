@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-24T21:17:40.516Z",
+  "last_update": "2026-06-24T22:59:53.145Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -535,9 +535,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29020,
+          "current_ap": 29030,
           "last_month_ap": 28585,
-          "monthly_gain": 435,
+          "monthly_gain": 445,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -3212,15 +3212,15 @@
     },
     {
       "country": "Spain",
-      "score": 338,
+      "score": 353,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25820,
+          "current_ap": 25835,
           "last_month_ap": 25795,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
