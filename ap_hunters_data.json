@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-23T23:00:14.966Z",
+  "last_update": "2026-06-24T02:11:42.136Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -535,9 +535,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29000,
+          "current_ap": 29010,
           "last_month_ap": 28585,
-          "monthly_gain": 415,
+          "monthly_gain": 425,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -1795,9 +1795,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23420,
+          "current_ap": 23435,
           "last_month_ap": 23160,
-          "monthly_gain": 260,
+          "monthly_gain": 275,
           "maxGames": []
         }
       ]
@@ -2623,15 +2623,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 1100,
+      "score": 1125,
       "top_players": [
         {
           "username": "gewoontoonje",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26595,
+          "current_ap": 26620,
           "last_month_ap": 26595,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": []
         },
         {
@@ -2888,9 +2888,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24575,
+          "current_ap": 24585,
           "last_month_ap": 24435,
-          "monthly_gain": 140,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Duels"
           ]
