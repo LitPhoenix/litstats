@@ -315,8 +315,8 @@ async function fetchBlitzPlayer() {
             document.getElementById('main-stat-wlr').textContent = totalDeaths > 0 ? (totalWins / totalDeaths).toFixed(2) : totalWins;
             document.getElementById('main-stat-playtime').textContent = formatTime(os.timePlayed || 0);
             
-            const soloWins = os.wins || 0;
-            const teamWins = os.wins_teams || 0;
+            const soloWins = os.wins_solo_normal || 0;
+            const teamWins = os.wins_teams_normal || 0;
             const soloPct = totalWins > 0 ? (soloWins / totalWins) * 100 : 50;
 
             const winBar = document.getElementById('main-win-bar');
