@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-25T14:02:47.970Z",
+  "last_update": "2026-06-25T18:03:02.302Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -100,7 +100,8 @@
     "796cf0f4332c447d88a6fbfffbe0bd70": 21487,
     "e2bf0a2f2cf24fc29512511ddc10201a": 21206,
     "b12c6b822faa4ebfaab429982dab58ed": 21150,
-    "c820b113e30c4c129812db60b1601f52": 21065
+    "c820b113e30c4c129812db60b1601f52": 21065,
+    "8a4a5046009a4a23acb58841a8e49356": 22129
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
@@ -455,14 +456,6 @@
           "country": "UK",
           "current_quests": 21487,
           "last_month_quests": 21487,
-          "monthly_gain": 0
-        },
-        {
-          "username": "xRyann_",
-          "uuid": "b12c6b822faa4ebfaab429982dab58ed",
-          "country": "UK",
-          "current_quests": 21150,
-          "last_month_quests": 21150,
           "monthly_gain": 0
         }
       ]
@@ -994,12 +987,20 @@
           "monthly_gain": 0
         },
         {
+          "username": "rem_hypixel",
+          "uuid": "8a4a5046009a4a23acb58841a8e49356",
+          "country": "Unknown",
+          "current_quests": 22129,
+          "last_month_quests": 22129,
+          "monthly_gain": 0
+        },
+        {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Unknown",
-          "current_quests": 21981,
+          "current_quests": 21994,
           "last_month_quests": 21589,
-          "monthly_gain": 392
+          "monthly_gain": 405
         },
         {
           "username": "seriuz",
