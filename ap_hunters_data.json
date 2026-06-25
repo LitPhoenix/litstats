@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-25T10:34:45.358Z",
+  "last_update": "2026-06-25T14:02:47.629Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1620,9 +1620,9 @@
           "username": "Hailette",
           "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
           "country": "Canada",
-          "current_ap": 24980,
+          "current_ap": 25010,
           "last_month_ap": 24910,
-          "monthly_gain": 70,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Quake",
             "Max Warlords",
@@ -2623,7 +2623,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1153,
+      "score": 1163,
       "top_players": [
         {
           "username": "gewoontoonje",
@@ -2638,9 +2638,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25580,
+          "current_ap": 25600,
           "last_month_ap": 25305,
-          "monthly_gain": 275,
+          "monthly_gain": 295,
           "maxGames": [
             "Max Duels"
           ]
@@ -2760,15 +2760,15 @@
     },
     {
       "country": "Spain",
-      "score": 368,
+      "score": 408,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25850,
+          "current_ap": 25890,
           "last_month_ap": 25795,
-          "monthly_gain": 55,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -3139,9 +3139,9 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 23460,
+          "current_ap": 23475,
           "last_month_ap": 23395,
-          "monthly_gain": 65,
+          "monthly_gain": 80,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
