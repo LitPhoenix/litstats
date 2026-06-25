@@ -306,7 +306,7 @@ async function fetchBlitzPlayer() {
             window.KIT_STATS = vData.kitStats || {};
             
             const os = vData.overallStats || {};
-            const totalWins = (os.wins || 0) + (os.wins_teams || 0);
+            const totalWins = (os.wins_solo_normal || 0) + (os.wins_teams_normal || 0);
             const totalDeaths = os.deaths || 0;
             
             document.getElementById('main-stat-kills').textContent = (os.kills || 0).toLocaleString();
