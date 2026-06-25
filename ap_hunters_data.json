@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-25T21:22:09.358Z",
+  "last_update": "2026-06-25T23:07:54.069Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1605,18 +1605,6 @@
           ]
         },
         {
-          "username": "BenOuiMaxi",
-          "uuid": "0ca18b7f6cb74731865b69e5511f0ff1",
-          "country": "Canada",
-          "current_ap": 25010,
-          "last_month_ap": 25010,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
           "username": "Hailette",
           "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
           "country": "Canada",
@@ -1626,6 +1614,18 @@
           "maxGames": [
             "Max Quake",
             "Max Warlords",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "BenOuiMaxi",
+          "uuid": "0ca18b7f6cb74731865b69e5511f0ff1",
+          "country": "Canada",
+          "current_ap": 25010,
+          "last_month_ap": 25010,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max VampireZ",
             "Max TKR"
           ]
         },
@@ -2760,15 +2760,15 @@
     },
     {
       "country": "Spain",
-      "score": 433,
+      "score": 458,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25915,
+          "current_ap": 25940,
           "last_month_ap": 25795,
-          "monthly_gain": 120,
+          "monthly_gain": 145,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
