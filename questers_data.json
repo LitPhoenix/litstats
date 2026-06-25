@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-25T07:34:10.076Z",
+  "last_update": "2026-06-25T10:34:45.620Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -651,15 +651,15 @@
     },
     {
       "country": "Belgium",
-      "score": 9877.6,
+      "score": 9882.8,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 49388,
+          "current_quests": 49414,
           "last_month_quests": 48756,
-          "monthly_gain": 632
+          "monthly_gain": 658
         }
       ]
     },
