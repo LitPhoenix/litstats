@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-24T22:59:53.145Z",
+  "last_update": "2026-06-25T02:11:20.383Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1479,15 +1479,15 @@
     },
     {
       "country": "Canada",
-      "score": 8790,
+      "score": 8800,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31395,
+          "current_ap": 31405,
           "last_month_ap": 31220,
-          "monthly_gain": 175,
+          "monthly_gain": 185,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -1620,9 +1620,9 @@
           "username": "Hailette",
           "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
           "country": "Canada",
-          "current_ap": 24970,
+          "current_ap": 24980,
           "last_month_ap": 24910,
-          "monthly_gain": 60,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Quake",
             "Max Warlords",
@@ -2759,6 +2759,41 @@
       ]
     },
     {
+      "country": "Spain",
+      "score": 368,
+      "top_players": [
+        {
+          "username": "julikabuwu",
+          "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+          "country": "Spain",
+          "current_ap": 25850,
+          "last_month_ap": 25795,
+          "monthly_gain": 55,
+          "maxGames": [
+            "Max Arena Brawl",
+            "Max Paintball",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "aphunterview",
+          "uuid": "11b8466e2c724fe994a00cada8112674",
+          "country": "Spain",
+          "current_ap": 25550,
+          "last_month_ap": 25550,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Quake",
+            "Max Speed UHC",
+            "Max Walls",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Unknown",
       "score": 360,
       "top_players": [
@@ -3206,41 +3241,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Spain",
-      "score": 353,
-      "top_players": [
-        {
-          "username": "julikabuwu",
-          "uuid": "dda3fc724a8f467b8a8033aadde1b569",
-          "country": "Spain",
-          "current_ap": 25835,
-          "last_month_ap": 25795,
-          "monthly_gain": 40,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "aphunterview",
-          "uuid": "11b8466e2c724fe994a00cada8112674",
-          "country": "Spain",
-          "current_ap": 25550,
-          "last_month_ap": 25550,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Quake",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR"
           ]
         }
       ]
