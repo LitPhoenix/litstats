@@ -312,8 +312,8 @@ module.exports = async (req, res) => {
     responseData.overallStats = {
         kills: hg.kills || 0,
         deaths: hg.deaths || 0,
-        wins: hg.wins || 0,
-        wins_teams: hg.wins_teams || 0,
+        wins_solo_normal: hg.wins_solo_normal || 0,
+        wins_teams_normal: hg.wins_teams_normal || 0,
         timePlayed: hg.time_played || hg.timePlaying || 0,
         currentKit: hg.defaultkit || hg.auto_spawn_kit || 'None'
     };
