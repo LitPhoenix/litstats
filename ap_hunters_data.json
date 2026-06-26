@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-25T23:07:54.069Z",
+  "last_update": "2026-06-26T02:13:07.105Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -623,9 +623,9 @@
           "username": "cakecakecake",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27605,
+          "current_ap": 27610,
           "last_month_ap": 27605,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
@@ -1479,7 +1479,7 @@
     },
     {
       "country": "Canada",
-      "score": 8800,
+      "score": 8803,
       "top_players": [
         {
           "username": "Songgg",
@@ -1528,9 +1528,9 @@
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
-          "current_ap": 28125,
+          "current_ap": 28135,
           "last_month_ap": 28100,
-          "monthly_gain": 25,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Blitz",
             "Max Arena Brawl",
@@ -1795,9 +1795,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23530,
+          "current_ap": 23595,
           "last_month_ap": 23160,
-          "monthly_gain": 370,
+          "monthly_gain": 435,
           "maxGames": []
         }
       ]
@@ -2103,7 +2103,7 @@
     },
     {
       "country": "Israel",
-      "score": 4198,
+      "score": 4203,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2127,9 +2127,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27765,
+          "current_ap": 27775,
           "last_month_ap": 27130,
-          "monthly_gain": 635,
+          "monthly_gain": 645,
           "maxGames": [
             "Max Speed UHC",
             "Max TKR"
@@ -2907,9 +2907,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24670,
+          "current_ap": 24675,
           "last_month_ap": 24435,
-          "monthly_gain": 235,
+          "monthly_gain": 240,
           "maxGames": [
             "Max Duels"
           ]
@@ -3120,6 +3120,19 @@
           ]
         },
         {
+          "username": "xOptic",
+          "uuid": "8c8ba6d440554b1886ad1777c5066282",
+          "country": "Unknown",
+          "current_ap": 23490,
+          "last_month_ap": 23395,
+          "monthly_gain": 95,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
@@ -3133,19 +3146,6 @@
             "Max TKR",
             "Max Crazy Walls",
             "Max SkyClash"
-          ]
-        },
-        {
-          "username": "xOptic",
-          "uuid": "8c8ba6d440554b1886ad1777c5066282",
-          "country": "Unknown",
-          "current_ap": 23475,
-          "last_month_ap": 23395,
-          "monthly_gain": 80,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Duels"
           ]
         },
         {
