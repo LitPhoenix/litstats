@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-27T02:08:13.059Z",
+  "last_update": "2026-06-27T06:47:06.009Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1193,7 +1193,7 @@
     },
     {
       "country": "UK",
-      "score": 10083,
+      "score": 10088,
       "top_players": [
         {
           "username": "greaneye",
@@ -1224,9 +1224,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30860,
+          "current_ap": 30870,
           "last_month_ap": 30610,
-          "monthly_gain": 250,
+          "monthly_gain": 260,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1479,15 +1479,15 @@
     },
     {
       "country": "Canada",
-      "score": 8818,
+      "score": 8888,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31420,
+          "current_ap": 31490,
           "last_month_ap": 31220,
-          "monthly_gain": 200,
+          "monthly_gain": 270,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2182,7 +2182,7 @@
     },
     {
       "country": "Finland",
-      "score": 4139,
+      "score": 4151,
       "top_players": [
         {
           "username": "Champiez",
@@ -2207,9 +2207,9 @@
           "username": "MineElzu60",
           "uuid": "559860c584174a7c90a8f79332802516",
           "country": "Finland",
-          "current_ap": 27540,
+          "current_ap": 27565,
           "last_month_ap": 27255,
-          "monthly_gain": 285,
+          "monthly_gain": 310,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2623,7 +2623,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1193,
+      "score": 1200,
       "top_players": [
         {
           "username": "gewoontoonje",
@@ -2638,9 +2638,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25660,
+          "current_ap": 25675,
           "last_month_ap": 25305,
-          "monthly_gain": 355,
+          "monthly_gain": 370,
           "maxGames": [
             "Max Duels"
           ]
@@ -2907,9 +2907,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24685,
+          "current_ap": 24690,
           "last_month_ap": 24435,
-          "monthly_gain": 250,
+          "monthly_gain": 255,
           "maxGames": [
             "Max Duels"
           ]
