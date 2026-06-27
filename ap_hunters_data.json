@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-27T16:56:56.577Z",
+  "last_update": "2026-06-27T19:04:22.940Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2290,7 +2290,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3627,
+      "score": 3630,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2340,9 +2340,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25520,
+          "current_ap": 25550,
           "last_month_ap": 25340,
-          "monthly_gain": 180,
+          "monthly_gain": 210,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2890,6 +2890,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 24710,
+          "last_month_ap": 24435,
+          "monthly_gain": 275,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Sunta",
           "uuid": "c7b1528ce5604302a279c16e7e135038",
           "country": "Unknown",
@@ -2902,17 +2913,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 24700,
-          "last_month_ap": 24435,
-          "monthly_gain": 265,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
@@ -2935,9 +2935,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24475,
+          "current_ap": 24485,
           "last_month_ap": 24375,
-          "monthly_gain": 100,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Pit",
             "Max Warlords",

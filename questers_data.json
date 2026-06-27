@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-27T16:56:56.778Z",
+  "last_update": "2026-06-27T19:04:23.176Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 109811,
     "289e9f90a76640e0921c85dcd96385b5": 82424,
@@ -462,7 +462,7 @@
     },
     {
       "country": "USA",
-      "score": 45903,
+      "score": 45926.4,
       "top_players": [
         {
           "username": "Trtx",
@@ -473,12 +473,12 @@
           "monthly_gain": 0
         },
         {
-          "username": "_Cluelesss",
+          "username": "BlackIceZane",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
-          "current_quests": 48577,
+          "current_quests": 48694,
           "last_month_quests": 48577,
-          "monthly_gain": 0
+          "monthly_gain": 117
         },
         {
           "username": "Respawnless",
@@ -666,15 +666,15 @@
     },
     {
       "country": "Belgium",
-      "score": 9882.8,
+      "score": 9895.6,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 49414,
+          "current_quests": 49478,
           "last_month_quests": 48756,
-          "monthly_gain": 658
+          "monthly_gain": 722
         }
       ]
     },
