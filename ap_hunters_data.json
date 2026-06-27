@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-27T15:08:49.322Z",
+  "last_update": "2026-06-27T16:56:56.577Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1782,9 +1782,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24475,
+          "current_ap": 24495,
           "last_month_ap": 24475,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
@@ -1795,9 +1795,9 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23620,
+          "current_ap": 23635,
           "last_month_ap": 23160,
-          "monthly_gain": 460,
+          "monthly_gain": 475,
           "maxGames": []
         }
       ]
@@ -2354,7 +2354,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2791,
+      "score": 2796,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2375,9 +2375,9 @@
           "username": "ZERATHIX",
           "uuid": "e37ccf10fe9643789745e0432ca096b2",
           "country": "Czech Republic",
-          "current_ap": 26620,
+          "current_ap": 26630,
           "last_month_ap": 26620,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR"
@@ -2908,9 +2908,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24690,
+          "current_ap": 24700,
           "last_month_ap": 24435,
-          "monthly_gain": 255,
+          "monthly_gain": 265,
           "maxGames": [
             "Max Duels"
           ]
@@ -2935,9 +2935,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24460,
+          "current_ap": 24475,
           "last_month_ap": 24375,
-          "monthly_gain": 85,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
