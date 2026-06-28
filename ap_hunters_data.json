@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-27T22:55:12.498Z",
+  "last_update": "2026-06-28T02:29:23.951Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -514,6 +514,25 @@
           ]
         },
         {
+          "username": "righter",
+          "uuid": "396c6009191449f691fc86e6d60f7243",
+          "country": "USA",
+          "current_ap": 29290,
+          "last_month_ap": 28585,
+          "monthly_gain": 705,
+          "maxGames": [
+            "Max Pit",
+            "Max SkyWars",
+            "Max Quake",
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "Physiological",
           "uuid": "8b87c1da0a114a988235c7f54bf48b51",
           "country": "USA",
@@ -529,25 +548,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "righter",
-          "uuid": "396c6009191449f691fc86e6d60f7243",
-          "country": "USA",
-          "current_ap": 29185,
-          "last_month_ap": 28585,
-          "monthly_gain": 600,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyWars",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -815,9 +815,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25675,
+          "current_ap": 25685,
           "last_month_ap": 25600,
-          "monthly_gain": 75,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -1193,7 +1193,7 @@
     },
     {
       "country": "UK",
-      "score": 10100,
+      "score": 10110,
       "top_players": [
         {
           "username": "greaneye",
@@ -1224,9 +1224,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30895,
+          "current_ap": 30915,
           "last_month_ap": 30610,
-          "monthly_gain": 285,
+          "monthly_gain": 305,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1556,9 +1556,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26660,
+          "current_ap": 26670,
           "last_month_ap": 26650,
-          "monthly_gain": 10,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -2624,15 +2624,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 1210,
+      "score": 1225,
       "top_players": [
         {
           "username": "gewoontoonje",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26620,
+          "current_ap": 26635,
           "last_month_ap": 26595,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": []
         },
         {
@@ -2796,15 +2796,15 @@
     },
     {
       "country": "Unknown",
-      "score": 360,
+      "score": 385,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 25865,
+          "current_ap": 25890,
           "last_month_ap": 25865,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2879,9 +2879,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24835,
+          "current_ap": 24860,
           "last_month_ap": 24550,
-          "monthly_gain": 285,
+          "monthly_gain": 310,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
