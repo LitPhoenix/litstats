@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-06-30T19:31:59.250Z",
+  "last_update": "2026-06-30T21:23:22.377Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1479,15 +1479,15 @@
     },
     {
       "country": "Canada",
-      "score": 8888,
+      "score": 8893,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31490,
+          "current_ap": 31495,
           "last_month_ap": 31220,
-          "monthly_gain": 270,
+          "monthly_gain": 275,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -1795,10 +1795,12 @@
           "username": "warido37",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23665,
+          "current_ap": 23680,
           "last_month_ap": 23160,
-          "monthly_gain": 505,
-          "maxGames": []
+          "monthly_gain": 520,
+          "maxGames": [
+            "Max Duels"
+          ]
         }
       ]
     },
@@ -2841,9 +2843,9 @@
           "username": "sosal",
           "uuid": "14fc22531af545cf918eec7b30527272",
           "country": "Unknown",
-          "current_ap": 25045,
+          "current_ap": 25055,
           "last_month_ap": 25045,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -3201,15 +3203,6 @@
           ]
         },
         {
-          "username": "o3w",
-          "uuid": "d91eb87c945b490b82a2638c8cf5a291",
-          "country": "Unknown",
-          "current_ap": 23355,
-          "last_month_ap": 23355,
-          "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -3221,6 +3214,15 @@
             "Max Duels",
             "Max Seasonal"
           ]
+        },
+        {
+          "username": "o3w",
+          "uuid": "d91eb87c945b490b82a2638c8cf5a291",
+          "country": "Unknown",
+          "current_ap": 23295,
+          "last_month_ap": 23355,
+          "monthly_gain": -60,
+          "maxGames": []
         },
         {
           "username": "lambfromquote",
