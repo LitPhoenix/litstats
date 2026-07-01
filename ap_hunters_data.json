@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-01T08:03:09.944Z",
+  "last_update": "2026-07-01T12:28:14.311Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -793,6 +793,20 @@
           ]
         },
         {
+          "username": "kipanator",
+          "uuid": "8eb18a9227fb4b36947177babab261cd",
+          "country": "USA",
+          "current_ap": 25685,
+          "last_month_ap": 25685,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max TKR",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "lyraava",
           "uuid": "6d84e8ed95b3452095221594b9e448fe",
           "country": "USA",
@@ -808,20 +822,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "kipanator",
-          "uuid": "8eb18a9227fb4b36947177babab261cd",
-          "country": "USA",
-          "current_ap": 25685,
-          "last_month_ap": 25685,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max TKR",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -1791,12 +1791,12 @@
           ]
         },
         {
-          "username": "warido37",
+          "username": "ashedwings",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23680,
+          "current_ap": 23700,
           "last_month_ap": 23680,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Duels"
           ]
