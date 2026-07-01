@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-01T16:22:18.244Z",
+  "last_update": "2026-07-01T19:31:55.504Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2103,6 +2103,59 @@
       ]
     },
     {
+      "country": "Finland",
+      "score": 4221,
+      "top_players": [
+        {
+          "username": "Champiez",
+          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+          "country": "Finland",
+          "current_ap": 28400,
+          "last_month_ap": 28400,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Cops and Crims",
+            "Max Warlords",
+            "Max TNT Games",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
+          "username": "MineElzu60",
+          "uuid": "559860c584174a7c90a8f79332802516",
+          "country": "Finland",
+          "current_ap": 27705,
+          "last_month_ap": 27695,
+          "monthly_gain": 10,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
+          "username": "MatiasSiltanen",
+          "uuid": "e9a871c29903474687b0b045edd35ae9",
+          "country": "Finland",
+          "current_ap": 26410,
+          "last_month_ap": 26410,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Israel",
       "score": 4218,
       "top_players": [
@@ -2178,59 +2231,6 @@
           "last_month_ap": 23605,
           "monthly_gain": 0,
           "maxGames": []
-        }
-      ]
-    },
-    {
-      "country": "Finland",
-      "score": 4216,
-      "top_players": [
-        {
-          "username": "Champiez",
-          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-          "country": "Finland",
-          "current_ap": 28400,
-          "last_month_ap": 28400,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Cops and Crims",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
-        },
-        {
-          "username": "MineElzu60",
-          "uuid": "559860c584174a7c90a8f79332802516",
-          "country": "Finland",
-          "current_ap": 27695,
-          "last_month_ap": 27695,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "MatiasSiltanen",
-          "uuid": "e9a871c29903474687b0b045edd35ae9",
-          "country": "Finland",
-          "current_ap": 26410,
-          "last_month_ap": 26410,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
         }
       ]
     },
@@ -2895,9 +2895,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24715,
+          "current_ap": 24725,
           "last_month_ap": 24715,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Duels"
           ]
@@ -3061,9 +3061,9 @@
           "username": "ichhabevape",
           "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
           "country": "Unknown",
-          "current_ap": 23800,
+          "current_ap": 23810,
           "last_month_ap": 23800,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Seasonal"
           ]
