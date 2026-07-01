@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-01T12:28:14.311Z",
+  "last_update": "2026-07-01T16:22:18.244Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1079,7 +1079,7 @@
           ]
         },
         {
-          "username": "Posey",
+          "username": "FranceW",
           "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
           "country": "France",
           "current_ap": 28715,
@@ -1583,9 +1583,9 @@
           "username": "adjective_n0un",
           "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
           "country": "Canada",
-          "current_ap": 25135,
+          "current_ap": 25150,
           "last_month_ap": 25135,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock"
@@ -3376,6 +3376,25 @@
       ]
     },
     {
+      "country": "Italy",
+      "score": 0,
+      "top_players": [
+        {
+          "username": "leonl",
+          "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+          "country": "Italy",
+          "current_ap": 24760,
+          "last_month_ap": 24740,
+          "monthly_gain": 20,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Wool Games",
+            "Max Seasonal"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Chile",
       "score": 0,
       "top_players": [
@@ -3404,25 +3423,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Italy",
-      "score": 0,
-      "top_players": [
-        {
-          "username": "leonl",
-          "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
-          "country": "Italy",
-          "current_ap": 24740,
-          "last_month_ap": 24740,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Wool Games",
-            "Max Seasonal"
           ]
         }
       ]
