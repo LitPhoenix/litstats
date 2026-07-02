@@ -421,7 +421,7 @@ function renderCabinet(data) {
     const dynamicColor = getApColor(ap);
     const dynamicGlow = dynamicColor.replace('rgb', 'rgba').replace(')', ', 0.35)');
 
-    let displayAp = ap >= 1000 ? (ap / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : ap;
+    let displayAp = Number(ap).toLocaleString();
     
     const apPillHTML = `
         <div class="ap-stat-pill" style="--ap-color: ${dynamicColor}; --ap-glow: ${dynamicGlow};">
