@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-02T17:48:03.046Z",
+  "last_update": "2026-07-02T19:09:07.901Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12601,
+      "score": 12613,
       "top_players": [
         {
           "username": "oJakey",
@@ -419,9 +419,9 @@
           "username": "vasiv",
           "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
           "country": "USA",
-          "current_ap": 32355,
+          "current_ap": 32380,
           "last_month_ap": 32345,
-          "monthly_gain": 10,
+          "monthly_gain": 35,
           "maxGames": [
             "Max UHC",
             "Max SkyWars",
@@ -797,9 +797,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25685,
+          "current_ap": 25690,
           "last_month_ap": 25685,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -2799,15 +2799,15 @@
     },
     {
       "country": "Unknown",
-      "score": 385,
+      "score": 400,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 25890,
+          "current_ap": 25905,
           "last_month_ap": 25890,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
