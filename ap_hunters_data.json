@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-02T19:09:07.901Z",
+  "last_update": "2026-07-02T20:54:13.933Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1479,7 +1479,7 @@
     },
     {
       "country": "Canada",
-      "score": 8913,
+      "score": 8916,
       "top_players": [
         {
           "username": "Songgg",
@@ -1528,9 +1528,9 @@
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
-          "current_ap": 28195,
+          "current_ap": 28205,
           "last_month_ap": 28135,
-          "monthly_gain": 60,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Blitz",
             "Max Arena Brawl",
@@ -2863,6 +2863,20 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 24875,
+          "last_month_ap": 24860,
+          "monthly_gain": 15,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Lilaaay",
           "uuid": "2e1884f69c294bd589e6d7709b100298",
           "country": "Unknown",
@@ -2876,20 +2890,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 24860,
-          "last_month_ap": 24860,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
