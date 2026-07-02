@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-01T23:02:18.677Z",
+  "last_update": "2026-07-02T02:10:02.278Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12596,
+      "score": 12601,
       "top_players": [
         {
           "username": "oJakey",
@@ -419,9 +419,9 @@
           "username": "vasiv",
           "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
           "country": "USA",
-          "current_ap": 32345,
+          "current_ap": 32355,
           "last_month_ap": 32345,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max UHC",
             "Max SkyWars",
@@ -589,7 +589,7 @@
           ]
         },
         {
-          "username": "Kyralicious",
+          "username": "Retro05863",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
           "current_ap": 27940,
@@ -724,10 +724,11 @@
           "username": "Saucers",
           "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
           "country": "USA",
-          "current_ap": 26620,
+          "current_ap": 26630,
           "last_month_ap": 26620,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
+            "Max SkyBlock",
             "Max VampireZ",
             "Max TKR",
             "Max Duels",
@@ -1383,7 +1384,7 @@
           ]
         },
         {
-          "username": "TheZetaMale",
+          "username": "Marvellous05863",
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "UK",
           "current_ap": 24155,
@@ -2978,6 +2979,20 @@
           "maxGames": []
         },
         {
+          "username": "SLEEPYCATSILVER",
+          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+          "country": "Unknown",
+          "current_ap": 24205,
+          "last_month_ap": 24140,
+          "monthly_gain": 65,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
@@ -2990,20 +3005,6 @@
             "Max VampireZ",
             "Max TKR",
             "Max Crazy Walls"
-          ]
-        },
-        {
-          "username": "SLEEPYCATSILVER",
-          "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
-          "country": "Unknown",
-          "current_ap": 24160,
-          "last_month_ap": 24140,
-          "monthly_gain": 20,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
