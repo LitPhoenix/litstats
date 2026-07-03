@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-03T08:48:21.288Z",
+  "last_update": "2026-07-03T12:01:38.130Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2904,6 +2904,22 @@
           ]
         },
         {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 24715,
+          "last_month_ap": 24680,
+          "monthly_gain": 35,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Sunta",
           "uuid": "c7b1528ce5604302a279c16e7e135038",
           "country": "Unknown",
@@ -2912,22 +2928,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
-          ]
-        },
-        {
-          "username": "EuanKC",
-          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
-          "country": "Unknown",
-          "current_ap": 24680,
-          "last_month_ap": 24680,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
             "Max Duels",
@@ -3127,9 +3127,9 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 23540,
+          "current_ap": 23550,
           "last_month_ap": 23520,
-          "monthly_gain": 20,
+          "monthly_gain": 30,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",

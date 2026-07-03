@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-03T08:48:21.504Z",
+  "last_update": "2026-07-03T12:01:38.474Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -199,15 +199,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49592.6,
+      "score": 49602.4,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 110501,
+          "current_quests": 110550,
           "last_month_quests": 110501,
-          "monthly_gain": 0
+          "monthly_gain": 49
         },
         {
           "username": "ErtrycheZ",
@@ -285,15 +285,15 @@
     },
     {
       "country": "Canada",
-      "score": 40112.6,
+      "score": 40126.2,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_quests": 83501,
+          "current_quests": 83569,
           "last_month_quests": 83464,
-          "monthly_gain": 37
+          "monthly_gain": 105
         },
         {
           "username": "enderdrxgon",
@@ -643,15 +643,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 18875.2,
+      "score": 18889.4,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 49716,
+          "current_quests": 49787,
           "last_month_quests": 49664,
-          "monthly_gain": 52
+          "monthly_gain": 123
         },
         {
           "username": "Itz_Pipi",
