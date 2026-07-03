@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-03T14:06:39.901Z",
+  "last_update": "2026-07-03T17:13:52.103Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12613,
+      "score": 12618,
       "top_players": [
         {
           "username": "oJakey",
@@ -419,9 +419,9 @@
           "username": "vasiv",
           "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
           "country": "USA",
-          "current_ap": 32380,
+          "current_ap": 32390,
           "last_month_ap": 32345,
-          "monthly_gain": 35,
+          "monthly_gain": 45,
           "maxGames": [
             "Max UHC",
             "Max SkyWars",
@@ -431,6 +431,7 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -1358,7 +1359,7 @@
           ]
         },
         {
-          "username": "Dead_Space_2",
+          "username": "NOOB_DESTORYER35",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
           "current_ap": 24760,
@@ -1795,9 +1796,9 @@
           "username": "ashedwings",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23710,
+          "current_ap": 23730,
           "last_month_ap": 23680,
-          "monthly_gain": 30,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Duels"
           ]
@@ -3127,9 +3128,9 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 23550,
+          "current_ap": 23570,
           "last_month_ap": 23520,
-          "monthly_gain": 30,
+          "monthly_gain": 50,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
