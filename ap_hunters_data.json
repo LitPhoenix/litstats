@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-04T16:54:14.868Z",
+  "last_update": "2026-07-04T18:56:51.465Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -517,9 +517,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29375,
+          "current_ap": 29395,
           "last_month_ap": 29340,
-          "monthly_gain": 35,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -1634,9 +1634,9 @@
           "username": "Brano",
           "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
           "country": "Canada",
-          "current_ap": 24715,
+          "current_ap": 24710,
           "last_month_ap": 24715,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -2294,7 +2294,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3634,
+      "score": 3636,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2344,9 +2344,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25595,
+          "current_ap": 25615,
           "last_month_ap": 25580,
-          "monthly_gain": 15,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
