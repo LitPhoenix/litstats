@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-04T18:56:51.465Z",
+  "last_update": "2026-07-04T20:44:25.338Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2294,7 +2294,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3636,
+      "score": 3641,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2328,6 +2328,20 @@
           ]
         },
         {
+          "username": "mihannah",
+          "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+          "country": "Croatia",
+          "current_ap": 25645,
+          "last_month_ap": 25580,
+          "monthly_gain": 65,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max Walls",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "noobay",
           "uuid": "a481c0951d3246169ebe1dd6f583d357",
           "country": "Croatia",
@@ -2337,20 +2351,6 @@
           "maxGames": [
             "Max Blitz",
             "Max Quake",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "mihannah",
-          "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
-          "country": "Croatia",
-          "current_ap": 25615,
-          "last_month_ap": 25580,
-          "monthly_gain": 35,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Walls",
-            "Max VampireZ",
             "Max TKR"
           ]
         }
@@ -2939,9 +2939,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24640,
+          "current_ap": 24660,
           "last_month_ap": 24595,
-          "monthly_gain": 45,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -2963,9 +2963,9 @@
           "username": "SLEEPYCATSILVER",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
-          "current_ap": 24355,
+          "current_ap": 24370,
           "last_month_ap": 24140,
-          "monthly_gain": 215,
+          "monthly_gain": 230,
           "maxGames": [
             "Max Murder Mystery",
             "Max Wool Games",
@@ -2985,6 +2985,19 @@
           ]
         },
         {
+          "username": "Battalius",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 24250,
+          "last_month_ap": 24110,
+          "monthly_gain": 140,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "Xylim",
           "uuid": "f94ade5012374648b0423fc0b66cac0a",
           "country": "Unknown",
@@ -2992,19 +3005,6 @@
           "last_month_ap": 24220,
           "monthly_gain": 0,
           "maxGames": []
-        },
-        {
-          "username": "Battalius",
-          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
-          "country": "Unknown",
-          "current_ap": 24215,
-          "last_month_ap": 24110,
-          "monthly_gain": 105,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
-          ]
         },
         {
           "username": "jenidu",
