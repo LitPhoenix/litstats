@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-04T22:47:56.331Z",
+  "last_update": "2026-07-05T02:00:50.343Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -1107,15 +1107,15 @@
     },
     {
       "country": "Brazil",
-      "score": 5060.6,
+      "score": 5073.2,
       "top_players": [
         {
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_quests": 25303,
+          "current_quests": 25366,
           "last_month_quests": 25303,
-          "monthly_gain": 0
+          "monthly_gain": 63
         }
       ]
     },
