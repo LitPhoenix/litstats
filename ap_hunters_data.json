@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-05T16:55:20.500Z",
+  "last_update": "2026-07-05T19:02:18.335Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1194,7 +1194,7 @@
     },
     {
       "country": "UK",
-      "score": 10129,
+      "score": 10136,
       "top_players": [
         {
           "username": "greaneye",
@@ -1225,9 +1225,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 30950,
+          "current_ap": 30965,
           "last_month_ap": 30925,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1239,7 +1239,8 @@
             "Max Walls",
             "Max TNT Games",
             "Max VampireZ",
-            "Max TKR"
+            "Max TKR",
+            "Max Duels"
           ]
         },
         {
@@ -1480,7 +1481,7 @@
     },
     {
       "country": "Canada",
-      "score": 8938,
+      "score": 8945,
       "top_players": [
         {
           "username": "Songgg",
@@ -1529,9 +1530,9 @@
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
-          "current_ap": 28295,
+          "current_ap": 28320,
           "last_month_ap": 28135,
-          "monthly_gain": 160,
+          "monthly_gain": 185,
           "maxGames": [
             "Max Blitz",
             "Max Arena Brawl",
@@ -2898,9 +2899,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24790,
+          "current_ap": 24815,
           "last_month_ap": 24715,
-          "monthly_gain": 75,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Duels"
           ]
