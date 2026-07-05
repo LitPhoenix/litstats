@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-05T13:06:31.228Z",
+  "last_update": "2026-07-05T15:05:53.177Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2692,13 +2692,14 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 25080,
+          "current_ap": 25130,
           "last_month_ap": 25010,
-          "monthly_gain": 70,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Murder Mystery",
             "Max VampireZ",
-            "Max Wool Games"
+            "Max Wool Games",
+            "Max Seasonal"
           ]
         }
       ]
@@ -2963,9 +2964,9 @@
           "username": "SLEEPYCATSILVER",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
-          "current_ap": 24370,
+          "current_ap": 24395,
           "last_month_ap": 24140,
-          "monthly_gain": 230,
+          "monthly_gain": 255,
           "maxGames": [
             "Max Murder Mystery",
             "Max Wool Games",
