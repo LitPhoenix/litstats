@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-06T08:11:06.248Z",
+  "last_update": "2026-07-06T13:39:09.554Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2231,9 +2231,9 @@
           "username": "Slime",
           "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
           "country": "Israel",
-          "current_ap": 23620,
+          "current_ap": 23635,
           "last_month_ap": 23605,
-          "monthly_gain": 15,
+          "monthly_gain": 30,
           "maxGames": []
         }
       ]
@@ -2420,9 +2420,9 @@
           "username": "Aldix",
           "uuid": "6a040159d71841129271ce291b226587",
           "country": "Czech Republic",
-          "current_ap": 25050,
+          "current_ap": 25060,
           "last_month_ap": 25050,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -2630,7 +2630,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1260,
+      "score": 1275,
       "top_players": [
         {
           "username": "gewoontoonje",
@@ -2645,9 +2645,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25765,
+          "current_ap": 25795,
           "last_month_ap": 25705,
-          "monthly_gain": 60,
+          "monthly_gain": 90,
           "maxGames": [
             "Max Duels"
           ]
@@ -3210,9 +3210,9 @@
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
-          "current_ap": 23360,
+          "current_ap": 23370,
           "last_month_ap": 23325,
-          "monthly_gain": 35,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Wool Games",
             "Max Duels",
@@ -3440,9 +3440,9 @@
           "username": "SpaceDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
-          "current_ap": 23950,
+          "current_ap": 23975,
           "last_month_ap": 23950,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": []
         }
       ]
