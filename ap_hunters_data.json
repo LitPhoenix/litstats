@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-06T16:48:42.157Z",
+  "last_update": "2026-07-06T19:40:59.186Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -517,9 +517,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29395,
+          "current_ap": 29410,
           "last_month_ap": 29340,
-          "monthly_gain": 55,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -1676,15 +1676,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8211,
+      "score": 8221,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 32085,
+          "current_ap": 32095,
           "last_month_ap": 32085,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -1797,9 +1797,9 @@
           "username": "ashedwings",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23785,
+          "current_ap": 23790,
           "last_month_ap": 23680,
-          "monthly_gain": 105,
+          "monthly_gain": 110,
           "maxGames": [
             "Max SkyBlock",
             "Max Duels"
@@ -2966,9 +2966,9 @@
           "username": "SLEEPYCATSILVER",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
-          "current_ap": 24395,
+          "current_ap": 24410,
           "last_month_ap": 24140,
-          "monthly_gain": 255,
+          "monthly_gain": 270,
           "maxGames": [
             "Max Murder Mystery",
             "Max Wool Games",
@@ -3196,17 +3196,6 @@
           ]
         },
         {
-          "username": "22charizard",
-          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
-          "country": "Unknown",
-          "current_ap": 23370,
-          "last_month_ap": 23370,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit"
-          ]
-        },
-        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -3217,6 +3206,17 @@
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
+          ]
+        },
+        {
+          "username": "22charizard",
+          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+          "country": "Unknown",
+          "current_ap": 23370,
+          "last_month_ap": 23370,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Pit"
           ]
         },
         {
