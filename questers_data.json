@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-06T02:06:14.989Z",
+  "last_update": "2026-07-06T08:11:06.631Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -997,9 +997,9 @@
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Unknown",
-          "current_quests": 22003,
+          "current_quests": 22070,
           "last_month_quests": 22003,
-          "monthly_gain": 0
+          "monthly_gain": 67
         },
         {
           "username": "seriuz",
@@ -1057,15 +1057,15 @@
     },
     {
       "country": "Peru",
-      "score": 5206.2,
+      "score": 5213.8,
       "top_players": [
         {
           "username": "wittyhope",
           "uuid": "141e5144694046eaa7e536ed70cc1595",
           "country": "Peru",
-          "current_quests": 26031,
+          "current_quests": 26069,
           "last_month_quests": 26031,
-          "monthly_gain": 0
+          "monthly_gain": 38
         }
       ]
     },
