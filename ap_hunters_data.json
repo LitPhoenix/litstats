@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-07T10:46:31.634Z",
+  "last_update": "2026-07-07T14:05:55.758Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2107,6 +2107,85 @@
       ]
     },
     {
+      "country": "Israel",
+      "score": 4258,
+      "top_players": [
+        {
+          "username": "eliadbg",
+          "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+          "country": "Israel",
+          "current_ap": 28420,
+          "last_month_ap": 28405,
+          "monthly_gain": 15,
+          "maxGames": [
+            "Max Arena Brawl",
+            "Max Quake",
+            "Max Warlords",
+            "Max TNT Games",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
+          "username": "Kickuxer",
+          "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
+          "country": "Israel",
+          "current_ap": 27855,
+          "last_month_ap": 27805,
+          "monthly_gain": 50,
+          "maxGames": [
+            "Max Speed UHC",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "TinyRex",
+          "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
+          "country": "Israel",
+          "current_ap": 26175,
+          "last_month_ap": 26175,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Ofek",
+          "uuid": "1121d718b08145fe8b8a3728639d6723",
+          "country": "Israel",
+          "current_ap": 24500,
+          "last_month_ap": 24500,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max UHC",
+            "Max Speed UHC"
+          ]
+        },
+        {
+          "username": "alonmario1",
+          "uuid": "ba804eff1d3f48348048350cc686a3f6",
+          "country": "Israel",
+          "current_ap": 23780,
+          "last_month_ap": 23780,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "Slime",
+          "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
+          "country": "Israel",
+          "current_ap": 23635,
+          "last_month_ap": 23605,
+          "monthly_gain": 30,
+          "maxGames": []
+        }
+      ]
+    },
+    {
       "country": "Finland",
       "score": 4249,
       "top_players": [
@@ -2156,85 +2235,6 @@
             "Max Duels",
             "Max Seasonal"
           ]
-        }
-      ]
-    },
-    {
-      "country": "Israel",
-      "score": 4248,
-      "top_players": [
-        {
-          "username": "eliadbg",
-          "uuid": "56b991d1a9c243d7984df6e6a409cd59",
-          "country": "Israel",
-          "current_ap": 28420,
-          "last_month_ap": 28405,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max Quake",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "Kickuxer",
-          "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
-          "country": "Israel",
-          "current_ap": 27835,
-          "last_month_ap": 27805,
-          "monthly_gain": 30,
-          "maxGames": [
-            "Max Speed UHC",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "TinyRex",
-          "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
-          "country": "Israel",
-          "current_ap": 26175,
-          "last_month_ap": 26175,
-          "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
-          "username": "Ofek",
-          "uuid": "1121d718b08145fe8b8a3728639d6723",
-          "country": "Israel",
-          "current_ap": 24500,
-          "last_month_ap": 24500,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Speed UHC"
-          ]
-        },
-        {
-          "username": "alonmario1",
-          "uuid": "ba804eff1d3f48348048350cc686a3f6",
-          "country": "Israel",
-          "current_ap": 23780,
-          "last_month_ap": 23780,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "Slime",
-          "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
-          "country": "Israel",
-          "current_ap": 23635,
-          "last_month_ap": 23605,
-          "monthly_gain": 30,
-          "maxGames": []
         }
       ]
     },
