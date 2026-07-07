@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-07T14:05:55.758Z",
+  "last_update": "2026-07-07T17:52:35.434Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -200,7 +200,8 @@
     "0cfa3f33d16f46949ae6e5a4a1ea547d": 23680,
     "92c736b5ae414125b4cacd89bf856a77": 23185,
     "5fd7ec031e054a01b18c2aca29cf1a23": 23180,
-    "01834d8a3c7a49c796589979d7a9ab74": 23170
+    "01834d8a3c7a49c796589979d7a9ab74": 23170,
+    "e3fc5b36a60f4ff1ac2df06405a20601": 23380
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -3186,6 +3187,18 @@
           ]
         },
         {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 23380,
+          "last_month_ap": 23380,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "MacchuPicchu",
           "uuid": "3d55b88551fe48d997bae3412cd8aa72",
           "country": "Unknown",
@@ -3239,17 +3252,6 @@
           "maxGames": [
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "Huvo",
-          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
-          "country": "Unknown",
-          "current_ap": 23170,
-          "last_month_ap": 23170,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
           ]
         }
       ]
