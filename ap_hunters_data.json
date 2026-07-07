@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-07T02:02:22.263Z",
+  "last_update": "2026-07-07T06:13:13.453Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2911,9 +2911,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 24800,
+          "current_ap": 24825,
           "last_month_ap": 24680,
-          "monthly_gain": 120,
+          "monthly_gain": 145,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -2927,9 +2927,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24705,
+          "current_ap": 24730,
           "last_month_ap": 24595,
-          "monthly_gain": 110,
+          "monthly_gain": 135,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -2977,6 +2977,19 @@
           ]
         },
         {
+          "username": "Battalius",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 24280,
+          "last_month_ap": 24110,
+          "monthly_gain": 170,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "Cluelesss",
           "uuid": "82b6b4ca76004360af77d0d141a2e83a",
           "country": "Unknown",
@@ -2985,19 +2998,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "Battalius",
-          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
-          "country": "Unknown",
-          "current_ap": 24275,
-          "last_month_ap": 24110,
-          "monthly_gain": 165,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
           ]
         },
         {
