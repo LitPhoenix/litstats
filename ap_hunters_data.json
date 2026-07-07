@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-06T22:57:59.950Z",
+  "last_update": "2026-07-07T02:02:22.263Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1797,9 +1797,9 @@
           "username": "ashedwings",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23790,
+          "current_ap": 23800,
           "last_month_ap": 23680,
-          "monthly_gain": 110,
+          "monthly_gain": 120,
           "maxGames": [
             "Max SkyBlock",
             "Max Duels"
@@ -2924,6 +2924,19 @@
           ]
         },
         {
+          "username": "ToastyOosty",
+          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+          "country": "Unknown",
+          "current_ap": 24705,
+          "last_month_ap": 24595,
+          "monthly_gain": 110,
+          "maxGames": [
+            "Max Pit",
+            "Max Warlords",
+            "Max VampireZ"
+          ]
+        },
+        {
           "username": "Sunta",
           "uuid": "c7b1528ce5604302a279c16e7e135038",
           "country": "Unknown",
@@ -2936,19 +2949,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "ToastyOosty",
-          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
-          "country": "Unknown",
-          "current_ap": 24695,
-          "last_month_ap": 24595,
-          "monthly_gain": 100,
-          "maxGames": [
-            "Max Pit",
-            "Max Warlords",
-            "Max VampireZ"
           ]
         },
         {
@@ -2991,9 +2991,9 @@
           "username": "Battalius",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
-          "current_ap": 24250,
+          "current_ap": 24275,
           "last_month_ap": 24110,
-          "monthly_gain": 140,
+          "monthly_gain": 165,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
