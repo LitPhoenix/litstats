@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-07T06:13:13.453Z",
+  "last_update": "2026-07-07T10:46:31.634Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2584,6 +2584,33 @@
       ]
     },
     {
+      "country": "New Zealand",
+      "score": 1300,
+      "top_players": [
+        {
+          "username": "gewoontoonje",
+          "uuid": "d33a4d925db84c30a28e528239471102",
+          "country": "New Zealand",
+          "current_ap": 26635,
+          "last_month_ap": 26635,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "ILiveInAWall",
+          "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+          "country": "New Zealand",
+          "current_ap": 25845,
+          "last_month_ap": 25705,
+          "monthly_gain": 140,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Taiwan",
       "score": 1275,
       "top_players": [
@@ -2624,32 +2651,6 @@
           "maxGames": [
             "Max Walls",
             "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "New Zealand",
-      "score": 1275,
-      "top_players": [
-        {
-          "username": "gewoontoonje",
-          "uuid": "d33a4d925db84c30a28e528239471102",
-          "country": "New Zealand",
-          "current_ap": 26635,
-          "last_month_ap": 26635,
-          "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
-          "username": "ILiveInAWall",
-          "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
-          "country": "New Zealand",
-          "current_ap": 25795,
-          "last_month_ap": 25705,
-          "monthly_gain": 90,
-          "maxGames": [
-            "Max Duels"
           ]
         }
       ]
