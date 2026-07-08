@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-08T01:31:57.845Z",
+  "last_update": "2026-07-08T04:59:58.611Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1636,12 +1636,13 @@
           "username": "Brano",
           "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
           "country": "Canada",
-          "current_ap": 24720,
+          "current_ap": 24745,
           "last_month_ap": 24715,
-          "monthly_gain": 5,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
+            "Max Quake",
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
@@ -3159,6 +3160,21 @@
           ]
         },
         {
+          "username": "tommy042001",
+          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+          "country": "Unknown",
+          "current_ap": 23450,
+          "last_month_ap": 23425,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Pit",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "Jyahp",
           "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
           "country": "Unknown",
@@ -3169,21 +3185,6 @@
             "Max Pit",
             "Max SkyBlock",
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "tommy042001",
-          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
-          "country": "Unknown",
-          "current_ap": 23430,
-          "last_month_ap": 23425,
-          "monthly_gain": 5,
-          "maxGames": [
-            "Max Pit",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
