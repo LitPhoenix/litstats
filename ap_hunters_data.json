@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-08T13:30:28.957Z",
+  "last_update": "2026-07-08T15:58:37.795Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -390,7 +390,31 @@
           "current_ap": 32490,
           "last_month_ap": 32490,
           "monthly_gain": 0,
-          "maxGames": []
+          "maxGames": [
+            "Max UHC",
+            "Max Pit",
+            "Max Mega Walls",
+            "Max SkyWars",
+            "Max Blitz",
+            "Max Arena Brawl",
+            "Max Smash Heroes",
+            "Max Paintball",
+            "Max Cops and Crims",
+            "Max Quake",
+            "Max SkyBlock",
+            "Max Speed UHC",
+            "Max Warlords",
+            "Max Walls",
+            "Max TNT Games",
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle",
+            "Max Seasonal"
+          ]
         },
         {
           "username": "vasiv",
@@ -1458,15 +1482,15 @@
     },
     {
       "country": "Canada",
-      "score": 8947,
+      "score": 8957,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31500,
+          "current_ap": 31510,
           "last_month_ap": 31500,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2563,7 +2587,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1300,
+      "score": 1305,
       "top_players": [
         {
           "username": "gewoontoonje",
@@ -2578,9 +2602,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25845,
+          "current_ap": 25855,
           "last_month_ap": 25705,
-          "monthly_gain": 140,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -3079,6 +3103,19 @@
           ]
         },
         {
+          "username": "xOptic",
+          "uuid": "8c8ba6d440554b1886ad1777c5066282",
+          "country": "Unknown",
+          "current_ap": 23725,
+          "last_month_ap": 23520,
+          "monthly_gain": 205,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Hacks",
           "uuid": "b5ab6db9366049ae8a9882927e46ce08",
           "country": "Unknown",
@@ -3092,19 +3129,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "xOptic",
-          "uuid": "8c8ba6d440554b1886ad1777c5066282",
-          "country": "Unknown",
-          "current_ap": 23660,
-          "last_month_ap": 23520,
-          "monthly_gain": 140,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max Duels"
           ]
         },
         {
