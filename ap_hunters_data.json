@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-08T20:56:51.387Z",
+  "last_update": "2026-07-08T22:56:39.227Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1482,15 +1482,15 @@
     },
     {
       "country": "Canada",
-      "score": 8957,
+      "score": 8972,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31510,
+          "current_ap": 31525,
           "last_month_ap": 31500,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2298,7 +2298,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3643,
+      "score": 3646,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2335,9 +2335,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25655,
+          "current_ap": 25665,
           "last_month_ap": 25580,
-          "monthly_gain": 75,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2903,9 +2903,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24860,
+          "current_ap": 24865,
           "last_month_ap": 24715,
-          "monthly_gain": 145,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Duels"
           ]
