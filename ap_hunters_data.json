@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-08T11:42:32.370Z",
+  "last_update": "2026-07-08T13:30:28.957Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -390,31 +390,7 @@
           "current_ap": 32490,
           "last_month_ap": 32490,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Pit",
-            "Max Mega Walls",
-            "Max SkyWars",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
+          "maxGames": []
         },
         {
           "username": "vasiv",
