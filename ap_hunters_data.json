@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-09T21:12:27.259Z",
+  "last_update": "2026-07-09T23:03:25.721Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12621,
+      "score": 12622,
       "top_players": [
         {
           "username": "oJakey",
@@ -496,6 +496,25 @@
           ]
         },
         {
+          "username": "righter",
+          "uuid": "396c6009191449f691fc86e6d60f7243",
+          "country": "USA",
+          "current_ap": 29505,
+          "last_month_ap": 29340,
+          "monthly_gain": 165,
+          "maxGames": [
+            "Max Pit",
+            "Max SkyWars",
+            "Max Quake",
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
@@ -511,25 +530,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle",
-            "Max Seasonal"
-          ]
-        },
-        {
-          "username": "righter",
-          "uuid": "396c6009191449f691fc86e6d60f7243",
-          "country": "USA",
-          "current_ap": 29470,
-          "last_month_ap": 29340,
-          "monthly_gain": 130,
-          "maxGames": [
-            "Max Pit",
-            "Max SkyWars",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Wool Games",
-            "Max Duels",
             "Max Seasonal"
           ]
         },
