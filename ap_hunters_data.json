@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-09T05:55:40.852Z",
+  "last_update": "2026-07-09T09:21:06.677Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2587,15 +2587,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 1305,
+      "score": 1320,
       "top_players": [
         {
           "username": "gewoontoonje",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26635,
+          "current_ap": 26650,
           "last_month_ap": 26635,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": []
         },
         {
