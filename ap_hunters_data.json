@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-09T12:27:22.569Z",
+  "last_update": "2026-07-09T16:22:47.852Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2110,7 +2110,7 @@
     },
     {
       "country": "Israel",
-      "score": 4258,
+      "score": 4270,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2134,10 +2134,11 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27855,
+          "current_ap": 27880,
           "last_month_ap": 27805,
-          "monthly_gain": 50,
+          "monthly_gain": 75,
           "maxGames": [
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max TKR"
           ]
