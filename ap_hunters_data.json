@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-11T16:43:43.860Z",
+  "last_update": "2026-07-11T18:45:22.392Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2588,7 +2588,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1370,
+      "score": 1403,
       "top_players": [
         {
           "username": "gewoontoonje",
@@ -2603,9 +2603,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25905,
+          "current_ap": 25970,
           "last_month_ap": 25705,
-          "monthly_gain": 200,
+          "monthly_gain": 265,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -3192,10 +3192,11 @@
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
-          "current_ap": 23395,
+          "current_ap": 23405,
           "last_month_ap": 23380,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
+            "Max SkyBlock",
             "Max TKR",
             "Max Duels"
           ]
