@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-11T01:31:08.730Z",
+  "last_update": "2026-07-11T04:54:33.568Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1482,15 +1482,15 @@
     },
     {
       "country": "Canada",
-      "score": 8972,
+      "score": 8982,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31525,
+          "current_ap": 31535,
           "last_month_ap": 31500,
-          "monthly_gain": 25,
+          "monthly_gain": 35,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2615,15 +2615,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1295,
+      "score": 1320,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26800,
+          "current_ap": 26825,
           "last_month_ap": 26745,
-          "monthly_gain": 55,
+          "monthly_gain": 80,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -3363,9 +3363,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 25060,
+          "current_ap": 25070,
           "last_month_ap": 25060,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Wool Games"
           ]
