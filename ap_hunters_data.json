@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-12T20:36:07.148Z",
+  "last_update": "2026-07-12T22:38:17.179Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -499,9 +499,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29585,
+          "current_ap": 29600,
           "last_month_ap": 29340,
-          "monthly_gain": 245,
+          "monthly_gain": 260,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -1799,9 +1799,9 @@
           "username": "ashedwings",
           "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
           "country": "The Netherlands",
-          "current_ap": 23800,
+          "current_ap": 23805,
           "last_month_ap": 23680,
-          "monthly_gain": 120,
+          "monthly_gain": 125,
           "maxGames": [
             "Max SkyBlock",
             "Max Duels"
@@ -2886,6 +2886,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 24880,
+          "last_month_ap": 24715,
+          "monthly_gain": 165,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Lilaaay",
           "uuid": "2e1884f69c294bd589e6d7709b100298",
           "country": "Unknown",
@@ -2899,17 +2910,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 24870,
-          "last_month_ap": 24715,
-          "monthly_gain": 155,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
