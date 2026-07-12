@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-12T01:43:50.228Z",
+  "last_update": "2026-07-12T05:18:20.504Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -200,7 +200,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49616.8,
+      "score": 49623,
       "top_players": [
         {
           "username": "Skorlex",
@@ -238,9 +238,9 @@
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_quests": 28539,
+          "current_quests": 28570,
           "last_month_quests": 28494,
-          "monthly_gain": 45
+          "monthly_gain": 76
         },
         {
           "username": "trql",
@@ -610,9 +610,9 @@
           "username": "Huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 23716,
+          "current_quests": 23745,
           "last_month_quests": 23539,
-          "monthly_gain": 177
+          "monthly_gain": 206
         },
         {
           "username": "Nightire",
@@ -1135,6 +1135,20 @@
       ]
     },
     {
+      "country": "Israel",
+      "score": 4784.4,
+      "top_players": [
+        {
+          "username": "eliadbg",
+          "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+          "country": "Israel",
+          "current_quests": 23922,
+          "last_month_quests": 23728,
+          "monthly_gain": 194
+        }
+      ]
+    },
+    {
       "country": "Hungary",
       "score": 4767.4,
       "top_players": [
@@ -1145,20 +1159,6 @@
           "current_quests": 23837,
           "last_month_quests": 23837,
           "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Israel",
-      "score": 4759.6,
-      "top_players": [
-        {
-          "username": "eliadbg",
-          "uuid": "56b991d1a9c243d7984df6e6a409cd59",
-          "country": "Israel",
-          "current_quests": 23798,
-          "last_month_quests": 23728,
-          "monthly_gain": 70
         }
       ]
     },
