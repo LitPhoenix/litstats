@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-11T22:38:11.258Z",
+  "last_update": "2026-07-12T01:43:50.228Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -100,7 +100,8 @@
     "6119d70a8a724f2aa2ded280a8cf58bb": 21589,
     "796cf0f4332c447d88a6fbfffbe0bd70": 21487,
     "e2bf0a2f2cf24fc29512511ddc10201a": 21206,
-    "c820b113e30c4c129812db60b1601f52": 21193
+    "c820b113e30c4c129812db60b1601f52": 21193,
+    "8eb18a9227fb4b36947177babab261cd": 21223
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
@@ -1016,6 +1017,14 @@
           "current_quests": 21254,
           "last_month_quests": 21193,
           "monthly_gain": 61
+        },
+        {
+          "username": "kipanator",
+          "uuid": "8eb18a9227fb4b36947177babab261cd",
+          "country": "Unknown",
+          "current_quests": 21223,
+          "last_month_quests": 21223,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1085,7 +1094,7 @@
     },
     {
       "country": "Romania",
-      "score": 9440,
+      "score": 5198.8,
       "top_players": [
         {
           "username": "raducu",
@@ -1093,14 +1102,6 @@
           "country": "Romania",
           "current_quests": 25994,
           "last_month_quests": 25994,
-          "monthly_gain": 0
-        },
-        {
-          "username": "GlorpKazu",
-          "uuid": "e2bf0a2f2cf24fc29512511ddc10201a",
-          "country": "Romania",
-          "current_quests": 21206,
-          "last_month_quests": 21206,
           "monthly_gain": 0
         }
       ]
