@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-12T05:18:20.305Z",
+  "last_update": "2026-07-12T07:58:44.029Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -757,9 +757,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26095,
+          "current_ap": 26100,
           "last_month_ap": 26040,
-          "monthly_gain": 55,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -2191,7 +2191,7 @@
     },
     {
       "country": "Finland",
-      "score": 4249,
+      "score": 4259,
       "top_players": [
         {
           "username": "Champiez",
@@ -2216,9 +2216,9 @@
           "username": "MineElzu60",
           "uuid": "559860c584174a7c90a8f79332802516",
           "country": "Finland",
-          "current_ap": 27740,
+          "current_ap": 27760,
           "last_month_ap": 27695,
-          "monthly_gain": 45,
+          "monthly_gain": 65,
           "maxGames": [
             "Max SkyBlock",
             "Max Warlords",
