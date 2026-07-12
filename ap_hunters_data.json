@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-12T16:45:47.633Z",
+  "last_update": "2026-07-12T18:50:01.758Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1786,9 +1786,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24500,
+          "current_ap": 24520,
           "last_month_ap": 24495,
-          "monthly_gain": 5,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
@@ -3203,6 +3203,19 @@
           ]
         },
         {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "Unknown",
+          "current_ap": 23395,
+          "last_month_ap": 23325,
+          "monthly_gain": 70,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "MacchuPicchu",
           "uuid": "3d55b88551fe48d997bae3412cd8aa72",
           "country": "Unknown",
@@ -3211,19 +3224,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max TKR"
-          ]
-        },
-        {
-          "username": "Quent120",
-          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
-          "country": "Unknown",
-          "current_ap": 23370,
-          "last_month_ap": 23325,
-          "monthly_gain": 45,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
