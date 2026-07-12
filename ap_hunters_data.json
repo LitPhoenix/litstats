@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-12T18:50:01.758Z",
+  "last_update": "2026-07-12T20:36:07.148Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2985,9 +2985,9 @@
           "username": "Battalius",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
-          "current_ap": 24335,
+          "current_ap": 24360,
           "last_month_ap": 24110,
-          "monthly_gain": 225,
+          "monthly_gain": 250,
           "maxGames": [
             "Max UHC",
             "Max Blitz",
@@ -3162,6 +3162,19 @@
           ]
         },
         {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 23480,
+          "last_month_ap": 23380,
+          "monthly_gain": 100,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
@@ -3174,19 +3187,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "InInk",
-          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
-          "country": "Unknown",
-          "current_ap": 23455,
-          "last_month_ap": 23380,
-          "monthly_gain": 75,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max TKR",
-            "Max Duels"
           ]
         },
         {
