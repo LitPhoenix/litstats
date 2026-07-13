@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-13T05:26:14.856Z",
+  "last_update": "2026-07-13T08:47:03.790Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -757,9 +757,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26100,
+          "current_ap": 26110,
           "last_month_ap": 26040,
-          "monthly_gain": 60,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -2300,7 +2300,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3656,
+      "score": 3658,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2337,9 +2337,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25705,
+          "current_ap": 25715,
           "last_month_ap": 25580,
-          "monthly_gain": 125,
+          "monthly_gain": 135,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2498,7 +2498,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1730,
+      "score": 1743,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2515,9 +2515,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26275,
+          "current_ap": 26300,
           "last_month_ap": 26275,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -2589,7 +2589,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1405,
+      "score": 1408,
       "top_players": [
         {
           "username": "gewoontoonje",
@@ -2604,9 +2604,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25975,
+          "current_ap": 25980,
           "last_month_ap": 25705,
-          "monthly_gain": 270,
+          "monthly_gain": 275,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
