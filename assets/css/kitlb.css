@@ -1,0 +1,200 @@
+.leaderboard-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 24px;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Control Settings Bar Layout */
+.control-panel {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+}
+
+.panel-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.panel-section .section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #71717a;
+    letter-spacing: 0.05em;
+}
+
+.explanation-block {
+    max-width: 400px;
+    color: #52525b;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-left: auto;
+}
+
+/* Custom Checkbox Config */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    color: #e4e4e7;
+    font-size: 0.95rem;
+    font-weight: 500;
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #27272a;
+    border: 1px solid #3f3f46;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #3f3f46;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #ffa500;
+    border-color: #ffa500;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid #18181b;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Main Data Presentation Layout */
+.leaderboard-card {
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.leaderboard-table th {
+    background: #202024;
+    padding: 16px 24px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #a0a0a9;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid #27272a;
+}
+
+.leaderboard-table td {
+    padding: 14px 24px;
+    border-bottom: 1px solid #27272a;
+    color: #d4d4d8;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.leaderboard-table tr:hover td {
+    background: #1c1c21;
+}
+
+/* Row Assets Elements */
+.kit-row-icon {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+    object-fit: contain;
+}
+
+.kit-row-name {
+    font-weight: 700;
+    color: #fff;
+}
+
+.kit-row-tier {
+    font-size: 0.75rem;
+    color: #71717a;
+    margin-top: 2px;
+}
+
+.gear-flex {
+    display: flex;
+    gap: 6px;
+}
+
+.mini-slot {
+    width: 34px;
+    height: 34px;
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mini-slot img {
+    width: 24px;
+    height: 24px;
+    image-rendering: pixelated;
+    object-fit: contain;
+}
+
+/* Placement Accents */
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: 800;
+    background: #27272a;
+    color: #a0a0a9;
+}
+
+.rank-gold { background: #ffa500; color: #18181b; }
+.rank-silver { background: #e4e4e7; color: #18181b; }
+.rank-bronze { background: #a16207; color: #fff; }
