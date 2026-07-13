@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-13T16:21:32.893Z",
+  "last_update": "2026-07-13T19:11:48.218Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12639,
+      "score": 12643,
       "top_players": [
         {
           "username": "oJakey",
@@ -452,9 +452,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 31305,
+          "current_ap": 31320,
           "last_month_ap": 31305,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -2022,15 +2022,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5320,
+      "score": 5330,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30825,
+          "current_ap": 30835,
           "last_month_ap": 30815,
-          "monthly_gain": 10,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
