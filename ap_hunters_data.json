@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-13T08:47:03.790Z",
+  "last_update": "2026-07-13T12:26:41.375Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2364,7 +2364,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2796,
+      "score": 2799,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2397,9 +2397,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26280,
+          "current_ap": 26290,
           "last_month_ap": 26280,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
@@ -2589,7 +2589,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1408,
+      "score": 1418,
       "top_players": [
         {
           "username": "gewoontoonje",
@@ -2604,9 +2604,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 25980,
+          "current_ap": 26000,
           "last_month_ap": 25705,
-          "monthly_gain": 275,
+          "monthly_gain": 295,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -2733,9 +2733,9 @@
           "username": "typefast",
           "uuid": "df968d057a4445c2a5118faa3e5d7e3b",
           "country": "Ukraine",
-          "current_ap": 24375,
+          "current_ap": 24385,
           "last_month_ap": 24375,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2932,9 +2932,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24730,
+          "current_ap": 24735,
           "last_month_ap": 24595,
-          "monthly_gain": 135,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -3018,9 +3018,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 24170,
+          "current_ap": 24180,
           "last_month_ap": 24170,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Paintball",
             "Max Walls",

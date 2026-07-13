@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-13T08:47:03.975Z",
+  "last_update": "2026-07-13T12:26:41.568Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -201,7 +201,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49623,
+      "score": 49624.6,
       "top_players": [
         {
           "username": "Skorlex",
@@ -239,9 +239,9 @@
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_quests": 28570,
+          "current_quests": 28578,
           "last_month_quests": 28494,
-          "monthly_gain": 76
+          "monthly_gain": 84
         },
         {
           "username": "trql",
@@ -747,7 +747,7 @@
     },
     {
       "country": "Finland",
-      "score": 14559.6,
+      "score": 14567.8,
       "top_players": [
         {
           "username": "Mol_o",
@@ -761,9 +761,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_quests": 31574,
+          "current_quests": 31615,
           "last_month_quests": 30999,
-          "monthly_gain": 575
+          "monthly_gain": 616
         }
       ]
     },
