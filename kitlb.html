@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LitStats — Kit Protection Leaderboard</title>
+    
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/mc-gui.css">
+    <link rel="stylesheet" href="assets/css/leaderboard.css">
+    
+    <style>
+        .page-header-container { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 20px; }
+        .hero { margin-bottom: 0; }
+        
+        .cabinet-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--surface-2); border: 1px solid var(--border-strong); color: var(--text); padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; transition: 0.2s; }
+        .cabinet-btn:hover { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+
+        .controls-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 28px; }
+        .options-panel { display: flex; align-items: center; gap: 24px; background: var(--surface-2); border: 1px solid var(--border); padding: 6px 20px; border-radius: 10px; height: 48px; }
+        
+        .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--text-2); cursor: pointer; user-select: none; }
+        .checkbox-label input { cursor: pointer; accent-color: var(--accent); width: 16px; height: 16px; }
+        .selector-menu { background: var(--input-bg); border: 1px solid var(--border-strong); color: var(--text); padding: 6px 12px; border-radius: 6px; font-family: inherit; font-size: 13px; font-weight: 600; outline: none; cursor: pointer; }
+        
+        .leaderboard-table td { padding: 22px 24px !important; }
+        .gear-flex { display: flex; gap: 8px; align-items: center; }
+        
+        /* Light & Dark Theme Minecraft Slots */
+        .mini-slot {
+            width: 48px; height: 48px; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--surface-2); border: 1px solid var(--border-strong);
+            border-radius: 6px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+        }
+        [data-theme="dark"] .mini-slot { background: rgba(0, 0, 0, 0.35); box-shadow: inset 0 2px 6px rgba(0,0,0,0.5); }
+        
+        .mini-slot .item-wrapper { width: 36px; height: 36px; position: relative; display: flex; align-items: center; justify-content: center; z-index: 2; }
+        .mini-slot img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; pointer-events: none; }
+        
+        .glint-overlay {
+            position: absolute; inset: 0; pointer-events: none; z-index: 3;
+            background: linear-gradient(110deg, transparent 20%, rgba(180, 50, 255, 0.6) 40%, rgba(220, 100, 255, 0.8) 50%, rgba(180, 50, 255, 0.6) 60%, transparent 80%);
+            background-size: 200% 200%; animation: mcGlint 3s linear infinite; mix-blend-mode: screen;
+            -webkit-mask-size: 36px 36px; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
+        }
+        @keyframes mcGlint { 0% { background-position: 200% 200%; } 100% { background-position: -50% -50%; } }
+
+        .kit-row-meta { display: flex; align-items: center; gap: 16px; }
+        .kit-icon-frame { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.03); border-radius: 8px; border: 1px solid var(--border); }
+        .kit-icon-frame img { width: 80%; height: 80%; object-fit: contain; image-rendering: pixelated; }
+        .kit-txt-name { font-size: 16px; font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
+        .tt-p2-star { height: 14px; width: auto; vertical-align: middle; margin: 0 1px; padding-bottom: 2px; }
+    </style>
+</head>
+<body>
+    <header id="navbar-placeholder"></header>
+    <script src="assets/js/components.js"></script>
+
+    <main>
+        <div class="page-header-container">
+            <div class="hero">
+                <h1>Kit Protection Leaderboard</h1>
+                <p>Check out the most effective Blitz kits based on protection ratios and hits-to-kill metrics.</p>
+            </div>
+            <a href="blitzkits.html" class="cabinet-btn">Blitz Calculator ➔</a>
+        </div>
+
+        <div class="controls-row">
+            <div class="tabs">
+                <button class="tab-btn active" id="tier-x-btn" onclick="setMatrixTier('X')">Level X</button>
+                <button class="tab-btn" id="tier-p2-btn" onclick="setMatrixTier('P2')">Prestige II</button>
+            </div>
+
+            <div class="options-panel">
+                <label class="checkbox-label" style="border-right: 1px solid var(--border); padding-right: 20px;">
+                    <input type="checkbox" id="max-blitz-toggle" checked onchange="calculateProtectionLeaderboard()">
+                    Apply Max Blitz Loot
+                </label>
+                
+                <div class="checkbox-label">
+                    <span style="color: var(--text-2); font-weight: 600;">Weapon:</span>
+                    <select id="weapon-profile-select" class="selector-menu" onchange="calculateProtectionLeaderboard()">
+                        <option value="5.0">Stone Sword</option>
+                        <option value="6.0">Iron Sword</option>
+                        <option value="7.0">Diamond Sword</option>
+                        <option value="6.25">Sharpness I Stone Sword</option>
+                        <option value="4.0">Wooden Sword</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <div class="spark-bg"></div>
+            <div class="table-inner">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="rank" style="width: 85px;">Rank</th>
+                            <th>Kit</th>
+                            <th>Kit Gear</th>
+                            <th style="text-align: right; width: 180px;">Effective Protection</th>
+                            <th style="text-align: right; width: 150px;">Hits to Kill</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrix-rows">
+                        <!-- Loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Dependencies for UI and Tooltips -->
+    <script src="assets/js/global.js"></script>
+    <script src="assets/js/kits.js"></script>
+    <script src="assets/js/mc-engine.js"></script>
+    
+    <script>
+        // Intercepts mc-engine hover events to format the tooltip text
+        document.addEventListener('tt-format', (e) => {
+            const it = e.detail.item;
+            let wrapperClass = `r-${it.rarity || 'common'}`;
+            
+            let h = `<span class="tt-name ${wrapperClass}">${it.name}</span>`;
+            if (it.lines && it.lines.length) {
+                for (const l of it.lines) {
+                    const text = typeof l === 'string' ? l : l.text;
+                    const cls = typeof l === 'string' ? 'c-grey' : (l.cls || 'c-grey');
+                    h += `<span class="tt-line ${cls}">${text}</span>`;
+                }
+            }
+            e.detail.html = h;
+        });
+        
+        const chestMap = [
+            {id:'saddle', name:'Horsetamer'}, {id:'arrow', name:'Ranger'}, {id:'bow', name:'Archer'}, {id:'iron_boots', name:'Astronaut'},
+            {id:'witch_spawn_egg', name:'Troll'}, {id:'cooked_beef', name:'MeatMaster'}, {id:'iron_hoe', name:'Reaper'},
+            {id:'player_head', name:'Shark', customImg:'img/blitz/shark.png'}, {id:'flint_and_steel', name:'RedDragon'},
+            {id:'potion', name:'Toxicologist', customImg:'img/blitz/items/Splash_Potion_of_Poison.png'}, {id:'chest', name:'Donkeytamer', customImg:'img/blitz/chest.png'},
+            {id:'wooden_sword', name:'Rogue'}, {id:'potion', name:'Warlock', customImg:'img/blitz/items/Splash_Potion_of_Harming.png'}, {id:'slime_ball', name:'Slimey Slime'},
+            {id:'ghast_spawn_egg',name:'Jockey'}, {id:'golden_apple', name:'Golem'}, {id:'oak_boat', name:'Viking'}, {id:'iron_pickaxe', name:'Speleologist'},
+            {id:'wither_skeleton_skull',name:'Shadow Knight',customImg:'img/blitz/wither_skeleton_skull.png'}, {id:'cake', name:'Baker'},
+            {id:'golden_sword', name:'Knight'}, {id:'cooked_porkchop', name:'Pigman'}, {id:'potion', name:'Guardian', customImg:'img/blitz/items/Potion_of_Fire_Resistance.png'},
+            {id:'feather', name:'Phoenix'}, {id:'iron_chestplate', name:'Paladin'}, {id:'rotten_flesh', name:'Necromancer'},
+            {id:'potion', name:'Scout', customImg:'img/blitz/items/Potion_of_Swiftness.png'}, {id:'grass', name:'Hunter', customImg:'img/blitz/items/Grass.png'}, {id:'stone_sword', name:'Warrior'},
+            {id:'minecart', name:'Hype Train'}, {id:'fishing_rod', name:'Fisherman'}, {id:'milk_bucket', name:'Milkman'},
+            {id:'cactus', name:'Florist', customImg:'img/blitz/cactus.png'}, {id:'diamond_boots', name:'Diver'}, {id:'spider_spawn_egg', name:'Arachnologist'},
+            {id:'blaze_rod', name:'Blaze'}, {id:'bone', name:'Wolftamer'}, {id:'experience_bottle', name:'Tim'},
+            {id:'snowball', name:'Snowman'}, {id:'stick', name:'Rambo'}, {id:'egg', name:'Farmer'}, {id:'leather_chestplate', name:'Armorer', customImg:'img/blitz/leather_armor/armorer_leather_chestplate.png'},
+            {id:'tnt', name:'Creepertamer', customImg:'img/blitz/tnt.png'}
+        ];
+
+        const BASE_ARMOUR_MAP = {
+            'leather_helmet': 1, 'leather_chestplate': 3, 'leather_leggings': 2, 'leather_boots': 1,
+            'golden_helmet': 2, 'golden_chestplate': 5, 'golden_leggings': 3, 'golden_boots': 1,
+            'chainmail_helmet': 2, 'chainmail_chestplate': 5, 'chainmail_leggings': 4, 'chainmail_boots': 1,
+            'iron_helmet': 2, 'iron_chestplate': 6, 'iron_leggings': 5, 'iron_boots': 2,
+            'diamond_helmet': 3, 'diamond_chestplate': 8, 'diamond_leggings': 6, 'diamond_boots': 3,
+            'wither_skeleton_skull': 0, 'shark': 0
+        };
+
+        let currentActiveTier = 'X';
+
+        document.addEventListener('keydown', (e) => {
+            const activeTag = document.activeElement ? document.activeElement.tagName : '';
+            if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
+            if (e.key === '1') setMatrixTier('X');
+            if (e.key === '2') setMatrixTier('P2');
+        });
+
+        function extractLineEPF(enchantmentText) {
+            if (!enchantmentText || !enchantmentText.includes('Protection')) return 0;
+            if (enchantmentText.includes('Fire') || enchantmentText.includes('Blast') || enchantmentText.includes('Projectile')) return 0;
+            if (enchantmentText.includes('IV')) return 5;
+            if (enchantmentText.includes('III')) return 3;
+            if (enchantmentText.includes('II')) return 2;
+            if (enchantmentText.includes('I')) return 1;
+            return 0;
+        }
+
+        function getPieceScore(piece) {
+            if (!piece) return 0;
+            let armor = BASE_ARMOUR_MAP[piece.id] || 0;
+            let epf = 0;
+            if (piece.lines) piece.lines.forEach(l => epf += extractLineEPF(l.text || l));
+            return (armor * 0.04) + (epf * 0.75 * 0.04);
+        }
+        
+        function getWeaponDamage(item) {
+            if (!item) return 1;
+            let base = 1;
+            const id = item.id.toLowerCase();
+            
+            if (id.includes('wooden_sword') || id.includes('golden_sword')) base = 4.0;
+            else if (id.includes('stone_sword')) base = 5.0;
+            else if (id.includes('iron_sword')) base = 6.0;
+            else if (id.includes('diamond_sword')) base = 7.0;
+            else if (id.includes('wooden_axe') || id.includes('golden_axe')) base = 3.0;
+            else if (id.includes('stone_axe')) base = 4.0;
+            else if (id.includes('iron_axe')) base = 5.0;
+            else if (id.includes('diamond_axe')) base = 6.0;
+            else if (id.includes('diamond_shovel') || id.includes('diamond_spade')) base = 4.0;
+            else if (id.includes('iron_shovel') || id.includes('iron_spade')) base = 3.0;
+            else if (id.includes('stone_shovel') || id.includes('stone_spade')) base = 2.0;
+            else if (id.includes('wooden_shovel') || id.includes('wooden_spade') || id.includes('golden_shovel')) base = 1.0;
+            else if (id.includes('fishing_rod')) base = 1.0;
+            
+            let sharpLvl = 0;
+            if (item.lines) {
+                const sharpLine = item.lines.find(l => (l.text || l).includes('Sharpness'));
+                if (sharpLine) {
+                    const txt = sharpLine.text || sharpLine;
+                    if (txt.includes('V')) sharpLvl = 5;
+                    else if (txt.includes('IV')) sharpLvl = 4;
+                    else if (txt.includes('III')) sharpLvl = 3;
+                    else if (txt.includes('II')) sharpLvl = 2;
+                    else if (txt.includes('I')) sharpLvl = 1;
+                }
+            }
+            return base + (sharpLvl * 1.25);
+        }
+
+        function resolveKitAsset(kitName) {
+            const match = chestMap.find(c => c && c.name.toLowerCase() === kitName.toLowerCase());
+            if (!match) return 'img/blitz/items/stick.png';
+            if (match.customImg) return match.customImg;
+            return `img/blitz/items/${match.id}.png`;
+        }
+
+        function resolveItemAssetPath(piece, kitName) {
+            if (!piece) return '';
+            if (piece.id.startsWith('leather_')) {
+                let safeKey = kitName.toLowerCase().replace(/\s+/g, '');
+                if (safeKey === 'slimeyslime') safeKey = 'slimeyslime'; 
+                return `img/blitz/leather_armor/${safeKey}_${piece.id}.png`;
+            }
+            if (piece.customImg) return piece.customImg;
+            return `img/blitz/items/${piece.id}.png`;
+        }
+
+        function buildSlotHtml(piece, kitName) {
+            if (!piece) return '';
+            const src = resolveItemAssetPath(piece, kitName);
+            const isEnchanted = piece.enchanted || piece.id === 'fishing_rod';
+            const glintHtml = isEnchanted ? `<div class="glint-overlay" style="-webkit-mask-image: url('${src}'); mask-image: url('${src}');"></div>` : '';
+            
+            // Format valid JSON payload to tie into mc-engine.js tooltip system natively
+            const safePayload = JSON.stringify({
+                id: piece.id,
+                name: piece.name,
+                rarity: piece.rarity || 'common',
+                lines: piece.lines || []
+            }).replace(/"/g, '&quot;');
+
+            return `
+                <div class="slot mini-slot" data-item="${safePayload}">
+                    <div class="item-wrapper ${isEnchanted ? 'enchanted' : ''}">
+                        <img src="${src}" onerror="this.style.opacity='0'">
+                        ${glintHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        function calculateProtectionLeaderboard() {
+            const rowOutputContainer = document.getElementById('matrix-rows');
+            
+            try {
+                if (!window.KIT_DATABASE) {
+                    rowOutputContainer.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 40px !important;">Loading kit database...</td></tr>';
+                    return;
+                }
+
+                const calculatedMatrix = [];
+                const targetTierIndex = currentActiveTier === 'X' ? 9 : 10;
+                const chosenDamageModel = parseFloat(document.getElementById('weapon-profile-select').value);
+                const isMaxBlitzSimulated = document.getElementById('max-blitz-toggle').checked;
+
+                for (const [kitName, levelConfigurations] of Object.entries(window.KIT_DATABASE)) {
+                    if (kitName === 'Rambo') continue;
+                    const levelData = levelConfigurations[targetTierIndex];
+                    if (!levelData) continue;
+
+                    let helmet = levelData.armour.helmet ? { ...levelData.armour.helmet } : null;
+                    let chestplate = levelData.armour.chestplate ? { ...levelData.armour.chestplate } : null;
+                    let leggings = levelData.armour.leggings ? { ...levelData.armour.leggings } : null;
+                    let boots = levelData.armour.boots ? { ...levelData.armour.boots } : null;
+                    
+                    let loadoutWeapons = levelData.hotbar.filter(item => item && (
+                        item.id.includes('sword') || item.id.includes('axe') || item.id.includes('bow') || 
+                        item.id.includes('shovel') || item.id.includes('spade') ||
+                        item.id === 'stick' || item.id === 'ghast_tear' || item.id === 'bone' || item.id === 'poppy' || item.id === 'fishing_rod'
+                    ));
+                    
+                    let bestWeapon = loadoutWeapons[0] || null;
+                    let bestWeaponDmg = getWeaponDamage(bestWeapon);
+                    
+                    for (const w of loadoutWeapons) {
+                        const dmg = getWeaponDamage(w);
+                        if (dmg > bestWeaponDmg) {
+                            bestWeapon = w;
+                            bestWeaponDmg = dmg;
+                        }
+                    }
+
+                    // Dynamically compare and override slots if Max Blitz equivalents are stronger
+                    if (isMaxBlitzSimulated) {
+                        const blitzHelm = { id: 'iron_helmet', name: 'Iron Helmet', rarity: 'uncommon', lines: [] };
+                        const blitzChest = { id: 'iron_chestplate', name: 'Iron Chestplate', rarity: 'uncommon', lines: [] };
+                        const blitzLegs = { id: 'chainmail_leggings', name: 'Chainmail Leggings', rarity: 'uncommon', lines: [] };
+                        const blitzBoots = { id: 'iron_boots', name: 'Iron Boots', rarity: 'uncommon', lines: [] };
+
+                        if (getPieceScore(blitzHelm) > getPieceScore(helmet)) helmet = blitzHelm;
+                        if (getPieceScore(blitzChest) > getPieceScore(chestplate)) chestplate = blitzChest;
+                        if (getPieceScore(blitzLegs) > getPieceScore(leggings)) leggings = blitzLegs;
+                        if (getPieceScore(blitzBoots) > getPieceScore(boots)) boots = blitzBoots;
+                        
+                        // Retain kit weapon if it surpasses the Max Blitz minimum standard of 6.0 DMG
+                        if (bestWeaponDmg < 6.0) {
+                            bestWeapon = { id: 'stone_sword', name: 'Stone Sword', rarity: 'uncommon', lines: [{ text: 'Sharpness I', cls: 'c-grey' }], enchanted: true };
+                        }
+                    }
+
+                    let computedArmourPoints = 0;
+                    let accumulatedEPF = 0;
+                    const processedGearPieces = [helmet, chestplate, leggings, boots];
+
+                    processedGearPieces.forEach(piece => {
+                        if (!piece) return;
+                        computedArmourPoints += BASE_ARMOUR_MAP[piece.id] || 0;
+                        if (piece.lines) {
+                            piece.lines.forEach(line => {
+                                accumulatedEPF += extractLineEPF(line.text || line);
+                            });
+                        }
+                    });
+
+                    computedArmourPoints = Math.min(computedArmourPoints, 20);
+                    const baseArmourReduction = computedArmourPoints * 0.04;
+                    
+                    const verifiedEPF = Math.min(accumulatedEPF, 25);
+                    const averageEpfReduction = verifiedEPF * 0.75 * 0.04;
+
+                    const damagePassArmour = chosenDamageModel * (1 - baseArmourReduction);
+                    const absoluteFinalDamage = damagePassArmour * (1 - averageEpfReduction);
+                    
+                    const finalProtectionPercentage = (1 - (absoluteFinalDamage / chosenDamageModel)) * 100;
+                    const survivalHitsToKill = 20.0 / absoluteFinalDamage;
+
+                    calculatedMatrix.push({
+                        name: kitName,
+                        helmet, chestplate, leggings, boots,
+                        primaryWeapon: bestWeapon,
+                        protectionRatio: finalProtectionPercentage,
+                        hitsToKill: survivalHitsToKill
+                    });
+                }
+
+                calculatedMatrix.sort((a, b) => b.protectionRatio - a.protectionRatio);
+
+                let rowHtmlMarkup = '';
+                calculatedMatrix.forEach((entry, index) => {
+                    const rankClassIndex = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
+                    const displayTierSuffix = currentActiveTier === 'X' ? ' X' : ' <img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*"><img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*">';
+                    
+                    let slotsFlexHtml = '<div class="gear-flex">';
+                    slotsFlexHtml += buildSlotHtml(entry.primaryWeapon, entry.name);
+                    [entry.helmet, entry.chestplate, entry.leggings, entry.boots].forEach(piece => {
+                        slotsFlexHtml += buildSlotHtml(piece, entry.name);
+                    });
+                    slotsFlexHtml += '</div>';
+
+                    const rowAction = `onclick="window.location.href='blitzkits.html?kit=${entry.name.toLowerCase().replace(/\s+/g, '-')}'" style="cursor: pointer;"`;
+
+                    rowHtmlMarkup += `
+                        <tr class="player-row" ${rowAction}>
+                            <td style="text-align: center;"><span class="rank ${rankClassIndex}">${index + 1}</span></td>
+                            <td>
+                                <div class="kit-row-meta">
+                                    <div class="kit-icon-frame">
+                                        <img src="${resolveKitAsset(entry.name)}" alt="${entry.name}">
+                                    </div>
+                                    <div>
+                                        <div class="kit-txt-name">${entry.name}${displayTierSuffix}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>${slotsFlexHtml}</td>
+                            <td style="text-align: right; font-weight: 700; color: var(--text); font-family: 'DM Mono', monospace;">${entry.protectionRatio === 0 ? "0.0%" : entry.protectionRatio.toFixed(1) + "%"}</td>
+                            <td style="text-align: right; font-weight: 700; color: var(--accent); font-family: 'DM Mono', monospace;">${entry.hitsToKill.toFixed(1)}</td>
+                        </tr>
+                    `;
+                });
+
+                rowOutputContainer.innerHTML = rowHtmlMarkup;
+                
+            } catch (error) {
+                rowOutputContainer.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--red); padding: 40px !important;">Engine Error: ${error.message}</td></tr>`;
+            }
+        }
+
+        function setMatrixTier(tierSelected) {
+            currentActiveTier = tierSelected;
+            document.getElementById('tier-x-btn').classList.toggle('active', tierSelected === 'X');
+            document.getElementById('tier-p2-btn').classList.toggle('active', tierSelected === 'P2');
+            calculateProtectionLeaderboard();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(calculateProtectionLeaderboard, 150);
+        });
+    </script>
+</body>
+</html>
