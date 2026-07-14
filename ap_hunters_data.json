@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-14T15:17:31.627Z",
+  "last_update": "2026-07-14T17:03:37.085Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -880,9 +880,9 @@
           "username": "combatively",
           "uuid": "23498017b5654aa0b9949effbbdd147e",
           "country": "USA",
-          "current_ap": 24640,
+          "current_ap": 24655,
           "last_month_ap": 24640,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max TKR"
           ]
@@ -2589,7 +2589,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1423,
+      "score": 1433,
       "top_players": [
         {
           "username": "WsprinklesLnacho",
@@ -2604,9 +2604,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26010,
+          "current_ap": 26030,
           "last_month_ap": 25705,
-          "monthly_gain": 305,
+          "monthly_gain": 325,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
