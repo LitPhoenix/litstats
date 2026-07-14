@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-14T11:18:35.432Z",
+  "last_update": "2026-07-14T13:06:51.752Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -3440,21 +3440,6 @@
       ]
     },
     {
-      "country": "Bosnia and Herzegovina",
-      "score": 0,
-      "top_players": [
-        {
-          "username": "SpaceDano",
-          "uuid": "0e42568a6d934984bc699c60ab1895d8",
-          "country": "Bosnia and Herzegovina",
-          "current_ap": 23975,
-          "last_month_ap": 23950,
-          "monthly_gain": 25,
-          "maxGames": []
-        }
-      ]
-    },
-    {
       "country": "Sweden",
       "score": 0,
       "top_players": [
@@ -3477,6 +3462,21 @@
           "maxGames": [
             "Max TKR"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Bosnia and Herzegovina",
+      "score": 0,
+      "top_players": [
+        {
+          "username": "SpaceDano",
+          "uuid": "0e42568a6d934984bc699c60ab1895d8",
+          "country": "Bosnia and Herzegovina",
+          "current_ap": 23975,
+          "last_month_ap": 23950,
+          "monthly_gain": 25,
+          "maxGames": []
         }
       ]
     },
