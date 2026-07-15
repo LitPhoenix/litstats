@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-15T18:55:38.745Z",
+  "last_update": "2026-07-15T20:50:27.603Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -201,7 +201,8 @@
     "92c736b5ae414125b4cacd89bf856a77": 23185,
     "5fd7ec031e054a01b18c2aca29cf1a23": 23180,
     "01834d8a3c7a49c796589979d7a9ab74": 23170,
-    "e3fc5b36a60f4ff1ac2df06405a20601": 23380
+    "e3fc5b36a60f4ff1ac2df06405a20601": 23380,
+    "cef8bc211b264d54b07da2995d587098": 23180
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -381,7 +382,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12665,
+      "score": 12670,
       "top_players": [
         {
           "username": "oJakey",
@@ -452,9 +453,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 31345,
+          "current_ap": 31355,
           "last_month_ap": 31305,
-          "monthly_gain": 40,
+          "monthly_gain": 50,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -499,9 +500,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29665,
+          "current_ap": 29715,
           "last_month_ap": 29340,
-          "monthly_gain": 325,
+          "monthly_gain": 375,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2095,17 +2096,6 @@
           "maxGames": [
             "Max TKR"
           ]
-        },
-        {
-          "username": "rvba",
-          "uuid": "5fd7ec031e054a01b18c2aca29cf1a23",
-          "country": "Poland",
-          "current_ap": 23180,
-          "last_month_ap": 23180,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball"
-          ]
         }
       ]
     },
@@ -3256,6 +3246,17 @@
           "maxGames": [
             "Max Duels",
             "Max Build Battle"
+          ]
+        },
+        {
+          "username": "Oleslaw2009",
+          "uuid": "cef8bc211b264d54b07da2995d587098",
+          "country": "Unknown",
+          "current_ap": 23180,
+          "last_month_ap": 23180,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Wool Games"
           ]
         }
       ]
