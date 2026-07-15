@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-15T01:19:53.056Z",
+  "last_update": "2026-07-15T18:55:39.091Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -385,15 +385,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 18982,
+      "score": 18994.8,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 50250,
+          "current_quests": 50314,
           "last_month_quests": 49664,
-          "monthly_gain": 586
+          "monthly_gain": 650
         },
         {
           "username": "Itz_Pipi",
@@ -485,7 +485,7 @@
     },
     {
       "country": "USA",
-      "score": 45979.4,
+      "score": 45989.2,
       "top_players": [
         {
           "username": "Trtx",
@@ -496,12 +496,12 @@
           "monthly_gain": 0
         },
         {
-          "username": "BlackIceZane",
+          "username": "Shazuh",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
-          "current_quests": 48694,
+          "current_quests": 48743,
           "last_month_quests": 48694,
-          "monthly_gain": 0
+          "monthly_gain": 49
         },
         {
           "username": "Respawnless",
