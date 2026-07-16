@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-16T18:55:42.556Z",
+  "last_update": "2026-07-16T20:47:36.902Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -3152,9 +3152,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23500,
+          "current_ap": 23510,
           "last_month_ap": 23485,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3249,14 +3249,33 @@
           ]
         },
         {
-          "username": "Huvo",
-          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+          "username": "Oleslaw2009",
+          "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23215,
-          "last_month_ap": 23170,
-          "monthly_gain": 45,
+          "current_ap": 23210,
+          "last_month_ap": 23180,
+          "monthly_gain": 30,
           "maxGames": [
-            "Max VampireZ"
+            "Max Wool Games"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Moldova",
+      "score": 320,
+      "top_players": [
+        {
+          "username": "kinqn",
+          "uuid": "4b431497b4094a1d8e15335e81454c4a",
+          "country": "Moldova",
+          "current_ap": 25825,
+          "last_month_ap": 25805,
+          "monthly_gain": 20,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Duels",
+            "Max Build Battle"
           ]
         }
       ]
@@ -3274,25 +3293,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Moldova",
-      "score": 300,
-      "top_players": [
-        {
-          "username": "kinqn",
-          "uuid": "4b431497b4094a1d8e15335e81454c4a",
-          "country": "Moldova",
-          "current_ap": 25805,
-          "last_month_ap": 25805,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Duels",
-            "Max Build Battle"
           ]
         }
       ]
