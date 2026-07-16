@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-16T07:56:05.886Z",
+  "last_update": "2026-07-16T09:56:52.693Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -385,15 +385,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 18994.8,
+      "score": 19000,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 50314,
+          "current_quests": 50340,
           "last_month_quests": 49664,
-          "monthly_gain": 650
+          "monthly_gain": 676
         },
         {
           "username": "Itz_Pipi",
@@ -407,7 +407,7 @@
     },
     {
       "country": "UK",
-      "score": 35982.2,
+      "score": 36082.4,
       "top_players": [
         {
           "username": "NOOB_DESTORYER35",
@@ -437,9 +437,9 @@
           "username": "Shazombie",
           "uuid": "66923dc43af644bba499071739732284",
           "country": "UK",
-          "current_quests": 33809,
+          "current_quests": 34310,
           "last_month_quests": 33809,
-          "monthly_gain": 0
+          "monthly_gain": 501
         },
         {
           "username": "Evdia",
@@ -747,7 +747,7 @@
     },
     {
       "country": "Finland",
-      "score": 14573.4,
+      "score": 14594.8,
       "top_players": [
         {
           "username": "Mol_o",
@@ -761,9 +761,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_quests": 31615,
+          "current_quests": 31722,
           "last_month_quests": 30999,
-          "monthly_gain": 616
+          "monthly_gain": 723
         }
       ]
     },

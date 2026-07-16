@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-16T07:56:05.493Z",
+  "last_update": "2026-07-16T09:56:52.435Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1679,7 +1679,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8241,
+      "score": 8243,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1730,9 +1730,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 26810,
+          "current_ap": 26820,
           "last_month_ap": 26765,
-          "monthly_gain": 45,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2887,6 +2887,22 @@
           ]
         },
         {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 24875,
+          "last_month_ap": 24680,
+          "monthly_gain": 195,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Lilaaay",
           "uuid": "2e1884f69c294bd589e6d7709b100298",
           "country": "Unknown",
@@ -2900,22 +2916,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "EuanKC",
-          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
-          "country": "Unknown",
-          "current_ap": 24855,
-          "last_month_ap": 24680,
-          "monthly_gain": 175,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
