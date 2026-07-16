@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-15T22:48:49.806Z",
+  "last_update": "2026-07-16T01:29:56.638Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -382,7 +382,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12670,
+      "score": 12671,
       "top_players": [
         {
           "username": "oJakey",
@@ -500,9 +500,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29715,
+          "current_ap": 29740,
           "last_month_ap": 29340,
-          "monthly_gain": 375,
+          "monthly_gain": 400,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -857,9 +857,9 @@
           "username": "ysosalty",
           "uuid": "99fcc41648bc45718c6cebfaf501da97",
           "country": "USA",
-          "current_ap": 25420,
+          "current_ap": 25425,
           "last_month_ap": 25420,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR"
@@ -3136,6 +3136,19 @@
           ]
         },
         {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 23505,
+          "last_month_ap": 23380,
+          "monthly_gain": 125,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
@@ -3149,19 +3162,6 @@
             "Max TKR",
             "Max Crazy Walls",
             "Max SkyClash"
-          ]
-        },
-        {
-          "username": "InInk",
-          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
-          "country": "Unknown",
-          "current_ap": 23480,
-          "last_month_ap": 23380,
-          "monthly_gain": 100,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max TKR",
-            "Max Duels"
           ]
         },
         {
