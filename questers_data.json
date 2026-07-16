@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-16T17:03:23.824Z",
+  "last_update": "2026-07-16T18:55:42.788Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -201,15 +201,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49624.6,
+      "score": 49663.8,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 110558,
+          "current_quests": 110754,
           "last_month_quests": 110501,
-          "monthly_gain": 57
+          "monthly_gain": 253
         },
         {
           "username": "ErtrycheZ",
