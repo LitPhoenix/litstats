@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-17T13:03:08.698Z",
+  "last_update": "2026-07-17T15:05:49.651Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2579,7 +2579,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1453,
+      "score": 1463,
       "top_players": [
         {
           "username": "WsprinklesLnacho",
@@ -2594,9 +2594,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26070,
+          "current_ap": 26090,
           "last_month_ap": 25705,
-          "monthly_gain": 365,
+          "monthly_gain": 385,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -3061,9 +3061,9 @@
           "username": "ichhabevape",
           "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
           "country": "Unknown",
-          "current_ap": 23845,
+          "current_ap": 23855,
           "last_month_ap": 23800,
-          "monthly_gain": 45,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Seasonal"
           ]
