@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-17T16:59:34.477Z",
+  "last_update": "2026-07-17T18:52:50.120Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -992,17 +992,6 @@
             "Max TKR",
             "Max Wool Games",
             "Max Seasonal"
-          ]
-        },
-        {
-          "username": "oBeastia",
-          "uuid": "92c736b5ae414125b4cacd89bf856a77",
-          "country": "USA",
-          "current_ap": 23195,
-          "last_month_ap": 23185,
-          "monthly_gain": 10,
-          "maxGames": [
-            "Max Quake"
           ]
         }
       ]
@@ -3008,9 +2997,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 24180,
+          "current_ap": 24190,
           "last_month_ap": 24170,
-          "monthly_gain": 10,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
@@ -3252,11 +3241,22 @@
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23225,
+          "current_ap": 23250,
           "last_month_ap": 23180,
-          "monthly_gain": 45,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Wool Games"
+          ]
+        },
+        {
+          "username": "Huvo",
+          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+          "country": "Unknown",
+          "current_ap": 23240,
+          "last_month_ap": 23170,
+          "monthly_gain": 70,
+          "maxGames": [
+            "Max VampireZ"
           ]
         }
       ]
