@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-17T15:05:49.651Z",
+  "last_update": "2026-07-17T16:59:34.477Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2100,6 +2100,59 @@
       ]
     },
     {
+      "country": "Finland",
+      "score": 4291,
+      "top_players": [
+        {
+          "username": "Champiez",
+          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+          "country": "Finland",
+          "current_ap": 28430,
+          "last_month_ap": 28400,
+          "monthly_gain": 30,
+          "maxGames": [
+            "Max Cops and Crims",
+            "Max Warlords",
+            "Max TNT Games",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
+          "username": "MineElzu60",
+          "uuid": "559860c584174a7c90a8f79332802516",
+          "country": "Finland",
+          "current_ap": 27785,
+          "last_month_ap": 27695,
+          "monthly_gain": 90,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
+          "username": "MatiasSiltanen",
+          "uuid": "e9a871c29903474687b0b045edd35ae9",
+          "country": "Finland",
+          "current_ap": 26410,
+          "last_month_ap": 26410,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Israel",
       "score": 4290,
       "top_players": [
@@ -2176,59 +2229,6 @@
           "last_month_ap": 23605,
           "monthly_gain": 30,
           "maxGames": []
-        }
-      ]
-    },
-    {
-      "country": "Finland",
-      "score": 4271,
-      "top_players": [
-        {
-          "username": "Champiez",
-          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-          "country": "Finland",
-          "current_ap": 28410,
-          "last_month_ap": 28400,
-          "monthly_gain": 10,
-          "maxGames": [
-            "Max Cops and Crims",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
-        },
-        {
-          "username": "MineElzu60",
-          "uuid": "559860c584174a7c90a8f79332802516",
-          "country": "Finland",
-          "current_ap": 27785,
-          "last_month_ap": 27695,
-          "monthly_gain": 90,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "MatiasSiltanen",
-          "uuid": "e9a871c29903474687b0b045edd35ae9",
-          "country": "Finland",
-          "current_ap": 26410,
-          "last_month_ap": 26410,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
         }
       ]
     },
@@ -3524,9 +3524,9 @@
           "username": "7hu",
           "uuid": "6d1160f1c9104aa082c64487645e2c3d",
           "country": "Lithuania",
-          "current_ap": 23390,
+          "current_ap": 23400,
           "last_month_ap": 23360,
-          "monthly_gain": 30,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Arcade"
           ]
