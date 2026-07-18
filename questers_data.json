@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-18T04:39:09.394Z",
+  "last_update": "2026-07-18T07:28:01.938Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -287,15 +287,15 @@
     },
     {
       "country": "Canada",
-      "score": 40302.8,
+      "score": 40308.4,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_quests": 84024,
+          "current_quests": 84052,
           "last_month_quests": 83464,
-          "monthly_gain": 560
+          "monthly_gain": 588
         },
         {
           "username": "enderdrxgon",
@@ -667,15 +667,15 @@
     },
     {
       "country": "Belgium",
-      "score": 9931.4,
+      "score": 9948.4,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 49657,
+          "current_quests": 49742,
           "last_month_quests": 49478,
-          "monthly_gain": 179
+          "monthly_gain": 264
         }
       ]
     },
