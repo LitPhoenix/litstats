@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-19T20:38:31.368Z",
+  "last_update": "2026-07-19T22:42:14.212Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -758,9 +758,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26230,
+          "current_ap": 26260,
           "last_month_ap": 26040,
-          "monthly_gain": 190,
+          "monthly_gain": 220,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -1402,85 +1402,16 @@
       ]
     },
     {
-      "country": "Denmark",
-      "score": 9120,
-      "top_players": [
-        {
-          "username": "tobias49",
-          "uuid": "24132c1e1e504da499e1c2953880acd9",
-          "country": "Denmark",
-          "current_ap": 32175,
-          "last_month_ap": 32175,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max Mega Walls",
-            "Max Blitz",
-            "Max Arena Brawl",
-            "Max Smash Heroes",
-            "Max Paintball",
-            "Max Cops and Crims",
-            "Max Quake",
-            "Max SkyBlock",
-            "Max Speed UHC",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle",
-            "Max Seasonal"
-          ]
-        },
-        {
-          "username": "STAYEZ",
-          "uuid": "998d3241aec046ad9d5009f56d28e413",
-          "country": "Denmark",
-          "current_ap": 30405,
-          "last_month_ap": 30405,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyWars",
-            "Max Blitz",
-            "Max Warlords",
-            "Max Walls",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
-          ]
-        },
-        {
-          "username": "ciyp",
-          "uuid": "0d405677379c43139db69485749d9d31",
-          "country": "Denmark",
-          "current_ap": 23570,
-          "last_month_ap": 23570,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Canada",
-      "score": 9112,
+      "score": 9142,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31650,
+          "current_ap": 31680,
           "last_month_ap": 31500,
-          "monthly_gain": 150,
+          "monthly_gain": 180,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -1662,6 +1593,75 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max SkyBlock"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Denmark",
+      "score": 9120,
+      "top_players": [
+        {
+          "username": "tobias49",
+          "uuid": "24132c1e1e504da499e1c2953880acd9",
+          "country": "Denmark",
+          "current_ap": 32175,
+          "last_month_ap": 32175,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Pit",
+            "Max Mega Walls",
+            "Max Blitz",
+            "Max Arena Brawl",
+            "Max Smash Heroes",
+            "Max Paintball",
+            "Max Cops and Crims",
+            "Max Quake",
+            "Max SkyBlock",
+            "Max Speed UHC",
+            "Max Warlords",
+            "Max Walls",
+            "Max TNT Games",
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle",
+            "Max Seasonal"
+          ]
+        },
+        {
+          "username": "STAYEZ",
+          "uuid": "998d3241aec046ad9d5009f56d28e413",
+          "country": "Denmark",
+          "current_ap": 30405,
+          "last_month_ap": 30405,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max SkyWars",
+            "Max Blitz",
+            "Max Warlords",
+            "Max Walls",
+            "Max TNT Games",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
+          "username": "ciyp",
+          "uuid": "0d405677379c43139db69485749d9d31",
+          "country": "Denmark",
+          "current_ap": 23570,
+          "last_month_ap": 23570,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Wool Games"
           ]
         }
       ]
@@ -3134,6 +3134,19 @@
           ]
         },
         {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "Unknown",
+          "current_ap": 23440,
+          "last_month_ap": 23325,
+          "monthly_gain": 115,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "Jyahp",
           "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
           "country": "Unknown",
@@ -3144,19 +3157,6 @@
             "Max Pit",
             "Max SkyBlock",
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "Quent120",
-          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
-          "country": "Unknown",
-          "current_ap": 23425,
-          "last_month_ap": 23325,
-          "monthly_gain": 100,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -3194,9 +3194,9 @@
           "username": "ULTRAVIOLETlamb",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "Unknown",
-          "current_ap": 23300,
+          "current_ap": 23305,
           "last_month_ap": 23295,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Duels",
             "Max Build Battle"
