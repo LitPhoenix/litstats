@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-19T16:44:41.017Z",
+  "last_update": "2026-07-19T18:50:57.573Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1668,15 +1668,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8243,
+      "score": 8258,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 32110,
+          "current_ap": 32125,
           "last_month_ap": 32085,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -3366,9 +3366,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 25070,
+          "current_ap": 25080,
           "last_month_ap": 25060,
-          "monthly_gain": 10,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Wool Games"
           ]

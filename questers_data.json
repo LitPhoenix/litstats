@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-19T16:44:41.241Z",
+  "last_update": "2026-07-19T18:50:57.947Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -1123,15 +1123,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 5011.6,
+      "score": 5019,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 25058,
+          "current_quests": 25095,
           "last_month_quests": 24866,
-          "monthly_gain": 192
+          "monthly_gain": 229
         }
       ]
     },
