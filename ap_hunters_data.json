@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-20T12:09:38.932Z",
+  "last_update": "2026-07-20T15:45:37.056Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -382,7 +382,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12685,
+      "score": 12695,
       "top_players": [
         {
           "username": "oJakey",
@@ -453,9 +453,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 31390,
+          "current_ap": 31430,
           "last_month_ap": 31305,
-          "monthly_gain": 85,
+          "monthly_gain": 125,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -2079,9 +2079,9 @@
           "username": "Paczuszka",
           "uuid": "6be718564437499fbb6242e17fbaa0c3",
           "country": "Poland",
-          "current_ap": 23470,
+          "current_ap": 23480,
           "last_month_ap": 23470,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max TKR"
           ]
