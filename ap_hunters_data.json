@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-20T17:20:33.697Z",
+  "last_update": "2026-07-20T19:24:51.500Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1782,6 +1782,7 @@
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
+            "Max Warlords",
             "Max Duels"
           ]
         },
@@ -2279,7 +2280,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3674,
+      "score": 3681,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2316,9 +2317,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25780,
+          "current_ap": 25805,
           "last_month_ap": 25580,
-          "monthly_gain": 200,
+          "monthly_gain": 225,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3366,9 +3367,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 25080,
+          "current_ap": 25085,
           "last_month_ap": 25060,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Wool Games"
           ]
