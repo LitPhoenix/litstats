@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-19T22:42:14.212Z",
+  "last_update": "2026-07-20T01:56:34.932Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -382,7 +382,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12674,
+      "score": 12676,
       "top_players": [
         {
           "username": "oJakey",
@@ -500,9 +500,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29785,
+          "current_ap": 29835,
           "last_month_ap": 29340,
-          "monthly_gain": 445,
+          "monthly_gain": 495,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2752,15 +2752,15 @@
     },
     {
       "country": "Unknown",
-      "score": 460,
+      "score": 485,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 25965,
+          "current_ap": 25990,
           "last_month_ap": 25890,
-          "monthly_gain": 75,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3524,9 +3524,9 @@
           "username": "7hu",
           "uuid": "6d1160f1c9104aa082c64487645e2c3d",
           "country": "Lithuania",
-          "current_ap": 23400,
+          "current_ap": 23415,
           "last_month_ap": 23360,
-          "monthly_gain": 40,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Arcade"
           ]
