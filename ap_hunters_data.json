@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-20T08:38:56.852Z",
+  "last_update": "2026-07-20T12:09:38.932Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -382,7 +382,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12676,
+      "score": 12685,
       "top_players": [
         {
           "username": "oJakey",
@@ -453,9 +453,9 @@
           "username": "Sharsherah",
           "uuid": "7289394c9ad843b48213c3e338e1490f",
           "country": "USA",
-          "current_ap": 31355,
+          "current_ap": 31390,
           "last_month_ap": 31305,
-          "monthly_gain": 50,
+          "monthly_gain": 85,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -3504,9 +3504,9 @@
           "username": "0HfLUfFIE",
           "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
           "country": "Hong Kong",
-          "current_ap": 23545,
+          "current_ap": 23555,
           "last_month_ap": 23545,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Paintball",
             "Max Warlords",
