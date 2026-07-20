@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-20T21:01:02.624Z",
+  "last_update": "2026-07-20T22:47:36.045Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -944,6 +944,19 @@
           ]
         },
         {
+          "username": "Shazuh",
+          "uuid": "decd08e13b754a6788b65181f302c94d",
+          "country": "USA",
+          "current_ap": 24055,
+          "last_month_ap": 24045,
+          "monthly_gain": 10,
+          "maxGames": [
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "Samuzl",
           "uuid": "9d98449f501a47359a05534728c621c1",
           "country": "USA",
@@ -954,19 +967,6 @@
             "Max Paintball",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "Shazuh",
-          "uuid": "decd08e13b754a6788b65181f302c94d",
-          "country": "USA",
-          "current_ap": 24045,
-          "last_month_ap": 24045,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
           ]
         },
         {
@@ -1403,15 +1403,15 @@
     },
     {
       "country": "Canada",
-      "score": 9142,
+      "score": 9167,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31680,
+          "current_ap": 31705,
           "last_month_ap": 31500,
-          "monthly_gain": 180,
+          "monthly_gain": 205,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2280,7 +2280,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3681,
+      "score": 3684,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2317,9 +2317,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25805,
+          "current_ap": 25820,
           "last_month_ap": 25580,
-          "monthly_gain": 225,
+          "monthly_gain": 240,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3094,9 +3094,9 @@
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
-          "current_ap": 23530,
+          "current_ap": 23555,
           "last_month_ap": 23380,
-          "monthly_gain": 150,
+          "monthly_gain": 175,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR",
