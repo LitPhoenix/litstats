@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-20T22:47:36.045Z",
+  "last_update": "2026-07-21T01:30:03.233Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -382,7 +382,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12695,
+      "score": 12697,
       "top_players": [
         {
           "username": "oJakey",
@@ -475,9 +475,9 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_ap": 30925,
+          "current_ap": 30950,
           "last_month_ap": 30925,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Blitz",
             "Max Paintball",
@@ -493,6 +493,7 @@
             "Max TKR",
             "Max Wool Games",
             "Max Duels",
+            "Max Build Battle",
             "Max Seasonal"
           ]
         },
@@ -2817,6 +2818,17 @@
           ]
         },
         {
+          "username": "ohDevil",
+          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+          "country": "Unknown",
+          "current_ap": 24970,
+          "last_month_ap": 24715,
+          "monthly_gain": 255,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
@@ -2827,17 +2839,6 @@
             "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "ohDevil",
-          "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
-          "country": "Unknown",
-          "current_ap": 24945,
-          "last_month_ap": 24715,
-          "monthly_gain": 230,
-          "maxGames": [
             "Max Duels"
           ]
         },
