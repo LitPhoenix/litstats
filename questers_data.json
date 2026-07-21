@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-21T13:16:02.594Z",
+  "last_update": "2026-07-21T15:29:46.259Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -619,9 +619,9 @@
           "username": "culorfuj",
           "uuid": "d6c5986a52994cc883e1a4b02a6fb76b",
           "country": "USA",
-          "current_quests": 22687,
+          "current_quests": 22717,
           "last_month_quests": 22633,
-          "monthly_gain": 54
+          "monthly_gain": 84
         },
         {
           "username": "Nightire",
@@ -667,15 +667,15 @@
     },
     {
       "country": "Belgium",
-      "score": 9948.4,
+      "score": 9961,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 49742,
+          "current_quests": 49805,
           "last_month_quests": 49478,
-          "monthly_gain": 264
+          "monthly_gain": 327
         }
       ]
     },
@@ -929,8 +929,16 @@
     },
     {
       "country": "Unknown",
-      "score": 26570.6,
+      "score": 26586.4,
       "top_players": [
+        {
+          "username": "Rayjer",
+          "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+          "country": "Unknown",
+          "current_quests": 28625,
+          "last_month_quests": 28391,
+          "monthly_gain": 234
+        },
         {
           "username": "wannabemykitten",
           "uuid": "d4ef6ea1d12f4da09f690507b2327e43",
@@ -938,14 +946,6 @@
           "current_quests": 28549,
           "last_month_quests": 28549,
           "monthly_gain": 0
-        },
-        {
-          "username": "Rayjer",
-          "uuid": "ac97442ca125422cbd72ae60cdd8340f",
-          "country": "Unknown",
-          "current_quests": 28546,
-          "last_month_quests": 28391,
-          "monthly_gain": 155
         },
         {
           "username": "JokeHit",
