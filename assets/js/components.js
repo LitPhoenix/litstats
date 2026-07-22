@@ -12,7 +12,7 @@ const litHeader = `
         <a href="index.html" class="nav-btn">Player Lookup</a>
         <a href="leaderboard.html" class="nav-btn">AP Leaderboard</a>
         <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
-        <a href="blitz.html" class="nav-btn">Blitz Kits</a>
+        <a href="blitz.html" class="nav-btn">Blitz</a>
         <a href="angel.html" class="nav-btn">Angel's Descent</a>
       </nav>
       <div class="header-controls">
@@ -25,7 +25,7 @@ const litHeader = `
     <a href="index.html" class="nav-btn">Player Lookup</a>
     <a href="leaderboard.html" class="nav-btn">AP Leaderboard</a>
     <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
-    <a href="blitz.html" class="nav-btn">Blitz Kits</a>
+    <a href="blitz.html" class="nav-btn">Blitz</a>
     <a href="angel.html" class="nav-btn">Angel's Descent</a>
   </nav>
 `;
@@ -41,7 +41,7 @@ const litFooter = `
         <a href="index.html" class="nav-btn">Home</a>
         <a href="leaderboard.html" class="nav-btn">Achievements</a>
         <a href="quest.html" class="nav-btn">Quests</a>
-        <a href="blitz.html" class="nav-btn">Blitz Kits</a>
+        <a href="blitz.html" class="nav-btn">Blitz</a>
         <a href="angel.html" class="nav-btn">Angel's Descent</a>
       </div>
       <div class="footer-copyright">
