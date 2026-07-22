@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-22T18:57:02.947Z",
+  "last_update": "2026-07-22T20:56:10.599Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -201,15 +201,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49676.6,
+      "score": 49687.6,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 110770,
+          "current_quests": 110825,
           "last_month_quests": 110501,
-          "monthly_gain": 269
+          "monthly_gain": 324
         },
         {
           "username": "ErtrycheZ",
@@ -485,7 +485,7 @@
     },
     {
       "country": "USA",
-      "score": 46058.8,
+      "score": 46066.2,
       "top_players": [
         {
           "username": "Trtx",
@@ -499,9 +499,9 @@
           "username": "Shazuh",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
-          "current_quests": 48743,
+          "current_quests": 48780,
           "last_month_quests": 48694,
-          "monthly_gain": 49
+          "monthly_gain": 86
         },
         {
           "username": "Respawnless",

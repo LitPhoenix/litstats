@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-22T18:57:02.674Z",
+  "last_update": "2026-07-22T20:56:10.152Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1333,9 +1333,9 @@
           "username": "puffleman3",
           "uuid": "2f066b0e58fd4db6a24bfbce5ab5bdb4",
           "country": "UK",
-          "current_ap": 25795,
+          "current_ap": 25800,
           "last_month_ap": 25800,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max TKR"
           ]
@@ -2082,15 +2082,15 @@
     },
     {
       "country": "Israel",
-      "score": 4315,
+      "score": 4310,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_ap": 28460,
+          "current_ap": 28455,
           "last_month_ap": 28405,
-          "monthly_gain": 55,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Arena Brawl",
             "Max Quake",
@@ -2587,15 +2587,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1360,
+      "score": 1365,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26865,
+          "current_ap": 26870,
           "last_month_ap": 26745,
-          "monthly_gain": 120,
+          "monthly_gain": 125,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -2765,9 +2765,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25455,
+          "current_ap": 25460,
           "last_month_ap": 25390,
-          "monthly_gain": 65,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -3325,15 +3325,15 @@
     },
     {
       "country": "Turkey",
-      "score": 40,
+      "score": 45,
       "top_players": [
         {
           "username": "Melongan",
           "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
           "country": "Turkey",
-          "current_ap": 25545,
+          "current_ap": 25550,
           "last_month_ap": 25550,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max TNT Games",
             "Max Murder Mystery",
