@@ -406,16 +406,16 @@ window.KIT_DATABASE = {
 ]),
 
 "Slimey Slime": kit([
-  { h0: itm('wooden_sword', 'Wooden Sword', 'common', null, ['Knockback I']), helmet: lth('helmet', 'Leather Helmet', ['Projectile Protection IV']), h1: itm('slime_spawn_egg', 'Slime Egg', 'uncommon', 1), h2: spot('Splash Potion of Slowness II (6s)') },
+  { h0: itm('wooden_sword', 'Wooden Sword', 'common', null, ['Knockback I']), helmet: itm('chainmail_helmet', 'Chainmail Helmet', 'uncommon', null, ['Projectile Protection IV']), h1: itm('slime_spawn_egg', 'Slime Egg', 'uncommon', 1), h2: spot('Splash Potion of Slowness II (6s)') },
   { helmet: itm('iron_helmet', 'Iron Helmet', 'uncommon', null, ['Projectile Protection IV']) },
   { h1: itm('slime_spawn_egg', 'Slime Egg', 'uncommon', 2), h2: spot('Splash Potion of Slowness II (6s)', 2) },
-  { boots: itm('iron_boots', 'Iron Boots', 'uncommon'), h2: spot('Splash Potion of Slowness II (8s)', 2) },
-  { boots: itm('iron_boots', 'Iron Boots', 'uncommon', null, ['Projectile Protection IV']), h1: itm('slime_spawn_egg', 'Slime Egg', 'uncommon', 3) },
+  { boots: itm('chainmail_boots', 'Chainmail Boots', 'uncommon'), h2: spot('Splash Potion of Slowness II (8s)', 2) },
+  { boots: itm('chainmail_boots', 'Chainmail Boots', 'uncommon', null, ['Projectile Protection IV']), h1: itm('slime_spawn_egg', 'Slime Egg', 'uncommon', 3) },
   { chestplate: lth('chestplate', 'Leather Chestplate') },
   { h0: itm('iron_axe', 'Iron Axe', 'rare', null, ['Knockback I']), h2: spot('Splash Potion of Slowness II (8s)', 3) },
   { leggings: lth('leggings', 'Leather Leggings') },
-  { boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Projectile Protection IV']), h1: itm('slime_spawn_egg', 'Slime Egg', 'uncommon', 4), h2: spot('Splash Potion of Slowness II (8s)', 4) },
-  { h0: itm('diamond_axe', 'Diamond Axe', 'legendary', null, ['Knockback I']), boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Projectile Protection IV', 'Feather Falling II']) },
+  { boots: itm('iron_boots', 'Iron Boots', 'uncommon', null, ['Projectile Protection IV']), h1: itm('slime_spawn_egg', 'Slime Egg', 'uncommon', 4), h2: spot('Splash Potion of Slowness II (8s)', 4) },
+  { h0: itm('diamond_axe', 'Diamond Axe', 'legendary', null, ['Knockback I']), boots: itm('iron_boots', 'Iron Boots', 'legendary', null, ['Projectile Protection IV', 'Feather Falling II']) },
   { chestplate: lth('chestplate', 'Leather Chestplate', ['Protection I']), leggings: lth('leggings', 'Leather Leggings', ['Protection I']) }
 ]),
 
