@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-22T01:29:33.673Z",
+  "last_update": "2026-07-22T04:59:40.773Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -287,7 +287,7 @@
     },
     {
       "country": "Canada",
-      "score": 40343.6,
+      "score": 40343.8,
       "top_players": [
         {
           "username": "Songgg",
@@ -325,23 +325,23 @@
           "username": "radicul",
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Canada",
-          "current_quests": 21841,
+          "current_quests": 21842,
           "last_month_quests": 21742,
-          "monthly_gain": 99
+          "monthly_gain": 100
         }
       ]
     },
     {
       "country": "Croatia",
-      "score": 12430.4,
+      "score": 12438,
       "top_players": [
         {
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_quests": 62152,
+          "current_quests": 62190,
           "last_month_quests": 61275,
-          "monthly_gain": 877
+          "monthly_gain": 915
         }
       ]
     },
@@ -385,15 +385,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 19008.2,
+      "score": 19039,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 50381,
+          "current_quests": 50535,
           "last_month_quests": 49664,
-          "monthly_gain": 717
+          "monthly_gain": 871
         },
         {
           "username": "Itz_Pipi",
@@ -571,9 +571,9 @@
           "username": "vasiv",
           "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
           "country": "USA",
-          "current_quests": 30938,
+          "current_quests": 30947,
           "last_month_quests": 30888,
-          "monthly_gain": 50
+          "monthly_gain": 59
         },
         {
           "username": "Dumbleech",
@@ -667,15 +667,15 @@
     },
     {
       "country": "Belgium",
-      "score": 9961,
+      "score": 9962.8,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 49805,
+          "current_quests": 49814,
           "last_month_quests": 49478,
-          "monthly_gain": 327
+          "monthly_gain": 336
         }
       ]
     },
