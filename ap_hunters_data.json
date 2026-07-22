@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-21T22:46:04.084Z",
+  "last_update": "2026-07-22T01:29:33.420Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -502,9 +502,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29900,
+          "current_ap": 29915,
           "last_month_ap": 29340,
-          "monthly_gain": 560,
+          "monthly_gain": 575,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -860,9 +860,9 @@
           "username": "needycatboy",
           "uuid": "99fcc41648bc45718c6cebfaf501da97",
           "country": "USA",
-          "current_ap": 25435,
+          "current_ap": 25430,
           "last_month_ap": 25420,
-          "monthly_gain": 15,
+          "monthly_gain": 10,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR"
@@ -2271,7 +2271,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3684,
+      "score": 3688,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2308,9 +2308,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25820,
+          "current_ap": 25835,
           "last_month_ap": 25580,
-          "monthly_gain": 240,
+          "monthly_gain": 255,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2800,9 +2800,9 @@
           "username": "pumpkan",
           "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
           "country": "Unknown",
-          "current_ap": 25010,
+          "current_ap": 25005,
           "last_month_ap": 25010,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Wool Games"
           ]
