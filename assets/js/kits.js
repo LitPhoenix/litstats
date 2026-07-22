@@ -602,16 +602,16 @@ window.KIT_DATABASE = {
 ]),
 
 "Wolftamer": kit([
-  { h0: itm('wooden_axe', 'Wooden Axe', 'common'), boots: itm('chainmail_boots', 'Chainmail Boots', 'uncommon'), h1: itm('wolf_spawn_egg', 'Wolf Egg', 'uncommon', 1), h2: itm('bone', 'Bone', 'common', 10) },
+  { h0: itm('wooden_axe', 'Wooden Axe', 'common'), boots: itm('chainmail_boots', 'Chainmail Boots', 'uncommon'), h1: itm('wolf_spawn_egg', 'Wolf Egg', 'uncommon', 1), h2: itm('bone', 'Rotten Flesh', 'common', 10) },
   { boots: itm('chainmail_boots', 'Chainmail Boots', 'uncommon', null, ['Protection I']) },
-  { boots: itm('chainmail_boots', 'Chainmail Boots', 'uncommon', null, ['Protection II']), h1: itm('wolf_spawn_egg', 'Wolf Egg', 'uncommon', 2), h2: itm('bone', 'Bone', 'common', 12) },
+  { boots: itm('chainmail_boots', 'Chainmail Boots', 'uncommon', null, ['Protection II']), h1: itm('wolf_spawn_egg', 'Wolf Egg', 'uncommon', 2), h2: itm('rotten_flesh', 'Rotten Flesh', 'common', 12) },
   { boots: itm('iron_boots', 'Iron Boots', 'uncommon') },
-  { h0: itm('stone_axe', 'Stone Axe', 'uncommon'), boots: itm('iron_boots', 'Iron Boots', 'uncommon', null, ['Protection I']), h1: itm('wolf_spawn_egg', 'Wolf Egg', 'uncommon', 3), h2: itm('bone', 'Bone', 'common', 14) },
+  { h0: itm('stone_axe', 'Stone Axe', 'uncommon'), boots: itm('iron_boots', 'Iron Boots', 'uncommon', null, ['Protection I']), h1: itm('wolf_spawn_egg', 'Wolf Egg', 'uncommon', 3), h2: itm('rotten_flesh', 'Rotten Flesh', 'common', 14) },
   { helmet: lth('helmet', 'Leather Helmet'), boots: itm('iron_boots', 'Iron Boots', 'uncommon', null, ['Protection II']) },
   { leggings: lth('leggings', 'Leather Leggings'), boots: itm('diamond_boots', 'Diamond Boots', 'legendary') },
-  { chestplate: lth('chestplate', 'Leather Chestplate'), boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Protection II']), h1: itm('wolf_spawn_egg', 'Wolf Egg', 'uncommon', 4), h2: itm('bone', 'Bone', 'common', 18) },
+  { chestplate: lth('chestplate', 'Leather Chestplate'), boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Protection II']), h1: itm('wolf_spawn_egg', 'Wolf Egg', 'uncommon', 4), h2: itm('rotten_flesh', 'Rotten Flesh', 'common', 18) },
   { boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Protection III']) },
-  { h0: itm('iron_axe', 'Iron Axe', 'rare'), boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Protection IV']), h2: itm('bone', 'Bone', 'common', 20) },
+  { h0: itm('iron_axe', 'Iron Axe', 'rare'), boots: itm('diamond_boots', 'Diamond Boots', 'legendary', null, ['Protection IV']), h2: itm('rotten_flesh', 'Rotten Flesh', 'common', 20) },
   { h0: itm('stone_sword', 'Stone Sword', 'uncommon'), h1: itm('wolf_spawn_egg', 'Wolf Egg', 'uncommon', 5) }
 ]),
 
