@@ -12,18 +12,20 @@ const TAG_DB = {
     "Prestige": { type: "Prestige", level: 15 },
     "Renown": { renown: 2000 },
     "Gold": { type: "Gold", cost: "30,000,000" },
+    "All hail the King!": { type: "Prestige", level: 1 },
     "Mysticism": { type: "Prestige", level: 1, renown: 10, tip: "Mysticism unlocks at Prestige 1" },
     "Did I see some blue?": { type: "Prestige", level: 1, renown: 10, tip: "Mysticism I costs 10 renown. Has about a 0.2% chance to drop from kills" },
     "Scam Artist": { type: "Prestige", level: 1, renown: 10, tip: "First tier of Scam Artist unlocks at Prestige 1" },
-    "One small step for pants": { type: "Prestige", level: 1, renown: 30, tip: "Mysticism IV costs 30 renown" },
+    "One small step for Pants": { type: "Prestige", level: 1, renown: 30, tip: "Mysticism IV costs 30 renown" },
     "Rare!": { type: "Prestige", level: 1, renown: 10, tip: "Need Mysticism to enchant items, possible with Tier II items, however more common with Tier III" },
     "This isn't the lobby!": { type: "Prestige", level: 1, renown: 5, tip: "Need Fishing Club I renown upgrade" },
     "Rambo": { type: "Prestige", level: 3, renown: 15, tip: "Need Rambo renown perk" },
     "Paint Job": { type: "Prestige", level: 5, renown: 10, tip: "Need Fancy Hat renown upgrade" },
     "Poet": { type: "Prestige", level: 6, renown: 10, tip: "Need Heresy renown upgrade, complete the night quest in chat, night falls every 36 minutes or you can check [here](https://pit.wiki/Night_Quests)" },
-    "In The Club": { type: "Prestige", level: 7, renown: 30, tip: "Need Fishing Club V renown upgrade" },
+    "In the Club": { type: "Prestige", level: 7, renown: 30, tip: "Need Fishing Club V renown upgrade" },
     "Big Belly": { type: "Prestige", level: 7, renown: 50, tip: "Soup is 30 renown, Olympus is 20 renown, Steaks from pants enchant, Golden Head from its perk, Golden Apple from disabling healing perks" },
     "Fast Pass": { type: "Prestige", level: 10, renown: 100 },
+    "The XX": { type: "Prestige", level: 20},
     "Big Time": { type: "Prestige", level: 25, renown: 3400 },
     // Cost
     "Mountain of Wool": { type: "Wool", cost: "10,000" },
@@ -90,6 +92,7 @@ const TAG_DB = {
     "Feels Good Man": { type: "Coins", cost: "2,500", tip: "Cheapest kit cost 2,500 coins" },
     // Tips
     "Contracts": {tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
+    "Sugar Rush": {tip: "Aim for cherries, they give more gold" },
     // Maps
     "Well Traveled": { type: "Map", map: "Transport" },
     "I Am Your Shield": { type: "Map", map: "Transport" },
@@ -451,10 +454,13 @@ function renderDashboard() {
     };
 
     document.getElementById('col-tiered').innerHTML = tiered.slice(0, limits.tiered).map(ach => {
-        let parsedDesc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, ach.targetAmt);
+        let targetStr = ach.targetAmt.toLocaleString();
+        let displayStr = ach.displayAmt.toLocaleString();
+
+        let parsedDesc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, targetStr);
         ach.desc = parsedDesc;
         
-        let progressText = ach.isCompleted ? `${ach.targetAmt} / ${ach.targetAmt}` : `${ach.displayAmt} / ${ach.targetAmt}`;
+        let progressText = ach.isCompleted ? `${targetStr} / ${targetStr}` : `${displayStr} / ${targetStr}`;
         let barClass = ach.isCompleted ? "ach-progress-fill completed-tier" : "ach-progress-fill";
 
         let notches = '';
