@@ -19,7 +19,7 @@ const TAG_DB = {
     "One small step for Pants": { type: "Prestige", level: 1, renown: 30, tip: "Mysticism IV costs 30 renown" },
     "Rare!": { type: "Prestige", level: 1, renown: 10, tip: "Need Mysticism to enchant items, possible with Tier II items, however more common with Tier III" },
     "This isn't the lobby!": { type: "Prestige", level: 1, renown: 5, tip: "Need Fishing Club I renown upgrade" },
-    "Rambo": { type: "Prestige", level: 3, renown: 15, tip: "Need Rambo renown perk" },
+    "[Pit] Rambo": { type: "Prestige", level: 3, renown: 15, tip: "Need Rambo renown perk" },
     "Paint Job": { type: "Prestige", level: 5, renown: 10, tip: "Need Fancy Hat renown upgrade" },
     "Poet": { type: "Prestige", level: 6, renown: 10, tip: "Need Heresy renown upgrade, complete the night quest in chat, night falls every 36 minutes or you can check [here](https://pit.wiki/Night_Quests)" },
     "In the Club": { type: "Prestige", level: 7, renown: 30, tip: "Need Fishing Club V renown upgrade" },
@@ -44,7 +44,7 @@ const TAG_DB = {
     "Finally": { type: "Coins", cost: "1,416,480" },
     "HORSEEEYYY": { type: "Coins", cost: "100,000", tip: "Could get Horsetamer during Blitz Hour" },
     "#pigrider77": { type: "Coins", cost: "1,416,480", tip: "Could ride the pig mob while using the pig taunt" },
-    "Collector": { type: "Coins", cost: "4,249,440", tip: "3 standard Level X kits costs 4,249,440, however it's free to level Ultimate kits" },
+    "[Blitz] Collector": { type: "Coins", cost: "4,249,440", tip: "3 standard Level X kits costs 4,249,440, however it's free to level Ultimate kits" },
     "So Shiny": { type: "Coins", cost: "3,416,480", tip: "Standard Prestige kit costs 3,416,480, if you prestige an Ultimate kit, you only spend 2,000,000 extra" },
     "Even Shinier": { type: "Coins", cost: "3,916,480", tip: "Standard Prestige II kit costs 3,916,480, if you prestige an Ultimate kit, you only spend 2,500,000 extra" },
     "Jack of All Trades": { type: "Coins", cost: "1,045,000", tip: "Need Ultimate kit requirements too" },
@@ -309,7 +309,9 @@ function renderDashboard() {
         // Process custom tags
         let tagsHtml = '';
         let tipHtml = '';
-        const tagData = TAG_DB[ach.title];
+        let cleanGame = ach.game.replace('Max ', '');
+        const tagData = TAG_DB[`[${cleanGame}] ${ach.title}`] || TAG_DB[ach.title];
+
         if (tagData) {
             if (tagData.type) {
                 let colour = tagData.type === 'Broken' ? 'var(--red)' : tagData.type === 'Map' ? 'var(--green)' : 'var(--gold)';
