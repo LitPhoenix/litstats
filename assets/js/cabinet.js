@@ -7,7 +7,7 @@ const compGames = ["Mega Walls", "Pit", "UHC"];
 // Custom tags DB
 const TAG_DB = {
     // Broken
-    "Untouched": { type: "Broken", tip: "Obtainable on Dwarven, Nordic, Outback and Jungle but the achievement is very random. If these maps don't work, try leave a game you know your team will win" },
+    "Untouched": { type: "Broken", tip: "Obtainable on Dwarven, Nordic, Outback and Jungle, if these maps don't work, try leave a game you know your team will win, or eat a gapple before your absorption ends when the walls fall" },
     // Cost - Prestige +/ Renown
     "Prestige": { type: "Prestige", level: 15 },
     "Renown": { renown: 2000 },
