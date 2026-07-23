@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-22T22:54:25.083Z",
+  "last_update": "2026-07-23T01:48:58.326Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -502,9 +502,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29935,
+          "current_ap": 29930,
           "last_month_ap": 29340,
-          "monthly_gain": 595,
+          "monthly_gain": 590,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -541,9 +541,9 @@
           "username": "Physiological",
           "uuid": "8b87c1da0a114a988235c7f54bf48b51",
           "country": "USA",
-          "current_ap": 29315,
+          "current_ap": 29310,
           "last_month_ap": 29290,
-          "monthly_gain": 25,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Blitz",
             "Max Smash Heroes",
@@ -710,9 +710,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26810,
+          "current_ap": 26805,
           "last_month_ap": 26765,
-          "monthly_gain": 45,
+          "monthly_gain": 40,
           "maxGames": [
             "Max SkyBlock",
             "Max Warlords",
@@ -2469,7 +2469,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1740,
+      "score": 1743,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2486,9 +2486,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26295,
+          "current_ap": 26300,
           "last_month_ap": 26275,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -2560,15 +2560,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 1475,
+      "score": 1470,
       "top_players": [
         {
           "username": "WsprinklesLnacho",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26675,
+          "current_ap": 26670,
           "last_month_ap": 26635,
-          "monthly_gain": 40,
+          "monthly_gain": 35,
           "maxGames": []
         },
         {
@@ -3098,9 +3098,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23510,
+          "current_ap": 23505,
           "last_month_ap": 23485,
-          "monthly_gain": 25,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
