@@ -1,14 +1,113 @@
 let globalPlayerData = null;
 let activeGameFilters = new Set();
-let isCompExcluded = false;
-let maxedHidden = false;
+let isCompExcluded = localStorage.getItem('litstats_excludeComp') === 'true';
+let maxedHidden = localStorage.getItem('litstats_maxedHidden') === 'true';
 const compGames = ["Mega Walls", "Pit", "UHC"];
 
 // Custom tags DB
 const TAG_DB = {
-    "Kill Secured": { type: "Broken", tip: "Currently bugged and does not track." },
-    "Mountain of Wool": { type: "Coin", cost: "50,000", tip: "Buy the wool weaver perk." },
-    "Block Runner": { type: "Map", tip: "Best done on Map A." }
+    // Broken
+    "Untouched": { type: "Broken", tip: "Obtainable on Dwarven, Nordic, Outback and Jungle but the achievement is very random. If these maps don't work, try leave a game you know your team will win" },
+    // Cost - Prestige +/ Renown
+    "Prestige": { type: "Prestige", level: 15 },
+    "Renown": { renown: 2000 },
+    "Gold": { type: "Gold", cost: "30,000,000" },
+    "Mysticism": { type: "Prestige", level: 1, renown: 10, tip: "Mysticism unlocks at Prestige 1" },
+    "Did I see some blue?": { type: "Prestige", level: 1, renown: 10, tip: "Mysticism I costs 10 renown. Has about a 0.2% chance to drop from kills" },
+    "Scam Artist": { type: "Prestige", level: 1, renown: 10, tip: "First tier of Scam Artist unlocks at Prestige 1" },
+    "One small step for pants": { type: "Prestige", level: 1, renown: 30, tip: "Mysticism IV costs 30 renown" },
+    "Rare!": { type: "Prestige", level: 1, renown: 10, tip: "Need Mysticism to enchant items, possible with Tier II items, however more common with Tier III" },
+    "This isn't the lobby!": { type: "Prestige", level: 1, renown: 5, tip: "Need Fishing Club I renown upgrade" },
+    "Rambo": { type: "Prestige", level: 3, renown: 15, tip: "Need Rambo renown perk" },
+    "Paint Job": { type: "Prestige", level: 5, renown: 10, tip: "Need Fancy Hat renown upgrade" },
+    "Poet": { type: "Prestige", level: 6, renown: 10, tip: "Need Heresy renown upgrade, complete the night quest in chat, night falls every 36 minutes or you can check [here](https://pit.wiki/Night_Quests)" },
+    "In The Club": { type: "Prestige", level: 7, renown: 30, tip: "Need Fishing Club V renown upgrade" },
+    "Big Belly": { type: "Prestige", level: 7, renown: 50, tip: "Soup is 30 renown, Olympus is 20 renown, Steaks from pants enchant, Golden Head from its perk, Golden Apple from disabling healing perks" },
+    "Fast Pass": { type: "Prestige", level: 10, renown: 100 },
+    "Big Time": { type: "Prestige", level: 25, renown: 3400 },
+    // Cost
+    "Mountain of Wool": { type: "Wool", cost: "10,000" },
+    "Magical Box": { type: "Coins", cost: "1,350,000", tip: "You can buy 100 keys for 45,000 coins\nPrice tag shown is the minimum for Tier 5" },
+    "Runic Enhancements": { type: "Coins", cost: "500" },
+    "Melee Specialization": { type: "Coins", cost: "250,530" },
+    "Health Specialization": { type: "Coins", cost: "250,530" },
+    "Energy Specialization": { type: "Coins", cost: "250,530" },
+    "Cooldown Specialization": { type: "Coins", cost: "250,530" },
+    "Maximum Runic Magic": { type: "Coins", cost: "296,250" },
+    "Kit Collector": { type: "Coins", cost: "120,000", tip: "View Blitz kit prices [here](www.litstats.com/blitzkits)\nPrice tag shown is the minimum for Tier 5" },
+    "Can't Decide!": { type: "Coins", cost: "560" },
+    "Lucky #7": { type: "Coins", cost: "66,480" },
+    "Raised By Wolves": { type: "Coins", cost: "40,000", tip: "Could get Wolftamer during Blitz Hour" },
+    "Blitz Maniac": { type: "Coins", cost: "80,000", tip: "Price shown is the minimum" },
+    "Finally": { type: "Coins", cost: "1,416,480" },
+    "HORSEEEYYY": { type: "Coins", cost: "100,000", tip: "Could get Horsetamer during Blitz Hour" },
+    "#pigrider77": { type: "Coins", cost: "1,416,480", tip: "Could ride the pig mob while using the pig taunt" },
+    "Collector": { type: "Coins", cost: "4,249,440", tip: "3 standard Level X kits costs 4,249,440, however it's free to level Ultimate kits" },
+    "So Shiny": { type: "Coins", cost: "3,416,480", tip: "Standard Prestige kit costs 3,416,480, if you prestige an Ultimate kit, you only spend 2,000,000 extra" },
+    "Even Shinier": { type: "Coins", cost: "3,916,480", tip: "Standard Prestige II kit costs 3,916,480, if you prestige an Ultimate kit, you only spend 2,500,000 extra" },
+    "Jack of All Trades": { type: "Coins", cost: "1,045,000", tip: "Need Ultimate kit requirements too" },
+    "Superior Vote": { type: "Tokens", cost: "2,000"},
+    "Fancy": { type: "Tokens", cost: "900"},
+    "Musician": { type: "Tokens", cost: "125,000", tip: "All songs cost the same amount, 5,000 coins" },
+    "The Hat Master": { type: "Tokens", cost: "652,937"},
+    "Like my gun?": { type: "Coins", cost: "10,000", tip: "Need VIP/VIP+ and 10k coins for Pistol, SMG, Auto Shotgun, Scoped Rifle, Carbine skins, or get 100 pistol kills for free skin" },
+    "Fancy New Toys": { type: "Coins", cost: "125,000", tip: "Need VIP/VIP+ and 10k coins for Pistol, SMG, Auto Shotgun, Scoped Rifle, Carbine skins, other gun skins are 15k, or obtain free stat skins" },
+    "Warfare Stylist": { type: "Coins", cost: "4,000", tip: "Variations are 1,000 coins each, 350 for helmet, 650 for chestplate"},
+    "Maximizado": { type: "Gold", cost: "15,000" },
+    "Fully Upgraded": { type: "Gold", cost: "175,250", tip: "Best to do it in combination with Gold Magnate" },
+    "Gold Magnate": { type: "Gold", cost: "250,000", tip: "Best to do it in combination with Fully Upgraded" },
+    "I bought a thing!": { type: "Gold", cost: "10,000", tip: "Can be bought for 5k-10k gold if the item is bad" },
+    "Hat Collector": { type: "Coins", cost: "522,000", tip: "Between each tier: 7,600 / 29400 / 475,000 coins" },
+    "Mad Hatter": { type: "Coins", cost: "2,000", tip: "Cheapest hat is 2,000 coins" },
+    "Now you see me": { type: "Coins", cost: "4,200" },
+    "Explosive Death": { type: "Coins", cost: "4,200" },
+    "Go home, you're drunk": { type: "Coins", cost: "4,200", tip: "You can disable distortion effects in the latest version in accessibility settings" },
+    "Cheating Death": { type: "Coins", cost: "50,000" },
+    "Espionage": { type: "Coins", cost: "75,000" },
+    "Undercover Sloth": { type: "Coins", cost: "75,000" },
+    "The Originals": { type: "Coins", cost: "150,000", tip: "Required hats are 75k coins each" },
+    "Godfather": { type: "Coins", cost: "2,325,000", tip: "It is recommended to upgrade Endurance before Godfather" },
+    "Endurance": { type: "Coins", cost: "3,487,500", tip: "It is recommended to upgrade Endurance before Godfather" },
+    "New Style": { type: "Mystery Dust", cost: "5", tip: "Blueshell Inc's Eclipse costs 5 Mystery Dust" },
+    "Mechanic": { type: "Coins", cost: "1,406", tip: "Cheapest part costs 1,406 coins" },
+    "I'm Lucky": { type: "Coins", cost: "2,500" },
+    "Honking Amazing": { type: "Coins", cost: "10,000" },
+    "Show Off": { type: "Coins", cost: "25,000" },
+    "Ungrateful": { type: "Coins", cost: "120,000", tip: "It is recommended to scrap the one you get from the Gettin' Paid achievement" },
+    "Eternally Awesome": { type: "Coins", cost: "871,872", tip: "Engine = 290,623, Frame = 290,624, Turbocharger = 290,625" },
+    "Getting Ready": { type: "Coins", cost: "350", tip: "Farmer, Escapist, Trap Engineer, Watch Your Step! all cost 350 coins" },
+    "Getting Stronger": { type: "Coins", cost: "2,500", tip: "Adrenaline I costs 2,500 coins" },
+    "MOAR!!": { type: "Coins", cost: "13,140", tip: "Cheapest kits cost 13,140 coins" },
+    "This isn't VampireZ...": { type: "Coins", cost: "16,600" },
+    "Conan the Barbarian": { type: "Coins", cost: "18,600" },
+    "Robbed!": { type: "Coins", cost: "977,500" },
+    "Experience Express": { type: "Coins", cost: "6,000" },
+    "Reaching The Sky": { type: "Coins", cost: "50,000" },
+    "Young Apprentice, You are not": { type: "Coins", cost: "250,000", tip: "Requires a Prestige 5 Level 20 Hero" },
+    "Master of Masters": { type: "Coins", cost: "250,000", tip: "Requires 2000 kills with a Mastery" },
+    "Kit Specialist": { type: "Coins", cost: "37,500", tip: "Cheapest 15 kits cost 37,500 coins" },
+    "Feels Good Man": { type: "Coins", cost: "2,500", tip: "Cheapest kit cost 2,500 coins" },
+    "Feels Good Man": { type: "Coins", cost: "2,500", tip: "Cheapest kit cost 2,500 coins" },
+    // Tips
+    "Contracts": {tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
+    // Maps
+    "Well Traveled": { type: "Map", map: "Transport" },
+    "I Am Your Shield": { type: "Map", map: "Transport" },
+    "Totally Tubular": { type: "Map", map: "Transport" },
+    "Paranoid much?": { type: "Map", map: "Transport" },
+    "Mixed messages": { type: "Map", map: "Ancient Tomb" },
+    "It's Time To Stop": { type: "Map", map: "Ancient Tomb" },
+    "Beyond The Grave": { type: "Map", map: "Ancient Tomb" },
+    "This Isn't A Funfair ... Maybe": { type: "Map", map: "Hypixel World" },
+    "Wicked Ride": { type: "Map", map: "Hypixel World" },
+    "You Did Not See That Coming!": { type: "Map", map: "Hypixel World" },
+    "We're Set": { type: "Map", map: "Gold Rush" },
+    "It's High Noon": { type: "Map", map: "Gold Rush" },
+    "Cacti Cleared": { type: "Map", map: "Gold Rush" },
+    "Storm Chaser": { type: "Map", map: "Cruise Ship" },
+    "Game-ception": { type: "Map", map: "Cruise Ship" },
+    "JAWS!": { type: "Map", map: "Aquarium" },
+    "Dropper: Well, Well, Well": { type: "Map", map: "Floating Island" }
 };
 
 let ignoredAchs = JSON.parse(localStorage.getItem('litstats_ignored')) || [];
@@ -16,7 +115,7 @@ let bookmarkedAchs = JSON.parse(localStorage.getItem('litstats_bookmarked')) || 
 let viewMode = 'all'; // 'all', 'ignored', 'bookmarks'
 
 window.activeTierView = {}; 
-window.limits = { tiered: 10, challenge: 10, recent: 20 };
+window.limits = { tiered: 12, challenge: 12, recent: 24 };
 
 window.toggleViewMode = function(mode) {
     if (viewMode === mode) viewMode = 'all';
@@ -101,6 +200,7 @@ function getGameIconUrl(gameName) {
 
 function toggleMaxedGames() {
     maxedHidden = !maxedHidden;
+    localStorage.setItem('litstats_maxedHidden', maxedHidden);
     document.getElementById('maxed-column').classList.toggle('collapsed', maxedHidden);
     const toggleBtn = document.getElementById('toggleMaxedBtn');
     toggleBtn.innerText = maxedHidden ? "Show Max Games" : "Hide Max Games";
@@ -129,6 +229,7 @@ function toggleGameFilter(gameName) {
 
 function toggleExcludeComp() {
     isCompExcluded = document.getElementById('excludeComp').checked;
+    localStorage.setItem('litstats_excludeComp', isCompExcluded);
     if (isCompExcluded) compGames.forEach(g => activeGameFilters.delete(g));
     
     document.querySelectorAll('.game-badge').forEach(badge => {
@@ -207,10 +308,66 @@ function renderDashboard() {
         let tipHtml = '';
         const tagData = TAG_DB[ach.title];
         if (tagData) {
-            let colour = tagData.type === 'Broken' ? 'var(--red)' : tagData.type === 'Map' ? 'var(--green)' : 'var(--gold)';
-            let costStr = tagData.cost ? ` (${tagData.cost})` : '';
-            tagsHtml = `<span class="sleek-tag" style="--tag-color: ${colour};">${tagData.type}${costStr}</span>`;
-            if (tagData.tip) tipHtml = `<div class="ach-tip"><i>Tip: ${tagData.tip}</i></div>`;
+            if (tagData.type) {
+                let colour = tagData.type === 'Broken' ? 'var(--red)' : tagData.type === 'Map' ? 'var(--green)' : 'var(--gold)';
+                
+                if (tagData.type === 'Prestige' && tagData.level) {
+                    let lvl = parseInt(tagData.level, 10);
+                    let bCol = lvl <= 4 ? '#5555FF' : lvl <= 9 ? '#FFFF55' : lvl <= 14 ? '#FFAA00' : 
+                            lvl <= 19 ? '#FF5555' : lvl <= 24 ? '#AA00AA' : lvl <= 29 ? '#FF55FF' : 
+                            lvl <= 34 ? '#FFFFFF' : lvl <= 39 ? '#55FFFF' : lvl <= 44 ? '#0000AA' : 
+                            lvl <= 47 ? '#000000' : lvl <= 49 ? '#AA0000' : '#555555';
+                    
+                    const romanMap = { L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
+                    let rStr = '', n = lvl;
+                    for (let i of Object.keys(romanMap)) {
+                        let q = Math.floor(n / romanMap[i]);
+                        n -= q * romanMap[i];
+                        rStr += i.repeat(q);
+                    }
+                    
+                    tagsHtml += `<span class="sleek-tag" style="--tag-color: ${bCol};"><span style="color: ${bCol}; font-weight: bold;">[</span><span style="color: var(--text);">${rStr}</span><span style="color: ${bCol}; font-weight: bold;">]</span></span>`;
+                } else {
+                    let tagText;
+                    if (tagData.type === 'Map') {
+                        tagText = tagData.map;
+                    } else if (tagData.cost) {
+                        let num = parseInt(tagData.cost.replace(/,/g, ''), 10);
+                        let formattedCost = num >= 1000000 
+                            ? (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M' 
+                            : num >= 1000 
+                                ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K' 
+                                : num;
+                        tagText = `${formattedCost} ${tagData.type}`;
+                    } else {
+                        tagText = tagData.type;
+                    }
+                    
+                    tagsHtml += `<span class="sleek-tag" style="--tag-color: ${colour};">${tagText}</span>`;
+                }
+            }
+            
+            if (tagData.renown) {
+                tagsHtml += ` <span class="sleek-tag" style="--tag-color: #FFFF55; margin-left: 4px;">${tagData.renown} Renown</span>`;
+            }
+            
+            if (tagData.tip) {
+                let linkedTip = tagData.tip
+                    // Convert [text](url) to a clickable hyperlink
+                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
+                        let href = url.startsWith('http') ? url : `https://${url}`;
+                        return `<a href="${href}" target="_blank" style="color: inherit; text-decoration: underline;">${text}</a>`;
+                    })
+                    // Convert remaining raw URLs
+                    .replace(/(?<!["'])(https?:\/\/[^\s<]+|www\.[^\s<]+)(?![^<]*>)/g, match => {
+                        let href = match.startsWith('http') ? match : `https://${match}`;
+                        return `<a href="${href}" target="_blank" style="color: inherit; text-decoration: underline;">${match}</a>`;
+                    })
+                    // Convert newline characters to HTML line breaks
+                    .replace(/\n/g, '<br>');
+                    
+                tipHtml = `<div class="ach-tip"><i>Tip: ${linkedTip}</i></div>`;
+            }
         }
         ach.tagsHtml = tagsHtml;
         ach.tipHtml = tipHtml;
@@ -554,5 +711,19 @@ async function initCabinet() {
     document.getElementById('errorBox').classList.remove('hidden');
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const excludeCheckbox = document.getElementById('excludeComp');
+    if (excludeCheckbox) excludeCheckbox.checked = isCompExcluded;
+
+    if (maxedHidden) {
+        document.getElementById('maxed-column')?.classList.add('collapsed');
+        const toggleBtn = document.getElementById('toggleMaxedBtn');
+        if (toggleBtn) {
+            toggleBtn.innerText = "Show Max Games";
+            toggleBtn.setAttribute('aria-pressed', 'true');
+        }
+    }
+});
 
 initCabinet();
