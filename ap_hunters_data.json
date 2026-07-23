@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-23T15:48:11.277Z",
+  "last_update": "2026-07-23T17:10:04.463Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1372,9 +1372,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24425,
+          "current_ap": 24420,
           "last_month_ap": 24425,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Mega Walls"
           ]
@@ -1406,15 +1406,15 @@
     },
     {
       "country": "Canada",
-      "score": 9217,
+      "score": 9222,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31755,
+          "current_ap": 31760,
           "last_month_ap": 31500,
-          "monthly_gain": 255,
+          "monthly_gain": 260,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2004,15 +2004,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5335,
+      "score": 5365,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30840,
+          "current_ap": 30870,
           "last_month_ap": 30815,
-          "monthly_gain": 25,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2023,6 +2023,7 @@
             "Max Warlords",
             "Max Walls",
             "Max TNT Games",
+            "Max Arcade",
             "Max Murder Mystery",
             "Max VampireZ",
             "Max TKR",
@@ -2811,9 +2812,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 24970,
+          "current_ap": 24965,
           "last_month_ap": 24715,
-          "monthly_gain": 255,
+          "monthly_gain": 250,
           "maxGames": [
             "Max Duels"
           ]
@@ -2954,9 +2955,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 24185,
+          "current_ap": 24190,
           "last_month_ap": 24170,
-          "monthly_gain": 15,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
@@ -3325,15 +3326,15 @@
     },
     {
       "country": "Turkey",
-      "score": 45,
+      "score": 40,
       "top_players": [
         {
           "username": "Melongan",
           "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
           "country": "Turkey",
-          "current_ap": 25550,
+          "current_ap": 25545,
           "last_month_ap": 25550,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max TNT Games",
             "Max Murder Mystery",
