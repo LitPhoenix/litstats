@@ -498,9 +498,9 @@ window.KIT_DATABASE = {
   { h0: itm('stone_sword', 'Stone Sword', 'uncommon', null, ['Unbreaking I']) },
   { chestplate: itm('chainmail_chestplate', 'Chainmail Chestplate', 'uncommon', null, ['Protection I', 'Unbreaking I']) },
   { chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon', null, ['Unbreaking I']) },
-  { helmet: itm('iron_helmet', 'Iron Helmet', 'uncommon'), h1: spot('Splash Potion of Healing I', 3) },
-  { h0: itm('iron_sword', 'Iron Sword', 'rare', null, ['Unbreaking I']), helmet: itm('iron_helmet', 'Iron Helmet', 'uncommon', null, ['Protection I', 'Unbreaking I']), chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon') },
-  { chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon', null, ['Protection II', 'Unbreaking I']) }
+  { h1: spot('Splash Potion of Healing I', 3) },
+  { h0: itm('iron_sword', 'Iron Sword', 'rare', null, ['Unbreaking I']) },
+  { chestplate: itm('iron_chestplate', 'Iron Chestplate', 'uncommon', null, ['Protection I', 'Unbreaking I']) }
 ]),
 
 "Necromancer": kit([
