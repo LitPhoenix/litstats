@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-23T05:16:06.793Z",
+  "last_update": "2026-07-23T08:10:58.461Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1591,9 +1591,9 @@
           "username": "mohtele",
           "uuid": "bde72daebb4640ae90ee096f26bb5f85",
           "country": "Canada",
-          "current_ap": 23555,
+          "current_ap": 23550,
           "last_month_ap": 23555,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max SkyBlock"
           ]
@@ -2004,15 +2004,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5340,
+      "score": 5335,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30845,
+          "current_ap": 30840,
           "last_month_ap": 30815,
-          "monthly_gain": 30,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2439,9 +2439,9 @@
           "username": "kawaa",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
-          "current_ap": 25345,
+          "current_ap": 25340,
           "last_month_ap": 25345,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -3177,9 +3177,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
-          "current_ap": 23355,
+          "current_ap": 23360,
           "last_month_ap": 23330,
-          "monthly_gain": 25,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3212,9 +3212,9 @@
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23270,
+          "current_ap": 23265,
           "last_month_ap": 23180,
-          "monthly_gain": 90,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Wool Games"
           ]
