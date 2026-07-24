@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-24T17:21:01.696Z",
+  "last_update": "2026-07-24T19:12:06.395Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -383,15 +383,15 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12704,
+      "score": 12699,
       "top_players": [
         {
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_ap": 32490,
+          "current_ap": 32485,
           "last_month_ap": 32490,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -502,9 +502,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29960,
+          "current_ap": 29970,
           "last_month_ap": 29340,
-          "monthly_gain": 620,
+          "monthly_gain": 630,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -559,9 +559,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28765,
+          "current_ap": 28760,
           "last_month_ap": 28765,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Warlords",
             "Max Walls",
@@ -610,9 +610,9 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27800,
+          "current_ap": 27805,
           "last_month_ap": 27780,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Cops and Crims",
             "Max Arcade",
@@ -642,9 +642,9 @@
           "username": "baseballaholic",
           "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
           "country": "USA",
-          "current_ap": 27445,
+          "current_ap": 27440,
           "last_month_ap": 27445,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max TKR"
           ]
@@ -1372,9 +1372,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24420,
+          "current_ap": 24425,
           "last_month_ap": 24425,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Mega Walls"
           ]
@@ -2336,7 +2336,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2798,
+      "score": 2799,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2369,9 +2369,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26285,
+          "current_ap": 26290,
           "last_month_ap": 26280,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
@@ -3008,9 +3008,9 @@
           "username": "ichhabevape",
           "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
           "country": "Unknown",
-          "current_ap": 23850,
+          "current_ap": 23855,
           "last_month_ap": 23800,
-          "monthly_gain": 50,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Seasonal"
           ]
@@ -3326,15 +3326,15 @@
     },
     {
       "country": "Turkey",
-      "score": 45,
+      "score": 40,
       "top_players": [
         {
           "username": "Melongan",
           "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
           "country": "Turkey",
-          "current_ap": 25550,
+          "current_ap": 25545,
           "last_month_ap": 25550,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max TNT Games",
             "Max Murder Mystery",
