@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-24T05:01:00.880Z",
+  "last_update": "2026-07-24T08:07:40.398Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -710,9 +710,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26805,
+          "current_ap": 26810,
           "last_month_ap": 26765,
-          "monthly_gain": 40,
+          "monthly_gain": 45,
           "maxGames": [
             "Max SkyBlock",
             "Max Warlords",
@@ -745,9 +745,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 26390,
+          "current_ap": 26395,
           "last_month_ap": 26395,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -2083,7 +2083,7 @@
     },
     {
       "country": "Israel",
-      "score": 4313,
+      "score": 4315,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2120,9 +2120,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26195,
+          "current_ap": 26205,
           "last_month_ap": 26175,
-          "monthly_gain": 20,
+          "monthly_gain": 30,
           "maxGames": []
         },
         {
@@ -2272,7 +2272,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3706,
+      "score": 3708,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2309,9 +2309,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25905,
+          "current_ap": 25915,
           "last_month_ap": 25580,
-          "monthly_gain": 325,
+          "monthly_gain": 335,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
