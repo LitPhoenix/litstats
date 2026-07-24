@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-23T22:47:15.773Z",
+  "last_update": "2026-07-24T01:44:46.063Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -383,7 +383,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12704,
+      "score": 12703,
       "top_players": [
         {
           "username": "oJakey",
@@ -502,9 +502,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 29960,
+          "current_ap": 29955,
           "last_month_ap": 29340,
-          "monthly_gain": 620,
+          "monthly_gain": 615,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -610,9 +610,9 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27805,
+          "current_ap": 27800,
           "last_month_ap": 27780,
-          "monthly_gain": 25,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Cops and Crims",
             "Max Arcade",
@@ -745,9 +745,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 26395,
+          "current_ap": 26390,
           "last_month_ap": 26395,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -2083,7 +2083,7 @@
     },
     {
       "country": "Israel",
-      "score": 4315,
+      "score": 4313,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2107,9 +2107,9 @@
           "username": "Kickuxer",
           "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
           "country": "Israel",
-          "current_ap": 27880,
+          "current_ap": 27875,
           "last_month_ap": 27805,
-          "monthly_gain": 75,
+          "monthly_gain": 70,
           "maxGames": [
             "Max SkyBlock",
             "Max Speed UHC",
@@ -2470,7 +2470,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1740,
+      "score": 1743,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2487,9 +2487,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26295,
+          "current_ap": 26300,
           "last_month_ap": 26275,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -2745,15 +2745,15 @@
     },
     {
       "country": "Unknown",
-      "score": 485,
+      "score": 480,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 25990,
+          "current_ap": 25985,
           "last_month_ap": 25890,
-          "monthly_gain": 100,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
