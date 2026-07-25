@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-25T18:51:47.906Z",
+  "last_update": "2026-07-25T20:41:31.715Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -383,7 +383,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12705,
+      "score": 12706,
       "top_players": [
         {
           "username": "oJakey",
@@ -476,9 +476,9 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_ap": 30945,
+          "current_ap": 30950,
           "last_month_ap": 30925,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Blitz",
             "Max Paintball",
@@ -610,9 +610,9 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27805,
+          "current_ap": 27800,
           "last_month_ap": 27780,
-          "monthly_gain": 25,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Cops and Crims",
             "Max Arcade",
@@ -1483,9 +1483,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26670,
+          "current_ap": 26665,
           "last_month_ap": 26670,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -2500,15 +2500,15 @@
     },
     {
       "country": "Australia",
-      "score": 1625,
+      "score": 1620,
       "top_players": [
         {
           "username": "TotalDramaIsland",
           "uuid": "dbb5f49cc2394912b1ca89783632d068",
           "country": "Australia",
-          "current_ap": 27130,
+          "current_ap": 27125,
           "last_month_ap": 27105,
-          "monthly_gain": 25,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Blitz",
             "Max Smash Heroes",
