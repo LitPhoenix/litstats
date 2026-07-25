@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-25T07:50:09.935Z",
+  "last_update": "2026-07-25T09:27:48.822Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2083,7 +2083,7 @@
     },
     {
       "country": "Israel",
-      "score": 4326,
+      "score": 4329,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2120,9 +2120,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26205,
+          "current_ap": 26215,
           "last_month_ap": 26175,
-          "monthly_gain": 30,
+          "monthly_gain": 40,
           "maxGames": []
         },
         {
@@ -2561,7 +2561,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1540,
+      "score": 1543,
       "top_players": [
         {
           "username": "WsprinklesLnacho",
@@ -2576,9 +2576,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26180,
+          "current_ap": 26185,
           "last_month_ap": 25705,
-          "monthly_gain": 475,
+          "monthly_gain": 480,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
