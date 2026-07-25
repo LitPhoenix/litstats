@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-24T22:53:48.323Z",
+  "last_update": "2026-07-25T01:44:54.395Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -347,7 +347,7 @@
     },
     {
       "country": "Poland",
-      "score": 28352,
+      "score": 28433.4,
       "top_players": [
         {
           "username": "huntz",
@@ -369,9 +369,9 @@
           "username": "Cacto",
           "uuid": "26f62ec0b55e46b993a34b184080a0eb",
           "country": "Poland",
-          "current_quests": 24580,
+          "current_quests": 24987,
           "last_month_quests": 24580,
-          "monthly_gain": 0
+          "monthly_gain": 407
         },
         {
           "username": "BluPlays",
@@ -563,9 +563,9 @@
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_quests": 31816,
+          "current_quests": 31821,
           "last_month_quests": 31685,
-          "monthly_gain": 131
+          "monthly_gain": 136
         },
         {
           "username": "vasiv",
@@ -1015,9 +1015,9 @@
           "username": "WikiTikiTiki",
           "uuid": "34f5e925a1454ed5b08a357fd96b7eec",
           "country": "Unknown",
-          "current_quests": 21983,
+          "current_quests": 21991,
           "last_month_quests": 21676,
-          "monthly_gain": 307
+          "monthly_gain": 315
         },
         {
           "username": "latehrs",
