@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-25T09:27:48.822Z",
+  "last_update": "2026-07-25T11:03:53.751Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1671,15 +1671,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8280,
+      "score": 8285,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 32120,
+          "current_ap": 32125,
           "last_month_ap": 32085,
-          "monthly_gain": 35,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2440,9 +2440,9 @@
           "username": "kawaa",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
-          "current_ap": 25340,
+          "current_ap": 25345,
           "last_month_ap": 25345,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
