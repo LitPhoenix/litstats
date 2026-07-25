@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-25T11:03:53.751Z",
+  "last_update": "2026-07-25T12:59:47.842Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1188,7 +1188,7 @@
     },
     {
       "country": "UK",
-      "score": 10154,
+      "score": 10156,
       "top_players": [
         {
           "username": "greaneye",
@@ -1241,9 +1241,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 29130,
+          "current_ap": 29135,
           "last_month_ap": 29135,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -2083,7 +2083,7 @@
     },
     {
       "country": "Israel",
-      "score": 4329,
+      "score": 4333,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2120,9 +2120,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26215,
+          "current_ap": 26230,
           "last_month_ap": 26175,
-          "monthly_gain": 40,
+          "monthly_gain": 55,
           "maxGames": []
         },
         {
@@ -2561,7 +2561,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1543,
+      "score": 1548,
       "top_players": [
         {
           "username": "WsprinklesLnacho",
@@ -2576,9 +2576,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26185,
+          "current_ap": 26195,
           "last_month_ap": 25705,
-          "monthly_gain": 480,
+          "monthly_gain": 490,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -3096,6 +3096,19 @@
           ]
         },
         {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "Unknown",
+          "current_ap": 23510,
+          "last_month_ap": 23325,
+          "monthly_gain": 185,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
@@ -3109,19 +3122,6 @@
             "Max TKR",
             "Max Crazy Walls",
             "Max SkyClash"
-          ]
-        },
-        {
-          "username": "Quent120",
-          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
-          "country": "Unknown",
-          "current_ap": 23510,
-          "last_month_ap": 23325,
-          "monthly_gain": 185,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
