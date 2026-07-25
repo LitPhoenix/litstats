@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-25T20:41:31.715Z",
+  "last_update": "2026-07-25T22:44:15.129Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -502,9 +502,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30005,
+          "current_ap": 30015,
           "last_month_ap": 29340,
-          "monthly_gain": 665,
+          "monthly_gain": 675,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -610,9 +610,9 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27800,
+          "current_ap": 27805,
           "last_month_ap": 27780,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Cops and Crims",
             "Max Arcade",
@@ -628,9 +628,9 @@
           "username": "cakecakecake",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27610,
+          "current_ap": 27605,
           "last_month_ap": 27610,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
@@ -884,9 +884,9 @@
           "username": "combatively",
           "uuid": "23498017b5654aa0b9949effbbdd147e",
           "country": "USA",
-          "current_ap": 24655,
+          "current_ap": 24660,
           "last_month_ap": 24640,
-          "monthly_gain": 15,
+          "monthly_gain": 20,
           "maxGames": [
             "Max TKR"
           ]
@@ -1483,9 +1483,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26665,
+          "current_ap": 26670,
           "last_month_ap": 26670,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -1671,15 +1671,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8276,
+      "score": 8271,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 32125,
+          "current_ap": 32120,
           "last_month_ap": 32085,
-          "monthly_gain": 40,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2767,9 +2767,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25480,
+          "current_ap": 25505,
           "last_month_ap": 25390,
-          "monthly_gain": 90,
+          "monthly_gain": 115,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -3098,6 +3098,19 @@
           ]
         },
         {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "Unknown",
+          "current_ap": 23510,
+          "last_month_ap": 23325,
+          "monthly_gain": 185,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
@@ -3111,19 +3124,6 @@
             "Max TKR",
             "Max Crazy Walls",
             "Max SkyClash"
-          ]
-        },
-        {
-          "username": "Quent120",
-          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
-          "country": "Unknown",
-          "current_ap": 23510,
-          "last_month_ap": 23325,
-          "monthly_gain": 185,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
           ]
         },
         {
@@ -3145,9 +3145,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
-          "current_ap": 23440,
+          "current_ap": 23435,
           "last_month_ap": 23330,
-          "monthly_gain": 110,
+          "monthly_gain": 105,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
