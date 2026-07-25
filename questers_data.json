@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-25T12:59:48.193Z",
+  "last_update": "2026-07-25T14:55:49.295Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -703,15 +703,15 @@
     },
     {
       "country": "Chile",
-      "score": 21779.6,
+      "score": 21783.8,
       "top_players": [
         {
           "username": "xBxnny",
           "uuid": "82fc95c49afc4b8182b6cefeac42874e",
           "country": "Chile",
-          "current_quests": 43696,
+          "current_quests": 43717,
           "last_month_quests": 43696,
-          "monthly_gain": 0
+          "monthly_gain": 21
         },
         {
           "username": "MrRodd",
@@ -929,15 +929,15 @@
     },
     {
       "country": "Unknown",
-      "score": 26599,
+      "score": 26601.8,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_quests": 28688,
+          "current_quests": 28702,
           "last_month_quests": 28391,
-          "monthly_gain": 297
+          "monthly_gain": 311
         },
         {
           "username": "wannabemykitten",
