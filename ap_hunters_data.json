@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-26T11:13:59.477Z",
+  "last_update": "2026-07-26T12:57:38.036Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1188,7 +1188,7 @@
     },
     {
       "country": "UK",
-      "score": 10145,
+      "score": 10146,
       "top_players": [
         {
           "username": "greaneye",
@@ -1241,9 +1241,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 29130,
+          "current_ap": 29135,
           "last_month_ap": 29135,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -1846,9 +1846,9 @@
           "username": "morof",
           "uuid": "4019260a28f544c2a35a0a1f35108a96",
           "country": "Russia",
-          "current_ap": 24865,
+          "current_ap": 24880,
           "last_month_ap": 24825,
-          "monthly_gain": 40,
+          "monthly_gain": 55,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2440,9 +2440,9 @@
           "username": "kawaa",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
-          "current_ap": 25340,
+          "current_ap": 25345,
           "last_month_ap": 25345,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -2561,7 +2561,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1553,
+      "score": 1560,
       "top_players": [
         {
           "username": "WsprinklesLnacho",
@@ -2576,9 +2576,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26220,
+          "current_ap": 26235,
           "last_month_ap": 25705,
-          "monthly_gain": 515,
+          "monthly_gain": 530,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -2745,15 +2745,15 @@
     },
     {
       "country": "Unknown",
-      "score": 530,
+      "score": 525,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 26035,
+          "current_ap": 26030,
           "last_month_ap": 25890,
-          "monthly_gain": 145,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Warlords",
             "Max TNT Games",
@@ -3101,9 +3101,9 @@
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
-          "current_ap": 23510,
+          "current_ap": 23525,
           "last_month_ap": 23325,
-          "monthly_gain": 185,
+          "monthly_gain": 200,
           "maxGames": [
             "Max Wool Games",
             "Max Duels",
