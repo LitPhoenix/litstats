@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-26T01:48:35.388Z",
+  "last_update": "2026-07-26T05:22:08.472Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110501,
     "289e9f90a76640e0921c85dcd96385b5": 83464,
@@ -929,7 +929,7 @@
     },
     {
       "country": "Unknown",
-      "score": 26601.8,
+      "score": 26648.8,
       "top_players": [
         {
           "username": "Rayjer",
@@ -951,9 +951,9 @@
           "username": "JokeHit",
           "uuid": "92464ae772c4446db4d4bcf8569e953e",
           "country": "Unknown",
-          "current_quests": 26429,
+          "current_quests": 26664,
           "last_month_quests": 26429,
-          "monthly_gain": 0
+          "monthly_gain": 235
         },
         {
           "username": "MI7RAN",
