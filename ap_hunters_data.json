@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-26T22:50:17.048Z",
+  "last_update": "2026-07-27T01:54:01.961Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -559,9 +559,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28760,
+          "current_ap": 28765,
           "last_month_ap": 28765,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Warlords",
             "Max Walls",
@@ -610,9 +610,9 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27800,
+          "current_ap": 27805,
           "last_month_ap": 27780,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Cops and Crims",
             "Max Arcade",
@@ -745,9 +745,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 26395,
+          "current_ap": 26390,
           "last_month_ap": 26395,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -1483,9 +1483,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26665,
+          "current_ap": 26670,
           "last_month_ap": 26670,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -1602,15 +1602,15 @@
     },
     {
       "country": "Denmark",
-      "score": 9115,
+      "score": 9120,
       "top_players": [
         {
           "username": "tobias49",
           "uuid": "24132c1e1e504da499e1c2953880acd9",
           "country": "Denmark",
-          "current_ap": 32170,
+          "current_ap": 32175,
           "last_month_ap": 32175,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Pit",
             "Max Mega Walls",
@@ -2588,15 +2588,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1385,
+      "score": 1380,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26890,
+          "current_ap": 26885,
           "last_month_ap": 26745,
-          "monthly_gain": 145,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -2652,38 +2652,6 @@
       ]
     },
     {
-      "country": "Syria",
-      "score": 600,
-      "top_players": [
-        {
-          "username": "3badh",
-          "uuid": "11f24315871f43f296d5daa2bfc4911d",
-          "country": "Syria",
-          "current_ap": 26105,
-          "last_month_ap": 26105,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max TNT Games",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "stevcn",
-          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
-          "country": "Syria",
-          "current_ap": 25140,
-          "last_month_ap": 25010,
-          "monthly_gain": 130,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Wool Games",
-            "Max Seasonal"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Ukraine",
       "score": 580,
       "top_players": [
@@ -2711,6 +2679,38 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Syria",
+      "score": 575,
+      "top_players": [
+        {
+          "username": "3badh",
+          "uuid": "11f24315871f43f296d5daa2bfc4911d",
+          "country": "Syria",
+          "current_ap": 26080,
+          "last_month_ap": 26105,
+          "monthly_gain": -25,
+          "maxGames": [
+            "Max TNT Games",
+            "Max Wool Games"
+          ]
+        },
+        {
+          "username": "stevcn",
+          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+          "country": "Syria",
+          "current_ap": 25140,
+          "last_month_ap": 25010,
+          "monthly_gain": 130,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Wool Games",
+            "Max Seasonal"
           ]
         }
       ]
@@ -2774,9 +2774,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 25020,
+          "current_ap": 25015,
           "last_month_ap": 24715,
-          "monthly_gain": 305,
+          "monthly_gain": 300,
           "maxGames": [
             "Max Arcade",
             "Max Duels"
@@ -2843,9 +2843,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24760,
+          "current_ap": 24780,
           "last_month_ap": 24595,
-          "monthly_gain": 165,
+          "monthly_gain": 185,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -3086,9 +3086,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23505,
+          "current_ap": 23510,
           "last_month_ap": 23485,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3117,9 +3117,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
-          "current_ap": 23465,
+          "current_ap": 23460,
           "last_month_ap": 23330,
-          "monthly_gain": 135,
+          "monthly_gain": 130,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3237,15 +3237,15 @@
     },
     {
       "country": "Spain",
-      "score": 458,
+      "score": 453,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25940,
+          "current_ap": 25935,
           "last_month_ap": 25940,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
