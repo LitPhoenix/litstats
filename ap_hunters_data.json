@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-28T15:59:24.522Z",
+  "last_update": "2026-07-28T17:23:44.265Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -936,9 +936,9 @@
           "username": "SeaOtterFan",
           "uuid": "cdea33877a37413da44e365acc9f7a50",
           "country": "USA",
-          "current_ap": 24185,
+          "current_ap": 24180,
           "last_month_ap": 24185,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Smash Heroes",
             "Max Quake",
@@ -1188,7 +1188,7 @@
     },
     {
       "country": "UK",
-      "score": 10150,
+      "score": 10149,
       "top_players": [
         {
           "username": "greaneye",
@@ -1242,9 +1242,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 29160,
+          "current_ap": 29155,
           "last_month_ap": 29135,
-          "monthly_gain": 25,
+          "monthly_gain": 20,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -2005,15 +2005,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5405,
+      "score": 5400,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 30915,
+          "current_ap": 30910,
           "last_month_ap": 30815,
-          "monthly_gain": 100,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2273,7 +2273,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3700,
+      "score": 3699,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2310,9 +2310,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25920,
+          "current_ap": 25915,
           "last_month_ap": 25580,
-          "monthly_gain": 340,
+          "monthly_gain": 335,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2441,9 +2441,9 @@
           "username": "kawaa",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
-          "current_ap": 25340,
+          "current_ap": 25345,
           "last_month_ap": 25345,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -2589,15 +2589,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1380,
+      "score": 1375,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26890,
+          "current_ap": 26885,
           "last_month_ap": 26745,
-          "monthly_gain": 145,
+          "monthly_gain": 140,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -2763,9 +2763,9 @@
           "username": "sosal",
           "uuid": "14fc22531af545cf918eec7b30527272",
           "country": "Unknown",
-          "current_ap": 25055,
+          "current_ap": 25050,
           "last_month_ap": 25055,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -3376,9 +3376,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 25155,
+          "current_ap": 25170,
           "last_month_ap": 25060,
-          "monthly_gain": 95,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Wool Games"
           ]
