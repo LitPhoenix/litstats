@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-27T22:52:19.482Z",
+  "last_update": "2026-07-28T01:29:01.661Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -835,9 +835,9 @@
           "username": "NickIsOffline",
           "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
           "country": "USA",
-          "current_ap": 25680,
+          "current_ap": 25675,
           "last_month_ap": 25670,
-          "monthly_gain": 10,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Smash Heroes",
             "Max Warlords",
@@ -1671,15 +1671,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8276,
+      "score": 8271,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_ap": 32125,
+          "current_ap": 32120,
           "last_month_ap": 32085,
-          "monthly_gain": 40,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2762,9 +2762,9 @@
           "username": "sosal",
           "uuid": "14fc22531af545cf918eec7b30527272",
           "country": "Unknown",
-          "current_ap": 25055,
+          "current_ap": 25050,
           "last_month_ap": 25055,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2786,9 +2786,9 @@
           "username": "pumpkan",
           "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
           "country": "Unknown",
-          "current_ap": 25010,
+          "current_ap": 25005,
           "last_month_ap": 25010,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -3328,15 +3328,15 @@
     },
     {
       "country": "Turkey",
-      "score": 55,
+      "score": 60,
       "top_players": [
         {
           "username": "Melongan",
           "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
           "country": "Turkey",
-          "current_ap": 25560,
+          "current_ap": 25565,
           "last_month_ap": 25550,
-          "monthly_gain": 10,
+          "monthly_gain": 15,
           "maxGames": [
             "Max TNT Games",
             "Max Murder Mystery",
@@ -3375,9 +3375,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 25115,
+          "current_ap": 25155,
           "last_month_ap": 25060,
-          "monthly_gain": 55,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Wool Games"
           ]
