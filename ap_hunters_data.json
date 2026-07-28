@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-28T08:14:27.546Z",
+  "last_update": "2026-07-28T11:51:26.909Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1752,9 +1752,9 @@
           "username": "Kinderfeest",
           "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
           "country": "The Netherlands",
-          "current_ap": 25490,
+          "current_ap": 25485,
           "last_month_ap": 25490,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock",
@@ -3484,9 +3484,9 @@
           "username": "SpaceDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
-          "current_ap": 24005,
+          "current_ap": 24000,
           "last_month_ap": 23950,
-          "monthly_gain": 55,
+          "monthly_gain": 50,
           "maxGames": []
         }
       ]
