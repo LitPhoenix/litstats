@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-29T11:54:26.377Z",
+  "last_update": "2026-07-29T13:44:38.401Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1188,7 +1188,7 @@
     },
     {
       "country": "UK",
-      "score": 10111,
+      "score": 10112,
       "top_players": [
         {
           "username": "greaneye",
@@ -1242,9 +1242,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 29155,
+          "current_ap": 29160,
           "last_month_ap": 29135,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -1288,9 +1288,9 @@
           "username": "Fossilised",
           "uuid": "e3292ca36c5e43cbacd01c52adaca375",
           "country": "UK",
-          "current_ap": 26770,
+          "current_ap": 26765,
           "last_month_ap": 26770,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -1780,9 +1780,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24530,
+          "current_ap": 24535,
           "last_month_ap": 24495,
-          "monthly_gain": 35,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
@@ -2654,15 +2654,15 @@
     },
     {
       "country": "Syria",
-      "score": 600,
+      "score": 610,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26130,
+          "current_ap": 26140,
           "last_month_ap": 26105,
-          "monthly_gain": 25,
+          "monthly_gain": 35,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -2798,9 +2798,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 24950,
+          "current_ap": 24945,
           "last_month_ap": 24860,
-          "monthly_gain": 90,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
@@ -3020,9 +3020,9 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 23735,
+          "current_ap": 23730,
           "last_month_ap": 23520,
-          "monthly_gain": 215,
+          "monthly_gain": 210,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -3406,9 +3406,9 @@
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Italy",
-          "current_ap": 24835,
+          "current_ap": 24830,
           "last_month_ap": 24740,
-          "monthly_gain": 95,
+          "monthly_gain": 90,
           "maxGames": [
             "Max Murder Mystery",
             "Max Wool Games",
@@ -3484,9 +3484,9 @@
           "username": "SpaceDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
-          "current_ap": 24000,
+          "current_ap": 24005,
           "last_month_ap": 23950,
-          "monthly_gain": 50,
+          "monthly_gain": 55,
           "maxGames": []
         }
       ]
