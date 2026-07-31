@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-31T01:49:03.936Z",
+  "last_update": "2026-07-31T05:25:12.534Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -710,9 +710,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26810,
+          "current_ap": 26805,
           "last_month_ap": 26765,
-          "monthly_gain": 45,
+          "monthly_gain": 40,
           "maxGames": [
             "Max SkyBlock",
             "Max Warlords",
@@ -1001,15 +1001,15 @@
     },
     {
       "country": "France",
-      "score": 11186,
+      "score": 11191,
       "top_players": [
         {
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_ap": 32410,
+          "current_ap": 32415,
           "last_month_ap": 32415,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -1188,7 +1188,7 @@
     },
     {
       "country": "UK",
-      "score": 10093,
+      "score": 10092,
       "top_players": [
         {
           "username": "greaneye",
@@ -1242,9 +1242,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 29160,
+          "current_ap": 29155,
           "last_month_ap": 29135,
-          "monthly_gain": 25,
+          "monthly_gain": 20,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -1272,9 +1272,9 @@
           "username": "Evdia",
           "uuid": "aad6a2754e9c4744bd335213853f023f",
           "country": "UK",
-          "current_ap": 29070,
+          "current_ap": 29075,
           "last_month_ap": 29075,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Mega Walls",
             "Max Blitz",
@@ -2274,7 +2274,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3650,
+      "score": 3648,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2311,9 +2311,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25940,
+          "current_ap": 25935,
           "last_month_ap": 25580,
-          "monthly_gain": 360,
+          "monthly_gain": 355,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2525,9 +2525,9 @@
           "username": "radicul",
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Australia",
-          "current_ap": 25135,
+          "current_ap": 25140,
           "last_month_ap": 25140,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
@@ -3053,6 +3053,21 @@
           ]
         },
         {
+          "username": "tommy042001",
+          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+          "country": "Unknown",
+          "current_ap": 23515,
+          "last_month_ap": 23425,
+          "monthly_gain": 90,
+          "maxGames": [
+            "Max Pit",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
@@ -3083,21 +3098,6 @@
           ]
         },
         {
-          "username": "tommy042001",
-          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
-          "country": "Unknown",
-          "current_ap": 23480,
-          "last_month_ap": 23425,
-          "monthly_gain": 55,
-          "maxGames": [
-            "Max Pit",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
-        },
-        {
           "username": "Jyahp",
           "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
           "country": "Unknown",
@@ -3125,9 +3125,9 @@
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
-          "current_ap": 23365,
+          "current_ap": 23370,
           "last_month_ap": 23370,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Pit"
           ]
