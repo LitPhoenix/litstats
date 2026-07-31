@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-31T11:52:59.091Z",
+  "last_update": "2026-07-31T13:31:44.314Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32490,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -628,9 +628,9 @@
           "username": "cakecakecake",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
-          "current_ap": 27605,
+          "current_ap": 27620,
           "last_month_ap": 27610,
-          "monthly_gain": -5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
@@ -1188,7 +1188,7 @@
     },
     {
       "country": "UK",
-      "score": 10092,
+      "score": 10093,
       "top_players": [
         {
           "username": "greaneye",
@@ -1242,9 +1242,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 29155,
+          "current_ap": 29160,
           "last_month_ap": 29135,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -1373,9 +1373,9 @@
           "username": "paleimitation",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24420,
+          "current_ap": 24425,
           "last_month_ap": 24425,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Mega Walls"
           ]
@@ -1935,7 +1935,7 @@
     },
     {
       "country": "Germany",
-      "score": 6670,
+      "score": 6668,
       "top_players": [
         {
           "username": "NightMan976",
@@ -1960,9 +1960,9 @@
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28445,
+          "current_ap": 28440,
           "last_month_ap": 28425,
-          "monthly_gain": 20,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Smash Heroes",
             "Max Paintball",
@@ -2085,7 +2085,7 @@
     },
     {
       "country": "Israel",
-      "score": 4290,
+      "score": 4291,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2122,9 +2122,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26230,
+          "current_ap": 26235,
           "last_month_ap": 26175,
-          "monthly_gain": 55,
+          "monthly_gain": 60,
           "maxGames": []
         },
         {
@@ -2398,9 +2398,9 @@
           "username": "Aldix",
           "uuid": "6a040159d71841129271ce291b226587",
           "country": "Czech Republic",
-          "current_ap": 25070,
+          "current_ap": 25065,
           "last_month_ap": 25050,
-          "monthly_gain": 20,
+          "monthly_gain": 15,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -2501,6 +2501,33 @@
       ]
     },
     {
+      "country": "New Zealand",
+      "score": 1610,
+      "top_players": [
+        {
+          "username": "WsprinklesLnacho",
+          "uuid": "d33a4d925db84c30a28e528239471102",
+          "country": "New Zealand",
+          "current_ap": 26745,
+          "last_month_ap": 26635,
+          "monthly_gain": 110,
+          "maxGames": []
+        },
+        {
+          "username": "ILiveInAWall",
+          "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+          "country": "New Zealand",
+          "current_ap": 26350,
+          "last_month_ap": 25705,
+          "monthly_gain": 645,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Australia",
       "score": 1605,
       "top_players": [
@@ -2557,33 +2584,6 @@
           "maxGames": [
             "Max Blitz",
             "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "New Zealand",
-      "score": 1605,
-      "top_players": [
-        {
-          "username": "WsprinklesLnacho",
-          "uuid": "d33a4d925db84c30a28e528239471102",
-          "country": "New Zealand",
-          "current_ap": 26745,
-          "last_month_ap": 26635,
-          "monthly_gain": 110,
-          "maxGames": []
-        },
-        {
-          "username": "ILiveInAWall",
-          "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
-          "country": "New Zealand",
-          "current_ap": 26340,
-          "last_month_ap": 25705,
-          "monthly_gain": 635,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels"
           ]
         }
       ]
@@ -2720,9 +2720,9 @@
           "username": "nonoooooooo",
           "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
           "country": "Unknown",
-          "current_ap": 25235,
+          "current_ap": 25230,
           "last_month_ap": 25225,
-          "monthly_gain": 10,
+          "monthly_gain": 5,
           "maxGames": [
             "Max VampireZ",
             "Max Duels"
@@ -2899,9 +2899,9 @@
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 24215,
+          "current_ap": 24220,
           "last_month_ap": 24170,
-          "monthly_gain": 45,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
@@ -3056,9 +3056,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
-          "current_ap": 23515,
+          "current_ap": 23520,
           "last_month_ap": 23425,
-          "monthly_gain": 90,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Pit",
             "Max TKR",
@@ -3125,9 +3125,9 @@
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
-          "current_ap": 23370,
+          "current_ap": 23365,
           "last_month_ap": 23370,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Pit"
           ]
@@ -3157,9 +3157,9 @@
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23295,
+          "current_ap": 23305,
           "last_month_ap": 23180,
-          "monthly_gain": 115,
+          "monthly_gain": 125,
           "maxGames": [
             "Max Wool Games"
           ]
