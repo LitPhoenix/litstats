@@ -1,108 +1,106 @@
 {
-  "last_update": "2026-07-31T22:52:11.892Z",
+  "last_update": "2026-08-01T01:49:35.634Z",
   "month_start_snapshot": {
-    "53c51b4607e649d0b81826bc2d64df82": 110501,
-    "289e9f90a76640e0921c85dcd96385b5": 83464,
-    "eb2814a894d748dc87c2cb2eedfe1306": 61275,
+    "53c51b4607e649d0b81826bc2d64df82": 110923,
+    "289e9f90a76640e0921c85dcd96385b5": 84464,
+    "eb2814a894d748dc87c2cb2eedfe1306": 62488,
     "5409757b87344c0394b10bf966a2d594": 60700,
-    "5c1acb0d23fa4ded8bdf20acf508e7d0": 50096,
+    "7638efa55b784c41ac34a4c59b2b86df": 50825,
+    "5c1acb0d23fa4ded8bdf20acf508e7d0": 50122,
     "be89a70209224dca982f83546327a7aa": 50000,
-    "7638efa55b784c41ac34a4c59b2b86df": 49664,
-    "d8e38381ee814ad781a898519de77100": 49478,
-    "decd08e13b754a6788b65181f302c94d": 48694,
-    "baebdae38c064f40a3dda17bda5ecbf5": 47109,
+    "d8e38381ee814ad781a898519de77100": 49869,
+    "decd08e13b754a6788b65181f302c94d": 48792,
+    "baebdae38c064f40a3dda17bda5ecbf5": 47473,
     "3863e1c33eb342159e45a17f16c0fb4c": 46506,
-    "8415341022134dbe969b81ed3ff6cd6f": 45058,
+    "8415341022134dbe969b81ed3ff6cd6f": 45322,
     "ae655706622d410cb36b9a8c4e1f1be4": 44660,
-    "82fc95c49afc4b8182b6cefeac42874e": 43696,
-    "7120f3c4c18a4753baf3d90af928f860": 42442,
-    "f33bcc883074424784ccb6126eb65264": 41331,
-    "d7e0ec9bc36f4d44abd2ff1a1043cebd": 41103,
-    "40deca8a49a941428ac96315bb15e3f2": 41050,
-    "bfe045f7babf4d1c8f00556716576c34": 40727,
+    "82fc95c49afc4b8182b6cefeac42874e": 43717,
+    "7120f3c4c18a4753baf3d90af928f860": 42854,
+    "d7e0ec9bc36f4d44abd2ff1a1043cebd": 41919,
+    "f33bcc883074424784ccb6126eb65264": 41746,
+    "40deca8a49a941428ac96315bb15e3f2": 41335,
+    "bfe045f7babf4d1c8f00556716576c34": 40754,
     "22eb4504ff954677ba3e6cc87c8e271c": 39347,
     "4cb3c1f60fbe4d66a81c687d4ba0f092": 38771,
     "f6b0f49430704cfc8d0205c5873ed76d": 38730,
     "d7bae5950a3d4e4c92c2765b04bb45bf": 37179,
     "39b5964b6e924774b8aa1aaf676d4cf3": 36236,
     "ec97c47379da469793bfa7b9af48e137": 35851,
-    "8682b351e9c241639291935776608054": 35530,
+    "8682b351e9c241639291935776608054": 35582,
     "27be3470303a4f1b8e366ac44d5f56cf": 34720,
-    "f61b81b44faf4fc58b00405721f19f84": 34628,
-    "77edb6fda6ef4097914ddc698242fe04": 34512,
+    "f61b81b44faf4fc58b00405721f19f84": 34654,
+    "77edb6fda6ef4097914ddc698242fe04": 34620,
+    "66923dc43af644bba499071739732284": 34310,
     "3bd74c4d69e04d76965f256b814b9a44": 34259,
-    "66923dc43af644bba499071739732284": 33809,
     "c577637912a84f44990877ceb86064d9": 33605,
     "ad988df25a274cf592b66c9562834230": 33348,
     "616eb57f51b441018734724efc998f53": 32359,
+    "cca4b5f5f0e54d9193fc5f8c66724766": 31988,
+    "41825ee5f46b406b9bb74aea7eb2742b": 31849,
     "b9b6e4fd53894abd968508b885d64534": 31811,
-    "41825ee5f46b406b9bb74aea7eb2742b": 31685,
-    "cca4b5f5f0e54d9193fc5f8c66724766": 30999,
+    "9cc15d802eb44f2aaf2075604ce452d5": 30976,
     "12ecedbce19b448cad38aa4f57f3afda": 30927,
-    "9cc15d802eb44f2aaf2075604ce452d5": 30888,
     "11b8466e2c724fe994a00cada8112674": 30790,
     "55f7863b1e9f41b89b51bb8d792ae28e": 30504,
-    "f9fe4ed41242460db7dbd7bfd054e082": 29511,
+    "f9fe4ed41242460db7dbd7bfd054e082": 29518,
     "1240b9bf22254cd5903e20cc097b0043": 29187,
+    "ac97442ca125422cbd72ae60cdd8340f": 28801,
+    "3de9779b0ed34ca196575639b57e2c3b": 28638,
     "d4ef6ea1d12f4da09f690507b2327e43": 28549,
-    "3de9779b0ed34ca196575639b57e2c3b": 28494,
-    "ac97442ca125422cbd72ae60cdd8340f": 28391,
     "9a071ef2b19b4b339ebf9c4d3b0af0bc": 27514,
     "cafd6a1e45ea4082a56ad0bf697d6c90": 27357,
     "153377202f274dd09dc838b83c09b104": 27077,
+    "92464ae772c4446db4d4bcf8569e953e": 26664,
     "4bba10d5597e4dfbaf32e58f5b5e8300": 26598,
-    "3abe2f6bd45a4e2282d4f9014569db25": 26510,
-    "92464ae772c4446db4d4bcf8569e953e": 26429,
-    "a621a7a79f324b5c83449e4453ad454d": 26039,
-    "141e5144694046eaa7e536ed70cc1595": 26031,
+    "3abe2f6bd45a4e2282d4f9014569db25": 26561,
+    "a621a7a79f324b5c83449e4453ad454d": 26175,
+    "141e5144694046eaa7e536ed70cc1595": 26101,
     "7475921e9e5b401ba91c9d187f5dd3a1": 26026,
     "9f97b0041b85422489e9061c0eb74ba0": 25994,
     "72250a1d144c48d882231209ffcaf82d": 25883,
-    "52206b9a3e8446c995fa9f2d4e8c0078": 25622,
+    "52206b9a3e8446c995fa9f2d4e8c0078": 25762,
+    "fe7bf008272246f18421d39db8042257": 25370,
     "fe0d23d926054c62921afa2d71a3cc2c": 25351,
-    "fe7bf008272246f18421d39db8042257": 25303,
-    "743c12bffc7348fb8525effead057de2": 24866,
+    "743c12bffc7348fb8525effead057de2": 25179,
+    "26f62ec0b55e46b993a34b184080a0eb": 24987,
+    "7afbca3f75d8494b8b6a381dfa18e16b": 24642,
+    "aad6a2754e9c4744bd335213853f023f": 24616,
     "bc4e34b5a28d49d4b61d8a6f4901533b": 24602,
-    "26f62ec0b55e46b993a34b184080a0eb": 24580,
-    "e698edd3e0124b2f8fa2ccb109b0d0b0": 24528,
-    "aad6a2754e9c4744bd335213853f023f": 24501,
-    "8fe8adb1793942d0a852f8d2bb239b16": 24409,
-    "dbb5f49cc2394912b1ca89783632d068": 24203,
-    "e3292ca36c5e43cbacd01c52adaca375": 24053,
+    "e698edd3e0124b2f8fa2ccb109b0d0b0": 24566,
+    "8fe8adb1793942d0a852f8d2bb239b16": 24487,
+    "56b991d1a9c243d7984df6e6a409cd59": 24289,
+    "dbb5f49cc2394912b1ca89783632d068": 24232,
+    "01834d8a3c7a49c796589979d7a9ab74": 24119,
+    "e3292ca36c5e43cbacd01c52adaca375": 24061,
     "2d0095e5a83242649f088f3f20846f07": 23980,
-    "7afbca3f75d8494b8b6a381dfa18e16b": 23837,
-    "56b991d1a9c243d7984df6e6a409cd59": 23728,
+    "2162ee0de4c745e4a5d44659193b231c": 23978,
+    "ced40338048a4382aaba0e88fc04a102": 23821,
     "5ccea82011bf4511b298ba04893e0784": 23691,
-    "ced40338048a4382aaba0e88fc04a102": 23630,
     "35de049d7fcc4d129fe03eb48f5c3804": 23552,
-    "01834d8a3c7a49c796589979d7a9ab74": 23539,
     "9899b3edf2364d318fe33c7278a2d4a8": 23511,
     "ab4645d4f2934af9b02d3c6ff296317a": 23508,
-    "5de0cd7c0baf4d4facb117618a3b5fd7": 23332,
+    "bf6b32ef38934d9e90b8a1037e16b972": 23482,
+    "5de0cd7c0baf4d4facb117618a3b5fd7": 23361,
     "3f93a29a5a994f9397f1ac20fb18e652": 23295,
-    "bf6b32ef38934d9e90b8a1037e16b972": 23223,
-    "14016bbfdcf547dab04549b49e891dc8": 23114,
+    "14016bbfdcf547dab04549b49e891dc8": 23228,
     "af193f3ea82148489129dc9d32f8dc67": 22781,
+    "d6c5986a52994cc883e1a4b02a6fb76b": 22733,
     "db365262927d48f5bf54cdeddcf4dae6": 22681,
-    "d6c5986a52994cc883e1a4b02a6fb76b": 22633,
     "3efd540b06ae4141861672f6510c99e8": 22415,
     "6ddd8bcbfa9f46a3b0e40dc47d9fe969": 22392,
+    "7d92df9db6f04ef4b24ded24ae739198": 22363,
     "4019260a28f544c2a35a0a1f35108a96": 22221,
     "8a4a5046009a4a23acb58841a8e49356": 22129,
-    "7d92df9db6f04ef4b24ded24ae739198": 22003,
-    "4b715312d0bb45a5b766184613c45aa4": 21979,
+    "34f5e925a1454ed5b08a357fd96b7eec": 21991,
+    "4b715312d0bb45a5b766184613c45aa4": 21980,
+    "2a8842a87cfe40fc8ed200f91908a7fa": 21866,
     "9f16e788457c44fc8c24b90167569420": 21768,
     "2ad002d5144a413e9de436f5dc766651": 21760,
-    "27a86e7999a64f32a8ae44b2ea310fe1": 21745,
-    "2a8842a87cfe40fc8ed200f91908a7fa": 21742,
-    "34f5e925a1454ed5b08a357fd96b7eec": 21676,
+    "27a86e7999a64f32a8ae44b2ea310fe1": 21746,
     "6e49ddeb14ae471f99ffa01f4929b848": 21660,
-    "6119d70a8a724f2aa2ded280a8cf58bb": 21589,
+    "6119d70a8a724f2aa2ded280a8cf58bb": 21596,
     "796cf0f4332c447d88a6fbfffbe0bd70": 21487,
-    "e2bf0a2f2cf24fc29512511ddc10201a": 21206,
-    "c820b113e30c4c129812db60b1601f52": 21193,
-    "8eb18a9227fb4b36947177babab261cd": 21223,
-    "2162ee0de4c745e4a5d44659193b231c": 23978
+    "c820b113e30c4c129812db60b1601f52": 21384
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
@@ -208,16 +206,16 @@
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
           "current_quests": 110923,
-          "last_month_quests": 110501,
-          "monthly_gain": 422
+          "last_month_quests": 110923,
+          "monthly_gain": 0
         },
         {
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
           "current_quests": 40754,
-          "last_month_quests": 40727,
-          "monthly_gain": 27
+          "last_month_quests": 40754,
+          "monthly_gain": 0
         },
         {
           "username": "Edzio",
@@ -232,16 +230,16 @@
           "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
           "country": "France",
           "current_quests": 29518,
-          "last_month_quests": 29511,
-          "monthly_gain": 7
+          "last_month_quests": 29518,
+          "monthly_gain": 0
         },
         {
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
           "current_quests": 28638,
-          "last_month_quests": 28494,
-          "monthly_gain": 144
+          "last_month_quests": 28638,
+          "monthly_gain": 0
         },
         {
           "username": "trql",
@@ -256,16 +254,16 @@
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "France",
           "current_quests": 26175,
-          "last_month_quests": 26039,
-          "monthly_gain": 136
+          "last_month_quests": 26175,
+          "monthly_gain": 0
         },
         {
           "username": "TournamentTokens",
           "uuid": "52206b9a3e8446c995fa9f2d4e8c0078",
           "country": "France",
           "current_quests": 25762,
-          "last_month_quests": 25622,
-          "monthly_gain": 140
+          "last_month_quests": 25762,
+          "monthly_gain": 0
         },
         {
           "username": "21septembre",
@@ -294,16 +292,16 @@
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
           "current_quests": 84464,
-          "last_month_quests": 83464,
-          "monthly_gain": 1000
+          "last_month_quests": 84464,
+          "monthly_gain": 0
         },
         {
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
           "current_quests": 42854,
-          "last_month_quests": 42442,
-          "monthly_gain": 412
+          "last_month_quests": 42854,
+          "monthly_gain": 0
         },
         {
           "username": "Motthe",
@@ -326,8 +324,8 @@
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Canada",
           "current_quests": 21866,
-          "last_month_quests": 21742,
-          "monthly_gain": 124
+          "last_month_quests": 21866,
+          "monthly_gain": 0
         }
       ]
     },
@@ -340,8 +338,8 @@
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
           "current_quests": 62488,
-          "last_month_quests": 61275,
-          "monthly_gain": 1213
+          "last_month_quests": 62488,
+          "monthly_gain": 0
         }
       ]
     },
@@ -370,8 +368,8 @@
           "uuid": "26f62ec0b55e46b993a34b184080a0eb",
           "country": "Poland",
           "current_quests": 24987,
-          "last_month_quests": 24580,
-          "monthly_gain": 407
+          "last_month_quests": 24987,
+          "monthly_gain": 0
         },
         {
           "username": "BluPlays",
@@ -392,8 +390,8 @@
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
           "current_quests": 50825,
-          "last_month_quests": 49664,
-          "monthly_gain": 1161
+          "last_month_quests": 50825,
+          "monthly_gain": 0
         },
         {
           "username": "Itz_Pipi",
@@ -414,8 +412,8 @@
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
           "current_quests": 50122,
-          "last_month_quests": 50096,
-          "monthly_gain": 26
+          "last_month_quests": 50122,
+          "monthly_gain": 0
         },
         {
           "username": "Weeknd",
@@ -430,32 +428,32 @@
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
           "current_quests": 35582,
-          "last_month_quests": 35530,
-          "monthly_gain": 52
+          "last_month_quests": 35582,
+          "monthly_gain": 0
         },
         {
           "username": "Shazombie",
           "uuid": "66923dc43af644bba499071739732284",
           "country": "UK",
           "current_quests": 34310,
-          "last_month_quests": 33809,
-          "monthly_gain": 501
+          "last_month_quests": 34310,
+          "monthly_gain": 0
         },
         {
           "username": "Evdia",
           "uuid": "aad6a2754e9c4744bd335213853f023f",
           "country": "UK",
           "current_quests": 24616,
-          "last_month_quests": 24501,
-          "monthly_gain": 115
+          "last_month_quests": 24616,
+          "monthly_gain": 0
         },
         {
           "username": "Fossilised",
           "uuid": "e3292ca36c5e43cbacd01c52adaca375",
           "country": "UK",
           "current_quests": 24061,
-          "last_month_quests": 24053,
-          "monthly_gain": 8
+          "last_month_quests": 24061,
+          "monthly_gain": 0
         },
         {
           "username": "CelsiusPeachVibe",
@@ -470,8 +468,8 @@
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "UK",
           "current_quests": 23228,
-          "last_month_quests": 23114,
-          "monthly_gain": 114
+          "last_month_quests": 23228,
+          "monthly_gain": 0
         },
         {
           "username": "rantingbrit",
@@ -500,24 +498,24 @@
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
           "current_quests": 48792,
-          "last_month_quests": 48694,
-          "monthly_gain": 98
+          "last_month_quests": 48792,
+          "monthly_gain": 0
         },
         {
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
           "current_quests": 47473,
-          "last_month_quests": 47109,
-          "monthly_gain": 364
+          "last_month_quests": 47473,
+          "monthly_gain": 0
         },
         {
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "USA",
           "current_quests": 45322,
-          "last_month_quests": 45058,
-          "monthly_gain": 264
+          "last_month_quests": 45322,
+          "monthly_gain": 0
         },
         {
           "username": "QuestCompleted",
@@ -540,16 +538,16 @@
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
           "current_quests": 34654,
-          "last_month_quests": 34628,
-          "monthly_gain": 26
+          "last_month_quests": 34654,
+          "monthly_gain": 0
         },
         {
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
           "current_quests": 34620,
-          "last_month_quests": 34512,
-          "monthly_gain": 108
+          "last_month_quests": 34620,
+          "monthly_gain": 0
         },
         {
           "username": "Dadje",
@@ -564,16 +562,16 @@
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
           "current_quests": 31849,
-          "last_month_quests": 31685,
-          "monthly_gain": 164
+          "last_month_quests": 31849,
+          "monthly_gain": 0
         },
         {
           "username": "vasiv",
           "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
           "country": "USA",
           "current_quests": 30976,
-          "last_month_quests": 30888,
-          "monthly_gain": 88
+          "last_month_quests": 30976,
+          "monthly_gain": 0
         },
         {
           "username": "Dumbleech",
@@ -596,32 +594,32 @@
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
           "current_quests": 24566,
-          "last_month_quests": 24528,
-          "monthly_gain": 38
+          "last_month_quests": 24566,
+          "monthly_gain": 0
         },
         {
           "username": "zeytrixx",
           "uuid": "8fe8adb1793942d0a852f8d2bb239b16",
           "country": "USA",
           "current_quests": 24487,
-          "last_month_quests": 24409,
-          "monthly_gain": 78
+          "last_month_quests": 24487,
+          "monthly_gain": 0
         },
         {
           "username": "huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
           "current_quests": 24119,
-          "last_month_quests": 23539,
-          "monthly_gain": 580
+          "last_month_quests": 24119,
+          "monthly_gain": 0
         },
         {
           "username": "culorfuj",
           "uuid": "d6c5986a52994cc883e1a4b02a6fb76b",
           "country": "USA",
           "current_quests": 22733,
-          "last_month_quests": 22633,
-          "monthly_gain": 100
+          "last_month_quests": 22733,
+          "monthly_gain": 0
         },
         {
           "username": "Nightire",
@@ -636,8 +634,8 @@
           "uuid": "4b715312d0bb45a5b766184613c45aa4",
           "country": "USA",
           "current_quests": 21980,
-          "last_month_quests": 21979,
-          "monthly_gain": 1
+          "last_month_quests": 21980,
+          "monthly_gain": 0
         },
         {
           "username": "recordheat",
@@ -652,16 +650,16 @@
           "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
           "country": "USA",
           "current_quests": 21746,
-          "last_month_quests": 21745,
-          "monthly_gain": 1
+          "last_month_quests": 21746,
+          "monthly_gain": 0
         },
         {
           "username": "cakecakecake",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
           "current_quests": 21596,
-          "last_month_quests": 21589,
-          "monthly_gain": 7
+          "last_month_quests": 21596,
+          "monthly_gain": 0
         }
       ]
     },
@@ -674,8 +672,8 @@
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
           "current_quests": 49869,
-          "last_month_quests": 49478,
-          "monthly_gain": 391
+          "last_month_quests": 49869,
+          "monthly_gain": 0
         }
       ]
     },
@@ -710,16 +708,16 @@
           "uuid": "82fc95c49afc4b8182b6cefeac42874e",
           "country": "Chile",
           "current_quests": 43717,
-          "last_month_quests": 43696,
-          "monthly_gain": 21
+          "last_month_quests": 43717,
+          "monthly_gain": 0
         },
         {
           "username": "MrRodd",
           "uuid": "f33bcc883074424784ccb6126eb65264",
           "country": "Chile",
           "current_quests": 41746,
-          "last_month_quests": 41331,
-          "monthly_gain": 415
+          "last_month_quests": 41746,
+          "monthly_gain": 0
         },
         {
           "username": "memeister",
@@ -740,8 +738,8 @@
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
           "current_quests": 41919,
-          "last_month_quests": 41103,
-          "monthly_gain": 816
+          "last_month_quests": 41919,
+          "monthly_gain": 0
         }
       ]
     },
@@ -754,16 +752,16 @@
           "uuid": "40deca8a49a941428ac96315bb15e3f2",
           "country": "Finland",
           "current_quests": 41335,
-          "last_month_quests": 41050,
-          "monthly_gain": 285
+          "last_month_quests": 41335,
+          "monthly_gain": 0
         },
         {
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
           "current_quests": 31988,
-          "last_month_quests": 30999,
-          "monthly_gain": 989
+          "last_month_quests": 31988,
+          "monthly_gain": 0
         }
       ]
     },
@@ -872,8 +870,8 @@
           "uuid": "5de0cd7c0baf4d4facb117618a3b5fd7",
           "country": "Sweden",
           "current_quests": 23361,
-          "last_month_quests": 23332,
-          "monthly_gain": 29
+          "last_month_quests": 23361,
+          "monthly_gain": 0
         }
       ]
     },
@@ -908,8 +906,8 @@
           "uuid": "dbb5f49cc2394912b1ca89783632d068",
           "country": "Australia",
           "current_quests": 24232,
-          "last_month_quests": 24203,
-          "monthly_gain": 29
+          "last_month_quests": 24232,
+          "monthly_gain": 0
         }
       ]
     },
@@ -936,8 +934,8 @@
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
           "current_quests": 28801,
-          "last_month_quests": 28391,
-          "monthly_gain": 410
+          "last_month_quests": 28801,
+          "monthly_gain": 0
         },
         {
           "username": "wannabemykitten",
@@ -952,8 +950,8 @@
           "uuid": "92464ae772c4446db4d4bcf8569e953e",
           "country": "Unknown",
           "current_quests": 26664,
-          "last_month_quests": 26429,
-          "monthly_gain": 235
+          "last_month_quests": 26664,
+          "monthly_gain": 0
         },
         {
           "username": "MI7RAN",
@@ -976,8 +974,8 @@
           "uuid": "ced40338048a4382aaba0e88fc04a102",
           "country": "Unknown",
           "current_quests": 23821,
-          "last_month_quests": 23630,
-          "monthly_gain": 191
+          "last_month_quests": 23821,
+          "monthly_gain": 0
         },
         {
           "username": "emperqr",
@@ -1000,8 +998,8 @@
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Unknown",
           "current_quests": 22363,
-          "last_month_quests": 22003,
-          "monthly_gain": 360
+          "last_month_quests": 22363,
+          "monthly_gain": 0
         },
         {
           "username": "rem_hypixel",
@@ -1016,16 +1014,16 @@
           "uuid": "34f5e925a1454ed5b08a357fd96b7eec",
           "country": "Unknown",
           "current_quests": 21991,
-          "last_month_quests": 21676,
-          "monthly_gain": 315
+          "last_month_quests": 21991,
+          "monthly_gain": 0
         },
         {
           "username": "latehrs",
           "uuid": "c820b113e30c4c129812db60b1601f52",
           "country": "Unknown",
           "current_quests": 21384,
-          "last_month_quests": 21193,
-          "monthly_gain": 191
+          "last_month_quests": 21384,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1052,8 +1050,8 @@
           "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
           "country": "Russia",
           "current_quests": 26561,
-          "last_month_quests": 26510,
-          "monthly_gain": 51
+          "last_month_quests": 26561,
+          "monthly_gain": 0
         },
         {
           "username": "morof",
@@ -1074,8 +1072,8 @@
           "uuid": "141e5144694046eaa7e536ed70cc1595",
           "country": "Peru",
           "current_quests": 26101,
-          "last_month_quests": 26031,
-          "monthly_gain": 70
+          "last_month_quests": 26101,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1116,8 +1114,8 @@
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
           "current_quests": 25370,
-          "last_month_quests": 25303,
-          "monthly_gain": 67
+          "last_month_quests": 25370,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1130,8 +1128,8 @@
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
           "current_quests": 25179,
-          "last_month_quests": 24866,
-          "monthly_gain": 313
+          "last_month_quests": 25179,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1144,8 +1142,8 @@
           "uuid": "7afbca3f75d8494b8b6a381dfa18e16b",
           "country": "Hungary",
           "current_quests": 24642,
-          "last_month_quests": 23837,
-          "monthly_gain": 805
+          "last_month_quests": 24642,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1158,8 +1156,8 @@
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
           "current_quests": 24289,
-          "last_month_quests": 23728,
-          "monthly_gain": 561
+          "last_month_quests": 24289,
+          "monthly_gain": 0
         }
       ]
     },
@@ -1172,8 +1170,8 @@
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
           "current_quests": 23482,
-          "last_month_quests": 23223,
-          "monthly_gain": 259
+          "last_month_quests": 23482,
+          "monthly_gain": 0
         },
         {
           "username": "Th3three",
