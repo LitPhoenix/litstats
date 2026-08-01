@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-01T14:53:16.360Z",
+  "last_update": "2026-08-01T16:48:27.715Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -285,7 +285,7 @@
     },
     {
       "country": "Canada",
-      "score": 40412.4,
+      "score": 40423.8,
       "top_players": [
         {
           "username": "Songgg",
@@ -307,9 +307,9 @@
           "username": "Motthe",
           "uuid": "1240b9bf22254cd5903e20cc097b0043",
           "country": "Canada",
-          "current_quests": 29187,
+          "current_quests": 29244,
           "last_month_quests": 29187,
-          "monthly_gain": 0
+          "monthly_gain": 57
         },
         {
           "username": "FlyHak",
@@ -803,7 +803,7 @@
     },
     {
       "country": "Japan",
-      "score": 22356,
+      "score": 22356.2,
       "top_players": [
         {
           "username": "CowKou",
@@ -817,9 +817,9 @@
           "username": "Taich25",
           "uuid": "55f7863b1e9f41b89b51bb8d792ae28e",
           "country": "Japan",
-          "current_quests": 30504,
+          "current_quests": 30505,
           "last_month_quests": 30504,
-          "monthly_gain": 0
+          "monthly_gain": 1
         },
         {
           "username": "Hayaoki",
