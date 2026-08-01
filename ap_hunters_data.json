@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-01T08:03:54.476Z",
+  "last_update": "2026-08-01T11:11:25.851Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -998,7 +998,7 @@
     },
     {
       "country": "France",
-      "score": 11165,
+      "score": 11164,
       "top_players": [
         {
           "username": "Yann31_",
@@ -1075,9 +1075,9 @@
           "username": "FranceW",
           "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
           "country": "France",
-          "current_ap": 28715,
+          "current_ap": 28710,
           "last_month_ap": 28715,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max SkyBlock",
             "Max Speed UHC",
@@ -1670,7 +1670,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8187,
+      "score": 8186,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1721,9 +1721,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 26890,
+          "current_ap": 26885,
           "last_month_ap": 26890,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2082,7 +2082,7 @@
     },
     {
       "country": "Israel",
-      "score": 4293,
+      "score": 4295,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2119,9 +2119,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26230,
+          "current_ap": 26240,
           "last_month_ap": 26230,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": []
         },
         {
