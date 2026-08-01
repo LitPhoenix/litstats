@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-01T01:49:35.634Z",
+  "last_update": "2026-08-01T05:18:47.887Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -1043,7 +1043,7 @@
     },
     {
       "country": "Russia",
-      "score": 9756.4,
+      "score": 9794.2,
       "top_players": [
         {
           "username": "anrie",
@@ -1057,9 +1057,9 @@
           "username": "morof",
           "uuid": "4019260a28f544c2a35a0a1f35108a96",
           "country": "Russia",
-          "current_quests": 22221,
+          "current_quests": 22410,
           "last_month_quests": 22221,
-          "monthly_gain": 0
+          "monthly_gain": 189
         }
       ]
     },

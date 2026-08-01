@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-01T01:49:35.348Z",
+  "last_update": "2026-08-01T05:18:47.507Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -881,9 +881,9 @@
           "username": "combatively",
           "uuid": "23498017b5654aa0b9949effbbdd147e",
           "country": "USA",
-          "current_ap": 24690,
+          "current_ap": 24710,
           "last_month_ap": 24690,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max TKR"
           ]
@@ -920,9 +920,9 @@
           "username": "animethighs68",
           "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
           "country": "USA",
-          "current_ap": 24230,
+          "current_ap": 24225,
           "last_month_ap": 24230,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
@@ -2215,7 +2215,7 @@
     },
     {
       "country": "Norway",
-      "score": 3785,
+      "score": 3783,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -2238,9 +2238,9 @@
           "username": "Chevio",
           "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
           "country": "Norway",
-          "current_ap": 26350,
+          "current_ap": 26345,
           "last_month_ap": 26350,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -2498,6 +2498,33 @@
       ]
     },
     {
+      "country": "New Zealand",
+      "score": 1598,
+      "top_players": [
+        {
+          "username": "WsprinklesLnacho",
+          "uuid": "d33a4d925db84c30a28e528239471102",
+          "country": "New Zealand",
+          "current_ap": 26745,
+          "last_month_ap": 26745,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "ILiveInAWall",
+          "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+          "country": "New Zealand",
+          "current_ap": 26355,
+          "last_month_ap": 26345,
+          "monthly_gain": 10,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Australia",
       "score": 1595,
       "top_players": [
@@ -2554,33 +2581,6 @@
           "maxGames": [
             "Max Blitz",
             "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "New Zealand",
-      "score": 1593,
-      "top_players": [
-        {
-          "username": "WsprinklesLnacho",
-          "uuid": "d33a4d925db84c30a28e528239471102",
-          "country": "New Zealand",
-          "current_ap": 26745,
-          "last_month_ap": 26745,
-          "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
-          "username": "ILiveInAWall",
-          "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
-          "country": "New Zealand",
-          "current_ap": 26345,
-          "last_month_ap": 26345,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels"
           ]
         }
       ]
