@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-01T16:48:27.338Z",
+  "last_update": "2026-08-01T18:54:55.141Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12614,
+      "score": 12615,
       "top_players": [
         {
           "username": "oJakey",
@@ -499,9 +499,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30040,
+          "current_ap": 30055,
           "last_month_ap": 30040,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -832,9 +832,9 @@
           "username": "NickIsOffline",
           "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
           "country": "USA",
-          "current_ap": 25680,
+          "current_ap": 25675,
           "last_month_ap": 25680,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Smash Heroes",
             "Max Warlords",
@@ -1404,7 +1404,7 @@
     },
     {
       "country": "Canada",
-      "score": 9164,
+      "score": 9171,
       "top_players": [
         {
           "username": "Songgg",
@@ -1436,9 +1436,9 @@
           "username": "Andorite",
           "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
           "country": "Canada",
-          "current_ap": 29640,
+          "current_ap": 29655,
           "last_month_ap": 29640,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Warlords",
             "Max TNT Games",
@@ -3290,15 +3290,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 255,
+      "score": 250,
       "top_players": [
         {
           "username": "Saturno",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 25805,
+          "current_ap": 25800,
           "last_month_ap": 25805,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max VampireZ"
           ]
