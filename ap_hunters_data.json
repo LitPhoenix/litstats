@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-01T20:41:08.402Z",
+  "last_update": "2026-08-01T22:45:11.514Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1763,9 +1763,9 @@
           "username": "SvenTerror",
           "uuid": "171faf6b54c045d884ba95f27049984f",
           "country": "The Netherlands",
-          "current_ap": 25425,
+          "current_ap": 25420,
           "last_month_ap": 25425,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Speed UHC",
             "Max Warlords",
@@ -2684,7 +2684,7 @@
     },
     {
       "country": "Unknown",
-      "score": 575,
+      "score": 583,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2706,9 +2706,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25550,
+          "current_ap": 25565,
           "last_month_ap": 25550,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -3307,15 +3307,15 @@
     },
     {
       "country": "Greece",
-      "score": 170,
+      "score": 165,
       "top_players": [
         {
           "username": "giorgy",
           "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
           "country": "Greece",
-          "current_ap": 25720,
+          "current_ap": 25715,
           "last_month_ap": 25720,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -3404,9 +3404,9 @@
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Italy",
-          "current_ap": 24830,
+          "current_ap": 24855,
           "last_month_ap": 24830,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Murder Mystery",
             "Max Wool Games",
