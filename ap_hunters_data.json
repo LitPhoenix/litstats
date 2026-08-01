@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-01T11:11:25.851Z",
+  "last_update": "2026-08-01T12:56:19.242Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1072,7 +1072,7 @@
           ]
         },
         {
-          "username": "FranceW",
+          "username": "Posey",
           "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
           "country": "France",
           "current_ap": 28710,
@@ -2650,9 +2650,9 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 25165,
+          "current_ap": 25175,
           "last_month_ap": 25165,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Murder Mystery",
             "Max VampireZ",
