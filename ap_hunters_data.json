@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-02T01:46:46.830Z",
+  "last_update": "2026-08-02T05:17:25.344Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -519,9 +519,9 @@
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
-          "current_ap": 29480,
+          "current_ap": 29475,
           "last_month_ap": 29480,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Quake",
             "Max TNT Games",
@@ -2587,15 +2587,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1360,
+      "score": 1400,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26910,
+          "current_ap": 26950,
           "last_month_ap": 26910,
-          "monthly_gain": 0,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
