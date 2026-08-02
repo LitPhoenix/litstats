@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-02T16:46:26.069Z",
+  "last_update": "2026-08-02T18:54:20.883Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -424,6 +424,7 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max UHC",
+            "Max Pit",
             "Max SkyWars",
             "Max Blitz",
             "Max Arena Brawl",
@@ -1352,7 +1353,7 @@
           ]
         },
         {
-          "username": "NOOB_DESTORYER35",
+          "username": "xMLGFaZeSwAgLoRd",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
           "current_ap": 24755,
@@ -2215,15 +2216,15 @@
     },
     {
       "country": "Norway",
-      "score": 3783,
+      "score": 3808,
       "top_players": [
         {
           "username": "Lumenoz",
           "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
           "country": "Norway",
-          "current_ap": 28915,
+          "current_ap": 28940,
           "last_month_ap": 28915,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyBlock",
             "Max VampireZ",
@@ -2742,9 +2743,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24885,
+          "current_ap": 24880,
           "last_month_ap": 24885,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -2908,9 +2909,9 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 23770,
+          "current_ap": 23790,
           "last_month_ap": 23755,
-          "monthly_gain": 15,
+          "monthly_gain": 35,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
