@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-03T01:48:58.687Z",
+  "last_update": "2026-08-03T05:32:32.622Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1405,15 +1405,15 @@
     },
     {
       "country": "Canada",
-      "score": 9192,
+      "score": 9242,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31810,
+          "current_ap": 31860,
           "last_month_ap": 31790,
-          "monthly_gain": 20,
+          "monthly_gain": 70,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2633,7 +2633,7 @@
     },
     {
       "country": "Unknown",
-      "score": 638,
+      "score": 653,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2656,9 +2656,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25565,
+          "current_ap": 25595,
           "last_month_ap": 25550,
-          "monthly_gain": 15,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -2744,9 +2744,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24900,
+          "current_ap": 24920,
           "last_month_ap": 24885,
-          "monthly_gain": 15,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Pit",
             "Max Warlords",

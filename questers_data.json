@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-03T01:48:59.064Z",
+  "last_update": "2026-08-03T05:32:33.045Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -1030,15 +1030,15 @@
     },
     {
       "country": "Portugal",
-      "score": 5415.4,
+      "score": 5498.4,
       "top_players": [
         {
-          "username": "Pedro_SS8",
+          "username": "ApexRevenant",
           "uuid": "153377202f274dd09dc838b83c09b104",
           "country": "Portugal",
-          "current_quests": 27077,
+          "current_quests": 27492,
           "last_month_quests": 27077,
-          "monthly_gain": 0
+          "monthly_gain": 415
         }
       ]
     },
