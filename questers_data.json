@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-03T09:02:14.704Z",
+  "last_update": "2026-08-03T12:50:10.001Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -1066,15 +1066,15 @@
     },
     {
       "country": "Peru",
-      "score": 5220.2,
+      "score": 5221.2,
       "top_players": [
         {
           "username": "wittyhope",
           "uuid": "141e5144694046eaa7e536ed70cc1595",
           "country": "Peru",
-          "current_quests": 26101,
+          "current_quests": 26106,
           "last_month_quests": 26101,
-          "monthly_gain": 0
+          "monthly_gain": 5
         }
       ]
     },
