@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-03T12:50:09.545Z",
+  "last_update": "2026-08-03T16:14:55.688Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1671,7 +1671,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8186,
+      "score": 8190,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1722,9 +1722,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 26885,
+          "current_ap": 26900,
           "last_month_ap": 26890,
-          "monthly_gain": -5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
