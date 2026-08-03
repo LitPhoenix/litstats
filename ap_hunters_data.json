@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-03T20:55:13.484Z",
+  "last_update": "2026-08-03T22:53:04.431Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2216,7 +2216,7 @@
     },
     {
       "country": "Norway",
-      "score": 3808,
+      "score": 3806,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -2258,9 +2258,9 @@
           "username": "sForce",
           "uuid": "ad988df25a274cf592b66c9562834230",
           "country": "Norway",
-          "current_ap": 25630,
+          "current_ap": 25625,
           "last_month_ap": 25630,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ",
@@ -2633,7 +2633,7 @@
     },
     {
       "country": "Unknown",
-      "score": 653,
+      "score": 658,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2656,9 +2656,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25595,
+          "current_ap": 25605,
           "last_month_ap": 25550,
-          "monthly_gain": 45,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Wool Games"
           ]
