@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-04T01:25:04.471Z",
+  "last_update": "2026-08-04T04:55:12.364Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -593,7 +593,7 @@
           ]
         },
         {
-          "username": "Retro05863",
+          "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
           "current_ap": 27935,
@@ -812,6 +812,18 @@
           ]
         },
         {
+          "username": "JurassicBox",
+          "uuid": "c08043d19f334a3e8189695cf356cd16",
+          "country": "USA",
+          "current_ap": 25700,
+          "last_month_ap": 25475,
+          "monthly_gain": 225,
+          "maxGames": [
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "lyraava",
           "uuid": "6d84e8ed95b3452095221594b9e448fe",
           "country": "USA",
@@ -839,18 +851,6 @@
           "maxGames": [
             "Max Smash Heroes",
             "Max Warlords",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "JurassicBox",
-          "uuid": "c08043d19f334a3e8189695cf356cd16",
-          "country": "USA",
-          "current_ap": 25590,
-          "last_month_ap": 25475,
-          "monthly_gain": 115,
-          "maxGames": [
-            "Max VampireZ",
             "Max TKR"
           ]
         },
@@ -1286,9 +1286,9 @@
           "username": "Fossilised",
           "uuid": "e3292ca36c5e43cbacd01c52adaca375",
           "country": "UK",
-          "current_ap": 26770,
+          "current_ap": 26765,
           "last_month_ap": 26770,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -2163,7 +2163,7 @@
     },
     {
       "country": "Finland",
-      "score": 4241,
+      "score": 4243,
       "top_players": [
         {
           "username": "Champiez",
@@ -2203,9 +2203,9 @@
           "username": "MatiasSiltanen",
           "uuid": "e9a871c29903474687b0b045edd35ae9",
           "country": "Finland",
-          "current_ap": 26495,
+          "current_ap": 26500,
           "last_month_ap": 26405,
-          "monthly_gain": 90,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Wool Games",
             "Max Duels",
@@ -2714,9 +2714,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 24960,
+          "current_ap": 24970,
           "last_month_ap": 24885,
-          "monthly_gain": 75,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
