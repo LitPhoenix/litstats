@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-04T11:56:18.432Z",
+  "last_update": "2026-08-04T13:46:46.400Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1141,9 +1141,9 @@
           "username": "horri",
           "uuid": "04f4bddb99004950ab605a20f41c6a98",
           "country": "France",
-          "current_ap": 26235,
+          "current_ap": 26240,
           "last_month_ap": 26235,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -2154,9 +2154,9 @@
           "username": "Slime",
           "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
           "country": "Israel",
-          "current_ap": 23660,
+          "current_ap": 23665,
           "last_month_ap": 23665,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": []
         }
       ]
