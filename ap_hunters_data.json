@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-04T21:02:41.712Z",
+  "last_update": "2026-08-04T22:53:48.185Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -826,6 +826,7 @@
             "Max Arena Brawl",
             "Max Smash Heroes",
             "Max Paintball",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max VampireZ",
@@ -988,7 +989,7 @@
     },
     {
       "country": "France",
-      "score": 11145,
+      "score": 11148,
       "top_players": [
         {
           "username": "Yann31_",
@@ -1064,10 +1065,11 @@
           "username": "Posey",
           "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
           "country": "France",
-          "current_ap": 28710,
+          "current_ap": 28740,
           "last_month_ap": 28715,
-          "monthly_gain": -5,
+          "monthly_gain": 25,
           "maxGames": [
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Walls",
             "Max Murder Mystery",
@@ -1730,11 +1732,12 @@
           "username": "Kinderfeest",
           "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
           "country": "The Netherlands",
-          "current_ap": 25485,
+          "current_ap": 25490,
           "last_month_ap": 25485,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Pit",
+            "Max SkyBlock",
             "Max Seasonal"
           ]
         },
@@ -2681,6 +2684,20 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 24975,
+          "last_month_ap": 24945,
+          "monthly_gain": 30,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
@@ -2691,20 +2708,6 @@
             "Max Pit",
             "Max Warlords",
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 24960,
-          "last_month_ap": 24945,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
@@ -2854,6 +2857,17 @@
           ]
         },
         {
+          "username": "ichhabevape",
+          "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
+          "country": "Unknown",
+          "current_ap": 23910,
+          "last_month_ap": 23850,
+          "monthly_gain": 60,
+          "maxGames": [
+            "Max Seasonal"
+          ]
+        },
+        {
           "username": "DarkSilent",
           "uuid": "93b354235bd44e9a8ebf43763d90c96a",
           "country": "Unknown",
@@ -2862,17 +2876,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max SkyClash"
-          ]
-        },
-        {
-          "username": "ichhabevape",
-          "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
-          "country": "Unknown",
-          "current_ap": 23885,
-          "last_month_ap": 23850,
-          "monthly_gain": 35,
-          "maxGames": [
-            "Max Seasonal"
           ]
         },
         {
@@ -3372,9 +3375,9 @@
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Italy",
-          "current_ap": 24860,
+          "current_ap": 24890,
           "last_month_ap": 24830,
-          "monthly_gain": 30,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Murder Mystery",
             "Max Wool Games",
