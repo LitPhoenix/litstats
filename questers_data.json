@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-04T08:19:01.502Z",
+  "last_update": "2026-08-04T11:56:18.838Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -286,15 +286,15 @@
     },
     {
       "country": "Canada",
-      "score": 40455.4,
+      "score": 40464.6,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_quests": 84584,
+          "current_quests": 84616,
           "last_month_quests": 84464,
-          "monthly_gain": 120
+          "monthly_gain": 152
         },
         {
           "username": "enderdrxgon",
@@ -324,9 +324,9 @@
           "username": "radicul",
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Canada",
-          "current_quests": 21881,
+          "current_quests": 21895,
           "last_month_quests": 21866,
-          "monthly_gain": 15
+          "monthly_gain": 29
         }
       ]
     },
@@ -1122,15 +1122,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 5041.6,
+      "score": 5044.2,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 25208,
+          "current_quests": 25221,
           "last_month_quests": 25179,
-          "monthly_gain": 29
+          "monthly_gain": 42
         }
       ]
     },
