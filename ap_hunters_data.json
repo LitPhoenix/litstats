@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-05T15:55:02.841Z",
+  "last_update": "2026-08-05T17:19:48.911Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1568,6 +1568,7 @@
           "monthly_gain": 25,
           "maxGames": [
             "Max Smash Heroes",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max VampireZ",
             "Max TKR"
@@ -1738,9 +1739,9 @@
           "username": "Kinderfeest",
           "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
           "country": "The Netherlands",
-          "current_ap": 25490,
+          "current_ap": 25515,
           "last_month_ap": 25485,
-          "monthly_gain": 5,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock",
@@ -3463,9 +3464,9 @@
           "username": "SpaceDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
-          "current_ap": 24000,
+          "current_ap": 24020,
           "last_month_ap": 24000,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": []
         }
       ]
