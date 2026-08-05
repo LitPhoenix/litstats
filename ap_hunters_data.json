@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-05T08:16:36.253Z",
+  "last_update": "2026-08-05T11:51:40.487Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -753,9 +753,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26275,
+          "current_ap": 26270,
           "last_month_ap": 26275,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -1102,9 +1102,9 @@
           "username": "Uleb",
           "uuid": "2baaec9272fd487294e673eb4ec35201",
           "country": "France",
-          "current_ap": 27420,
+          "current_ap": 27415,
           "last_month_ap": 27420,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max TKR",
             "Max Duels",
@@ -2198,16 +2198,17 @@
     },
     {
       "country": "Norway",
-      "score": 3789,
+      "score": 3819,
       "top_players": [
         {
           "username": "Lumenoz",
           "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
           "country": "Norway",
-          "current_ap": 28940,
+          "current_ap": 28970,
           "last_month_ap": 28915,
-          "monthly_gain": 25,
+          "monthly_gain": 55,
           "maxGames": [
+            "Max SkyBlock",
             "Max VampireZ",
             "Max TKR",
             "Max Wool Games",
@@ -2814,21 +2815,12 @@
           ]
         },
         {
-          "username": "Xylim",
-          "uuid": "f94ade5012374648b0423fc0b66cac0a",
-          "country": "Unknown",
-          "current_ap": 24225,
-          "last_month_ap": 24225,
-          "monthly_gain": 0,
-          "maxGames": []
-        },
-        {
           "username": "jenidu",
           "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
           "country": "Unknown",
-          "current_ap": 24220,
+          "current_ap": 24230,
           "last_month_ap": 24220,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Paintball",
             "Max Walls",
@@ -2836,6 +2828,15 @@
             "Max TKR",
             "Max Crazy Walls"
           ]
+        },
+        {
+          "username": "Xylim",
+          "uuid": "f94ade5012374648b0423fc0b66cac0a",
+          "country": "Unknown",
+          "current_ap": 24225,
+          "last_month_ap": 24225,
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "_Tk3",
@@ -3062,9 +3063,9 @@
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23325,
+          "current_ap": 23340,
           "last_month_ap": 23305,
-          "monthly_gain": 20,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Wool Games"
           ]
