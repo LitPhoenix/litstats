@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-05T20:57:18.527Z",
+  "last_update": "2026-08-05T22:49:28.323Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -384,15 +384,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 19148,
+      "score": 19149.2,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 51080,
+          "current_quests": 51086,
           "last_month_quests": 50825,
-          "monthly_gain": 255
+          "monthly_gain": 261
         },
         {
           "username": "Itz_Pipi",
@@ -562,9 +562,9 @@
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_quests": 31876,
+          "current_quests": 31880,
           "last_month_quests": 31849,
-          "monthly_gain": 27
+          "monthly_gain": 31
         },
         {
           "username": "vasiv",
