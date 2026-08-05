@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-05T04:55:48.894Z",
+  "last_update": "2026-08-05T08:16:36.253Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1563,9 +1563,9 @@
           "username": "pehi",
           "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
           "country": "Canada",
-          "current_ap": 23990,
+          "current_ap": 24015,
           "last_month_ap": 23990,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Smash Heroes",
             "Max Speed UHC",
@@ -2145,7 +2145,7 @@
     },
     {
       "country": "Finland",
-      "score": 4240,
+      "score": 4255,
       "top_players": [
         {
           "username": "Champiez",
@@ -2170,10 +2170,11 @@
           "username": "MineElzu60",
           "uuid": "559860c584174a7c90a8f79332802516",
           "country": "Finland",
-          "current_ap": 27780,
+          "current_ap": 27810,
           "last_month_ap": 27785,
-          "monthly_gain": -5,
+          "monthly_gain": 25,
           "maxGames": [
+            "Max SkyBlock",
             "Max Warlords",
             "Max VampireZ",
             "Max TKR",
@@ -2449,7 +2450,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1678,
+      "score": 1685,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2466,9 +2467,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26335,
+          "current_ap": 26350,
           "last_month_ap": 26335,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -2670,9 +2671,9 @@
           "username": "sosal",
           "uuid": "14fc22531af545cf918eec7b30527272",
           "country": "Unknown",
-          "current_ap": 25055,
+          "current_ap": 25070,
           "last_month_ap": 25050,
-          "monthly_gain": 5,
+          "monthly_gain": 20,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2720,10 +2721,11 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 24935,
+          "current_ap": 24965,
           "last_month_ap": 24935,
-          "monthly_gain": 0,
+          "monthly_gain": 30,
           "maxGames": [
+            "Max SkyBlock",
             "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
@@ -3103,15 +3105,15 @@
     },
     {
       "country": "Syria",
-      "score": 610,
+      "score": 615,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26170,
+          "current_ap": 26175,
           "last_month_ap": 26170,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
