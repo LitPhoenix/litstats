@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-06T04:55:54.023Z",
+  "last_update": "2026-08-06T08:14:52.401Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -739,11 +739,12 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 26410,
+          "current_ap": 26420,
           "last_month_ap": 26395,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Blitz",
+            "Max SkyBlock",
             "Max Arcade",
             "Max Wool Games",
             "Max Duels",
@@ -853,10 +854,11 @@
           "username": "needycatboy",
           "uuid": "99fcc41648bc45718c6cebfaf501da97",
           "country": "USA",
-          "current_ap": 25480,
+          "current_ap": 25510,
           "last_month_ap": 25445,
-          "monthly_gain": 35,
+          "monthly_gain": 65,
           "maxGames": [
+            "Max SkyBlock",
             "Max TKR"
           ]
         },
@@ -3127,9 +3129,9 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 25175,
+          "current_ap": 25230,
           "last_month_ap": 25165,
-          "monthly_gain": 10,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Murder Mystery",
             "Max VampireZ",
