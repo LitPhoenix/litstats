@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-06T01:27:01.856Z",
+  "last_update": "2026-08-06T04:55:54.023Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1564,9 +1564,9 @@
           "username": "pehi",
           "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
           "country": "Canada",
-          "current_ap": 24015,
+          "current_ap": 24020,
           "last_month_ap": 23990,
-          "monthly_gain": 25,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Smash Heroes",
             "Max SkyBlock",
@@ -2454,7 +2454,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1640,
+      "score": 1645,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2471,9 +2471,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26350,
+          "current_ap": 26360,
           "last_month_ap": 26335,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -3449,9 +3449,9 @@
           "username": "hentor5",
           "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
           "country": "Sweden",
-          "current_ap": 23335,
+          "current_ap": 23340,
           "last_month_ap": 23340,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max TKR"
           ]
