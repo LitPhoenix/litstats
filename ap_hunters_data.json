@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-05T22:49:27.803Z",
+  "last_update": "2026-08-06T01:27:01.856Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12602,
+      "score": 12603,
       "top_players": [
         {
           "username": "oJakey",
@@ -499,13 +499,14 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30165,
+          "current_ap": 30195,
           "last_month_ap": 30040,
-          "monthly_gain": 125,
+          "monthly_gain": 155,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
             "Max Quake",
+            "Max SkyBlock",
             "Max TNT Games",
             "Max Murder Mystery",
             "Max VampireZ",
@@ -738,9 +739,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 26390,
+          "current_ap": 26410,
           "last_month_ap": 26395,
-          "monthly_gain": -5,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Blitz",
             "Max Arcade",
@@ -806,6 +807,18 @@
           ]
         },
         {
+          "username": "JurassicBox",
+          "uuid": "c08043d19f334a3e8189695cf356cd16",
+          "country": "USA",
+          "current_ap": 25720,
+          "last_month_ap": 25475,
+          "monthly_gain": 245,
+          "maxGames": [
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "lyraava",
           "uuid": "6d84e8ed95b3452095221594b9e448fe",
           "country": "USA",
@@ -819,18 +832,6 @@
             "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "JurassicBox",
-          "uuid": "c08043d19f334a3e8189695cf356cd16",
-          "country": "USA",
-          "current_ap": 25700,
-          "last_month_ap": 25475,
-          "monthly_gain": 225,
-          "maxGames": [
             "Max VampireZ",
             "Max TKR"
           ]
@@ -3219,15 +3220,15 @@
     },
     {
       "country": "Spain",
-      "score": 350,
+      "score": 360,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25940,
+          "current_ap": 25950,
           "last_month_ap": 25935,
-          "monthly_gain": 5,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -3495,9 +3496,9 @@
           "username": "0HfLUfFIE",
           "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
           "country": "Hong Kong",
-          "current_ap": 23600,
+          "current_ap": 23615,
           "last_month_ap": 23555,
-          "monthly_gain": 45,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Paintball",
             "Max Warlords",
