@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-06T23:49:31.058Z",
+  "last_update": "2026-08-07T02:05:43.091Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -484,7 +484,7 @@
     },
     {
       "country": "USA",
-      "score": 46071.6,
+      "score": 46082,
       "top_players": [
         {
           "username": "Trtx",
@@ -498,9 +498,9 @@
           "username": "Shazuh",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
-          "current_quests": 48792,
+          "current_quests": 48844,
           "last_month_quests": 48792,
-          "monthly_gain": 0
+          "monthly_gain": 52
         },
         {
           "username": "Respawnless",
