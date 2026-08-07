@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-07T18:40:00.297Z",
+  "last_update": "2026-08-07T20:30:28.617Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -797,9 +797,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25765,
+          "current_ap": 25785,
           "last_month_ap": 25765,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -1312,9 +1312,9 @@
           "username": "JinxRaider23",
           "uuid": "d297331b7ff9452babd6828871bc2636",
           "country": "UK",
-          "current_ap": 25915,
+          "current_ap": 25910,
           "last_month_ap": 25915,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
@@ -2062,9 +2062,9 @@
           "username": "Paczuszka",
           "uuid": "6be718564437499fbb6242e17fbaa0c3",
           "country": "Poland",
-          "current_ap": 23495,
+          "current_ap": 23505,
           "last_month_ap": 23490,
-          "monthly_gain": 5,
+          "monthly_gain": 15,
           "maxGames": [
             "Max TKR"
           ]
@@ -2325,7 +2325,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2644,
+      "score": 2651,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2346,9 +2346,9 @@
           "username": "ZERATHIX",
           "uuid": "e37ccf10fe9643789745e0432ca096b2",
           "country": "Czech Republic",
-          "current_ap": 26630,
+          "current_ap": 26645,
           "last_month_ap": 26625,
-          "monthly_gain": 5,
+          "monthly_gain": 20,
           "maxGames": [
             "Max TKR"
           ]
@@ -3453,9 +3453,9 @@
           "username": "hentor5",
           "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
           "country": "Sweden",
-          "current_ap": 23340,
+          "current_ap": 23345,
           "last_month_ap": 23340,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max TKR"
           ]
