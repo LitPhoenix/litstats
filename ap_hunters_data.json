@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-07T02:05:42.532Z",
+  "last_update": "2026-08-07T05:28:29.279Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -936,6 +936,7 @@
           "maxGames": [
             "Max Smash Heroes",
             "Max Quake",
+            "Max SkyBlock",
             "Max TKR"
           ]
         },
@@ -1398,15 +1399,15 @@
     },
     {
       "country": "Canada",
-      "score": 9183,
+      "score": 9258,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_ap": 31870,
+          "current_ap": 31945,
           "last_month_ap": 31790,
-          "monthly_gain": 80,
+          "monthly_gain": 155,
           "maxGames": [
             "Max SkyWars",
             "Max Blitz",
@@ -2457,7 +2458,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1648,
+      "score": 1653,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2474,9 +2475,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26365,
+          "current_ap": 26375,
           "last_month_ap": 26335,
-          "monthly_gain": 30,
+          "monthly_gain": 40,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -2510,9 +2511,9 @@
           "username": "radicul",
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Australia",
-          "current_ap": 25135,
+          "current_ap": 25150,
           "last_month_ap": 25135,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
@@ -2933,6 +2934,19 @@
           ]
         },
         {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 23680,
+          "last_month_ap": 23550,
+          "monthly_gain": 130,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Hacks",
           "uuid": "b5ab6db9366049ae8a9882927e46ce08",
           "country": "Unknown",
@@ -2946,19 +2960,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "InInk",
-          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
-          "country": "Unknown",
-          "current_ap": 23665,
-          "last_month_ap": 23550,
-          "monthly_gain": 115,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max TKR",
-            "Max Duels"
           ]
         },
         {
@@ -3223,15 +3224,15 @@
     },
     {
       "country": "Spain",
-      "score": 375,
+      "score": 405,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 25965,
+          "current_ap": 25995,
           "last_month_ap": 25935,
-          "monthly_gain": 30,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -3499,9 +3500,9 @@
           "username": "0HfLUfFIE",
           "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
           "country": "Hong Kong",
-          "current_ap": 23700,
+          "current_ap": 23710,
           "last_month_ap": 23555,
-          "monthly_gain": 145,
+          "monthly_gain": 155,
           "maxGames": [
             "Max Paintball",
             "Max Warlords",
