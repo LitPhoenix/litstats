@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-08T14:24:05.478Z",
+  "last_update": "2026-08-08T16:21:41.340Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1182,7 +1182,7 @@
     },
     {
       "country": "UK",
-      "score": 10016,
+      "score": 10015,
       "top_players": [
         {
           "username": "greaneye",
@@ -1249,9 +1249,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29105,
+          "current_ap": 29100,
           "last_month_ap": 29105,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
@@ -2938,9 +2938,9 @@
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
-          "current_ap": 23710,
+          "current_ap": 23720,
           "last_month_ap": 23550,
-          "monthly_gain": 160,
+          "monthly_gain": 170,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR",
