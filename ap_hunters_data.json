@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-08T20:18:22.734Z",
+  "last_update": "2026-08-08T22:19:03.503Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1664,7 +1664,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8179,
+      "score": 8177,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1697,9 +1697,9 @@
           "username": "Paskwal",
           "uuid": "6248c4ae570147369f5cd94192a55094",
           "country": "The Netherlands",
-          "current_ap": 27920,
+          "current_ap": 27915,
           "last_month_ap": 27920,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -1925,7 +1925,7 @@
     },
     {
       "country": "Germany",
-      "score": 6580,
+      "score": 6593,
       "top_players": [
         {
           "username": "NightMan976",
@@ -1950,14 +1950,15 @@
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28440,
+          "current_ap": 28465,
           "last_month_ap": 28440,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Smash Heroes",
             "Max Paintball",
             "Max Warlords",
             "Max TNT Games",
+            "Max Arcade",
             "Max Murder Mystery",
             "Max VampireZ",
             "Max TKR",
@@ -2073,7 +2074,7 @@
     },
     {
       "country": "Israel",
-      "score": 4251,
+      "score": 4254,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2110,9 +2111,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26285,
+          "current_ap": 26295,
           "last_month_ap": 26230,
-          "monthly_gain": 55,
+          "monthly_gain": 65,
           "maxGames": []
         },
         {
@@ -2980,9 +2981,9 @@
           "username": "Justin_Jefferson",
           "uuid": "9dccd818228640bfa33174d8dc86dfb7",
           "country": "Unknown",
-          "current_ap": 23575,
+          "current_ap": 23570,
           "last_month_ap": 23575,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ"
