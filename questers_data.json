@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-08T00:50:09.036Z",
+  "last_update": "2026-08-08T03:17:20.303Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -200,15 +200,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49730.6,
+      "score": 49744.8,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 111002,
+          "current_quests": 111049,
           "last_month_quests": 110923,
-          "monthly_gain": 79
+          "monthly_gain": 126
         },
         {
           "username": "ErtrycheZ",
@@ -238,9 +238,9 @@
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_quests": 28649,
+          "current_quests": 28673,
           "last_month_quests": 28638,
-          "monthly_gain": 11
+          "monthly_gain": 35
         },
         {
           "username": "trql",
@@ -384,15 +384,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 19159,
+      "score": 19163.2,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 51135,
+          "current_quests": 51156,
           "last_month_quests": 50825,
-          "monthly_gain": 310
+          "monthly_gain": 331
         },
         {
           "username": "Itz_Pipi",
@@ -1066,15 +1066,15 @@
     },
     {
       "country": "Peru",
-      "score": 5221.2,
+      "score": 5221.8,
       "top_players": [
         {
-          "username": "wittyhope",
+          "username": "hollystormz",
           "uuid": "141e5144694046eaa7e536ed70cc1595",
           "country": "Peru",
-          "current_quests": 26106,
+          "current_quests": 26109,
           "last_month_quests": 26101,
-          "monthly_gain": 5
+          "monthly_gain": 8
         }
       ]
     },
@@ -1122,15 +1122,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 5044.8,
+      "score": 5048.2,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 25224,
+          "current_quests": 25241,
           "last_month_quests": 25179,
-          "monthly_gain": 45
+          "monthly_gain": 62
         }
       ]
     },
