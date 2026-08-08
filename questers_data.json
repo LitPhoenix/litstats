@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-08T04:46:45.969Z",
+  "last_update": "2026-08-08T06:34:38.939Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -535,20 +535,20 @@
           "monthly_gain": 0
         },
         {
+          "username": "sirumair9505",
+          "uuid": "77edb6fda6ef4097914ddc698242fe04",
+          "country": "USA",
+          "current_quests": 34671,
+          "last_month_quests": 34620,
+          "monthly_gain": 51
+        },
+        {
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
           "current_quests": 34661,
           "last_month_quests": 34654,
           "monthly_gain": 7
-        },
-        {
-          "username": "sirumair9505",
-          "uuid": "77edb6fda6ef4097914ddc698242fe04",
-          "country": "USA",
-          "current_quests": 34620,
-          "last_month_quests": 34620,
-          "monthly_gain": 0
         },
         {
           "username": "Dadje",
@@ -928,15 +928,15 @@
     },
     {
       "country": "Unknown",
-      "score": 26698,
+      "score": 26714.6,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_quests": 28948,
+          "current_quests": 29031,
           "last_month_quests": 28801,
-          "monthly_gain": 147
+          "monthly_gain": 230
         },
         {
           "username": "wannabemykitten",
