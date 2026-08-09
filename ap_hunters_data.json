@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-09T16:22:29.891Z",
+  "last_update": "2026-08-09T18:25:18.286Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2074,15 +2074,15 @@
     },
     {
       "country": "Israel",
-      "score": 4254,
+      "score": 4264,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_ap": 28510,
+          "current_ap": 28520,
           "last_month_ap": 28510,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Arena Brawl",
             "Max Quake",
@@ -2578,19 +2578,20 @@
     },
     {
       "country": "Taiwan",
-      "score": 1360,
+      "score": 1385,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26950,
+          "current_ap": 26975,
           "last_month_ap": 26910,
-          "monthly_gain": 40,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
             "Max TKR",
+            "Max Wool Games",
             "Max Build Battle"
           ]
         },
@@ -2690,6 +2691,20 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 25025,
+          "last_month_ap": 24945,
+          "monthly_gain": 80,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "pumpkan",
           "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
           "country": "Unknown",
@@ -2698,20 +2713,6 @@
           "monthly_gain": 15,
           "maxGames": [
             "Max Wool Games"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 25000,
-          "last_month_ap": 24945,
-          "monthly_gain": 55,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
@@ -3072,9 +3073,9 @@
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23340,
+          "current_ap": 23350,
           "last_month_ap": 23305,
-          "monthly_gain": 35,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -3147,15 +3148,15 @@
     },
     {
       "country": "Iraq",
-      "score": 550,
+      "score": 580,
       "top_players": [
         {
           "username": "Amony",
           "uuid": "96f645ba026b4e45bc34dd8f0531334c",
           "country": "Iraq",
-          "current_ap": 26140,
+          "current_ap": 26170,
           "last_month_ap": 26145,
-          "monthly_gain": -5,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games",
@@ -3503,9 +3504,9 @@
           "username": "0HfLUfFIE",
           "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
           "country": "Hong Kong",
-          "current_ap": 23735,
+          "current_ap": 23760,
           "last_month_ap": 23555,
-          "monthly_gain": 180,
+          "monthly_gain": 205,
           "maxGames": [
             "Max Paintball",
             "Max Warlords",
