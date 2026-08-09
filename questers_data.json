@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-09T10:23:10.775Z",
+  "last_update": "2026-08-09T12:28:20.728Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -878,15 +878,15 @@
     },
     {
       "country": "Mexico",
-      "score": 6362.2,
+      "score": 6364,
       "top_players": [
         {
-          "username": "JustAntonio",
+          "username": "x_o22",
           "uuid": "b9b6e4fd53894abd968508b885d64534",
           "country": "Mexico",
-          "current_quests": 31811,
+          "current_quests": 31820,
           "last_month_quests": 31811,
-          "monthly_gain": 0
+          "monthly_gain": 9
         }
       ]
     },
