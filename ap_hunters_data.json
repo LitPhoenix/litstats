@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-08T22:19:03.503Z",
+  "last_update": "2026-08-09T00:53:12.516Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -681,9 +681,9 @@
           "username": "Mazk",
           "uuid": "059abcc217c2422f9d9f92e8dea2e607",
           "country": "USA",
-          "current_ap": 26870,
+          "current_ap": 26865,
           "last_month_ap": 26870,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Blitz",
             "Max TKR"
@@ -982,9 +982,9 @@
           "username": "Pqssible",
           "uuid": "9872248cdad742f785657dbf78d9c756",
           "country": "USA",
-          "current_ap": 23425,
+          "current_ap": 23430,
           "last_month_ap": 23430,
-          "monthly_gain": -5,
+          "monthly_gain": 0,
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
@@ -2154,15 +2154,15 @@
     },
     {
       "country": "Finland",
-      "score": 4213,
+      "score": 4238,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28455,
+          "current_ap": 28480,
           "last_month_ap": 28455,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2923,6 +2923,19 @@
           ]
         },
         {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 23740,
+          "last_month_ap": 23550,
+          "monthly_gain": 190,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "DirtyAvocado",
           "uuid": "8d167f27157d488394f6b6142ccc16be",
           "country": "Unknown",
@@ -2931,19 +2944,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Arena Brawl",
-            "Max TKR",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "InInk",
-          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
-          "country": "Unknown",
-          "current_ap": 23720,
-          "last_month_ap": 23550,
-          "monthly_gain": 170,
-          "maxGames": [
-            "Max SkyBlock",
             "Max TKR",
             "Max Duels"
           ]
@@ -3365,9 +3365,9 @@
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
-          "current_ap": 25230,
+          "current_ap": 25255,
           "last_month_ap": 25170,
-          "monthly_gain": 60,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Wool Games"
           ]
