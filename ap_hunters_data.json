@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-10T00:55:35.706Z",
+  "last_update": "2026-08-10T03:44:40.004Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -380,7 +380,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12606,
+      "score": 12607,
       "top_players": [
         {
           "username": "oJakey",
@@ -499,9 +499,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30255,
+          "current_ap": 30265,
           "last_month_ap": 30040,
-          "monthly_gain": 215,
+          "monthly_gain": 225,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2705,6 +2705,19 @@
           ]
         },
         {
+          "username": "ToastyOosty",
+          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+          "country": "Unknown",
+          "current_ap": 25025,
+          "last_month_ap": 24885,
+          "monthly_gain": 140,
+          "maxGames": [
+            "Max Pit",
+            "Max Warlords",
+            "Max VampireZ"
+          ]
+        },
+        {
           "username": "pumpkan",
           "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
           "country": "Unknown",
@@ -2713,19 +2726,6 @@
           "monthly_gain": 15,
           "maxGames": [
             "Max Wool Games"
-          ]
-        },
-        {
-          "username": "ToastyOosty",
-          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
-          "country": "Unknown",
-          "current_ap": 25010,
-          "last_month_ap": 24885,
-          "monthly_gain": 125,
-          "maxGames": [
-            "Max Pit",
-            "Max Warlords",
-            "Max VampireZ"
           ]
         },
         {
