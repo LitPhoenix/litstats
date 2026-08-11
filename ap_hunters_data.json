@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-11T00:54:53.069Z",
+  "last_update": "2026-08-11T03:26:43.582Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -595,9 +595,9 @@
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 27935,
+          "current_ap": 27980,
           "last_month_ap": 27935,
-          "monthly_gain": 0,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ"
@@ -2490,15 +2490,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 1635,
+      "score": 1655,
       "top_players": [
         {
           "username": "WsprinklesLnacho",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26825,
+          "current_ap": 26845,
           "last_month_ap": 26745,
-          "monthly_gain": 80,
+          "monthly_gain": 100,
           "maxGames": []
         },
         {
@@ -2982,9 +2982,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
-          "current_ap": 23575,
+          "current_ap": 23595,
           "last_month_ap": 23520,
-          "monthly_gain": 55,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Pit",
             "Max TKR",
