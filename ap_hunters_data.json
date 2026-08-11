@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-11T16:46:51.955Z",
+  "last_update": "2026-08-11T18:46:21.451Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -942,7 +942,7 @@
           ]
         },
         {
-          "username": "Shazuh",
+          "username": "xBlue_Space",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
           "current_ap": 24055,
@@ -1183,7 +1183,7 @@
     },
     {
       "country": "UK",
-      "score": 10015,
+      "score": 10021,
       "top_players": [
         {
           "username": "greaneye",
@@ -1237,9 +1237,9 @@
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
-          "current_ap": 29180,
+          "current_ap": 29205,
           "last_month_ap": 29155,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max VampireZ",
             "Max TKR",
@@ -3049,6 +3049,17 @@
           ]
         },
         {
+          "username": "22charizard",
+          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+          "country": "Unknown",
+          "current_ap": 23390,
+          "last_month_ap": 23365,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Pit"
+          ]
+        },
+        {
           "username": "MacchuPicchu",
           "uuid": "3d55b88551fe48d997bae3412cd8aa72",
           "country": "Unknown",
@@ -3068,17 +3079,6 @@
           "monthly_gain": 70,
           "maxGames": [
             "Max Wool Games"
-          ]
-        },
-        {
-          "username": "22charizard",
-          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
-          "country": "Unknown",
-          "current_ap": 23365,
-          "last_month_ap": 23365,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit"
           ]
         },
         {
