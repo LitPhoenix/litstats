@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-12T14:50:53.961Z",
+  "last_update": "2026-08-12T16:46:21.235Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2075,15 +2075,15 @@
     },
     {
       "country": "Israel",
-      "score": 4264,
+      "score": 4284,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_ap": 28520,
+          "current_ap": 28540,
           "last_month_ap": 28510,
-          "monthly_gain": 10,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Arena Brawl",
             "Max Quake",
@@ -2915,9 +2915,9 @@
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
-          "current_ap": 23835,
+          "current_ap": 23865,
           "last_month_ap": 23550,
-          "monthly_gain": 285,
+          "monthly_gain": 315,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR",
