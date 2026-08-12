@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-12T12:43:51.441Z",
+  "last_update": "2026-08-12T14:50:53.961Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2625,7 +2625,7 @@
     },
     {
       "country": "Unknown",
-      "score": 633,
+      "score": 635,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2648,9 +2648,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25625,
+          "current_ap": 25630,
           "last_month_ap": 25550,
-          "monthly_gain": 75,
+          "monthly_gain": 80,
           "maxGames": [
             "Max Wool Games"
           ]
