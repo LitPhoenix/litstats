@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-12T22:30:33.966Z",
+  "last_update": "2026-08-13T01:03:47.613Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -200,7 +200,8 @@
     "d91eb87c945b490b82a2638c8cf5a291": 23310,
     "cef8bc211b264d54b07da2995d587098": 23305,
     "d8c93138750f4388a3a99bd98b03192b": 23300,
-    "01834d8a3c7a49c796589979d7a9ab74": 23235
+    "01834d8a3c7a49c796589979d7a9ab74": 23235,
+    "0cfa3f33d16f46949ae6e5a4a1ea547d": 23840
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -1782,6 +1783,17 @@
             "Max Warlords",
             "Max Duels"
           ]
+        },
+        {
+          "username": "ashedwings",
+          "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
+          "country": "The Netherlands",
+          "current_ap": 23840,
+          "last_month_ap": 23840,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Duels"
+          ]
         }
       ]
     },
@@ -1926,7 +1938,7 @@
     },
     {
       "country": "Germany",
-      "score": 6593,
+      "score": 6608,
       "top_players": [
         {
           "username": "NightMan976",
@@ -1951,12 +1963,13 @@
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28465,
+          "current_ap": 28495,
           "last_month_ap": 28440,
-          "monthly_gain": 25,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Smash Heroes",
             "Max Paintball",
+            "Max SkyBlock",
             "Max Warlords",
             "Max TNT Games",
             "Max Arcade",
@@ -1984,10 +1997,11 @@
           "username": "Niko702",
           "uuid": "40884fdda30c4c26ba00abef570469e0",
           "country": "Germany",
-          "current_ap": 25430,
+          "current_ap": 25440,
           "last_month_ap": 25410,
-          "monthly_gain": 20,
+          "monthly_gain": 30,
           "maxGames": [
+            "Max SkyBlock",
             "Max Warlords",
             "Max Seasonal"
           ]
@@ -2155,15 +2169,15 @@
     },
     {
       "country": "Finland",
-      "score": 4243,
+      "score": 4268,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28480,
+          "current_ap": 28505,
           "last_month_ap": 28455,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -3082,6 +3096,18 @@
           ]
         },
         {
+          "username": "ULTRAVIOLETlamb",
+          "uuid": "d8c93138750f4388a3a99bd98b03192b",
+          "country": "Unknown",
+          "current_ap": 23350,
+          "last_month_ap": 23300,
+          "monthly_gain": 50,
+          "maxGames": [
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "o3w",
           "uuid": "d91eb87c945b490b82a2638c8cf5a291",
           "country": "Unknown",
@@ -3089,29 +3115,6 @@
           "last_month_ap": 23310,
           "monthly_gain": 0,
           "maxGames": []
-        },
-        {
-          "username": "ULTRAVIOLETlamb",
-          "uuid": "d8c93138750f4388a3a99bd98b03192b",
-          "country": "Unknown",
-          "current_ap": 23300,
-          "last_month_ap": 23300,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Duels",
-            "Max Build Battle"
-          ]
-        },
-        {
-          "username": "huvo",
-          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
-          "country": "Unknown",
-          "current_ap": 23280,
-          "last_month_ap": 23235,
-          "monthly_gain": 45,
-          "maxGames": [
-            "Max VampireZ"
-          ]
         }
       ]
     },
@@ -3505,9 +3508,9 @@
           "username": "0HfLUfFIE",
           "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
           "country": "Hong Kong",
-          "current_ap": 23905,
+          "current_ap": 23925,
           "last_month_ap": 23555,
-          "monthly_gain": 350,
+          "monthly_gain": 370,
           "maxGames": [
             "Max Paintball",
             "Max Warlords",
