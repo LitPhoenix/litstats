@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-13T10:53:01.508Z",
+  "last_update": "2026-08-13T12:44:13.134Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2476,7 +2476,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1683,
+      "score": 1710,
       "top_players": [
         {
           "username": "WsprinklesLnacho",
@@ -2491,10 +2491,11 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26445,
+          "current_ap": 26500,
           "last_month_ap": 26345,
-          "monthly_gain": 100,
+          "monthly_gain": 155,
           "maxGames": [
+            "Max SkyBlock",
             "Max Wool Games",
             "Max Duels"
           ]
