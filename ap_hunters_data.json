@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-13T01:03:47.613Z",
+  "last_update": "2026-08-13T04:00:20.460Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2088,6 +2088,60 @@
       ]
     },
     {
+      "country": "Finland",
+      "score": 4293,
+      "top_players": [
+        {
+          "username": "Champiez",
+          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+          "country": "Finland",
+          "current_ap": 28530,
+          "last_month_ap": 28455,
+          "monthly_gain": 75,
+          "maxGames": [
+            "Max Cops and Crims",
+            "Max Warlords",
+            "Max TNT Games",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle",
+            "Max Seasonal"
+          ]
+        },
+        {
+          "username": "MineElzu60",
+          "uuid": "559860c584174a7c90a8f79332802516",
+          "country": "Finland",
+          "current_ap": 27810,
+          "last_month_ap": 27785,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
+          "username": "MatiasSiltanen",
+          "uuid": "e9a871c29903474687b0b045edd35ae9",
+          "country": "Finland",
+          "current_ap": 26560,
+          "last_month_ap": 26405,
+          "monthly_gain": 155,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels",
+            "Max Seasonal"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Israel",
       "score": 4284,
       "top_players": [
@@ -2164,59 +2218,6 @@
           "last_month_ap": 23665,
           "monthly_gain": 25,
           "maxGames": []
-        }
-      ]
-    },
-    {
-      "country": "Finland",
-      "score": 4268,
-      "top_players": [
-        {
-          "username": "Champiez",
-          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-          "country": "Finland",
-          "current_ap": 28505,
-          "last_month_ap": 28455,
-          "monthly_gain": 50,
-          "maxGames": [
-            "Max Cops and Crims",
-            "Max Warlords",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
-        },
-        {
-          "username": "MineElzu60",
-          "uuid": "559860c584174a7c90a8f79332802516",
-          "country": "Finland",
-          "current_ap": 27810,
-          "last_month_ap": 27785,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "MatiasSiltanen",
-          "uuid": "e9a871c29903474687b0b045edd35ae9",
-          "country": "Finland",
-          "current_ap": 26560,
-          "last_month_ap": 26405,
-          "monthly_gain": 155,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels",
-            "Max Seasonal"
-          ]
         }
       ]
     },
@@ -2915,6 +2916,19 @@
           ]
         },
         {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 23905,
+          "last_month_ap": 23550,
+          "monthly_gain": 355,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "DarkSilent",
           "uuid": "93b354235bd44e9a8ebf43763d90c96a",
           "country": "Unknown",
@@ -2923,19 +2937,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max SkyClash"
-          ]
-        },
-        {
-          "username": "InInk",
-          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
-          "country": "Unknown",
-          "current_ap": 23865,
-          "last_month_ap": 23550,
-          "monthly_gain": 315,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max TKR",
-            "Max Duels"
           ]
         },
         {
