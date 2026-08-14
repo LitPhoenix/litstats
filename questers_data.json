@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-14T07:08:23.407Z",
+  "last_update": "2026-08-14T08:58:38.237Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -332,15 +332,15 @@
     },
     {
       "country": "Croatia",
-      "score": 12523.6,
+      "score": 12527.8,
       "top_players": [
         {
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_quests": 62618,
+          "current_quests": 62639,
           "last_month_quests": 62488,
-          "monthly_gain": 130
+          "monthly_gain": 151
         }
       ]
     },
