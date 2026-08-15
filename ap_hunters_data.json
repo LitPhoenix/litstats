@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-15T02:44:19.333Z",
+  "last_update": "2026-08-15T04:20:32.988Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1401,7 +1401,7 @@
     },
     {
       "country": "Canada",
-      "score": 9404,
+      "score": 9405,
       "top_players": [
         {
           "username": "Songgg",
@@ -1478,9 +1478,9 @@
           "username": "DetectiveAndrew",
           "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
           "country": "Canada",
-          "current_ap": 26695,
+          "current_ap": 26715,
           "last_month_ap": 26665,
-          "monthly_gain": 30,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Mega Walls",
             "Max TKR"
@@ -2749,9 +2749,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 24980,
+          "current_ap": 24995,
           "last_month_ap": 24935,
-          "monthly_gain": 45,
+          "monthly_gain": 60,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -3488,21 +3488,6 @@
       ]
     },
     {
-      "country": "Slovakia",
-      "score": 0,
-      "top_players": [
-        {
-          "username": "nevqr",
-          "uuid": "0ff62bf91bda4c6b92b8f2d0ca4ed835",
-          "country": "Slovakia",
-          "current_ap": 23870,
-          "last_month_ap": 23875,
-          "monthly_gain": -5,
-          "maxGames": []
-        }
-      ]
-    },
-    {
       "country": "Hong Kong",
       "score": 0,
       "top_players": [
@@ -3519,6 +3504,21 @@
             "Max VampireZ",
             "Max TKR"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Slovakia",
+      "score": 0,
+      "top_players": [
+        {
+          "username": "nevqr",
+          "uuid": "0ff62bf91bda4c6b92b8f2d0ca4ed835",
+          "country": "Slovakia",
+          "current_ap": 23870,
+          "last_month_ap": 23875,
+          "monthly_gain": -5,
+          "maxGames": []
         }
       ]
     },

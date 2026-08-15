@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-15T02:44:19.594Z",
+  "last_update": "2026-08-15T04:20:33.214Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -782,7 +782,7 @@
     },
     {
       "country": "Hong Kong",
-      "score": 12081.4,
+      "score": 12088.4,
       "top_players": [
         {
           "username": "epicercaner",
@@ -796,9 +796,9 @@
           "username": "0HfLUfFIE",
           "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
           "country": "Hong Kong",
-          "current_quests": 23609,
+          "current_quests": 23644,
           "last_month_quests": 23552,
-          "monthly_gain": 57
+          "monthly_gain": 92
         }
       ]
     },
