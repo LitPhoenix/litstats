@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-15T20:12:50.967Z",
+  "last_update": "2026-08-15T22:11:25.488Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2189,9 +2189,9 @@
           "username": "Ofek",
           "uuid": "1121d718b08145fe8b8a3728639d6723",
           "country": "Israel",
-          "current_ap": 24500,
+          "current_ap": 24495,
           "last_month_ap": 24500,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max UHC",
             "Max Speed UHC"
