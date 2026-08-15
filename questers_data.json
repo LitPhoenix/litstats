@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-15T00:37:25.263Z",
+  "last_update": "2026-08-15T02:44:19.594Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -200,7 +200,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49765,
+      "score": 49767,
       "top_players": [
         {
           "username": "Skorlex",
@@ -214,9 +214,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_quests": 40754,
+          "current_quests": 40764,
           "last_month_quests": 40754,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "Edzio",
@@ -332,15 +332,15 @@
     },
     {
       "country": "Croatia",
-      "score": 12527.8,
+      "score": 12533.2,
       "top_players": [
         {
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_quests": 62639,
+          "current_quests": 62666,
           "last_month_quests": 62488,
-          "monthly_gain": 151
+          "monthly_gain": 178
         }
       ]
     },
@@ -484,7 +484,7 @@
     },
     {
       "country": "USA",
-      "score": 46084.8,
+      "score": 46155.2,
       "top_players": [
         {
           "username": "Trtx",
@@ -506,9 +506,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_quests": 47473,
+          "current_quests": 47825,
           "last_month_quests": 47473,
-          "monthly_gain": 0
+          "monthly_gain": 352
         },
         {
           "username": "MockBall",
@@ -746,7 +746,7 @@
     },
     {
       "country": "Finland",
-      "score": 14669.6,
+      "score": 14768.6,
       "top_players": [
         {
           "username": "Mol_o",
@@ -760,9 +760,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_quests": 31988,
+          "current_quests": 32483,
           "last_month_quests": 31988,
-          "monthly_gain": 0
+          "monthly_gain": 495
         }
       ]
     },
