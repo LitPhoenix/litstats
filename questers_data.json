@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-15T06:21:03.517Z",
+  "last_update": "2026-08-15T08:16:01.728Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -405,6 +405,20 @@
       ]
     },
     {
+      "country": "Belgium",
+      "score": 10050.8,
+      "top_players": [
+        {
+          "username": "Bonbonblok",
+          "uuid": "d8e38381ee814ad781a898519de77100",
+          "country": "Belgium",
+          "current_quests": 50254,
+          "last_month_quests": 49869,
+          "monthly_gain": 385
+        }
+      ]
+    },
+    {
       "country": "UK",
       "score": 36112.6,
       "top_players": [
@@ -660,20 +674,6 @@
           "country": "USA",
           "current_quests": 21596,
           "last_month_quests": 21596,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Belgium",
-      "score": 9973.8,
-      "top_players": [
-        {
-          "username": "Bonbonblok",
-          "uuid": "d8e38381ee814ad781a898519de77100",
-          "country": "Belgium",
-          "current_quests": 49869,
-          "last_month_quests": 49869,
           "monthly_gain": 0
         }
       ]
