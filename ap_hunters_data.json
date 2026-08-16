@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-15T22:11:25.488Z",
+  "last_update": "2026-08-16T00:39:22.357Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12607,
+      "score": 12608,
       "top_players": [
         {
           "username": "oJakey",
@@ -500,9 +500,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30265,
+          "current_ap": 30285,
           "last_month_ap": 30040,
-          "monthly_gain": 225,
+          "monthly_gain": 245,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -1526,19 +1526,6 @@
           ]
         },
         {
-          "username": "Hailette",
-          "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
-          "country": "Canada",
-          "current_ap": 25010,
-          "last_month_ap": 25010,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Quake",
-            "Max Warlords",
-            "Max TKR"
-          ]
-        },
-        {
           "username": "BenOuiMaxi",
           "uuid": "0ca18b7f6cb74731865b69e5511f0ff1",
           "country": "Canada",
@@ -1547,6 +1534,19 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "Hailette",
+          "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
+          "country": "Canada",
+          "current_ap": 25005,
+          "last_month_ap": 25010,
+          "monthly_gain": -5,
+          "maxGames": [
+            "Max Quake",
+            "Max Warlords",
             "Max TKR"
           ]
         },
@@ -2504,15 +2504,15 @@
     },
     {
       "country": "Argentina",
-      "score": 1675,
+      "score": 1670,
       "top_players": [
         {
           "username": "Sayapi",
           "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
           "country": "Argentina",
-          "current_ap": 26850,
+          "current_ap": 26845,
           "last_month_ap": 26850,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max VampireZ"
           ]
