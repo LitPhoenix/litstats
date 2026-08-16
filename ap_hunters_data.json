@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-16T00:39:22.357Z",
+  "last_update": "2026-08-16T02:52:36.351Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2834,9 +2834,9 @@
           "username": "Cluelesss",
           "uuid": "82b6b4ca76004360af77d0d141a2e83a",
           "country": "Unknown",
-          "current_ap": 24275,
+          "current_ap": 24270,
           "last_month_ap": 24275,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max VampireZ"
           ]
