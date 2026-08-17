@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>LitStats — Blitz Stars</title>
+  <meta name="description" content="Check Blitz Star abilities and coin unlock costs.">
+  <meta name="theme-color" content="#ff5100">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://litstats.com/blitzstars">
+  <meta property="og:title" content="LitStats — Blitz Stars">
+  <meta property="og:description" content="Check Blitz Star abilities and coin unlock costs.">
+  <meta property="og:image" content="https://litstats.com/img/lq-blitz-opengraph.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://litstats.com/blitzstars">
+  <meta property="twitter:title" content="LitStats — Blitz Stars">
+  <meta property="twitter:description" content="Check Blitz Star abilities and coin unlock costs.">
+  <meta property="twitter:image" content="https://litstats.com/img/lq-blitz-opengraph.jpg">
+
+  <link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/mc-gui.css">
+
+  <style>
+    .hero-wrapper { text-align: center; margin-bottom: 32px; }
+    .hero-title { font-family: 'DM Sans', sans-serif; color: var(--text); font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .hero-subtitle { color: var(--text-2); font-family: 'DM Sans', sans-serif; font-size: 15px; }
+
+    .star-menu-layout { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 900px; margin: 0 auto; }
+
+    .tools-footer-nav { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .tools-footer-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--text-3); }
+    .tools-btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .tool-link-card {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); padding: 8px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 600; text-decoration: none;
+      transition: 0.2s; box-shadow: var(--shadow);
+    }
+    .tool-link-card img { width: 20px; height: 20px; object-fit: contain; image-rendering: pixelated; }
+    .tool-link-card:hover { border-color: var(--accent); transform: translateY(-2px); color: var(--accent); }
+  </style>
+</head>
+<body>
+<header id="navbar-placeholder"></header>
+<script src="assets/js/components.js"></script>
+
+<main class="mc-scale-engine">
+  <div class="hero-wrapper">
+    <h1 class="hero-title">Blitz Stars</h1>
+    <p class="hero-subtitle">Hover over a Blitz Star to view unlock requirements and abilities.</p>
+  </div>
+
+  <div class="star-menu-layout">
+    <div id="star-chest-view" class="mc-container" style="height: max-content;">
+      <div class="mc-title">Pick a Blitz Effect</div>
+      <div class="mc-grid" style="--cols: 9; --rows: 6;" id="star-grid"></div>
+    </div>
+  </div>
+
+  <div class="tools-footer-nav">
+    <div class="tools-footer-title">Tools</div>
+    <div class="tools-btn-group">
+      <a href="blitz.html" class="tool-link-card">
+        <img src="https://api.minecraftitems.xyz/api/item/emerald?size=2&glint=false" alt="Blitz Kits">
+        <span>Blitz Kits</span>
+      </a>
+      <a href="kitlb.html" class="tool-link-card">
+        <img src="https://api.minecraftitems.xyz/api/item/diamond_chestplate?size=2&glint=false" alt="Leaderboard">
+        <span>Protection Leaderboard</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<div class="bottom-fade"></div>
+<div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
+
+<script src="assets/js/global.js"></script>
+<script src="assets/js/credits.js"></script>
+<script src="assets/js/mc-engine.js"></script>
+<script src="assets/js/blitzstars.js"></script>
+</body>
+</html>
