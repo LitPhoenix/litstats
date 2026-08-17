@@ -13,39 +13,56 @@
   <link rel="stylesheet" href="assets/css/cabinet.css">
   <link rel="preload" as="image" href="img/lq-bg-embers.jpg" media="(prefers-color-scheme: dark)">
   <link rel="preload" as="image" href="img/lq-bg-embers-light.jpg" media="(prefers-color-scheme: light)">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
   <script src="assets/js/components.js"></script>
 
 <main>
+  <!-- Global Search Bar -->
+  <div class="top-lookup-bar">
+    <input type="text" id="top-search-input" placeholder="Search Player Username...">
+    <button class="primary-btn" onclick="handleTopSearch()">Lookup</button>
+  </div>
+
   <div id="loader" class="loading-msg">Summoning network data...</div>
   <div id="errorBox" class="loading-msg hidden" style="color: var(--red);"></div>
 
-  <div id="cabinet-content" class="hidden" style="width: 100%;">
+  <div id="cabinet-content" class="hidden">
     
+    <!-- Player Profile Card -->
     <div class="profile-card">
+      <div id="p-bg-flag" class="profile-bg-flag"></div>
       <div class="profile-top">
         <img id="p-avatar" class="player-avatar" src="" alt="Avatar">
-        <div class="player-info">
-          <div class="player-name-row">
-            <span class="mc-rank" id="p-rank" style="display:none;"></span>
-            <h1 id="p-name">Loading...</h1>
+        <div class="player-info-container">
+          
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div class="player-name-row" style="display: flex; align-items: center; gap: 8px;">
+              <span class="mc-rank" id="p-rank" style="display:none;"></span>
+              <h1 id="p-name" style="margin:0;">Loading...</h1>
+              <div id="p-custom-badges" style="display:inline-flex; align-items:center;"></div>
+            </div>
           </div>
+
+          <!-- Position -> AP -> Max Games -->
           <div class="stat-row">
-            <!-- New AP Pill Design -->
+            <span id="p-top-rank-pill" style="display:none;" class="rank-num-pill"></span>
             <div id="p-ap-container"></div>
-            
             <div class="stat-pill maxed-stat-pill">
               <span id="p-max-count">0 / 26 Maxed</span>
             </div>
           </div>
+          
         </div>
       </div>
       
-      <div class="ap-progress-container">
-        <div class="ap-labels">
-          <span>Achievement Point Progress</span>
+      <!-- Interactive Progress Bar Switcher -->
+      <div class="ap-progress-container" onclick="toggleProgressMode()" title="Click to switch between Points and Achievements view">
+        <div class="ap-labels-flex">
+          <span id="p-progress-label">Points Progress</span>
           <span id="p-ap-percent">0%</span>
         </div>
         <div class="ap-bar-bg">
@@ -54,87 +71,169 @@
       </div>
     </div>
 
-    <!-- GLOBAL TOOLBAR FOR LAYOUT CONTROL -->
-    <div class="global-toolbar" style="gap: 12px; display: flex;">
-      <button class="todo-select" id="toggleQuestBtn" onclick="window.location.href='quest.html'">Switch to Quests</button>
-      <button class="todo-select" id="toggleMaxedBtn" onclick="toggleMaxedGames()">Hide Max Games</button>
-    </div>
-
-    <!-- SIDE-BY-SIDE LAYOUT -->
+    <!-- MAIN DASHBOARD -->
     <div class="split-layout">
       
-      <!-- LEFT COLUMN: Maxed Games -->
-      <div id="maxed-column" class="maxed-col">
-        <div class="cabinet-wrapper" id="cabinet-grid"></div>
-      </div>
-
-      <!-- RIGHT COLUMN: Dashboard -->
       <div id="dashboard-column" class="dash-col-main">
         
-        <div class="todo-header" style="flex-direction: column; align-items: flex-start;">
-          <div style="display:flex; justify-content: space-between; width: 100%; align-items: center;">
-            <h2>Incomplete</h2>
-            <div class="todo-controls tooltip-container">
-              <label class="toggle-switch">
-                <input type="checkbox" id="excludeComp" onchange="toggleExcludeComp()">
-                <span class="slider"></span>
-              </label>
-              <span style="font-size: 13px; font-weight: 600; color: var(--text-2);">Exclude Comp</span>
-              <div class="tooltip-text">
-                Competitive Games (Mega Walls, UHC, The Pit) restrict recently unbanned players from joining for a set duration.
+        <div class="todo-header-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div class="dynamic-title-box" id="dynamic-dash-box">
+            <div class="dynamic-title-top" id="dynamic-dash-title">
+              <h2>Incomplete</h2>
+            </div>
+          </div>
+          
+          <div class="header-controls">
+            <!-- Settings Popout Button -->
+            <div class="settings-wrapper">
+              <button class="settings-btn" onclick="toggleSettingsMenu()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Settings
+              </button>
+              
+              <div id="settings-menu" class="settings-menu hidden">
+                <div class="setting-item tooltip-container">
+                  <span>Exclude Comp</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="excludeComp" onchange="toggleExcludeComp()">
+                    <span class="slider"></span>
+                  </label>
+                  <div class="tooltip-text">Hides competitive games (Mega Walls, UHC, Pit) affected by competitive bans.</div>
+                </div>
+                <div class="setting-item tooltip-container">
+                  <span>Multi-Select</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="multiSelectToggle" onchange="toggleMultiSelect()">
+                    <span class="slider"></span>
+                  </label>
+                  <div class="tooltip-text">Select multiple games at once to filter the grid.</div>
+                </div>
+                <div class="setting-item tooltip-container">
+                  <span>Show Highest Tier Only</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="highestTierToggle" onchange="toggleHighestTier()">
+                    <span class="slider"></span>
+                  </label>
+                  <div class="tooltip-text">Only shows the maximum tier for tiered achievements.</div>
+                </div>
+                <div class="setting-item">
+                  <span>Hide History Section</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="hideHistoryToggle" onchange="toggleHideHistory()">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="setting-item">
+                  <span>Hide Game Badges</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="hideMaxesToggle" onchange="toggleHideMaxes()">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+                <div class="setting-item" style="flex-direction: column; align-items: flex-start; gap: 6px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px;">
+                  <span>Badge Pill Label:</span>
+                  <select id="filterLabelSelect" class="todo-select" style="width: 100%;" onchange="changeFilterLabelMode(this.value)">
+                    <option value="percent">Percentage (%)</option>
+                    <option value="points">Points (X / X)</option>
+                    <option value="achs">Achievements (X / X)</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
-          <div id="gameFilterContainer" style="width: 100%;"></div>
+        </div>
+        
+        <!-- Game Filter Pill Grid (With Progress Backgrounds) -->
+        <div id="gameFilterContainer"></div>
+
+        <!-- Scan Filter Search Bar -->
+        <div class="search-bar-container">
+          <input type="text" id="achSearch" placeholder="Scan for achievements by name or description..." oninput="handleAchSearch()">
         </div>
 
-        <div style="width: 100%; display: flex; justify-content: flex-end; gap: 12px; margin-top: 12px;">
-          <button class="todo-select" onclick="toggleViewMode('bookmarks')" id="bookmarkToggleBtn">Show Bookmarks (0)</button>
-          <button class="todo-select" onclick="toggleViewMode('ignored')" id="ignoredToggleBtn">Show Ignored (0)</button>
+        <div style="width: 100%; display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 20px;">
+          <button class="btn-toggle-view" onclick="toggleViewMode('bookmarks')" id="bookmarkToggleBtn">Bookmarks (0)</button>
+          <button class="btn-toggle-view" onclick="toggleViewMode('ignored')" id="ignoredToggleBtn">Show Ignored (0)</button>
         </div>
 
-        <div class="dashboard-grid">
-          <!-- Column 1: Tiered -->
-          <div class="dash-col">
-            <div class="col-header">
-              <h3><img src="img/diamond_block.png" alt="" style="width:18px; vertical-align:middle; margin-right:8px;">Tiered</h3>
-              <select id="sortTiered" class="todo-select" onchange="renderDashboard()">
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid" id="main-dash-grid">
+          
+          <div class="dash-col" id="col-tiered-section">
+            <div class="col-header" onclick="toggleSection('col-tiered-wrapper', 'col-tiered-section')">
+              <h3><img src="img/diamond_block.png" alt="" style="width:18px;">Tiered <span class="chevron-icon" id="chevron-tiered">▼</span></h3>
+              <select id="sortTiered" class="todo-select" onclick="event.stopPropagation()" onchange="renderDashboard()">
                 <option value="closest">Closest</option>
                 <option value="furthest">Furthest</option>
               </select>
             </div>
-            <div class="ach-grid-col" id="col-tiered"></div>
-            <button class="show-more-btn" id="btn-more-tiered" onclick="limits.tiered += 12; renderDashboard();">Show More</button>
+            <div id="col-tiered-wrapper">
+              <div class="ach-grid-col" id="col-tiered"></div>
+              <button class="show-more-btn" id="btn-more-tiered" onclick="limits.tiered += 12; renderDashboard();">Show More</button>
+            </div>
           </div>
 
-          <!-- Column 2: Challenges -->
-          <div class="dash-col">
-            <div class="col-header">
-              <h3><img src="img/diamond.png" alt="" style="width:18px; vertical-align:middle; margin-right:8px;">Challenge</h3>
-              <select id="sortChallenge" class="todo-select" onchange="renderDashboard()">
+          <div class="dash-col" id="col-challenge-section">
+            <div class="col-header" onclick="toggleSection('col-challenge-wrapper', 'col-challenge-section')">
+              <h3><img src="img/diamond.png" alt="" style="width:18px;">Challenge <span class="chevron-icon" id="chevron-challenge">▼</span></h3>
+              <select id="sortChallenge" class="todo-select" onclick="event.stopPropagation()" onchange="renderDashboard()">
                 <option value="easiest">Most Achieved</option>
                 <option value="hardest">Least Achieved</option>
               </select>
             </div>
-            <div class="ach-grid-col" id="col-challenge"></div>
-            <button class="show-more-btn" id="btn-more-chal" onclick="limits.challenge += 12; renderDashboard();">Show More</button>
+            <div id="col-challenge-wrapper">
+              <div class="ach-grid-col" id="col-challenge"></div>
+              <button class="show-more-btn" id="btn-more-chal" onclick="limits.challenge += 12; renderDashboard();">Show More</button>
+            </div>
           </div>
 
-          <!-- Column 3: Recent History -->
-          <div class="dash-col history-col">
-            <div class="col-header">
-              <h3>History</h3>
-              <select id="sortRecent" class="todo-select" onchange="renderDashboard()">
+          <!-- History Section with Separator -->
+          <div class="dash-col history-col" id="history-column-wrapper">
+            <div class="section-separator"></div>
+            <div class="col-header" onclick="toggleSection('col-recent-wrapper', 'history-column-wrapper')">
+              <h3>History <span class="chevron-icon" id="chevron-history">▼</span></h3>
+              <select id="sortRecent" class="todo-select" onclick="event.stopPropagation()" onchange="renderDashboard()">
                 <option value="newest">Most Recent</option>
                 <option value="oldest">Earliest</option>
               </select>
             </div>
-            <div class="ach-grid-col history-grid" id="col-recent"></div>
-            <button class="show-more-btn" id="btn-more-rec" onclick="limits.recent += 24; renderDashboard();" style="max-width: 300px; margin: 0 auto;">Show More</button>
+            <div id="col-recent-wrapper">
+              <div class="ach-grid-col history-grid" id="col-recent"></div>
+              <button class="show-more-btn" id="btn-more-rec" onclick="limits.recent += 24; renderDashboard();">Show More</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Game Completion Overview (Bottom Stacked) -->
+      <div class="overview-section" id="maxed-column">
+        <h2 class="overview-title" onclick="toggleSection('overview-grid-wrapper', 'maxed-column')">
+          Game Completion Overview <span class="chevron-icon" id="chevron-overview">▼</span>
+        </h2>
+        <div id="overview-grid-wrapper">
+          <div class="cabinet-wrapper" id="cabinet-grid"></div>
+        </div>
+      </div>
+
+      <!-- AP Growth & Compare Analytics Section -->
+      <div class="overview-section" id="analytics-section">
+        <div class="analytics-header">
+          <h2 class="overview-title" style="margin: 0;" onclick="toggleSection('analytics-content-wrapper', 'analytics-section')">
+            AP Progression Analytics <span class="chevron-icon" id="chevron-analytics">▼</span>
+          </h2>
+          <div class="compare-box">
+            <input type="text" id="compare-player-input" placeholder="Compare player (max 5)...">
+            <button class="pill-btn compare-btn" onclick="addComparisonPlayer()">Compare</button>
           </div>
         </div>
-
+        <div id="analytics-content-wrapper" style="margin-top: 16px;">
+          <div class="chart-container-box">
+            <canvas id="apHistoryChart"></canvas>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </main>
