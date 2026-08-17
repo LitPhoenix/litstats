@@ -1,14 +1,89 @@
 let globalPlayerData = null;
 let activeGameFilters = new Set();
+let searchQuery = '';
+let apChartInstance = null;
+let comparisonPlayers = [];
+let localAPDataCache = null;
+
 let isCompExcluded = localStorage.getItem('litstats_excludeComp') === 'true';
-let maxedHidden = localStorage.getItem('litstats_maxedHidden') === 'true';
+let isMultiSelect = localStorage.getItem('litstats_multiSelect') === 'true';
+let isHighestTierOnly = localStorage.getItem('litstats_highestTier') === 'true';
+let isHistoryHidden = localStorage.getItem('litstats_historyHidden') === 'true';
+let isMaxesHidden = localStorage.getItem('litstats_maxesHidden') === 'true';
+let progressDisplayMode = localStorage.getItem('litstats_progressMode') || 'points'; 
+let filterLabelMode = localStorage.getItem('litstats_filterLabelMode') || 'percent'; 
+
 const compGames = ["Mega Walls", "Pit", "UHC"];
 
-// Custom tags DB
+window.activeTierView = {}; 
+window.limits = { tiered: 24, challenge: 24, recent: 24 };
+let viewMode = 'all'; 
+let ignoredAchs = JSON.parse(localStorage.getItem('litstats_ignored')) || [];
+let bookmarkedAchs = JSON.parse(localStorage.getItem('litstats_bookmarked')) || [];
+
+const countryFlags = {
+  'argentina': 'ar', 'ar': 'ar',
+  'australia': 'au', 'au': 'au',
+  'austria': 'at', 'at': 'at',
+  'belgium': 'be', 'be': 'be',
+  'brazil': 'br', 'br': 'br',
+  'bulgaria': 'bg', 'bg': 'bg',
+  'canada': 'ca', 'ca': 'ca',
+  'china': 'cn', 'cn': 'cn',
+  'croatia': 'hr', 'hr': 'hr',
+  'czech republic': 'cz', 'czech_republic': 'cz', 'cz': 'cz',
+  'denmark': 'dk', 'dk': 'dk',
+  'ecuador': 'ec', 'ec': 'ec',
+  'finland': 'fi', 'fi': 'fi',
+  'france': 'fr', 'fr': 'fr',
+  'germany': 'de', 'de': 'de',
+  'greece': 'gr', 'gr': 'gr',
+  'hungary': 'hu', 'hu': 'hu',
+  'india': 'in', 'in': 'in',
+  'iraq': 'iq', 'iq': 'iq',
+  'ireland': 'ie', 'ie': 'ie',
+  'israel': 'il', 'il': 'il',
+  'italy': 'it', 'it': 'it',
+  'japan': 'jp', 'jp': 'jp',
+  'mexico': 'mx', 'mx': 'mx',
+  'moldova': 'md', 'md': 'md',
+  'new zealand': 'nz', 'new_zealand': 'nz', 'nz': 'nz',
+  'norway': 'no', 'no': 'no',
+  'poland': 'pl', 'pl': 'pl',
+  'portugal': 'pt', 'pt': 'pt',
+  'romania': 'ro', 'ro': 'ro',
+  'russia': 'ru', 'ru': 'ru',
+  'saudi arabia': 'sa', 'saudi_arabia': 'sa', 'sa': 'sa',
+  'serbia': 'rs', 'rs': 'rs',
+  'south korea': 'kr', 'south_korea': 'kr', 'korea': 'kr', 'kr': 'kr',
+  'spain': 'es', 'es': 'es',
+  'sweden': 'se', 'se': 'se',
+  'switzerland': 'ch', 'ch': 'ch',
+  'syria': 'sy', 'sy': 'sy',
+  'taiwan': 'tw', 'tw': 'tw',
+  'the netherlands': 'nl', 'netherlands': 'nl', 'the_netherlands': 'nl', 'nl': 'nl',
+  'turkey': 'tr', 'tr': 'tr',
+  'uk': 'gb', 'united kingdom': 'gb', 'united_kingdom': 'gb', 'gb': 'gb',
+  'ukraine': 'ua', 'ua': 'ua',
+  'usa': 'us', 'us': 'us', 'united states': 'us', 'united_states': 'us',
+  'chile': 'cl', 'cl': 'cl',
+  'bosnia and herzegovina': 'ba', 'bosnia': 'ba', 'ba': 'ba',
+  'slovakia': 'sk', 'sk': 'sk',
+  'slovenia': 'si', 'si': 'si',
+  'lithuania': 'lt', 'lt': 'lt'
+};
+
+function getFlagUrl(c) {
+  if (!c) return null;
+  const clean = c.toLowerCase().trim().replace(/_/g, ' ');
+  if (clean === 'youtubers') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png';
+  if (clean === 'staff') return 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg';
+  if (countryFlags[clean]) return `https://flagcdn.com/w640/${countryFlags[clean]}.png`;
+  return null;
+}
+
 const TAG_DB = {
-    // Broken
     "Untouched": { type: "Broken", tip: "Obtainable on Dwarven, Nordic, Outback and Jungle, if these maps don't work, try leave a game you know your team will win, or eat a gapple before your absorption ends when the walls fall" },
-    // Cost - Prestige +/ Renown
     "Prestige": { type: "Prestige", level: 15 },
     "Renown": { renown: 2000 },
     "Gold": { type: "Gold", cost: "30,000,000" },
@@ -27,7 +102,7 @@ const TAG_DB = {
     "Fast Pass": { type: "Prestige", level: 10, renown: 100 },
     "The XX": { type: "Prestige", level: 20},
     "Big Time": { type: "Prestige", level: 25, renown: 3400 },
-    // Cost
+    "Well, well": { souls: 10 },
     "Mountain of Wool": { type: "Wool", cost: "10,000" },
     "Magical Box": { type: "Coins", cost: "1,350,000", tip: "You can buy 100 keys for 45,000 coins\nPrice tag shown is the minimum for Tier 5" },
     "Runic Enhancements": { type: "Coins", cost: "500" },
@@ -89,11 +164,9 @@ const TAG_DB = {
     "Master of Masters": { type: "Coins", cost: "250,000", tip: "Requires 2000 kills with a Mastery" },
     "Kit Specialist": { type: "Coins", cost: "37,500", tip: "Cheapest 15 kits cost 37,500 coins" },
     "Feels Good Man": { type: "Coins", cost: "2,500", tip: "Cheapest kit cost 2,500 coins" },
-    "Feels Good Man": { type: "Coins", cost: "2,500", tip: "Cheapest kit cost 2,500 coins" },
-    // Tips
     "Contracts": {tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
     "Sugar Rush": {tip: "Aim for cherries, they give more gold" },
-    // Maps
+    "Blasphemous": {tip: "Check Opal costs for the the Fallen Angel Kit [here](https://www.litstats.com/angel)" },
     "Well Traveled": { type: "Map", map: "Transport" },
     "I Am Your Shield": { type: "Map", map: "Transport" },
     "Totally Tubular": { type: "Map", map: "Transport" },
@@ -113,12 +186,89 @@ const TAG_DB = {
     "Dropper: Well, Well, Well": { type: "Map", map: "Floating Island" }
 };
 
-let ignoredAchs = JSON.parse(localStorage.getItem('litstats_ignored')) || [];
-let bookmarkedAchs = JSON.parse(localStorage.getItem('litstats_bookmarked')) || [];
-let viewMode = 'all'; // 'all', 'ignored', 'bookmarks'
+window.handleTopSearch = function() {
+    const term = document.getElementById('top-search-input').value.trim();
+    if(term) {
+        window.history.pushState({}, '', `?uuid=${term}`);
+        initCabinet();
+    }
+};
 
-window.activeTierView = {}; 
-window.limits = { tiered: 12, challenge: 12, recent: 24 };
+document.getElementById('top-search-input').addEventListener('keydown', e => {
+    if(e.key === 'Enter') handleTopSearch();
+});
+
+window.toggleSettingsMenu = function() {
+    document.getElementById('settings-menu').classList.toggle('hidden');
+};
+
+document.addEventListener('click', e => {
+    const wrap = document.querySelector('.settings-wrapper');
+    if (wrap && !wrap.contains(e.target)) {
+        document.getElementById('settings-menu').classList.add('hidden');
+    }
+});
+
+window.toggleSection = function(wrapperId, sectionId) {
+    const wrap = document.getElementById(wrapperId);
+    const sec = document.getElementById(sectionId);
+    if(wrap && sec) {
+        wrap.classList.toggle('hidden');
+        sec.classList.toggle('collapsed-section');
+        
+        const isTieredHidden = document.getElementById('col-tiered-wrapper').classList.contains('hidden');
+        const isChallengeHidden = document.getElementById('col-challenge-wrapper').classList.contains('hidden');
+        
+        if (isTieredHidden && !isChallengeHidden) {
+            document.getElementById('col-challenge-section').style.gridColumn = "1 / -1";
+        } else if (isChallengeHidden && !isTieredHidden) {
+            document.getElementById('col-tiered-section').style.gridColumn = "1 / -1";
+        } else {
+            document.getElementById('col-tiered-section').style.gridColumn = "auto";
+            document.getElementById('col-challenge-section').style.gridColumn = "auto";
+        }
+    }
+};
+
+const TRUE_MAX_POSSIBLE_AP = 32510;
+const TRUE_MAX_POSSIBLE_ACHS = 3500;
+
+window.toggleProgressMode = function() {
+    progressDisplayMode = progressDisplayMode === 'points' ? 'achs' : 'points';
+    localStorage.setItem('litstats_progressMode', progressDisplayMode);
+    updateProgressDisplay();
+};
+
+function updateProgressDisplay() {
+    if(!globalPlayerData) return;
+    const ap = globalPlayerData.achievementPoints || 0;
+    
+    let unlockedCount = globalPlayerData.globalTotals?.unlockedAchs || 0;
+    let totalCount = globalPlayerData.globalTotals?.possibleAchs || TRUE_MAX_POSSIBLE_ACHS;
+    let possibleAP = TRUE_MAX_POSSIBLE_AP;
+
+    if (unlockedCount === 0 && globalPlayerData.missingAchievements) {
+        unlockedCount = Math.max(0, totalCount - globalPlayerData.missingAchievements.length);
+    }
+    
+    if (progressDisplayMode === 'points') {
+        const percentage = Math.min(100, (ap / possibleAP) * 100).toFixed(2);
+        document.getElementById('p-progress-label').textContent = `${ap.toLocaleString()} / ${possibleAP.toLocaleString()} Points`;
+        document.getElementById('p-ap-percent').textContent = `${percentage}%`;
+        document.getElementById('p-ap-bar').style.width = `${percentage}%`;
+    } else {
+        const percentage = Math.min(100, (unlockedCount / totalCount) * 100).toFixed(2);
+        document.getElementById('p-progress-label').textContent = `${unlockedCount.toLocaleString()} / ${totalCount.toLocaleString()} Achievements`;
+        document.getElementById('p-ap-percent').textContent = `${percentage}%`;
+        document.getElementById('p-ap-bar').style.width = `${percentage}%`;
+    }
+}
+
+window.changeFilterLabelMode = function(mode) {
+    filterLabelMode = mode;
+    localStorage.setItem('litstats_filterLabelMode', mode);
+    populateFilters();
+};
 
 window.toggleViewMode = function(mode) {
     if (viewMode === mode) viewMode = 'all';
@@ -130,7 +280,7 @@ window.toggleIgnore = function(uniqueId) {
     if (!ignoredAchs.includes(uniqueId)) {
         if (!confirm("Are you sure you want to hide this achievement?")) return;
         ignoredAchs.push(uniqueId);
-        bookmarkedAchs = bookmarkedAchs.filter(i => i !== uniqueId); // Remove from bookmarks if ignored
+        bookmarkedAchs = bookmarkedAchs.filter(i => i !== uniqueId); 
     } else {
         ignoredAchs = ignoredAchs.filter(i => i !== uniqueId);
     }
@@ -142,7 +292,7 @@ window.toggleIgnore = function(uniqueId) {
 window.toggleBookmark = function(uniqueId) {
     if (!bookmarkedAchs.includes(uniqueId)) {
         bookmarkedAchs.push(uniqueId);
-        ignoredAchs = ignoredAchs.filter(i => i !== uniqueId); // Remove from ignored if bookmarked
+        ignoredAchs = ignoredAchs.filter(i => i !== uniqueId); 
     } else {
         bookmarkedAchs = bookmarkedAchs.filter(i => i !== uniqueId);
     }
@@ -170,9 +320,10 @@ function getRankBaseColourHex(rank, monthlyRankColor) {
 
 function formatRankText(rank, plusColour, monthlyRankColor) {
     if (!rank || rank === 'NON') return '';
-    const plusHex = getPlusColourHex(plusColour);
     const cleanRank = rank.replace(/\[|\]/g, ''); 
     const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
+
+    let plusHex = cleanRank.includes('VIP') ? '#FFAA00' : getPlusColourHex(plusColour);
 
     let formatted = cleanRank;
     if (cleanRank === 'STAFF' || cleanRank.includes('staff')) formatted = `<span style="color:#FFAA00">ዞ</span>`;
@@ -187,44 +338,44 @@ function formatRankText(rank, plusColour, monthlyRankColor) {
 function getGameIconUrl(gameName) {
   const clean = gameName.replace('Max ', '');
   const iconMap = {
-    "Seasonal": "seasonal.png", "Arcade": "Arcade-64.png", "Bed Wars": "BedWars-64.png", 
-    "Build Battle": "BuildBattle-64.png", "Cops and Crims": "CVC-64.png", "Duels": "Duels-64.png", 
-    "Mega Walls": "MegaWalls-64.png", "Murder Mystery": "MurderMystery-64.png", "Pit": "Pit-64.png", 
-    "Blitz": "SG-64.png", "SkyBlock": "SkyBlock-64.png", "SkyWars": "Skywars-64.png", 
-    "Smash Heroes": "SmashHeroes-64.png", "Speed UHC": "SpeedUHC-64.png", "TNT Games": "TNT-64.png", 
-    "UHC": "UHC-64.png", "Warlords": "Warlords-64.png", "Wool Games": "WoolGames-64.png", 
-    "Arena Brawl": "Arena-64.png", "Paintball": "Paintball-64.png", "Quake": "Quakecraft-64.png", 
-    "VampireZ": "VampireZ-64.png", "Walls": "Walls-64.png", "TKR": "TurboKartRacers-64.png", 
-    "Crazy Walls": "CrazyWalls-64.png", "SkyClash": "SkyClash-64.png"
+    "Seasonal": "seasonal.png", "Summer": "summer.png", "Winter": "winter.png",
+    "Easter": "easter.png", "Halloween": "halloween.png", "Arcade": "Arcade-64.png", 
+    "Bed Wars": "BedWars-64.png", "Build Battle": "BuildBattle-64.png", 
+    "Cops and Crims": "CVC-64.png", "Duels": "Duels-64.png", "Mega Walls": "MegaWalls-64.png", 
+    "Murder Mystery": "MurderMystery-64.png", "Pit": "Pit-64.png", "Blitz": "SG-64.png", 
+    "SkyBlock": "SkyBlock-64.png", "SkyWars": "Skywars-64.png", "Smash Heroes": "SmashHeroes-64.png", 
+    "Speed UHC": "SpeedUHC-64.png", "TNT Games": "TNT-64.png", "UHC": "UHC-64.png", 
+    "Warlords": "Warlords-64.png", "Wool Games": "WoolGames-64.png", "Arena Brawl": "Arena-64.png", 
+    "Paintball": "Paintball-64.png", "Quake": "Quakecraft-64.png", "VampireZ": "VampireZ-64.png", 
+    "Walls": "Walls-64.png", "TKR": "TurboKartRacers-64.png", "Crazy Walls": "CrazyWalls-64.png", 
+    "SkyClash": "SkyClash-64.png"
   };
   const filename = iconMap[clean] || clean.replace(/\s/g, '') + '-64.png';
   return `/img/games/${filename}`;
 }
 
-function toggleMaxedGames() {
-    maxedHidden = !maxedHidden;
-    localStorage.setItem('litstats_maxedHidden', maxedHidden);
-    document.getElementById('maxed-column').classList.toggle('collapsed', maxedHidden);
-    const toggleBtn = document.getElementById('toggleMaxedBtn');
-    toggleBtn.innerText = maxedHidden ? "Show Max Games" : "Hide Max Games";
-    toggleBtn.setAttribute('aria-pressed', maxedHidden ? 'true' : 'false');
-}
+window.handleAchSearch = function() {
+    searchQuery = document.getElementById('achSearch').value.toLowerCase();
+    renderDashboard();
+};
 
 function toggleGameFilter(gameName) {
     if (isCompExcluded && compGames.includes(gameName)) return;
-    activeGameFilters.has(gameName) ? activeGameFilters.delete(gameName) : activeGameFilters.add(gameName);
-    
-    document.querySelectorAll('.filter-icon-btn').forEach(btn => {
-        let name = btn.getAttribute('title');
-        btn.classList.toggle('active', activeGameFilters.has(name));
-    });
 
-    document.querySelectorAll('.game-badge').forEach(badge => {
-        let nameSpan = badge.querySelector('span');
-        if (nameSpan) {
-            let name = nameSpan.innerText;
-            badge.classList.toggle('active-filter', activeGameFilters.has(name));
+    if (!isMultiSelect) {
+        if (activeGameFilters.has(gameName) && activeGameFilters.size === 1) {
+            activeGameFilters.clear();
+        } else {
+            activeGameFilters.clear();
+            activeGameFilters.add(gameName);
         }
+    } else {
+        activeGameFilters.has(gameName) ? activeGameFilters.delete(gameName) : activeGameFilters.add(gameName);
+    }
+    
+    document.querySelectorAll('.filter-pill-btn').forEach(btn => {
+        let name = btn.getAttribute('data-gamename');
+        btn.classList.toggle('active', activeGameFilters.has(name));
     });
 
     renderDashboard();
@@ -235,42 +386,89 @@ function toggleExcludeComp() {
     localStorage.setItem('litstats_excludeComp', isCompExcluded);
     if (isCompExcluded) compGames.forEach(g => activeGameFilters.delete(g));
     
-    document.querySelectorAll('.game-badge').forEach(badge => {
-        let nameSpan = badge.querySelector('span');
-        if (nameSpan) {
-            let name = nameSpan.innerText;
-            if (isCompExcluded && compGames.includes(name)) badge.classList.remove('active-filter');
-        }
-    });
-
     populateFilters();
     renderDashboard();
+}
+
+function toggleMultiSelect() {
+    isMultiSelect = document.getElementById('multiSelectToggle').checked;
+    localStorage.setItem('litstats_multiSelect', isMultiSelect);
+    if (!isMultiSelect && activeGameFilters.size > 1) {
+        const first = activeGameFilters.values().next().value;
+        activeGameFilters.clear();
+        if (first) activeGameFilters.add(first);
+        populateFilters();
+        renderDashboard();
+    }
+}
+
+function toggleHighestTier() {
+    isHighestTierOnly = document.getElementById('highestTierToggle').checked;
+    localStorage.setItem('litstats_highestTier', isHighestTierOnly);
+    renderDashboard();
+}
+
+function toggleHideHistory() {
+    isHistoryHidden = document.getElementById('hideHistoryToggle').checked;
+    localStorage.setItem('litstats_historyHidden', isHistoryHidden);
+    document.getElementById('history-column-wrapper').style.display = isHistoryHidden ? 'none' : 'flex';
+}
+
+function toggleHideMaxes() {
+    isMaxesHidden = document.getElementById('hideMaxesToggle').checked;
+    localStorage.setItem('litstats_maxesHidden', isMaxesHidden);
+    document.getElementById('maxed-column').style.display = isMaxesHidden ? 'none' : 'block';
 }
 
 function populateFilters() {
     const container = document.getElementById('gameFilterContainer');
     if (!globalPlayerData) return;
     
-    const games = [...new Set(globalPlayerData.missingAchievements.map(a => a.game))].sort();
+    const games = [...new Set((globalPlayerData.missingAchievements || []).map(a => a.game))].sort();
     
     let html = `<div class="filter-icon-grid">`;
     games.forEach(g => { 
         let cleanName = g.replace('Max ', '');
         let isDisabled = isCompExcluded && compGames.includes(cleanName) ? 'disabled' : '';
         let isActive = activeGameFilters.has(cleanName) ? 'active' : '';
-        let percent = globalPlayerData.gamePercentages[g] || 0;
+        
+        // Directly compute live progress from gameTotals to eliminate any 0.0% lookup errors
+        const gTotals = globalPlayerData.gameTotals?.[cleanName];
+        let percent = 0;
+        if (gTotals && gTotals.possibleAchs > 0) {
+            percent = (gTotals.unlockedAchs / gTotals.possibleAchs) * 100;
+        } else if (globalPlayerData.gamePercentages?.[`Max ${cleanName}`]) {
+            percent = Number(globalPlayerData.gamePercentages[`Max ${cleanName}`]);
+        } else if (globalPlayerData.gamePercentages?.[cleanName]) {
+            percent = Number(globalPlayerData.gamePercentages[cleanName]);
+        }
+
         let color = percent >= 80 ? 'var(--tier-1)' : percent >= 40 ? 'var(--tier-2)' : 'var(--tier-4)';
+        let statLabel = `${percent.toFixed(1)}%`;
+
+        if (gTotals) {
+          if (filterLabelMode === 'points') {
+            statLabel = `${gTotals.unlockedAP.toLocaleString()} / ${gTotals.possibleAP.toLocaleString()}`;
+          } else if (filterLabelMode === 'achs') {
+            statLabel = `${gTotals.unlockedAchs} / ${gTotals.possibleAchs}`;
+          }
+        }
 
         html += `
-          <div class="filter-icon-btn ${isActive} ${isDisabled}" onclick="toggleGameFilter('${cleanName}')" title="${cleanName}" style="--f-color: ${color};">
-            <img src="${getGameIconUrl(g)}" onerror="this.style.display='none'">
+          <div class="filter-pill-btn ${isActive} ${isDisabled}" data-gamename="${cleanName}" onclick="toggleGameFilter('${cleanName}')" title="${cleanName} (${percent.toFixed(1)}%)">
+            <div class="filter-pill-fill" style="width: ${percent}%; background-color: ${color};"></div>
+            <img src="${getGameIconUrl(g)}" class="filter-pill-icon" onerror="this.style.display='none'">
+            <span class="filter-pill-name">${cleanName}</span>
+            <span class="filter-pill-stat">(${statLabel})</span>
           </div>
         `; 
     });
     container.innerHTML = html + `</div>`;
+
+    const sel = document.getElementById('filterLabelSelect');
+    if (sel) sel.value = filterLabelMode;
 }
 
-// BULLETPROOF ID ROUTING: Reads Base64 safely
 window.setTierView = function(base64Id, tierNum) {
     window.activeTierView[base64Id] = parseInt(tierNum);
     renderDashboard();
@@ -283,16 +481,58 @@ function renderDashboard() {
     if (isCompExcluded) allMissing = allMissing.filter(a => !compGames.includes(a.game.replace('Max ', '')));
     if (activeGameFilters.size > 0) allMissing = allMissing.filter(a => activeGameFilters.has(a.game.replace('Max ', '')));
 
+    if (searchQuery.trim().length > 0) {
+        allMissing = allMissing.filter(a => 
+            a.title.toLowerCase().includes(searchQuery) || 
+            (a.desc && a.desc.toLowerCase().includes(searchQuery)) ||
+            a.game.toLowerCase().includes(searchQuery)
+        );
+    }
+
     let tiered = [];
     let challenges = [];
 
-    // Button States
     const igBtn = document.getElementById('ignoredToggleBtn');
     const bkBtn = document.getElementById('bookmarkToggleBtn');
     if (igBtn) igBtn.innerText = viewMode === 'ignored' ? "View All" : `Show Ignored (${ignoredAchs.length})`;
     if (igBtn) igBtn.classList.toggle('active', viewMode === 'ignored');
     if (bkBtn) bkBtn.innerText = viewMode === 'bookmarks' ? "View All" : `Bookmarks (${bookmarkedAchs.length})`;
     if (bkBtn) bkBtn.classList.toggle('active', viewMode === 'bookmarks');
+
+    const dashBoxEl = document.getElementById('dynamic-dash-box');
+    if (activeGameFilters.size === 1 && !searchQuery) {
+        let selectedGame = activeGameFilters.values().next().value;
+        let t = globalPlayerData.gameTotals?.[selectedGame];
+        
+        if (t && t.possibleAchs > 0) {
+            let pct = Math.min(100, (t.unlockedAchs / t.possibleAchs) * 100).toFixed(1);
+            let isMax = t.unlockedAchs >= t.possibleAchs;
+            dashBoxEl.innerHTML = `
+              <div class="dynamic-title-top">
+                <img src="${getGameIconUrl(selectedGame)}" alt="">
+                <h2>${selectedGame}</h2>
+              </div>
+              <div class="game-sub-stats">
+                <span>${t.unlockedAchs} / ${t.possibleAchs} Achievements (${t.unlockedAP.toLocaleString()} / ${t.possibleAP.toLocaleString()} AP)</span>
+                <span class="game-header-bar"><span class="game-header-bar-fill" style="width: ${pct}%;"></span></span>
+                ${isMax ? '<span style="color:#F6C85F;font-weight:700;">Maxed!</span>' : ''}
+              </div>
+            `;
+        } else {
+            dashBoxEl.innerHTML = `
+              <div class="dynamic-title-top">
+                <img src="${getGameIconUrl(selectedGame)}" alt="">
+                <h2>${selectedGame}</h2>
+              </div>
+            `;
+        }
+    } else {
+        dashBoxEl.innerHTML = `
+          <div class="dynamic-title-top">
+            <h2>Incomplete</h2>
+          </div>
+        `;
+    }
 
     allMissing.forEach(ach => {
         let uniqueId = btoa(encodeURIComponent(ach.title)); 
@@ -301,12 +541,10 @@ function renderDashboard() {
         let isIgnored = ignoredAchs.includes(uniqueId);
         let isBookmarked = bookmarkedAchs.includes(uniqueId);
 
-        // View Mode Filter Logic
         if (viewMode === 'ignored' && !isIgnored) return;
         if (viewMode === 'bookmarks' && !isBookmarked) return;
         if (viewMode === 'all' && isIgnored) return;
 
-        // Process custom tags
         let tagsHtml = '';
         let tipHtml = '';
         let cleanGame = ach.game.replace('Max ', '');
@@ -353,22 +591,23 @@ function renderDashboard() {
             }
             
             if (tagData.renown) {
-                tagsHtml += ` <span class="sleek-tag" style="--tag-color: #FFFF55; margin-left: 4px;">${tagData.renown} Renown</span>`;
+                tagsHtml += ` <span class="sleek-tag" data-tag="renown" style="margin-left: 4px;">${tagData.renown} Renown</span>`;
+            }
+
+            if (tagData.souls) {
+                tagsHtml += ` <span class="sleek-tag" style="--tag-color: #55ffff; margin-left: 4px;">${tagData.souls} Souls</span>`;
             }
             
             if (tagData.tip) {
                 let linkedTip = tagData.tip
-                    // Convert [text](url) to a clickable hyperlink
                     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
                         let href = url.startsWith('http') ? url : `https://${url}`;
                         return `<a href="${href}" target="_blank" style="color: inherit; text-decoration: underline;">${text}</a>`;
                     })
-                    // Convert remaining raw URLs
                     .replace(/(?<!["'])(https?:\/\/[^\s<]+|www\.[^\s<]+)(?![^<]*>)/g, match => {
                         let href = match.startsWith('http') ? match : `https://${match}`;
                         return `<a href="${href}" target="_blank" style="color: inherit; text-decoration: underline;">${match}</a>`;
                     })
-                    // Convert newline characters to HTML line breaks
                     .replace(/\n/g, '<br>');
                     
                 tipHtml = `<div class="ach-tip"><i>Tip: ${linkedTip}</i></div>`;
@@ -386,9 +625,9 @@ function renderDashboard() {
             if (!ach.allTiers) ach.allTiers = [{ tier: ach.tier || 1, amount: ach.amount || 1, reward: ach.reward || 0 }];
 
             let missingTiers = ach.allTiers.filter(t => (ach.currentAmt || 0) < t.amount);
-            let firstMissing = missingTiers.length ? missingTiers[0].tier : 5;
+            let firstMissing = missingTiers.length ? missingTiers[0].tier : ach.allTiers[ach.allTiers.length - 1].tier;
             
-            let viewingTierNum = window.activeTierView[uniqueId] || firstMissing;
+            let viewingTierNum = isHighestTierOnly ? ach.allTiers[ach.allTiers.length - 1].tier : (window.activeTierView[uniqueId] || firstMissing);
             let targetTierObj = ach.allTiers.find(t => t.tier === viewingTierNum) || ach.allTiers[0];
 
             let targetAmt = targetTierObj.amount;
@@ -417,20 +656,27 @@ function renderDashboard() {
         ? (b.calcPct - a.calcPct) || (a.reward - b.reward) 
         : (a.calcPct - b.calcPct) || (b.reward - a.reward));
 
+    // History Sorting
     let recents = [...(globalPlayerData.recentAchievements || [])];
-    const sortRec = document.getElementById('sortRecent').value;
-    if (sortRec === 'oldest') recents.reverse(); 
+    if (activeGameFilters.size > 0) {
+        recents = recents.filter(a => activeGameFilters.has(a.game.replace('Max ', '')));
+    }
+    const sortRec = document.getElementById('sortRecent')?.value || 'newest';
+    if (sortRec === 'oldest') {
+        recents = [...recents].reverse();
+    }
 
-    // Helper for rendering cards
     const generateCard = (ach, isTiered, progressBlock, notches) => {
         let isIgnored = ignoredAchs.includes(ach.uniqueId);
         let isBookmarked = bookmarkedAchs.includes(ach.uniqueId);
         let ignoreText = isIgnored ? 'Restore' : 'Ignore';
         let bookmarkClass = isBookmarked ? 'active-bookmark' : '';
         let bookmarkIcon = isBookmarked ? '★' : '☆';
+        
+        const notchClass = (isTiered && !isHighestTierOnly) ? 'has-tier' : 'no-notches';
 
         return `
-          <div class="ach-card ${isTiered ? 'has-tier' : ''}">
+          <div class="ach-card ${notchClass}">
             ${!isTiered ? `<span class="ach-percent">${ach.calcPct.toFixed(2)}%</span>` : ''}
             <div class="ach-card-header">
               <img src="${getGameIconUrl(ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
@@ -450,15 +696,17 @@ function renderDashboard() {
                 <button onclick="toggleIgnore('${ach.uniqueId}')" class="ach-action-btn" title="${ignoreText}">${ignoreText}</button>
               </div>
             </div>
-            ${isTiered ? `<div class="tier-notch-container">${notches}</div>` : ''}
+            ${isTiered && !isHighestTierOnly ? `<div class="tier-notch-container">${notches}</div>` : ''}
           </div>
         `;
     };
 
-    document.getElementById('col-tiered').innerHTML = tiered.slice(0, limits.tiered).map(ach => {
+    let viewLimitTiered = searchQuery ? tiered.length : limits.tiered;
+    let viewLimitChal = searchQuery ? challenges.length : limits.challenge;
+
+    document.getElementById('col-tiered').innerHTML = tiered.slice(0, viewLimitTiered).map(ach => {
         let targetStr = ach.targetAmt.toLocaleString();
         let displayStr = ach.displayAmt.toLocaleString();
-
         let parsedDesc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, targetStr);
         ach.desc = parsedDesc;
         
@@ -466,12 +714,15 @@ function renderDashboard() {
         let barClass = ach.isCompleted ? "ach-progress-fill completed-tier" : "ach-progress-fill";
 
         let notches = '';
-        for(let i = 1; i <= 5; i++) {
-            let isPastOrCurrent = i <= ach.viewingTierNum;
-            let op = isPastOrCurrent ? '1' : '0.3';
-            let bg = isPastOrCurrent ? `var(--tier-${i})` : 'var(--border)';
-            let glow = (i === ach.viewingTierNum) ? `box-shadow: 0 0 6px var(--tier-${i}); transform: scaleY(1.3);` : '';
-            notches += `<div class="tier-notch" style="background: ${bg}; opacity: ${op}; ${glow}" onclick="setTierView('${ach.uniqueId}', ${i})"></div>`;
+        if(!isHighestTierOnly && ach.allTiers && ach.allTiers.length > 0) {
+            ach.allTiers.forEach((tierObj, index) => {
+                const tierNum = tierObj.tier || index + 1;
+                let isPastOrCurrent = tierNum <= ach.viewingTierNum;
+                let op = isPastOrCurrent ? '0.7' : '0.15'; 
+                let bg = isPastOrCurrent ? `var(--tier-${tierNum})` : 'var(--border)';
+                let glow = (tierNum === ach.viewingTierNum) ? `box-shadow: 0 0 4px var(--tier-${tierNum}); transform: scaleY(1.3);` : '';
+                notches += `<div class="tier-notch" style="background: ${bg}; opacity: ${op}; ${glow}" onclick="setTierView('${ach.uniqueId}', ${tierNum})"></div>`;
+            });
         }
 
         let progressBlock = `
@@ -482,7 +733,7 @@ function renderDashboard() {
         return generateCard(ach, true, progressBlock, notches);
     }).join('');
 
-    document.getElementById('col-challenge').innerHTML = challenges.slice(0, limits.challenge).map(ach => {
+    document.getElementById('col-challenge').innerHTML = challenges.slice(0, viewLimitChal).map(ach => {
         ach.desc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, "1");
         return generateCard(ach, false, '', '');
     }).join('');
@@ -490,16 +741,16 @@ function renderDashboard() {
     if (!globalPlayerData.recentAchievements) {
         document.getElementById('col-recent').innerHTML = `<span style="color:var(--text-3); font-size: 13px;">Awaiting Vercel Cache... recentAchievements missing from API payload.</span>`;
     } else if (recents.length === 0) {
-        document.getElementById('col-recent').innerHTML = `<span style="color:var(--text-3); font-size: 13px;">No recent history data returned from API.</span>`;
+        document.getElementById('col-recent').innerHTML = `<span style="color:var(--text-3); font-size: 13px;">No recent history data returned for this game.</span>`;
     } else {
         document.getElementById('col-recent').innerHTML = recents.slice(0, limits.recent).map(ach => {
             return `
-              <div class="ach-card" style="border-color: var(--tier-1); box-shadow: none;">
+              <div class="ach-card">
                 <div class="ach-card-header">
                   <img src="${getGameIconUrl(ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
                   <span class="ach-game">${ach.game.replace('Max ', '')}</span>
                 </div>
-                <span class="ach-title" style="color: var(--tier-1);">${ach.title}</span>
+                <span class="ach-title">${ach.title}</span>
                 <span class="ach-desc">${ach.desc}</span>
                 <div class="ach-card-footer">
                   <span class="ach-reward"><img src="/img/diamond.png" alt="AP" style="width:14px; height:14px; object-fit:contain;"> ${ach.reward} AP</span>
@@ -509,12 +760,11 @@ function renderDashboard() {
         }).join('');
     }
 
-    document.getElementById('btn-more-tiered').style.display = limits.tiered < tiered.length ? 'block' : 'none';
-    document.getElementById('btn-more-chal').style.display = limits.challenge < challenges.length ? 'block' : 'none';
+    document.getElementById('btn-more-tiered').style.display = (viewLimitTiered < tiered.length && !searchQuery) ? 'block' : 'none';
+    document.getElementById('btn-more-chal').style.display = (viewLimitChal < challenges.length && !searchQuery) ? 'block' : 'none';
     document.getElementById('btn-more-rec').style.display = limits.recent < recents.length ? 'block' : 'none';
 }
 
-const MAX_POSSIBLE_AP = 32510; 
 const TOTAL_GAMES = 26;
 const trophyStructure = [
   { name: "4th Tier", classes: "legendary", games: ["Max UHC", "Max Pit", "Max Mega Walls", "Max SkyWars", "Max Blitz"] },
@@ -526,14 +776,14 @@ const trophyStructure = [
 
 function getApColor(ap) {
     const apColors = [
-        { ap: 0, hex: '#ffeeff' },      // Pale pink
-        { ap: 5000, hex: '#ffb3ff' },   // Light pink
-        { ap: 10000, hex: '#df80ff' },  // Pink-purple
-        { ap: 15000, hex: '#9933ff' },  // Purple
-        { ap: 20000, hex: '#3366ff' },  // Royal Blue
-        { ap: 25000, hex: '#00bfff' },  // Deep Sky Blue
-        { ap: 29000, hex: '#00e6ff' },  // Cyan
-        { ap: 32000, hex: '#99ffff' }   // Pale Cyan
+        { ap: 0, hex: '#ffeeff' },      
+        { ap: 5000, hex: '#ffb3ff' },   
+        { ap: 10000, hex: '#df80ff' },  
+        { ap: 15000, hex: '#9933ff' },  
+        { ap: 20000, hex: '#3366ff' },  
+        { ap: 25000, hex: '#00bfff' },  
+        { ap: 29000, hex: '#00e6ff' },  
+        { ap: 32000, hex: '#99ffff' }   
     ];
 
     let lower = apColors[0], upper = apColors[apColors.length - 1];
@@ -559,8 +809,145 @@ function getApColor(ap) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-function renderCabinet(data) {
-    document.title = `LitStats - ${data.username}'s Cabinet`;
+// Analytics Chart: Uses real snapshots only
+function initOrUpdateAnalyticsChart() {
+    const ctx = document.getElementById('apHistoryChart');
+    if (!ctx || !globalPlayerData) return;
+
+    const datasets = [];
+    const colorPalette = ['#ff5100', '#00bfff', '#55ff55', '#ffd700', '#ff55ff', '#ff3366'];
+    
+    const timeLabels = ["Month Start", "Current"];
+    const currentAP = globalPlayerData.achievementPoints || globalPlayerData.current_ap || 0;
+    const startAP = globalPlayerData.last_month_ap || (localAPDataCache?.month_start_snapshot?.[globalPlayerData.uuid]) || currentAP;
+
+    datasets.push({
+        label: globalPlayerData.username,
+        data: [startAP, currentAP],
+        borderColor: colorPalette[0],
+        backgroundColor: 'rgba(255, 81, 0, 0.12)',
+        pointBackgroundColor: colorPalette[0],
+        pointHoverBackgroundColor: colorPalette[0],
+        pointBorderColor: colorPalette[0],
+        pointHoverBorderColor: '#ffffff',
+        tension: 0.2,
+        fill: true,
+        pointRadius: 5,
+        pointHoverRadius: 7
+    });
+
+    comparisonPlayers.forEach((cp, idx) => {
+        const cColor = colorPalette[(idx + 1) % colorPalette.length];
+        const cpCurrent = cp.current_ap || cp.achievementPoints || 0;
+        const cpStart = cp.last_month_ap || (localAPDataCache?.month_start_snapshot?.[cp.uuid]) || cpCurrent;
+
+        datasets.push({
+            label: cp.username,
+            data: [cpStart, cpCurrent],
+            borderColor: cColor,
+            backgroundColor: 'transparent',
+            pointBackgroundColor: cColor,
+            pointHoverBackgroundColor: cColor,
+            pointBorderColor: cColor,
+            pointHoverBorderColor: '#ffffff',
+            tension: 0.2,
+            pointRadius: 5,
+            pointHoverRadius: 7
+        });
+    });
+
+    if (apChartInstance) {
+        apChartInstance.data.labels = timeLabels;
+        apChartInstance.data.datasets = datasets;
+        apChartInstance.update();
+    } else {
+        apChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: { labels: timeLabels, datasets: datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { 
+                        labels: { 
+                            color: '#e0e0e0', 
+                            font: { family: 'DM Sans', size: 12 },
+                            usePointStyle: true,
+                            pointStyle: 'line',
+                            boxWidth: 24,
+                            padding: 18
+                        } 
+                    },
+                    tooltip: { 
+                        mode: 'index', 
+                        intersect: false,
+                        backgroundColor: 'rgba(18, 18, 18, 0.95)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#e0e0e0',
+                        borderColor: 'rgba(255, 255, 255, 0.1)',
+                        borderWidth: 1,
+                        padding: 10,
+                        boxPadding: 6,
+                        usePointStyle: false,
+                        callbacks: {
+                            labelColor: function(context) {
+                                const color = context.dataset.borderColor;
+                                return {
+                                    borderColor: color,
+                                    backgroundColor: color,
+                                    borderWidth: 0,
+                                    borderRadius: 2
+                                };
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { ticks: { color: '#888', font: { family: 'DM Sans' } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                    y: { ticks: { color: '#888', font: { family: 'DM Sans' } }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                }
+            }
+        });
+    }
+}
+
+// Add comparison player (Max 5)
+window.addComparisonPlayer = function() {
+    const input = document.getElementById('compare-player-input');
+    const query = input.value.trim().toLowerCase();
+    if (!query) return;
+
+    if (comparisonPlayers.length >= 5) {
+        alert("Maximum of 5 comparison players allowed.");
+        return;
+    }
+
+    if (!localAPDataCache) {
+        alert("Top AP hunter leaderboard dataset is loading.");
+        return;
+    }
+
+    const allPlayers = (localAPDataCache.country_leaderboard || []).flatMap(c => c.top_players || []);
+    const match = allPlayers.find(p => p.username.toLowerCase() === query);
+
+    if (match) {
+        if (!comparisonPlayers.some(cp => cp.uuid === match.uuid)) {
+            comparisonPlayers.push(match);
+            initOrUpdateAnalyticsChart();
+            input.value = '';
+        } else {
+            alert("Player is already in the comparison graph.");
+        }
+    } else {
+        alert(`Player "${query}" was not found in the Top 200 cached leaderboards.`);
+    }
+};
+
+function renderCabinet(data, softRender = false) {
+    if (!softRender) document.title = `LitStats - ${data.username}'s Cabinet`;
+    
+    data.gamePercentages = data.gamePercentages || {};
+    data.missingAchievements = data.missingAchievements || [];
     
     const loaderEl = document.getElementById('loader');
     if (loaderEl) loaderEl.style.display = 'none';
@@ -580,13 +967,44 @@ function renderCabinet(data) {
         rankEl.style.display = 'none'; 
     }
 
+    const rankPill = document.getElementById('p-top-rank-pill');
+    if (data.leaderboardRank) {
+        rankPill.textContent = `#${data.leaderboardRank}`;
+        rankPill.className = 'rank-num-pill';
+        if (data.leaderboardRank === 1) rankPill.classList.add('rank-1');
+        else if (data.leaderboardRank === 2) rankPill.classList.add('rank-2');
+        else if (data.leaderboardRank === 3) rankPill.classList.add('rank-3');
+        rankPill.style.display = 'inline-flex';
+    } else {
+        rankPill.style.display = 'none';
+    }
+
+    // Render Right-Side Card Background Flag
+    const bgFlagEl = document.getElementById('p-bg-flag');
+    if (bgFlagEl) {
+      if (data.country && data.country !== 'Unknown') {
+        const flagUrl = getFlagUrl(data.country);
+        if (flagUrl) {
+          bgFlagEl.style.backgroundImage = `url("${flagUrl}")`;
+          bgFlagEl.style.display = 'block';
+        } else {
+          bgFlagEl.style.display = 'none';
+        }
+      } else {
+        bgFlagEl.style.display = 'none';
+      }
+    }
+
+    let customBadges = '';
+    if (data.username && data.username.toLowerCase() === 'tobias49') {
+        customBadges += `<img src="img/badges/axolotl.png" class="custom-badge-img" title="Developer">`;
+    }
+    document.getElementById('p-custom-badges').innerHTML = customBadges;
+
     const ap = data.achievementPoints || data.current_ap || 0;
-    
-    // Smooth interpolator matching your scale precisely
     const dynamicColor = getApColor(ap);
     const dynamicGlow = dynamicColor.replace('rgb', 'rgba').replace(')', ', 0.35)');
-
-    let displayAp = ap >= 1000 ? (ap / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : ap;
+    let displayAp = (ap || 0).toLocaleString();
     
     const apPillHTML = `
         <div class="ap-stat-pill" style="--ap-color: ${dynamicColor}; --ap-glow: ${dynamicGlow};">
@@ -601,10 +1019,10 @@ function renderCabinet(data) {
     const userMaxes = data.maxGames || [];
     document.getElementById('p-max-count').innerHTML = `<span style="font-weight:400; font-family:'DM Sans', sans-serif; color:var(--text);">${userMaxes.length} / ${TOTAL_GAMES} Maxed</span>`;
     
-    const percentage = Math.min(100, (ap / MAX_POSSIBLE_AP) * 100).toFixed(2);
-    document.getElementById('p-ap-bar').style.width = `${percentage}%`;
-    document.getElementById('p-ap-percent').textContent = `${percentage}%`;
+    globalPlayerData = data;
+    updateProgressDisplay();
 
+    // Render Game Overview with subtle AP Left text
     const cabinetGrid = document.getElementById('cabinet-grid');
     let html = '';
 
@@ -620,20 +1038,28 @@ function renderCabinet(data) {
         let cleanGameName = game.replace('Max ', '');
         let tooltip = cleanGameName;
         let innerHtml = '';
+        let apLeftHtml = '';
         
-        if (!isAchieved && data.gamePercentages) {
-            const percent = data.gamePercentages[game] || 0;
+        if (!isAchieved) {
+            const percent = data.gamePercentages?.[game] || 0;
             let color = percent >= 80 ? 'var(--tier-1)' : percent >= 40 ? 'var(--tier-2)' : 'var(--tier-4)';
             innerHtml = `<div class="slot-progress"><div class="slot-fill" style="width: ${percent}%; background-color: ${color};"></div></div>`;
-            tooltip = `${cleanGameName} - ${Number(percent).toFixed(2)}% Complete`;
+            
+            const gTotals = data.gameTotals?.[cleanGameName];
+            if (gTotals && gTotals.possibleAP > 0) {
+                const apLeft = Math.max(0, gTotals.possibleAP - gTotals.unlockedAP);
+                apLeftHtml = `<span class="badge-ap-left">${apLeft.toLocaleString()} AP Left</span>`;
+                tooltip = `${cleanGameName} - ${apLeft.toLocaleString()} AP Left (${Number(percent).toFixed(1)}%)`;
+            } else {
+                tooltip = `${cleanGameName} - ${Number(percent).toFixed(1)}% Complete`;
+            }
         }
 
-        let clickLogic = isAchieved ? '' : `onclick="toggleGameFilter('${cleanGameName}')"`;
-
         html += `
-          <div class="game-badge ${statusClass}" title="${tooltip}" ${clickLogic}>
+          <div class="game-badge ${statusClass}" title="${tooltip}">
             <div class="img-wrapper"><img src="${getGameIconUrl(game)}" onerror="this.style.display='none'"></div>
             <span>${cleanGameName}</span>
+            ${apLeftHtml}
             ${innerHtml}
           </div>
         `;
@@ -642,13 +1068,13 @@ function renderCabinet(data) {
     });
 
     cabinetGrid.innerHTML = html;
-    globalPlayerData = data;
     
-    if (data.missingAchievements) {
+    if (data.missingAchievements && !softRender) {
         populateFilters();
         renderDashboard();
     }
 
+    initOrUpdateAnalyticsChart();
     document.getElementById('cabinet-content').classList.remove('hidden');
 }
 
@@ -673,20 +1099,37 @@ async function initCabinet() {
     }
 
     let hasRenderedLocal = false;
+    let localRank = null;
+    let localCountry = null;
+    let localLastMonthAp = 0;
     const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
     const jsonRes = await fetch(`/ap_hunters_data.json?v=${currentHour}`);
     
     if (jsonRes.ok) {
-        const localData = await jsonRes.json();
-        const localPlayer = localData.country_leaderboard.flatMap(c => c.top_players).find(p => p.uuid === uuid);
-        if (localPlayer && localPlayer.maxGames) {
-            renderCabinet(localPlayer); 
-            hasRenderedLocal = true;
+        localAPDataCache = await jsonRes.json();
+        
+        let allPlayers = (localAPDataCache.country_leaderboard || [])
+            .flatMap(c => (c.top_players || []).map(p => ({ ...p, countryName: c.country })))
+            .filter((p, idx, self) => idx === self.findIndex(t => t.uuid === p.uuid))
+            .sort((a, b) => (b.current_ap || b.achievementPoints || 0) - (a.current_ap || a.achievementPoints || 0));
+
+        const playerIndex = allPlayers.findIndex(p => p.uuid === uuid);
+        if (playerIndex !== -1) {
+            localRank = playerIndex + 1;
+            const localPlayer = allPlayers[playerIndex];
+            localPlayer.leaderboardRank = localRank;
+            localCountry = localAPDataCache.manual_country_mapping?.[uuid] || localPlayer.countryName || localPlayer.country;
+            localPlayer.country = localCountry;
+            localLastMonthAp = localPlayer.last_month_ap || (localAPDataCache.month_start_snapshot?.[uuid]) || localPlayer.current_ap;
+            if (localPlayer.maxGames) {
+                renderCabinet(localPlayer); 
+                hasRenderedLocal = true;
+            }
         }
     }
 
     if (!hasRenderedLocal) {
-        document.getElementById('loader').textContent = "Fetching live network data...";
+        document.getElementById('loader').textContent = "Cooking up a storm...";
         document.getElementById('loader').classList.remove('hidden');
     }
 
@@ -707,6 +1150,10 @@ async function initCabinet() {
     const data = await res.json();
     if (data.error) throw new Error(`API Error: ${data.error}`);
 
+    if (localRank) data.leaderboardRank = localRank;
+    if (localCountry) data.country = localCountry;
+    if (localLastMonthAp) data.last_month_ap = localLastMonthAp;
+
     const legacyGamesList = ["Max Seasonal", "Max Crazy Walls", "Max SkyClash"];
     const preservedMaxes = (globalPlayerData?.maxGames || []).filter(g => legacyGamesList.includes(g));
     data.maxGames = [...new Set([...(data.maxGames || []), ...preservedMaxes])];
@@ -721,16 +1168,17 @@ async function initCabinet() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const excludeCheckbox = document.getElementById('excludeComp');
-    if (excludeCheckbox) excludeCheckbox.checked = isCompExcluded;
+    if (document.getElementById('excludeComp')) document.getElementById('excludeComp').checked = isCompExcluded;
+    if (document.getElementById('multiSelectToggle')) document.getElementById('multiSelectToggle').checked = isMultiSelect;
+    if (document.getElementById('highestTierToggle')) document.getElementById('highestTierToggle').checked = isHighestTierOnly;
+    if (document.getElementById('hideHistoryToggle')) document.getElementById('hideHistoryToggle').checked = isHistoryHidden;
+    if (document.getElementById('hideMaxesToggle')) document.getElementById('hideMaxesToggle').checked = isMaxesHidden;
 
-    if (maxedHidden) {
-        document.getElementById('maxed-column')?.classList.add('collapsed');
-        const toggleBtn = document.getElementById('toggleMaxedBtn');
-        if (toggleBtn) {
-            toggleBtn.innerText = "Show Max Games";
-            toggleBtn.setAttribute('aria-pressed', 'true');
-        }
+    if (isHistoryHidden) {
+        document.getElementById('history-column-wrapper').style.display = 'none';
+    }
+    if (isMaxesHidden) {
+        document.getElementById('maxed-column').style.display = 'none';
     }
 });
 
