@@ -1003,7 +1003,7 @@ function renderCabinet(data, softRender = false) {
 
     let customBadges = '';
     if (data.username && data.username.toLowerCase() === 'tobias49') {
-        customBadges += `<img src="img/badges/axolotl.png" class="custom-badge-img" title="Developer">`;
+        customBadges += `<img src="img/badges/axolotl.png" class="custom-badge-img" title="Contributor">`;
     }
     document.getElementById('p-custom-badges').innerHTML = customBadges;
 
