@@ -243,3 +243,57 @@ body:not([data-theme="dark"]) .expanded-row td {
   border-left: none !important;
   border-right: none !important;
 }
+
+/* --- Global Prestige Row Styling --- */
+.player-row.row-1st {
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.15) 0%, transparent 50%);
+    border-left: 3px solid var(--gold);
+}
+
+.player-row.row-2nd {
+    background: linear-gradient(90deg, rgba(148, 163, 184, 0.1) 0%, transparent 50%);
+    border-left: 3px solid var(--silver);
+}
+
+.player-row.row-3rd {
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.1) 0%, transparent 50%);
+    border-left: 3px solid var(--bronze);
+}
+
+.player-row.row-1st:hover {
+    background: linear-gradient(90deg, rgba(245, 158, 11, 0.25) 0%, transparent 60%);
+    transform: translateX(4px);
+    box-shadow: -4px 0 0 var(--gold);
+}
+
+.player-row.row-2nd:hover {
+    background: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, transparent 60%);
+    transform: translateX(4px);
+    box-shadow: -4px 0 0 var(--silver);
+}
+
+.player-row.row-3rd:hover {
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.18) 0%, transparent 60%);
+    transform: translateX(4px);
+    box-shadow: -4px 0 0 var(--bronze);
+}
+
+/* --- Global Prestige Row Styling --- */
+tbody tr:has(.rank-1) { background: linear-gradient(90deg, rgba(245, 158, 11, 0.15) 0%, transparent 50%); }
+tbody tr:has(.rank-1) td:first-child { box-shadow: inset 4px 0 0 var(--gold); border-left: none; }
+
+tbody tr:has(.rank-2) { background: linear-gradient(90deg, rgba(148, 163, 184, 0.1) 0%, transparent 50%); }
+tbody tr:has(.rank-2) td:first-child { box-shadow: inset 4px 0 0 var(--silver); border-left: none; }
+
+tbody tr:has(.rank-3) { background: linear-gradient(90deg, rgba(205, 127, 50, 0.1) 0%, transparent 50%); }
+tbody tr:has(.rank-3) td:first-child { box-shadow: inset 4px 0 0 var(--bronze); border-left: none; }
+
+/* Hover States for Top 3 */
+tbody tr:has(.rank-1):hover { background: linear-gradient(90deg, rgba(245, 158, 11, 0.25) 0%, transparent 60%); box-shadow: none; }
+tbody tr:has(.rank-1):hover td:first-child { box-shadow: inset 4px 0 0 var(--gold); }
+
+tbody tr:has(.rank-2):hover { background: linear-gradient(90deg, rgba(148, 163, 184, 0.18) 0%, transparent 60%); box-shadow: none; }
+tbody tr:has(.rank-2):hover td:first-child { box-shadow: inset 4px 0 0 var(--silver); }
+
+tbody tr:has(.rank-3):hover { background: linear-gradient(90deg, rgba(205, 127, 50, 0.18) 0%, transparent 60%); box-shadow: none; }
+tbody tr:has(.rank-3):hover td:first-child { box-shadow: inset 4px 0 0 var(--bronze); }
