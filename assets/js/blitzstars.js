@@ -29,6 +29,8 @@ const STAR_COSTS = {
   'lucky_charm': 0
 };
 
+const MAX_TOTAL_STAR_COST = 250000;
+
 const starMap = [
   // Row 1 (Slots 0 - 8: Blank border)
   null, null, null, null, null, null, null, null, null,
@@ -40,10 +42,10 @@ const starMap = [
     customImg: 'img/blitz/items/tnt.png', 
     desc: 'Rains a fireball apocalypse from the sky.', 
     type: [
-    'Activates immediately!',
-    'Gives permanent Fire Resistance',
-    'Gives Regeneration II for 30 seconds'
-  ]
+      'Activates immediately!',
+      'Gives permanent Fire Resistance',
+      'Gives Regeneration II for 30 seconds'
+    ]
   },
   { 
     id: 'string', key: 'assassin', name: 'Assassin', 
@@ -65,8 +67,8 @@ const starMap = [
     id: 'iron_bars', key: 'stasis', name: 'Stasis', 
     desc: 'No players can move except you for 10s.', 
     type: [
-        'Activates immediately!',
-        'If a player is higher than you, you can hit them without them hitting you'
+      'Activates immediately!',
+      'If a player is higher than you, you can hit them without them hitting you'
     ]
   },
   { 
@@ -90,27 +92,26 @@ const starMap = [
     customImg: 'img/blitz/items/water_bottle.png', 
     desc: 'Clears the inventory and armor of the person with the most kills.', 
     type: [
-        'Activates immediately!',
-        'Does not work if all players have 0 kills',
+      'Activates immediately!',
+      'Does not work if all players have 0 kills'
     ]
   },
   { 
     id: 'diamond', key: 'roulette', name: 'Roulette', 
     desc: 'Kill a random player, might be you!', 
-    type: [
-        'Activates immediately!'
-    ]
+    type: 'Activates immediately!' 
   },
   { 
     id: 'paper', key: 'invoker', name: 'Invoker', 
     desc: 'Gives you three random powerful incantations.', 
     type: [
-        'Gives you 3 items that you can activate!',
-        '',
-        'Iron Sword with Fire Aspect I',
-        'Instant Full Heal Scroll',
-        'Ranged Poison Bolt Scroll',
-        'Ranged Smite Scroll',
+      'Gives you 3 items that you can activate!',
+      '',
+      'Iron Sword with Fire Aspect I',
+      'Instant Full Heal Scroll',
+      'Ranged Poison Bolt Scroll',
+      'Ranged Smite Scroll',
+      'Ranged Launch Scroll'
     ]
   },
   { 
@@ -128,8 +129,8 @@ const starMap = [
     id: 'book', key: 'ninja', name: 'Ninja', 
     desc: 'Silently go invisible for 2 minutes and gain incredible speed, your first hit while invisible makes you visible, reduces your speed, and blinds the target for 3 seconds.', 
     type: [
-        'Activates immediately!',
-        'If used 30 seconds before deathmatch, Speed II carries over to the start of deathmatch',
+      'Activates immediately!',
+      'If used 30 seconds before deathmatch, Speed II carries over to the start of deathmatch'
     ]
   },
   { 
@@ -146,34 +147,39 @@ const starMap = [
     customImg: 'img/blitz/items/obsidian.png', 
     desc: 'Every player goes blind for 15s.', 
     type: [
-        'Activates immediately!',
-        'Critical hits do not work while players are blinded'
+      'Activates immediately!',
+      'Critical hits do not work while players are blinded'
     ]
   },
   { 
     id: 'arrow', key: 'supplies', name: 'Supplies', 
     desc: 'Gives you one of three rare items randomly.', 
-    type: 'Activates immediately!' 
+    type: [
+      'Gives one of the following randomly',
+      '',
+      'Protection II Iron Chestplate and Leggings',
+      'Sharpness I Iron Sword',
+      'Flame Bow'
+    ]
   },
   { 
     id: 'comparator', key: 'nocountryforoldmen', name: 'No country for old men', 
     customImg: 'img/blitz/items/comparator.png', 
     desc: 'Gives you a shotgun with 6 pellets.', 
     type: [
-        'Gives you an item that you can activate!',
-        'Shotgun does not work through walls',
-        'After Shotgun breaks, it becomes a Knockback III, Unbreaking X Wooden Shovel'
+      'Gives you an item that you can activate!',
+      'Shotgun does not work through walls',
+      'After Shotgun breaks, it becomes a Knockback III, Unbreaking X Wooden Shovel'
     ]
   },
   { 
     id: 'hay_bale', key: 'koolmove', name: 'Sweg Move', 
     customImg: 'img/blitz/items/hay_bale.png', 
     desc: 'Starts an early deathmatch.', 
-    type: 'Activates immediately!',
     type: [
-    'Activates immediately!',
-    'Cannot be used in the void'
-  ]
+      'Activates immediately!',
+      'Cannot be used in the void'
+    ]
   },
   { 
     id: 'barrier', key: 'lockdown', name: 'Lockdown', 
@@ -208,8 +214,8 @@ const starMap = [
     id: 'experience_bottle', key: 'lucky_charm', name: 'Lucky Charm', 
     desc: 'You start earning experience points over time!', 
     type: [
-        'Activates immediately!',
-        'Gives around 45 levels worth of XP'
+      'Activates immediately!',
+      'Gives around 45 levels worth of XP'
     ]
   },
   { 
@@ -227,8 +233,8 @@ const starMap = [
     id: 'ghast_spawn_egg', key: 'zookeeper', name: 'Zookeeper', 
     desc: 'Gives you 5 mystery spawn eggs.', 
     type: [
-        'Gives you items that you can activate!',
-        '0.34% chance to spawn an Ender Dragon'
+      'Gives you items that you can activate!',
+      '0.34% chance to spawn an Ender Dragon'
     ]
   },
   { 
@@ -236,21 +242,86 @@ const starMap = [
     customImg: 'img/blitz/leather_armor/donkeytamer_leather_boots.png', 
     desc: 'Switches your position with that of a random enemy!', 
     type: [
-        'Activates immediately!',
-        'Cannot be used in the void'
+      'Activates immediately!',
+      'Cannot be used in the void'
     ]
   },
   null,
 
   // Row 6 (Slots 45 - 53: Close Button)
   null, null, null, null,
-  { 
-    id: 'barrier', key: 'close', name: 'Close', 
-    desc: 'Click to exit menu.', 
-    type: '' 
-  },
+  { id: 'barrier', key: 'close', name: 'Close', desc: 'Click to exit menu.', type: '' },
   null, null, null, null
 ];
+
+window.PLAYER_STARS = null;
+
+function normalizeKey(str) {
+  return (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+const STAR_ALIASES = {
+  'wobbuffet': 'ironman',
+  'iron_man': 'ironman',
+  'ironman': 'ironman',
+  'shotgun': 'nocountryforoldmen',
+  'nocountryforoldmen': 'nocountryforoldmen',
+  'no_country_for_old_men': 'nocountryforoldmen',
+  'imprison': 'stasis',
+  'stasis': 'stasis',
+  'freeze': 'stasis',
+  'sweg_move': 'koolmove',
+  'swegmove': 'koolmove',
+  'kool_move': 'koolmove',
+  'koolmove': 'koolmove',
+  'robin_hood': 'robinhood',
+  'robinhood': 'robinhood',
+  'vault_hunter': 'vaulthunter',
+  'vaulthunter': 'vaulthunter',
+  'wither_warrior': 'witherwarrior',
+  'witherwarrior': 'witherwarrior',
+  'time_warp': 'time_warp',
+  'timewarp': 'time_warp',
+  'acid_rain': 'acid_rain',
+  'acidrain': 'acid_rain',
+  'lucky_charm': 'lucky_charm',
+  'luckycharm': 'lucky_charm'
+};
+
+function resolveStarKey(k) {
+  const norm = normalizeKey(k);
+  return STAR_ALIASES[norm] || STAR_ALIASES[k] || norm;
+}
+
+function getPlusColourHex(colourName) {
+  const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
+  return colours[colourName] || '#FF5555';
+}
+
+function getRankBaseColourHex(rank, monthlyRankColor) {
+  if (!rank || rank === 'NON') return '#AAAAAA';
+  const clean = rank.replace(/\[|\]/g, ''); 
+  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+  if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
+  if (clean.includes('MVP')) return '#55FFFF'; 
+  if (clean.includes('VIP')) return '#55FF55'; 
+  if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
+  if (clean.includes('PIG')) return '#FF55FF'; 
+  return '#AAAAAA';
+}
+
+function formatRankHtml(rank, plusColour, monthlyRankColor) {
+  if (!rank || rank === 'NON') return '';
+  const plusHex = getPlusColourHex(plusColour);
+  const cleanRank = rank.replace(/\[|\]/g, ''); 
+  const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
+
+  let formatted = cleanRank;
+  if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
+  else if (cleanRank.includes('+')) formatted = `${cleanRank.split('+')[0]}<span style="color:${plusHex}">+</span>`;
+
+  return `<span style="color:${baseColor}; font-family: var(--mc-font), monospace; font-weight: normal;">[${formatted}]</span>`;
+}
 
 function getStarAssetUrl(it) {
   if (!it) return '';
@@ -262,6 +333,8 @@ function initStarChest() {
   const grid = document.getElementById('star-grid');
   if (!grid) return;
 
+  const userStars = window.PLAYER_STARS ? new Set(window.PLAYER_STARS.map(resolveStarKey)) : null;
+
   let html = '';
   for (let i = 0; i < 54; i++) {
     const star = starMap[i];
@@ -270,45 +343,61 @@ function initStarChest() {
       continue;
     }
 
-    const cost = STAR_COSTS[star.key];
+    const safeKey = resolveStarKey(star.key);
+    const isFree = STAR_COSTS[star.key] === 0;
+    const cost = STAR_COSTS[star.key] || 0;
+    
+    let isPurchased = false;
+    if (userStars) {
+      isPurchased = isFree || userStars.has(safeKey);
+    }
+
     const lines = [];
 
-    // Description
     if (star.desc) {
-    const descLines = Array.isArray(star.desc) ? star.desc : [star.desc];
-    descLines.forEach(l => {
-        if (!l || l.trim() === '') {
-        lines.push({ text: ' ', cls: 'tt-spacer' });
-        } else {
-        lines.push({ text: l, cls: 'c-grey' });
-        }
-    });
+      const descLines = Array.isArray(star.desc) ? star.desc : [star.desc];
+      descLines.forEach(l => {
+        if (!l || l.trim() === '') lines.push({ text: ' ', cls: 'tt-spacer' });
+        else lines.push({ text: l, cls: 'c-grey' });
+      });
     }
 
-    // Use cases / bullet points
     if (star.type) {
-    lines.push({ text: ' ', cls: 'tt-spacer' });
-    const points = Array.isArray(star.type) ? star.type : [star.type];
-    points.forEach(pt => {
+      lines.push({ text: ' ', cls: 'tt-spacer' });
+      const points = Array.isArray(star.type) ? star.type : [star.type];
+      points.forEach(pt => {
         if (!pt || pt.trim() === '') {
-        lines.push({ text: ' ', cls: 'tt-spacer' });
+          lines.push({ text: ' ', cls: 'tt-spacer' });
         } else {
-        lines.push({ text: `- ${pt}`, cls: 'c-grey' });
+          lines.push({ text: `- ${pt}`, cls: 'c-grey' });
         }
-    });
+      });
     }
 
-    // Cost (spaced after use cases)
-    if (cost && cost > 0) {
-      lines.push({ text: ' ', cls: 'tt-spacer' });
-      lines.push({ 
-        html: `<span style="color: #AAAAAA;">Cost: </span><span style="color: #FFAA00;">${cost.toLocaleString()}</span>` 
-      });
-    } else if (star.key !== 'close') {
-      lines.push({ text: ' ', cls: 'tt-spacer' });
-      lines.push({ 
-        html: `<span style="color: #AAAAAA;">Cost: </span><span style="color: #55FF55;">Free</span>` 
-      });
+    if (userStars && star.key !== 'close') {
+      if (!isFree) {
+        lines.push({ text: ' ', cls: 'tt-spacer' });
+        if (isPurchased) {
+          lines.push({ html: `<span style="color: #55FF55;">Purchased!</span>` });
+        } else {
+          lines.push({ 
+            html: `<span style="color: #AAAAAA;">Cost: </span><span style="color: #FFAA00;">${cost.toLocaleString()}</span>` 
+          });
+          lines.push({ html: `<span style="color: #FF5555;">Locked!</span>` });
+        }
+      }
+    } else {
+      if (cost > 0) {
+        lines.push({ text: ' ', cls: 'tt-spacer' });
+        lines.push({ 
+          html: `<span style="color: #AAAAAA;">Cost: </span><span style="color: #FFAA00;">${cost.toLocaleString()}</span>` 
+        });
+      } else if (star.key !== 'close') {
+        lines.push({ text: ' ', cls: 'tt-spacer' });
+        lines.push({ 
+          html: `<span style="color: #AAAAAA;">Cost: </span><span style="color: #55FF55;">Free</span>` 
+        });
+      }
     }
 
     const payload = JSON.stringify({
@@ -316,12 +405,19 @@ function initStarChest() {
       name: star.name,
       rarity: 'common',
       lines: lines,
-      customImg: star.customImg || null
+      customImg: star.customImg || null,
+      isPurchased: userStars ? isPurchased : true,
+      hasPlayer: Boolean(userStars)
     }).replace(/"/g, '&quot;');
 
     const imgUrl = getStarAssetUrl(star);
+    let slotClass = 'slot';
+    if (userStars && !isPurchased && star.key !== 'close') {
+      slotClass += ' locked-star-slot';
+    }
+
     html += `
-      <div class="slot" data-item="${payload}">
+      <div class="${slotClass}" data-item="${payload}">
         <div class="item-wrapper">
           <img src="${imgUrl}" alt="${star.name}" onerror="this.onerror=null; this.src='img/blitz/items/${star.id}.png';">
         </div>
@@ -331,14 +427,144 @@ function initStarChest() {
   grid.innerHTML = html;
 }
 
+function updateStarCoinPanel() {
+  if (!window.PLAYER_STARS) {
+    document.getElementById('player-star-panel').style.display = 'none';
+    return;
+  }
+
+  const userStars = new Set(window.PLAYER_STARS.map(resolveStarKey));
+  let spent = 0;
+  let unlockedCount = 0;
+  const totalPurchasable = Object.entries(STAR_COSTS).filter(([_, c]) => c > 0).length;
+
+  for (const [key, cost] of Object.entries(STAR_COSTS)) {
+    if (cost > 0 && userStars.has(resolveStarKey(key))) {
+      spent += cost;
+      unlockedCount++;
+    }
+  }
+
+  const remaining = Math.max(0, MAX_TOTAL_STAR_COST - spent);
+
+  document.getElementById('star-total-display').textContent = spent.toLocaleString();
+  document.getElementById('star-unlocked-count').textContent = `${unlockedCount} / ${totalPurchasable}`;
+  document.getElementById('star-coins-spent').textContent = spent.toLocaleString();
+  document.getElementById('star-coins-remaining').textContent = remaining.toLocaleString();
+
+  document.getElementById('player-star-panel').style.display = 'flex';
+}
+
+window.enablePreviewAllStars = function() {
+  window.PLAYER_STARS = null;
+  sessionStorage.removeItem('blitz_user');
+  localStorage.removeItem('blitz_skin_username');
+  
+  const searchInput = document.getElementById('star-player-search');
+  if (searchInput) searchInput.value = '';
+  
+  const errEl = document.getElementById('star-error-msg');
+  if (errEl) {
+    errEl.textContent = "Previewing all Blitz Stars.";
+    errEl.style.color = "var(--text-3)";
+  }
+
+  const sideLabel = document.getElementById('side-username-label');
+  if (sideLabel) {
+    sideLabel.innerHTML = 'Username';
+    sideLabel.style.color = 'var(--text)';
+  }
+  document.getElementById('player-avatar-panel').style.display = 'none';
+  document.getElementById('player-star-panel').style.display = 'none';
+
+  if (MCEngine.viewers) {
+    Object.values(MCEngine.viewers).forEach(v => {
+      try { v.loadSkin('img/skin.png'); } catch(e) {}
+    });
+  }
+
+  const blitzLink = document.getElementById('tool-link-blitz');
+  if (blitzLink) blitzLink.href = 'blitz.html';
+
+  initStarChest();
+  window.history.pushState({}, '', window.location.pathname);
+};
+
+async function fetchStarPlayer(customUsername) {
+  const inputEl = document.getElementById('star-player-search');
+  const username = customUsername || inputEl.value.trim();
+  if (!username) return;
+  
+  inputEl.value = username;
+  const errEl = document.getElementById('star-error-msg');
+  errEl.textContent = "Loading Blitz Stars from API...";
+  errEl.style.color = "var(--text-3)";
+
+  try {
+    const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${username}`);
+    if (dbRes.status === 429) throw new Error("Rate Limited by PlayerDB.");
+    const dbData = await dbRes.json();
+    if (dbData.code !== 'player.found') throw new Error("Player not found.");
+    const uuid = dbData.data.player.raw_id;
+    const realName = dbData.data.player.username;
+
+    const isLocalVercel = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port === '3000';
+    const apiUrl = isLocalVercel 
+        ? `/api/player?uuid=${uuid}` 
+        : `https://api.litstats.com/api/player?uuid=${uuid}`;
+
+    const res = await fetch(apiUrl);
+    if (res.status === 429) throw new Error("Rate Limited by Hypixel.");
+    const vData = await res.json();
+    if (vData.error) throw new Error(vData.error);
+
+    window.PLAYER_STARS = vData.blitzStars || [];
+    sessionStorage.setItem('blitz_user', realName);
+    localStorage.setItem('blitz_skin_username', realName);
+
+    errEl.textContent = `Showing unlocked Blitz Stars for ${realName}`;
+    errEl.style.color = "var(--green)";
+
+    const rankHtml = formatRankHtml(vData.rank, vData.rankPlusColor, vData.monthlyRankColor);
+    const baseColor = getRankBaseColourHex(vData.rank, vData.monthlyRankColor);
+    const sideLabel = document.getElementById('side-username-label');
+    if (sideLabel) {
+      sideLabel.innerHTML = `${rankHtml}${rankHtml ? ' ' : ''}<span style="color:${baseColor}; font-family: var(--mc-font), monospace; font-weight: normal;">${realName}</span>`;
+    }
+    document.getElementById('player-avatar-panel').style.display = 'flex';
+
+    if (MCEngine.viewers) {
+      Object.values(MCEngine.viewers).forEach(v => {
+        try { v.loadSkin(`https://minotar.net/skin/${realName}`); } catch(e) {}
+      });
+    }
+
+    const blitzLink = document.getElementById('tool-link-blitz');
+    if (blitzLink) blitzLink.href = `blitz.html?player=${encodeURIComponent(realName)}`;
+
+    updateStarCoinPanel();
+    initStarChest();
+    window.history.pushState({}, '', `${window.location.pathname}?player=${encodeURIComponent(realName)}`);
+
+  } catch (e) {
+    errEl.textContent = e.message;
+    errEl.style.color = "var(--red)";
+  }
+}
+
 document.addEventListener('tt-format', (e) => {
   const it = e.detail.item;
-  let h = `<span class="tt-name" style="color: #55ff55;">${it.name}</span>`;
+  
+  let titleColor = '#FF5555';
+  if (it.hasPlayer) {
+    titleColor = it.isPurchased ? '#55FF55' : '#FF5555';
+  }
+
+  let h = `<span class="tt-name" style="color: ${titleColor};">${it.name}</span>`;
   
   if (it.lines && it.lines.length) {
     for (const l of it.lines) {
       if (l.cls === 'tt-spacer' || l.text === ' ') {
-        // Natural full-height line break
         h += `<span class="tt-line">&nbsp;</span>`;
       } else if (l.html) {
         h += `<span class="tt-line">${l.html}</span>`;
@@ -350,4 +576,30 @@ document.addEventListener('tt-format', (e) => {
   e.detail.html = h;
 });
 
-document.addEventListener('DOMContentLoaded', initStarChest);
+document.addEventListener('DOMContentLoaded', () => {
+  initStarChest();
+
+  setTimeout(() => {
+    MCEngine.initPlayerCanvas('player-canvas-main', 'side-player-box-id');
+    const savedSkinUser = localStorage.getItem('blitz_skin_username');
+    if (savedSkinUser && MCEngine.viewers) {
+      Object.values(MCEngine.viewers).forEach(v => {
+        try { v.loadSkin(`https://minotar.net/skin/${savedSkinUser}`); } catch(e) {}
+      });
+    }
+  }, 100);
+
+  const searchInput = document.getElementById('star-player-search');
+  if (searchInput) {
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') fetchStarPlayer();
+    });
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const playerParam = params.get('player') || sessionStorage.getItem('blitz_user');
+
+  if (playerParam) {
+    fetchStarPlayer(playerParam);
+  }
+});
