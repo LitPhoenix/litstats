@@ -432,7 +432,6 @@ function populateFilters() {
         let isDisabled = isCompExcluded && compGames.includes(cleanName) ? 'disabled' : '';
         let isActive = activeGameFilters.has(cleanName) ? 'active' : '';
         
-        // Directly compute live progress from gameTotals to eliminate any 0.0% lookup errors
         const gTotals = globalPlayerData.gameTotals?.[cleanName];
         let percent = 0;
         if (gTotals && gTotals.possibleAchs > 0) {
@@ -840,7 +839,7 @@ function initOrUpdateAnalyticsChart() {
         const cColor = colorPalette[(idx + 1) % colorPalette.length];
         const cpCurrent = cp.current_ap || cp.achievementPoints || 0;
         const cpStart = cp.last_month_ap || (localAPDataCache?.month_start_snapshot?.[cp.uuid]) || cpCurrent;
-
+        
         datasets.push({
             label: cp.username,
             data: [cpStart, cpCurrent],
@@ -951,6 +950,13 @@ function renderCabinet(data, softRender = false) {
     
     const loaderEl = document.getElementById('loader');
     if (loaderEl) loaderEl.style.display = 'none';
+
+    // Clear and hide error box on successful render
+    const errorBox = document.getElementById('errorBox');
+    if (errorBox) {
+        errorBox.textContent = '';
+        errorBox.classList.add('hidden');
+    }
 
     document.getElementById('p-avatar').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
     document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/bust/${data.uuid}.png`; };
@@ -1082,10 +1088,17 @@ async function initCabinet() {
   const urlParams = new URLSearchParams(window.location.search);
   const lookupId = urlParams.get('uuid');
 
+  // Reset error box state immediately at start of lookup
+  const errorBox = document.getElementById('errorBox');
+  if (errorBox) {
+    errorBox.textContent = '';
+    errorBox.classList.add('hidden');
+  }
+
   if (!lookupId) {
     document.getElementById('loader').classList.add('hidden');
-    document.getElementById('errorBox').textContent = "No valid player provided.";
-    document.getElementById('errorBox').classList.remove('hidden');
+    errorBox.textContent = "No valid player provided.";
+    errorBox.classList.remove('hidden');
     return;
   }
 
@@ -1162,8 +1175,8 @@ async function initCabinet() {
 
   } catch (err) {
     document.getElementById('loader').classList.add('hidden');
-    document.getElementById('errorBox').textContent = err.message;
-    document.getElementById('errorBox').classList.remove('hidden');
+    errorBox.textContent = err.message;
+    errorBox.classList.remove('hidden');
   }
 }
 
@@ -1179,6 +1192,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (isMaxesHidden) {
         document.getElementById('maxed-column').style.display = 'none';
+    }
+
+    // Bind Enter key to Analytics player comparison input
+    const compareInput = document.getElementById('compare-player-input');
+    if (compareInput) {
+        compareInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addComparisonPlayer();
+            }
+        });
     }
 });
 
