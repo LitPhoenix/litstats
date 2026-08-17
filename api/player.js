@@ -33,39 +33,33 @@ module.exports = async (req, res) => {
   const allowedOrigins = ['https://www.litstats.com', 'https://litstats.com', 'http://localhost:3000', 'http://127.0.0.1:3000'];
   const requestOrigin = req.headers.origin || req.headers.referer || '';
 
-  // 1. CHECK AUTH
-  const secureToken = req.headers['x-litstats-auth'];
-  const expectedToken = process.env.CLOUDFLARE_AUTH_TOKEN;
-
-  // Skip the token check if running locally
-  const isLocalDev = !process.env.VERCEL_ENV || process.env.NODE_ENV === 'development';
-
-  if (!isLocalDev) {
-      if (secureToken !== expectedToken) {
-          return res.status(403).json({ error: "Access Denied: Direct origin bypass detected." });
-      }
-      // Block humans typing the URL directly into their browser
-      if (!allowedOrigins.some(origin => requestOrigin.startsWith(origin))) {
-          return res.status(403).json({ error: "Access Denied: Direct browser visits are blocked." });
-      }
-  }
-
-  // 2. BROWSER CORS
   const isAllowed = allowedOrigins.some(origin => requestOrigin.startsWith(origin));
-  const corsOrigin = isAllowed ? requestOrigin : allowedOrigins[0];
+  const corsOrigin = isAllowed ? requestOrigin : (allowedOrigins[0] || '*');
 
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', corsOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Litstats-Auth');
   res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=600');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
+  const secureToken = req.headers['x-litstats-auth'];
+  const expectedToken = process.env.CLOUDFLARE_AUTH_TOKEN;
+  const isLocalDev = !process.env.VERCEL_ENV || process.env.NODE_ENV === 'development';
+
+  if (!isLocalDev && expectedToken) {
+    if (secureToken && secureToken !== expectedToken) {
+      return res.status(403).json({ error: "Access Denied: Invalid Auth Token" });
+    }
+    if (requestOrigin && !isAllowed) {
+      return res.status(403).json({ error: "Access Denied: Direct browser origin blocked." });
+    }
+  }
+
   const { uuid, name } = req.query;
   let targetUuid = uuid;
 
-  // Resolve Username to UUID if needed (for Cabinet compatibility)
   if (name && !uuid) {
     try {
       const mojangRes = await fetch(`https://api.mojang.com/users/profiles/minecraft/${name}`);
@@ -83,7 +77,6 @@ module.exports = async (req, res) => {
   if (!API_KEY) return res.status(500).json({ error: "Server missing API Key" });
 
   try {
-    // Check and Fetch Achievement Template Cache
     if (!cachedTemplate || Date.now() - templateFetchTime > 3600000) {
       try {
         const tData = await safeFetchJSON('https://api.hypixel.net/v2/resources/achievements');
@@ -96,7 +89,6 @@ module.exports = async (req, res) => {
       }
     }
 
-    // Fetch Master Hypixel Profile
     const pData = await safeFetchJSON(`https://api.hypixel.net/v2/player?uuid=${targetUuid}`, { headers: { 'API-Key': API_KEY } });
     
     if (pData.rateLimited) return res.status(429).json({ error: "Hypixel API Rate Limit. Try again shortly." });
@@ -108,7 +100,14 @@ module.exports = async (req, res) => {
     const cleanOneTime = rawOneTime.filter(item => typeof item === 'string');
     const tieredPlayer = profile.achievements || {};
 
-    // --- SHARED PAYLOAD INIT ---
+    const swStats = profile.stats?.SkyWars || {};
+    const swPackages = swStats.packages || [];
+    const vanityPackages = profile.vanityMeta?.packages || [];
+
+    const allPackages = Array.from(new Set([...swPackages, ...vanityPackages]));
+    let cleanLevelFormatted = swStats.levelFormattedWithBrackets || swStats.levelFormatted || '';
+    cleanLevelFormatted = cleanLevelFormatted.replace(/§k/gi, '').replace(/&k/gi, '');
+
     const responseData = {
       username: profile.displayname || "Unknown",
       uuid: profile.uuid,
@@ -116,19 +115,37 @@ module.exports = async (req, res) => {
       rankPlusColor: profile.rankPlusColor || 'RED',
       monthlyRankColor: profile.monthlyRankColor || 'GOLD',
       
-      // Cabinet Specifics
       achievementPoints: profile.achievementPoints || 0,
       questsCompleted: 0, 
       maxGames: [],
       topQuests: [],
       gamePercentages: {},
       missingAchievements: [],
-      recentAchievements: []
+      recentAchievements: [],
+      
+      gameTotals: {},
+      globalTotals: { possibleAP: 0, possibleAchs: 0, unlockedAP: 0, unlockedAchs: 0 },
+
+      angelsDescent: {
+        opals: swStats.opals !== undefined ? swStats.opals : 0,
+        coins: swStats.coins || 0,
+        souls: swStats.souls || 0,
+        tokens: swStats.cosmetic_tokens || 0,
+        heads: swStats.heads || 0,
+        wins: swStats.wins || 0,
+        kills: swStats.kills || 0,
+        assists: swStats.assists || 0,
+        kdr: swStats.deaths > 0 ? (swStats.kills / swStats.deaths).toFixed(2) : (swStats.kills || 0).toFixed(2),
+        wlr: swStats.losses > 0 ? (swStats.wins / swStats.losses).toFixed(2) : (swStats.wins || 0).toFixed(2),
+        timePlayed: swStats.time_played || 0,
+        potionsBrewed: (swStats.brewery?.gilded_tonic || 0) + (swStats.brewery?.builders_blend || 0) + (swStats.brewery?.corrupting_brew || 0) + (swStats.brewery?.ender_elixir || 0),
+        levelFormatted: cleanLevelFormatted,
+        corruptionChance: 5 + ((swStats.angels_offering || 0) * 1),
+        packages: allPackages,
+        stats: swStats
+      }
     };
 
-    // ==========================================
-    // CABINET DATA PARSING (QUESTS & ACHS)
-    // ==========================================
     if (profile.quests) {
       const questTotals = {};
       const qMap = {
@@ -186,6 +203,10 @@ module.exports = async (req, res) => {
       { internal: "woolgames", name: "Wool Games", badge: "Max Wool Games" },
       { internal: "duels", name: "Duels", badge: "Max Duels" },
       { internal: "buildbattle", name: "Build Battle", badge: "Max Build Battle" },
+      { internal: "summer", name: "Summer", badge: "Max Summer", seasonal: true },
+      { internal: "winter", name: "Winter", badge: "Max Winter", seasonal: true },
+      { internal: "easter", name: "Easter", badge: "Max Easter", seasonal: true },
+      { internal: "halloween", name: "Halloween", badge: "Max Halloween", seasonal: true },
       { internal: "truecombat", name: "Crazy Walls", badge: "Max Crazy Walls", legacy: true },
       { internal: "skyclash", name: "SkyClash", badge: "Max SkyClash", legacy: true }
     ];
@@ -198,15 +219,25 @@ module.exports = async (req, res) => {
         let totalPossible = 0;
         let playerUnlocked = 0;
         let isMaxed = true;
+        
+        responseData.gameTotals[game.name] = { possibleAP: 0, possibleAchs: 0, unlockedAP: 0, unlockedAchs: 0 };
 
         if (tGame.one_time) {
           for (const [key, ach] of Object.entries(tGame.one_time)) {
             if (ach.legacy) continue; 
             totalPossible++;
-            const fullId = `${game.internal}_${key.toLowerCase()}`;
+            responseData.gameTotals[game.name].possibleAchs++;
+            responseData.gameTotals[game.name].possibleAP += ach.points;
+            responseData.globalTotals.possibleAchs++;
+            responseData.globalTotals.possibleAP += ach.points;
             
+            const fullId = `${game.internal}_${key.toLowerCase()}`;
             if (cleanOneTime.includes(fullId)) {
               playerUnlocked++;
+              responseData.gameTotals[game.name].unlockedAchs++;
+              responseData.gameTotals[game.name].unlockedAP += ach.points;
+              responseData.globalTotals.unlockedAchs++;
+              responseData.globalTotals.unlockedAP += ach.points;
             } else {
               isMaxed = false;
               responseData.missingAchievements.push({
@@ -232,8 +263,17 @@ module.exports = async (req, res) => {
 
             for (const tier of ach.tiers) {
               totalPossible++;
+              responseData.gameTotals[game.name].possibleAchs++;
+              responseData.gameTotals[game.name].possibleAP += tier.points;
+              responseData.globalTotals.possibleAchs++;
+              responseData.globalTotals.possibleAP += tier.points;
+              
               if (playerAmt >= tier.amount) {
                 playerUnlocked++;
+                responseData.gameTotals[game.name].unlockedAchs++;
+                responseData.gameTotals[game.name].unlockedAP += tier.points;
+                responseData.globalTotals.unlockedAchs++;
+                responseData.globalTotals.unlockedAP += tier.points;
               } else {
                 isMaxed = false;
                 isAchMaxed = false;
@@ -277,7 +317,7 @@ module.exports = async (req, res) => {
           for (const [key, ach] of Object.entries(tGame.tiered)) {
             ach.tiers.forEach((t, index) => {
               const tierNum = t.tier || index + 1;
-              achDictionary[`${categoryId}_${key.toLowerCase()}_${tierNum}`] = { game: gameName, title: ach.name, desc: ach.description, reward: t.points };
+              achDictionary[`${categoryId}_${key.toLowerCase()}` + `_${tierNum}`] = { game: gameName, title: ach.name, desc: ach.description, reward: t.points };
             });
           }
         }
