@@ -6,20 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <title>LitStats — Blitz Stars</title>
-  <meta name="description" content="Explore Blitz Star abilities and coin unlock costs.">
+  <meta name="description" content="Check Blitz Star abilities and coin unlock costs.">
   <meta name="theme-color" content="#ff5100">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://litstats.com/blitzstars">
   <meta property="og:title" content="LitStats — Blitz Stars">
-  <meta property="og:description" content="Explore Blitz Star abilities and coin unlock costs.">
-  <meta property="og:image" content="https://litstats.com/img/lq-blitz-stars-opengraph.jpg">
+  <meta property="og:description" content="Check Blitz Star abilities and coin unlock costs.">
+  <meta property="og:image" content="https://litstats.com/img/lq-blitz-opengraph.jpg">
 
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://litstats.com/blitzstars">
   <meta property="twitter:title" content="LitStats — Blitz Stars">
-  <meta property="twitter:description" content="Explore Blitz Star abilities and coin unlock costs.">
-  <meta property="twitter:image" content="https://litstats.com/img/lq-blitz-stars-opengraph.jpg">
+  <meta property="twitter:description" content="Check Blitz Star abilities and coin unlock costs.">
+  <meta property="twitter:image" content="https://litstats.com/img/lq-blitz-opengraph.jpg">
 
   <link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,11 +30,51 @@
   <link rel="stylesheet" href="assets/css/mc-gui.css">
 
   <style>
-    .hero-wrapper { text-align: center; margin-bottom: 32px; }
-    .hero-title { font-family: 'DM Sans', sans-serif; color: var(--text); font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
-    .hero-subtitle { color: var(--text-2); font-family: 'DM Sans', sans-serif; font-size: 15px; }
+    .hero-search-wrapper { text-align: center; margin-bottom: 32px; }
+    .hero-title { font-family: 'DM Sans', sans-serif; color: var(--text); font-size: 32px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .modern-search { display: flex; gap: 8px; justify-content: center; margin-bottom: 8px; flex-wrap: wrap; }
+    .modern-input { padding: 10px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; outline: none; width: 240px; transition: border-color 0.2s; box-shadow: var(--shadow); }
+    .modern-input:focus { border-color: var(--accent); }
+    .modern-btn { background: var(--accent); color: #fff; border: none; padding: 0 20px; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 12px rgba(255, 81, 0, 0.25); height: 42px; }
+    .modern-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(255, 81, 0, 0.4); }
+    .icon-btn { background: var(--surface); color: var(--text-2); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; box-shadow: var(--shadow); }
+    .icon-btn:hover { border-color: var(--text); color: var(--text); transform: translateY(-2px); }
+    .modern-error { color: var(--text-3); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; min-height: 18px; }
 
-    .star-menu-layout { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 900px; margin: 0 auto; }
+    .main-menu-layout { display: flex; gap: 24px; align-items: flex-start; justify-content: center; flex-wrap: nowrap; width: 100%; max-width: 900px; margin: 0 auto; }
+    
+    @media (max-width: 860px) {
+      .main-menu-layout { flex-wrap: wrap; }
+    }
+
+    .modern-side-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; box-shadow: var(--shadow); width: 220px; flex-shrink: 0; }
+    .player-avatar-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; width: 160px; display: flex; flex-direction: column; align-items: center; padding: 12px 8px; box-shadow: var(--shadow); flex-shrink: 0; }
+    
+    .skin-username-label { color: var(--text); font-family: var(--mc-font), monospace; font-size: 12px; font-weight: normal !important; text-align: center; margin-bottom: 8px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; line-height: 1.2; word-break: break-all; }
+
+    .side-player-box { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100px; height: 160px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 6px; overflow: visible; }
+    .side-player-canvas { display: block; pointer-events: none; z-index: 5; margin-bottom: -15px; }
+
+    .coin-breakdown-container { width: 100%; display: flex; flex-direction: column; font-family: 'DM Sans', sans-serif; background: transparent; padding: 4px; }
+    .coin-header { display: flex; align-items: center; justify-content: flex-start; gap: 6px; color: var(--text-2); font-size: 11px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .coin-header img { width: 16px; height: 16px; object-fit: contain; }
+    .coin-total { color: #FFAA00; font-size: 24px; font-weight: 700; margin-bottom: 12px; text-shadow: 0 2px 8px rgba(255, 170, 0, 0.3); }
+    .coin-divider { height: 1px; background: var(--border); margin-bottom: 12px; width: 100%; }
+    .breakdown-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-2); margin-bottom: 6px; font-weight: 500; }
+    .breakdown-row span:last-child { color: var(--text); font-weight: 600; text-align: right; }
+
+    .text-gold { color: #FFAA00 !important; text-shadow: 0 0 8px rgba(255, 170, 0, 0.4); }
+
+    .slot.locked-star-slot {
+      background-color: rgba(255, 85, 85, 0.25) !important;
+    }
+
+    .mc-container,
+    .mc-container *,
+    .mc-tooltip,
+    .mc-tooltip * {
+      font-weight: normal !important;
+    }
 
     .tools-footer-nav { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
     .tools-footer-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--text-3); }
@@ -55,22 +95,53 @@
 <script src="assets/js/components.js"></script>
 
 <main class="mc-scale-engine">
-  <div class="hero-wrapper">
+  <div class="hero-search-wrapper">
     <h1 class="hero-title">Blitz Stars</h1>
-    <p class="hero-subtitle">Hover over a Blitz Star to view unlock requirements and abilities.</p>
+    <div class="modern-search">
+      <input type="text" id="star-player-search" class="modern-input" placeholder="Enter Username..." spellcheck="false" maxlength="16">
+      <button id="star-search-btn" class="modern-btn" onclick="fetchStarPlayer()">Load Stars</button>
+      <button class="icon-btn" onclick="enablePreviewAllStars()" title="Reset & Preview All">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+    </div>
+    <div id="star-error-msg" class="modern-error"></div>
   </div>
 
-  <div class="star-menu-layout">
+  <div class="main-menu-layout">
+    <!-- Left: Player Avatar Card -->
+    <div id="player-avatar-panel" class="player-avatar-card" style="display: none;">
+      <div class="skin-username-label" id="side-username-label">Username</div>
+      <div class="side-player-box" id="side-player-box-id">
+        <canvas id="player-canvas-main" class="side-player-canvas"></canvas>
+      </div>
+    </div>
+
+    <!-- Middle: Blitz Stars Chest -->
     <div id="star-chest-view" class="mc-container" style="height: max-content;">
       <div class="mc-title">Pick a Blitz Effect</div>
       <div class="mc-grid" style="--cols: 9; --rows: 6;" id="star-grid"></div>
+    </div>
+
+    <!-- Right: Coin Breakdown Panel -->
+    <div id="player-star-panel" class="modern-side-panel" style="display: none;">
+      <div class="coin-breakdown-container">
+        <div class="coin-header">
+          <img src="img/gold_ingot.png" alt="Coins">
+          <span style="text-transform: uppercase;">Star Unlocks</span>
+        </div>
+        <div id="star-total-display" class="coin-total">0</div>
+        <div class="coin-divider"></div>
+        <div class="breakdown-row"><span>Unlocked</span> <span id="star-unlocked-count">0 / 23</span></div>
+        <div class="breakdown-row"><span>Coins Spent</span> <span id="star-coins-spent" class="text-gold">0</span></div>
+        <div class="breakdown-row"><span>Remaining</span> <span id="star-coins-remaining">0</span></div>
+      </div>
     </div>
   </div>
 
   <div class="tools-footer-nav">
     <div class="tools-footer-title">Tools</div>
     <div class="tools-btn-group">
-      <a href="blitz.html" class="tool-link-card">
+      <a href="blitz.html" id="tool-link-blitz" class="tool-link-card">
         <img src="https://api.minecraftitems.xyz/api/item/emerald?size=2&glint=false" alt="Blitz Kits">
         <span>Blitz Kits</span>
       </a>
@@ -85,6 +156,7 @@
 <div class="bottom-fade"></div>
 <div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
 
+<script src="https://cdn.jsdelivr.net/npm/skinview3d@3.0.0/bundles/skinview3d.bundle.js"></script>
 <script src="assets/js/global.js"></script>
 <script src="assets/js/credits.js"></script>
 <script src="assets/js/mc-engine.js"></script>
