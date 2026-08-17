@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-17T20:16:07.661Z",
+  "last_update": "2026-08-17T22:14:37.043Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12608,
+      "score": 12609,
       "top_players": [
         {
           "username": "oJakey",
@@ -498,9 +498,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30285,
+          "current_ap": 30305,
           "last_month_ap": 30040,
-          "monthly_gain": 245,
+          "monthly_gain": 265,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2186,9 +2186,9 @@
           "username": "Slime",
           "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
           "country": "Israel",
-          "current_ap": 23715,
+          "current_ap": 23720,
           "last_month_ap": 23665,
-          "monthly_gain": 50,
+          "monthly_gain": 55,
           "maxGames": []
         }
       ]
