@@ -38,6 +38,6 @@ jobs:
         run: |
           git config --global user.name "LeaderboardBot"
           git config --global user.email "bot@noreply.github.com"
-          git add ap_hunters_data.json questers_data.json
+          git add ap_hunters_data.json questers_data.json ap_history_archive.json
           git commit -m "Daily Leaderboards Update" || exit 0
           git push origin main
