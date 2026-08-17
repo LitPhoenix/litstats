@@ -12,619 +12,454 @@
 <link rel="stylesheet" href="assets/css/mc-gui.css">
 
 <style>
-  .mc-title { margin-top: 4px; margin-bottom: 4px; }
+  :root {
+    --accent-orange: #f95716;
+    --accent-orange-hover: #e54e10;
+    --panel-bg: #111111;
+    --input-bg: #181818;
+    --border-color: #262626;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-container {
+    padding: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+  }
+
+  .search-container input {
+    width: 260px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-container input:focus {
+    border-color: var(--accent-orange);
+  }
+
+  .btn-primary {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent-orange);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-orange-hover);
+  }
+
+  .btn-icon {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    color: #aaa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-icon:hover {
+    color: #fff;
+    border-color: #444;
+  }
+
+  #search-status {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    min-height: 18px;
+    margin-bottom: 16px;
+  }
+
+  .status-green { color: #55FF55; }
+  .status-red { color: #FF5555; }
+  .status-gray { color: #888888; }
+
+  /* Snug, Thinner Player Summary Card */
+  .player-summary-panel {
+    display: none;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    align-items: center;
+    gap: 18px;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Bigger Avatar */
+  .p-avatar-box {
+    width: 84px;
+    height: 84px;
+    flex-shrink: 0;
+  }
+
+  .p-avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .p-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .p-name-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .p-level-badge {
+    background: #1c1c1c;
+    border: 1px solid #333;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .p-pills-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* Bigger Font Pills */
+  .p-pill {
+    background: #181818;
+    border: 1px solid #2a2a2a;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ccc;
+  }
+
+  .descent-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .stats-side-panel {
+    display: none;
+    width: 210px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .stats-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 6px;
+  }
+
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .stat-label {
+    color: #aaa;
+  }
+
+  .stat-val {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .gui-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .mc-scale-engine {
+    transform-origin: top center !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .mc-container {
+    margin-top: 0 !important;
+  }
+
+  .mc-title { margin-top: 0 !important; margin-bottom: 4px; }
+
+  .mc-tooltip {
+    will-change: transform;
+    pointer-events: none !important;
+    transform: translate3d(0, 0, 0);
+  }
 </style>
 </head>
 <body>
 <script src="assets/js/components.js"></script>
 
-<main class="mc-scale-engine">
-  <div class="mc-container">
-    <div class="mc-title" id="display-title">Menu</div>
-    <div class="mc-grid" id="menu-grid"></div>
+<main class="page-container">
+  <h1 class="page-title">Angel's Descent Calculator</h1>
+
+  <div class="search-container">
+    <input type="text" id="player-input" placeholder="Enter Username or UUID">
+    <button id="search-btn" class="btn-primary">Load Unlocks</button>
+    <button id="reset-btn" class="btn-icon" title="Reset Preview">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+    </button>
+  </div>
+
+  <div id="search-status" class="status-gray">Previewing all max unlocked items</div>
+
+  <div class="player-summary-panel" id="player-summary-panel">
+    <div class="p-avatar-box">
+      <img id="player-avatar-img" src="" alt="Avatar">
+    </div>
+    <div class="p-details">
+      <div class="p-name-line">
+        <span class="p-level-badge" id="player-level-badge"></span>
+        <span id="player-rank-html"></span>
+        <span id="player-username-text"></span>
+      </div>
+      <div class="p-pills-row">
+        <div class="p-pill">Opals: <span id="pill-opals">0</span></div>
+        <div class="p-pill">Coins: <span style="color:#FFAA00" id="pill-coins">0</span></div>
+        <div class="p-pill">Souls: <span style="color:#55FFFF" id="pill-souls">0</span></div>
+        <div class="p-pill">Corruption: <span style="color:#AA00AA" id="pill-corruption">5%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="descent-layout">
+    <div class="stats-side-panel" id="stats-side-panel">
+      <div class="stats-title">SkyWars Summary</div>
+      <div class="stat-item"><span class="stat-label">Wins</span><span class="stat-val" style="color:#55FF55" id="sw-wins">0</span></div>
+      <div class="stat-item"><span class="stat-label">Kills</span><span class="stat-val" style="color:#55FF55" id="sw-kills">0</span></div>
+      <div class="stat-item"><span class="stat-label">KDR</span><span class="stat-val" style="color:#FFAA00" id="sw-kdr">0</span></div>
+      <div class="stat-item"><span class="stat-label">WLR</span><span class="stat-val" style="color:#FFAA00" id="sw-wlr">0</span></div>
+      <div class="stat-item"><span class="stat-label">Heads</span><span class="stat-val" style="color:#AA00AA" id="sw-heads">0</span></div>
+      <div class="stat-item"><span class="stat-label">Tokens</span><span class="stat-val" style="color:#00AA00" id="sw-tokens">0</span></div>
+      <div class="stat-item"><span class="stat-label">Potions Brewed</span><span class="stat-val" style="color:#FF55FF" id="sw-potions">0</span></div>
+      <div class="stat-item"><span class="stat-label">Playtime</span><span class="stat-val" style="color:#FFFF55" id="sw-playtime">0m</span></div>
+    </div>
+
+    <div class="gui-wrapper">
+      <main class="mc-scale-engine">
+        <div class="mc-container">
+          <div class="mc-title" id="display-title">Angel's Descent</div>
+          <div class="mc-grid" id="menu-grid"></div>
+        </div>
+      </main>
+    </div>
   </div>
 </main>
 
 <script src="assets/js/global.js"></script>
 <script src="assets/js/mc-engine.js"></script>
 <script>
+const NUM_ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+
 const menuConfig = {
   "title": "Angel's Descent",
   "cols": 9,
   "rows": 18,
   "data": [
     null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "gold_nugget",
-      "rawName": "&aAvarice V",
-      "rawLore": "&8Permanent Upgrade\n\n&6+25% &7SkyWars Coins.\n\n&7Cost: &91 Opal &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "magma_cream",
-      "rawName": "&aTenacity",
-      "rawLore": "&8New Perk\n\n&7Heal &c1❤︎ &7after each kill.\n\n&7Cost: &91 Opal\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "cocoa_beans",
-      "rawName": "&aGrand Slam III",
-      "rawLore": "&8Permanent Upgrade\n\n&7Earn &b+6 Souls &7from wins.\n\n&7Cost: &91 Opal &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "golden_helmet",
-      "rawName": "&aKing's Projectile Trail",
-      "rawLore": "&8New Cosmetic\n\n&7Show off like a true king with this\n&7amazing Projectile Trail.\n\n&7Cost: &91 Opal\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "prismarine_crystals",
-      "rawName": "&aSoul Seeker V",
-      "rawLore": "&8Permanent Upgrade\n\n&7Earn &b+10% Souls &7at the end of the\n&7game.\n\n&7Cost: &91 Opal &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "writable_book",
-      "rawName": "&aSigma Emblem",
-      "rawLore": "&8New Cosmetic\n\n&7Show off your Angel's Descent\n&progress with this cool looking,\n&7Greek inspired emblem.\n\n&7[1Σ] &b[MVP&c+&b] Username\n\n&7Cost: &92 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    {
-      "id": "iron_pickaxe",
-      "rawName": "&aMeticulous Miner V",
-      "rawLore": "&8Perk Upgrade\n\n&eUpgrades Mining Expertise\n&7Grants an additional &a+10% &7chance to\n&7get double drops from ores.\n\n&7Cost: &91 Opal &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&9Opals",
-      "rawLore": "&8Prestigious Currency\n\n&7Rewards on the &bAngel's Descent\n&7require &9Opals &7to purchase.\n\n&9Opals &7can be made at the &dFallen\n&dForge &7by using large amounts of\n&bSouls&7.\n\n&7Your Opals: &9∞\n&eCraft &9Opals &eat the &dFallen Forge&e!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "golden_sword",
-      "rawName": "&aFlex Kill Messages",
-      "rawLore": "&8New Cosmetic\n\n&7Flex your might with these\n&7braggadocious kill messages!\n\n&7Cost: &94 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&aAngel's Offering",
-      "rawLore": "&8Permanent Upgrade\n\n&5+1% Corruption Chance.\n\n&7Cost: &95 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "gold_ingot",
-      "rawName": "&aMidas' Gift IV",
-      "rawLore": "&8Permanent Upgrade\n\n&6&lLUCKY KILLS&r &7give &6+80 Coins &7and &b+1\n&bSoul&7.\n\n&7Cost: &91 Opal &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "compass",
-      "rawName": "&aHide and Seek",
-      "rawLore": "&8New Perk\n\n&7Earn a Tracking Compass &a30s &7before\n&7chests refill.\n\n&7Cost: &92 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&aVaporized Kill Effect",
-      "rawLore": "&8New Cosmetic\n\n&7When killing a player they will\n&7vaporize leaving behind a cloud that\n&7is the same color as your prestige.\n\n&7Cost: &93 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "redstone",
-      "rawName": "&aFirst Blood",
-      "rawLore": "&8Permanent Upgrade\n\n&7Getting the first kill in a game gives\n&62x Coins&7.\n\n&7Cost: &91 Opal\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&aFortune Teller",
-      "rawLore": "&8New Perk\n\n&7Level 2 enchants are guaranteed to\n&7include &dSharpness I &7or &dProtection I\n&7for Swords and Armor respectively.\n\n&7Cost: &92 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "purple_dye",
-      "rawName": "&aPurple Tornado Kill Effect",
-      "rawLore": "&8New Cosmetic\n\n&7A Purple Tornado will appear when\n&7you kill a player.\n\n&7Cost: &98 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "ender_eye",
-      "rawName": "&aFalling Angel Cloak",
-      "rawLore": "&8New Lobby Cosmetic\n\n&7Showcase your Level and Prestige\n&7with this awesome Cloak, available in\n&7all lobbies.\n\n&7Cost: &97 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&aPiston Cage",
-      "rawLore": "&8New Cosmetic\n\n&7Cost: &91 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "flint_and_steel",
-      "rawName": "&aSteel Quiver V",
-      "rawLore": "&8Perk Upgrade\n\n&eUpgrades Blazing Arrows\n&7Arrows you shoot have an additional\n&a10% &7chance to light on fire.\n\n\n&7Cost: &93 Opals &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&aSuper Sheep Victory Dance",
-      "rawLore": "&8New Cosmetic\n\n&7A &dSuper Sheep &7will spawn and carry\n&7you across the map when you win a\n&7game.\n\n&7Cost: &96 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "spider_eye",
-      "rawName": "&aCorrupted Coinage II",
-      "rawLore": "&8Permanent Upgrade\n\n&5Corrupted Games &7give &63x Coins&7.\n\n&7Cost: &93 Opals &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "book",
-      "rawName": "&aLibrarian",
-      "rawLore": "&8New Perk\n\n&7Earn a &dSharpness I&7, &dProtection I&7, or\n&dPower I &7book every &a3 &7kills.\n\n&7Cost: &910 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "golden_apple",
-      "rawName": "&aLuckier Charm III",
-      "rawLore": "&8Perk Upgrade\n\n&eUpgrades Lucky Charm\n&7Kills have an additional &a3% &7chance to\n&7earn you a &6Golden Apple&7.\n\n&7Cost: &92 Opals &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&aApothecary",
-      "rawLore": "&8New Perk\n\n&7Positive potion effects have a &a30%\n&7longer duration.\n\n&7Cost: &94 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    null,
-    null,
-    {
-      "id": "ender_pearl",
-      "rawName": "&aSorcerer's Spell V",
-      "rawLore": "&8Perk Upgrade\n\n&eUpgrades Black Magic\n&7Void kills have an additional &a5%\n&7chance to earn you an &3Ender Pearl&7.\n\n&7Cost: &94 Opals &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "yellow_wool",
-      "rawName": "&aRainbow Kill Messages",
-      "rawLore": "&8New Cosmetic\n\n&cD&6O&eU&aB&bL&dE &cR&6A&eI&aN&bB&dO&5W &7ALL THE WAY!\n\n&7Cost: &99 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "pink_dye",
-      "rawName": "&aBig Brain",
-      "rawLore": "&8Perk Upgrade\n\n&eUpgrades Knowledge\n&7Kills grant an additional &a+2 &7EXP\n&7Levels.\n\n&7Cost: &92 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&aEnder End Game",
-      "rawLore": "&8New Perk\n\n&7Refilled chests are &a10% &7more likely\n&7to contain an &3Ender Pearl&7.\n\n&7Cost: &95 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "NETHer_star",
-      "rawName": "&aFruit Finder",
-      "rawLore": "&8New Perk\n\n&7The first mid chest you open is\n&7guaranteed to have a &6Golden Apple&7.\n\n&7Cost: &910 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "diamond",
-      "rawName": "&aDiamond In The Rough V",
-      "rawLore": "&8New Perk\n\n&7Grants a &a25% &7chance to earn a\n&bDiamond &7on kill.\n\n&7Cost: &92 Opals &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "terracotta",
-      "rawName": "&aBalancing Act Cage",
-      "rawLore": "&8New Cosmetic\n\n&7Dominate the skies with a powerful\n&7tower of colourful blocks!\n\n&7Cost: &910 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "sugar",
-      "rawName": "&aAdrenaline",
-      "rawLore": "&8Perk Upgrade\n\n&eUpgrades Speed Boost\n&7Gain &a7s &7of &9Speed I &7at the start of\n&7the game.\n\n&7Cost: &95 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&aDistillery Discount III",
-      "rawLore": "&8Permanent Upgrade\n\n&7Potions in the &cAngel's Brewery &7cost\n&6-25% Coins&7.\n\n&7Cost: &93 Opals &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "packed_ice",
-      "rawName": "&aChilled Quiver V",
-      "rawLore": "&8Perk Upgrade\n\n&eUpgrades Frost\n&7Bow crits have an additional &a+10%\n&7chance to inflict &9Slowness I &7for &a3s&7.\n\n&7Cost: &92 Opals &8(per tier)\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "golden_pickaxe",
-      "rawName": "&aArcheologist Kit",
-      "rawLore": "&8New Kit\n\n&7Pay homage to 11 years of SkyWars\n&7by rocking this awesome kit!\n\n&7Cost: &913 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "feather",
-      "rawName": "&aDemigod Prestige Scheme",
-      "rawLore": "&8New Cosmetic\n\n&7Fallen from grace.\n\n&8{&e1&75&8✯} &b[MVP&c+&b] Username\n\n&7Cost: &920 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "red_stained_glass_pane",
-      "rawName": "&aOpalsmith",
-      "rawLore": "&8Permanent Upgrade\n\n&9Opals &7only cost &b1,250 Souls &7to forge.\n\n&7Cost: &97 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "bedrock",
-      "rawName": "&aDual Dragon Balloon",
-      "rawLore": "&8New Cosmetic\n\n&7Double the dragon, double the flex!\n\n&7Cost: &912 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "ender_eye",
-      "rawName": "&aAngel's Prestige Cloak",
-      "rawLore": "&8New Lobby Cosmetic\n\n&7Show off how many max &dKit Prestiges\n&7you have with this tubular Cloak,\n&7available in all lobbies.\n\n&7Cost: &918 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "wooden_sword",
-      "rawName": "&aDouble-Edged Sword",
-      "rawLore": "&8New Perk\n\n&7Your first &a3 &7Sword kills put a\n&dSharpness &7level on your Sword but\n&7inflict &c-2 Max ❤︎&7.\n\n&7Cost: &99 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "emerald",
-      "rawName": "&aQuest Master's Best Friend IV",
-      "rawLore": "&8Permanent Upgrade\n\n&7Quests reward &6+40% Coins&7.\n\n&7Cost: &93 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "end_stone",
-      "rawName": "&aDragon's Pledge",
-      "rawLore": "&8New Perk\n\n&7An &3Ender Pearl &7replaces the loot in\n&7one of your island chests. You start\n&7with only &c7 Max ❤︎&7.\n\n&7Cost: &910 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "hopper",
-      "rawName": "&aDouble Dragon's Descent Victory Dance",
-      "rawLore": "&8New Cosmetic\n\n&7Call upon not one, not three, not\n&7four, but TWO dragons to descend\n&7through the map.\n\n&7Cost: &916 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "experience_bottle",
-      "rawName": "&aKill XP Boost",
-      "rawLore": "&8Permanent Upgrade\n\n&7Kills and Assists each give an\n&7additional &b+1 XP&7.\n\n&7Cost: &910 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    {
-      "id": "bedrock",
-      "rawName": "&aEponymous Dragon Death Cry",
-      "rawLore": "&8New Cosmetic\n\n&7It's in the name!\n\n&7Cost: &912 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    {
-      "id": "dead_bush",
-      "rawName": "&aDelta Emblem",
-      "rawLore": "&8New Cosmetic\n\n&7Go against the flow with this dead\n&7bush-inspired emblem.\n\n&7[1δ] &b[MVP&c+&b] Username\n\n&7Cost: &914 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "arrow",
-      "rawName": "&aDescent Dragon Projectile Trail",
-      "rawLore": "&8New Cosmetic\n\n&7Prestige-ified version of the &6Double\n&6Dragon Projectile Trail&7.\n\n&7Cost: &912 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    {
-      "id": "diamond_block",
-      "rawName": "&a7th Perk Slot",
-      "rawLore": "&8Permanent Upgrade\n\n&7Unlocks a final &a7th Perk Slot &7in\n&7Normal and Mega SkyWars.\n\n&7Cost: &920 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "diamond_hoe",
-      "rawName": "&aFallen Angel Kit",
-      "rawLore": "&8New Kit\n\n&7Commemorate your fall from grace\n&7with this totally tubular kit!\n\n&7Cost: &925 Opals\n&aPurchased!",
-      "enchanted": false
-    },
-    null,
-    null,
-    {
-      "id": "black_stained_glass_pane",
-      "rawName": " ",
-      "rawLore": "",
-      "enchanted": false
-    }
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "gold_nugget", "apiKey": "avarice", "opalCost": 5, "maxTier": 5, "isCosmetic": false, "cost": "1 Opal &8(per tier)", "baseTitle": "Avarice", "rawName": "&aAvarice V", "baseLore": "&8Permanent Upgrade\n\n&6+25% &7SkyWars Coins.", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "magma_cream", "apiKey": "tenacity", "opalCost": 1, "isCosmetic": false, "cost": "1 Opal", "baseTitle": "Tenacity", "rawName": "&aTenacity", "baseLore": "&8New Perk\n\n&7Heal &c1❤︎ &7after each kill.", "enchanted": false },
+    { "id": "cocoa_beans", "apiKey": "grand_slam", "opalCost": 3, "maxTier": 3, "isCosmetic": false, "cost": "1 Opal &8(per tier)", "baseTitle": "Grand Slam", "rawName": "&aGrand Slam III", "baseLore": "&8Permanent Upgrade\n\n&7Earn &b+6 Souls &7from wins.", "enchanted": false },
+    { "id": "golden_helmet", "apiKey": "projectiletrail_kings", "opalCost": 1, "isCosmetic": true, "cost": "1 Opal", "baseTitle": "King's Projectile Trail", "rawName": "&aKing's Projectile Trail", "baseLore": "&8New Cosmetic\n\n&7Show off like a true king with this\n&7amazing Projectile Trail.", "enchanted": false },
+    { "id": "prismarine_crystals", "apiKey": "shard_seeker", "opalCost": 5, "maxTier": 5, "isCosmetic": false, "cost": "1 Opal &8(per tier)", "baseTitle": "Soul Seeker", "rawName": "&aSoul Seeker V", "baseLore": "&8Permanent Upgrade\n\n&7Earn &b+10% Souls &7at the end of the\n&7game.", "enchanted": false },
+    { "id": "writable_book", "apiKey": "emblem_sigma_icon", "opalCost": 2, "isCosmetic": true, "cost": "2 Opals", "baseTitle": "Sigma Emblem", "rawName": "&aSigma Emblem", "baseLore": "&8New Cosmetic\n\n&7Show off your Angel's Descent\n&progress with this cool looking,\n&7Greek inspired emblem.\n\n&7[1Σ] &b[MVP&c+&b] Username", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null, null,
+    { "id": "iron_pickaxe", "apiKey": "meticulous_miner", "opalCost": 5, "maxTier": 5, "isCosmetic": false, "cost": "1 Opal &8(per tier)", "baseTitle": "Meticulous Miner", "rawName": "&aMeticulous Miner V", "baseLore": "&8Perk Upgrade\n\n&eUpgrades Mining Expertise\n&7Grants an additional &a+10% &7chance to\n&7get double drops from ores.", "enchanted": false },
+    null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null,
+    { "id": "custom_opal", "texture": "img/skywars/opal.png", "rawName": "&9Opals", "baseLore": "&8Prestigious Currency\n\n&7Rewards on the &bAngel's Descent\n&7require &9Opals &7to purchase.\n\n&9Opals &7can be made at the &dFallen\n&dForge &7by using large amounts of\n&bSouls&7.\n\n&7Your Opals: &9{OPALS}\n&eCraft &9Opals &eat the &dFallen Forge&e!", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "golden_sword", "apiKey": "killmessages_flex", "opalCost": 4, "isCosmetic": true, "cost": "4 Opals", "baseTitle": "Flex Kill Messages", "rawName": "&aFlex Kill Messages", "baseLore": "&8New Cosmetic\n\n&7Flex your might with these\n&7braggadocious kill messages!", "enchanted": false },
+    { "id": "custom_offering", "apiKey": "angels_offering", "opalCost": 5, "texture": "img/skywars/wither_skeleton_skull.png", "isCosmetic": false, "cost": "5 Opals", "baseTitle": "Angel's Offering", "rawName": "&aAngel's Offering", "baseLore": "&8Permanent Upgrade\n\n&5+1% Corruption Chance.", "enchanted": false },
+    { "id": "gold_ingot", "apiKey": "midas_gift", "opalCost": 4, "maxTier": 4, "isCosmetic": false, "cost": "1 Opal &8(per tier)", "baseTitle": "Midas' Gift", "rawName": "&aMidas' Gift IV", "baseLore": "&8Permanent Upgrade\n\n&6&lLUCKY KILLS&r &7give &6+80 Coins &7and &b+1\n&bSoul&7.", "enchanted": false },
+    { "id": "compass", "apiKey": "hide_and_seek", "opalCost": 2, "isCosmetic": false, "cost": "2 Opals", "baseTitle": "Hide and Seek", "rawName": "&aHide and Seek", "baseLore": "&8New Perk\n\n&7Earn a Tracking Compass &a30s &7before\n&7chests refill.", "enchanted": false },
+    { "id": "custom_vaporized", "apiKey": "killeffect_vaporized", "opalCost": 3, "texture": "img/skywars/white_stained_glass.png", "isCosmetic": true, "cost": "3 Opals", "baseTitle": "Vaporized Kill Effect", "rawName": "&aVaporized Kill Effect", "baseLore": "&8New Cosmetic\n\n&7When killing a player they will\n&7vaporize leaving behind a cloud that\n&7is the same color as your prestige.", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null,
+    { "id": "redstone", "apiKey": "first_blood", "opalCost": 1, "isCosmetic": false, "cost": "1 Opal", "baseTitle": "First Blood", "rawName": "&aFirst Blood", "baseLore": "&8Permanent Upgrade\n\n&7Getting the first kill in a game gives\n&62x Coins&7.", "enchanted": false },
+    null, null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null,
+    { "id": "custom_fortune_teller", "apiKey": "fortune_teller", "opalCost": 2, "texture": "img/skywars/enchantment_table.png", "isCosmetic": false, "cost": "2 Opals", "baseTitle": "Fortune Teller", "rawName": "&aFortune Teller", "baseLore": "&8New Perk\n\n&7Level 2 enchants are guaranteed to\n&7include &dSharpness I &7or &dProtection I\n&7for Swords and Armor respectively.", "enchanted": false },
+    null,
+    { "id": "purple_dye", "apiKey": "killeffect_purple_tornado", "opalCost": 8, "isCosmetic": true, "cost": "8 Opals", "baseTitle": "Purple Tornado Kill Effect", "rawName": "&aPurple Tornado Kill Effect", "baseLore": "&8New Cosmetic\n\n&7A Purple Tornado will appear when\n&7you kill a player.", "enchanted": false },
+    { "id": "ender_eye", "apiKey": "cloak_falling_angel", "opalCost": 7, "isCosmetic": true, "cost": "7 Opals", "baseTitle": "Falling Angel Cloak", "rawName": "&aFalling Angel Cloak", "baseLore": "&8New Lobby Cosmetic\n\n&7Showcase your Level and Prestige\n&7with this awesome Cloak, available in\n&7all lobbies.", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "custom_piston_cage", "apiKey": "cage_piston", "opalCost": 1, "texture": "img/skywars/piston.png", "isCosmetic": true, "cost": "1 Opal", "baseTitle": "Piston Cage", "rawName": "&aPiston Cage", "baseLore": "&8New Cosmetic", "enchanted": false },
+    { "id": "flint_and_steel", "apiKey": "fireproof", "opalCost": 15, "maxTier": 5, "isCosmetic": false, "cost": "3 Opals &8(per tier)", "baseTitle": "Steel Quiver", "rawName": "&aSteel Quiver V", "baseLore": "&8Perk Upgrade\n\n&eUpgrades Blazing Arrows\n&7Arrows you shoot have an additional\n&a10% &7chance to light on fire.", "enchanted": false },
+    null, null,
+    { "id": "custom_super_sheep", "apiKey": "victorydance_super_sheep", "opalCost": 6, "texture": "img/skywars/pink_wool.png", "isCosmetic": true, "cost": "6 Opals", "baseTitle": "Super Sheep Victory Dance", "rawName": "&aSuper Sheep Victory Dance", "baseLore": "&8New Cosmetic\n\n&7A &dSuper Sheep &7will spawn and carry\n&7you across the map when you win a\n&7game.", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null,
+    { "id": "spider_eye", "apiKey": "corrupted_coinage", "opalCost": 6, "maxTier": 2, "isCosmetic": false, "cost": "3 Opals &8(per tier)", "baseTitle": "Corrupted Coinage", "rawName": "&aCorrupted Coinage II", "baseLore": "&8Permanent Upgrade\n\n&5Corrupted Games &7give &63x Coins&7.", "enchanted": false },
+    { "id": "book", "apiKey": "librarian", "opalCost": 10, "isCosmetic": false, "cost": "10 Opals", "baseTitle": "Librarian", "rawName": "&aLibrarian", "baseLore": "&8New Perk\n\n&7Earn a &dSharpness I&7, &dProtection I&7, or\n&dPower I &7book every &a3 &7kills.", "enchanted": false },
+    { "id": "golden_apple", "apiKey": "luckier_charm", "opalCost": 6, "maxTier": 3, "isCosmetic": false, "cost": "2 Opals &8(per tier)", "baseTitle": "Luckier Charm", "rawName": "&aLuckier Charm III", "baseLore": "&8Perk Upgrade\n\n&eUpgrades Lucky Charm\n&7Kills have an additional &a3% &7chance to\n&7earn you a &6Golden Apple&7.", "enchanted": false },
+    { "id": "custom_apothecary", "apiKey": "apothecary", "opalCost": 4, "texture": "img/skywars/brewing_stand.png", "isCosmetic": false, "cost": "4 Opals", "baseTitle": "Apothecary", "rawName": "&aApothecary", "baseLore": "&8New Perk\n\n&7Positive potion effects have a &a30%\n&7longer duration.", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null, null, null,
+    { "id": "ender_pearl", "apiKey": "sorcerers_spell", "opalCost": 20, "maxTier": 5, "isCosmetic": false, "cost": "4 Opals &8(per tier)", "baseTitle": "Sorcerer's Spell", "rawName": "&aSorcerer's Spell V", "baseLore": "&8Perk Upgrade\n\n&eUpgrades Black Magic\n&7Void kills have an additional &a5%\n&7chance to earn you an &3Ender Pearl&7.", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null,
+    { "id": "yellow_wool", "texture": "img/skywars/yellow_wool.png", "apiKey": "killmessages_rainbow", "opalCost": 9, "isCosmetic": true, "cost": "9 Opals", "baseTitle": "Rainbow Kill Messages", "rawName": "&aRainbow Kill Messages", "baseLore": "&8New Cosmetic\n\n&cD&6O&eU&aB&bL&dE &cR&6A&eI&aN&bB&dO&5W &7ALL THE WAY!", "enchanted": false },
+    { "id": "pink_dye", "apiKey": "smarty_pants", "opalCost": 2, "isCosmetic": false, "cost": "2 Opals", "baseTitle": "Big Brain", "rawName": "&aBig Brain", "baseLore": "&8Perk Upgrade\n\n&eUpgrades Knowledge\n&7Kills grant an additional &a+2 &7EXP\n&7Levels.", "enchanted": false },
+    { "id": "custom_ender_end_game", "apiKey": "ender_end_game", "opalCost": 5, "texture": "img/skywars/ender_chest.png", "isCosmetic": false, "cost": "5 Opals", "baseTitle": "Ender End Game", "rawName": "&aEnder End Game", "baseLore": "&8New Perk\n\n&7Refilled chests are &a10% &7more likely\n&7to contain an &3Ender Pearl&7.", "enchanted": false },
+    { "id": "nether_star", "apiKey": "fruit_finder", "opalCost": 10, "isCosmetic": false, "cost": "10 Opals", "baseTitle": "Fruit Finder", "rawName": "&aFruit Finder", "baseLore": "&8New Perk\n\n&7The first mid chest you open is\n&7guaranteed to have a &6Golden Apple&7.", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "diamond", "apiKey": "diamond_in_the_rough", "opalCost": 10, "maxTier": 5, "isCosmetic": false, "cost": "2 Opals &8(per tier)", "baseTitle": "Diamond In The Rough", "rawName": "&aDiamond In The Rough V", "baseLore": "&8New Perk\n\n&7Grants a &a25% &7chance to earn a\n&bDiamond &7on kill.", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null,
+    { "id": "terracotta", "texture": "img/skywars/terracotta.png", "apiKey": "cage_balancing_act", "opalCost": 10, "isCosmetic": true, "cost": "10 Opals", "baseTitle": "Balancing Act Cage", "rawName": "&aBalancing Act Cage", "baseLore": "&8New Cosmetic\n\n&7Dominate the skies with a powerful\n&7tower of colourful blocks!", "enchanted": false },
+    { "id": "sugar", "apiKey": "telekinesis", "opalCost": 5, "isCosmetic": false, "cost": "5 Opals", "baseTitle": "Adrenaline", "rawName": "&aAdrenaline", "baseLore": "&8Perk Upgrade\n\n&eUpgrades Speed Boost\n&7Gain &a7s &7of &9Speed I &7at the start of\n&7the game.", "enchanted": false },
+    { "id": "custom_distillery_discount", "apiKey": "distillery_discount", "opalCost": 9, "texture": "img/skywars/water_bottle.png", "maxTier": 3, "isCosmetic": false, "cost": "3 Opals &8(per tier)", "baseTitle": "Distillery Discount", "rawName": "&aDistillery Discount III", "baseLore": "&8Permanent Upgrade\n\n&7Potions in the &cAngel's Brewery &7cost\n&6-5% Coins&7.", "enchanted": false },
+    { "id": "packed_ice", "texture": "img/skywars/packed_ice.png", "apiKey": "chilled_quiver", "opalCost": 10, "maxTier": 5, "isCosmetic": false, "cost": "2 Opals &8(per tier)", "baseTitle": "Chilled Quiver", "rawName": "&aChilled Quiver V", "baseLore": "&8Perk Upgrade\n\n&eUpgrades Frost\n&7Bow crits have an additional &a+10%\n&7chance to inflict &9Slowness I &7for &a3s&7.", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "golden_pickaxe", "apiKey": "archeologist_kit_opal", "opalCost": 13, "isCosmetic": false, "cost": "13 Opals", "baseTitle": "Archeologist Kit", "rawName": "&aArcheologist Kit", "baseLore": "&8New Kit\n\n&7Pay homage to 11 years of SkyWars\n&7by rocking this awesome kit!", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "feather", "apiKey": "demigod_scheme", "opalCost": 20, "isCosmetic": true, "cost": "20 Opals", "baseTitle": "Demigod Prestige Scheme", "rawName": "&aDemigod Prestige Scheme", "baseLore": "&8New Cosmetic\n\n&7Fallen from grace.\n\n&8{&e1&75&8✯} &b[MVP&c+&b] Username", "enchanted": false },
+    null,
+    { "id": "custom_opalsmith", "apiKey": "opalsmith", "opalCost": 7, "texture": "img/skywars/diamond_block.png", "isCosmetic": false, "cost": "7 Opals", "baseTitle": "Opalsmith", "rawName": "&aOpalsmith", "baseLore": "&8Permanent Upgrade\n\n&9Opals &7only cost &b1,250 Souls &7to forge.", "enchanted": false },
+    null,
+    { "id": "bedrock", "texture": "img/skywars/bedrock.png", "apiKey": "balloon_dual_dragon", "opalCost": 12, "isCosmetic": true, "cost": "12 Opals", "baseTitle": "Dual Dragon Balloon", "rawName": "&aDual Dragon Balloon", "baseLore": "&8New Cosmetic\n\n&7Double the dragon, double the flex!", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "ender_eye", "apiKey": "cloak_angels_prestige", "opalCost": 18, "isCosmetic": true, "cost": "18 Opals", "baseTitle": "Angel's Prestige Cloak", "rawName": "&aAngel's Prestige Cloak", "baseLore": "&8New Lobby Cosmetic\n\n&7Show off how many max &dKit Prestiges\n&7you have with this tubular Cloak,\n&7available in all lobbies.", "enchanted": false },
+    null,
+    { "id": "wooden_sword", "apiKey": "double_edged_sword", "opalCost": 9, "isCosmetic": false, "cost": "9 Opals", "baseTitle": "Double-Edged Sword", "rawName": "&aDouble-Edged Sword", "baseLore": "&8New Perk\n\n&7Your first &a3 &7Sword kills put a\n&dSharpness &7level on your Sword but\n&7inflict &c-2 Max ❤︎&7.", "enchanted": false },
+    { "id": "emerald", "apiKey": "quest_masters_friend", "opalCost": 12, "maxTier": 4, "isCosmetic": false, "cost": "3 Opals", "baseTitle": "Quest Master's Best Friend", "rawName": "&aQuest Master's Best Friend IV", "baseLore": "&8Permanent Upgrade\n\n&7Quests reward &6+40% Coins&7.", "enchanted": false },
+    { "id": "end_stone", "apiKey": "dragons_pledge", "opalCost": 10, "isCosmetic": false, "cost": "10 Opals", "baseTitle": "Dragon's Pledge", "rawName": "&aDragon's Pledge", "baseLore": "&8New Perk\n\n&7An &3Ender Pearl &7replaces the loot in\n&7one of your island chests. You start\n&7with only &c7 Max ❤︎&7.", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "hopper", "texture": "img/skywars/hopper.png", "apiKey": "victorydance_double_dragons_descent", "opalCost": 16, "isCosmetic": true, "cost": "16 Opals", "baseTitle": "Double Dragon's Descent Victory Dance", "rawName": "&aDouble Dragon's Descent Victory Dance", "baseLore": "&8New Cosmetic\n\n&7Call upon not one, not three, not\n&7four, but TWO dragons to descend\n&7through the map.", "enchanted": false },
+    null,
+    { "id": "experience_bottle", "apiKey": "kill_xp_boost", "opalCost": 10, "isCosmetic": false, "cost": "10 Opals", "baseTitle": "Kill XP Boost", "rawName": "&aKill XP Boost", "baseLore": "&8Permanent Upgrade\n\n&7Kills and Assists each give an\n&7additional &b+1 XP&7.", "enchanted": false },
+    null,
+    { "id": "bedrock", "texture": "img/skywars/bedrock.png", "apiKey": "deathcry_eponymous_dragon", "opalCost": 12, "isCosmetic": true, "cost": "12 Opals", "baseTitle": "Eponymous Dragon Death Cry", "rawName": "&aEponymous Dragon Death Cry", "baseLore": "&8New Cosmetic\n\n&7It's in the name!", "enchanted": false },
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    { "id": "dead_bush", "apiKey": "emblem_delta_icon", "opalCost": 14, "isCosmetic": true, "cost": "14 Opals", "baseTitle": "Delta Emblem", "rawName": "&aDelta Emblem", "baseLore": "&8New Cosmetic\n\n&7Go against the flow with this dead\n&7bush-inspired emblem.\n\n&7[1δ] &b[MVP&c+&b] Username", "enchanted": false },
+    { "id": "arrow", "apiKey": "projectiletrail_descent_dragon", "opalCost": 12, "isCosmetic": true, "cost": "12 Opals", "baseTitle": "Descent Dragon Projectile Trail", "rawName": "&aDescent Dragon Projectile Trail", "baseLore": "&8New Cosmetic\n\n&7Prestige-ified version of the &6Double\n&6Dragon Projectile Trail&7.", "enchanted": false },
+    { "id": "diamond_block", "texture": "img/skywars/diamond_block.png", "apiKey": "perk_slot", "opalCost": 20, "isCosmetic": false, "cost": "20 Opals", "baseTitle": "7th Perk Slot", "rawName": "&a7th Perk Slot", "baseLore": "&8Permanent Upgrade\n\n&7Unlocks a final &a7th Perk Slot &7in\n&7Normal and Mega SkyWars.", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
+    null, null,
+    { "id": "diamond_hoe", "apiKey": "fallen_angel_kit", "opalCost": 25, "isCosmetic": false, "cost": "25 Opals", "baseTitle": "Fallen Angel Kit", "rawName": "&aFallen Angel Kit", "baseLore": "&8New Kit\n\n&7Commemorate your fall from grace\n&7with this totally tubular kit!", "enchanted": false },
+    null, null,
+    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }
   ]
 };
 
+  const defaultItemsBackup = JSON.parse(JSON.stringify(menuConfig.data));
+
   function parseMinecraftColors(text) {
     if (!text || text.trim() === '') return '&nbsp;';
-    
     const colorMap = { 
         '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', 
         '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', 
@@ -633,45 +468,27 @@ const menuConfig = {
     };
     
     let html = '';
-    
-    // State machine to stack multiple formatting modifiers correctly
-    let state = {
-        color: '#AAAAAA',
-        bold: false,
-        italic: false,
-        underline: false,
-        strikethrough: false
-    };
+    let state = { color: '#AAAAAA', bold: false, italic: false, underline: false, strikethrough: false };
 
     function buildStyleString(s) {
         let styles = `color: ${s.color};`;
         if (s.bold) styles += ' font-weight: bold;';
         if (s.italic) styles += ' font-style: italic;';
-        
-        // Stack text decorations (underline + strikethrough) cleanly
         let decoration = [];
         if (s.underline) decoration.push('underline');
         if (s.strikethrough) decoration.push('line-through');
         if (decoration.length > 0) styles += ` text-decoration: ${decoration.join(' ')};`;
-        
         return styles;
     }
 
-    // Split at any formatting tag sequence
-    let parts = text.split(/(?=&[0-9a-flmno-r])/i);
-
+    let parts = text.split(/(?=[&§][0-9a-flmno-r])/i);
     for (let part of parts) {
-        if (part.startsWith('&') && part.length >= 2) {
+        if ((part.startsWith('&') || part.startsWith('§')) && part.length >= 2) {
             let code = part[1].toLowerCase();
             let textContent = part.substring(2);
-
             if (colorMap[code]) { 
                 state.color = colorMap[code]; 
-                // Color codes reset active typography modifications in vanilla MC
-                state.bold = false;
-                state.italic = false;
-                state.underline = false;
-                state.strikethrough = false;
+                state.bold = state.italic = state.underline = state.strikethrough = false;
             } 
             else if (code === 'l') { state.bold = true; } 
             else if (code === 'm') { state.strikethrough = true; }
@@ -679,12 +496,8 @@ const menuConfig = {
             else if (code === 'o') { state.italic = true; }
             else if (code === 'r') { 
                 state.color = '#AAAAAA'; 
-                state.bold = false; 
-                state.italic = false;
-                state.underline = false;
-                state.strikethrough = false;
+                state.bold = state.italic = state.underline = state.strikethrough = false;
             }
-            
             html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
         } else {
             html += `<span style="${buildStyleString(state)}">${part}</span>`;
@@ -693,8 +506,50 @@ const menuConfig = {
     return html;
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('display-title').innerText = menuConfig.title;
+  function getPlusColourHex(colourName) {
+    const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
+    return colours[colourName] || '#FF5555';
+  }
+
+  function getRankBaseColourHex(rank, monthlyRankColor) {
+    if (!rank || rank === 'NON') return '#AAAAAA';
+    const clean = rank.replace(/\[|\]/g, ''); 
+    if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+    if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
+    if (clean.includes('MVP')) return '#55FFFF'; 
+    if (clean.includes('VIP')) return '#55FF55'; 
+    if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
+    if (clean.includes('PIG')) return '#FF55FF'; 
+    return '#AAAAAA';
+  }
+
+  function formatRankHtml(rank, plusColour, monthlyRankColor) {
+    if (!rank || rank === 'NON') return '';
+    const plusHex = getPlusColourHex(plusColour);
+    const cleanRank = rank.replace(/\[|\]/g, ''); 
+    const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
+
+    let formatted = cleanRank;
+    if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
+    else if (cleanRank.includes('+')) formatted = `${cleanRank.split('+')[0]}<span style="color:${plusHex}">+</span>`;
+
+    return `<span style="color:${baseColor}; font-weight:700;">[${formatted}]</span>`;
+  }
+
+  function formatPlaytime(seconds) {
+    if (!seconds || seconds <= 0) return '0m';
+    const m = Math.floor(seconds / 60);
+    const d = Math.floor(m / 1440);
+    const h = Math.floor((m % 1440) / 60);
+    const mins = m % 60;
+    let str = '';
+    if (d > 0) str += `${d}d `;
+    if (h > 0) str += `${h}h `;
+    str += `${mins}m`;
+    return str;
+  }
+
+  function renderGrid() {
     const grid = document.getElementById('menu-grid');
     grid.style.setProperty('--cols', menuConfig.cols);
     grid.style.setProperty('--rows', menuConfig.rows);
@@ -707,10 +562,193 @@ const menuConfig = {
       if (!item) {
         html += `<div class="slot"></div>`;
       } else {
-        html += MCEngine.makeSlotHtml(item, MCEngine.getApiFallback(item));
+        const texture = (!item.isLocked && item.texture) ? item.texture : MCEngine.getApiFallback(item);
+        html += MCEngine.makeSlotHtml(item, texture);
       }
     }
     grid.innerHTML = html;
+  }
+
+  function resetToDefault() {
+    menuConfig.data = JSON.parse(JSON.stringify(defaultItemsBackup));
+    menuConfig.data.forEach(item => {
+      if (item) {
+        item.isLocked = false;
+        if (item.baseLore) {
+          if (item.rawName.includes("Opals")) {
+            item.rawLore = item.baseLore.replace("{OPALS}", "∞");
+          } else {
+            const costText = item.cost ? `\n\n&7Cost: &9${item.cost}` : '';
+            item.rawLore = item.baseLore + costText + "\n&aPurchased!";
+          }
+        }
+      }
+    });
+    
+    document.getElementById('player-summary-panel').style.display = 'none';
+    document.getElementById('stats-side-panel').style.display = 'none';
+    const statusEl = document.getElementById('search-status');
+    statusEl.textContent = "Previewing all max unlocked items";
+    statusEl.className = "status-gray";
+    renderGrid();
+  }
+
+  async function fetchPlayerUnlocks(searchTerm) {
+    if (!searchTerm) return;
+    const statusEl = document.getElementById('search-status');
+    statusEl.textContent = "Loading live stats from API...";
+    statusEl.className = "status-gray";
+
+    try {
+      const param = searchTerm.length > 25 ? `uuid=${searchTerm}` : `name=${searchTerm}`;
+      const response = await fetch(`/api/player?${param}`);
+      
+      const contentType = response.headers.get("content-type");
+      if (!response.ok || (contentType && !contentType.includes("application/json"))) {
+        throw new Error(`Server Error (${response.status}): Endpoint returned non-JSON response.`);
+      }
+
+      const data = await response.json();
+      if (data.error) throw new Error(data.error);
+
+      const swPackages = (data.angelsDescent?.packages || []).map(p => p.toLowerCase());
+      const swStats = data.angelsDescent?.stats || {};
+      const userOpals = data.angelsDescent?.opals !== undefined ? data.angelsDescent.opals : 0;
+      const userCoins = data.angelsDescent?.coins || 0;
+      const userSouls = data.angelsDescent?.souls || 0;
+      const userLevelFormatted = data.angelsDescent?.levelFormatted || '';
+      const userCorruption = data.angelsDescent?.corruptionChance || 5;
+
+      document.getElementById('player-avatar-img').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
+      document.getElementById('player-avatar-img').onerror = function() {
+        this.src = `https://vzge.me/bust/${data.uuid}.png`;
+      };
+
+      const rankHtml = formatRankHtml(data.rank, data.rankPlusColor, data.monthlyRankColor);
+      document.getElementById('player-level-badge').innerHTML = parseMinecraftColors(userLevelFormatted);
+      document.getElementById('player-rank-html').innerHTML = rankHtml;
+      document.getElementById('player-username-text').textContent = data.username;
+      document.getElementById('player-username-text').style.color = getRankBaseColourHex(data.rank, data.monthlyRankColor);
+
+      document.getElementById('sw-wins').textContent = (data.angelsDescent?.wins || 0).toLocaleString();
+      document.getElementById('sw-kills').textContent = (data.angelsDescent?.kills || 0).toLocaleString();
+      document.getElementById('sw-kdr').textContent = data.angelsDescent?.kdr || "0.00";
+      document.getElementById('sw-wlr').textContent = data.angelsDescent?.wlr || "0.00";
+      document.getElementById('sw-heads').textContent = (data.angelsDescent?.heads || 0).toLocaleString();
+      document.getElementById('sw-tokens').textContent = (data.angelsDescent?.tokens || 0).toLocaleString();
+      document.getElementById('sw-potions').textContent = (data.angelsDescent?.potionsBrewed || 0).toLocaleString();
+      document.getElementById('sw-playtime').textContent = formatPlaytime(data.angelsDescent?.timePlayed || 0);
+
+      let totalOpalsSpent = 0;
+
+      menuConfig.data.forEach(item => {
+        if (!item) return;
+
+        if (item.id === "custom_opal" && item.baseLore) {
+          item.rawLore = item.baseLore.replace("{OPALS}", userOpals.toLocaleString());
+          item.isLocked = false;
+          return;
+        }
+
+        if (!item.apiKey) return;
+
+        let currentTier = 0;
+        let isFullyMaxed = false;
+        const key = item.apiKey.toLowerCase();
+
+        if (item.maxTier) {
+          const rawVal = swStats[key] ?? swStats[`solo_${key}`] ?? swStats[`angels_descent_${key}`];
+          if (typeof rawVal === 'number' && rawVal > 0) {
+            currentTier = rawVal;
+          } else {
+            for (let t = item.maxTier; t >= 1; t--) {
+              if (swPackages.includes(`${key}_${t}`) || swPackages.includes(`angels_descent_${key}_${t}`)) {
+                currentTier = t;
+                break;
+              }
+            }
+          }
+          isFullyMaxed = currentTier >= item.maxTier;
+        } else {
+          const rawVal = swStats[key] ?? swStats[`solo_${key}`] ?? swStats[`angels_descent_${key}`];
+          
+          const unlocked = (typeof rawVal === 'number' && rawVal > 0) || 
+                           rawVal === true || 
+                           swPackages.some(pkg => pkg === key || pkg === `angels_descent_${key}` || pkg.endsWith(`_${key}`));
+
+          if (unlocked) {
+            currentTier = 1;
+            isFullyMaxed = true;
+          }
+        }
+
+        if (isFullyMaxed && item.opalCost) {
+          totalOpalsSpent += item.opalCost;
+        } else if (currentTier > 0 && item.maxTier && item.opalCost) {
+          totalOpalsSpent += Math.floor((item.opalCost / item.maxTier) * currentTier);
+        }
+
+        const titleBase = item.baseTitle || item.rawName.replace(/&[0-9a-f]/gi, '').replace(/§[0-9a-f]/gi, '');
+
+        if (isFullyMaxed) {
+          item.id = item.originalId || item.id;
+          item.isLocked = false;
+          item.rawName = `&a${titleBase}${item.maxTier ? ' ' + NUM_ROMAN[item.maxTier - 1] : ''}`;
+          item.rawLore = item.baseLore + "\n\n&aPurchased!";
+        } 
+        else if (currentTier > 0) {
+          item.id = item.originalId || item.id;
+          item.isLocked = false;
+          item.rawName = `&a${titleBase} ${NUM_ROMAN[currentTier - 1]}`;
+          item.rawLore = item.baseLore + `\n\n&7Cost: &9${item.cost}\n&eCurrent Tier: ${currentTier}/${item.maxTier}`;
+        } 
+        else {
+          if (!item.originalId) item.originalId = item.id;
+          item.id = item.isCosmetic ? "coal_block" : "coal";
+          item.isLocked = true;
+          item.rawName = `&c${titleBase}${item.maxTier ? ' ' + NUM_ROMAN[item.maxTier - 1] : ''}`;
+          item.rawLore = item.baseLore + `\n\n&7Cost: &9${item.cost}\n&cLocked!`;
+        }
+      });
+
+      document.getElementById('pill-opals').innerHTML = `<span style="color:#5555FF">${userOpals.toLocaleString()}</span> <span style="color:#777">(${totalOpalsSpent.toLocaleString()} Spent)</span>`;
+      document.getElementById('pill-coins').textContent = userCoins.toLocaleString();
+      document.getElementById('pill-souls').textContent = userSouls.toLocaleString();
+      document.getElementById('pill-corruption').textContent = `${userCorruption}%`;
+      
+      document.getElementById('player-summary-panel').style.display = 'flex';
+      document.getElementById('stats-side-panel').style.display = 'flex';
+
+      statusEl.textContent = `Showing Angel's Descent unlocks for ${data.username}`;
+      statusEl.className = "status-green";
+      renderGrid();
+
+    } catch (e) {
+      statusEl.textContent = e.message || "Failed to fetch player data.";
+      statusEl.className = "status-red";
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('display-title').innerText = menuConfig.title;
+    resetToDefault();
+
+    document.getElementById('search-btn').addEventListener('click', () => {
+      const val = document.getElementById('player-input').value.trim();
+      fetchPlayerUnlocks(val);
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      document.getElementById('player-input').value = '';
+      resetToDefault();
+    });
+
+    document.getElementById('player-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const val = document.getElementById('player-input').value.trim();
+        fetchPlayerUnlocks(val);
+      }
+    });
   });
 
   document.addEventListener('tt-format', (e) => {
