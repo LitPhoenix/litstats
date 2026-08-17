@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-16T22:11:05.971Z",
+  "last_update": "2026-08-17T00:37:30.093Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2279,7 +2279,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3559,
+      "score": 3560,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2316,9 +2316,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 25950,
+          "current_ap": 25955,
           "last_month_ap": 25935,
-          "monthly_gain": 15,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2866,6 +2866,19 @@
           "maxGames": []
         },
         {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 24070,
+          "last_month_ap": 23550,
+          "monthly_gain": 520,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "_Tk3",
           "uuid": "f2b587fe0b2347dca0908d4832e047d5",
           "country": "Unknown",
@@ -2890,19 +2903,6 @@
           "maxGames": [
             "Max Paintball",
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "InInk",
-          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
-          "country": "Unknown",
-          "current_ap": 24020,
-          "last_month_ap": 23550,
-          "monthly_gain": 470,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max TKR",
-            "Max Duels"
           ]
         },
         {
@@ -3122,15 +3122,15 @@
     },
     {
       "country": "Syria",
-      "score": 600,
+      "score": 605,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26190,
+          "current_ap": 26195,
           "last_month_ap": 26170,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
