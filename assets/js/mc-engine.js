@@ -3,6 +3,13 @@ const MCEngine = {
     API_KEY: "mcapi_5cb1f0643162ea2f7b0aa174d27061cdfa1f35c318532b602a9bf86045063ff9",
     BLOCK_IDS: new Set(['chest','tnt','cactus','wither_skeleton_skull','grass','minecart','chest_minecart','rail','powered_rail','redstone_torch']),
     viewers: {},
+    _tooltip: null,
+    _ttWidth: 0,
+    _ttHeight: 0,
+    _clientX: 0,
+    _clientY: 0,
+    _activeSlot: null,
+    _rafId: null,
 
     getApiFallback(it) {
         return `${this.API_BASE}${it.id}?apiKey=${this.API_KEY}&size=4&glint=false`;
@@ -13,14 +20,13 @@ const MCEngine = {
             if (emptyType) {
                 const capType = emptyType.charAt(0).toUpperCase() + emptyType.slice(1);
                 const emptyUrl = `img/blitz/Empty_Armor_Slot_${capType}.png`;
-                return `<div class="slot"><div class="item-wrapper"><img src="${emptyUrl}" style="opacity:0.3; width:100%; height:100%; object-fit:contain; pointer-events:none;" alt="Empty ${capType}"></div></div>`;
+                return `<div class="slot"><div class="item-wrapper"><img src="${emptyUrl}" style="opacity:0.3; width:100%; height:100%; object-fit:contain;" alt="Empty ${capType}"></div></div>`;
             }
             return `<div class="slot"></div>`;
         }
         
         const fallbackUrl = this.getApiFallback(it);
         const isBlock = this.BLOCK_IDS.has(it.id);
-        
         const wrap = it.enchanted ? 'item-wrapper enchanted' : 'item-wrapper';
         const mask = (!isBlock && it.enchanted) ? `style="--mask-img:url('${imgUrl}')"` : '';
         const td = JSON.stringify(it).replace(/"/g,'&quot;');
@@ -30,7 +36,6 @@ const MCEngine = {
         
         const onErrorScript = `if(this.getAttribute('data-failed')){this.style.opacity='0';const w=this.closest('.item-wrapper');if(w)w.style.setProperty('--mask-img','none');}else{this.setAttribute('data-failed','true');this.src='${fallbackUrl}';}`;
         html += `<img src="${imgUrl}" alt="item" onerror="${onErrorScript}">`;
-        
         html += `</div>`;
         
         if (it.durability !== undefined) {
@@ -45,116 +50,158 @@ const MCEngine = {
         return html;
     },
 
-    setZoom() {
-        const base = 500;
-        const zoom = Math.min(Math.max(window.innerWidth / base, 0.5), 1.5);
-        document.querySelectorAll('.mc-scale-engine, .mc-tooltip, .blitz-settings').forEach(el => {
-            if(el) el.style.zoom = zoom;
-        });
-        window._uiZoom = zoom; 
+    _renderTooltipPosition() {
+        if (!MCEngine._activeSlot || !MCEngine._tooltip) {
+            MCEngine._rafId = null;
+            return;
+        }
+
+        const offset = 14;
+        let left = MCEngine._clientX + offset;
+        let top = MCEngine._clientY + offset;
+
+        const maxW = window.innerWidth;
+        const maxH = window.innerHeight;
+
+        if (left + MCEngine._ttWidth > maxW - 8) {
+            left = MCEngine._clientX - MCEngine._ttWidth - offset;
+        }
+        if (top + MCEngine._ttHeight > maxH - 8) {
+            top = MCEngine._clientY - MCEngine._ttHeight - offset;
+        }
+
+        MCEngine._tooltip.style.left = `${Math.max(4, Math.round(left))}px`;
+        MCEngine._tooltip.style.top = `${Math.max(4, Math.round(top))}px`;
+        MCEngine._rafId = null;
     },
 
     initTooltip() {
-        if (!document.getElementById('tooltip')) {
-            const tt = document.createElement('div');
-            tt.id = 'tooltip';
-            tt.className = 'mc-tooltip';
-            document.body.appendChild(tt);
+        this._tooltip = document.getElementById('tooltip');
+        if (!this._tooltip) {
+            this._tooltip = document.createElement('div');
+            this._tooltip.id = 'tooltip';
+            this._tooltip.className = 'mc-tooltip';
+            document.body.appendChild(this._tooltip);
         }
-        
-        const tooltip = document.getElementById('tooltip');
-        
+
         document.addEventListener('mouseover', e => {
-            const s = e.target.closest('.slot');
-            if (!s) return;
-            const d = s.getAttribute('data-item');
-            if (!d) return;
-            
-            const event = new CustomEvent('tt-format', { detail: { item: JSON.parse(d), html: '' }});
-            document.dispatchEvent(event);
-            
-            tooltip.innerHTML = event.detail.html;
-            tooltip.classList.add('show');
-        });
+            const slot = e.target.closest('.slot');
+            if (!slot || slot === this._activeSlot) return;
+
+            const rawData = slot.getAttribute('data-item');
+            if (!rawData) {
+                if (this._activeSlot) {
+                    this._tooltip.classList.remove('show');
+                    this._activeSlot = null;
+                }
+                return;
+            }
+
+            this._activeSlot = slot;
+            try {
+                const itemData = JSON.parse(rawData);
+                const event = new CustomEvent('tt-format', { detail: { item: itemData, html: '' }});
+                document.dispatchEvent(event);
+
+                this._tooltip.innerHTML = event.detail.html;
+                this._tooltip.classList.add('show');
+
+                this._ttWidth = this._tooltip.offsetWidth;
+                this._ttHeight = this._tooltip.offsetHeight;
+
+                this._clientX = e.clientX;
+                this._clientY = e.clientY;
+
+                if (!this._rafId) {
+                    this._rafId = requestAnimationFrame(this._renderTooltipPosition);
+                }
+            } catch (err) {}
+        }, { passive: true });
 
         document.addEventListener('mousemove', e => {
-            if (!tooltip.classList.contains('show')) return;
-            const z = window._uiZoom || 1;
-            const p = 15;
-            const tw = tooltip.offsetWidth * z;
-            const th = tooltip.offsetHeight * z;
-            let x = e.clientX + p;
-            let y = e.clientY + p;
-            if (x + tw > window.innerWidth)  x = e.clientX - tw - p;
-            if (y + th > window.innerHeight) y = e.clientY - th - p;
-            tooltip.style.left = (x / z) + 'px';
-            tooltip.style.top  = (y / z) + 'px';
-        });
+            if (!this._activeSlot) return;
+            this._clientX = e.clientX;
+            this._clientY = e.clientY;
+
+            if (!this._rafId) {
+                this._rafId = requestAnimationFrame(this._renderTooltipPosition);
+            }
+        }, { passive: true });
 
         document.addEventListener('mouseout', e => {
-            if(e.target.closest('.slot')) tooltip.classList.remove('show');
-        });
+            const related = e.relatedTarget ? e.relatedTarget.closest('.slot') : null;
+            if (!related && this._activeSlot) {
+                this._tooltip.classList.remove('show');
+                this._activeSlot = null;
+                if (this._rafId) {
+                    cancelAnimationFrame(this._rafId);
+                    this._rafId = null;
+                }
+            }
+        }, { passive: true });
     },
 
     initPlayerCanvas(canvasId, boxId) {
         const c = document.getElementById(canvasId);
         if (!c || this.viewers[canvasId]) return;
-        
+
         const isMain = canvasId === 'player-canvas-main';
-        
-        // Strictly hardcoded base dimensions so they NEVER rely on DOM rendering
         const sizeX = isMain ? 100 : 112;
         const sizeY = isMain ? 160 : 144;
-        
+
+        const cachedName = localStorage.getItem('blitz_skin_username') || sessionStorage.getItem('blitz_user');
+        const initialSkin = cachedName ? `https://minotar.net/skin/${cachedName}` : 'img/skin.png';
+
         try {
             const viewer = new skinview3d.SkinViewer({
-                canvas: c, width: sizeX, height: sizeY, skin: 'img/skin.png',
-                enableControls: false, devicePixelRatio: window.devicePixelRatio 
+                canvas: c,
+                width: sizeX,
+                height: sizeY,
+                skin: initialSkin,
+                enableControls: false,
+                devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.5)
             });
-            
-            // ==========================================================
-            // 3D SKIN CUSTOMIZATION GUIDE
-            // ==========================================================
-            // To make the skin LARGER or SMALLER, change the `viewer.zoom` value below.
-            //   - isMain controls the Main Menu box. (E.g. 1.3 to zoom way in)
-            //   - !isMain controls the Specific Kit Info box.
-            //
-            // To move the skin UP or DOWN, change `viewer.playerObject.position.y`.
-            //   - A lower number (e.g., -4) moves the model DOWN.
-            //   - A higher number (e.g., 0) moves the model UP.
-            // ==========================================================
-            viewer.zoom = isMain ? 0.9 : 0.85; 
+
+            viewer.zoom = isMain ? 0.9 : 0.85;
             viewer.playerObject.position.y = isMain ? 1.6 : -2;
-            
             viewer.autoRotate = false;
             this.viewers[canvasId] = viewer;
-            
-            const cachedName = localStorage.getItem('blitz_skin_username');
-            if (cachedName) viewer.loadSkin(`https://minotar.net/skin/${cachedName}`);
 
             const box = document.getElementById(boxId);
             if (box) {
-                document.addEventListener('mousemove', e => {
-                    if(!viewer || !viewer.playerObject || box.offsetWidth === 0) return;
-                    const cb = box.getBoundingClientRect();
-                    
-                    let mouseX = (e.clientX - (cb.left + cb.width/2)) / (window.innerWidth/2);
-                    let mouseY = (e.clientY - (cb.top + cb.height/2)) / (window.innerHeight/2);
-                    viewer.playerObject.skin.head.rotation.y = Math.max(-0.5, Math.min(0.5, mouseX * 0.8));
-                    viewer.playerObject.skin.head.rotation.x = mouseY * 0.5;
-                    viewer.playerObject.rotation.y = Math.max(-0.5, Math.min(0.5, mouseX * 0.6));
-                    viewer.playerObject.rotation.x = mouseY * 0.15; 
-                });
-            }
+                let skinRaf = null;
+                let mouseX = 0, mouseY = 0;
 
-        } catch(err) {
-            console.error('3D Skin Viewer failed to load:', err);
+                const animateHead = () => {
+                    if (!viewer?.playerObject || box.offsetWidth === 0) {
+                        skinRaf = null;
+                        return;
+                    }
+                    const cb = box.getBoundingClientRect();
+                    const relX = (mouseX - (cb.left + cb.width / 2)) / (window.innerWidth / 2);
+                    const relY = (mouseY - (cb.top + cb.height / 2)) / (window.innerHeight / 2);
+
+                    viewer.playerObject.skin.head.rotation.y = Math.max(-0.5, Math.min(0.5, relX * 0.8));
+                    viewer.playerObject.skin.head.rotation.x = relY * 0.5;
+                    viewer.playerObject.rotation.y = Math.max(-0.5, Math.min(0.5, relX * 0.6));
+                    viewer.playerObject.rotation.x = relY * 0.15;
+                    skinRaf = null;
+                };
+
+                document.addEventListener('mousemove', e => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    if (!skinRaf) {
+                        skinRaf = requestAnimationFrame(animateHead);
+                    }
+                }, { passive: true });
+            }
+        } catch (err) {
+            console.error('3D Skin Viewer init failed:', err);
         }
     }
 };
 
-window.addEventListener('resize', () => MCEngine.setZoom());
 document.addEventListener('DOMContentLoaded', () => {
     MCEngine.initTooltip();
-    MCEngine.setZoom();
 });
