@@ -17,11 +17,23 @@ const chestMap = [
 ];
 
 const RANDOM_IDS = ['saddle','arrow','bow','iron_boots','witch_spawn_egg','cooked_beef','iron_hoe','flint_and_steel','potion','wooden_sword','slime_ball','golden_apple','oak_boat','iron_pickaxe','cake','golden_sword','cooked_porkchop','feather','iron_chestplate','rotten_flesh','grass','stone_sword','minecart','fishing_rod','milk_bucket','diamond_boots','spider_spawn_egg','blaze_rod','bone','experience_bottle','snowball','stick','egg','leather_chestplate','tnt'];
-
 const NUM_ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "P2"];
 
 let rndIdx=0, rndTimer=null;
 let activeKitName=null, currentLevelIndex=9;
+
+function normalizeKey(str) {
+    return (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function normalizeKitMap(obj) {
+    if (!obj || typeof obj !== 'object') return {};
+    const normalized = {};
+    for (const [key, val] of Object.entries(obj)) {
+        normalized[normalizeKey(key)] = val;
+    }
+    return normalized;
+}
 
 function getBlitzAssetUrl(it) {
     if (!it) return '';
@@ -37,11 +49,12 @@ function getBlitzAssetUrl(it) {
         if (nameLower.includes('healing')) return 'img/blitz/items/Splash_Potion_of_Healing.png';
         if (nameLower.includes('milk') || nameLower.includes('slowness') || nameLower.includes('hunger')) return 'img/blitz/items/Splash_Potion_of_Slowness.png';
         if (nameLower.includes('invisibility')) return 'img/blitz/items/Splash_Potion_of_Invisibility.png';
+        if (nameLower.includes('potion of speed')) return 'img/blitz/items/Potion_of_Swiftness.png';
         if (nameLower.includes('speed') || nameLower.includes('swiftness')) return 'img/blitz/items/Splash_Potion_of_Swiftness.png';
         if (nameLower.includes('regeneration')) return 'img/blitz/items/Splash_Potion_of_Regeneration.png';
         if (nameLower.includes('poison')) return 'img/blitz/items/Splash_Potion_of_Poison.png';
         if (nameLower.includes('resistance')) return 'img/blitz/items/Potion_of_Resistance.png';
-        if (nameLower === 'scout') return 'img/blitz/items/Potion_of_Speed.png';
+        if (nameLower === 'scout') return 'img/blitz/items/Potion_of_Swiftness.png';
     }
     
     if (id === 'player_head' || (it.name && it.name.toLowerCase() === 'shark head')) return 'img/blitz/shark.png';
@@ -51,42 +64,6 @@ function getBlitzAssetUrl(it) {
     return `img/blitz/items/${id}.png`;
 }
 
-function getPlusColourHex(colourName) {
-    const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
-    return colours[colourName] || '#FF5555';
-}
-
-function getRankBaseColourHex(rank, monthlyRankColor) {
-    if (!rank || rank === 'NON') return 'var(--text)';
-    const clean = rank.replace(/\[|\]/g, ''); 
-    if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
-    if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
-    if (clean.includes('MVP')) return '#36e9e9'; 
-    if (clean.includes('VIP')) return '#55FF55'; 
-    if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
-    if (clean.includes('PIG') || clean.includes('INNIT')) return '#FF55FF'; 
-    return 'var(--text)';
-}
-
-function formatRankText(rank, plusColour, monthlyRankColor) {
-    if (!rank || rank === 'NON') return '';
-    const plusHex = getPlusColourHex(plusColour);
-    const cleanRank = rank.replace(/\[|\]/g, ''); 
-    const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
-
-    let formatted = cleanRank;
-    if (cleanRank === 'STAFF' || cleanRank.includes('staff')) formatted = `<span style="color:#FFAA00">ዞ</span>`;
-    else if (cleanRank === 'YOUTUBE' || cleanRank.includes('youtube')) formatted = `<span style="color:#FFFFFF">YOUTUBE</span>`;
-    else if (cleanRank.includes('PIG')) formatted = `PIG<span style="color:#00FFFF">+++</span>`;
-    else if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
-    else if (cleanRank.includes('+')) formatted = `${cleanRank.split('+')[0]}<span style="color:${plusHex}">+</span>`;
-
-    return `<span style="color:${baseColor}; font-weight:700; margin-right:4px;">[${formatted}]</span>`;
-}
-
-// -----------------------------------------------------
-// TABS & UTILS
-// -----------------------------------------------------
 function switchTab(panelContext, tabName) {
     const isMain = panelContext === 'main';
     const wrapperId = isMain ? 'player-summary-panel' : 'inventory-view';
@@ -99,9 +76,13 @@ function switchTab(panelContext, tabName) {
     });
     
     const prefix = isMain ? 'main' : 'kit';
-    document.getElementById(`${prefix}-tab-stats`).classList.remove('active');
-    document.getElementById(`${prefix}-tab-coins`).classList.remove('active');
-    document.getElementById(`${prefix}-tab-${tabName}`).classList.add('active');
+    const statsTab = document.getElementById(`${prefix}-tab-stats`);
+    const coinsTab = document.getElementById(`${prefix}-tab-coins`);
+    if (statsTab) statsTab.classList.remove('active');
+    if (coinsTab) coinsTab.classList.remove('active');
+    
+    const activeEl = document.getElementById(`${prefix}-tab-${tabName}`);
+    if (activeEl) activeEl.classList.add('active');
 }
 
 function formatTime(seconds) {
@@ -118,33 +99,30 @@ function formatTime(seconds) {
 }
 
 function clearStats() {
-    ['wins','wlr','kills','kdr'].forEach(s => document.getElementById(`kit-stat-${s}`).textContent = '0');
-    ['kills','kdr','wins','wlr'].forEach(s => document.getElementById(`main-stat-${s}`).textContent = '0');
+    ['wins','wlr','kills','kdr'].forEach(s => {
+        const el = document.getElementById(`kit-stat-${s}`);
+        if (el) el.textContent = '0';
+    });
+    ['kills','kdr','wins','wlr'].forEach(s => {
+        const el = document.getElementById(`main-stat-${s}`);
+        if (el) el.textContent = '0';
+    });
     
-    document.getElementById('kit-stat-playtime').textContent = '0m';
-    document.getElementById('main-stat-playtime').textContent = '0m';
+    const kpt = document.getElementById('kit-stat-playtime');
+    if (kpt) kpt.textContent = '0m';
+    const mpt = document.getElementById('main-stat-playtime');
+    if (mpt) mpt.textContent = '0m';
     
-    document.getElementById('kit-coin-total').textContent = '0';
-    document.getElementById('kit-coin-unlock').textContent = '0';
-    document.getElementById('kit-coin-upgrades').textContent = '0';
-    document.getElementById('kit-coin-prestige').textContent = '0';
-    
-    document.getElementById('coin-total-display').textContent = '0';
-    document.getElementById('coin-unlocks').textContent = '0';
-    document.getElementById('coin-upgrades').textContent = '0';
-    document.getElementById('coin-prestiges').textContent = '0';
-    document.getElementById('coin-stars').textContent = '0';
-    document.getElementById('coin-current').textContent = '0';
-    document.getElementById('coin-spent').textContent = '0';
-    
-    document.getElementById('coin-unlocks').className = '';
-    document.getElementById('coin-upgrades').className = '';
-    document.getElementById('coin-stars').className = '';
+    const coinEls = ['coin-total-display','coin-unlocks','coin-upgrades','coin-prestiges','coin-stars','coin-lifetime','coin-spent'];
+    coinEls.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.textContent = '0';
+            el.className = (id.includes('lifetime') || id.includes('spent')) ? 'text-gold' : '';
+        }
+    });
 }
 
-// -----------------------------------------------------
-// COIN CALCULATION
-// -----------------------------------------------------
 const BASE_UNLOCKS = {
     'horsetamer': 100000, 'astronaut': 30000, 'troll': 35000, 'reaper': 10000,
     'shark': 30000, 'reddragon': 50000, 'toxicologist': 30000, 'rogue': 30000,
@@ -181,24 +159,26 @@ function calculateTotalCoins(kits, prestiges, currentCoins, starsArray = []) {
     let unlocks = 0, upgrades = 0, pTotal = 0, sTotal = 0;
     
     for (const [kit, level] of Object.entries(kits)) {
+        const safeKit = normalizeKey(kit);
         if (level > 0) {
-            if (BASE_UNLOCKS[kit]) unlocks += BASE_UNLOCKS[kit];
+            if (BASE_UNLOCKS[safeKit]) unlocks += BASE_UNLOCKS[safeKit];
             
             const maxLvl = Math.min(level, 10);
-            if (!ULTIMATE_KITS.has(kit)) {
+            if (!ULTIMATE_KITS.has(safeKit)) {
                 for (let i = 1; i <= maxLvl - 1; i++) {
                     if (UPGRADE_COSTS[i]) upgrades += UPGRADE_COSTS[i];
                 }
             }
             
-            const pLvl = prestiges[kit] || 0;
+            const pLvl = prestiges[safeKit] || 0;
             if (pLvl >= 1) pTotal += 2000000;
             if (pLvl >= 2) pTotal += 500000; 
         }
     }
     
     for (const star of starsArray) {
-        if (STAR_COSTS[star]) sTotal += STAR_COSTS[star];
+        const safeStar = normalizeKey(star);
+        if (STAR_COSTS[safeStar]) sTotal += STAR_COSTS[safeStar];
     }
     
     const totalSpent = unlocks + upgrades + pTotal + sTotal;
@@ -217,57 +197,105 @@ function calculateTotalCoins(kits, prestiges, currentCoins, starsArray = []) {
     };
 }
 
-function calculateKitCoins(kitName, level, pLvl) {
-    let unlock = 0, upgrades = 0, prestige = 0;
-    const safeName = kitName.toLowerCase().replace(/\s+/g, '');
-    let unlockString = "0";
-    let upgradesString = "0";
-    
-    if (level > 0 && BASE_UNLOCKS[safeName]) {
-        unlock = BASE_UNLOCKS[safeName];
-        unlockString = unlock.toLocaleString();
-    }
+function updateKitCoins(kitName, selectedTierIndex) {
+    const safeName = normalizeKey(kitName);
+    let unlockCost = BASE_UNLOCKS[safeName] || 0;
+    let unlockHtml = unlockCost > 0 ? unlockCost.toLocaleString() : "0";
     
     if (ULTIMATE_KITS.has(safeName)) {
-        unlockString = `<span class="text-orange">${ULTIMATE_ACHIEVEMENTS[safeName] || 'Achievement'}</span>`;
-        upgradesString = `<span class="text-blue">Ultimate</span>`;
-    } else if (level > 0) {
-        const maxLvl = Math.min(level, 10);
-        for (let i = 1; i <= maxLvl - 1; i++) {
-            if (UPGRADE_COSTS[i]) upgrades += UPGRADE_COSTS[i];
-        }
-        upgradesString = upgrades.toLocaleString();
+        unlockHtml = `<span class="text-orange">${ULTIMATE_ACHIEVEMENTS[safeName] || 'Achievement'}</span>`;
     }
+
+    let cumulativeUpgrades = 0;
+    let nextTierCostHtml = "0";
+
+    if (ULTIMATE_KITS.has(safeName)) {
+        cumulativeUpgrades = 0;
+        nextTierCostHtml = `<span class="text-blue">Ultimate</span>`;
+    } else if (selectedTierIndex > 0) {
+        const targetLvl = Math.min(selectedTierIndex + 1, 10);
+        for (let i = 1; i <= targetLvl - 1; i++) {
+            cumulativeUpgrades += UPGRADE_COSTS[i] || 0;
+        }
+    }
+
+    if (!ULTIMATE_KITS.has(safeName)) {
+        if (selectedTierIndex < 9) {
+            const nextCost = UPGRADE_COSTS[selectedTierIndex + 1] || 0;
+            nextTierCostHtml = `${nextCost.toLocaleString()}`;
+        } else if (selectedTierIndex === 9) {
+            nextTierCostHtml = "2,000,000";
+        } else if (selectedTierIndex === 10) {
+            nextTierCostHtml = "Max Tier";
+        }
+    }
+
+    let prestigeCost = 0;
+    if (selectedTierIndex === 10) {
+        prestigeCost = 2500000;
+    }
+
+    const totalCost = (typeof unlockCost === 'number' ? unlockCost : 0) + cumulativeUpgrades + prestigeCost;
+
+    const totalEl = document.getElementById('kit-coin-total');
+    if (totalEl) totalEl.textContent = totalCost.toLocaleString();
     
-    if (pLvl >= 1) prestige += 2000000;
-    if (pLvl >= 2) prestige += 500000;
-    
-    return {
-        total: (unlock + upgrades + prestige).toLocaleString(),
-        unlockHtml: unlockString,
-        upgradesHtml: upgradesString,
-        prestige: prestige.toLocaleString()
-    };
+    const unlEl = document.getElementById('kit-coin-unlock');
+    if (unlEl) unlEl.innerHTML = unlockHtml;
+
+    const upgEl = document.getElementById('kit-coin-upgrades');
+    if (upgEl) upgEl.innerHTML = ULTIMATE_KITS.has(safeName) ? `<span class="text-blue">Ultimate</span>` : cumulativeUpgrades.toLocaleString();
+
+    let nextRow = document.getElementById('kit-coin-next-tier-row');
+    if (!nextRow) {
+        const container = document.querySelector('#kit-tab-coins .coin-breakdown-container');
+        if (container) {
+            nextRow = document.createElement('div');
+            nextRow.id = 'kit-coin-next-tier-row';
+            nextRow.className = 'breakdown-row';
+            const prestigeRow = document.getElementById('kit-coin-prestige')?.parentElement;
+            if (prestigeRow) container.insertBefore(nextRow, prestigeRow);
+            else container.appendChild(nextRow);
+        }
+    }
+    if (nextRow) {
+        nextRow.innerHTML = `<span>Next Upgrade</span> <span>${nextTierCostHtml}</span>`;
+    }
+
+    const presEl = document.getElementById('kit-coin-prestige');
+    if (presEl) presEl.textContent = prestigeCost.toLocaleString();
 }
 
 window.enablePreviewAll = function() {
     window.PLAYER_KITS = null;
     window.PLAYER_PRESTIGES = null;
     window.KIT_STATS = null;
-    document.getElementById('blitz-player-search').value = '';
+    
+    const searchInput = document.getElementById('blitz-player-search');
+    if (searchInput) searchInput.value = '';
+    
     const errEl = document.getElementById('blitz-error-msg');
-    errEl.textContent = "Previewing all kits and max tiers.";
-    errEl.style.color = "var(--green)";
-    
-    if (MCEngine.viewers) {
-        Object.values(MCEngine.viewers).forEach(v => v.loadSkin('img/skin.png'));
+    if (errEl) {
+        errEl.textContent = "Previewing all kits and max tiers.";
+        errEl.style.color = "var(--green)";
     }
-    localStorage.removeItem('blitz_skin_username');
-    document.getElementById('side-username-label').textContent = 'Username';
-    document.getElementById('inv-username-label').textContent = 'Username';
     
-    document.getElementById('player-summary-panel').style.display = 'none';
-    document.getElementById('player-avatar-panel').style.display = 'none';
+    localStorage.removeItem('blitz_skin_username');
+    if (MCEngine.viewers) {
+        Object.values(MCEngine.viewers).forEach(v => {
+            try { v.loadSkin('img/skin.png'); } catch(e) {}
+        });
+    }
+    
+    const sideName = document.getElementById('side-username-label');
+    if (sideName) sideName.textContent = 'Username';
+    const invName = document.getElementById('inv-username-label');
+    if (invName) invName.textContent = 'Username';
+    
+    const pSum = document.getElementById('player-summary-panel');
+    if (pSum) pSum.style.display = 'none';
+    const pAv = document.getElementById('player-avatar-panel');
+    if (pAv) pAv.style.display = 'none';
     
     clearStats();
     showChestView(true);
@@ -301,9 +329,9 @@ async function fetchBlitzPlayer() {
         if (vData.error) throw new Error(vData.error);
 
         if (vData.blitzKits) {
-            window.PLAYER_KITS = vData.blitzKits;
-            window.PLAYER_PRESTIGES = vData.blitzPrestiges || {};
-            window.KIT_STATS = vData.kitStats || {};
+            window.PLAYER_KITS = normalizeKitMap(vData.blitzKits);
+            window.PLAYER_PRESTIGES = normalizeKitMap(vData.blitzPrestiges || {});
+            window.KIT_STATS = normalizeKitMap(vData.kitStats || {});
             
             const os = vData.overallStats || {};
             const totalWins = (os.wins_solo_normal || 0) + (os.wins_teams_normal || 0);
@@ -325,7 +353,8 @@ async function fetchBlitzPlayer() {
             }
             
             const costData = calculateTotalCoins(window.PLAYER_KITS, window.PLAYER_PRESTIGES, vData.currentCoins || 0, vData.blitzStars || []);
-            document.getElementById('coin-total-display').textContent = costData.lifetime;
+            
+            document.getElementById('coin-total-display').textContent = costData.current;
             
             const uEl = document.getElementById('coin-unlocks');
             uEl.textContent = costData.unlocks;
@@ -340,7 +369,10 @@ async function fetchBlitzPlayer() {
             sEl.className = costData.isMaxStars ? 'text-gold' : '';
             
             document.getElementById('coin-prestiges').textContent = costData.prestiges;
-            document.getElementById('coin-current').textContent = costData.current;
+            
+            const lifeEl = document.getElementById('coin-lifetime');
+            if (lifeEl) lifeEl.textContent = costData.lifetime;
+
             document.getElementById('coin-spent').textContent = costData.total;
         } else {
             throw new Error("API did not return Blitz Survival Games data.");
@@ -390,7 +422,7 @@ function initChest() {
             html += `<div class="slot"></div>`;
         } else {
             const k = chestMap[i];
-            const safeName = k.name.toLowerCase().replace(/\s+/g, '');
+            const safeName = normalizeKey(k.name);
             let isLocked = false;
             let displayTitle = k.name;
             let ownedLevel = 0;
@@ -398,7 +430,7 @@ function initChest() {
             
             if (window.PLAYER_KITS) {
                 ownedLevel = window.PLAYER_KITS[safeName] || 0;
-                pLvl = window.PLAYER_PRESTIGES ? window.PLAYER_PRESTIGES[safeName] || 0 : 0;
+                pLvl = window.PLAYER_PRESTIGES ? (window.PLAYER_PRESTIGES[safeName] || 0) : 0;
                 
                 if (ownedLevel === 0) {
                     isLocked = true;
@@ -470,12 +502,10 @@ function openKit(name, skipPush = false) {
     activeKitName = name; 
     
     let maxLevel = 11;
-    let pLvl = 0;
-    const safeName = name.toLowerCase().replace(/\s+/g, '');
+    const safeName = normalizeKey(name);
     
     if (window.PLAYER_KITS && name !== 'Rambo') {
         maxLevel = window.PLAYER_KITS[safeName] || 0;
-        if (window.PLAYER_PRESTIGES) pLvl = window.PLAYER_PRESTIGES[safeName] || 0;
     }
 
     document.querySelectorAll('.level-btn').forEach((btn, i) => {
@@ -491,19 +521,22 @@ function openKit(name, skipPush = false) {
         }
     });
 
-    if (name !== 'Rambo') {
-        setLevel(window.PLAYER_KITS ? Math.max(0, maxLevel - 1) : 9);
+    const hasPlayer = Boolean(window.PLAYER_KITS);
+    const tabsWrapper = document.querySelector('#inventory-view .panel-tabs');
+    const statsTabBtn = tabsWrapper?.querySelectorAll('.panel-tab')[0];
+    const coinsTabBtn = tabsWrapper?.querySelectorAll('.panel-tab')[1];
+    
+    if (!hasPlayer) {
+        if (statsTabBtn) statsTabBtn.style.display = 'none';
+        if (coinsTabBtn) coinsTabBtn.style.display = 'none';
+        switchTab('kit', 'coins');
     } else {
-        setLevel(0);
+        if (statsTabBtn) statsTabBtn.style.display = 'flex';
+        if (coinsTabBtn) coinsTabBtn.style.display = 'flex';
+        switchTab('kit', 'stats');
     }
 
     if (rndTimer) { clearInterval(rndTimer); rndTimer = null; }
-    
-    const kitCost = calculateKitCoins(name, maxLevel, pLvl);
-    document.getElementById('kit-coin-total').textContent = kitCost.total;
-    document.getElementById('kit-coin-unlock').innerHTML = kitCost.unlockHtml;
-    document.getElementById('kit-coin-upgrades').innerHTML = kitCost.upgradesHtml;
-    document.getElementById('kit-coin-prestige').textContent = kitCost.prestige;
     
     if (window.KIT_STATS) {
         const ks = window.KIT_STATS[safeName] || {};
@@ -513,7 +546,6 @@ function openKit(name, skipPush = false) {
 
         document.getElementById('kit-stat-wins').textContent = kWins.toLocaleString();
         document.getElementById('kit-stat-wlr').textContent = kLosses > 0 ? (kWins / kLosses).toFixed(2) : kWins;
-        
         document.getElementById('kit-stat-kills').textContent = kKills.toLocaleString();
         document.getElementById('kit-stat-kdr').textContent = kLosses > 0 ? (kKills / kLosses).toFixed(2) : kKills;
         document.getElementById('kit-stat-playtime').textContent = formatTime(ks.timePlayed || 0);
@@ -521,11 +553,14 @@ function openKit(name, skipPush = false) {
         clearStats();
     }
 
-    switchTab('kit', 'stats'); 
     document.getElementById('main-menu-layout').style.display = 'none';
     document.getElementById('inventory-view').style.display = 'flex';
     
-    setLevel(currentLevelIndex);
+    if (name !== 'Rambo') {
+        setLevel(window.PLAYER_KITS ? Math.max(0, maxLevel - 1) : 9);
+    } else {
+        setLevel(0);
+    }
     
     if (!skipPush) {
         window.history.pushState({kit: name}, '', window.location.pathname + '?kit=' + safeName);
@@ -536,6 +571,9 @@ function setLevel(i) {
     currentLevelIndex = i;
     document.querySelectorAll('.level-btn').forEach((b,j) => b.classList.toggle('active', j===i));
     renderInventory();
+    if (activeKitName) {
+        updateKitCoins(activeKitName, currentLevelIndex);
+    }
 }
 
 function renderInventory() {
@@ -543,11 +581,10 @@ function renderInventory() {
     const activeLabel = NUM_ROMAN[currentLevelIndex];
     
     let pLvl = 0;
-    if (window.PLAYER_PRESTIGES) pLvl = window.PLAYER_PRESTIGES[activeKitName.toLowerCase().replace(/\s+/g, '')] || 0;
+    if (window.PLAYER_PRESTIGES) pLvl = window.PLAYER_PRESTIGES[normalizeKey(activeKitName)] || 0;
     
     let displayLabel = ` ${activeLabel}`;
     
-    // Explicit title rules to override the Roman X if a Star is present on button 9
     if (currentLevelIndex === 10) {
         displayLabel = ` <img src="img/blitz/star_texture.png" class="kit-title-p2-star" alt="*"><img src="img/blitz/star_texture.png" class="kit-title-p2-star" alt="*">`;
     } else if (currentLevelIndex === 9 && pLvl >= 1) {
@@ -565,7 +602,7 @@ function renderInventory() {
 
     let isOwned = true;
     if (window.PLAYER_KITS && activeKitName !== 'Rambo') {
-        const safeName = activeKitName.toLowerCase().replace(/\s+/g, '');
+        const safeName = normalizeKey(activeKitName);
         const ownedLevel = window.PLAYER_KITS[safeName] || 0;
         if (currentLevelIndex + 1 > ownedLevel) isOwned = false;
     }
@@ -658,7 +695,7 @@ document.addEventListener('tt-format', (e) => {
         const baseItemName = isSkullOrShark ? it.name : `${activeKitName}'s ${it.name}`;
         
         let pLvl = 0;
-        if (window.PLAYER_PRESTIGES) pLvl = window.PLAYER_PRESTIGES[activeKitName.toLowerCase().replace(/\s+/g, '')] || 0;
+        if (window.PLAYER_PRESTIGES) pLvl = window.PLAYER_PRESTIGES[normalizeKey(activeKitName)] || 0;
 
         let starsHTML = `<img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*"><img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*">`;
         if (pLvl === 1 && currentLevelIndex === 9) starsHTML = `<img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*">`;
@@ -682,9 +719,16 @@ document.addEventListener('tt-format', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    localStorage.removeItem('blitz_skin_username');
+    
     setTimeout(() => {
         MCEngine.initPlayerCanvas('player-canvas-main', 'side-player-box-id');
         MCEngine.initPlayerCanvas('player-canvas-inv', 'inv-player-box-id');
+        if (MCEngine.viewers) {
+            Object.values(MCEngine.viewers).forEach(v => {
+                try { v.loadSkin('img/skin.png'); } catch(e) {}
+            });
+        }
     }, 100);
 
     initChest();
@@ -693,7 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const kitParam = params.get('kit');
     
     if (kitParam && window.KIT_DATABASE) {
-        const kitName = Object.keys(window.KIT_DATABASE).find(k => k.toLowerCase().replace(/\s+/g, '-') === kitParam);
+        const kitName = Object.keys(window.KIT_DATABASE).find(k => normalizeKey(k) === normalizeKey(kitParam));
         if (kitName) openKit(kitName, true);
     }
 });
