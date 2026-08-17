@@ -82,7 +82,11 @@ main.mc-scale-engine {
 }
 .mc-tooltip.show { display: block; }
 .tt-name { font-size: 16px; display: block; line-height: 1.4; margin-bottom: 3px; font-family: var(--mc-font); }
-.tt-line { font-size: 16px; display: block; line-height: 1.4; font-family: var(--mc-font); }
+.tt-line {
+  display: block;
+  min-height: 1.1em;
+  line-height: 1.2;
+}
 
 .r-common{color:#fff} .r-uncommon{color:#55ff55} .r-rare{color:#5555ff} .r-epic{color:#ff55ff} .r-legendary{color:#ffaa00}
 .c-grey{color:#aaa} .c-yellow{color:#ffff55} .c-red{color:#ff5555}
