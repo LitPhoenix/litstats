@@ -9,7 +9,7 @@ const litHeader = `
         <div><div class="logo-text">LitStats</div></div>
       </a>
       <nav class="nav-links desktop-nav">
-        <a href="index.html" class="nav-btn">Player Lookup</a>
+        <a href="index.html" class="nav-btn">Player Search</a>
         <a href="leaderboard.html" class="nav-btn">AP Leaderboard</a>
         <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
         <a href="blitz.html" class="nav-btn">Blitz</a>
@@ -22,7 +22,7 @@ const litHeader = `
     </div>
   </header>
   <nav class="mobile-nav" id="mobileNav">
-    <a href="index.html" class="nav-btn">Player Lookup</a>
+    <a href="index.html" class="nav-btn">Player Search</a>
     <a href="leaderboard.html" class="nav-btn">AP Leaderboard</a>
     <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
     <a href="blitz.html" class="nav-btn">Blitz</a>
