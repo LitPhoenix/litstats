@@ -6,6 +6,7 @@ const fetch = require('node-fetch') || global.fetch;
 
 const NADESHIKO_URL = 'https://www.nadeshiko.io/leaderboard/NETWORK_ACHIEVEMENT_POINTS';
 const DATA_FILE = path.join(__dirname, '../ap_hunters_data.json');
+const ARCHIVE_FILE = path.join(__dirname, '../ap_history_archive.json');
 const HYPIXEL_KEY = process.env.HYPIXEL_API_KEY;
 
 // Max Games Calculation Logic (Mirrored from Vercel)
@@ -38,7 +39,7 @@ function calculateMaxes(profile, achMap) {
     { names: ["woolgames"], badge: "Max Wool Games" },
     { names: ["duels"], badge: "Max Duels" },
     { names: ["buildbattle"], badge: "Max Build Battle" },
-    { names: ["easter", "christmas2017", "halloween2017", "summer"], badge: "Max Seasonal" },
+    { names: ["summer", "winter", "easter", "halloween"], badge: "Max Seasonal" },
     { names: ["truecombat"], badge: "Max Crazy Walls", isLegacyGame: true },
     { names: ["skyclash"], badge: "Max SkyClash", isLegacyGame: true }
   ];
@@ -124,6 +125,15 @@ async function update() {
     db = { manual_country_mapping: {}, month_start_snapshot: {}, country_leaderboard: [] };
   }
 
+  let archive = {};
+  try {
+    if (fs.existsSync(ARCHIVE_FILE)) {
+      archive = JSON.parse(fs.readFileSync(ARCHIVE_FILE, 'utf8'));
+    }
+  } catch (e) {
+    archive = {};
+  }
+
   console.log("🌐 Fetching Nadeshiko Top 200...");
   const nadeshikoPlayers = [];
 
@@ -165,8 +175,6 @@ async function update() {
       });
 
       if (hypixelData && hypixelData.success && hypixelData.player) {
-        
-        // Calculate max games if we successfully grabbed the template earlier
         if (Object.keys(achievementsMap).length > 0) {
             maxesArray = calculateMaxes(hypixelData.player, achievementsMap);
         }
@@ -198,8 +206,8 @@ async function update() {
     if ((i + 1) % 50 === 0) console.log(`⏳ Processed ${i + 1}/200 players...`);
   }
 
-  // Monthly snapshot
   const today = new Date();
+  const todayKey = today.toISOString().split('T')[0];
   const lastUpdate = new Date(db.last_update || 0);
   
   if (today.getMonth() !== lastUpdate.getMonth()) {
@@ -208,7 +216,12 @@ async function update() {
     freshPlayers.forEach(p => { db.month_start_snapshot[p.uuid] = p.value; });
   }
 
-  // Transform players and apply country
+  // Record daily history archive
+  if (!archive[todayKey]) archive[todayKey] = {};
+  freshPlayers.forEach(p => {
+    archive[todayKey][p.uuid] = p.value;
+  });
+
   const processedPlayers = freshPlayers.map(p => {
     if (!db.month_start_snapshot[p.uuid]) db.month_start_snapshot[p.uuid] = p.value;
     const startAP = db.month_start_snapshot[p.uuid];
@@ -226,7 +239,6 @@ async function update() {
     };
   });
 
-  // Group by country & Calculate Scores (Your Requested Score Logic)
   const countryMap = {};
   processedPlayers.forEach(player => {
     const c = player.country;
@@ -234,7 +246,6 @@ async function update() {
     countryMap[c].top_players.push(player);
   });
 
-  // Calculate baseline based on the 100th player score
   const sortedGlobal = [...processedPlayers].sort((a,b) => b.current_ap - a.current_ap);
   const baseline = sortedGlobal.length >= 100 ? sortedGlobal[99].current_ap : sortedGlobal[sortedGlobal.length - 1].current_ap;
   const weights = [1.0, 0.50, 0.25, 0.10, 0.05];
@@ -243,7 +254,6 @@ async function update() {
     countryObj.top_players.sort((a, b) => b.current_ap - a.current_ap);
     const top5 = countryObj.top_players.slice(0, 5);
     
-    // The exact scoring formula you requested
     const score = top5.reduce((sum, p, i) => sum + (Math.max(0, p.current_ap - baseline) * weights[i]), 0);
 
     return {
@@ -257,7 +267,8 @@ async function update() {
   db.country_leaderboard = countryLeaderboardArray.sort((a,b) => b.score - a.score);
 
   fs.writeFileSync(DATA_FILE, JSON.stringify(db, null, 2));
-  console.log(`✅ Success! Processed ${processedPlayers.length} players. Update complete.`);
+  fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(archive, null, 2));
+  console.log(`✅ Success! Processed ${processedPlayers.length} players. Wrote archive & database.`);
 }
 
 update();
