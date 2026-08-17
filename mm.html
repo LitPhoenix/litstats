@@ -57,7 +57,7 @@
   .gui-icon-tab .tab-label {
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 700; 
     color: #DDD;
   }
   .gui-icon-tab.active .tab-label {
@@ -70,15 +70,15 @@
 
 <div class="gui-icon-tabs">
   <a href="#classic" class="gui-icon-tab" id="tab-classic" onclick="switchMode('classic')">
-    <img src="img/iron_sword.png" alt="Classic" class="tab-icon" onerror="this.src='assets/img/fallback_sword.png'">
+    <img src="img/iron_sword.png" alt="Classic" class="tab-icon" onerror="this.onerror=null; this.src='assets/img/fallback_sword.png'">
     <span class="tab-label">Classic</span>
   </a>
   <a href="#infection" class="gui-icon-tab" id="tab-infection" onclick="switchMode('infection')">
-    <img src="img/rotten_flesh.png" alt="Infection" class="tab-icon" onerror="this.src='assets/img/fallback_flesh.png'">
+    <img src="img/rotten_flesh.png" alt="Infection" class="tab-icon" onerror="this.onerror=null; this.src='assets/img/fallback_flesh.png'">
     <span class="tab-label">Infection</span>
   </a>
   <a href="#assassins" class="gui-icon-tab" id="tab-assassins" onclick="switchMode('assassins')">
-    <img src="img/filled_map.png" alt="Assassins" class="tab-icon" onerror="this.src='assets/img/fallback_map.png'">
+    <img src="img/filled_map.png" alt="Assassins" class="tab-icon" onerror="this.onerror=null; this.src='assets/img/fallback_map.png'">
     <span class="tab-label">Assassins</span>
   </a>
 </div>
