@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-18T06:26:22.328Z",
+  "last_update": "2026-08-18T08:24:15.617Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2528,9 +2528,9 @@
           "username": "radicul",
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Australia",
-          "current_ap": 25160,
+          "current_ap": 25175,
           "last_month_ap": 25135,
-          "monthly_gain": 25,
+          "monthly_gain": 40,
           "maxGames": [
             "Max TKR",
             "Max Wool Games"
@@ -2950,6 +2950,20 @@
           ]
         },
         {
+          "username": "tommy042001",
+          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+          "country": "Unknown",
+          "current_ap": 23635,
+          "last_month_ap": 23520,
+          "monthly_gain": 115,
+          "maxGames": [
+            "Max Pit",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -2957,20 +2971,6 @@
           "last_month_ap": 23530,
           "monthly_gain": 90,
           "maxGames": [
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "tommy042001",
-          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
-          "country": "Unknown",
-          "current_ap": 23605,
-          "last_month_ap": 23520,
-          "monthly_gain": 85,
-          "maxGames": [
-            "Max Pit",
-            "Max TKR",
             "Max Wool Games",
             "Max Duels"
           ]
