@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-18T04:26:09.107Z",
+  "last_update": "2026-08-18T06:26:22.328Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2565,15 +2565,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1385,
+      "score": 1400,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 26975,
+          "current_ap": 26990,
           "last_month_ap": 26910,
-          "monthly_gain": 65,
+          "monthly_gain": 80,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
