@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-20T20:18:37.361Z",
+  "last_update": "2026-08-20T22:17:39.599Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1508,6 +1508,19 @@
           ]
         },
         {
+          "username": "Hailette",
+          "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
+          "country": "Canada",
+          "current_ap": 25035,
+          "last_month_ap": 25010,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Quake",
+            "Max Warlords",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "BenOuiMaxi",
           "uuid": "0ca18b7f6cb74731865b69e5511f0ff1",
           "country": "Canada",
@@ -1516,19 +1529,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "Hailette",
-          "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
-          "country": "Canada",
-          "current_ap": 25005,
-          "last_month_ap": 25010,
-          "monthly_gain": -5,
-          "maxGames": [
-            "Max Quake",
-            "Max Warlords",
             "Max TKR"
           ]
         },
