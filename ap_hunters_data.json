@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-21T20:14:58.668Z",
+  "last_update": "2026-08-21T22:13:46.294Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -707,9 +707,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 26820,
+          "current_ap": 26825,
           "last_month_ap": 26820,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
@@ -1496,6 +1496,19 @@
           ]
         },
         {
+          "username": "Hailette",
+          "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
+          "country": "Canada",
+          "current_ap": 25060,
+          "last_month_ap": 25010,
+          "monthly_gain": 50,
+          "maxGames": [
+            "Max Quake",
+            "Max Warlords",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "Crooder",
           "uuid": "266b09b979a345909824aa9d31ffe8ba",
           "country": "Canada",
@@ -1505,19 +1518,6 @@
           "maxGames": [
             "Max Smash Heroes",
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "Hailette",
-          "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
-          "country": "Canada",
-          "current_ap": 25035,
-          "last_month_ap": 25010,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Quake",
-            "Max Warlords",
-            "Max TKR"
           ]
         },
         {
@@ -2736,9 +2736,9 @@
           "username": "swagkittysilver",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
-          "current_ap": 24920,
+          "current_ap": 24935,
           "last_month_ap": 24435,
-          "monthly_gain": 485,
+          "monthly_gain": 500,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
