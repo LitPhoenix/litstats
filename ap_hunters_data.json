@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-21T12:24:56.545Z",
+  "last_update": "2026-08-21T14:24:44.243Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -748,9 +748,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26305,
+          "current_ap": 26310,
           "last_month_ap": 26275,
-          "monthly_gain": 30,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -2679,6 +2679,22 @@
           ]
         },
         {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 25060,
+          "last_month_ap": 24935,
+          "monthly_gain": 125,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
@@ -2690,22 +2706,6 @@
             "Max TKR",
             "Max Wool Games",
             "Max Duels"
-          ]
-        },
-        {
-          "username": "EuanKC",
-          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
-          "country": "Unknown",
-          "current_ap": 25045,
-          "last_month_ap": 24935,
-          "monthly_gain": 110,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
