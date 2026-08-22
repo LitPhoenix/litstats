@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-21T22:13:46.294Z",
+  "last_update": "2026-08-22T00:36:58.692Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12611,
+      "score": 12612,
       "top_players": [
         {
           "username": "oJakey",
@@ -498,9 +498,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30345,
+          "current_ap": 30360,
           "last_month_ap": 30040,
-          "monthly_gain": 305,
+          "monthly_gain": 320,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -553,9 +553,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28765,
+          "current_ap": 28790,
           "last_month_ap": 28765,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Warlords",
             "Max Walls",
@@ -3310,25 +3310,6 @@
       ]
     },
     {
-      "country": "Portugal",
-      "score": 0,
-      "top_players": [
-        {
-          "username": "Seymour4444",
-          "uuid": "0c1f10f9134e496399b6502270055a10",
-          "country": "Portugal",
-          "current_ap": 25155,
-          "last_month_ap": 25155,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max TNT Games",
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Brazil",
       "score": 0,
       "top_players": [
@@ -3352,6 +3333,25 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Walls",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Portugal",
+      "score": 0,
+      "top_players": [
+        {
+          "username": "Seymour4444",
+          "uuid": "0c1f10f9134e496399b6502270055a10",
+          "country": "Portugal",
+          "current_ap": 25155,
+          "last_month_ap": 25155,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max TNT Games",
             "Max VampireZ",
             "Max TKR"
           ]
