@@ -15,22 +15,39 @@
   :root {
     --accent-orange: #f95716;
     --accent-orange-hover: #e54e10;
-    --panel-bg: #111111;
-    --input-bg: #181818;
-    --border-color: #262626;
+    
+    --stat-green: #059669;
+    --stat-gold: #d97706;
+    --stat-yellow: #ca8a04;
+    --stat-purple: #9333ea;
+    --stat-darkgreen: #047857;
+    --stat-pink: #db2777;
+    --stat-blue: #2563eb;
+    --stat-aqua: #0891b2;
+  }
+
+  [data-theme="dark"], body.dark, .dark-theme, html[data-theme="minecraft"] {
+    --stat-green: #55FF55;
+    --stat-gold: #FFAA00;
+    --stat-yellow: #FFFF55;
+    --stat-purple: #AA00AA;
+    --stat-darkgreen: #00AA00;
+    --stat-pink: #FF55FF;
+    --stat-blue: #5555FF;
+    --stat-aqua: #55FFFF;
   }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background-color: #0a0a0a;
-    color: #ffffff;
+    background-color: var(--bg);
+    color: var(--text);
     margin: 0;
     padding: 0;
   }
 
   .page-container {
     padding: 24px;
-    max-width: 960px;
+    max-width: 1040px;
     margin: 0 auto;
   }
 
@@ -41,13 +58,15 @@
     margin-top: 0;
     margin-bottom: 12px;
     letter-spacing: -0.5px;
+    color: var(--text);
   }
 
   .search-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 8px;
+    margin: 0 auto 8px auto;
+    width: fit-content;
     gap: 8px;
   }
 
@@ -55,9 +74,9 @@
     width: 260px;
     padding: 10px 14px;
     border-radius: 8px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
     background: var(--input-bg);
-    color: #fff;
+    color: var(--text);
     font-size: 14px;
     font-family: inherit;
     outline: none;
@@ -65,14 +84,14 @@
   }
 
   .search-container input:focus {
-    border-color: var(--accent-orange);
+    border-color: var(--accent, var(--accent-orange));
   }
 
   .btn-primary {
     padding: 10px 20px;
     border-radius: 8px;
     border: none;
-    background: var(--accent-orange);
+    background: var(--accent, var(--accent-orange));
     color: #fff;
     font-weight: 600;
     font-size: 14px;
@@ -87,9 +106,9 @@
   .btn-icon {
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
     background: var(--input-bg);
-    color: #aaa;
+    color: var(--text-2);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -98,8 +117,8 @@
   }
 
   .btn-icon:hover {
-    color: #fff;
-    border-color: #444;
+    color: var(--text);
+    border-color: var(--accent, var(--accent-orange));
   }
 
   #search-status {
@@ -110,27 +129,26 @@
     margin-bottom: 16px;
   }
 
-  .status-green { color: #55FF55; }
-  .status-red { color: #FF5555; }
-  .status-gray { color: #888888; }
+  .status-green { color: var(--green, #10b981); }
+  .status-red { color: var(--red, #ef4444); }
+  .status-gray { color: var(--text-3, var(--text-2)); }
 
-  /* Snug, Thinner Player Summary Card */
   .player-summary-panel {
-    display: none;
-    background: #111;
-    border: 1px solid #222;
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 14px 20px;
     margin: 0 auto 20px auto;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    box-shadow: var(--shadow);
     align-items: center;
     gap: 18px;
     width: fit-content;
     max-width: 100%;
     box-sizing: border-box;
+    backdrop-filter: blur(8px);
   }
 
-  /* Bigger Avatar */
   .p-avatar-box {
     width: 84px;
     height: 84px;
@@ -158,8 +176,8 @@
   }
 
   .p-level-badge {
-    background: #1c1c1c;
-    border: 1px solid #333;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
     padding: 3px 10px;
     border-radius: 6px;
     font-size: 15px;
@@ -172,47 +190,168 @@
     flex-wrap: wrap;
   }
 
-  /* Bigger Font Pills */
   .p-pill {
-    background: #181818;
-    border: 1px solid #2a2a2a;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
     padding: 6px 14px;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
-    color: #ccc;
+    color: var(--text-2);
+  }
+
+  .info-card-placeholder {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 22px;
+    margin: 0 auto 20px auto;
+    box-shadow: var(--shadow);
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+  }
+
+  .info-card-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .info-card-icon img {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+  }
+
+  .info-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .info-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .info-card-desc {
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  .take-tour-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .take-tour-btn:hover {
+    background: var(--surface-2, var(--input-bg));
+    color: var(--text);
+    border-color: var(--accent, var(--accent-orange));
   }
 
   .descent-layout {
+    position: relative;
     display: flex;
-    gap: 20px;
-    align-items: flex-start;
     justify-content: center;
+    align-items: flex-start;
     width: 100%;
+    margin: 0 auto;
   }
 
   .stats-side-panel {
-    display: none;
-    width: 210px;
-    background: #111;
-    border: 1px solid #222;
+    position: absolute;
+    top: 0;
+    right: calc(50% + 290px);
+    width: 220px;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 14px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    box-shadow: var(--shadow);
+    display: flex;
     flex-direction: column;
     gap: 10px;
-    flex-shrink: 0;
     box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+
+  .path-side-panel {
+    position: absolute;
+    top: 0;
+    left: calc(50% + 290px);
+    width: 270px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+
+  .path-header-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .path-header-badge img {
+    width: 24px;
+    height: 24px;
+    image-rendering: pixelated;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .path-header-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .stats-title {
     font-size: 12px;
     font-weight: 700;
-    color: #888;
+    color: var(--text-3, var(--text-2));
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border);
     padding-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .stat-item {
@@ -220,21 +359,99 @@
     justify-content: space-between;
     align-items: center;
     font-size: 13px;
+    gap: 8px;
   }
 
   .stat-label {
-    color: #aaa;
+    color: var(--text-2);
+    flex-shrink: 0;
   }
 
   .stat-val {
     font-weight: 700;
-    font-size: 15px;
+    font-size: 13px;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .path-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 2px;
+  }
+
+  .path-step-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .path-step-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .path-step-img {
+    width: 20px;
+    height: 20px;
+    image-rendering: pixelated;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .path-step-name {
+    font-weight: 600;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .path-step-cost {
+    font-weight: 700;
+    color: var(--stat-blue);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .path-unlocked-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--stat-green);
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 4px;
+  }
+  
+  .path-total-row {
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
   }
 
   .gui-wrapper {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    margin: 0 auto;
   }
 
   .mc-scale-engine {
@@ -247,12 +464,33 @@
     margin-top: 0 !important;
   }
 
-  .mc-title { margin-top: 0 !important; margin-bottom: 4px; }
+  .mc-title { 
+    margin-top: 0 !important; 
+    margin-bottom: 4px; 
+  }
 
   .mc-tooltip {
     will-change: transform;
     pointer-events: none !important;
     transform: translate3d(0, 0, 0);
+  }
+
+  .slot {
+    cursor: pointer;
+  }
+
+  @media (max-width: 1100px) {
+    .descent-layout {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .stats-side-panel, .path-side-panel {
+      position: static;
+      right: auto;
+      left: auto;
+      width: min(100%, 460px);
+    }
   }
 </style>
 </head>
@@ -262,7 +500,7 @@
 <main class="page-container">
   <h1 class="page-title">Angel's Descent Calculator</h1>
 
-  <div class="search-container">
+  <div class="search-container" id="tour-search-container">
     <input type="text" id="player-input" placeholder="Enter Username or UUID">
     <button id="search-btn" class="btn-primary">Load Unlocks</button>
     <button id="reset-btn" class="btn-icon" title="Reset Preview">
@@ -272,7 +510,22 @@
 
   <div id="search-status" class="status-gray">Previewing all max unlocked items</div>
 
-  <div class="player-summary-panel" id="player-summary-panel">
+  <!-- Default Placeholder Card -->
+  <div class="info-card-placeholder" id="default-info-card">
+    <div class="info-card-icon">
+      <img src="img/skywars/opal.png" onerror="this.src='img/diamond.png'" alt="Angel Icon">
+    </div>
+    <div class="info-card-text" style="flex: 1;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="info-card-title">Angel's Descent Calculator</span>
+        <button class="take-tour-btn" onclick="if(angelTour) angelTour.start(true);">Interactive Guide</button>
+      </div>
+      <span class="info-card-desc">Previewing full max tree progression. Search any player to inspect active unlocks and route costs.</span>
+    </div>
+  </div>
+
+  <!-- Player Summary Card -->
+  <div class="player-summary-panel" id="player-summary-panel" style="display: none;">
     <div class="p-avatar-box">
       <img id="player-avatar-img" src="" alt="Avatar">
     </div>
@@ -284,38 +537,55 @@
       </div>
       <div class="p-pills-row">
         <div class="p-pill">Opals: <span id="pill-opals">0</span></div>
-        <div class="p-pill">Coins: <span style="color:#FFAA00" id="pill-coins">0</span></div>
-        <div class="p-pill">Souls: <span style="color:#55FFFF" id="pill-souls">0</span></div>
-        <div class="p-pill">Corruption: <span style="color:#AA00AA" id="pill-corruption">5%</span></div>
+        <div class="p-pill">Coins: <span style="color:var(--stat-gold)" id="pill-coins">0</span></div>
+        <div class="p-pill">Souls: <span style="color:var(--stat-aqua)" id="pill-souls">0</span></div>
+        <div class="p-pill">Corruption: <span style="color:var(--stat-purple)" id="pill-corruption">0%</span></div>
       </div>
     </div>
   </div>
 
   <div class="descent-layout">
+    <!-- Side Stats Panel -->
     <div class="stats-side-panel" id="stats-side-panel">
-      <div class="stats-title">SkyWars Summary</div>
-      <div class="stat-item"><span class="stat-label">Wins</span><span class="stat-val" style="color:#55FF55" id="sw-wins">0</span></div>
-      <div class="stat-item"><span class="stat-label">Kills</span><span class="stat-val" style="color:#55FF55" id="sw-kills">0</span></div>
-      <div class="stat-item"><span class="stat-label">KDR</span><span class="stat-val" style="color:#FFAA00" id="sw-kdr">0</span></div>
-      <div class="stat-item"><span class="stat-label">WLR</span><span class="stat-val" style="color:#FFAA00" id="sw-wlr">0</span></div>
-      <div class="stat-item"><span class="stat-label">Heads</span><span class="stat-val" style="color:#AA00AA" id="sw-heads">0</span></div>
-      <div class="stat-item"><span class="stat-label">Tokens</span><span class="stat-val" style="color:#00AA00" id="sw-tokens">0</span></div>
-      <div class="stat-item"><span class="stat-label">Potions Brewed</span><span class="stat-val" style="color:#FF55FF" id="sw-potions">0</span></div>
-      <div class="stat-item"><span class="stat-label">Playtime</span><span class="stat-val" style="color:#FFFF55" id="sw-playtime">0m</span></div>
+      <div class="stats-title" id="side-panel-title">Tree Overview</div>
+      <div class="stat-item"><span class="stat-label" id="lbl-1">Total Opal Cost</span><span class="stat-val" style="color:var(--stat-blue)" id="sw-wins">293</span></div>
+      <div class="stat-item"><span class="stat-label" id="lbl-2">Items</span><span class="stat-val" style="color:var(--stat-green)" id="sw-kills">31</span></div>
+      <div class="stat-item"><span class="stat-label" id="lbl-3">Upgrades</span><span class="stat-val" style="color:var(--stat-gold)" id="sw-kdr">10</span></div>
+      <div class="stat-item"><span class="stat-label" id="lbl-4">Perks</span><span class="stat-val" style="color:var(--stat-yellow)" id="sw-wlr">9</span></div>
+      <div class="stat-item"><span class="stat-label" id="lbl-5">Cosmetics</span><span class="stat-val" style="color:var(--stat-pink)" id="sw-heads">12</span></div>
+      <div class="stat-item"><span class="stat-label" id="lbl-6">Highest Corruption</span><span class="stat-val" style="color:var(--stat-purple)" id="sw-tokens">14%</span></div>
+      <div class="stat-item" id="row-7" style="display:none;"><span class="stat-label" id="lbl-7">Potions Brewed</span><span class="stat-val" style="color:var(--stat-pink)" id="sw-potions">0</span></div>
+      <div class="stat-item" id="row-8" style="display:none;"><span class="stat-label" id="lbl-8">Playtime</span><span class="stat-val" style="color:var(--stat-yellow)" id="sw-playtime">0m</span></div>
     </div>
 
+    <!-- Center Interactive GUI -->
     <div class="gui-wrapper">
-      <main class="mc-scale-engine">
+      <div class="mc-scale-engine">
         <div class="mc-container">
           <div class="mc-title" id="display-title">Angel's Descent</div>
           <div class="mc-grid" id="menu-grid"></div>
         </div>
-      </main>
+      </div>
+    </div>
+
+    <!-- Unlock Path Calculation Side Panel -->
+    <div class="path-side-panel" id="path-side-panel">
+      <div class="stats-title">
+        <span>Unlock Route</span>
+        <button onclick="closePathPanel()" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;">✕</button>
+      </div>
+      <div style="font-size:12px; color:var(--text-2);" id="path-target-name">Target: -</div>
+      <div class="path-steps-list" id="path-steps-container"></div>
+      <div class="path-total-row">
+        <span>Total Required:</span>
+        <span style="color:var(--stat-blue)" id="path-total-cost">0 Opals</span>
+      </div>
     </div>
   </div>
 </main>
 
 <script src="assets/js/global.js"></script>
+<script src="assets/js/tour.js"></script>
 <script src="assets/js/mc-engine.js"></script>
 <script>
 const NUM_ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
@@ -456,313 +726,621 @@ const menuConfig = {
   ]
 };
 
-  const defaultItemsBackup = JSON.parse(JSON.stringify(menuConfig.data));
+const defaultItemsBackup = JSON.parse(JSON.stringify(menuConfig.data));
+let isLivePlayerLoaded = false;
 
-  function parseMinecraftColors(text) {
-    if (!text || text.trim() === '') return '&nbsp;';
-    const colorMap = { 
-        '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', 
-        '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', 
-        '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 
-        'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' 
-    };
-    
-    let html = '';
-    let state = { color: '#AAAAAA', bold: false, italic: false, underline: false, strikethrough: false };
+function parseMinecraftColors(text) {
+  if (!text || text.trim() === '') return '&nbsp;';
+  const colorMap = { 
+    '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', 
+    '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', 
+    '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 
+    'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' 
+  };
+  
+  let html = '';
+  let state = { color: '#AAAAAA', bold: false, italic: false, underline: false, strikethrough: false };
 
-    function buildStyleString(s) {
-        let styles = `color: ${s.color};`;
-        if (s.bold) styles += ' font-weight: bold;';
-        if (s.italic) styles += ' font-style: italic;';
-        let decoration = [];
-        if (s.underline) decoration.push('underline');
-        if (s.strikethrough) decoration.push('line-through');
-        if (decoration.length > 0) styles += ` text-decoration: ${decoration.join(' ')};`;
-        return styles;
-    }
-
-    let parts = text.split(/(?=[&§][0-9a-flmno-r])/i);
-    for (let part of parts) {
-        if ((part.startsWith('&') || part.startsWith('§')) && part.length >= 2) {
-            let code = part[1].toLowerCase();
-            let textContent = part.substring(2);
-            if (colorMap[code]) { 
-                state.color = colorMap[code]; 
-                state.bold = state.italic = state.underline = state.strikethrough = false;
-            } 
-            else if (code === 'l') { state.bold = true; } 
-            else if (code === 'm') { state.strikethrough = true; }
-            else if (code === 'n') { state.underline = true; }
-            else if (code === 'o') { state.italic = true; }
-            else if (code === 'r') { 
-                state.color = '#AAAAAA'; 
-                state.bold = state.italic = state.underline = state.strikethrough = false;
-            }
-            html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
-        } else {
-            html += `<span style="${buildStyleString(state)}">${part}</span>`;
-        }
-    }
-    return html;
+  function buildStyleString(s) {
+    let styles = `color: ${s.color};`;
+    if (s.bold) styles += ' font-weight: bold;';
+    if (s.italic) styles += ' font-style: italic;';
+    let decoration = [];
+    if (s.underline) decoration.push('underline');
+    if (s.strikethrough) decoration.push('line-through');
+    if (decoration.length > 0) styles += ` text-decoration: ${decoration.join(' ')};`;
+    return styles;
   }
 
-  function getPlusColourHex(colourName) {
-    const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
-    return colours[colourName] || '#FF5555';
-  }
-
-  function getRankBaseColourHex(rank, monthlyRankColor) {
-    if (!rank || rank === 'NON') return '#AAAAAA';
-    const clean = rank.replace(/\[|\]/g, ''); 
-    if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
-    if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
-    if (clean.includes('MVP')) return '#55FFFF'; 
-    if (clean.includes('VIP')) return '#55FF55'; 
-    if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
-    if (clean.includes('PIG')) return '#FF55FF'; 
-    return '#AAAAAA';
-  }
-
-  function formatRankHtml(rank, plusColour, monthlyRankColor) {
-    if (!rank || rank === 'NON') return '';
-    const plusHex = getPlusColourHex(plusColour);
-    const cleanRank = rank.replace(/\[|\]/g, ''); 
-    const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
-
-    let formatted = cleanRank;
-    if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
-    else if (cleanRank.includes('+')) formatted = `${cleanRank.split('+')[0]}<span style="color:${plusHex}">+</span>`;
-
-    return `<span style="color:${baseColor}; font-weight:700;">[${formatted}]</span>`;
-  }
-
-  function formatPlaytime(seconds) {
-    if (!seconds || seconds <= 0) return '0m';
-    const m = Math.floor(seconds / 60);
-    const d = Math.floor(m / 1440);
-    const h = Math.floor((m % 1440) / 60);
-    const mins = m % 60;
-    let str = '';
-    if (d > 0) str += `${d}d `;
-    if (h > 0) str += `${h}h `;
-    str += `${mins}m`;
-    return str;
-  }
-
-  function renderGrid() {
-    const grid = document.getElementById('menu-grid');
-    grid.style.setProperty('--cols', menuConfig.cols);
-    grid.style.setProperty('--rows', menuConfig.rows);
-    
-    let html = '';
-    const totalSlots = menuConfig.cols * menuConfig.rows;
-    
-    for (let i = 0; i < totalSlots; i++) {
-      const item = menuConfig.data[i];
-      if (!item) {
-        html += `<div class="slot"></div>`;
-      } else {
-        const texture = (!item.isLocked && item.texture) ? item.texture : MCEngine.getApiFallback(item);
-        html += MCEngine.makeSlotHtml(item, texture);
+  let parts = text.split(/(?=[&§][0-9a-flmno-r])/i);
+  for (let part of parts) {
+    if ((part.startsWith('&') || part.startsWith('§')) && part.length >= 2) {
+      let code = part[1].toLowerCase();
+      let textContent = part.substring(2);
+      if (colorMap[code]) { 
+        state.color = colorMap[code]; 
+        state.bold = state.italic = state.underline = state.strikethrough = false;
+      } 
+      else if (code === 'l') { state.bold = true; } 
+      else if (code === 'm') { state.strikethrough = true; }
+      else if (code === 'n') { state.underline = true; }
+      else if (code === 'o') { state.italic = true; }
+      else if (code === 'r') { 
+        state.color = '#AAAAAA'; 
+        state.bold = state.italic = state.underline = state.strikethrough = false;
       }
+      html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
+    } else {
+      html += `<span style="${buildStyleString(state)}">${part}</span>`;
     }
-    grid.innerHTML = html;
+  }
+  return html;
+}
+
+function getPlusColourHex(colourName) {
+  const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
+  return colours[colourName] || '#FF5555';
+}
+
+function getRankBaseColourHex(rank, monthlyRankColor) {
+  if (!rank || rank === 'NON') return '#AAAAAA';
+  const clean = rank.replace(/\[|\]/g, ''); 
+  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+  if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
+  if (clean.includes('MVP')) return '#55FFFF'; 
+  if (clean.includes('VIP')) return '#55FF55'; 
+  if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
+  if (clean.includes('PIG')) return '#FF55FF'; 
+  return '#AAAAAA';
+}
+
+function formatRankHtml(rank, plusColour, monthlyRankColor) {
+  if (!rank || rank === 'NON') return '';
+  const plusHex = getPlusColourHex(plusColour);
+  const cleanRank = rank.replace(/\[|\]/g, ''); 
+  const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
+
+  let formatted = cleanRank;
+  if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
+  else if (cleanRank.includes('+')) formatted = `${cleanRank.split('+')[0]}<span style="color:${plusHex}">+</span>`;
+
+  return `<span style="color:${baseColor}; font-weight:700;">[${formatted}]</span>`;
+}
+
+function formatPlaytime(seconds) {
+  if (!seconds || seconds <= 0) return '0m';
+  const m = Math.floor(seconds / 60);
+  const d = Math.floor(m / 1440);
+  const h = Math.floor((m % 1440) / 60);
+  const mins = m % 60;
+  let str = '';
+  if (d > 0) str += `${d}d `;
+  if (h > 0) str += `${h}h `;
+  str += `${mins}m`;
+  return str;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('menu-grid');
+  grid.style.setProperty('--cols', menuConfig.cols);
+  grid.style.setProperty('--rows', menuConfig.rows);
+  
+  let html = '';
+  const totalSlots = menuConfig.cols * menuConfig.rows;
+  
+  for (let i = 0; i < totalSlots; i++) {
+    const item = menuConfig.data[i];
+    if (!item) {
+      html += `<div class="slot" data-index="${i}"></div>`;
+    } else {
+      let texture = item.texture;
+      if (item.isLocked && item.isCosmetic) {
+        texture = "img/skywars/coal_block.png";
+      } else if (!item.isLocked && item.texture) {
+        texture = item.texture;
+      } else {
+        texture = MCEngine.getApiFallback(item);
+      }
+      
+      const slotHtml = MCEngine.makeSlotHtml(item, texture);
+      html += slotHtml.replace('<div class="slot', `<div class="slot" data-index="${i}"`);
+    }
+  }
+  grid.innerHTML = html;
+}
+
+function closePathPanel() {
+  const panel = document.getElementById('path-side-panel');
+  if (panel) panel.style.display = 'none';
+}
+
+function getBaseItemTextureUrl(idx, item) {
+  const defaultItem = defaultItemsBackup[idx] || item;
+  if (defaultItem.texture) return defaultItem.texture;
+  if (typeof MCEngine !== 'undefined' && typeof MCEngine.getApiFallback === 'function') {
+    return MCEngine.getApiFallback(defaultItem);
+  }
+  return 'img/diamond.png';
+}
+
+function handleSlotClick(index) {
+  const targetItem = menuConfig.data[index];
+  if (!targetItem || !targetItem.apiKey) return;
+
+  if (isLivePlayerLoaded && !targetItem.isLocked) {
+    renderUnlockedPanel(index, targetItem);
+    return;
   }
 
-  function resetToDefault() {
-    menuConfig.data = JSON.parse(JSON.stringify(defaultItemsBackup));
-    menuConfig.data.forEach(item => {
-      if (item) {
-        item.isLocked = false;
-        if (item.baseLore) {
-          if (item.rawName.includes("Opals")) {
-            item.rawLore = item.baseLore.replace("{OPALS}", "∞");
-          } else {
-            const costText = item.cost ? `\n\n&7Cost: &9${item.cost}` : '';
-            item.rawLore = item.baseLore + costText + "\n&aPurchased!";
-          }
-        }
+  calculateShortestPath(index);
+}
+
+function renderUnlockedPanel(index, item) {
+  const panel = document.getElementById('path-side-panel');
+  const targetNameEl = document.getElementById('path-target-name');
+  const stepsContainer = document.getElementById('path-steps-container');
+  const totalCostEl = document.getElementById('path-total-cost');
+
+  const textureUrl = getBaseItemTextureUrl(index, item);
+
+  targetNameEl.innerHTML = `
+    <div class="path-header-badge">
+      <img src="${textureUrl}" alt="" onerror="this.src='img/diamond.png'">
+      <div style="overflow:hidden;">
+        <div class="path-header-title">${item.baseTitle || 'Unlocked Item'}</div>
+        <div style="font-size:11px; color:var(--text-2);">${item.isCosmetic ? 'Cosmetic' : 'Perk / Upgrade'}</div>
+      </div>
+    </div>
+  `;
+
+  stepsContainer.innerHTML = `
+    <div class="path-unlocked-tag">✓ Already Unlocked</div>
+    <div style="font-size:12px; color:var(--text-2); padding: 6px 2px; text-align:center;">
+      This upgrade is already active on this profile.
+    </div>
+  `;
+
+  totalCostEl.textContent = '0 Opals';
+  panel.style.display = 'flex';
+}
+
+function calculateShortestPath(targetIndex) {
+  const cols = menuConfig.cols;
+
+  let startNodes = [];
+
+  if (isLivePlayerLoaded) {
+    menuConfig.data.forEach((item, idx) => {
+      if (item && item.apiKey && !item.isLocked) {
+        startNodes.push(idx);
       }
     });
-    
-    document.getElementById('player-summary-panel').style.display = 'none';
-    document.getElementById('stats-side-panel').style.display = 'none';
-    const statusEl = document.getElementById('search-status');
-    statusEl.textContent = "Previewing all max unlocked items";
-    statusEl.className = "status-gray";
-    renderGrid();
   }
 
-  async function fetchPlayerUnlocks(searchTerm) {
-    if (!searchTerm) return;
-    const statusEl = document.getElementById('search-status');
+  if (startNodes.length === 0) {
+    startNodes = [4];
+  }
+
+  let queue = startNodes.map(node => ({
+    current: node,
+    path: (isLivePlayerLoaded && !menuConfig.data[node].isLocked) ? [] : [node]
+  }));
+  let visited = new Set(startNodes);
+  let shortestPath = null;
+
+  while (queue.length > 0) {
+    const { current, path } = queue.shift();
+
+    if (current === targetIndex) {
+      shortestPath = path;
+      break;
+    }
+
+    const r = Math.floor(current / cols);
+    const c = current % cols;
+    const neighbours = [
+      { r: r - 1, c: c },
+      { r: r + 1, c: c },
+      { r: r, c: c - 1 },
+      { r: r, c: c + 1 }
+    ];
+
+    for (const nb of neighbours) {
+      if (nb.r >= 0 && nb.r < menuConfig.rows && nb.c >= 0 && nb.c < cols) {
+        const nextIdx = nb.r * cols + nb.c;
+        const nextItem = menuConfig.data[nextIdx];
+
+        if (nextItem && nextItem.id !== "black_stained_glass_pane" && nextItem.apiKey && !visited.has(nextIdx)) {
+          visited.add(nextIdx);
+          queue.push({
+            current: nextIdx,
+            path: [...path, nextIdx]
+          });
+        }
+      }
+    }
+  }
+
+  if (!shortestPath && targetIndex === 4) {
+    shortestPath = [4];
+  }
+
+  if (shortestPath) {
+    renderPathPanel(targetIndex, shortestPath);
+  }
+}
+
+function renderPathPanel(targetIndex, pathIndices) {
+  const panel = document.getElementById('path-side-panel');
+  const targetNameEl = document.getElementById('path-target-name');
+  const stepsContainer = document.getElementById('path-steps-container');
+  const totalCostEl = document.getElementById('path-total-cost');
+
+  const targetItem = menuConfig.data[targetIndex];
+  const targetTexture = getBaseItemTextureUrl(targetIndex, targetItem);
+
+  targetNameEl.innerHTML = `
+    <div class="path-header-badge">
+      <img src="${targetTexture}" alt="" onerror="this.src='img/diamond.png'">
+      <div style="overflow:hidden;">
+        <div class="path-header-title">${targetItem.baseTitle || 'Selected Upgrade'}</div>
+        <div style="font-size:11px; color:var(--text-2);">${pathIndices.length} step${pathIndices.length === 1 ? '' : 's'} away</div>
+      </div>
+    </div>
+  `;
+
+  let totalOpals = 0;
+  let stepsHtml = '';
+
+  pathIndices.forEach((idx, stepNum) => {
+    const it = menuConfig.data[idx];
+    const cost = it.maxTier ? Math.floor(it.opalCost / it.maxTier) : (it.opalCost || 1);
+    totalOpals += cost;
+    const stepTexture = getBaseItemTextureUrl(idx, it);
+
+    stepsHtml += `
+      <div class="path-step-item">
+        <div class="path-step-left">
+          <img class="path-step-img" src="${stepTexture}" alt="" onerror="this.src='img/diamond.png'">
+          <span class="path-step-name">${stepNum + 1}. ${it.baseTitle}${it.maxTier ? ' I' : ''}</span>
+        </div>
+        <span class="path-step-cost">${cost} Opal${cost > 1 ? 's' : ''}</span>
+      </div>
+    `;
+  });
+
+  stepsContainer.innerHTML = stepsHtml;
+  totalCostEl.textContent = `${totalOpals} Opal${totalOpals > 1 ? 's' : ''}`;
+  panel.style.display = 'flex';
+}
+
+function resetToDefault() {
+  isLivePlayerLoaded = false;
+  closePathPanel();
+  menuConfig.data = JSON.parse(JSON.stringify(defaultItemsBackup));
+  menuConfig.data.forEach(item => {
+    if (item) {
+      item.isLocked = false;
+      if (item.baseLore) {
+        if (item.rawName.includes("Opals")) {
+          item.rawLore = item.baseLore.replace("{OPALS}", "∞");
+        } else {
+          const costText = item.cost ? `\n\n&7Cost: &9${item.cost}` : '';
+          item.rawLore = item.baseLore + costText + "\n&aPurchased!";
+        }
+      }
+    }
+  });
+
+  const defaultCard = document.getElementById('default-info-card');
+  const summaryPanel = document.getElementById('player-summary-panel');
+  if (defaultCard) defaultCard.style.display = 'flex';
+  if (summaryPanel) summaryPanel.style.display = 'none';
+
+  const sideTitle = document.getElementById('side-panel-title');
+  if (sideTitle) sideTitle.textContent = "Tree Overview";
+
+  const setLbl = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  };
+
+  setLbl('lbl-1', 'Total Opal Cost');
+  setLbl('lbl-2', 'Items');
+  setLbl('lbl-3', 'Upgrades');
+  setLbl('lbl-4', 'Perks');
+  setLbl('lbl-5', 'Cosmetics');
+  setLbl('lbl-6', 'Highest Corruption');
+
+  document.getElementById('row-7').style.display = 'none';
+  document.getElementById('row-8').style.display = 'none';
+
+  const setVal = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
+
+  setVal('sw-wins', '293');
+  setVal('sw-kills', '31');
+  setVal('sw-kdr', '10');
+  setVal('sw-wlr', '9');
+  setVal('sw-heads', '12');
+  setVal('sw-tokens', '14%');
+
+  const statusEl = document.getElementById('search-status');
+  if (statusEl) {
+    statusEl.textContent = "Previewing all max unlocked items";
+    statusEl.className = "status-gray";
+  }
+
+  renderGrid();
+}
+
+async function fetchPlayerUnlocks(searchTerm) {
+  if (!searchTerm) return;
+  closePathPanel();
+  const statusEl = document.getElementById('search-status');
+  if (statusEl) {
     statusEl.textContent = "Loading live stats from API...";
     statusEl.className = "status-gray";
+  }
 
-    try {
-      const param = searchTerm.length > 25 ? `uuid=${searchTerm}` : `name=${searchTerm}`;
-      const response = await fetch(`/api/player?${param}`);
-      
-      const contentType = response.headers.get("content-type");
-      if (!response.ok || (contentType && !contentType.includes("application/json"))) {
-        throw new Error(`Server Error (${response.status}): Endpoint returned non-JSON response.`);
-      }
+  if (typeof window.showLoader === 'function') {
+    window.showLoader("Loading Angel's Descent...");
+  }
 
-      const data = await response.json();
-      if (data.error) throw new Error(data.error);
+  try {
+    const param = searchTerm.length > 25 ? `uuid=${searchTerm}` : `name=${searchTerm}`;
+    const response = await fetch(`/api/player?${param}`);
+    
+    const contentType = response.headers.get("content-type");
+    if (!response.ok || (contentType && !contentType.includes("application/json"))) {
+      throw new Error(`Server Error (${response.status}): Endpoint returned non-JSON response.`);
+    }
 
-      const swPackages = (data.angelsDescent?.packages || []).map(p => p.toLowerCase());
-      const swStats = data.angelsDescent?.stats || {};
-      const userOpals = data.angelsDescent?.opals !== undefined ? data.angelsDescent.opals : 0;
-      const userCoins = data.angelsDescent?.coins || 0;
-      const userSouls = data.angelsDescent?.souls || 0;
-      const userLevelFormatted = data.angelsDescent?.levelFormatted || '';
-      const userCorruption = data.angelsDescent?.corruptionChance || 5;
+    const data = await response.json();
+    if (data.error) throw new Error(data.error);
 
-      document.getElementById('player-avatar-img').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
-      document.getElementById('player-avatar-img').onerror = function() {
+    isLivePlayerLoaded = true;
+
+    const swPackages = (data.angelsDescent?.packages || []).map(p => p.toLowerCase());
+    const swStats = data.angelsDescent?.stats || {};
+    const userOpals = data.angelsDescent?.opals !== undefined ? data.angelsDescent.opals : 0;
+    const userCoins = data.angelsDescent?.coins || 0;
+    const userSouls = data.angelsDescent?.souls || 0;
+    const userLevelFormatted = data.angelsDescent?.levelFormatted || '';
+    const userCorruption = data.angelsDescent?.corruptionChance || 0;
+
+    const avatarImg = document.getElementById('player-avatar-img');
+    if (avatarImg) {
+      avatarImg.src = `https://visage.surgeplay.com/bust/${data.uuid}`;
+      avatarImg.onerror = function() {
         this.src = `https://vzge.me/bust/${data.uuid}.png`;
       };
+    }
 
-      const rankHtml = formatRankHtml(data.rank, data.rankPlusColor, data.monthlyRankColor);
-      document.getElementById('player-level-badge').innerHTML = parseMinecraftColors(userLevelFormatted);
-      document.getElementById('player-rank-html').innerHTML = rankHtml;
-      document.getElementById('player-username-text').textContent = data.username;
-      document.getElementById('player-username-text').style.color = getRankBaseColourHex(data.rank, data.monthlyRankColor);
+    const rankHtml = formatRankHtml(data.rank, data.rankPlusColor, data.monthlyRankColor);
+    const lvlBadge = document.getElementById('player-level-badge');
+    if (lvlBadge) lvlBadge.innerHTML = parseMinecraftColors(userLevelFormatted);
+    const rankEl = document.getElementById('player-rank-html');
+    if (rankEl) rankEl.innerHTML = rankHtml;
+    const uText = document.getElementById('player-username-text');
+    if (uText) {
+      uText.textContent = data.username;
+      uText.style.color = getRankBaseColourHex(data.rank, data.monthlyRankColor);
+    }
 
-      document.getElementById('sw-wins').textContent = (data.angelsDescent?.wins || 0).toLocaleString();
-      document.getElementById('sw-kills').textContent = (data.angelsDescent?.kills || 0).toLocaleString();
-      document.getElementById('sw-kdr').textContent = data.angelsDescent?.kdr || "0.00";
-      document.getElementById('sw-wlr').textContent = data.angelsDescent?.wlr || "0.00";
-      document.getElementById('sw-heads').textContent = (data.angelsDescent?.heads || 0).toLocaleString();
-      document.getElementById('sw-tokens').textContent = (data.angelsDescent?.tokens || 0).toLocaleString();
-      document.getElementById('sw-potions').textContent = (data.angelsDescent?.potionsBrewed || 0).toLocaleString();
-      document.getElementById('sw-playtime').textContent = formatPlaytime(data.angelsDescent?.timePlayed || 0);
+    const sideTitle = document.getElementById('side-panel-title');
+    if (sideTitle) sideTitle.textContent = "SkyWars Summary";
 
-      let totalOpalsSpent = 0;
+    const setLbl = (id, text) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
 
-      menuConfig.data.forEach(item => {
-        if (!item) return;
+    setLbl('lbl-1', 'Wins');
+    setLbl('lbl-2', 'Kills');
+    setLbl('lbl-3', 'KDR');
+    setLbl('lbl-4', 'WLR');
+    setLbl('lbl-5', 'Heads');
+    setLbl('lbl-6', 'Tokens');
+    setLbl('lbl-7', 'Potions Brewed');
+    setLbl('lbl-8', 'Playtime');
 
-        if (item.id === "custom_opal" && item.baseLore) {
-          item.rawLore = item.baseLore.replace("{OPALS}", userOpals.toLocaleString());
-          item.isLocked = false;
-          return;
-        }
+    document.getElementById('row-7').style.display = 'flex';
+    document.getElementById('row-8').style.display = 'flex';
 
-        if (!item.apiKey) return;
+    const setVal = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    };
 
-        let currentTier = 0;
-        let isFullyMaxed = false;
-        const key = item.apiKey.toLowerCase();
+    setVal('sw-wins', (data.angelsDescent?.wins || 0).toLocaleString());
+    setVal('sw-kills', (data.angelsDescent?.kills || 0).toLocaleString());
+    setVal('sw-kdr', data.angelsDescent?.kdr || "0.00");
+    setVal('sw-wlr', data.angelsDescent?.wlr || "0.00");
+    setVal('sw-heads', (data.angelsDescent?.heads || 0).toLocaleString());
+    setVal('sw-tokens', (data.angelsDescent?.tokens || 0).toLocaleString());
+    setVal('sw-potions', (data.angelsDescent?.potionsBrewed || 0).toLocaleString());
+    setVal('sw-playtime', formatPlaytime(data.angelsDescent?.timePlayed || 0));
 
-        if (item.maxTier) {
-          const rawVal = swStats[key] ?? swStats[`solo_${key}`] ?? swStats[`angels_descent_${key}`];
-          if (typeof rawVal === 'number' && rawVal > 0) {
-            currentTier = rawVal;
-          } else {
-            for (let t = item.maxTier; t >= 1; t--) {
-              if (swPackages.includes(`${key}_${t}`) || swPackages.includes(`angels_descent_${key}_${t}`)) {
-                currentTier = t;
-                break;
-              }
+    let totalOpalsSpent = 0;
+
+    menuConfig.data.forEach(item => {
+      if (!item) return;
+
+      if (item.id === "custom_opal" && item.baseLore) {
+        item.rawLore = item.baseLore.replace("{OPALS}", userOpals.toLocaleString());
+        item.isLocked = false;
+        return;
+      }
+
+      if (!item.apiKey) return;
+
+      let currentTier = 0;
+      let isFullyMaxed = false;
+      const key = item.apiKey.toLowerCase();
+
+      if (item.maxTier) {
+        const rawVal = swStats[key] ?? swStats[`solo_${key}`] ?? swStats[`angels_descent_${key}`];
+        if (typeof rawVal === 'number' && rawVal > 0) {
+          currentTier = rawVal;
+        } else {
+          for (let t = item.maxTier; t >= 1; t--) {
+            if (swPackages.includes(`${key}_${t}`) || swPackages.includes(`angels_descent_${key}_${t}`)) {
+              currentTier = t;
+              break;
             }
           }
-          isFullyMaxed = currentTier >= item.maxTier;
-        } else {
-          const rawVal = swStats[key] ?? swStats[`solo_${key}`] ?? swStats[`angels_descent_${key}`];
-          
-          const unlocked = (typeof rawVal === 'number' && rawVal > 0) || 
-                           rawVal === true || 
-                           swPackages.some(pkg => pkg === key || pkg === `angels_descent_${key}` || pkg.endsWith(`_${key}`));
-
-          if (unlocked) {
-            currentTier = 1;
-            isFullyMaxed = true;
-          }
         }
+        isFullyMaxed = currentTier >= item.maxTier;
+      } else {
+        const rawVal = swStats[key] ?? swStats[`angels_descent_${key}`];
+        const isStatUnlocked = (typeof rawVal === 'number' && rawVal > 0) || rawVal === true;
+        const isPackageUnlocked = swPackages.includes(`angels_descent_${key}`) || swPackages.includes(key);
 
-        if (isFullyMaxed && item.opalCost) {
-          totalOpalsSpent += item.opalCost;
-        } else if (currentTier > 0 && item.maxTier && item.opalCost) {
-          totalOpalsSpent += Math.floor((item.opalCost / item.maxTier) * currentTier);
+        if (isStatUnlocked || isPackageUnlocked) {
+          currentTier = 1;
+          isFullyMaxed = true;
         }
+      }
 
-        const titleBase = item.baseTitle || item.rawName.replace(/&[0-9a-f]/gi, '').replace(/§[0-9a-f]/gi, '');
+      if (isFullyMaxed && item.opalCost) {
+        totalOpalsSpent += item.opalCost;
+      } else if (currentTier > 0 && item.maxTier && item.opalCost) {
+        totalOpalsSpent += Math.floor((item.opalCost / item.maxTier) * currentTier);
+      }
 
-        if (isFullyMaxed) {
-          item.id = item.originalId || item.id;
-          item.isLocked = false;
-          item.rawName = `&a${titleBase}${item.maxTier ? ' ' + NUM_ROMAN[item.maxTier - 1] : ''}`;
-          item.rawLore = item.baseLore + "\n\n&aPurchased!";
-        } 
-        else if (currentTier > 0) {
-          item.id = item.originalId || item.id;
-          item.isLocked = false;
-          item.rawName = `&a${titleBase} ${NUM_ROMAN[currentTier - 1]}`;
-          item.rawLore = item.baseLore + `\n\n&7Cost: &9${item.cost}\n&eCurrent Tier: ${currentTier}/${item.maxTier}`;
-        } 
-        else {
-          if (!item.originalId) item.originalId = item.id;
-          item.id = item.isCosmetic ? "coal_block" : "coal";
-          item.isLocked = true;
-          item.rawName = `&c${titleBase}${item.maxTier ? ' ' + NUM_ROMAN[item.maxTier - 1] : ''}`;
-          item.rawLore = item.baseLore + `\n\n&7Cost: &9${item.cost}\n&cLocked!`;
-        }
-      });
+      const titleBase = item.baseTitle || item.rawName.replace(/&[0-9a-f]/gi, '').replace(/§[0-9a-f]/gi, '');
 
-      document.getElementById('pill-opals').innerHTML = `<span style="color:#5555FF">${userOpals.toLocaleString()}</span> <span style="color:#777">(${totalOpalsSpent.toLocaleString()} Spent)</span>`;
-      document.getElementById('pill-coins').textContent = userCoins.toLocaleString();
-      document.getElementById('pill-souls').textContent = userSouls.toLocaleString();
-      document.getElementById('pill-corruption').textContent = `${userCorruption}%`;
-      
-      document.getElementById('player-summary-panel').style.display = 'flex';
-      document.getElementById('stats-side-panel').style.display = 'flex';
+      if (isFullyMaxed) {
+        item.id = item.originalId || item.id;
+        item.isLocked = false;
+        item.rawName = `&a${titleBase}${item.maxTier ? ' ' + NUM_ROMAN[item.maxTier - 1] : ''}`;
+        item.rawLore = item.baseLore + "\n\n&aPurchased!";
+      } else if (currentTier > 0) {
+        item.id = item.originalId || item.id;
+        item.isLocked = false;
+        item.rawName = `&a${titleBase} ${NUM_ROMAN[currentTier - 1]}`;
+        item.rawLore = item.baseLore + `\n\n&7Cost: &9${item.cost}\n&eCurrent Tier: ${currentTier}/${item.maxTier}`;
+      } else {
+        if (!item.originalId) item.originalId = item.id;
+        item.id = item.isCosmetic ? "coal_block" : "coal";
+        item.isLocked = true;
+        item.rawName = `&c${titleBase}${item.maxTier ? ' ' + NUM_ROMAN[item.maxTier - 1] : ''}`;
+        item.rawLore = item.baseLore + `\n\n&7Cost: &9${item.cost}\n&cLocked!\n&eClick to show unlock path`;
+      }
+    });
 
+    const pillOpals = document.getElementById('pill-opals');
+    if (pillOpals) {
+      pillOpals.innerHTML = `<span style="color:var(--stat-blue)">${userOpals.toLocaleString()}</span> <span style="color:var(--text-3, var(--text-2))">(${totalOpalsSpent.toLocaleString()} Spent)</span>`;
+    }
+    setVal('pill-coins', userCoins.toLocaleString());
+    setVal('pill-souls', userSouls.toLocaleString());
+    setVal('pill-corruption', `${userCorruption}%`);
+    
+    const defaultCard = document.getElementById('default-info-card');
+    const summaryPanel = document.getElementById('player-summary-panel');
+    if (defaultCard) defaultCard.style.display = 'none';
+    if (summaryPanel) summaryPanel.style.display = 'flex';
+
+    if (statusEl) {
       statusEl.textContent = `Showing Angel's Descent unlocks for ${data.username}`;
       statusEl.className = "status-green";
-      renderGrid();
+    }
+    renderGrid();
 
-    } catch (e) {
+  } catch (e) {
+    if (statusEl) {
       statusEl.textContent = e.message || "Failed to fetch player data.";
       statusEl.className = "status-red";
     }
+  } finally {
+    if (typeof window.hideLoader === 'function') {
+      window.hideLoader();
+    }
   }
+}
 
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('display-title').innerText = menuConfig.title;
+// Safely instantiate Tour
+let angelTour = null;
+if (typeof LitTour !== 'undefined') {
+  angelTour = new LitTour('angel', [
+    {
+      target: '#tour-search-container',
+      title: 'Search Player',
+      desc: 'Enter any username or UUID to inspect live tree unlocks, Opals spent, and stats.',
+      position: 'bottom'
+    },
+    {
+      target: '#stats-side-panel',
+      title: 'Tree & Player Stats',
+      desc: "Displays total Angel's Descent tree costs by default, and switches to live SkyWars summary stats when loaded.",
+      position: 'right'
+    },
+    {
+      target: '.slot[data-index="11"]',
+      title: 'Try Pathfinding',
+      desc: 'Click Tenacity to calculate its shortest unlock path!',
+      position: 'right',
+      interactive: true,
+      pad: 4,
+      onShow: () => closePathPanel()
+    }
+  ]);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('display-title').innerText = menuConfig.title;
+  resetToDefault();
+
+  document.getElementById('search-btn').addEventListener('click', () => {
+    const val = document.getElementById('player-input').value.trim();
+    fetchPlayerUnlocks(val);
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    document.getElementById('player-input').value = '';
     resetToDefault();
+  });
 
-    document.getElementById('search-btn').addEventListener('click', () => {
+  document.getElementById('player-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
       const val = document.getElementById('player-input').value.trim();
       fetchPlayerUnlocks(val);
-    });
-
-    document.getElementById('reset-btn').addEventListener('click', () => {
-      document.getElementById('player-input').value = '';
-      resetToDefault();
-    });
-
-    document.getElementById('player-input').addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        const val = document.getElementById('player-input').value.trim();
-        fetchPlayerUnlocks(val);
-      }
-    });
-  });
-
-  document.addEventListener('tt-format', (e) => {
-    const it = e.detail.item;
-    let h = `<span class="tt-name" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8);">${parseMinecraftColors(it.rawName || '&f' + it.id)}</span>`;
-    
-    if (it.rawLore) {
-        const lines = it.rawLore.split('\n');
-        for (const l of lines) {
-            h += `<span class="tt-line" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px;">${parseMinecraftColors(l)}</span>`;
-        }
     }
-    e.detail.html = h;
   });
+
+  document.getElementById('menu-grid').addEventListener('click', (e) => {
+    const slotEl = e.target.closest('.slot');
+    if (!slotEl) return;
+    const index = parseInt(slotEl.getAttribute('data-index'), 10);
+    if (!isNaN(index)) {
+      if (angelTour && angelTour.active) {
+        angelTour.skip();
+      }
+      handleSlotClick(index);
+    }
+  });
+
+  setTimeout(() => {
+    if (angelTour) angelTour.start(false);
+  }, 600);
+});
+
+document.addEventListener('tt-format', (e) => {
+  const it = e.detail.item;
+  let h = `<span class="tt-name" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8);">${parseMinecraftColors(it.rawName || '&f' + it.id)}</span>`;
+  
+  if (it.rawLore) {
+    const lines = it.rawLore.split('\n');
+    for (const l of lines) {
+      h += `<span class="tt-line" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px;">${parseMinecraftColors(l)}</span>`;
+    }
+  }
+  e.detail.html = h;
+});
 </script>
 </body>
 </html>
