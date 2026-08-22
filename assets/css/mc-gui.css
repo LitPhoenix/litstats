@@ -7,20 +7,20 @@
   --grid-gap: 0px;
 }
 
-main.mc-scale-engine {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 16px auto 32px auto;
-  width: 100%;
+.mc-scale-engine {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin: 0 auto !important;
+  width: fit-content !important;
   image-rendering: pixelated;
   user-select: none;
-  zoom: 1;
+  transform-origin: top center;
 }
 
 @media (min-width: 768px) {
-  main.mc-scale-engine {
-    zoom: 1.4;
+  .mc-scale-engine {
+    zoom: 1.25;
   }
 }
 
@@ -31,6 +31,8 @@ main.mc-scale-engine {
   border-bottom-color: #555;
   padding: 12px;
   box-shadow: 0 0 0 2px #000, 0 10px 40px rgba(0,0,0,.5);
+  box-sizing: border-box;
+  display: inline-block;
 }
 
 .mc-title {
@@ -42,10 +44,11 @@ main.mc-scale-engine {
 }
 
 .mc-grid {
-  display: grid;
-  grid-template-columns: repeat(var(--cols, 9), var(--slot-size));
-  grid-template-rows: repeat(var(--rows, auto), var(--slot-size));
-  gap: var(--grid-gap);
+  display: grid !important;
+  grid-template-columns: repeat(var(--cols, 9), var(--slot-size)) !important;
+  grid-template-rows: repeat(var(--rows, auto), var(--slot-size)) !important;
+  gap: var(--grid-gap) !important;
+  width: fit-content !important;
 }
 
 .slot {
@@ -60,6 +63,7 @@ main.mc-scale-engine {
   border: 2px solid #373737;
   border-right-color: #fff;
   border-bottom-color: #fff;
+  box-sizing: border-box;
 }
 
 .slot:hover {
@@ -67,15 +71,53 @@ main.mc-scale-engine {
   z-index: 10;
 }
 
-/* Heatmap tiers */
-.slot.lvl-1, .slot.lvl-2, .slot.lvl-3 { background-color: rgba(255,85,85,.4) !important; }
-.slot.lvl-4, .slot.lvl-5, .slot.lvl-6 { background-color: rgba(255,151,54,.4) !important; }
-.slot.lvl-7, .slot.lvl-8             { background-color: rgba(255,196,0,.3) !important; }
-.slot.lvl-9                           { background-color: rgba(208,255,0,.3) !important; }
-.slot.lvl-10                          { background-color: rgba(0,170,0,.3) !important; }
-.slot.lvl-p1                          { background-color: rgba(0,170,170,.4) !important; }
-.slot.lvl-p2                          { background-color: rgba(160,65,255,.25) !important; }
-.slot.locked-star-slot                { background-color: rgba(255,85,85,.4) !important; }
+/* ==========================================================================
+   SLOT HEATMAP TIERS & COLOURBLIND MAPPINGS
+   ========================================================================== */
+
+/* 1. Default Palette (Red -> Orange -> Yellow -> Green -> Aqua -> Purple) */
+.slot.lvl-1, .slot.lvl-2, .slot.lvl-3 { background-color: rgba(255, 85, 85, 0.4) !important; }
+.slot.lvl-4, .slot.lvl-5, .slot.lvl-6 { background-color: rgba(255, 151, 54, 0.4) !important; }
+.slot.lvl-7, .slot.lvl-8             { background-color: rgba(255, 196, 0, 0.3) !important; }
+.slot.lvl-9                           { background-color: rgba(208, 255, 0, 0.3) !important; }
+.slot.lvl-10                          { background-color: rgba(0, 170, 0, 0.35) !important; }
+.slot.lvl-p1                          { background-color: rgba(0, 170, 170, 0.4) !important; }
+.slot.lvl-p2                          { background-color: rgba(160, 65, 255, 0.3) !important; }
+.slot.locked-star-slot                { background-color: rgba(255, 85, 85, 0.4) !important; }
+
+/* 2. Red-Green Assist (Protan / Deutan: Deep Navy -> Royal -> Sky -> Cyan -> Gold -> Starlight White) */
+html[data-a11y="protan-deutan"] .slot.lvl-1,
+html[data-a11y="protan-deutan"] .slot.lvl-2,
+html[data-a11y="protan-deutan"] .slot.lvl-3 { background-color: rgba(59, 130, 246, 0.35) !important; }
+
+html[data-a11y="protan-deutan"] .slot.lvl-4,
+html[data-a11y="protan-deutan"] .slot.lvl-5,
+html[data-a11y="protan-deutan"] .slot.lvl-6 { background-color: rgba(96, 165, 250, 0.35) !important; }
+
+html[data-a11y="protan-deutan"] .slot.lvl-7,
+html[data-a11y="protan-deutan"] .slot.lvl-8 { background-color: rgba(56, 189, 248, 0.35) !important; }
+
+html[data-a11y="protan-deutan"] .slot.lvl-9  { background-color: rgba(125, 211, 252, 0.4) !important; }
+html[data-a11y="protan-deutan"] .slot.lvl-10 { background-color: rgba(165, 243, 252, 0.45) !important; }
+html[data-a11y="protan-deutan"] .slot.lvl-p1 { background-color: rgba(251, 191, 36, 0.45) !important; }
+html[data-a11y="protan-deutan"] .slot.lvl-p2 { background-color: rgba(255, 255, 255, 0.5) !important; }
+
+/* 3. Blue-Yellow Assist (Tritan: Crimson -> Red -> Rose -> Light Pink -> Teal -> Neon Lime) */
+html[data-a11y="tritan"] .slot.lvl-1,
+html[data-a11y="tritan"] .slot.lvl-2,
+html[data-a11y="tritan"] .slot.lvl-3 { background-color: rgba(159, 18, 57, 0.4) !important; }
+
+html[data-a11y="tritan"] .slot.lvl-4,
+html[data-a11y="tritan"] .slot.lvl-5,
+html[data-a11y="tritan"] .slot.lvl-6 { background-color: rgba(225, 29, 72, 0.4) !important; }
+
+html[data-a11y="tritan"] .slot.lvl-7,
+html[data-a11y="tritan"] .slot.lvl-8 { background-color: rgba(244, 63, 94, 0.35) !important; }
+
+html[data-a11y="tritan"] .slot.lvl-9  { background-color: rgba(251, 113, 133, 0.4) !important; }
+html[data-a11y="tritan"] .slot.lvl-10 { background-color: rgba(254, 205, 211, 0.45) !important; }
+html[data-a11y="tritan"] .slot.lvl-p1 { background-color: rgba(20, 184, 166, 0.45) !important; }
+html[data-a11y="tritan"] .slot.lvl-p2 { background-color: rgba(132, 204, 22, 0.45) !important; }
 
 .item-wrapper {
   width: 32px;
@@ -109,26 +151,24 @@ main.mc-scale-engine {
 }
 
 /* Dark Mode */
-[data-theme="dark"] .mc-container {
+[data-theme="dark"],[data-theme="midnight"] .mc-container {
   background: rgba(35,35,35,.95);
   border-color: rgba(255,255,255,.15);
   border-right-color: rgba(0,0,0,.8);
   border-bottom-color: rgba(0,0,0,.8);
 }
-[data-theme="dark"] .mc-title { color: #ddd; text-shadow: 2px 2px 0 #000; }
-[data-theme="dark"] #crafting-arrow { color: #aaa; text-shadow: 2px 2px 0 #000; }
-[data-theme="dark"] .slot { border-color: rgba(0,0,0,.8); border-right-color: rgba(255,255,255,.1); border-bottom-color: rgba(255,255,255,.1); }
-[data-theme="dark"] .slot:not([class*="lvl-"]):not(.locked-star-slot) { background: rgba(80,80,80,.3); }
-[data-theme="dark"] .inv-player-box {
+[data-theme="dark"],[data-theme="midnight"] .mc-title { color: #ddd; text-shadow: 2px 2px 0 #000; }
+[data-theme="dark"],[data-theme="midnight"] #crafting-arrow { color: #aaa; text-shadow: 2px 2px 0 #000; }
+[data-theme="dark"],[data-theme="midnight"] .slot { border-color: rgba(0,0,0,.8); border-right-color: rgba(255,255,255,.1); border-bottom-color: rgba(255,255,255,.1); }
+[data-theme="dark"],[data-theme="midnight"] .slot:not([class*="lvl-"]):not(.locked-star-slot) { background: rgba(80,80,80,.3); }
+[data-theme="dark"],[data-theme="midnight"] .inv-player-box {
   background-color: rgba(20,20,20,.8);
   border-color: rgba(0,0,0,.8);
   border-right-color: rgba(255,255,255,.1);
   border-bottom-color: rgba(255,255,255,.1);
 }
 
-/* ==========================================================================
-   TOOLTIP SETTINGS: Adjust max-width here if you want it wider or narrower
-   ========================================================================== */
+/* Tooltip Settings */
 .mc-tooltip {
   display: none;
   position: fixed;
@@ -137,7 +177,7 @@ main.mc-scale-engine {
   z-index: 99999;
   pointer-events: none;
   padding: 6px 10px;
-  max-width: 480px; /* <-- ADJUST MAX WIDTH HERE (Defaulted to 480px) */
+  max-width: min(480px, calc(100vw - 20px)) !important;
   width: max-content;
   color: #fff;
   background: rgba(16,0,16,.96);
@@ -146,9 +186,10 @@ main.mc-scale-engine {
   font-family: var(--mc-font);
   box-shadow: 2px 0 0 0 #000, -2px 0 0 0 #000, 0 2px 0 0 #000, 0 -2px 0 0 #000;
   word-break: break-word;
+  word-wrap: break-word !important;
   white-space: normal;
   line-height: 1.35;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 .mc-tooltip.show {
