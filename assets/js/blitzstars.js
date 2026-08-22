@@ -323,6 +323,22 @@ function formatRankHtml(rank, plusColour, monthlyRankColor) {
   return `<span style="color:${baseColor}; font-family: var(--mc-font), monospace; font-weight: normal;">[${formatted}]</span>`;
 }
 
+function renderPlayerSkinViewer(usernameOrUuid) {
+    if (typeof MCEngine === 'undefined' || !MCEngine.viewers) return;
+    const target = usernameOrUuid || 'MHF_Steve';
+    const skinUrl = `https://minotar.net/skin/${target}`;
+
+    Object.values(MCEngine.viewers).forEach(viewer => {
+        try {
+            if (typeof viewer.loadSkin === 'function') {
+                viewer.loadSkin(skinUrl);
+            }
+        } catch(err) {
+            console.warn("Could not load 3D skin viewer:", err);
+        }
+    });
+}
+
 function getStarAssetUrl(it) {
   if (!it) return '';
   if (it.customImg) return it.customImg;
@@ -455,10 +471,22 @@ function updateStarCoinPanel() {
   document.getElementById('player-star-panel').style.display = 'flex';
 }
 
+const starSearchInput = document.getElementById('star-player-search');
+if (starSearchInput) {
+    starSearchInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') fetchStarPlayer();
+    });
+    starSearchInput.addEventListener('change', e => {
+        if (typeof window.syncNavigationLinks === 'function') {
+            window.syncNavigationLinks(e.target.value.trim());
+        }
+    });
+}
+
 window.enablePreviewAllStars = function() {
   window.PLAYER_STARS = null;
+  sessionStorage.removeItem('active_player_session');
   sessionStorage.removeItem('blitz_user');
-  localStorage.removeItem('blitz_skin_username');
   
   const searchInput = document.getElementById('star-player-search');
   if (searchInput) searchInput.value = '';
@@ -477,14 +505,11 @@ window.enablePreviewAllStars = function() {
   document.getElementById('player-avatar-panel').style.display = 'none';
   document.getElementById('player-star-panel').style.display = 'none';
 
-  if (MCEngine.viewers) {
-    Object.values(MCEngine.viewers).forEach(v => {
-      try { v.loadSkin('img/skin.png'); } catch(e) {}
-    });
-  }
+  renderPlayerSkinViewer('MHF_Steve');
 
-  const blitzLink = document.getElementById('tool-link-blitz');
-  if (blitzLink) blitzLink.href = 'blitz.html';
+  if (typeof window.syncNavigationLinks === 'function') {
+    window.syncNavigationLinks('');
+  }
 
   initStarChest();
   window.history.pushState({}, '', window.location.pathname);
@@ -492,38 +517,56 @@ window.enablePreviewAllStars = function() {
 
 async function fetchStarPlayer(customUsername) {
   const inputEl = document.getElementById('star-player-search');
-  const username = customUsername || inputEl.value.trim();
+  const username = customUsername || (inputEl ? inputEl.value.trim() : '');
   if (!username) return;
   
-  inputEl.value = username;
+  if (inputEl) inputEl.value = username;
   const errEl = document.getElementById('star-error-msg');
-  errEl.textContent = "Loading Blitz Stars from API...";
-  errEl.style.color = "var(--text-3)";
+  if (errEl) {
+    errEl.textContent = "Loading Blitz Stars from API...";
+    errEl.style.color = "var(--text-3)";
+  }
+
+  if (typeof window.showLoader === 'function') {
+    window.showLoader('Loading Blitz Stars...');
+  }
 
   try {
-    const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${username}`);
-    if (dbRes.status === 429) throw new Error("Rate Limited by PlayerDB.");
-    const dbData = await dbRes.json();
-    if (dbData.code !== 'player.found') throw new Error("Player not found.");
-    const uuid = dbData.data.player.raw_id;
-    const realName = dbData.data.player.username;
+    let uuid = username;
+    let realName = username;
 
-    const isLocalVercel = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port === '3000';
-    const apiUrl = isLocalVercel 
-        ? `/api/player?uuid=${uuid}` 
-        : `https://api.litstats.com/api/player?uuid=${uuid}`;
+    if (username.length <= 16) {
+      const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${encodeURIComponent(username)}`);
+      if (dbRes.status === 429) throw new Error("Rate Limited by PlayerDB.");
+      const dbData = await dbRes.json();
+      if (dbData.code !== 'player.found') throw new Error("Player not found on Mojang.");
+      uuid = dbData.data.player.raw_id;
+      realName = dbData.data.player.username;
+    }
 
-    const res = await fetch(apiUrl);
-    if (res.status === 429) throw new Error("Rate Limited by Hypixel.");
+    const res = await fetch(`/api/player?uuid=${encodeURIComponent(uuid)}`);
+    if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
+    
+    const contentType = res.headers.get("content-type") || "";
+    if (!res.ok || contentType.includes("text/html")) {
+      throw new Error(`API returned HTTP ${res.status}.`);
+    }
+
     const vData = await res.json();
     if (vData.error) throw new Error(vData.error);
 
     window.PLAYER_STARS = vData.blitzStars || [];
+    sessionStorage.setItem('active_player_session', realName);
     sessionStorage.setItem('blitz_user', realName);
-    localStorage.setItem('blitz_skin_username', realName);
 
-    errEl.textContent = `Showing unlocked Blitz Stars for ${realName}`;
-    errEl.style.color = "var(--green)";
+    if (typeof window.syncNavigationLinks === 'function') {
+      window.syncNavigationLinks(realName);
+    }
+
+    if (errEl) {
+      errEl.textContent = `Showing unlocked Blitz Stars for ${realName}`;
+      errEl.style.color = "var(--green)";
+    }
 
     const rankHtml = formatRankHtml(vData.rank, vData.rankPlusColor, vData.monthlyRankColor);
     const baseColor = getRankBaseColourHex(vData.rank, vData.monthlyRankColor);
@@ -531,24 +574,25 @@ async function fetchStarPlayer(customUsername) {
     if (sideLabel) {
       sideLabel.innerHTML = `${rankHtml}${rankHtml ? ' ' : ''}<span style="color:${baseColor}; font-family: var(--mc-font), monospace; font-weight: normal;">${realName}</span>`;
     }
-    document.getElementById('player-avatar-panel').style.display = 'flex';
+    
+    const avatarPanel = document.getElementById('player-avatar-panel');
+    if (avatarPanel) avatarPanel.style.display = 'flex';
 
-    if (MCEngine.viewers) {
-      Object.values(MCEngine.viewers).forEach(v => {
-        try { v.loadSkin(`https://minotar.net/skin/${realName}`); } catch(e) {}
-      });
-    }
-
-    const blitzLink = document.getElementById('tool-link-blitz');
-    if (blitzLink) blitzLink.href = `blitz.html?player=${encodeURIComponent(realName)}`;
+    renderPlayerSkinViewer(uuid || realName);
 
     updateStarCoinPanel();
     initStarChest();
     window.history.pushState({}, '', `${window.location.pathname}?player=${encodeURIComponent(realName)}`);
 
   } catch (e) {
-    errEl.textContent = e.message;
-    errEl.style.color = "var(--red)";
+    if (errEl) {
+      errEl.textContent = e.message;
+      errEl.style.color = "var(--red)";
+    }
+  } finally {
+    if (typeof window.hideLoader === 'function') {
+      window.hideLoader();
+    }
   }
 }
 
@@ -581,12 +625,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setTimeout(() => {
     MCEngine.initPlayerCanvas('player-canvas-main', 'side-player-box-id');
-    const savedSkinUser = localStorage.getItem('blitz_skin_username');
-    if (savedSkinUser && MCEngine.viewers) {
-      Object.values(MCEngine.viewers).forEach(v => {
-        try { v.loadSkin(`https://minotar.net/skin/${savedSkinUser}`); } catch(e) {}
-      });
-    }
   }, 100);
 
   const searchInput = document.getElementById('star-player-search');
@@ -594,10 +632,15 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('keydown', e => {
       if (e.key === 'Enter') fetchStarPlayer();
     });
+    searchInput.addEventListener('input', e => {
+      if (typeof window.syncNavigationLinks === 'function') {
+        window.syncNavigationLinks(e.target.value.trim());
+      }
+    });
   }
 
   const params = new URLSearchParams(window.location.search);
-  const playerParam = params.get('player') || sessionStorage.getItem('blitz_user');
+  const playerParam = params.get('player') || params.get('uuid') || sessionStorage.getItem('active_player_session') || sessionStorage.getItem('blitz_user');
 
   if (playerParam) {
     fetchStarPlayer(playerParam);
