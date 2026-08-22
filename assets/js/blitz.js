@@ -10,7 +10,7 @@ const chestMap = [
     {id:'feather', name:'Phoenix', lore:'Reborn from the ashes'}, {id:'iron_chestplate', name:'Paladin', lore:'Justice.'}, {id:'rotten_flesh', name:'Necromancer', lore:'Living dead mobs'},
     {id:'potion', name:'Scout', customImg:'img/blitz/items/Potion_of_Swiftness.png', stack: 2, lore:'Keep running!'}, {id:'grass', name:'Hunter', customImg:'img/blitz/items/Grass.png', lore:'Chase down your prey!'}, {id:'stone_sword', name:'Warrior', lore:'Pure combat'},
     {id:'minecart', name:'Hype Train', lore:'Can\'t stop this!'}, {id:'fishing_rod', name:'Fisherman', lore:'Here - fishy fishy.'}, {id:'milk_bucket', name:'Milkman', lore:'Hits the spot!'},
-    {id:'cactus', name:'Florist', customImg:'img/blitz/cactus.png', lore:'Every rose has its thorn'}, {id:'diamond_boots', name:'Diver', lore:'Dive deep into Blitz.'}, {id:'spider_spawn_egg', name:'Arachnologist', lore:'Some people might be scared'},
+    {id:'cactus', name:'Florist', customImg:'img/blitz/cactus.png', lore:'Every rose has its thorn'}, {id:'diamond_boots', name:'Diver', lore:'Dive deep into Blitz.'}, {id:'spider_spawn_egg', name:'Arachnologist'},
     {id:'blaze_rod', name:'Blaze', lore:'Burn, baby burn.'}, {id:'bone', name:'Wolftamer', lore:'Howl at the moon!'}, {id:'experience_bottle', name:'Tim', stack: 3, lore:'The Enchanter'},
     {id:'snowball', name:'Snowman', lore:'Full of festive spirit'}, {id:'stick', name:'Rambo', lore:'Blood. Sweat. Tears.'}, {id:'egg', name:'Farmer', lore:'Me chicken be layin\' eggs'}, {id:'leather_chestplate', name:'Armorer', customImg:'img/blitz/leather_armor/armorer_leather_chestplate.png', lore:'Not quite a bodyguard'},
     {id:'tnt', name:'Creepertamer', customImg:'img/blitz/tnt.png', lore:'Explosions are tasty'}, null,
@@ -62,6 +62,52 @@ function getBlitzAssetUrl(it) {
     if (id === 'tall_grass' || id === 'grass' || id === 'short_grass') return 'img/blitz/items/Grass.png';
 
     return `img/blitz/items/${id}.png`;
+}
+
+function getPlusColourHex(colourName) {
+    const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
+    return colours[colourName] || '#FF5555';
+}
+
+function getRankBaseColourHex(rank, monthlyRankColor) {
+    if (!rank || rank === 'NON') return '#AAAAAA';
+    const clean = rank.replace(/\[|\]/g, ''); 
+    if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+    if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
+    if (clean.includes('MVP')) return '#55FFFF'; 
+    if (clean.includes('VIP')) return '#55FF55'; 
+    if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
+    if (clean.includes('PIG')) return '#FF55FF'; 
+    return '#AAAAAA';
+}
+
+function formatRankHtml(rank, plusColour, monthlyRankColor) {
+    if (!rank || rank === 'NON') return '';
+    const plusHex = getPlusColourHex(plusColour);
+    const cleanRank = rank.replace(/\[|\]/g, ''); 
+    const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
+
+    let formatted = cleanRank;
+    if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
+    else if (cleanRank.includes('+')) formatted = `${cleanRank.split('+')[0]}<span style="color:${plusHex}">+</span>`;
+
+    return `<span style="color:${baseColor}; font-family: var(--mc-font), monospace; font-weight: normal;">[${formatted}]</span>`;
+}
+
+function renderPlayerSkinViewer(usernameOrUuid) {
+    if (typeof MCEngine === 'undefined' || !MCEngine.viewers) return;
+    const target = usernameOrUuid || 'MHF_Steve';
+    const skinUrl = `https://minotar.net/skin/${target}`;
+
+    Object.values(MCEngine.viewers).forEach(viewer => {
+        try {
+            if (typeof viewer.loadSkin === 'function') {
+                viewer.loadSkin(skinUrl);
+            }
+        } catch(err) {
+            console.warn("Could not load 3D skin viewer:", err);
+        }
+    });
 }
 
 function switchTab(panelContext, tabName) {
@@ -132,17 +178,38 @@ const BASE_UNLOCKS = {
     'blaze': 20000, 'wolftamer': 40000, 'tim': 40000, 'farmer': 10000,
     'creepertamer': 30000, 'snowman': 385000
 };
+
 const UPGRADE_COSTS = [0, 80, 400, 1000, 3000, 12000, 50000, 100000, 250000, 1000000];
+
 const STAR_COSTS = {
-    'assassin': 10000, 'wobbuffet': 20000, 'vaulthunter': 15000, 'witherwarrior': 10000,
+    'assassin': 10000, 'stasis': 20000, 'vaulthunter': 15000, 'witherwarrior': 10000,
     'gremlin': 5000, 'roulette': 10000, 'invoker': 10000, 'ironman': 10000,
     'nuke': 15000, 'ninja': 5000, 'robinhood': 10000, 'supplies': 10000,
-    'shotgun': 20000, 'koolmove': 20000, 'lockdown': 5000, 'time_warp': 10000,
+    'nocountryforoldmen': 20000, 'koolmove': 20000, 'lockdown': 5000, 'time_warp': 10000,
     'acid_rain': 15000, 'infection': 15000, 'pickpocket': 5000, 'ragnarok': 10000,
-    'gladiator': 10000, 'zookeeper': 10000, 'switcheroo': 10000
+    'gladiator': 10000, 'zookeeper': 10000, 'switcheroo': 10000, 'apocalypse': 0,
+    'vampire': 0, 'jedi_knight': 0, 'nocturne': 0, 'lucky_charm': 0
 };
 
-const ULTIMATE_KITS = new Set(["phoenix", "warrior", "donkeytamer", "milkman", "ranger"]);
+const STAR_ALIASES = {
+    'wobbuffet': 'ironman', 'iron_man': 'ironman', 'ironman': 'ironman',
+    'shotgun': 'nocountryforoldmen', 'nocountryforoldmen': 'nocountryforoldmen', 'no_country_for_old_men': 'nocountryforoldmen',
+    'imprison': 'stasis', 'stasis': 'stasis', 'freeze': 'stasis',
+    'sweg_move': 'koolmove', 'swegmove': 'koolmove', 'kool_move': 'koolmove', 'koolmove': 'koolmove',
+    'robin_hood': 'robinhood', 'robinhood': 'robinhood',
+    'vault_hunter': 'vaulthunter', 'vaulthunter': 'vaulthunter',
+    'wither_warrior': 'witherwarrior', 'witherwarrior': 'witherwarrior',
+    'time_warp': 'time_warp', 'timewarp': 'time_warp',
+    'acid_rain': 'acid_rain', 'acidrain': 'acid_rain',
+    'lucky_charm': 'lucky_charm', 'luckycharm': 'lucky_charm'
+};
+
+function resolveStarKey(k) {
+    const norm = normalizeKey(k);
+    return STAR_ALIASES[norm] || STAR_ALIASES[k] || norm;
+}
+
+const ULTIMATE_KITS = new Set(["phoenix", "warrior", "donkeytamer", "milkman", "ranger", "rambo"]);
 const ULTIMATE_ACHIEVEMENTS = {
     'ranger': 'Ranged Combat V',
     'warrior': 'Fighting Expert V',
@@ -176,9 +243,15 @@ function calculateTotalCoins(kits, prestiges, currentCoins, starsArray = []) {
         }
     }
     
-    for (const star of starsArray) {
-        const safeStar = normalizeKey(star);
-        if (STAR_COSTS[safeStar]) sTotal += STAR_COSTS[safeStar];
+    const processedStars = new Set();
+    for (const rawStar of starsArray) {
+        const canonicalKey = resolveStarKey(rawStar);
+        if (!processedStars.has(canonicalKey)) {
+            processedStars.add(canonicalKey);
+            if (STAR_COSTS[canonicalKey]) {
+                sTotal += STAR_COSTS[canonicalKey];
+            }
+        }
     }
     
     const totalSpent = unlocks + upgrades + pTotal + sTotal;
@@ -202,7 +275,9 @@ function updateKitCoins(kitName, selectedTierIndex) {
     let unlockCost = BASE_UNLOCKS[safeName] || 0;
     let unlockHtml = unlockCost > 0 ? unlockCost.toLocaleString() : "0";
     
-    if (ULTIMATE_KITS.has(safeName)) {
+    if (safeName === 'rambo') {
+        unlockHtml = "0";
+    } else if (ULTIMATE_KITS.has(safeName)) {
         unlockHtml = `<span class="text-orange">${ULTIMATE_ACHIEVEMENTS[safeName] || 'Achievement'}</span>`;
     }
 
@@ -211,7 +286,6 @@ function updateKitCoins(kitName, selectedTierIndex) {
 
     if (ULTIMATE_KITS.has(safeName)) {
         cumulativeUpgrades = 0;
-        nextTierCostHtml = `<span class="text-blue">Ultimate</span>`;
     } else if (selectedTierIndex > 0) {
         const targetLvl = Math.min(selectedTierIndex + 1, 10);
         for (let i = 1; i <= targetLvl - 1; i++) {
@@ -219,20 +293,31 @@ function updateKitCoins(kitName, selectedTierIndex) {
         }
     }
 
-    if (!ULTIMATE_KITS.has(safeName)) {
-        if (selectedTierIndex < 9) {
-            const nextCost = UPGRADE_COSTS[selectedTierIndex + 1] || 0;
-            nextTierCostHtml = `${nextCost.toLocaleString()}`;
-        } else if (selectedTierIndex === 9) {
-            nextTierCostHtml = "2,000,000";
-        } else if (selectedTierIndex === 10) {
-            nextTierCostHtml = "Max Tier";
-        }
+    let pLvl = 0;
+    if (window.PLAYER_PRESTIGES) {
+        pLvl = window.PLAYER_PRESTIGES[safeName] || 0;
     }
 
     let prestigeCost = 0;
+
     if (selectedTierIndex === 10) {
         prestigeCost = 2500000;
+        nextTierCostHtml = "Max Tier";
+    } else if (selectedTierIndex === 9) {
+        if (pLvl >= 1) {
+            prestigeCost = 2000000;
+            nextTierCostHtml = pLvl >= 2 ? "Max Tier" : (safeName === 'rambo' ? "2,500,000 Current Coins" : "500,000");
+        } else {
+            prestigeCost = 0;
+            nextTierCostHtml = safeName === 'rambo' ? "2,000,000 Current Coins" : "2,000,000";
+        }
+    } else {
+        prestigeCost = 0;
+        if (!ULTIMATE_KITS.has(safeName)) {
+            nextTierCostHtml = (UPGRADE_COSTS[selectedTierIndex + 1] || 0).toLocaleString();
+        } else {
+            nextTierCostHtml = `<span class="text-blue">Ultimate</span>`;
+        }
     }
 
     const totalCost = (typeof unlockCost === 'number' ? unlockCost : 0) + cumulativeUpgrades + prestigeCost;
@@ -270,6 +355,8 @@ window.enablePreviewAll = function() {
     window.PLAYER_KITS = null;
     window.PLAYER_PRESTIGES = null;
     window.KIT_STATS = null;
+    sessionStorage.removeItem('active_player_session');
+    sessionStorage.removeItem('blitz_user');
     
     const searchInput = document.getElementById('blitz-player-search');
     if (searchInput) searchInput.value = '';
@@ -280,15 +367,13 @@ window.enablePreviewAll = function() {
         errEl.style.color = "var(--green)";
     }
     
-    localStorage.removeItem('blitz_skin_username');
-    if (MCEngine.viewers) {
-        Object.values(MCEngine.viewers).forEach(v => {
-            try { v.loadSkin('img/skin.png'); } catch(e) {}
-        });
-    }
+    renderPlayerSkinViewer('MHF_Steve');
     
     const sideName = document.getElementById('side-username-label');
-    if (sideName) sideName.textContent = 'Username';
+    if (sideName) {
+        sideName.innerHTML = 'Username';
+        sideName.style.color = 'var(--text)';
+    }
     const invName = document.getElementById('inv-username-label');
     if (invName) invName.textContent = 'Username';
     
@@ -297,6 +382,10 @@ window.enablePreviewAll = function() {
     const pAv = document.getElementById('player-avatar-panel');
     if (pAv) pAv.style.display = 'none';
     
+    if (typeof window.syncNavigationLinks === 'function') {
+        window.syncNavigationLinks('');
+    }
+
     clearStats();
     showChestView(true);
     initChest();
@@ -305,26 +394,43 @@ window.enablePreviewAll = function() {
 };
 
 async function fetchBlitzPlayer() {
-    const username = document.getElementById('blitz-player-search').value.trim();
+    const searchInput = document.getElementById('blitz-player-search');
+    const username = searchInput ? searchInput.value.trim() : '';
     if (!username) return;
+
     const errEl = document.getElementById('blitz-error-msg');
-    errEl.textContent = "Loading live stats from API...";
-    errEl.style.color = "var(--text-3)";
+    if (errEl) {
+        errEl.textContent = "Loading live stats from API...";
+        errEl.style.color = "var(--text-3)";
+    }
+
+    if (typeof window.showLoader === 'function') {
+        window.showLoader('Loading Blitz stats...');
+    }
 
     try {
-        const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${username}`);
-        if (dbRes.status === 429) throw new Error("Rate Limited by PlayerDB.");
-        const dbData = await dbRes.json();
-        if (dbData.code !== 'player.found') throw new Error("Player not found.");
-        const uuid = dbData.data.player.raw_id;
+        let uuid = username;
+        let realName = username;
 
-        const isLocalVercel = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port === '3000';
-        const apiUrl = isLocalVercel 
-            ? `/api/player?uuid=${uuid}` 
-            : `https://api.litstats.com/api/player?uuid=${uuid}`;
+        if (username.length <= 16) {
+            const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${encodeURIComponent(username)}`);
+            if (dbRes.status === 429) throw new Error("Rate Limited by PlayerDB. Please wait.");
+            const dbData = await dbRes.json();
+            if (dbData.code !== 'player.found') throw new Error("Player not found on Mojang.");
+            uuid = dbData.data.player.raw_id;
+            realName = dbData.data.player.username;
+        }
 
-        const res = await fetch(apiUrl);
-        if (res.status === 429) throw new Error("Rate Limited by Hypixel.");
+        const res = await fetch(`/api/player?uuid=${encodeURIComponent(uuid)}`);
+        if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
+        
+        const contentType = res.headers.get("content-type") || "";
+        if (!res.ok || contentType.includes("text/html")) {
+            const errorHtml = await res.text();
+            console.error("API Error Response:", errorHtml);
+            throw new Error(`API returned HTTP ${res.status}.`);
+        }
+
         const vData = await res.json();
         if (vData.error) throw new Error(vData.error);
 
@@ -333,18 +439,44 @@ async function fetchBlitzPlayer() {
             window.PLAYER_PRESTIGES = normalizeKitMap(vData.blitzPrestiges || {});
             window.KIT_STATS = normalizeKitMap(vData.kitStats || {});
             
+            const ramboExp = vData.overallStats?.exp_rambo || 0;
+            const rKills = window.KIT_STATS['rambo']?.kills || 0;
+            const rWins = window.KIT_STATS['rambo']?.wins || 0;
+            const playerCoins = vData.currentCoins || 0;
+
+            let simulatedRamboLevel = 1;
+            if (ramboExp >= 10000) simulatedRamboLevel = 10;
+            else if (ramboExp >= 5000) simulatedRamboLevel = 9;
+            else if (ramboExp >= 2500) simulatedRamboLevel = 8;
+            else if (ramboExp >= 2000) simulatedRamboLevel = 7;
+            else if (ramboExp >= 1500) simulatedRamboLevel = 6;
+            else if (ramboExp >= 1000) simulatedRamboLevel = 5;
+            else if (ramboExp >= 500) simulatedRamboLevel = 4;
+            else if (ramboExp >= 250) simulatedRamboLevel = 3;
+            else if (ramboExp >= 100) simulatedRamboLevel = 2;
+
+            window.PLAYER_KITS['rambo'] = simulatedRamboLevel;
+
+            let simulatedRamboPrestige = 0;
+            if (ramboExp >= 10000 && playerCoins >= 2000000) {
+                simulatedRamboPrestige = 1;
+                if (rWins >= 500 && rKills >= 5000 && playerCoins >= 2500000) {
+                    simulatedRamboPrestige = 2;
+                }
+            }
+            window.PLAYER_PRESTIGES['rambo'] = simulatedRamboPrestige;
+
             const os = vData.overallStats || {};
             const totalWins = (os.wins_solo_normal || 0) + (os.wins_teams_normal || 0);
             const totalDeaths = os.deaths || 0;
             
             document.getElementById('main-stat-kills').textContent = (os.kills || 0).toLocaleString();
-            document.getElementById('main-stat-kdr').textContent = totalDeaths > 0 ? (os.kills / totalDeaths).toFixed(2) : os.kills || 0;
+            document.getElementById('main-stat-kdr').textContent = totalDeaths > 0 ? (os.kills / totalDeaths).toFixed(2) : (os.kills || 0);
             document.getElementById('main-stat-wins').textContent = totalWins.toLocaleString();
             document.getElementById('main-stat-wlr').textContent = totalDeaths > 0 ? (totalWins / totalDeaths).toFixed(2) : totalWins;
             document.getElementById('main-stat-playtime').textContent = formatTime(os.timePlayed || 0);
             
             const soloWins = os.wins_solo_normal || 0;
-            const teamWins = os.wins_teams_normal || 0;
             const soloPct = totalWins > 0 ? (soloWins / totalWins) * 100 : 50;
 
             const winBar = document.getElementById('main-win-bar');
@@ -373,36 +505,51 @@ async function fetchBlitzPlayer() {
             const lifeEl = document.getElementById('coin-lifetime');
             if (lifeEl) lifeEl.textContent = costData.lifetime;
 
+            sessionStorage.setItem('active_player_session', realName);
+            sessionStorage.setItem('blitz_user', realName);
+            
+            if (typeof window.syncNavigationLinks === 'function') {
+                window.syncNavigationLinks(realName);
+            }
+
             document.getElementById('coin-spent').textContent = costData.total;
         } else {
             throw new Error("API did not return Blitz Survival Games data.");
         }
 
-        errEl.textContent = `Showing unlocked kits for ${dbData.data.player.username}`;
-        errEl.style.color = "var(--green)"; 
-        
-        document.getElementById('side-username-label').textContent = dbData.data.player.username;
-        document.getElementById('inv-username-label').textContent = dbData.data.player.username;
-        
-        if (MCEngine.viewers) {
-            Object.values(MCEngine.viewers).forEach(v => v.loadSkin(`https://minotar.net/skin/${dbData.data.player.username}`));
+        if (errEl) {
+            errEl.textContent = `Showing unlocked kits for ${realName}`;
+            errEl.style.color = "var(--green)";
         }
-        localStorage.setItem('blitz_skin_username', dbData.data.player.username);
+        
+        const rankHtml = formatRankHtml(vData.rank, vData.rankPlusColor, vData.monthlyRankColor);
+        const baseColor = getRankBaseColourHex(vData.rank, vData.monthlyRankColor);
+        const sideLabel = document.getElementById('side-username-label');
+        if (sideLabel) {
+            sideLabel.innerHTML = `${rankHtml}${rankHtml ? ' ' : ''}<span style="color:${baseColor}; font-family: var(--mc-font), monospace; font-weight: normal;">${realName}</span>`;
+        }
+        
+        const invUsername = document.getElementById('inv-username-label');
+        if (invUsername) invUsername.textContent = realName;
+        
+        renderPlayerSkinViewer(uuid || realName);
         
         switchTab('main', 'stats');
         document.getElementById('player-summary-panel').style.display = 'flex';
         document.getElementById('player-avatar-panel').style.display = 'flex';
         showChestView(true);
         initChest(); 
-        window.history.pushState({}, '', window.location.pathname);
+        window.history.pushState({}, '', `${window.location.pathname}?player=${encodeURIComponent(realName)}`);
         
     } catch(e) {
-        if (e.message.includes('Failed to fetch') && window.location.port === '5500') {
-            errEl.textContent = "CORS Blocked: Please run 'vercel dev' on port 3000 to test locally.";
-        } else {
+        if (errEl) {
             errEl.textContent = e.message;
+            errEl.style.color = "var(--red)";
         }
-        errEl.style.color = "var(--red)";
+    } finally {
+        if (typeof window.hideLoader === 'function') {
+            window.hideLoader();
+        }
     }
 }
 
@@ -410,13 +557,26 @@ document.getElementById('blitz-player-search').addEventListener('keydown', e => 
     if (e.key === 'Enter') fetchBlitzPlayer();
 });
 
+const blitzSearchInput = document.getElementById('blitz-player-search');
+if (blitzSearchInput) {
+    blitzSearchInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') fetchBlitzPlayer();
+    });
+    blitzSearchInput.addEventListener('change', e => {
+        if (typeof window.syncNavigationLinks === 'function') {
+            window.syncNavigationLinks(e.target.value.trim());
+        }
+    });
+}
+
 function initChest() {
     const grid = document.getElementById('chest-grid');
-    let html='';
-    const starImg = `<img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*">`;
+    let html = '';
+    const starP2 = `<img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*"><img src="img/blitz/star_texture.png" class="tt-p2-star" alt="*">`;
+    const starP1 = `<img src="img/blitz/star_texture.png" class="tt-p1-star" alt="*">`;
     
-    for (let i=0; i<45; i++) {
-        if (i===44) {
+    for (let i = 0; i < 45; i++) {
+        if (i === 44) {
             html += `<div class="slot" id="random-slot" title="Random Kit"><div class="item-wrapper"><img id="random-img" src="${getBlitzAssetUrl({id: RANDOM_IDS[0]})}" alt="?"></div></div>`;
         } else if (!chestMap[i]) {
             html += `<div class="slot"></div>`;
@@ -435,16 +595,16 @@ function initChest() {
                 if (ownedLevel === 0) {
                     isLocked = true;
                 } else if (pLvl >= 2) {
-                    displayTitle = `${k.name} ${starImg}${starImg}`;
-                } else if (pLvl === 1) {
-                    displayTitle = `${k.name} ${starImg}`;
+                    displayTitle = `${k.name} ${starP2}`;
+                } else if (pLvl >= 1) {
+                    displayTitle = `${k.name} ${starP1}`;
                 } else {
                     displayTitle = `${k.name} ${NUM_ROMAN[ownedLevel - 1]}`;
                 }
             }
 
             if (isLocked) {
-                const imgUrl = "https://api.minecraftitems.xyz/api/item/red_stained_glass_pane?apiKey=mcapi_5cb1f0643162ea2f7b0aa174d27061cdfa1f35c318532b602a9bf86045063ff9&size=4&glint=false";
+                const imgUrl = "https://api.minecraftitems.xyz/api/item/red_stained_glass_pane?size=4&glint=false";
                 const td = JSON.stringify({id:'red_stained_glass_pane', name:`Locked: ${k.name}`, rarity:'common', lines:[{text:'Player does not own this kit.', cls:'c-red'}]}).replace(/"/g,'&quot;');
                 html += `<div class="slot" data-item="${td}"><div class="item-wrapper"><img src="${imgUrl}" alt="Locked"></div></div>`;
             } else {
@@ -460,7 +620,8 @@ function initChest() {
                 
                 let extraClass = '';
                 if (window.PLAYER_KITS && ownedLevel > 0) {
-                    if (pLvl >= 1) extraClass = ` lvl-p1`;
+                    if (pLvl >= 2) extraClass = ` lvl-p2`;
+                    else if (pLvl >= 1) extraClass = ` lvl-p1`;
                     else extraClass = ` lvl-${ownedLevel}`;
                 }
 
@@ -504,20 +665,22 @@ function openKit(name, skipPush = false) {
     let maxLevel = 11;
     const safeName = normalizeKey(name);
     
-    if (window.PLAYER_KITS && name !== 'Rambo') {
+    if (window.PLAYER_KITS) {
         maxLevel = window.PLAYER_KITS[safeName] || 0;
     }
 
+    const btn10 = document.querySelectorAll('.level-btn')[9];
+    if (btn10) {
+        btn10.textContent = 'X';
+        btn10.classList.remove('level-color-p1');
+    }
+
     document.querySelectorAll('.level-btn').forEach((btn, i) => {
-        if (name === 'Rambo') {
-            btn.style.display = i === 0 ? 'flex' : 'none';
+        btn.style.display = 'flex';
+        if (window.PLAYER_KITS && (i + 1 > maxLevel)) {
+            btn.classList.add('unowned-tier');
         } else {
-            btn.style.display = 'flex';
-            if (window.PLAYER_KITS && (i + 1 > maxLevel)) {
-                btn.classList.add('unowned-tier');
-            } else {
-                btn.classList.remove('unowned-tier');
-            }
+            btn.classList.remove('unowned-tier');
         }
     });
 
@@ -556,11 +719,7 @@ function openKit(name, skipPush = false) {
     document.getElementById('main-menu-layout').style.display = 'none';
     document.getElementById('inventory-view').style.display = 'flex';
     
-    if (name !== 'Rambo') {
-        setLevel(window.PLAYER_KITS ? Math.max(0, maxLevel - 1) : 9);
-    } else {
-        setLevel(0);
-    }
+    setLevel(window.PLAYER_KITS ? Math.max(0, maxLevel - 1) : 9);
     
     if (!skipPush) {
         window.history.pushState({kit: name}, '', window.location.pathname + '?kit=' + safeName);
@@ -601,7 +760,7 @@ function renderInventory() {
     if (topIconEl) topIconEl.src = kImg;
 
     let isOwned = true;
-    if (window.PLAYER_KITS && activeKitName !== 'Rambo') {
+    if (window.PLAYER_KITS) {
         const safeName = normalizeKey(activeKitName);
         const ownedLevel = window.PLAYER_KITS[safeName] || 0;
         if (currentLevelIndex + 1 > ownedLevel) isOwned = false;
@@ -719,26 +878,19 @@ document.addEventListener('tt-format', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    localStorage.removeItem('blitz_skin_username');
-    
+    initChest();
+
     setTimeout(() => {
         MCEngine.initPlayerCanvas('player-canvas-main', 'side-player-box-id');
         MCEngine.initPlayerCanvas('player-canvas-inv', 'inv-player-box-id');
-        if (MCEngine.viewers) {
-            Object.values(MCEngine.viewers).forEach(v => {
-                try { v.loadSkin('img/skin.png'); } catch(e) {}
-            });
-        }
-    }, 100);
+    }, 50);
 
-    initChest();
-    
     const params = new URLSearchParams(window.location.search);
-    const kitParam = params.get('kit');
-    
-    if (kitParam && window.KIT_DATABASE) {
-        const kitName = Object.keys(window.KIT_DATABASE).find(k => normalizeKey(k) === normalizeKey(kitParam));
-        if (kitName) openKit(kitName, true);
+    const playerParam = params.get('player') || params.get('uuid') || sessionStorage.getItem('active_player_session') || sessionStorage.getItem('blitz_user');
+    if (playerParam) {
+        const searchInput = document.getElementById('blitz-player-search');
+        if (searchInput) searchInput.value = playerParam;
+        fetchBlitzPlayer();
     }
 });
 
