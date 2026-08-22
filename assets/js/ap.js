@@ -95,13 +95,16 @@ function getGameIconUrl(gameName) {
 }
 
 function renderMaxesHTML(container, maxes, uuid) {
+  const localPlayer = allPlayersList.find(p => p.uuid === uuid);
+  const identifier = localPlayer?.username || uuid;
+
   if (maxes.length === 0) {
-    container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span><br><a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">View Player Hub ➔</a>`;
+    container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">No maxed games found.</span><br><a href="/cabinet?player=${encodeURIComponent(identifier)}" class="cabinet-btn">View Player Hub ➔</a>`;
     return;
   }
   let html = `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
   maxes.forEach(game => { html += `<div class="mini-game-icon" title="${game}"><img src="${getGameIconUrl(game)}" onerror="this.style.opacity='0'"></div>`; });
-  html += `</div><a href="cabinet.html?uuid=${uuid}" class="cabinet-btn">Enter Player Hub ➔</a>`;
+  html += `</div><a href="/cabinet?player=${encodeURIComponent(identifier)}" class="cabinet-btn">Enter Player Hub ➔</a>`;
   container.innerHTML = html;
 }
 
@@ -309,35 +312,60 @@ document.querySelectorAll('#players-table th[data-col]').forEach(th => {
 });
 
 async function fetchLivePlayer(username) {
-  const qLower = username.toLowerCase(); const cacheKey = `litstats_live_${qLower}`; const searchBox = document.getElementById('searchResults');
+  const qLower = username.toLowerCase();
+  const cacheKey = `litstats_live_${qLower}`;
+  const searchBox = document.getElementById('searchResults');
+
+  if (typeof window.showLoader === 'function') {
+    window.showLoader(`Loading ${username}...`);
+  }
+
   try {
     const cached = sessionStorage.getItem(cacheKey);
     if (cached) {
       const parsedCache = JSON.parse(cached);
-      if (Date.now() - parsedCache.timestamp < 10 * 60 * 1000) { displayLiveResult(parsedCache.data); searchBox.textContent = `Showing cached live data for ${parsedCache.data.actualName}`; return; }
+      if (Date.now() - parsedCache.timestamp < 10 * 60 * 1000) {
+        displayLiveResult(parsedCache.data);
+        if (searchBox) searchBox.textContent = `Showing cached live data for ${parsedCache.data.actualName}`;
+        return;
+      }
     }
     const dbRes = await fetch(`https://playerdb.co/api/player/minecraft/${username}`);
     if (dbRes.status === 429) throw new Error('RATE_LIMIT');
     const dbData = await dbRes.json();
     if (dbData.code !== 'player.found') throw new Error('NOT_FOUND');
-    const uuid = dbData.data.player.raw_id; const actualName = dbData.data.player.username;
+    const uuid = dbData.data.player.raw_id;
+    const actualName = dbData.data.player.username;
 
-    searchBox.textContent = `Loading live stats for ${actualName}...`;
+    if (searchBox) searchBox.textContent = `Loading live stats for ${actualName}...`;
     const vRes = await fetch(`/api/player?uuid=${uuid}`);
     if (vRes.status === 429) throw new Error('RATE_LIMIT');
     const vData = await vRes.json();
     if (vData.error === "Player not found on Hypixel") throw new Error('NOT_FOUND');
     if (vData.error) throw new Error('API_ERROR');
 
-    const finalData = { actualName: actualName, uuid: uuid, achievementPoints: vData.achievementPoints || 0, questsCompleted: vData.questsCompleted || 0, maxGames: vData.maxGames || [] };
+    const finalData = {
+      actualName: actualName,
+      uuid: uuid,
+      achievementPoints: vData.achievementPoints || 0,
+      questsCompleted: vData.questsCompleted || 0,
+      maxGames: vData.maxGames || []
+    };
     sessionStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), data: finalData }));
     playerMaxesCache[uuid] = finalData.maxGames; 
 
-    displayLiveResult(finalData); searchBox.textContent = `Showing live data for ${actualName}`;
+    displayLiveResult(finalData);
+    if (searchBox) searchBox.textContent = `Showing live data for ${actualName}`;
   } catch (e) {
-    if (e.message === 'NOT_FOUND') searchBox.textContent = `Player "${username}" not found on Hypixel.`;
-    else if (e.message === 'RATE_LIMIT') searchBox.textContent = `Slow down! You are being rate-limited. Try again in a minute.`;
-    else searchBox.textContent = `Error fetching data for "${username}". Try again later.`;
+    if (searchBox) {
+      if (e.message === 'NOT_FOUND') searchBox.textContent = `Player "${username}" not found on Hypixel.`;
+      else if (e.message === 'RATE_LIMIT') searchBox.textContent = `Slow down! You are being rate-limited. Try again in a minute.`;
+      else searchBox.textContent = `Error fetching data for "${username}". Try again later.`;
+    }
+  } finally {
+    if (typeof window.hideLoader === 'function') {
+      window.hideLoader();
+    }
   }
 }
 
