@@ -1,5 +1,5 @@
 main { 
-  max-width: 1000px !important; 
+  max-width: 1200px !important; 
   margin: 0 auto !important; 
   padding: 30px 16px 100px !important; 
   display: flex !important; 
@@ -11,13 +11,13 @@ main {
 
 #cabinet-content {
   width: 100% !important;
-  max-width: 1000px !important;
+  max-width: 1200px !important;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* --- HORIZONTAL PROFILE CARD --- */
+/* Horizontal Profile Card */
 .profile-card { 
   background: var(--surface); 
   backdrop-filter: blur(24px) saturate(150%); 
@@ -25,9 +25,9 @@ main {
   border: 1px solid var(--border); 
   border-top: 1px solid var(--glass-edge); 
   border-radius: 8px; 
-  padding: 24px 32px; 
+  padding: 20px 24px; 
   width: 100% !important; 
-  max-width: 1000px !important; 
+  max-width: 1200px !important; 
   margin: 0 auto 30px auto !important; 
   display: flex; 
   flex-direction: column; 
@@ -43,10 +43,9 @@ main {
   position: absolute; 
   top: 0; left: 0; 
   width: 100%; height: 3px; 
-  background: linear-gradient(90deg, var(--accent), #e23719); 
+  background: linear-gradient(90deg, var(--accent), hsl(from var(--accent) h calc(s * 1.5) calc(l * 0.7))); 
 }
 
-/* Background Flag Fade */
 .profile-bg-flag {
   position: absolute;
   top: 0;
@@ -106,7 +105,6 @@ main {
   margin: 0; 
 }
 
-/* Rank Styling & Size */
 .mc-rank {
   font-size: 26px;
   font-family: 'DM Sans', sans-serif;
@@ -116,7 +114,6 @@ main {
   letter-spacing: -0.5px;
 }
 
-/* Custom Badges (Constrained & Cleanly Aligned) */
 #p-custom-badges {
   display: inline-flex;
   align-items: center;
@@ -159,7 +156,6 @@ main {
 .rank-num-pill.rank-2 { background: rgba(192, 192, 192, 0.15); border-color: #c0c0c0; color: #c0c0c0; }
 .rank-num-pill.rank-3 { background: rgba(205, 127, 50, 0.15); border-color: #cd7f32; color: #cd7f32; }
 
-/* Custom AP Pill */
 .ap-stat-pill {
   background: var(--bg);
   border: 1px solid var(--border);
@@ -177,11 +173,6 @@ main {
   box-shadow: inset 0 0 12px var(--ap-glow);
   background: var(--bg);
 }
-.ap-dot {
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--ap-color);
-  box-shadow: 0 0 10px var(--ap-color);
-}
 .ap-stat-pill-inner #p-ap {
   color: var(--ap-color);
   font-size: 20px;
@@ -192,6 +183,9 @@ main {
   letter-spacing: -0.5px;
 }
 
+.history-card .ach-title {
+  color: var(--gold);
+}
 .stat-pill { 
   display: inline-flex; 
   align-items: center; 
@@ -214,7 +208,10 @@ body[data-theme="dark"] .maxed-stat-pill {
 }
 .maxed-stat-pill span { color: var(--text); }
 
-/* Progress Container Click Switcher */
+.history-card.ach-title {
+  color: var(--gold);
+}
+
 .ap-progress-container { 
   width: 100%; 
   display: flex; 
@@ -251,7 +248,7 @@ body[data-theme="dark"] .maxed-stat-pill {
   transition: width 1s ease-out; 
 }
 
-/* --- BUTTONS & CONTROLS --- */
+/* Controls & Buttons */
 .primary-btn {
   background: var(--accent);
   color: white;
@@ -266,7 +263,6 @@ body[data-theme="dark"] .maxed-stat-pill {
 }
 .primary-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
-/* Dark Surface Themed Toggle Buttons */
 .btn-toggle-view {
   background: var(--surface-2) !important;
   color: var(--text-2) !important;
@@ -356,7 +352,7 @@ body[data-theme="dark"] .maxed-stat-pill {
 }
 .top-lookup-bar input:focus { border-color: var(--accent); }
 
-/* --- SETTINGS MENU --- */
+/* Settings Dropdown & Header Controls */
 .settings-wrapper { position: relative; }
 .settings-btn {
   background: var(--surface-2);
@@ -372,6 +368,7 @@ body[data-theme="dark"] .maxed-stat-pill {
   gap: 6px;
   font-family: inherit;
   transition: background 0.2s, border-color 0.2s;
+  user-select: none;
 }
 .settings-btn:hover {
   background: var(--surface);
@@ -382,23 +379,18 @@ body[data-theme="dark"] .maxed-stat-pill {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  background: rgba(22, 22, 22, 0.88) !important;
+  background: var(--surface);
   backdrop-filter: blur(16px) saturate(160%);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid var(--border);
   padding: 16px;
   border-radius: 12px;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.6) !important;
+  box-shadow: var(--shadow);
   z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: 14px;
   width: 250px;
-}
-body:not([data-theme="dark"]) .settings-menu {
-  background: rgba(255, 255, 255, 0.88) !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.12) !important;
 }
 
 .setting-item {
@@ -413,70 +405,66 @@ body:not([data-theme="dark"]) .settings-menu {
 .tooltip-container { position: relative; }
 .tooltip-text { 
   visibility: hidden; width: 220px; 
-  background-color: rgba(24, 24, 24, 0.92) !important; 
+  background-color: var(--surface); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--text);
   text-align: center; border-radius: 6px; padding: 10px; position: absolute; z-index: 1100;
   top: 130%; right: 0; opacity: 0; transition: opacity 0.2s ease;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important; 
-  box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+  border: 1px solid var(--border); 
+  box-shadow: var(--shadow);
   font-size: 12px; font-weight: 500; pointer-events: none;
-}
-body:not([data-theme="dark"]) .tooltip-text {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-  border-color: rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1) !important;
 }
 .tooltip-container:hover .tooltip-text { visibility: visible; opacity: 1; }
 
-/* --- TOGGLES --- */
 .toggle-switch { position: relative; display: inline-block; width: 38px; height: 22px; margin: 0; flex-shrink: 0; }
 .toggle-switch input { opacity: 0; width: 0; height: 0; }
-.toggle-switch .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.15); transition: .3s; border-radius: 22px; }
+.toggle-switch .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.15); transition: .3s; border-radius: 22px; }
 .toggle-switch .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
 .toggle-switch input:checked + .slider { background-color: var(--accent); }
 .toggle-switch input:checked + .slider:before { transform: translateX(16px); }
 
-/* --- INCOMPLETE GAME FILTER PILLS WITH NAMES & PROGRESS FILLS --- */
+/* 4 In a line Grid on PC */
 .filter-icon-grid { 
-  display: flex !important; 
-  flex-wrap: wrap !important; 
-  gap: 8px !important; 
+  display: grid !important; 
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 6px !important; 
   width: 100% !important; 
   background: var(--surface) !important; 
   border: 1px solid var(--border) !important; 
-  padding: 12px !important; 
-  border-radius: 10px !important; 
+  padding: 8px 10px !important; 
+  border-radius: 8px !important; 
   box-sizing: border-box !important; 
-  margin-top: 12px !important; 
+  margin-top: 10px !important; 
 }
 
 .filter-pill-btn {
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
+  justify-content: space-between;
+  gap: 6px;
+  height: 32px;
+  padding: 0 8px 0 6px;
   background: var(--surface-2);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
   overflow: hidden;
   user-select: none;
-  transition: border-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  transition: border-color 0.2s, transform 0.1s;
   box-sizing: border-box;
+  width: 100% !important;
+  white-space: nowrap;
 }
 
 .filter-pill-btn:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
+  border-color: var(--border-strong);
 }
 
 .filter-pill-btn.active {
   border-color: var(--accent) !important;
-  box-shadow: 0 0 10px rgba(255, 81, 0, 0.35);
-  transform: translateY(-2px);
+  box-shadow: 0 0 8px rgba(255, 81, 0, 0.3);
 }
 
 .filter-pill-btn.disabled {
@@ -497,29 +485,37 @@ body:not([data-theme="dark"]) .tooltip-text {
 }
 
 .filter-pill-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   position: relative;
   z-index: 2;
   display: block;
+  flex-shrink: 0;
 }
 
 .filter-pill-name {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text);
   position: relative;
   z-index: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  text-align: left;
+  margin-left: 2px;
 }
 
 .filter-pill-stat {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 600;
   color: var(--text-2);
   position: relative;
   z-index: 2;
-  margin-left: 2px;
+  flex-shrink: 0;
+  text-align: right;
 }
 
 .search-bar-container { width: 100%; margin: 16px 0 12px 0; }
@@ -532,7 +528,6 @@ body:not([data-theme="dark"]) .tooltip-text {
 }
 .search-bar-container input:focus { border-color: var(--gold); }
 
-/* --- HEADER SUB STATS & BAR --- */
 .dynamic-title-box { display: flex; flex-direction: column; gap: 4px; }
 .dynamic-title-top { display: flex; align-items: center; gap: 10px; }
 .dynamic-title-top h2 { font-size: 1.45rem; margin: 0; color: var(--text); }
@@ -564,17 +559,16 @@ body:not([data-theme="dark"]) .tooltip-text {
   transition: width 0.6s ease;
 }
 
-/* --- DASHBOARD GRID & SEPARATORS --- */
 .split-layout {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   gap: 30px;
   margin: 0 auto;
 }
 
-.dash-col-main { width: 100%; max-width: 1000px; }
+.dash-col-main { width: 100%; max-width: 1200px; }
 
 .dashboard-grid {
   display: grid;
@@ -601,8 +595,22 @@ body:not([data-theme="dark"]) .tooltip-text {
   align-items: center;
   gap: 8px;
 }
-.chevron-icon { font-size: 11px; color: var(--text-3); transition: transform 0.2s ease; display: inline-block; }
-.collapsed-section .chevron-icon { transform: rotate(-90deg); }
+.chevron-icon { 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3); 
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); 
+  margin-left: 4px;
+}
+
+.chevron-icon svg {
+  display: block;
+}
+
+.collapsed-section .chevron-icon { 
+  transform: rotate(-90deg); 
+}
 
 .history-col {
   grid-column: 1 / -1; 
@@ -643,7 +651,6 @@ body:not([data-theme="dark"]) .tooltip-text {
   gap: 12px; 
 }
 
-/* --- TIERS & NOTCHES --- */
 .ach-card { 
   background: var(--surface-2); 
   border: 1px solid var(--border); 
@@ -699,13 +706,12 @@ body:not([data-theme="dark"]) .tooltip-text {
 .ach-action-btn:hover { color: var(--accent); }
 .active-bookmark { color: var(--gold); }
 
-/* --- OVERVIEW & GAME BADGES WITH SHINE + TIER BORDERS --- */
 .overview-section {
   margin-top: 40px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   box-sizing: border-box;
 }
 .overview-title {
@@ -735,7 +741,7 @@ body:not([data-theme="dark"]) .tooltip-text {
 
 .game-badge { 
   width: 84px !important;
-  height: 110px; 
+  height: 120px; 
   display: flex; 
   flex-direction: column; 
   align-items: center; 
@@ -768,7 +774,6 @@ body:not([data-theme="dark"]) .tooltip-text {
 .slot-progress { position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(0,0,0,0.25); }
 .slot-fill { height: 100%; transition: width 0.5s ease-out; opacity: 0.55; }
 
-/* Achieved Badges & Shine Glint Animation */
 .game-badge.achieved {
   background: var(--surface-2);
   border-width: 1px;
@@ -777,7 +782,7 @@ body:not([data-theme="dark"]) .tooltip-text {
   cursor: default;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.game-badge.achieved span { color: #F6C85F !important; font-weight: 700; }
+.game-badge.achieved span { color: var(--gold); font-weight: 700; }
 .game-badge.achieved img { transform: scale(1.08); }
 
 .game-badge.achieved::before {
@@ -796,7 +801,6 @@ body:not([data-theme="dark"]) .tooltip-text {
   100% { left: 200%; }
 }
 
-/* Tier Border Colours */
 .tier-group.legendary .tier-label { color: #fbbf24; }
 .tier-group.legendary .game-badge.achieved {
   border-color: rgba(245, 158, 11, 0.6);
@@ -851,7 +855,6 @@ body:not([data-theme="dark"]) .tooltip-text {
   box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
 }
 
-/* --- ANALYTICS SECTION --- */
 .analytics-header {
   display: flex;
   justify-content: space-between;
@@ -887,7 +890,6 @@ body:not([data-theme="dark"]) .tooltip-text {
   height: 320px;
 }
 
-/* --- MOBILE ORDERING --- */
 @media (max-width: 800px) {
   .dashboard-grid { grid-template-columns: 1fr; }
   .profile-top { flex-direction: column; text-align: center; gap: 16px; }
@@ -902,6 +904,26 @@ body:not([data-theme="dark"]) .tooltip-text {
   .badge-row {
     gap: 8px;
     justify-content: center;
+  }
+
+  .filter-icon-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+  }
+
+  .filter-pill-btn {
+    padding: 0 8px !important;
+    height: 36px !important;
+  }
+
+  .filter-pill-name {
+    font-size: 11.5px !important;
+    max-width: 60% !important;
+  }
+
+  .filter-pill-stat {
+    font-size: 11px !important;
+    font-weight: 700 !important;
   }
 }
 
