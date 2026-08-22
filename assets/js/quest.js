@@ -391,13 +391,17 @@ async function fetchLivePlayer(username) {
   const cacheKey = `litstats_live_${qLower}`;
   const searchBox = document.getElementById('searchResults');
 
+  if (typeof window.showLoader === 'function') {
+    window.showLoader(`Loading quests for ${username}...`);
+  }
+
   try {
     const cached = sessionStorage.getItem(cacheKey);
     if (cached) {
       const parsedCache = JSON.parse(cached);
       if (Date.now() - parsedCache.timestamp < 10 * 60 * 1000) {
         displayLiveResult(parsedCache.data);
-        searchBox.textContent = `Showing cached live data for ${parsedCache.data.actualName}`;
+        if (searchBox) searchBox.textContent = `Showing cached live data for ${parsedCache.data.actualName}`;
         return;
       }
     }
@@ -410,7 +414,7 @@ async function fetchLivePlayer(username) {
     const uuid = dbData.data.player.raw_id;
     const actualName = dbData.data.player.username;
 
-    searchBox.textContent = `Loading live stats for ${actualName}...`;
+    if (searchBox) searchBox.textContent = `Loading live stats for ${actualName}...`;
     
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const apiUrl = isLocal 
@@ -435,15 +439,21 @@ async function fetchLivePlayer(username) {
     playerQuestCache[uuid] = finalData; 
 
     displayLiveResult(finalData);
-    searchBox.textContent = `Showing live data for ${actualName}`;
+    if (searchBox) searchBox.textContent = `Showing live data for ${actualName}`;
 
   } catch (e) {
-    if (e.message === 'NOT_FOUND') {
-      searchBox.textContent = `Player "${username}" not found on Hypixel.`;
-    } else if (e.message === 'RATE_LIMIT') {
-      searchBox.textContent = `Slow down! You are being rate-limited. Try again in a minute.`;
-    } else {
-      searchBox.textContent = `Error fetching data for "${username}". Try again later.`;
+    if (searchBox) {
+      if (e.message === 'NOT_FOUND') {
+        searchBox.textContent = `Player "${username}" not found on Hypixel.`;
+      } else if (e.message === 'RATE_LIMIT') {
+        searchBox.textContent = `Slow down! You are being rate-limited. Try again in a minute.`;
+      } else {
+        searchBox.textContent = `Error fetching data for "${username}". Try again later.`;
+      }
+    }
+  } finally {
+    if (typeof window.hideLoader === 'function') {
+      window.hideLoader();
     }
   }
 }
