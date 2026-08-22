@@ -1,40 +1,174 @@
-function initTheme() {
-  const themeBtn = document.getElementById('themeBtn');
-  const savedTheme = localStorage.getItem('litstats_theme');
+function isThemeLight(theme) {
+  return ['light', 'cherry'].includes(theme);
+}
 
-  if (savedTheme === 'light') {
+function applyTheme(themeName) {
+  document.documentElement.setAttribute('data-theme', themeName);
+  localStorage.setItem('litstats_theme', themeName);
+
+  if (isThemeLight(themeName)) {
     document.body.classList.add('light-theme');
-    document.body.removeAttribute('data-theme');
-    if (themeBtn) themeBtn.innerHTML = moonIcon; 
   } else {
     document.body.classList.remove('light-theme');
-    document.body.setAttribute('data-theme', 'dark');
-    if (themeBtn) themeBtn.innerHTML = sunIcon; 
-    localStorage.setItem('litstats_theme', 'dark');
+  }
+
+  const themeSelect = document.getElementById('theme-selector');
+  if (themeSelect) themeSelect.value = themeName;
+  updateThemeIcon(themeName);
+
+  if (typeof populateFilters === 'function') populateFilters();
+  if (typeof renderDashboard === 'function') renderDashboard();
+  if (typeof renderCabinet === 'function' && typeof globalPlayerData !== 'undefined' && globalPlayerData) {
+    renderCabinet(globalPlayerData, true);
+  }
+}
+
+function updateThemeIcon(themeName) {
+  const btn = document.getElementById('themeBtn');
+  if (!btn) return;
+  const isLight = isThemeLight(themeName || document.documentElement.getAttribute('data-theme'));
+  if (typeof sunIcon !== 'undefined' && typeof moonIcon !== 'undefined') {
+    btn.innerHTML = isLight ? moonIcon : sunIcon;
   }
 }
 
 function toggleTheme() {
-  const isLight = document.body.classList.contains('light-theme');
-  const themeBtn = document.getElementById('themeBtn');
-  
-  if (isLight) {
-    document.body.classList.remove('light-theme');
-    document.body.setAttribute('data-theme', 'dark');
-    localStorage.setItem('litstats_theme', 'dark');
-    if (themeBtn) themeBtn.innerHTML = sunIcon;
-  } else {
-    document.body.classList.add('light-theme');
-    document.body.removeAttribute('data-theme');
-    localStorage.setItem('litstats_theme', 'light');
-    if (themeBtn) themeBtn.innerHTML = moonIcon;
-  }
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = isThemeLight(current) ? 'dark' : 'light';
+  applyTheme(next);
 }
 
-document.addEventListener('DOMContentLoaded', initTheme);
+function initTheme() {
+  const savedTheme = localStorage.getItem('litstats_theme') || 'dark';
+  applyTheme(savedTheme);
+}
 
-initTheme();
+function setupControls() {
+  initTheme();
 
+  const themeSelect = document.getElementById('theme-selector');
+  if (themeSelect) {
+    themeSelect.value = localStorage.getItem('litstats_theme') || 'dark';
+    themeSelect.addEventListener('change', (e) => {
+      applyTheme(e.target.value);
+    });
+  }
+
+  // Global Settings Cog Popout
+  const settingsBtn = document.getElementById('global-settings-btn');
+  const settingsMenu = document.getElementById('global-settings-dropdown');
+
+  if (settingsBtn && settingsMenu) {
+    settingsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      settingsMenu.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!settingsMenu.contains(e.target) && !settingsBtn.contains(e.target)) {
+        settingsMenu.classList.add('hidden');
+      }
+    });
+  }
+
+  // Colour Assist Mode
+  const a11ySelect = document.getElementById('a11y-palette-select');
+  const savedA11y = localStorage.getItem('site-a11y') || 'default';
+  
+  if (savedA11y !== 'default') {
+    document.documentElement.setAttribute('data-a11y', savedA11y);
+  } else {
+    document.documentElement.removeAttribute('data-a11y');
+  }
+
+  if (a11ySelect) {
+    a11ySelect.value = savedA11y;
+    a11ySelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      if (val === 'default') {
+        document.documentElement.removeAttribute('data-a11y');
+        localStorage.removeItem('site-a11y');
+      } else {
+        document.documentElement.setAttribute('data-a11y', val);
+        localStorage.setItem('site-a11y', val);
+      }
+    });
+  }
+
+  // Global Font Preference
+  const fontSelect = document.getElementById('global-font-mode');
+  const savedFont = localStorage.getItem('litstats_font_mode') || 'default';
+  if (savedFont !== 'default') {
+    document.documentElement.setAttribute('data-font', savedFont);
+  }
+  if (fontSelect) {
+    fontSelect.value = savedFont;
+    fontSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      if (val === 'default') {
+        document.documentElement.removeAttribute('data-font');
+        localStorage.removeItem('litstats_font_mode');
+      } else {
+        document.documentElement.setAttribute('data-font', val);
+        localStorage.setItem('litstats_font_mode', val);
+      }
+    });
+  }
+
+  // Global Gold AP Reward Overrides
+  const goldToggle = document.getElementById('global-gold-toggle');
+  const savedGold = localStorage.getItem('litstats_gold_ap') === 'true';
+  if (goldToggle) {
+    goldToggle.checked = savedGold;
+    goldToggle.addEventListener('change', (e) => {
+      localStorage.setItem('litstats_gold_ap', e.target.checked);
+      if (typeof renderDashboard === 'function') renderDashboard();
+    });
+  }
+
+  // Global Icon Style Override
+  const iconModeSelect = document.getElementById('global-icon-mode');
+  const savedIconMode = localStorage.getItem('litstats_icon_mode') || 'theme';
+  if (iconModeSelect) {
+    iconModeSelect.value = savedIconMode;
+    iconModeSelect.addEventListener('change', (e) => {
+      localStorage.setItem('litstats_icon_mode', e.target.value);
+      if (typeof populateFilters === 'function') populateFilters();
+      if (typeof renderDashboard === 'function') renderDashboard();
+      if (typeof renderCabinet === 'function' && typeof globalPlayerData !== 'undefined' && globalPlayerData) {
+        renderCabinet(globalPlayerData, true);
+      }
+    });
+  }
+
+  // High Contrast Mode
+  const contrastToggle = document.getElementById('a11y-contrast-toggle');
+  const savedContrast = localStorage.getItem('site-a11y-contrast') === 'high';
+  if (contrastToggle) {
+    contrastToggle.checked = savedContrast;
+    if (savedContrast) document.documentElement.setAttribute('data-a11y-contrast', 'high');
+
+    contrastToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.documentElement.setAttribute('data-a11y-contrast', 'high');
+        localStorage.setItem('site-a11y-contrast', 'high');
+      } else {
+        document.documentElement.removeAttribute('data-a11y-contrast');
+        localStorage.removeItem('site-a11y-contrast');
+      }
+    });
+  }
+
+  initBanner();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupControls);
+} else {
+  setupControls();
+}
+
+// --- AUDIO CONTEXT ---
 let audioCtx; 
 document.addEventListener('click', () => {
   if (!audioCtx) {
@@ -67,6 +201,7 @@ function playTone(freq, type) {
   } catch (err) {}
 }
 
+// --- SHORTCUTS & KONAMI ---
 const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
 let konamiIndex = 0;
 let konamiCooldown = false;
@@ -75,9 +210,8 @@ document.addEventListener('keydown', (e) => {
   const activeTag = document.activeElement ? document.activeElement.tagName : '';
   const isTyping = activeTag === 'INPUT' || activeTag === 'TEXTAREA';
 
-  // NEW: ESCAPE KEY LOGIC
   if (e.key === 'Escape') {
-    const searchBox = document.getElementById('searchInput');
+    const searchBox = document.getElementById('searchInput') || document.getElementById('achSearch') || document.getElementById('top-search-input');
     if (searchBox) {
       searchBox.blur(); 
       if (typeof runLocalSearch === "function") runLocalSearch('');
@@ -86,11 +220,11 @@ document.addEventListener('keydown', (e) => {
   }
 
   if (!isTyping) {
-    if (e.key === '1') { const p = document.querySelector('[data-tab="players"]'); if(p) p.click(); return; }
-    if (e.key === '2') { const c = document.querySelector('[data-tab="countries"]'); if(c) c.click(); return; }
+    if (e.key === '1') { const p = document.querySelector('[data-tab="players"]'); if (p) p.click(); return; }
+    if (e.key === '2') { const c = document.querySelector('[data-tab="countries"]'); if (c) c.click(); return; }
     if (e.key === '/') {
       e.preventDefault(); 
-      const searchBox = document.getElementById('searchInput');
+      const searchBox = document.getElementById('searchInput') || document.getElementById('achSearch') || document.getElementById('top-search-input');
       if (searchBox) searchBox.focus();
       return;
     }
@@ -125,17 +259,16 @@ document.addEventListener('keydown', (e) => {
 });
 
 const leaderSearch = document.getElementById('searchInput');
-
 if (leaderSearch) {
   leaderSearch.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
-      event.preventDefault(); // Blocks the browser from wiping the text
-      this.blur();            // Drops the focus ring
+      event.preventDefault();
+      this.blur();
     }
   });
 }
 
-// --- BANNER DATA ---
+// --- BANNER SYSTEM ---
 const mainBanner = {
   text: "🔥 Huge Update: The Quest Leaderboard is now live!",
   btnText: "Check it out",
@@ -148,14 +281,11 @@ const emergencyBanner = {
 
 const randomBanners = [
   { text: "Did you know? LitStats tracks over 20 different Hypixel games.", btnText: "", btnLink: "" },
-  { text: "Check out the Blitz kit selector (Still a Work in Progress!)", btnText: "", btnLink: "https://www.litstats.com/blitz.html/" },
-  { text: "Found a bug or have an idea? Let me know on Discord @litphoenix.", btnText: "Discord", btnLink: "https://app.discord.com" }
+  { text: "Check out the Blitz kit selector (Still a Work in Progress!)", btnText: "", btnLink: "blitz.html" },
+  { text: "Found a bug or have an idea? Let me know on Discord @litphoenix.", btnText: "Discord", btnLink: "https://discord.com" }
 ];
 
-// Toggle: 'main', 'emergency', 'random', or 'off'
 let bannerMode = 'random'; 
-
-// Increment this string (e.g., 'v2', 'v3') to force the banner to reappear for users who closed an older one
 const bannerVersion = 'v1'; 
 
 function initBanner() {
@@ -173,23 +303,25 @@ function initBanner() {
   } 
   else data = randomBanners[Math.floor(Math.random() * randomBanners.length)];
 
-  document.getElementById('banner-text').textContent = data.text;
+  const textEl = document.getElementById('banner-text');
+  if (textEl) textEl.textContent = data.text;
+
   const btn = document.getElementById('banner-link');
-  
-  if (data.btnText && data.btnLink) {
-    btn.textContent = data.btnText;
-    btn.href = data.btnLink;
-    btn.classList.remove('hidden');
-  } else {
-    btn.classList.add('hidden');
+  if (btn) {
+    if (data.btnText && data.btnLink) {
+      btn.textContent = data.btnText;
+      btn.href = data.btnLink;
+      btn.classList.remove('hidden');
+    } else {
+      btn.classList.add('hidden');
+    }
   }
 
   banner.classList.remove('hidden');
 }
 
 function closeBanner() {
-  document.getElementById('lit-banner').classList.add('hidden');
+  const banner = document.getElementById('lit-banner');
+  if (banner) banner.classList.add('hidden');
   localStorage.setItem(`litBannerClosed_${bannerVersion}`, 'true');
 }
-
-document.addEventListener('DOMContentLoaded', initBanner);
