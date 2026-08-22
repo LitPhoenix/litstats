@@ -39,7 +39,7 @@ function calculateMaxes(profile, achMap) {
     { names: ["woolgames"], badge: "Max Wool Games" },
     { names: ["duels"], badge: "Max Duels" },
     { names: ["buildbattle"], badge: "Max Build Battle" },
-    { names: ["summer", "winter", "easter", "halloween"], badge: "Max Seasonal" },
+    { names: ["summer", "christmas", "easter", "halloween"], badge: "Max Seasonal" },
     { names: ["truecombat"], badge: "Max Crazy Walls", isLegacyGame: true },
     { names: ["skyclash"], badge: "Max SkyClash", isLegacyGame: true }
   ];
