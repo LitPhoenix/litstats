@@ -117,6 +117,16 @@
             transform: translateY(-3px); 
             color: var(--accent); 
         }
+        @media (max-width: 600px) {
+            .controls-row, .filter-bar, .kitlb-header-controls {
+                flex-wrap: wrap !important;
+                gap: 10px !important;
+            }
+            .checkbox-container, .toggle-switch-wrapper {
+                width: 100% !important;
+                justify-content: flex-start !important;
+            }
+        }
     </style>
 </head>
 <body>
