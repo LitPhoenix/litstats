@@ -1,0 +1,470 @@
+/* ==========================================================================
+   THEME DEFINITIONS & COLOUR PALETTES
+   ========================================================================== */
+
+/* 1. Base Light Mode (Light Ember) */
+:root, html[data-theme="light"] {
+  --bg: #fdfaf8;
+  --bg-glow: rgba(255, 100, 0, 0.02); 
+  --surface: rgba(255, 253, 253, 0.65);
+  --surface-2: rgba(255, 245, 240, 0.8); 
+  --border: rgba(221, 208, 208, 0.6);
+  --border-strong: #e0c5b4;
+  --input-bg: rgba(255, 253, 253, 0.85);
+  --glass-edge: rgba(255, 253, 253, 0.5);
+  --text: #1a1512;
+  --text-2: #5c4d45;
+  --text-3: #998073;
+  --accent: #ff8c52;
+  --accent-soft: rgba(255, 140, 82, 0.12);
+  --accent-2: #ffa87a;
+  --gold: #db9c3d;
+  --silver: #94a3b8;
+  --bronze: #cd7f32;
+  --green: #10b981;
+  --green-soft: #ecfdf5;
+  --red: #ef4444;
+  --red-soft: #fff5f5;
+  --shadow: 0 4px 16px rgba(255, 81, 0, 0.04), 0 8px 32px rgba(0,0,0,0.04);
+  --radius: 12px;
+
+  --tag-bg: rgba(0, 0, 0, 0.03);
+  --tag-border: rgba(0, 0, 0, 0.15);
+  --tag-text: #1a1512;
+
+  --tier-1: #10b981;
+  --tier-2: #eab308;
+  --tier-3: #ff8400;
+  --tier-4: #ff5100;
+  --tier-5: #991b1b;
+}
+
+/* 2. Dark Ember (Default Dark) */
+html:not([data-theme]),
+html[data-theme="dark"] {
+  --bg: #0a0504; 
+  --bg-glow: rgba(255, 75, 20, 0.04); 
+  --surface: rgba(26, 19, 16, 0.65);
+  --surface-2: rgba(14, 10, 8, 0.6);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 98, 26, 0.25); 
+  --text: #fdfaf8;
+  --text-2: #c4b5ae;
+  --text-3: #8a786f;
+  --accent: #ff621a;
+  --accent-soft: rgba(255, 98, 26, 0.15);
+  --accent-2: #ff9d00;
+  --gold: #f0b247;
+  --green: #3fb950;
+  --green-soft: rgba(46, 160, 67, 0.15);
+  --red: #f85149;
+  --red-soft: rgba(248, 81, 73, 0.1);
+  --input-bg: rgba(15, 10, 8, 0.7);
+  --shadow: 0 16px 40px rgba(0,0,0,0.8);
+  --glass-edge: rgba(255, 255, 255, 0.08); 
+
+  --tag-bg: rgba(255, 255, 255, 0.05);
+  --tag-border: rgba(255, 255, 255, 0.18);
+  --tag-text: #fdfaf8;
+
+  --tier-1: #3fb950;
+  --tier-2: #facc15;
+  --tier-3: #ff7300;
+  --tier-4: #ff351a;
+  --tier-5: #c71212;
+}
+
+/* 3. Stealth (Midnight) */
+html[data-theme="midnight"] {
+  --bg: #030304;
+  --surface: #121315eb;
+  --surface-2: #101113e0;
+  --accent: #677d8e;
+  --accent-soft: rgba(99, 99, 107, 0.15);
+  --accent-2: #8a8a94;
+  --border: rgba(228, 237, 246, 0.08);
+  --border-strong: rgba(99, 99, 107, 0.3);
+  --text: #e3e3e7;
+  --text-2: #adadb6;
+  --text-3: #787883;
+  --input-bg: #070707;
+  --gold: #c79341;
+
+  --tag-bg: rgba(255, 255, 255, 0.04);
+  --tag-border: rgba(255, 255, 255, 0.12);
+  --tag-text: #d4d4d8;
+
+  --tier-1: rgba(63, 185, 80, 0.65);
+  --tier-2: rgba(250, 204, 21, 0.65);
+  --tier-3: rgba(255, 115, 0, 0.65);
+  --tier-4: rgba(255, 53, 26, 0.65);
+  --tier-5: rgba(199, 18, 18, 0.65);
+}
+
+/* 4. Amethyst */
+html[data-theme="amethyst"] {
+  --bg: #060309;
+  --surface: rgba(16, 9, 22, 0.85);
+  --surface-2: rgba(10, 5, 14, 0.82);
+  --accent: #7c3aed;
+  --accent-soft: rgba(124, 58, 237, 0.14);
+  --accent-2: #9061f9;
+  --border: rgba(147, 51, 234, 0.12);
+  --border-strong: rgba(147, 51, 234, 0.28);
+  --text: #ece5f5;
+  --text-2: #ac9ec2;
+  --text-3: #6d5b82;
+  --input-bg: rgba(7, 3, 10, 0.88);
+  --gold: #f0b247;
+
+  --tag-bg: rgba(124, 58, 237, 0.1);
+  --tag-border: rgba(147, 51, 234, 0.28);
+  --tag-text: #ddd6fe;
+
+  --tier-1: #38bdf8;
+  --tier-2: #a78bfa;
+  --tier-3: #c084fc;
+  --tier-4: #e11d48;
+  --tier-5: #6b0c2a;
+}
+
+/* 5. Cherry Blossom */
+html[data-theme="cherry"] {
+  --bg: #fff5f7;
+  --bg-glow: rgba(255, 179, 198, 0.15);
+  --surface: rgba(255, 240, 245, 0.78);
+  --surface-2: rgba(255, 225, 235, 0.75);
+  --border: rgba(255, 179, 198, 0.45);
+  --border-strong: #ff85a1;
+  --input-bg: #ffffff;
+  --text: #4a2833;
+  --text-2: #855364;
+  --text-3: #b58394;
+  --accent: #ff84a2;
+  --accent-soft: rgba(255, 77, 121, 0.15);
+  --accent-2: #ff7597;
+  --green: #2dd4bf;
+  --green-soft: rgba(45, 212, 191, 0.15);
+  --gold: #db9c3d;
+  --shadow: 0 8px 24px rgba(255, 179, 198, 0.25);
+
+  --tag-bg: rgba(255, 248, 250, 0.1);
+  --tag-border: #ff85a1;
+  --tag-text: #d92b5e;
+
+  --tier-1: #2dd4bf;
+  --tier-2: #f472b6;
+  --tier-3: #fb7195;
+  --tier-4: #f83b74;
+  --tier-5: #e32759;
+}
+
+/* 6. Minecraft Terrain Theme */
+html[data-theme="minecraft"] {
+  --bg: #181818;
+  --surface: rgba(36, 32, 30, 0.94);
+  --surface-2: rgba(26, 23, 21, 0.92);
+  --border: #443c37;
+  --border-strong: #5e9433;
+  --input-bg: #141211;
+  --text: #f0e6dc;
+  --text-2: #b8a99c;
+  --text-3: #8a7c70;
+  --accent: #5e9433;
+  --accent-soft: rgba(94, 148, 51, 0.22);
+  --accent-2: #7ec044;
+  --gold: #f0b247;
+  --radius: 0px !important;
+  --shadow: 0 4px 0 #0f0d0c;
+
+  --tag-bg: rgba(94, 148, 51, 0.18);
+  --tag-border: #70a43d;
+  --tag-text: #b1e878;
+
+  --tier-1: #55ff55;
+  --tier-2: #55ffff;
+  --tier-3: #ffaa00;
+  --tier-4: #ff5555;
+  --tier-5: #aa0000;
+}
+
+/* ==========================================================================
+   PHYSICAL FLAME LOGO IMAGE COLOUR TINTING
+   ========================================================================== */
+
+/* Cherry Blossom: Dark Pink physical flame icon */
+html[data-theme="dark"] .logo img,
+html[data-theme="dark"] .footer-logo,
+html[data-theme="dark"] img[src*="lq-favicon"] {
+  filter: hue-rotate(350deg) saturate(1.3) contrast(1.3);
+}
+
+html[data-theme="cherry"] .logo img,
+html[data-theme="cherry"] .footer-logo,
+html[data-theme="cherry"] img[src*="lq-favicon"] {
+  filter: hue-rotate(325deg);
+}
+
+/* Stealth: Dark Slate Grey physical flame icon */
+html[data-theme="midnight"] .logo img,
+html[data-theme="midnight"] .footer-logo,
+html[data-theme="midnight"] img[src*="lq-favicon"] {
+  filter: hue-rotate(180deg) grayscale(85%) brightness(0.8) contrast(1.3);
+}
+
+/* Amethyst: Rich Royal Purple physical flame icon */
+html[data-theme="amethyst"] .logo img,
+html[data-theme="amethyst"] .footer-logo,
+html[data-theme="amethyst"] img[src*="lq-favicon"] {
+  filter: hue-rotate(245deg) saturate(0.7) brightness(0.7) contrast(1.8);
+}
+
+/* Light & Minecraft: Natural orange flame / un-filtered */
+html[data-theme="light"] .logo img,
+html[data-theme="minecraft"] .logo img {
+  filter: none;
+}
+
+/* ==========================================================================
+   MINECRAFT GUI CONTAINERS & FLAT TITLE SHADOW FIX
+   ========================================================================== */
+
+/* Explicitly target dark modes (Dark Ember, Stealth, Amethyst) */
+html:not([data-theme="light"]):not([data-theme="cherry"]):not([data-theme="minecraft"]) .mc-container,
+html[data-theme="dark"] .mc-container,
+html[data-theme="midnight"] .mc-container,
+html[data-theme="amethyst"] .mc-container {
+  background: rgba(35, 35, 35, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  border-right-color: rgba(0, 0, 0, 0.8) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Remove text shadows across all themes so Dark Ember isn't the odd one out */
+.mc-title {
+  text-shadow: none !important;
+}
+
+html:not([data-theme="light"]):not([data-theme="cherry"]):not([data-theme="minecraft"]) .mc-title,
+html[data-theme="dark"] .mc-title,
+html[data-theme="midnight"] .mc-title,
+html[data-theme="amethyst"] .mc-title {
+  color: #ddd !important;
+}
+
+html:not([data-theme="light"]):not([data-theme="cherry"]):not([data-theme="minecraft"]) #crafting-arrow,
+html[data-theme="dark"] #crafting-arrow,
+html[data-theme="midnight"] #crafting-arrow,
+html[data-theme="amethyst"] #crafting-arrow {
+  color: #aaa !important;
+  text-shadow: none !important;
+}
+
+html:not([data-theme="light"]):not([data-theme="cherry"]):not([data-theme="minecraft"]) .slot,
+html[data-theme="dark"] .slot,
+html[data-theme="midnight"] .slot,
+html[data-theme="amethyst"] .slot {
+  border-color: rgba(0, 0, 0, 0.8) !important;
+  border-right-color: rgba(255, 255, 255, 0.1) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html:not([data-theme="light"]):not([data-theme="cherry"]):not([data-theme="minecraft"]) .slot:not([class*="lvl-"]):not(.locked-star-slot),
+html[data-theme="dark"] .slot:not([class*="lvl-"]):not(.locked-star-slot),
+html[data-theme="midnight"] .slot:not([class*="lvl-"]):not(.locked-star-slot),
+html[data-theme="amethyst"] .slot:not([class*="lvl-"]):not(.locked-star-slot) {
+  background: rgba(80, 80, 80, 0.3) !important;
+}
+
+html:not([data-theme="light"]):not([data-theme="cherry"]):not([data-theme="minecraft"]) .inv-player-box,
+html[data-theme="dark"] .inv-player-box,
+html[data-theme="midnight"] .inv-player-box,
+html[data-theme="amethyst"] .inv-player-box {
+  background-color: rgba(20, 20, 20, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.8) !important;
+  border-right-color: rgba(255, 255, 255, 0.1) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ==========================================================================
+   THEME-SPECIFIC BACKGROUNDS (6px BLUR)
+   ========================================================================== */
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 1. Dark Ember Background */
+html:not([data-theme]) body::before,
+html[data-theme="dark"] body::before {
+  background-color: #040202;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.35), rgba(4, 2, 2, 0.65)), 
+    url('../../img/lq-bg-embers.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  transform: scale(1.02);
+}
+
+html:not([data-theme]) body::after,
+html[data-theme="dark"] body::after {
+  background: radial-gradient(circle at 15% 15%, rgba(255, 60, 0, 0.08), transparent 50vw), 
+              radial-gradient(circle at 85% 85%, rgba(200, 30, 0, 0.06), transparent 50vw);
+}
+
+/* 2. Light Ember Background */
+html[data-theme="light"] body::before {
+  background-color: #fdfaf8;
+  background-image: 
+    linear-gradient(rgba(255, 234, 219, 0.20), rgba(253, 250, 248, 0.65)), 
+    url('../../img/lq-bg-embers-light.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  transform: scale(1.02);
+}
+
+/* 3. Cherry Blossom Background */
+html[data-theme="cherry"] body::before {
+  background-color: #fff5f7;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.20), rgba(255, 240, 245, 0.45)), 
+    url('../../img/lq-bg-cherry.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  transform: scale(1.02);
+}
+
+/* 4. Amethyst Background */
+html[data-theme="amethyst"] body::before {
+  background-color: #060309;
+  background-image: 
+    linear-gradient(rgba(6, 3, 9, 0.55), rgba(3, 1, 5, 0.75)), 
+    url('../../img/lq-bg-amethyst.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  transform: scale(1.02);
+}
+
+/* 5. Minecraft Horizon Ribbon + Tiled Stone */
+html[data-theme="minecraft"] body::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 260px;
+  background-image: url('../../img/minecraft.png');
+  background-repeat: repeat-x;
+  background-size: auto 260px;
+  image-rendering: pixelated;
+}
+
+html[data-theme="minecraft"] body::after {
+  top: 260px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #181818;
+  background-image: url('../../img/stone.png');
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  image-rendering: pixelated;
+}
+
+/* 6. Stealth Ambient Background */
+html[data-theme="midnight"] body::before {
+  background-color: var(--bg);
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(40, 40, 48, 0.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(30, 30, 38, 0.12), transparent 40%);
+}
+
+/* ==========================================================================
+   MINECRAFT THEME STRUCTURAL OVERRIDES
+   ========================================================================== */
+
+html[data-theme="minecraft"] *,
+html[data-theme="minecraft"] *::before,
+html[data-theme="minecraft"] *::after {
+  border-radius: 0px !important;
+}
+
+html[data-theme="minecraft"] header {
+  background: linear-gradient(180deg, #379bde00 0%, #aecbdc00 100%) !important;
+  border-bottom: none !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+html[data-theme="minecraft"] .logo-text,
+html[data-theme="minecraft"] .nav-btn {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+html[data-theme="minecraft"] .settings-toggle-btn,
+html[data-theme="minecraft"] .theme-toggle,
+html[data-theme="minecraft"] .todo-select,
+html[data-theme="minecraft"] .theme-dropdown,
+html[data-theme="minecraft"] .primary-btn,
+html[data-theme="minecraft"] .show-more-btn,
+html[data-theme="minecraft"] .compare-btn {
+  border: 2px solid #000000 !important;
+  border-top-color: #555555 !important;
+  border-left-color: #555555 !important;
+  border-right-color: #111111 !important;
+  border-bottom-color: #111111 !important;
+  background-color: #2b2725 !important;
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15), inset -1px -1px 0px rgba(0, 0, 0, 0.6) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="minecraft"] .nav-btn {
+  border: 2px solid #000000 !important;
+  border-top-color: #555555 !important;
+  border-left-color: #555555 !important;
+  border-right-color: #111111 !important;
+  border-bottom-color: #111111 !important;
+  background-color: #515150 !important;
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.15), inset -1px -1px 0px rgba(0, 0, 0, 0.6) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="minecraft"] .page-title,
+html[data-theme="minecraft"] .hero-title,
+html[data-theme="minecraft"] h1 {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 0 #000000;
+}
+
+/* Force Cherry Blossom game pills to use Pink gradients */
+html[data-theme="cherry"] .filter-pill,
+html[data-theme="cherry"] .incomplete-pill,
+html[data-theme="cherry"] [class*="game-pill"],
+html[data-theme="cherry"] .game-select-pill {
+  border-color: rgba(255, 133, 161, 0.4) !important;
+  color: #4a2833 !important;
+}
+
+/* Override the inline linear-gradient background on the pill */
+html[data-theme="cherry"] .filter-pill[style*="linear-gradient"],
+html[data-theme="cherry"] .incomplete-pill[style*="linear-gradient"],
+html[data-theme="cherry"] [class*="game-pill"][style*="linear-gradient"] {
+  /* Swaps the left cyan chunk to vivid cherry pink while keeping the right side pale pink */
+  --pill-fill: #ff7597 !important;
+  --pill-bg: rgba(255, 225, 235, 0.75) !important;
+}
+
+/* If the pill uses an internal fill div */
+html[data-theme="cherry"] .filter-pill-fill,
+html[data-theme="cherry"] .pill-progress,
+html[data-theme="cherry"] .pill-fill {
+  background: linear-gradient(90deg, #ff93ae, #ff648b) !important;
+}
