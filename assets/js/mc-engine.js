@@ -56,22 +56,30 @@ const MCEngine = {
             return;
         }
 
-        const offset = 14;
+        const offset = 12;
         let left = MCEngine._clientX + offset;
         let top = MCEngine._clientY + offset;
 
         const maxW = window.innerWidth;
         const maxH = window.innerHeight;
 
-        if (left + MCEngine._ttWidth > maxW - 8) {
-            left = MCEngine._clientX - MCEngine._ttWidth - offset;
+        // Mobile clamp to prevent right-edge clipping
+        if (left + MCEngine._ttWidth > maxW - 10) {
+            left = maxW - MCEngine._ttWidth - 10;
         }
-        if (top + MCEngine._ttHeight > maxH - 8) {
-            top = MCEngine._clientY - MCEngine._ttHeight - offset;
+        if (left < 10) {
+            left = 10;
         }
 
-        MCEngine._tooltip.style.left = `${Math.max(4, Math.round(left))}px`;
-        MCEngine._tooltip.style.top = `${Math.max(4, Math.round(top))}px`;
+        if (top + MCEngine._ttHeight > maxH - 10) {
+            top = MCEngine._clientY - MCEngine._ttHeight - offset;
+        }
+        if (top < 10) {
+            top = 10;
+        }
+
+        MCEngine._tooltip.style.left = `${Math.round(left)}px`;
+        MCEngine._tooltip.style.top = `${Math.round(top)}px`;
         MCEngine._rafId = null;
     },
 
@@ -199,6 +207,13 @@ const MCEngine = {
         } catch (err) {
             console.error('3D Skin Viewer init failed:', err);
         }
+    },
+
+    updatePlayerSkin(canvasId, usernameOrUrl) {
+        const viewer = this.viewers[canvasId];
+        if (!viewer) return;
+        const skinUrl = usernameOrUrl.startsWith('http') ? usernameOrUrl : `https://minotar.net/skin/${usernameOrUrl}`;
+        viewer.loadSkin(skinUrl);
     }
 };
 
