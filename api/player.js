@@ -203,10 +203,12 @@ module.exports = async (req, res) => {
       { internal: "woolgames", name: "Wool Games", badge: "Max Wool Games" },
       { internal: "duels", name: "Duels", badge: "Max Duels" },
       { internal: "buildbattle", name: "Build Battle", badge: "Max Build Battle" },
+      { internal: "general", name: "General", badge: "Max General" },
+      { internal: "housing", name: "Housing", badge: "Max Housing" },
       { internal: "summer", name: "Summer", badge: "Max Summer", seasonal: true },
-      { internal: "winter", name: "Winter", badge: "Max Winter", seasonal: true },
+      { internal: "christmas2017", name: "Christmas", badge: "Max Christmas", seasonal: true },
       { internal: "easter", name: "Easter", badge: "Max Easter", seasonal: true },
-      { internal: "halloween", name: "Halloween", badge: "Max Halloween", seasonal: true },
+      { internal: "halloween2017", name: "Halloween", badge: "Max Halloween", seasonal: true },
       { internal: "truecombat", name: "Crazy Walls", badge: "Max Crazy Walls", legacy: true },
       { internal: "skyclash", name: "SkyClash", badge: "Max SkyClash", legacy: true }
     ];
@@ -349,13 +351,18 @@ module.exports = async (req, res) => {
     
     responseData.currentCoins = parseInt(hg.coins) || 0;
 
+    const ramboExpVal = hg.exp_rambo !== undefined ? hg.exp_rambo : (hg.rambo_exp || 0);
+
     responseData.overallStats = {
+        coins: parseInt(hg.coins) || 0,
         kills: hg.kills || 0,
         deaths: hg.deaths || 0,
         wins_solo_normal: hg.wins_solo_normal || 0,
         wins_teams_normal: hg.wins_teams_normal || 0,
+        wins: hg.wins || (hg.wins_solo_normal || 0) + (hg.wins_teams_normal || 0),
         timePlayed: hg.time_played || hg.timePlaying || 0,
-        currentKit: hg.defaultkit || hg.auto_spawn_kit || 'None'
+        currentKit: hg.defaultkit || hg.auto_spawn_kit || 'None',
+        exp_rambo: ramboExpVal
     };
 
     const starCosts = {
@@ -364,7 +371,7 @@ module.exports = async (req, res) => {
         'nuke': 15000, 'ninja': 5000, 'robinhood': 10000, 'supplies': 10000,
         'shotgun': 20000, 'koolmove': 20000, 'lockdown': 5000, 'time_warp': 10000,
         'acid_rain': 15000, 'infection': 15000, 'pickpocket': 5000, 'ragnarok': 10000,
-        'gladiator': 10000, 'zookeeper': 10000, 'switcheroo': 10000
+        'gladiator': 10000, 'zookeeper': 10000, 'switcheroo': 10000, 'imprison': 20000
     };
     const starsUnlocked = [];
     for (const p of packages) {
@@ -374,7 +381,7 @@ module.exports = async (req, res) => {
     
     const kitList = ["horsetamer", "ranger", "archer", "astronaut", "troll", "meatmaster", "reaper", "shark", "reddragon", "toxicologist", "donkeytamer", "rogue", "warlock", "slimeyslime", "jockey", "golem", "viking", "speleologist", "shadow knight", "baker", "knight", "pigman", "guardian", "phoenix", "paladin", "necromancer", "scout", "hunter", "warrior", "hype train", "fisherman", "milkman", "florist", "diver", "arachnologist", "blaze", "wolftamer", "tim", "snowman", "rambo", "farmer", "armorer", "creepertamer"];
     const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist", "rambo", "guardian", "hype train"]);
-    const ultimateKits = new Set(["phoenix", "warrior", "donkeytamer", "milkman", "ranger"]);
+    const ultimateKits = new Set(["phoenix", "warrior", "donkeytamer", "milkman", "ranger", "rambo"]);
     
     for (const kit of kitList) {
         let level = defaultKits.has(kit) ? 1 : 0;
@@ -388,7 +395,7 @@ module.exports = async (req, res) => {
         }
         
         if (ultimateKits.has(kit)) {
-            const xp = hg[`exp_${kit}`];
+            const xp = kit === 'rambo' ? ramboExpVal : hg[`exp_${kit}`];
             if (xp !== undefined) {
                 if (level === 0) level = 1;
                 if (xp >= 10000) level = 10;
@@ -400,6 +407,7 @@ module.exports = async (req, res) => {
                 else if (xp >= 500) level = 4;
                 else if (xp >= 250) level = 3;
                 else if (xp >= 100) level = 2;
+                else level = 1;
             }
         }
         
@@ -416,7 +424,6 @@ module.exports = async (req, res) => {
         const kitWinsTotal = kitWinsSolo + kitWinsTeams;
         const kitGames = hg[`games_played_${kitLower}`] || hg[`games_${kitLower}`] || 0;
         
-        // Formula: Losses = Games - Wins (Treating Deaths as Losses for KD Math)
         let kitLosses = kitGames - kitWinsTotal;
         if (kitLosses < 0) kitLosses = 0; 
 
