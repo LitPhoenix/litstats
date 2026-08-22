@@ -48,19 +48,23 @@ kbd { background: var(--surface); border: 1px solid var(--border-strong); border
     115deg, 
     transparent 0%, 
     transparent 40%, 
-    var(--red) 47%, 
+    var(--accent-2) 47%, 
     var(--accent) 49%, 
     #ffffff 50%, 
     transparent 51%, 
     transparent 100%
   );
   background-size: 400vw 400vw;
-  animation: slashSpark 4s linear infinite;
+  animation: slashSpark 6s linear infinite;
 }
 
 @keyframes slashSpark {
-  0% { background-position: 0 0; }
-  100% { background-position: 200vw 0; }
+  0% { 
+    background-position: 0 0; 
+  }
+  100% { 
+    background-position: 400vw 0; 
+  }
 }
 
 .table-inner { 
