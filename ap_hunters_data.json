@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-23T00:39:47.486Z",
+  "last_update": "2026-08-23T02:54:58.587Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12612,
+      "score": 12613,
       "top_players": [
         {
           "username": "oJakey",
@@ -498,9 +498,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30360,
+          "current_ap": 30385,
           "last_month_ap": 30040,
-          "monthly_gain": 320,
+          "monthly_gain": 345,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2841,9 +2841,9 @@
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
-          "current_ap": 24155,
+          "current_ap": 24175,
           "last_month_ap": 23550,
-          "monthly_gain": 605,
+          "monthly_gain": 625,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR",
@@ -2936,6 +2936,20 @@
           ]
         },
         {
+          "username": "tommy042001",
+          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+          "country": "Unknown",
+          "current_ap": 23680,
+          "last_month_ap": 23520,
+          "monthly_gain": 160,
+          "maxGames": [
+            "Max Pit",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Hacks",
           "uuid": "b5ab6db9366049ae8a9882927e46ce08",
           "country": "Unknown",
@@ -2949,20 +2963,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "tommy042001",
-          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
-          "country": "Unknown",
-          "current_ap": 23670,
-          "last_month_ap": 23520,
-          "monthly_gain": 150,
-          "maxGames": [
-            "Max Pit",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
