@@ -544,7 +544,7 @@ async function fetchStarPlayer(customUsername) {
       realName = dbData.data.player.username;
     }
 
-    const res = await fetch(`/api/player?uuid=${encodeURIComponent(uuid)}`);
+    const res = await fetch(`https://api.litstats.com/api/player?uuid=${uuid}`);
     if (res.status === 429) throw new Error("Rate Limited by Hypixel. Please wait 60 seconds.");
     
     const contentType = res.headers.get("content-type") || "";
