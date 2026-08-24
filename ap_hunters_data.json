@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-24T04:36:49.373Z",
+  "last_update": "2026-08-24T06:36:31.449Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -578,6 +578,18 @@
           ]
         },
         {
+          "username": "Kyralicious",
+          "uuid": "7456ccb5c8e24271a721a394191d0602",
+          "country": "USA",
+          "current_ap": 28005,
+          "last_month_ap": 27935,
+          "monthly_gain": 70,
+          "maxGames": [
+            "Max Blitz",
+            "Max VampireZ"
+          ]
+        },
+        {
           "username": "Boogatomyooga",
           "uuid": "343139d84b91435c90a6d0054a709ca5",
           "country": "USA",
@@ -586,18 +598,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Duels"
-          ]
-        },
-        {
-          "username": "Kyralicious",
-          "uuid": "7456ccb5c8e24271a721a394191d0602",
-          "country": "USA",
-          "current_ap": 27980,
-          "last_month_ap": 27935,
-          "monthly_gain": 45,
-          "maxGames": [
-            "Max Blitz",
-            "Max VampireZ"
           ]
         },
         {
