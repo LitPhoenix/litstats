@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-24T02:56:16.595Z",
+  "last_update": "2026-08-24T04:36:49.373Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2475,7 +2475,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1673,
+      "score": 1683,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2492,9 +2492,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26425,
+          "current_ap": 26445,
           "last_month_ap": 26335,
-          "monthly_gain": 90,
+          "monthly_gain": 110,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -2829,6 +2829,19 @@
           ]
         },
         {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 24240,
+          "last_month_ap": 23550,
+          "monthly_gain": 690,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Xylim",
           "uuid": "f94ade5012374648b0423fc0b66cac0a",
           "country": "Unknown",
@@ -2836,19 +2849,6 @@
           "last_month_ap": 24225,
           "monthly_gain": -5,
           "maxGames": []
-        },
-        {
-          "username": "InInk",
-          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
-          "country": "Unknown",
-          "current_ap": 24215,
-          "last_month_ap": 23550,
-          "monthly_gain": 665,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max TKR",
-            "Max Duels"
-          ]
         },
         {
           "username": "_Tk3",
