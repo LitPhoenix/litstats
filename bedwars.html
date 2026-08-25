@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>LitStats - Bedwars Dreamfeast</title>
+<link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/mc-gui.css">
+
+<style>
+  :root {
+    --accent-orange: #f95716;
+    --accent-orange-hover: #e54e10;
+    
+    --stat-green: #059669;
+    --stat-gold: #d97706;
+    --stat-yellow: #ca8a04;
+    --stat-purple: #9333ea;
+    --stat-darkgreen: #047857;
+    --stat-pink: #db2777;
+    --stat-blue: #2563eb;
+    --stat-aqua: #0891b2;
+  }
+
+  [data-theme="dark"], body.dark, .dark-theme, html[data-theme="minecraft"] {
+    --stat-green: #55FF55;
+    --stat-gold: #FFAA00;
+    --stat-yellow: #FFFF55;
+    --stat-purple: #AA00AA;
+    --stat-darkgreen: #00AA00;
+    --stat-pink: #FF55FF;
+    --stat-blue: #5555FF;
+    --stat-aqua: #55FFFF;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+  }
+
+  .mc-stack, .slot-count, .item-count, .p-level-badge, .tt-name, .tt-line {
+    font-family: 'MinecraftSeven', 'Minecrafter', 'Minecraft', 'Segoe UI Symbol', 'Arial', monospace !important;
+  }
+
+  .page-container {
+    padding: 24px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 8px auto;
+    width: fit-content;
+    gap: 8px;
+  }
+
+  .search-container input {
+    width: 260px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-container input:focus {
+    border-color: var(--accent, var(--accent-orange));
+  }
+
+  .btn-primary {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent, var(--accent-orange));
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-orange-hover);
+  }
+
+  .btn-icon {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text-2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-icon:hover {
+    color: var(--text);
+    border-color: var(--accent, var(--accent-orange));
+  }
+
+  #search-status {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    min-height: 18px;
+    margin-bottom: 16px;
+  }
+
+  .status-green { color: var(--green, #10b981); }
+  .status-red { color: var(--red, #ef4444); }
+  .status-gray { color: var(--text-3, var(--text-2)); }
+
+  .player-summary-panel {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin: 0 auto 20px auto;
+    box-shadow: var(--shadow);
+    align-items: center;
+    gap: 18px;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+  }
+
+  .p-avatar-box {
+    width: 84px;
+    height: 84px;
+    flex-shrink: 0;
+  }
+
+  .p-avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .p-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .p-name-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .p-level-badge {
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .p-pills-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .p-pill {
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  .info-card-placeholder {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 22px;
+    margin: 0 auto 20px auto;
+    box-shadow: var(--shadow);
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+  }
+
+  .info-card-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .info-card-icon img {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+  }
+
+  .info-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .info-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .info-card-desc {
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  .descent-layout {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .stats-side-panel {
+    position: absolute;
+    top: 0;
+    right: calc(50% + 245px);
+    width: 250px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+
+  .path-side-panel {
+    position: absolute;
+    top: 0;
+    left: calc(50% + 240px);
+    width: 270px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+
+  .path-header-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .path-header-badge img {
+    width: 24px;
+    height: 24px;
+    image-rendering: pixelated;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .path-header-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .stats-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-3, var(--text-2));
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .stat-label {
+    color: var(--text-2);
+    flex-shrink: 0;
+  }
+
+  .stat-val {
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .path-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 2px;
+  }
+
+  .path-step-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .path-step-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .path-step-img {
+    width: 20px;
+    height: 20px;
+    image-rendering: pixelated;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .path-step-name {
+    font-weight: 600;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .path-step-cost {
+    font-weight: 700;
+    color: var(--stat-gold);
+    font-size: 12px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .path-unlocked-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--stat-green);
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 4px;
+  }
+  
+  .path-total-row {
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .gui-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+  }
+
+  .mc-scale-engine {
+    transform-origin: top center !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .mc-container {
+    margin-top: 0 !important;
+  }
+
+  .mc-title { 
+    margin-top: 0 !important; 
+    margin-bottom: 4px; 
+  }
+
+  .mc-tooltip {
+    will-change: transform;
+    pointer-events: none !important;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .slot {
+    position: relative;
+    cursor: pointer;
+  }
+
+  @media (max-width: 1100px) {
+    .descent-layout {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .stats-side-panel, .path-side-panel {
+      position: static;
+      right: auto;
+      left: auto;
+      width: min(100%, 460px);
+    }
+  }
+</style>
+</head>
+<body>
+<script src="assets/js/components.js"></script>
+
+<main class="page-container">
+  <h1 class="page-title">The Dreamfeast Progression</h1>
+
+  <div class="search-container" id="tour-search-container">
+    <input type="text" id="player-input" placeholder="Enter Username or UUID">
+    <button id="search-btn" class="btn-primary">Load Unlocks</button>
+    <button id="reset-btn" class="btn-icon" title="Reset Preview">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+    </button>
+  </div>
+
+  <div id="search-status" class="status-gray">Previewing all max unlocked items</div>
+
+  <div class="info-card-placeholder" id="default-info-card">
+    <div class="info-card-icon">
+      <img src="img/bedwars/pumpkin_pie.png" onerror="this.onerror=null; this.src=typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'pumpkin_pie'}) : 'img/diamond.png'" alt="Dreamfeast Icon">
+    </div>
+    <div class="info-card-text" style="flex: 1;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="info-card-title">The Dreamfeast Progression</span>
+      </div>
+      <span class="info-card-desc">Previewing full Bedwars Dreamfeast path progression. Search a player to view active unlocks and route costs.</span>
+    </div>
+  </div>
+
+  <div class="player-summary-panel" id="player-summary-panel" style="display: none;">
+    <div class="p-avatar-box">
+      <img id="player-avatar-img" src="" alt="Avatar">
+    </div>
+    <div class="p-details">
+      <div class="p-name-line">
+        <span class="p-level-badge" id="player-level-badge"></span>
+        <span id="player-rank-html"></span>
+        <span id="player-username-text"></span>
+      </div>
+      <div class="p-pills-row">
+        <div class="p-pill">Wins: <span style="color:var(--stat-green)" id="pill-wins">0</span></div>
+        <div class="p-pill">Final Kills: <span style="color:var(--stat-blue)" id="pill-finals">0</span></div>
+        <div class="p-pill">FKDR: <span style="color:var(--stat-gold)" id="pill-fkdr">0.00</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="descent-layout">
+    <div class="stats-side-panel" id="stats-side-panel">
+      <div class="stats-title" id="side-panel-title">Tree Overview</div>
+      <div class="stat-item"><span class="stat-label" id="lbl-1">Total Unlocks</span><span class="stat-val" style="color:var(--stat-green)" id="bw-val-1">0 / 51</span></div>
+      <div class="stat-item"><span class="stat-label" id="lbl-2">Total Spent</span><span class="stat-val" style="color:var(--stat-yellow)" id="bw-val-2">1,050 Tarts</span></div>
+      <div style="font-size:11px; color:var(--text-3); text-align:right; margin-top:-8px;" id="lbl-2-desc">(1,050,000 Tickets in total)</div>
+      <div class="stat-item"><span class="stat-label" id="lbl-3">Main Path Items</span><span class="stat-val" style="color:var(--stat-green)" id="bw-val-3">0 / 21</span></div>
+      <div class="stat-item"><span class="stat-label" id="lbl-4">Branch Items</span><span class="stat-val" style="color:var(--stat-darkgreen)" id="bw-val-4">0 / 30</span></div>
+
+      <div class="stats-title" style="margin-top:10px;">Slumber Stash</div>
+      <div class="stat-item"><span class="stat-label">Tickets</span><span class="stat-val" style="color:var(--stat-aqua)" id="stash-tickets">0</span></div>
+      <div class="stat-item"><span class="stat-label">Ticket Tarts</span><span class="stat-val" style="color:var(--stat-yellow)" id="stash-tarts">0</span></div>
+      <div class="stat-item"><span class="stat-label">Dreamcakes</span><span class="stat-val" style="color:var(--stat-pink)" id="stash-cakes">0</span></div>
+      <div class="stat-item"><span class="stat-label">Soul Salsa</span><span class="stat-val" style="color:#ef4444" id="stash-salsa">0</span></div>
+      <div class="stat-item"><span class="stat-label">Nightmare Noodles</span><span class="stat-val" style="color:var(--stat-gold)" id="stash-noodles">0</span></div>
+      <div class="stat-item"><span class="stat-label">Snoring Nachos</span><span class="stat-val" style="color:var(--stat-green)" id="stash-nachos">0</span></div>
+
+      <div class="stats-title" style="margin-top:10px;">Cooking Prices</div>
+      <div class="stat-item"><span class="stat-label">Ticket Tarts</span><span class="stat-val" style="color:var(--stat-yellow)">1,000 Tickets</span></div>
+      <div class="stat-item"><span class="stat-label">Dreamcakes</span><span class="stat-val" style="color:var(--stat-pink)">500 Tickets</span></div>
+      <div class="stat-item"><span class="stat-label">Soul Salsa</span><span class="stat-val" style="color:#ef4444">500 Tickets</span></div>
+      <div class="stat-item"><span class="stat-label">Nightmare Noodles</span><span class="stat-val" style="color:var(--stat-gold)">500 Tickets</span></div>
+      <div class="stat-item"><span class="stat-label">Snoring Nachos</span><span class="stat-val" style="color:var(--stat-green)">500 Tickets</span></div>
+    </div>
+
+    <div class="gui-wrapper">
+      <div class="mc-scale-engine">
+        <div class="mc-container">
+          <div class="mc-title" id="display-title">The Dreamfeast</div>
+          <div class="mc-grid" id="menu-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="path-side-panel" id="path-side-panel">
+      <div class="stats-title">
+        <span>Unlock Route</span>
+        <button onclick="closePathPanel()" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;">✕</button>
+      </div>
+      <div style="font-size:12px; color:var(--text-2);" id="path-target-name">Target: -</div>
+      <div class="path-steps-list" id="path-steps-container"></div>
+      <div class="path-total-row">
+        <span>Total Required:</span>
+        <div id="path-total-cost"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="assets/js/global.js"></script>
+<script src="assets/js/mc-engine.js"></script>
+<script>
+const glass = { "id": "black_stained_glass_pane", "texture": "img/bedwars/black_stained_glass_pane.png", "rawName": "&r", "baseLore": "", "enchanted": false, "isLocked": false, "apiKey": "glass" };
+
+const menuConfig = {
+  "title": "The Dreamfeast",
+  "cols": 9,
+  "rows": 21,
+  "data": [
+    // Row 0 - Appetizer Boon
+    glass, glass, null, null, null,
+    { "id": "pumpkin_pie", "texture": "img/bedwars/pumpkin_pie.png", "apiKey": "appetizer_boon", "isBoon": true, "costVal": 0, "rawCost": "&eFree", "baseTitle": "Appetizer Boon", "rawName": "&aAppetizer Boon", "baseLore": "&8Permanent Upgrade\n\n&7Earn an extra &b+5% Bed Wars XP&7.\n&8(Originally from Tournament Hall)", "enchanted": false },
+    null, null, null,
+
+    // Row 1 - First Dream of Wood Skins (Left Branch)
+    glass, glass,
+    { "id": "jungle_log", "texture": "img/bedwars/jungle_log.png", "apiKey": "woodSkin_jungle_log", "rawCost": "&d10 Dreamcakes", "baseTitle": "Jungle Log Wood Skin", "rawName": "&aJungle Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "birch_log", "texture": "img/bedwars/birch_log.png", "apiKey": "woodSkin_birch_log", "rawCost": "&d10 Dreamcakes", "baseTitle": "Birch Log Wood Skin", "rawName": "&aBirch Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "oak_log", "texture": "img/bedwars/oak_log.png", "apiKey": "woodSkin_oak_log", "rawCost": "&d10 Dreamcakes", "baseTitle": "Oak Log Wood Skin", "rawName": "&aOak Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "sapling", "texture": "img/bedwars/sapling.png", "apiKey": "first_dream_of_wood_skins", "costVal": 5, "rawCost": "&e5 Ticket Tarts", "baseTitle": "First Dream of Wood Skins", "rawName": "&aFirst Dream of Wood Skins", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Wood Skins\n&7that can be purchased:\n &a1. &6Oak Log &7Wood Skin\n &a2. &6Birch Log &7Wood Skin\n &a3. &6Jungle Log &7Wood Skin", "enchanted": false },
+    null, null, null,
+
+    // Row 2 - Dream of Animals (Right Branch)
+    { "id": "cauldron", "texture": "img/bedwars/cauldron.png", "apiKey": "feastfoods_cauldron", "rawName": "&aFeastfoods", "baseLore": "&8Edible Dreams\n\n&7Cooked up in the &9Midnight Crucible&7,\n&6Feastfoods &7allow you to progress\n&7through the &dDreamfeast&7.\n\n&7You have:\n&c{SOUL_SALSA} Jars of Soul Salsa\n&6{NIGHTMARE_NOODLES} Bowls of Nightmare Noodles\n&e{TICKET_TARTS} Ticket Tarts\n&a{SNORING_NACHOS} Snoring Nachos\n&d{DREAMCAKES} Dreamcakes\n\n&eClick to teleport!", "enchanted": false }, 
+    glass, null, null, null,
+    { "id": "carrot", "texture": "img/bedwars/carrot.png", "apiKey": "dream_of_animals", "costVal": 10, "rawCost": "&e10 Ticket Tarts", "baseTitle": "Dream of Animals", "rawName": "&aDream of Animals", "baseLore": "&8Feast Extension\n\n&7Unlocks animal related cosmetics.", "enchanted": false },
+    { "id": "beef", "texture": "img/bedwars/beef.png", "apiKey": "animal_beef", "rawCost": "&d5 Dreamcakes", "baseTitle": "Cow Pyramid Shopkeeper Skin", "rawName": "&aCow Pyramid Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Has gone unexplained by physicists\n&7and mathematicians alike for years.", "enchanted": false },
+    { "id": "egg", "texture": "img/bedwars/egg.png", "apiKey": "animal_egg_1", "rawCost": "&d10 Dreamcakes", "baseTitle": "Chicken Apocalypse Victory Dance", "rawName": "&aChicken Apocalypse Victory Dance", "baseLore": "&8New Cosmetic\n\n&7Tons of chickens, lots of eggs, it's\n&7the end of the world unless you like\n&7chicken.\n&8(Originally from Tournament Hall)", "enchanted": false },
+    { "id": "egg", "texture": "img/bedwars/egg.png", "apiKey": "animal_egg_2", "rawCost": "&d20 Dreamcakes", "baseTitle": "Cluck Stack Shopkeeper Skin", "rawName": "&aCluck Stack Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7An entirely explainable phenomenon\n&7by our current understanding of\n&7science.\n&8(Originally from Tournament Hall)", "stack": 5, "enchanted": false },
+
+    // Row 3 - First Nightmare of Challenges (Left Branch)
+    glass, glass,
+    { "id": "lime_wool", "texture": "img/bedwars/lime_wool.png", "apiKey": "challenge_no_dreaming", "rawCost": "&625 Bowls of Nightmare Noodles", "baseTitle": "No Dreaming", "rawName": "&aNo Dreaming", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7If you kill a player before their\n &7bed is broken, you'll fail the\n &7challenge\n &62. &7If you die for any reason, you\n &7fail the challenge\n\n&6Reward:\n &8- &cEvil Laugh Death Cry", "enchanted": false },
+    { "id": "stone_brick_stairs", "texture": "img/bedwars/stone_brick_stairs.png", "apiKey": "challenge_anchor", "rawCost": "&615 Bowls of Nightmare Noodles", "baseTitle": "Anchor", "rawName": "&aAnchor", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7You are completely unable to jump\n &62. &7Jump Boost Potions will allow you\n &7to jump as normal temporarily\n\n&6Reward:\n &8- &cAnvil Ascension Victory Dance", "enchanted": false },
+    { "id": "bed", "texture": "img/bedwars/bed.png", "apiKey": "challenge_wool", "rawCost": "&610 Bowls of Nightmare Noodles", "baseTitle": "Wool Warrior", "rawName": "&aWool Warrior", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7Wool is the only thing you can\n &7purchase from the Item Shop\n &62. &7You cannot pick up any items\n &7dropped by other players\n\n&6Reward:\n &8- &cWoolnado Victory Dance", "enchanted": false },
+    { "id": "11-disc", "texture": "img/bedwars/11-disc.png", "apiKey": "first_nightmare_of_challenges", "costVal": 15, "rawCost": "&e15 Ticket Tarts", "baseTitle": "First Nightmare of Challenges", "rawName": "&aFirst Nightmare of Challenges", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Bed Wars\n&7Challenges that can be purchased:\n &a1. &eWool Warrior Challenge\n &a2. &6Anchor Challenge\n &a3. &cNo Dreaming Challenge", "enchanted": false },
+    null, null, null,
+
+    // Row 4 - First Course Boon
+    glass, glass, null, null, null,
+    { "id": "glistering_melon", "texture": "img/bedwars/glistering_melon.png", "apiKey": "first_course_boon", "isBoon": true, "costVal": 20, "rawCost": "&e20 Ticket Tarts", "baseTitle": "First Course Boon", "rawName": "&aFirst Course Boon", "baseLore": "&8Permanent Upgrade\n\n&7Earn an extra &b+1% Bed Wars XP&7.", "enchanted": false },
+    null, null, null,
+
+    // Row 5 - Dream of Prestige Stars (Right Branch)
+    glass, glass, null, null, null,
+    { "id": "nether_star", "texture": "img/bedwars/nether_star.png", "apiKey": "dream_of_prestige_stars", "costVal": 25, "rawCost": "&e25 Ticket Tarts", "baseTitle": "Dream of Prestige Stars", "rawName": "&aDream of Prestige Stars", "baseLore": "&8Feast Extension\n\n&7Unlocks selectable prestige stars.", "enchanted": false },
+    { "id": "prismarine_shard", "texture": "img/bedwars/prismarine_shard.png", "apiKey": "prestige_star_four_pointed", "rawCost": "&a15 Snoring Nachos\n&d15 Dreamcakes", "baseTitle": "Four-Pointed Prestige Star", "rawName": "&aFour-Pointed Prestige Star", "baseLore": "&8New Cosmetic\n\n&7Customize the star icon in your\n&7prestige.\n\n&7Preview: &c[&61&e7&a6&b2&d★&5] &7→ &c[&61&e7&a6&b2&d✦&5]", "enchanted": false },
+    { "id": "hopper", "texture": "img/bedwars/hopper.png", "apiKey": "prestige_star_hollow", "rawCost": "&a20 Snoring Nachos\n&d20 Dreamcakes", "baseTitle": "Hollow Prestige Star", "rawName": "&aHollow Prestige Star", "baseLore": "&8New Cosmetic\n\n&7Customize the star icon in your\n&7prestige.\n\n&7Preview: &c[&61&e7&a6&b2&d★&5] &7→ &c[&61&e7&a6&b2&d☆&5]", "enchanted": false },
+    { "id": "oak_boat", "texture": "img/bedwars/oak_boat.png", "apiKey": "prestige_star_nautical", "rawCost": "&a30 Snoring Nachos\n&d30 Dreamcakes", "baseTitle": "Nautical Prestige Star", "rawName": "&aNautical Prestige Star", "baseLore": "&8New Cosmetic\n\n&7Customize the star icon in your\n&7prestige.\n\n&7Preview: &c[&61&e7&a6&b2&d★&5] &7→ &c[&61&e7&a6&b2&d✯&5]", "enchanted": false },
+
+    // Row 6 - First Dream of Shopkeeper Skins (Left Branch)
+    glass, glass,
+    { "id": "player_head", "apiKey": "shopkeeper_the_everyman", "rawCost": "&a35 Snoring Nachos\n&c35 Jars of Soul Salsa", "baseTitle": "The Everyman Shopkeeper Skin", "rawName": "&aThe Everyman Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7To be everyone is to lack identity.", "enchanted": false },
+    { "id": "player_head", "apiKey": "shopkeeper_skin_2", "rawCost": "&d25 Dreamcakes", "baseTitle": "Shopkeeper Skin II", "rawName": "&aShopkeeper Skin II", "baseLore": "&8Shopkeeper Cosmetic", "enchanted": false },
+    { "id": "player_head", "apiKey": "shopkeeper_you_upside_down", "rawCost": "&a20 Snoring Nachos\n&c20 Jars of Soul Salsa", "baseTitle": "You! Upside-Down Shopkeeper Skin", "rawName": "&aYou! Upside-Down Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Despite inversion, it's still You!", "enchanted": false },
+    { "id": "villager_spawn_egg", "apiKey": "first_dream_of_shopkeeper_skins", "costVal": 30, "rawCost": "&e30 Ticket Tarts", "baseTitle": "First Dream of Shopkeeper Skins", "rawName": "&aFirst Dream of Shopkeeper Skins", "baseLore": "&8Feast Extension\n\n&7Unlocks new shopkeeper skin selections.", "enchanted": false },
+    null, null, null,
+
+    // Row 7 - Second Nightmare of Challenges (Right Branch)
+    glass, glass, null, null, null,
+    { "id": "11-disc", "texture": "img/bedwars/11-disc.png", "apiKey": "second_nightmare_of_challenges", "costVal": 35, "rawCost": "&e35 Ticket Tarts", "baseTitle": "Second Nightmare of Challenges", "rawName": "&aSecond Nightmare of Challenges", "baseLore": "&8Feast Extension\n\n&7Unlocks tier 2 challenges.", "stack": 2, "enchanted": false },
+    { "id": "daylight_sensor", "texture": "img/bedwars/daylight_sensor.png", "apiKey": "challenge_quick_maths", "rawCost": "&625 Bowls of Nightmare Noodles", "baseTitle": "Quick Maths", "rawName": "&aQuick Maths", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7Answer math questions that will\n &7occasionally show up in chat\n &62. &7If you don't answer them within 10\n &7seconds you fail the challenge\n\n&6Reward:\n &8- &cPinwheel Prestige Star", "enchanted": false },
+    { "id": "furnace_minecart", "apiKey": "challenge_blockrepellent_beds", "rawCost": "&630 Bowls of Nightmare Noodles", "baseTitle": "Blockrepellent Beds", "rawName": "&aBlockrepellent Beds", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7You cannot place anything within\n &710 blocks of ANY unbroken bed\n\n&6Reward:\n &8- &cUncraft Bed Destroy", "enchanted": false },
+    { "id": "comparator", "texture": "img/bedwars/comparator.png", "apiKey": "challenge_midnight", "rawCost": "&640 Bowls of Nightmare Noodles", "baseTitle": "Midnight", "rawName": "&aMidnight", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7For the duration of the game you\n &7have the Blindness effect\n &62. &7You must break at least 2 enemy\n &7Beds before winning\n\n&6Reward:\n &8- &cInsomnia Victory Dance", "enchanted": false },
+
+    // Row 8 - Second Course Boon
+    glass, glass, null, null, null,
+    { "id": "glistering_melon", "texture": "img/bedwars/glistering_melon.png", "apiKey": "second_course_boon", "isBoon": true, "costVal": 40, "rawCost": "&e40 Ticket Tarts", "baseTitle": "Second Course Boon", "rawName": "&aSecond Course Boon", "baseLore": "&8Permanent Upgrade\n\n&7Earn an extra &b+1% Bed Wars XP&7.", "stack": 2, "enchanted": false },
+    null, null, null,
+
+    // Row 9 - Second Dream of Wood Skins (Left Branch)
+    glass, glass,
+    { "id": "acacia_log", "texture": "img/bedwars/acacia_log.png", "apiKey": "woodSkin_acacia_log", "rawCost": "&d15 Dreamcakes", "baseTitle": "Acacia Log Wood Skin", "rawName": "&aAcacia Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "dark_oak_log", "texture": "img/bedwars/dark_oak_log.png", "apiKey": "woodSkin_dark_oak_log", "rawCost": "&d15 Dreamcakes", "baseTitle": "Dark Oak Log Wood Skin", "rawName": "&aDark Oak Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "spruce_log", "texture": "img/bedwars/spruce_log.png", "apiKey": "woodSkin_spruce_log", "rawCost": "&d15 Dreamcakes", "baseTitle": "Spruce Log Wood Skin", "rawName": "&aSpruce Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "acacia_sapling", "texture": "img/bedwars/acacia_sapling.png", "apiKey": "second_dream_of_wood_skins", "costVal": 45, "rawCost": "&e45 Ticket Tarts", "baseTitle": "Second Dream of Wood Skins", "rawName": "&aSecond Dream of Wood Skins", "baseLore": "&8Feast Extension\n\n&7Lucid dreams up remaining Wood Skins.", "stack": 2, "enchanted": false },
+    null, null, null,
+
+    // Row 10 - Dream of Prestige Brackets (Right Branch)
+    glass, glass, null, null, null,
+    { "id": "dark_oak_fence", "texture": "img/bedwars/dark_oak_fence.png", "apiKey": "dream_of_prestige_brackets", "costVal": 50, "rawCost": "&e50 Ticket Tarts", "baseTitle": "Dream of Prestige Brackets", "rawName": "&aDream of Prestige Brackets", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Prestige\n&7Brackets that can be purchased.", "enchanted": false },
+    { "id": "spruce_fence", "texture": "img/bedwars/spruce_fence.png", "apiKey": "prestige_bracket_parenthesis", "rawCost": "&c35 Jars of Soul Salsa\n&d35 Dreamcakes", "baseTitle": "Parenthesis Prestige Bracket", "rawName": "&aParenthesis Prestige Bracket", "baseLore": "&8New Cosmetic\n\n&7Customize the brackets in your\n&7prestige.\n\n&7Preview: &c[&e1762&d★&c] &7→ &c(&e1762&d★&c)", "enchanted": false },
+    { "id": "oak_fence", "texture": "img/bedwars/oak_fence.png", "apiKey": "prestige_bracket_curly_brace", "rawCost": "&c40 Jars of Soul Salsa\n&d40 Dreamcakes", "baseTitle": "Curly Brace Prestige Bracket", "rawName": "&aCurly Brace Prestige Bracket", "baseLore": "&8New Cosmetic\n\n&7Customize the brackets in your\n&7prestige.\n\n&7Preview: &c[&e1762&d★&c] &7→ &c{&e1762&d★&c}", "enchanted": false },
+    { "id": "birch_fence", "texture": "img/bedwars/birch_fence.png", "apiKey": "prestige_bracket_angled", "rawCost": "&c50 Jars of Soul Salsa\n&d50 Dreamcakes", "baseTitle": "Angled Prestige Bracket", "rawName": "&aAngled Prestige Bracket", "baseLore": "&8New Cosmetic\n\n&7Customize the brackets in your\n&7prestige.\n\n&7Preview: &c[&e1762&d★&c] &7→ &c<&e1762&d★&c>", "enchanted": false },
+
+    // Row 11 - Third Nightmare of Challenges (Left Branch)
+    glass, glass,
+    { "id": "feather", "texture": "img/bedwars/feather.png", "apiKey": "challenge_halved_and_doubled", "rawCost": "&655 Bowls of Nightmare Noodles", "baseTitle": "Halved & Doubled", "rawName": "&aHalved & Doubled", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7You deal half the damage and\n &7take double the damage\n &62. &7Items in the shop cost double and\n &7give half as much\n\n&6Reward:\n &8- &cYin & Yang Shopkeeper Skin\n &8- &cArrow Spiral Projectile Trail", "enchanted": false },
+    { "id": "block_of_emerald", "texture": "img/bedwars/block_of_emerald.png", "apiKey": "challenge_beg_and_barter", "rawCost": "&645 Bowls of Nightmare Noodles", "baseTitle": "Beg & Barter", "rawName": "&aBeg & Barter", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7You can't purchase any items,\n &7upgrades, or traps directly\n &62. &7Interacting with a Shopkeeper\n &7now spends your materials on\n &7random items, upgrades, and traps\n\n&6Reward:\n &8- &cPiglin Shopkeeper Skin\n &8- &cStrider Shopkeeper Skin\n &8- &cBlaze Stack Shopkeeper Skin", "enchanted": false },
+    { "id": "brick_slab", "texture": "img/bedwars/brick_slab.png", "apiKey": "challenge_beds_and_bloodlust", "rawCost": "&640 Bowls of Nightmare Noodles", "baseTitle": "Beds & Bloodlust", "rawName": "&aBeds & Bloodlust", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7You must kill at least one player\n &7every 60 seconds to not fail\n &62. &7You must break at least one Bed\n &7every 3 minutes to not fail\n\n&6Reward:\n &8- &cDouble Angle Quotation Mark\n &cPrestige Bracket", "enchanted": false },
+    { "id": "11-disc", "texture": "img/bedwars/11-disc.png", "apiKey": "third_nightmare_of_challenges", "costVal": 55, "rawCost": "&e55 Ticket Tarts", "baseTitle": "Third Nightmare of Challenges", "rawName": "&aThird Nightmare of Challenges", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Bed Wars\n&7Challenges that can be purchased:\n &a1. &6Beds & Bloodlust\n &a2. &6Beg & Barter\n &a3. &6Halved & Doubled", "stack": 3, "enchanted": false },
+    null, null, null,
+
+    // Row 12 - Third Course Boon
+    glass, glass, null, null, null,
+    { "id": "glistering_melon", "texture": "img/bedwars/glistering_melon.png", "apiKey": "third_course_boon", "isBoon": true, "costVal": 60, "rawCost": "&e60 Ticket Tarts", "baseTitle": "Third Course Boon", "rawName": "&aThird Course Boon", "baseLore": "&8Permanent Upgrade\n\n&7Earn an extra &b+1% Bed Wars XP&7.", "stack": 3, "enchanted": false },
+    null, null, null,
+
+    // Row 13 - Team Color Selector
+    glass, glass, null, null, null,
+    { "id": "red_wool", "texture": "img/bedwars/red_wool.png", "apiKey": "team_color_selector", "costVal": 65, "rawCost": "&e65 Ticket Tarts", "baseTitle": "Team Color Selector", "rawName": "&aTeam Color Selector", "baseLore": "&8Cosmetic Feature\n\n&7Choose your team wool colour preference.", "enchanted": false },
+    null, null, null,
+
+    // Row 14 - Dream of Prestige Formatting (Right Branch)
+    glass, glass, null, null, null,
+    { "id": "activator_rail", "texture": "img/bedwars/activator_rail.png", "apiKey": "dream_of_prestige_formatting", "costVal": 70, "rawCost": "&e70 Ticket Tarts", "baseTitle": "Dream of Prestige Formatting", "rawName": "&aDream of Prestige Formatting", "baseLore": "&8Feast Extension\n\n&7Prestige badge format styles.", "enchanted": false },
+    { "id": "ladder", "apiKey": "toggle_bold_numbers", "rawCost": "&d50 Dreamcakes", "baseTitle": "Toggle &lBOLD&r Numbers", "rawName": "&aToggle &lBOLD&r&a Numbers", "baseLore": "&8Prestige Formatting\n\n&7Toggle whether you want the\n&7numbers in your Prestige bolded or\n&7not!\n\n&7Preview: &c[&e1762&d✪&c] &7→ &c[&e&l1762&d&l✪&c]", "enchanted": false },
+    { "id": "rail", "texture": "img/bedwars/rail.png", "apiKey": "toggle_underlined_prestige", "rawCost": "&d55 Dreamcakes", "baseTitle": "Toggle &nUnderlined&r Prestiges", "rawName": "&aToggle &nUnderlined&r&a Prestiges", "baseLore": "&8Prestige Formatting\n\n&7Toggle whether you want your\n&7Prestige underlined or not!\n\n&7Preview: &c[&e1762&d✪&c] &7→ &n&c[&e1762&d✪&c]&r", "enchanted": false },
+    { "id": "powered_rail", "texture": "img/bedwars/powered_rail.png", "apiKey": "toggle_strikethrough_brackets", "rawCost": "&d65 Dreamcakes", "baseTitle": "Toggle &mStrikethrough&r Brackets", "rawName": "&aToggle &mStrikethrough&r&a Brackets", "baseLore": "&8Prestige Formatting\n\n&7Toggle whether you want the\n&7brackets in your Prestige\n&7struckthrough or not!\n\n&7Preview: &c[&e1762&d✪&c] &7→ &c&m[&r&e1762&d✪&c&m]&r", "enchanted": false },
+
+    // Row 15 - Dream of Kill Messages (Left Branch)
+    glass, glass,
+    { "id": "golden_helmet", "texture": "img/bedwars/golden_helmet.png", "apiKey": "killmessages_glorious", "rawCost": "&c75 Jars of Soul Salsa", "baseTitle": "Glorious Kill Messages", "rawName": "&aGlorious Kill Messages", "baseLore": "&8New Cosmetic\n\n&7Shouts your number of final kills and\n&7bed destroys.\n&8(Originally from Tournament Hall)", "enchanted": false },
+    { "id": "yellow_wool", "texture": "img/bedwars/yellow_wool.png", "apiKey": "toggle_rainbow_kill_messages", "rawCost": "&c60 Jars of Soul Salsa", "baseTitle": "Toggle Rainbow Kill Messages", "rawName": "&aToggle Rainbow Kill Messages", "baseLore": "&8New Cosmetic\n\n&7Toggle whether you want your kill\n&7messages &cR&6a&ei&an&bb&do&5w &7or not!", "enchanted": false },
+    { "id": "red_wool", "texture": "img/bedwars/red_wool.png", "apiKey": "killmessages_lucid", "rawCost": "&c55 Jars of Soul Salsa", "baseTitle": "Lucid Kill Messages", "rawName": "&aLucid Kill Messages", "baseLore": "&8New Cosmetic\n\n&7Knock your enemies into a good\n&7night's rest.", "enchanted": false },
+    { "id": "oak_sign", "texture": "img/bedwars/oak_sign.png", "apiKey": "dream_of_kill_messages", "costVal": 75, "rawCost": "&e75 Ticket Tarts", "baseTitle": "Dream of Kill Messages", "rawName": "&aDream of Kill Messages", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Kill\n&7Messages that can be purchased:\n &a1. &6Lucid &7Kill Messages\n &a2. &7Toggle &cR&6a&ei&an&bb&do&5w &7Kill Messages\n &a3. &6Glorious &7Kill Messages", "enchanted": false },
+    null, null, null,
+
+    // Row 16 - Fourth Course Boon
+    glass, glass, null, null, null,
+    { "id": "glistering_melon", "texture": "img/bedwars/glistering_melon.png", "apiKey": "fourth_course_boon", "isBoon": true, "costVal": 80, "rawCost": "&e80 Ticket Tarts", "baseTitle": "Fourth Course Boon", "rawName": "&aFourth Course Boon", "baseLore": "&8Permanent Upgrade\n\n&7Earn an extra &b+1% Bed Wars XP&7.", "stack": 4, "enchanted": false },
+    null, null, null,
+
+    // Row 17 - Second Dream of Shopkeeper Skins (Right Branch)
+    glass, glass, null, null, null,
+    { "id": "villager_spawn_egg", "apiKey": "second_dream_of_shopkeeper_skins", "costVal": 85, "rawCost": "&e85 Ticket Tarts", "baseTitle": "Second Dream of Shopkeeper Skins", "rawName": "&aSecond Dream of Shopkeeper Skins", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Shopkeeper\n&7Skins that can be purchased.", "stack": 2, "enchanted": false },
+    { "id": "player_head", "apiKey": "shopkeeper_aiden_allpillow", "rawCost": "&a65 Snoring Nachos\n&d65 Dreamcakes", "baseTitle": "Aiden Allpillow Shopkeeper Skin", "rawName": "&aAiden Allpillow Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Anyone who enters Lucid's chamber\n&7is at risk of falling asleep. Aiden\n&7doesn't want to take any chances\n&7falling over.", "enchanted": false },
+    { "id": "player_head", "apiKey": "shopkeeper_hotel_owner", "rawCost": "&a75 Snoring Nachos\n&d75 Dreamcakes", "baseTitle": "Hotel Owner Shopkeeper Skin", "rawName": "&aHotel Owner Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7He built up the Slumber Hotel to what\n&7it is today along with Lucid.", "enchanted": false },
+    { "id": "player_head", "apiKey": "shopkeeper_visions_of_lucid", "rawCost": "&a90 Snoring Nachos\n&d90 Dreamcakes", "baseTitle": "Visions of Lucid Shopkeeper Skin", "rawName": "&aVisions of Lucid Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7The one who originally dreamt up Bed\n&7Wars. At risk of destroying his own\n&7creation, he put himself in an eternal\n&7slumber.", "enchanted": false },
+
+    // Row 18 - Dream of Prestige (Left Branch)
+    glass, glass,
+    { "id": "feather", "texture": "img/bedwars/feather.png", "apiKey": "prestige_ascension_cloak", "rawCost": "&a100 Snoring Nachos\n&6100 Bowls of Nightmare Noodles\n&d100 Dreamcakes\n&c100 Jars of Soul Salsa", "baseTitle": "Prestige Ascension Cloak", "rawName": "&aPrestige Ascension Cloak", "baseLore": "&8New Lobby Cosmetic\n\n&7Show off your current Bed Wars\n&7Level with this Cloak, available in all\n&7lobbies.", "enchanted": false },
+    { "id": "arrow", "texture": "img/bedwars/arrow.png", "apiKey": "prestige_projectile_trail", "rawCost": "&a85 Snoring Nachos\n&685 Bowls of Nightmare Noodles\n&d85 Dreamcakes\n&c85 Jars of Soul Salsa", "baseTitle": "Prestigious Projectile Trail", "rawName": "&aPrestigious Projectile Trail", "baseLore": "&8New Cosmetic\n\n&7The particle trail matches the color\n&7of your current Prestige!", "enchanted": false },
+    { "id": "player_head", "apiKey": "prestige_island_topper", "rawCost": "&c75 Jars of Soul Salsa\n&a75 Snoring Nachos\n&d75 Dreamcakes\n&675 Bowls of Nightmare Noodles", "baseTitle": "Prestigious Island Topper", "rawName": "&aPrestigious Island Topper", "baseLore": "&8New Cosmetic\n\n&7The Island Topper matches the color\n&7of your current Prestige!", "enchanted": false },
+    { "id": "diamond", "texture": "img/bedwars/diamond.png", "apiKey": "dream_of_prestige", "costVal": 90, "rawCost": "&e90 Ticket Tarts", "baseTitle": "Dream of Prestige", "rawName": "&aDream of Prestige", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new prestigious\n&7cosmetics that can be purchased:\n &a1. &6Prestigious &7Island Topper\n &a2. &6Prestigious &7Projectile Trail\n &a3. &6Prestige Ascension &7Cloak", "enchanted": false },
+    null, null, null,
+
+    // Row 19 - Golden Starting Sword
+    glass, glass, null, null, null,
+    { "id": "wooden_sword", "texture": "img/bedwars/wooden_sword.png", "apiKey": "golden_starting_sword", "costVal": 95, "rawCost": "&e95 Ticket Tarts", "baseTitle": "Golden Starting Sword", "rawName": "&aGolden Starting Sword", "baseLore": "&8Cosmetic Upgrade\n\n&7Spawn with a golden sword look.", "enchanted": false },
+    null, null, null,
+
+    // Row 20 - Dessert Boon
+    glass, glass, null, null, null,
+    { "id": "glistering_melon", "texture": "img/bedwars/glistering_melon.png", "apiKey": "dessert_boon", "isBoon": true, "costVal": 100, "rawCost": "&e100 Ticket Tarts", "baseTitle": "Dessert Boon", "rawName": "&aDessert Boon", "baseLore": "&8The Final Boon\n\n&7Earn an extra &b+1% Bed Wars XP&7.", "stack": 5, "enchanted": false },
+    null, null, null
+  ]
+};
+
+const defaultItemsBackup = JSON.parse(JSON.stringify(menuConfig.data));
+let isLivePlayerLoaded = false;
+
+function parseMinecraftColors(text) {
+  if (!text || text.trim() === '') return '&nbsp;';
+  const colorMap = { 
+    '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', 
+    '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', 
+    '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 
+    'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' 
+  };
+  
+  let html = '';
+  let state = { color: '#AAAAAA', bold: false, italic: false, underline: false, strikethrough: false };
+
+  function buildStyleString(s) {
+    let styles = `color: ${s.color};`;
+    if (s.bold) styles += ' font-weight: bold;';
+    if (s.italic) styles += ' font-style: italic;';
+    let decoration = [];
+    if (s.underline) decoration.push('underline');
+    if (s.strikethrough) decoration.push('line-through');
+    if (decoration.length > 0) styles += ` text-decoration: ${decoration.join(' ')};`;
+    return styles;
+  }
+
+  let parts = text.split(/(?=[&§][0-9a-flmno-r])/i);
+  for (let part of parts) {
+    if ((part.startsWith('&') || part.startsWith('§')) && part.length >= 2) {
+      let code = part[1].toLowerCase();
+      let textContent = part.substring(2);
+      if (colorMap[code]) { 
+        state.color = colorMap[code]; 
+        state.bold = state.italic = state.underline = state.strikethrough = false;
+      } 
+      else if (code === 'l') { state.bold = true; } 
+      else if (code === 'm') { state.strikethrough = true; }
+      else if (code === 'n') { state.underline = true; }
+      else if (code === 'o') { state.italic = true; }
+      else if (code === 'r') { 
+        state.color = '#AAAAAA'; 
+        state.bold = state.italic = state.underline = state.strikethrough = false;
+      }
+      html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
+    } else {
+      html += `<span style="${buildStyleString(state)}">${part}</span>`;
+    }
+  }
+  return html;
+}
+
+function getPlusColourHex(colourName) {
+  const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
+  return colours[colourName] || '#FF5555';
+}
+
+function getRankBaseColourHex(rank, monthlyRankColor) {
+  if (!rank || rank === 'NON') return '#AAAAAA';
+  const clean = rank.replace(/\[|\]/g, ''); 
+  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+  if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
+  if (clean.includes('MVP')) return '#55FFFF'; 
+  if (clean.includes('VIP')) return '#55FF55'; 
+  if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
+  if (clean.includes('PIG')) return '#FF55FF'; 
+  return '#AAAAAA';
+}
+
+function formatRankHtml(rank, plusColour, monthlyRankColor) {
+  if (!rank || rank === 'NON') return '';
+  const plusHex = getPlusColourHex(plusColour);
+  const cleanRank = rank.replace(/\[|\]/g, ''); 
+  const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
+
+  let formatted = cleanRank;
+  if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
+  else if (cleanRank.includes('+')) formatted = `${cleanRank.split('+')[0]}<span style="color:${plusHex}">+</span>`;
+
+  return `<span style="color:${baseColor}; font-weight:700;">[${formatted}]</span>`;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('menu-grid');
+  grid.style.setProperty('--cols', menuConfig.cols);
+  grid.style.setProperty('--rows', menuConfig.rows);
+  
+  let html = '';
+  const totalSlots = menuConfig.cols * menuConfig.rows;
+  
+  for (let i = 0; i < totalSlots; i++) {
+    const item = menuConfig.data[i];
+    if (!item) {
+      html += `<div class="slot" data-index="${i}"></div>`;
+    } else {
+      let texture = item.texture;
+      if (item.isLocked) {
+        texture = "img/skywars/coal_block.png";
+      } else if (!item.isLocked && item.texture) {
+        texture = item.texture;
+      } else {
+        texture = typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback(item) : 'img/diamond.png';
+      }
+      
+      const itemToRender = { ...item };
+      if (item.isLocked) {
+        delete itemToRender.stack;
+        itemToRender.id = "coal_block"; 
+      }
+
+      const slotHtml = typeof MCEngine !== 'undefined' 
+        ? MCEngine.makeSlotHtml(itemToRender, texture)
+        : `<div class="slot"><img src="${texture}"></div>`;
+      
+      html += slotHtml.replace('<div class="slot', `<div class="slot" data-index="${i}"`);
+    }
+  }
+  grid.innerHTML = html;
+}
+
+function closePathPanel() {
+  const panel = document.getElementById('path-side-panel');
+  if (panel) panel.style.display = 'none';
+}
+
+function getBaseItemTextureUrl(idx, item) {
+  const defaultItem = defaultItemsBackup[idx] || item;
+  if (defaultItem.texture) return defaultItem.texture;
+  if (typeof MCEngine !== 'undefined' && typeof MCEngine.getApiFallback === 'function') {
+    return MCEngine.getApiFallback(defaultItem);
+  }
+  return 'img/diamond.png';
+}
+
+function handleSlotClick(index) {
+  const targetItem = menuConfig.data[index];
+  if (!targetItem || !targetItem.apiKey || targetItem.apiKey === "glass") return;
+
+  if (targetItem.apiKey === "feastfoods_cauldron") return;
+
+  if (isLivePlayerLoaded && !targetItem.isLocked) {
+    renderUnlockedPanel(index, targetItem);
+    return;
+  }
+
+  calculateShortestPath(index);
+}
+
+function renderUnlockedPanel(index, item) {
+  const panel = document.getElementById('path-side-panel');
+  const targetNameEl = document.getElementById('path-target-name');
+  const stepsContainer = document.getElementById('path-steps-container');
+  const totalCostEl = document.getElementById('path-total-cost');
+
+  const textureUrl = getBaseItemTextureUrl(index, item);
+
+  targetNameEl.innerHTML = `
+    <div class="path-header-badge">
+      <img src="${textureUrl}" alt="" onerror="this.onerror=null; this.src=typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: '${item.id}'}) : 'img/diamond.png'">
+      <div style="overflow:hidden;">
+        <div class="path-header-title">${parseMinecraftColors(item.baseTitle) || 'Unlocked Node'}</div>
+        <div style="font-size:11px; color:var(--text-2);">${item.isBoon ? 'Boon' : 'Progression'}</div>
+      </div>
+    </div>
+  `;
+
+  stepsContainer.innerHTML = `
+    <div class="path-unlocked-tag">✓ Already Unlocked</div>
+    <div style="font-size:12px; color:var(--text-2); padding: 6px 2px; text-align:center;">
+      This unlock is already active on this profile.
+    </div>
+  `;
+
+  totalCostEl.innerHTML = '<div style="color:var(--stat-green);">0</div>';
+  panel.style.display = 'flex';
+}
+
+function calculateShortestPath(targetIndex) {
+  const cols = menuConfig.cols;
+  let startNodes = [];
+
+  if (isLivePlayerLoaded) {
+    menuConfig.data.forEach((item, idx) => {
+      if (item && item.apiKey && !item.isLocked && item.apiKey !== "glass" && item.apiKey !== "feastfoods_cauldron") {
+        startNodes.push(idx);
+      }
+    });
+  }
+
+  if (startNodes.length === 0) {
+    startNodes = [5];
+  }
+
+  let queue = startNodes.map(node => ({
+    current: node,
+    path: (isLivePlayerLoaded && !menuConfig.data[node].isLocked) ? [] : [node]
+  }));
+  let visited = new Set(startNodes);
+  let shortestPath = null;
+
+  while (queue.length > 0) {
+    const { current, path } = queue.shift();
+
+    if (current === targetIndex) {
+      shortestPath = path;
+      break;
+    }
+
+    const r = Math.floor(current / cols);
+    const c = current % cols;
+    const neighbours = [
+      { r: r - 1, c: c },
+      { r: r + 1, c: c },
+      { r: r, c: c - 1 },
+      { r: r, c: c + 1 }
+    ];
+
+    for (const nb of neighbours) {
+      if (nb.r >= 0 && nb.r < menuConfig.rows && nb.c >= 0 && nb.c < cols) {
+        const nextIdx = nb.r * cols + nb.c;
+        const nextItem = menuConfig.data[nextIdx];
+
+        if (nextItem && nextItem.apiKey && nextItem.apiKey !== "glass" && nextItem.apiKey !== "feastfoods_cauldron" && !visited.has(nextIdx)) {
+          visited.add(nextIdx);
+          queue.push({
+            current: nextIdx,
+            path: [...path, nextIdx]
+          });
+        }
+      }
+    }
+  }
+
+  if (!shortestPath && targetIndex === 5) {
+    shortestPath = [5];
+  }
+
+  if (shortestPath) {
+    renderPathPanel(targetIndex, shortestPath);
+  }
+}
+
+function renderPathPanel(targetIndex, pathIndices) {
+  const panel = document.getElementById('path-side-panel');
+  const targetNameEl = document.getElementById('path-target-name');
+  const stepsContainer = document.getElementById('path-steps-container');
+  const totalCostEl = document.getElementById('path-total-cost');
+
+  const targetItem = menuConfig.data[targetIndex];
+  const targetTexture = getBaseItemTextureUrl(targetIndex, targetItem);
+
+  targetNameEl.innerHTML = `
+    <div class="path-header-badge">
+      <img src="${targetTexture}" alt="" onerror="this.onerror=null; this.src=typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: '${targetItem.id}'}) : 'img/diamond.png'">
+      <div style="overflow:hidden;">
+        <div class="path-header-title">${parseMinecraftColors(targetItem.baseTitle) || 'Selected Unlock'}</div>
+        <div style="font-size:11px; color:var(--text-2);">${pathIndices.length} step${pathIndices.length === 1 ? '' : 's'} away</div>
+      </div>
+    </div>
+  `;
+
+  let reqTarts = 0, reqCakes = 0, reqSalsa = 0, reqNoodles = 0, reqNachos = 0;
+  let stepsHtml = '';
+
+  pathIndices.forEach((idx, stepNum) => {
+    const it = menuConfig.data[idx];
+    const stepTexture = getBaseItemTextureUrl(idx, it);
+
+    if (it.rawCost && it.rawCost.toLowerCase().includes("free")) {
+      return; 
+    }
+
+    const plainCost = it.rawCost ? it.rawCost.replace(/&[0-9a-fk-or]/gi, '') : '';
+    
+    const tMatch = plainCost.match(/([0-9,]+)\s*(Ticket\s)?Tarts/i);
+    if (tMatch) reqTarts += parseInt(tMatch[1].replace(/,/g, ''));
+    else if (it.costVal) reqTarts += it.costVal; 
+
+    const cMatch = plainCost.match(/([0-9,]+)\s*Dreamcakes/i);
+    if (cMatch) reqCakes += parseInt(cMatch[1].replace(/,/g, ''));
+
+    const sMatch = plainCost.match(/([0-9,]+)\s*Jars\sof\sSoul\sSalsa/i);
+    if (sMatch) reqSalsa += parseInt(sMatch[1].replace(/,/g, ''));
+
+    const nMatch = plainCost.match(/([0-9,]+)\s*Bowls\sof\sNightmare\sNoodles/i);
+    if (nMatch) reqNoodles += parseInt(nMatch[1].replace(/,/g, ''));
+
+    const naMatch = plainCost.match(/([0-9,]+)\s*Snoring\sNachos/i);
+    if (naMatch) reqNachos += parseInt(naMatch[1].replace(/,/g, ''));
+
+    let shortCost = it.rawCost || `&e${it.costVal || 0} Ticket Tarts`;
+    shortCost = shortCost
+      .replace(/Jars of Soul Salsa/gi, 'Salsa')
+      .replace(/Bowls of Nightmare Noodles/gi, 'Noodles')
+      .replace(/Snoring Nachos/gi, 'Nachos')
+      .replace(/Ticket Tarts/gi, 'Tarts');
+
+    const formattedCost = parseMinecraftColors(shortCost).replace(/\n/g, '<br>');
+
+    stepsHtml += `
+      <div class="path-step-item">
+        <div class="path-step-left">
+          <img class="path-step-img" src="${stepTexture}" alt="" onerror="this.onerror=null; this.src=typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: '${it.id}'}) : 'img/diamond.png'">
+          <span class="path-step-name">${stepNum + 1}. ${parseMinecraftColors(it.baseTitle)}</span>
+        </div>
+        <div class="path-step-cost" style="text-align:right;">${formattedCost}</div>
+      </div>
+    `;
+  });
+
+  stepsContainer.innerHTML = stepsHtml;
+
+  let totalHtml = '';
+  if (reqTarts > 0) totalHtml += `<div style="color:var(--stat-yellow);">${reqTarts.toLocaleString()} Tarts</div>`;
+  if (reqCakes > 0) totalHtml += `<div style="color:var(--stat-pink);">${reqCakes.toLocaleString()} Dreamcakes</div>`;
+  if (reqSalsa > 0) totalHtml += `<div style="color:#ef4444;">${reqSalsa.toLocaleString()} Salsa</div>`;
+  if (reqNoodles > 0) totalHtml += `<div style="color:var(--stat-gold);">${reqNoodles.toLocaleString()} Noodles</div>`;
+  if (reqNachos > 0) totalHtml += `<div style="color:var(--stat-green);">${reqNachos.toLocaleString()} Nachos</div>`;
+
+  if (totalHtml === '') totalHtml = '<div style="color:var(--stat-green);">Free</div>';
+
+  totalCostEl.innerHTML = `<div style="display:flex; flex-direction:column; align-items:flex-end; gap:2px;">${totalHtml}</div>`;
+  panel.style.display = 'flex';
+}
+
+function resetToDefault() {
+  isLivePlayerLoaded = false;
+  closePathPanel();
+  menuConfig.data = JSON.parse(JSON.stringify(defaultItemsBackup));
+  menuConfig.data.forEach(item => {
+    if (item && item.apiKey !== "glass") {
+      item.isLocked = false;
+
+      if (item.apiKey === "feastfoods_cauldron") {
+        item.rawLore = item.baseLore
+          .replace("{SOUL_SALSA}", "0")
+          .replace("{NIGHTMARE_NOODLES}", "0")
+          .replace("{TICKET_TARTS}", "0")
+          .replace("{SNORING_NACHOS}", "0")
+          .replace("{DREAMCAKES}", "0");
+      } else {
+        const costText = item.rawCost ? `\n\n&7Cost:\n${item.rawCost}` : '';
+        item.rawLore = (item.baseLore || '') + costText + "\n\n&aUNLOCKED";
+      }
+    }
+  });
+
+  const defaultCard = document.getElementById('default-info-card');
+  const summaryPanel = document.getElementById('player-summary-panel');
+  if (defaultCard) defaultCard.style.display = 'flex';
+  if (summaryPanel) summaryPanel.style.display = 'none';
+
+  const sideTitle = document.getElementById('side-panel-title');
+  if (sideTitle) sideTitle.textContent = "Tree Overview";
+
+  const setLbl = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  };
+
+  setLbl('lbl-1', 'Total Unlocks');
+  setLbl('lbl-2', 'Total Spent');
+  setLbl('lbl-3', 'Main Path Items');
+  setLbl('lbl-4', 'Branch Items');
+
+  const setVal = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
+
+  setVal('bw-val-1', '0 / 51');
+  setVal('bw-val-2', '1,050 Tarts');
+  setVal('bw-val-3', '0 / 21');
+  setVal('bw-val-4', '0 / 30');
+
+  setVal('stash-tickets', '0');
+  setVal('stash-tarts', '0');
+  setVal('stash-cakes', '0');
+  setVal('stash-salsa', '0');
+  setVal('stash-noodles', '0');
+  setVal('stash-nachos', '0');
+
+  const statusEl = document.getElementById('search-status');
+  if (statusEl) {
+    statusEl.textContent = "Previewing all max unlocked items";
+    statusEl.className = "status-gray";
+  }
+
+  renderGrid();
+}
+
+function getSlumberItem(obj, exactKey) {
+  if (!obj) return 0;
+  let total = 0;
+  for (const key in obj) {
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+      total += getSlumberItem(obj[key], exactKey);
+    } else if (key === exactKey && typeof obj[key] === 'number') {
+      total += obj[key];
+    }
+  }
+  return total;
+}
+
+async function fetchPlayerUnlocks(searchTerm) {
+  if (!searchTerm) return;
+  closePathPanel();
+  const statusEl = document.getElementById('search-status');
+  if (statusEl) {
+    statusEl.textContent = "Loading player stats...";
+    statusEl.className = "status-gray";
+  }
+
+  if (typeof window.showLoader === 'function') {
+    window.showLoader("Loading Bedwars Dreamfeast...");
+  }
+
+  try {
+    const param = searchTerm.length > 25 ? `uuid=${searchTerm}` : `name=${searchTerm}`;
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const apiBase = isLocal ? '' : 'https://api.litstats.com';
+    const response = await fetch(`${apiBase}/api/player?${param}`);
+    
+    if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
+    const data = await response.json();
+    if (data.error) throw new Error(data.error);
+
+    isLivePlayerLoaded = true;
+
+    const bwData = data.bedwars || {};
+    const boonMap = bwData.boon || {};
+    const dreamfeastMap = bwData.dreamfeast || {};
+    const togglesMap = bwData.toggles || {};
+    
+    const slumb = bwData.slumber || {};
+    const userSalsa = getSlumberItem(slumb, "slumber_item_soul_salsa");
+    const userNoodles = getSlumberItem(slumb, "slumber_item_nightmare_noodles");
+    const userTarts = getSlumberItem(slumb, "slumber_item_ticket_tart");
+    const userNachos = getSlumberItem(slumb, "slumber_item_snoring_nachos");
+    const userCakes = getSlumberItem(slumb, "slumber_item_dreamcake");
+    let userTickets = slumb.slumber_ticket !== undefined ? slumb.slumber_ticket : (slumb.tickets || 0);
+
+    const avatarImg = document.getElementById('player-avatar-img');
+    if (avatarImg) {
+      avatarImg.src = `https://visage.surgeplay.com/bust/${data.uuid}`;
+      avatarImg.onerror = function() {
+        this.src = `https://vzge.me/bust/${data.uuid}.png`;
+      };
+    }
+
+    const rankHtml = formatRankHtml(data.rank, data.rankPlusColor, data.monthlyRankColor);
+    const lvlBadge = document.getElementById('player-level-badge');
+    if (lvlBadge) lvlBadge.innerHTML = parseMinecraftColors(bwData.levelFormatted || `[${bwData.level || 1}✫]`);
+    const rankEl = document.getElementById('player-rank-html');
+    if (rankEl) rankEl.innerHTML = rankHtml;
+    const uText = document.getElementById('player-username-text');
+    if (uText) {
+      uText.textContent = data.username;
+      uText.style.color = getRankBaseColourHex(data.rank, data.monthlyRankColor);
+    }
+
+    const setVal = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    };
+
+    setVal('pill-wins', (bwData.wins || 0).toLocaleString());
+    setVal('pill-finals', (bwData.final_kills || 0).toLocaleString());
+    setVal('pill-fkdr', bwData.fkdr || "0.00");
+
+    let unlockedCount = 0;
+    
+    let spentTarts = 0;
+    let spentCakes = 0;
+    let spentSalsa = 0;
+    let spentNoodles = 0;
+    let spentNachos = 0;
+
+    let mainUnlocked = 0;
+    let branchUnlocked = 0;
+
+    menuConfig.data.forEach(item => {
+      if (!item || !item.apiKey) return;
+      
+      if (item.apiKey === "glass") return;
+
+      if (item.apiKey === "feastfoods_cauldron") {
+        item.rawLore = item.baseLore
+          .replace("{SOUL_SALSA}", userSalsa.toLocaleString())
+          .replace("{NIGHTMARE_NOODLES}", userNoodles.toLocaleString())
+          .replace("{TICKET_TARTS}", userTarts.toLocaleString())
+          .replace("{SNORING_NACHOS}", userNachos.toLocaleString())
+          .replace("{DREAMCAKES}", userCakes.toLocaleString());
+        item.isLocked = false;
+        return;
+      }
+
+      const key = item.apiKey;
+      const keyLower = key.toLowerCase();
+
+      const isUnlocked = Boolean(
+        boonMap[key] || 
+        boonMap[keyLower] ||
+        boonMap[key.replace('_boon', '')] ||
+        dreamfeastMap[key] || 
+        dreamfeastMap[keyLower] || 
+        dreamfeastMap[`${key}_boon`] ||
+        togglesMap[key] ||
+        togglesMap[keyLower]
+      );
+
+      const titleBase = item.baseTitle || item.rawName;
+
+      if (isUnlocked) {
+        unlockedCount++;
+        
+        if (item.costVal !== undefined) {
+          spentTarts += item.costVal;
+          mainUnlocked++;
+        } else {
+          branchUnlocked++;
+        }
+
+        if (item.rawCost) {
+            const plain = item.rawCost.replace(/&./g, '');
+            const cMatch = plain.match(/([0-9,]+)\s*Dreamcakes/i);
+            if (cMatch) spentCakes += parseInt(cMatch[1].replace(/,/g, ''));
+            const sMatch = plain.match(/([0-9,]+)\s*Jars/i);
+            if (sMatch) spentSalsa += parseInt(sMatch[1].replace(/,/g, ''));
+            const nMatch = plain.match(/([0-9,]+)\s*Bowls/i);
+            if (nMatch) spentNoodles += parseInt(nMatch[1].replace(/,/g, ''));
+            const naMatch = plain.match(/([0-9,]+)\s*Snoring/i);
+            if (naMatch) spentNachos += parseInt(naMatch[1].replace(/,/g, ''));
+        }
+        
+        item.id = item.originalId || item.id;
+        item.isLocked = false;
+        item.rawName = `&a${titleBase}`;
+        item.rawLore = (item.baseLore || '') + `\n\n&aUNLOCKED`;
+      } else {
+        if (!item.originalId) item.originalId = item.id;
+        item.isLocked = true;
+        item.rawName = `&c${titleBase}`;
+        item.rawLore = (item.baseLore || '') + `\n\n&7Cost:\n${item.rawCost || ''}\n\n&cLocked!\n&eClick to show unlock path`;
+      }
+    });
+
+    const sideTitle = document.getElementById('side-panel-title');
+    if (sideTitle) sideTitle.textContent = "Dreamfeast Progress";
+
+    const totalTicketsSpent = (spentTarts * 1000) + ((spentCakes + spentSalsa + spentNoodles + spentNachos) * 500);
+
+    setVal('bw-val-1', `${unlockedCount} / 51`);
+    setVal('bw-val-2', `${spentTarts.toLocaleString()} Tarts`);
+    document.getElementById('lbl-2-desc').textContent = `(${totalTicketsSpent.toLocaleString()} Tickets in total)`;
+    setVal('bw-val-3', `${mainUnlocked} / 21`);
+    setVal('bw-val-4', `${branchUnlocked} / 30`);
+
+    document.getElementById('lbl-2').textContent = "Total Spent";
+
+    setVal('stash-tickets', userTickets.toLocaleString());
+    setVal('stash-tarts', userTarts.toLocaleString());
+    setVal('stash-cakes', userCakes.toLocaleString());
+    setVal('stash-salsa', userSalsa.toLocaleString());
+    setVal('stash-noodles', userNoodles.toLocaleString());
+    setVal('stash-nachos', userNachos.toLocaleString());
+
+    const defaultCard = document.getElementById('default-info-card');
+    const summaryPanel = document.getElementById('player-summary-panel');
+    if (defaultCard) defaultCard.style.display = 'none';
+    if (summaryPanel) summaryPanel.style.display = 'flex';
+
+    if (statusEl) {
+      statusEl.textContent = `Showing Dreamfeast unlocks for ${data.username}`;
+      statusEl.className = "status-green";
+    }
+    renderGrid();
+
+  } catch (e) {
+    console.error("Fetch error:", e);
+    if (statusEl) {
+      statusEl.textContent = e.message || "Failed to fetch player data.";
+      statusEl.className = "status-red";
+    }
+  } finally {
+    if (typeof window.hideLoader === 'function') {
+      window.hideLoader();
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('display-title').innerText = menuConfig.title;
+  resetToDefault();
+
+  document.getElementById('search-btn').addEventListener('click', () => {
+    fetchPlayerUnlocks(document.getElementById('player-input').value.trim());
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    document.getElementById('player-input').value = '';
+    resetToDefault();
+  });
+
+  document.getElementById('player-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      fetchPlayerUnlocks(document.getElementById('player-input').value.trim());
+    }
+  });
+
+  document.getElementById('menu-grid').addEventListener('click', (e) => {
+    const slotEl = e.target.closest('.slot');
+    if (!slotEl) return;
+    const index = parseInt(slotEl.getAttribute('data-index'), 10);
+    if (!isNaN(index)) {
+      handleSlotClick(index);
+    }
+  });
+});
+
+document.addEventListener('tt-format', (e) => {
+  const it = e.detail.item;
+  let h = `<span class="tt-name" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8);">${parseMinecraftColors(it.rawName || '&f' + it.id)}</span>`;
+  
+  if (it.rawLore) {
+    const lines = it.rawLore.split('\n');
+    for (const l of lines) {
+      h += `<span class="tt-line" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px;">${parseMinecraftColors(l)}</span>`;
+    }
+  }
+  e.detail.html = h;
+});
+</script>
+</body>
+</html>
