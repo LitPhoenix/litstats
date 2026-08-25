@@ -1,6 +1,22 @@
 let cachedTemplate = null;
 let templateFetchTime = 0;
 
+function getBedwarsLevel(exp) {
+  if (!exp || exp <= 0) return 1;
+  const XP_PER_PRESTIGE = 487000;
+  const prestiges = Math.floor(exp / XP_PER_PRESTIGE);
+  let remainder = exp % XP_PER_PRESTIGE;
+  let level = prestiges * 100;
+
+  if (remainder >= 500) { level += 1; remainder -= 500; }
+  if (remainder >= 1000) { level += 1; remainder -= 1000; }
+  if (remainder >= 2000) { level += 1; remainder -= 2000; }
+  if (remainder >= 3500) { level += 1; remainder -= 3500; }
+
+  level += Math.floor(remainder / 5000);
+  return level;
+}
+
 function getPlayerRank(player) {
   if (player.prefix) return player.prefix.replace(/§./g, '');
   if (player.rank && player.rank !== 'NORMAL') return player.rank;
@@ -16,6 +32,201 @@ function getPlayerRank(player) {
   return 'NON';
 }
 
+function getBedwarsStar(activeStar) {
+  switch(activeStar) {
+    case 'star_hollow': return '✰';
+    case 'star_nautical': return '✯';
+    case 'star_four_pointed': return '✦';
+    case 'star_pinwheel': return '✵';
+    case 'star_black_open': return '✫';
+    case 'star_black_outlined': return '✭';
+    case 'star_four_clubs': return '✥';
+    case 'star_white_outlined': return '⚝';
+    case 'star_white_circled': return '✪';
+    default: return null;
+  }
+}
+
+function formatBedwarsLevel(level, scheme, activeStar, activeBracket, toggles) {
+  let star = getBedwarsStar(activeStar);
+  if (!star) {
+    if (level >= 1100 && level < 2100) star = '✪';
+    else if (level >= 2100 && level < 3100) star = '❀';
+    else star = '✫';
+  }
+
+  let bL = '[', bR = ']';
+  switch(activeBracket) {
+    case 'prestige_bracket_parenthesis': bL = '('; bR = ')'; break;
+    case 'prestige_bracket_curly_brace': bL = '{'; bR = '}'; break;
+    case 'prestige_bracket_angled': bL = '<'; bR = '>'; break;
+    case 'prestige_bracket_double_angle_quotation_mark': bL = '«'; bR = '»'; break;
+  }
+
+  const isBold = toggles?.toggle_bold_numbers ? '§l' : '';
+  const isUnderline = toggles?.toggle_underlined_prestige ? '§n' : '';
+  const isStrike = toggles?.toggle_strikethrough_brackets ? '§m' : '';
+
+  const palettes = {
+    prestige_scheme_stone: ['§7','§7','§7','§7','§7','§7','§7'],
+    prestige_scheme_iron: ['§f','§f','§f','§f','§f','§f','§f'],
+    prestige_scheme_gold: ['§6','§6','§6','§6','§6','§6','§6'],
+    prestige_scheme_diamond: ['§b','§b','§b','§b','§b','§b','§b'],
+    prestige_scheme_emerald: ['§2','§2','§2','§2','§2','§2','§2'],
+    prestige_scheme_sapphire: ['§3','§3','§3','§3','§3','§3','§3'],
+    prestige_scheme_ruby: ['§4','§4','§4','§4','§4','§4','§4'],
+    prestige_scheme_crystal: ['§d','§d','§d','§d','§d','§d','§d'],
+    prestige_scheme_opal: ['§9','§9','§9','§9','§9','§9','§9'],
+    prestige_scheme_amethyst: ['§5','§5','§5','§5','§5','§5','§5'],
+    prestige_scheme_rainbow: ['§c','§6','§e','§a','§b','§d','§5'],
+    prestige_scheme_iron_prime: ['§7','§f','§f','§f','§f','§7','§7'],
+    prestige_scheme_gold_prime: ['§7','§e','§e','§e','§e','§6','§7'],
+    prestige_scheme_diamond_prime: ['§7','§b','§b','§b','§b','§3','§7'],
+    prestige_scheme_emerald_prime: ['§7','§a','§a','§a','§a','§2','§7'],
+    prestige_scheme_sapphire_prime: ['§7','§3','§3','§3','§3','§9','§7'],
+    prestige_scheme_ruby_prime: ['§7','§c','§c','§c','§c','§4','§7'],
+    prestige_scheme_crystal_prime: ['§7','§d','§d','§d','§d','§5','§7'],
+    prestige_scheme_opal_prime: ['§7','§9','§9','§9','§9','§1','§7'],
+    prestige_scheme_amethyst_prime: ['§7','§5','§5','§5','§5','§8','§7'],
+    prestige_scheme_mirror: ['§8','§7','§f','§f','§7','§7','§8'],
+    prestige_scheme_light: ['§f','§f','§e','§e','§6','§6','§6'],
+    prestige_scheme_dawn: ['§6','§6','§f','§f','§b','§3','§3'],
+    prestige_scheme_dusk: ['§5','§5','§d','§d','§6','§e','§e'],
+    prestige_scheme_air: ['§b','§b','§f','§f','§7','§7','§8'],
+    prestige_scheme_wind: ['§f','§f','§a','§a','§2','§2','§2'],
+    prestige_scheme_nebula: ['§4','§4','§c','§c','§d','§d','§5'],
+    prestige_scheme_thunder: ['§e','§e','§f','§f','§8','§8','§8'],
+    prestige_scheme_earth: ['§a','§a','§2','§2','§6','§6','§e'],
+    prestige_scheme_water: ['§b','§b','§3','§3','§9','§9','§1'],
+    prestige_scheme_fire: ['§e','§e','§6','§6','§c','§c','§4'],
+    prestige_scheme_sunrise: ['§9','§9','§3','§3','§6','§6','§e'],
+    prestige_scheme_eclipse: ['§c','§4','§7','§7','§4','§c','§c'],
+    prestige_scheme_gamma: ['§9','§9','§9','§d','§c','§c','§4'],
+    prestige_scheme_majestic: ['§2','§a','§d','§d','§5','§5','§2'],
+    prestige_scheme_andesine: ['§c','§c','§4','§4','§2','§a','§a'],
+    prestige_scheme_marine: ['§a','§a','§a','§b','§9','§9','§1'],
+    prestige_scheme_element: ['§4','§4','§c','§c','§b','§3','§3'],
+    prestige_scheme_galaxy: ['§1','§1','§9','§5','§5','§d','§1'],
+    prestige_scheme_atomic: ['§c','§c','§a','§a','§3','§9','§9'],
+    prestige_scheme_sunset: ['§5','§5','§c','§c','§6','§6','§e'],
+    prestige_scheme_time: ['§e','§e','§6','§c','§d','§d','§5'],
+    prestige_scheme_winter: ['§1','§9','§3','§b','§f','§7','§7'],
+    prestige_scheme_obsidian: ['§0','§5','§8','§8','§5','§5','§0'],
+    prestige_scheme_spring: ['§2','§2','§a','§e','§6','§5','§d'],
+    prestige_scheme_ice: ['§f','§f','§b','§b','§3','§3','§3'],
+    prestige_scheme_summer: ['§3','§b','§e','§e','§6','§d','§5'],
+    prestige_scheme_spinel: ['§f','§4','§c','§c','§9','§1','§9'],
+    prestige_scheme_autumn: ['§5','§5','§c','§6','§e','§b','§3'],
+    prestige_scheme_mystic: ['§2','§a','§f','§f','§a','§a','§2'],
+    prestige_scheme_eternal: ['§4','§4','§5','§9','§9','§1','§0'],
+    prestige_scheme_burnout: ['§4','§c','§c','§6','§e','§f','§4'],
+    prestige_scheme_cooldown: ['§1','§9','§3','§b','§f','§e','§1'],
+    prestige_scheme_obliteration: ['§5','§d','§e','§f','§e','§d','§5'],
+    prestige_scheme_ender: ['§3','§a','§2','§8','§2','§a','§3'],
+    prestige_scheme_brust: ['§2','§a','§e','§f','§b','§d','§5'],
+    prestige_scheme_comical: ['§4','§c','§e','§f','§e','§c','§4'],
+    prestige_scheme_lusterlost: ['§4','§6','§2','§3','§9','§5','§8'],
+    prestige_scheme_maelstrom: ['§5','§c','§6','§f','§b','§3','§9'],
+    prestige_scheme_time_undone: ['§7','§0','§8','§7','§f','§f','§7'],
+    prestige_scheme_umbrella: ['§c','§f','§f','§f','§f','§c','§f'],
+    prestige_scheme_luminous: ['§6','§e','§f','§f','§f','§b','§3'],
+    prestige_scheme_tortilla: ['§e','§f','§e','§6','§6','§f','§e'],
+    prestige_scheme_corn: ['§a','§e','§e','§e','§e','§a','§2'],
+    prestige_scheme_bittersweet: ['§b','§b','§c','§c','§c','§a','§a'],
+    prestige_scheme_sweetsour: ['§3','§3','§a','§a','§f','§a','§3'],
+    prestige_scheme_pop: ['§9','§d','§d','§d','§d','§b','§9'],
+    prestige_scheme_bubblegum: ['§5','§d','§d','§d','§d','§f','§5'],
+    prestige_scheme_contrast: ['§0','§6','§6','§e','§e','§f','§f'],
+    prestige_scheme_blended: ['§a','§a','§a','§a','§2','§2','§8'],
+    prestige_scheme_allay: ['§3','§b','§b','§b','§b','§f','§3'],
+    prestige_scheme_blaze: ['§4','§c','§6','§e','§c','§6','§e'],
+    prestige_scheme_creeper: ['§2','§a','§f','§2','§a','§f','§8'],
+    prestige_scheme_drowned: ['§2','§3','§3','§b','§b','§a','§2'],
+    prestige_scheme_enderman: ['§8','§8','§8','§8','§8','§d','§8'],
+    prestige_scheme_frog: ['§6','§6','§2','§2','§f','§f','§f'],
+    prestige_scheme_ghast: ['§f','§f','§f','§7','§7','§c','§8'],
+    prestige_scheme_hoglin: ['§d','§c','§c','§c','§c','§6','§d'],
+    prestige_scheme_iron_golem: ['§8','§7','§f','§f','§f','§e','§8'],
+    prestige_scheme_jerry: ['§6','§f','§2','§6','§2','§f','§6'],
+    prestige_scheme_kringle: ['§2','§a','§a','§a','§c','§4','§2'],
+    prestige_scheme_liquid: ['§8','§7','§f','§b','§3','§9','§1'],
+    prestige_scheme_mint: ['§f','§f','§f','§f','§f','§a','§f'],
+    prestige_scheme_neglected: ['§8','§8','§4','§4','§c','§c','§8'],
+    prestige_scheme_onion: ['§f','§d','§d','§d','§a','§a','§f'],
+    prestige_scheme_poser: ['§3','§6','§6','§6','§6','§e','§3'],
+    prestige_scheme_quartz: ['§d','§f','§f','§f','§f','§e','§d'],
+    prestige_scheme_rich: ['§8','§6','§6','§6','§6','§6','§8'],
+    prestige_scheme_sanguine: ['§4','§4','§4','§c','§c','§f','§f'],
+    prestige_scheme_titanic: ['§9','§b','§b','§b','§3','§3','§9'],
+    prestige_scheme_unorthodox: ['§d','§d','§d','§d','§d','§5','§8'],
+    prestige_scheme_volcanic: ['§0','§c','§6','§6','§c','§c','§4'],
+    prestige_scheme_weeping_cherry: ['§2','§d','§d','§d','§d','§a','§2'],
+    prestige_scheme_x_ray: ['§f','§8','§8','§8','§8','§f','§f'],
+    prestige_scheme_yearn: ['§e','§6','§4','§8','§8','§8','§8'],
+    prestige_scheme_zebra: ['§0','§0','§8','§8','§7','§7','§f'],
+    prestige_scheme_caution: ['§e','§e','§e','§0','§0','§e','§0'],
+    prestige_scheme_undescribable: ['§d','§d','§d','§e','§e','§b','§e'],
+    prestige_scheme_forgotten: ['§0','§8','§8','§8','§8','§8','§0'],
+    prestige_scheme_fuse: ['§8','§7','§f','§f','§f','§e','§f'],
+    prestige_scheme_prestigious: ['§9','§b','§f','§f','§f','§f','§c','§4']
+  };
+
+  let cA = [];
+  let mappedScheme = scheme;
+
+  if (!mappedScheme || mappedScheme === 'prestige_scheme_default') {
+    if (level < 100) mappedScheme = 'prestige_scheme_stone';
+    else if (level < 200) mappedScheme = 'prestige_scheme_iron';
+    else if (level < 300) mappedScheme = 'prestige_scheme_gold';
+    else if (level < 400) mappedScheme = 'prestige_scheme_diamond';
+    else if (level < 500) mappedScheme = 'prestige_scheme_emerald';
+    else if (level < 600) mappedScheme = 'prestige_scheme_sapphire';
+    else if (level < 700) mappedScheme = 'prestige_scheme_ruby';
+    else if (level < 800) mappedScheme = 'prestige_scheme_crystal';
+    else if (level < 900) mappedScheme = 'prestige_scheme_opal';
+    else if (level < 1000) mappedScheme = 'prestige_scheme_amethyst';
+    else if (level < 1100) mappedScheme = 'prestige_scheme_rainbow';
+    else if (level < 1200) mappedScheme = 'prestige_scheme_iron_prime';
+    else if (level < 1300) mappedScheme = 'prestige_scheme_gold_prime';
+    else if (level < 1400) mappedScheme = 'prestige_scheme_diamond_prime';
+    else if (level < 1500) mappedScheme = 'prestige_scheme_emerald_prime';
+    else if (level < 1600) mappedScheme = 'prestige_scheme_sapphire_prime';
+    else if (level < 1700) mappedScheme = 'prestige_scheme_ruby_prime';
+    else if (level < 1800) mappedScheme = 'prestige_scheme_crystal_prime';
+    else if (level < 1900) mappedScheme = 'prestige_scheme_amethyst_prime';
+    else if (level < 2000) mappedScheme = 'prestige_scheme_mirror';
+    else if (level < 2100) mappedScheme = 'prestige_scheme_light';
+    else if (level < 2200) mappedScheme = 'prestige_scheme_dawn';
+    else if (level < 2300) mappedScheme = 'prestige_scheme_dusk';
+    else if (level < 2400) mappedScheme = 'prestige_scheme_air';
+    else if (level < 2500) mappedScheme = 'prestige_scheme_wind';
+    else if (level < 2600) mappedScheme = 'prestige_scheme_nebula';
+    else if (level < 2700) mappedScheme = 'prestige_scheme_thunder';
+    else if (level < 2800) mappedScheme = 'prestige_scheme_earth';
+    else if (level < 2900) mappedScheme = 'prestige_scheme_water';
+    else if (level < 3000) mappedScheme = 'prestige_scheme_fire';
+    else mappedScheme = 'prestige_scheme_rainbow';
+  }
+
+  cA = palettes[mappedScheme] || palettes['prestige_scheme_rainbow'];
+  const rawStr = level.toString();
+  let res = '';
+  
+  const chars = [bL, ...rawStr.split(''), star, bR];
+  for (let i = 0; i < chars.length; i++) {
+    const colorIndex = Math.round(i * ((cA.length - 1) / (chars.length - 1)));
+    const color = cA[colorIndex];
+    
+    if (i === 0 || i === chars.length - 1) {
+      res += `${color}${isUnderline}${isStrike}${chars[i]}`;
+    } else {
+      res += `${color}${isUnderline}${isBold}${chars[i]}`;
+    }
+  }
+  res += '§r';
+  return res;
+}
+
 async function safeFetchJSON(url, options = {}) {
   const res = await fetch(url, options);
   if (res.status === 429) return { rateLimited: true };
@@ -25,7 +236,7 @@ async function safeFetchJSON(url, options = {}) {
   try {
     return JSON.parse(text);
   } catch (err) {
-    throw new Error("API returned invalid JSON (HTML Page)");
+    throw new Error("API returned invalid JSON");
   }
 }
 
@@ -34,7 +245,7 @@ module.exports = async (req, res) => {
   const requestOrigin = req.headers.origin || req.headers.referer || '';
 
   const isAllowed = allowedOrigins.some(origin => requestOrigin.startsWith(origin));
-  const corsOrigin = isAllowed ? requestOrigin : (allowedOrigins[0] || '*');
+  const corsOrigin = isAllowed ? requestOrigin : '*';
 
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', corsOrigin);
@@ -103,10 +314,24 @@ module.exports = async (req, res) => {
     const swStats = profile.stats?.SkyWars || {};
     const swPackages = swStats.packages || [];
     const vanityPackages = profile.vanityMeta?.packages || [];
-
     const allPackages = Array.from(new Set([...swPackages, ...vanityPackages]));
-    let cleanLevelFormatted = swStats.levelFormattedWithBrackets || swStats.levelFormatted || '';
-    cleanLevelFormatted = cleanLevelFormatted.replace(/§k/gi, '').replace(/&k/gi, '');
+    let cleanLevelFormatted = (swStats.levelFormattedWithBrackets || swStats.levelFormatted || '').replace(/§k/gi, '').replace(/&k/gi, '');
+
+    const bwStats = profile.stats?.Bedwars || profile.stats?.bedwars || {};
+    const bwExp = bwStats.Experience || bwStats.experience || 0;
+    const bwLevel = getBedwarsLevel(bwExp);
+    
+    const bwSlumber = bwStats.slumber || {};
+    const bwDreamfeast = Object.assign({}, bwStats.dreamfeast || {}, bwSlumber.dreamfeast || {});
+    const bwBoon = Object.assign({}, bwStats.boon || {}, bwSlumber.boon || {});
+    const bwToggles = Object.assign({}, bwDreamfeast.toggles || {}, bwStats.toggles || {});
+
+    const activeScheme = bwStats.active_prestige_scheme || null;
+    const activeStar = bwStats.active_star || null;
+    const activeBracket = bwStats.active_prestige_bracket || null;
+    const finalDeaths = bwStats.final_deaths_bedwars || bwStats.final_deaths || 0;
+    const finalKills = bwStats.final_kills_bedwars || bwStats.final_kills || 0;
+    const fkdr = finalDeaths > 0 ? (finalKills / finalDeaths).toFixed(2) : finalKills.toFixed(2);
 
     const responseData = {
       username: profile.displayname || "Unknown",
@@ -125,6 +350,23 @@ module.exports = async (req, res) => {
       
       gameTotals: {},
       globalTotals: { possibleAP: 0, possibleAchs: 0, unlockedAP: 0, unlockedAchs: 0 },
+
+      bedwars: {
+        coins: bwStats.coins || 0,
+        wins: bwStats.wins_bedwars || bwStats.wins || 0,
+        final_kills: finalKills,
+        fkdr: fkdr,
+        kills: bwStats.kills_bedwars || bwStats.kills || 0,
+        beds_broken: bwStats.beds_broken_bedwars || bwStats.beds_broken || 0,
+        experience: bwExp,
+        level: bwLevel,
+        levelFormatted: formatBedwarsLevel(bwLevel, activeScheme, activeStar, activeBracket, bwToggles),
+        boon: bwBoon,
+        slumber: bwSlumber,
+        dreamfeast: bwDreamfeast,
+        toggles: bwToggles,
+        packages: bwStats.packages || []
+      },
 
       angelsDescent: {
         opals: swStats.opals !== undefined ? swStats.opals : 0,
@@ -340,9 +582,6 @@ module.exports = async (req, res) => {
       }
     }
 
-    // ==========================================
-    // BLITZ KITS & COMBAT PARSING
-    // ==========================================
     const hg = profile.stats?.HungerGames || {};
     const packages = hg.packages || [];
     const blitzKits = {};
@@ -350,7 +589,6 @@ module.exports = async (req, res) => {
     const kitStats = {};
     
     responseData.currentCoins = parseInt(hg.coins) || 0;
-
     const ramboExpVal = hg.exp_rambo !== undefined ? hg.exp_rambo : (hg.rambo_exp || 0);
 
     responseData.overallStats = {
