@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-25T16:24:52.241Z",
+  "last_update": "2026-08-25T18:24:42.663Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1497,6 +1497,18 @@
           ]
         },
         {
+          "username": "Crooder",
+          "uuid": "266b09b979a345909824aa9d31ffe8ba",
+          "country": "Canada",
+          "current_ap": 25080,
+          "last_month_ap": 25045,
+          "monthly_gain": 35,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max VampireZ"
+          ]
+        },
+        {
           "username": "Hailette",
           "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
           "country": "Canada",
@@ -1507,18 +1519,6 @@
             "Max Quake",
             "Max Warlords",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "Crooder",
-          "uuid": "266b09b979a345909824aa9d31ffe8ba",
-          "country": "Canada",
-          "current_ap": 25040,
-          "last_month_ap": 25045,
-          "monthly_gain": -5,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max VampireZ"
           ]
         },
         {
@@ -1986,15 +1986,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5420,
+      "score": 5440,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 31010,
+          "current_ap": 31030,
           "last_month_ap": 30910,
-          "monthly_gain": 100,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
