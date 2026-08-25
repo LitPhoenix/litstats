@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-24T22:16:29.529Z",
+  "last_update": "2026-08-25T00:38:31.970Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12613,
+      "score": 12614,
       "top_players": [
         {
           "username": "oJakey",
@@ -498,9 +498,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30395,
+          "current_ap": 30405,
           "last_month_ap": 30040,
-          "monthly_gain": 355,
+          "monthly_gain": 365,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2611,7 +2611,7 @@
     },
     {
       "country": "Unknown",
-      "score": 688,
+      "score": 693,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2634,9 +2634,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25735,
+          "current_ap": 25745,
           "last_month_ap": 25550,
-          "monthly_gain": 185,
+          "monthly_gain": 195,
           "maxGames": [
             "Max Wool Games"
           ]
