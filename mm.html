@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<title>LitStats - Murder Mystery</title>
+<title>LitStats - Murder Mystery Descent</title>
 <link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
@@ -12,323 +12,916 @@
 <link rel="stylesheet" href="assets/css/mc-gui.css">
 
 <style>
-  .mc-title { margin-top: 4px; margin-bottom: 4px; }
+  :root {
+    --accent-orange: #f95716;
+    --accent-orange-hover: #e54e10;
+    
+    --stat-green: #55FF55;
+    --stat-gold: #FFAA00;
+    --stat-yellow: #FFFF55;
+    --stat-purple: #AA00AA;
+    --stat-darkgreen: #00AA00;
+    --stat-pink: #FF55FF;
+    --stat-blue: #5555FF;
+    --stat-aqua: #55FFFF;
+    --stat-red: #FF5555;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+  }
+
+  .mc-stack, .slot-count, .item-count, .p-level-badge, .tt-name, .tt-line {
+    font-family: 'MinecraftSeven', 'Minecrafter', 'Minecraft', 'Segoe UI Symbol', 'Arial', monospace !important;
+  }
+
+  .custom-star, img.custom-star, .p-level-badge img {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    margin-top: -0.15em;
+    -webkit-filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.8));
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.8));
+  }
   
+  span.custom-star {
+    background-color: currentColor;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+
+  .page-container {
+    padding: 24px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+
   /* Top Icon Tabs Styling */
   .gui-icon-tabs {
     display: flex;
     gap: 16px;
     margin-bottom: 20px;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--surface);
     padding: 12px;
-    border-radius: 4px;
-    border: 2px solid #333;
-    max-width: 400px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    max-width: 420px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
+  
   .gui-icon-tab {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #2e2e2e;
-    border: 2px solid #555;
+    background: var(--surface-2, var(--input-bg));
+    border: 2px solid var(--border);
+    border-radius: 6px;
     padding: 8px 16px;
     cursor: pointer;
     text-decoration: none;
     min-width: 90px;
-    transition: background 0.1s;
+    transition: all 0.15s ease-in-out;
   }
+  
   .gui-icon-tab:hover {
-    background: #3c3c3c;
-    border-color: #888;
+    background: rgba(136, 136, 136, 0.2);
+    border-color: var(--stat-gold);
   }
+  
   .gui-icon-tab.active {
-    background: #55FF55;
-    border-color: #FFF;
+    background: rgba(85, 255, 85, 0.2);
+    border-color: var(--stat-green);
   }
+  
   .gui-icon-tab .tab-icon {
     width: 32px;
     height: 32px;
     image-rendering: pixelated;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.8));
   }
+  
   .gui-icon-tab .tab-label {
     font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700; 
-    color: #DDD;
+    color: var(--text-2);
   }
+  
   .gui-icon-tab.active .tab-label {
-    color: #000;
+    color: var(--text);
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 8px auto;
+    width: fit-content;
+    gap: 8px;
+  }
+
+  .search-container input {
+    width: 260px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-container input:focus {
+    border-color: var(--accent, var(--accent-orange));
+  }
+
+  .btn-primary {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent, var(--accent-orange));
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-orange-hover);
+  }
+
+  .btn-icon {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text-2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-icon:hover {
+    color: var(--text);
+    border-color: var(--accent, var(--accent-orange));
+  }
+
+  #search-status {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    min-height: 18px;
+    margin-bottom: 16px;
+  }
+
+  .status-green { color: var(--green, #10b981); }
+  .status-red { color: var(--red, #ef4444); }
+  .status-gray { color: var(--text-3, var(--text-2)); }
+
+  .player-summary-panel {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 20px;
+    margin: 0 auto 20px auto;
+    box-shadow: var(--shadow);
+    align-items: center;
+    gap: 18px;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .p-avatar-box {
+    width: 84px;
+    height: 84px;
+    flex-shrink: 0;
+  }
+
+  .p-avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .p-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .p-name-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+  }
+
+  .p-level-badge {
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+  }
+
+  .p-pills-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .p-pill {
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  .info-card-placeholder {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 22px;
+    margin: 0 auto 20px auto;
+    box-shadow: var(--shadow);
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .info-card-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .info-card-icon img {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+  }
+
+  .info-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .info-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .info-card-desc {
+    font-size: 13px;
+    color: var(--text-2);
+  }
+
+  .descent-layout {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .stats-side-col {
+    position: absolute;
+    top: 0;
+    right: calc(50% + 245px);
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 10;
+  }
+
+  .stats-side-panel {
+    position: static;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .path-side-panel {
+    position: absolute;
+    top: 0;
+    left: calc(50% + 240px);
+    width: 270px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+
+  .path-settings-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 24px;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 100;
+    width: max-content;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  [data-theme="light"] .path-settings-dropdown {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .path-settings-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px !important;
+    cursor: pointer;
+    color: var(--text) !important;
+    text-transform: none !important;
+    font-weight: 500 !important;
+    margin: 0;
+    font-family: 'DM Sans', sans-serif !important;
+  }
+
+  .path-settings-label input {
+    margin: 0;
+  }
+
+  .path-header-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .path-header-badge img {
+    width: 24px;
+    height: 24px;
+    image-rendering: pixelated;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .path-header-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .stats-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-3, var(--text-2));
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .stat-label {
+    color: var(--text-2);
+    flex-shrink: 0;
+  }
+
+  .stat-val {
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .path-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 380px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 2px;
+  }
+
+  .path-step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--surface-2, var(--input-bg));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12px;
+    gap: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .path-step-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .path-step-img {
+    width: 20px;
+    height: 20px;
+    image-rendering: pixelated;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .path-step-name {
+    font-weight: 600;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+  }
+
+  .path-step-cost {
+    font-weight: 700;
+    color: var(--stat-gold);
+    font-size: 12px;
+    align-self: flex-start;
+    text-align: left;
+    margin-left: 28px;
+  }
+
+  .path-unlocked-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--stat-green);
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 4px;
+  }
+  
+  .path-total-row {
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  #path-total-cost {
+    width: 100%;
+  }
+
+  #path-total-cost > div {
+    align-items: flex-end;
+  }
+
+  .gui-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+  }
+
+  .mc-scale-engine {
+    transform-origin: top center !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .mc-container {
+    margin-top: 0 !important;
+  }
+
+  .mc-title { 
+    margin-top: 0 !important; 
+    margin-bottom: 4px; 
+  }
+
+  .mc-tooltip {
+    will-change: transform;
+    pointer-events: none !important;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .slot {
+    position: relative;
+    cursor: pointer;
+  }
+
+  html body main .mc-container .mc-grid .slot.target-node {
+    background-color: rgba(85, 255, 255, 0.5) !important;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6) !important;
+    border-color: transparent !important;
+    z-index: 3 !important;
+  }
+
+  html body main .mc-container .mc-grid .slot.path-node {
+    background-color: rgba(85, 255, 85, 0.35) !important;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4) !important;
+    border-color: transparent !important;
+    z-index: 2 !important;
+  }
+
+  @media (max-width: 1100px) {
+    .descent-layout {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .stats-side-col, .path-side-panel {
+      position: static;
+      right: auto;
+      left: auto;
+      width: min(100%, 460px);
+    }
   }
 </style>
 </head>
 <body>
 <script src="assets/js/components.js"></script>
 
-<div class="gui-icon-tabs">
-  <a href="#classic" class="gui-icon-tab" id="tab-classic" onclick="switchMode('classic')">
-    <img src="img/iron_sword.png" alt="Classic" class="tab-icon" onerror="this.onerror=null; this.src='assets/img/fallback_sword.png'">
-    <span class="tab-label">Classic</span>
-  </a>
-  <a href="#infection" class="gui-icon-tab" id="tab-infection" onclick="switchMode('infection')">
-    <img src="img/rotten_flesh.png" alt="Infection" class="tab-icon" onerror="this.onerror=null; this.src='assets/img/fallback_flesh.png'">
-    <span class="tab-label">Infection</span>
-  </a>
-  <a href="#assassins" class="gui-icon-tab" id="tab-assassins" onclick="switchMode('assassins')">
-    <img src="img/filled_map.png" alt="Assassins" class="tab-icon" onerror="this.onerror=null; this.src='assets/img/fallback_map.png'">
-    <span class="tab-label">Assassins</span>
-  </a>
-</div>
+<main class="page-container">
+  <h1 class="page-title">Murder Mystery Descent</h1>
 
-<main class="mc-scale-engine">
-  <div class="mc-container">
-    <div class="mc-title" id="display-title">Descent Into Madness</div>
-    <div class="mc-grid" id="menu-grid"></div>
+  <div class="search-container">
+    <input type="text" id="player-input" placeholder="Enter Username or UUID">
+    <button id="search-btn" class="btn-primary">Load Progress</button>
+    <button id="reset-btn" class="btn-icon" title="Reset Preview">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+    </button>
+  </div>
+  
+  <div class="gui-icon-tabs">
+    <a href="#classic" class="gui-icon-tab" id="tab-classic" onclick="switchMode('classic')">
+      <img src="img/iron_sword.png" alt="Classic" class="tab-icon" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'iron_sword'}) : '')">
+      <span class="tab-label">Classic</span>
+    </a>
+    <a href="#infection" class="gui-icon-tab" id="tab-infection" onclick="switchMode('infection')">
+      <img src="img/rotten_flesh.png" alt="Infection" class="tab-icon" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'rotten_flesh'}) : '')">
+      <span class="tab-label">Infection</span>
+    </a>
+    <a href="#assassins" class="gui-icon-tab" id="tab-assassins" onclick="switchMode('assassins')">
+      <img src="img/filled_map.png" alt="Assassins" class="tab-icon" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'map'}) : '')">
+      <span class="tab-label">Assassins</span>
+    </a>
+  </div>
+
+  <div id="search-status" class="status-gray">Previewing all max unlocked challenges</div>
+
+  <div class="info-card-placeholder" id="default-info-card">
+    <div class="info-card-icon">
+      <img src="img/diamond_sword.png" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'diamond_sword'}) : '')" alt="MM Icon">
+    </div>
+    <div class="info-card-text" style="flex: 1;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="info-card-title">Descent Into Madness Tracker</span>
+      </div>
+      <span class="info-card-desc">Previewing full max tree progression. Search a player to view active unlocks and route costs.</span>
+    </div>
+  </div>
+
+  <div class="player-summary-panel" id="player-summary-panel" style="display: none;">
+    <div class="p-avatar-box">
+      <img id="player-avatar-img" src="" alt="Avatar">
+    </div>
+    <div class="p-details">
+      <div class="p-name-line">
+        <span id="player-rank-html"></span>
+        <span id="player-username-text"></span>
+      </div>
+      <div class="p-pills-row">
+        <div class="p-pill">Wins: <span style="color:var(--stat-green)" id="pill-wins">0</span></div>
+        <div class="p-pill">Kills: <span style="color:var(--stat-blue)" id="pill-kills">0</span></div>
+        <div class="p-pill">Tokens: <span style="color:var(--stat-darkgreen)" id="pill-coins">0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="descent-layout">
+    <div class="stats-side-col">
+      <div class="stats-side-panel" id="stats-side-panel">
+        <div class="stats-title" id="side-panel-title">Descent Overview</div>
+        <div class="stat-item"><span class="stat-label">Total Challenges</span><span class="stat-val" style="color:var(--stat-green)" id="mm-val-1">51 / 51</span></div>
+        <div class="stat-item"><span class="stat-label">Tokens Earned</span><span class="stat-val" style="color:var(--stat-yellow)" id="mm-val-2">49,000</span></div>
+
+        <div class="stats-title" style="margin-top:10px;">Mode Progress</div>
+        <div class="stat-item"><span class="stat-label">Classic / Double Up!</span><span class="stat-val" style="color:var(--stat-aqua)" id="mm-classic">19 / 19</span></div>
+        <div class="stat-item"><span class="stat-label">Infection</span><span class="stat-val" style="color:var(--stat-pink)" id="mm-infection">17 / 17</span></div>
+        <div class="stat-item"><span class="stat-label">Assassins</span><span class="stat-val" style="color:var(--stat-red)" id="mm-assassins">15 / 15</span></div>
+      </div>
+    </div>
+
+    <div class="gui-wrapper">
+      <div class="mc-scale-engine">
+        <div class="mc-container">
+          <div class="mc-title" id="display-title">Descent Into Madness</div>
+          <div class="mc-grid" id="menu-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="path-side-panel" id="path-side-panel">
+      <div class="stats-title" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+        <span>Unlock Route</span>
+        <div style="display:flex; gap:8px; align-items:center; position:relative;">
+          <button id="path-settings-btn" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;" title="Settings">⚙</button>
+          <button onclick="closePathPanel()" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;">✕</button>
+          
+          <div id="path-settings-menu" class="path-settings-dropdown">
+            <label class="path-settings-label" title="Calculate combined paths for multiple challenges at once.">
+              <input type="checkbox" id="toggle-multiselect"> Multi-Select Items
+            </label>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:12px; color:var(--text-2);" id="path-target-name">Target: -</div>
+      <div class="path-steps-list" id="path-steps-container"></div>
+      <div class="path-total-row">
+        <span>Total Required:</span>
+        <div id="path-total-cost"></div>
+      </div>
+    </div>
   </div>
 </main>
 
 <script src="assets/js/global.js"></script>
 <script src="assets/js/mc-engine.js"></script>
 <script>
+let currentMode = 'classic';
+let isMultiSelect = false;
+let isLivePlayerLoaded = false;
+let selectedNodes = new Set();
+let currentPathNodes = new Set();
+
+const glass = { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false, "apiKey": "glass" };
+
+function buildModeArray(items) {
+  const arr = new Array(81).fill(null);
+  for (let r = 0; r < 9; r++) {
+    arr[r * 9 + 1] = glass;
+    arr[r * 9 + 7] = glass;
+  }
+  for (const [idx, item] of Object.entries(items)) {
+    arr[idx] = item;
+  }
+  return arr;
+}
+
+
 const modesData = {
-  "classic": [
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "bow", "rawName": "&aFirst Steps", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Collect 10 Gold and earn a Bow.\n\n&7Progress: &a✔\n\n&7&oGold spawns on the ground during\n&7&othe game. Having 10 Gold in your\n&7&oinventory earns you a Bow and\n&7&oArrow, which gives you one chance\n&7&oto stop the Murderer.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "diamond_sword", "rawName": "&aSneaky", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill players as the Murderer.\n\n&7Progress: &a3/3\n\n&7&oThe Murderer's goal is to kill\n&7&oeveryone without anyone figuring\n&7&oout who they are. It's best to kill\n&7&opeople when no one else is looking!\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "gold_ingot", "rawName": "&aHigh Roller", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Spend Gold.\n\n&7Progress: &a20/20\n\n&7&oBesides Bow and Arrows, Gold can\n&7&oalso be spent on maps for other\n&7&oitems and perks, such as\n&7&oConsumables or Traps.\n\n&7Reward\n&8+&bCoffin Close Death Cry\n\n&aCompleted!", "enchanted": false },
-    { "id": "apple", "rawName": "&aLocal Specialty", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Use Consumables.\n\n&7Progress: &a5/5\n\n&7&oOn some maps you are able to\n&7&opurchase Consumables for low\n&7&oamounts of Gold. They have a variety\n&7&oof effects that can get you out of a\n&7&opinch.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "red_stained_glass_pane", "rawName": "&aCornucopia", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Use Consumables on different maps.\n\n&7Progress: &a5/5\n\n&7&oOn Darkfall and Library you can find\n&7&oMystery Potions. When consumed,\n&7&oMystery Potions can either provide\n&7&oyou with a helpful or harmful effect.\n&7&oWatch out!\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "bow", "rawName": "&aLegacy", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Pick up a Detective Bow and shoot\n&7the Murderer.\n\n&7Progress: &a✔\n\n&7&oThe Detective drops their Bow on\n&7&odeath. Any Innocent player can then\n&7&opick it up, at which point their job\n&7&obecomes to shoot the Murderer.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "clock", "rawName": "&aSurvival", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Win games due to the timer running\n&7out as Innocent.\n\n&7Progress: &a✔\n\n&7&oOnce 2 non-Murderers remain, all\n&7&oplayers will be shown on the map.\n&7&oOnce 1 player is remaining, the\n&7&oMurderer gets Speed I.\n\n&7Reward\n&8+&bCampfire Leftovers Knife Skin\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "iron_sword", "rawName": "&aClassic / Double Up!", "rawLore": "&aYou are currently viewing this!", "enchanted": true, "isTabSwitch": "classic" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "red_stained_glass_pane", "rawName": "&aSerial Trapper", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers with Traps on\n&7different maps.\n\n&7Progress: &a3/3\n\n&7&oTraps give you a chance to kill the\n&7&oMurderer without a Bow, but you\n&7&ohave to lure them into one first!\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "string", "rawName": "&aTrapping 101", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Activate Traps.\n\n&7Progress: &a5/5\n\n&7&oCertain maps have deadly Traps that\n&7&ocan be activated with Gold. If you\n&7&oknow who the Murderer is, try and\n&7&olure them into a Trap to kill them!\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "arrow", "rawName": "&aQuickdraw", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers with a Bow.\n\n&7Progress: &a3/3\n\n&7&oClassic mode has one Murderer, while\n&7&oDouble Up! has two. Killing all\n&7&oMurderers wins the game for\n&7&osurviving Innocents and Detectives.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "rotten_flesh", "rawName": "&aInfection", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "infection" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "iron_sword", "rawName": "&aDeadly Precision", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill players with Knife Throws as the\n&7Murderer.\n\n&7Progress: &a10/10\n\n&7&oRight click with a Knife to throw it.\n&7&oKnives have a cooldown of 10\n&7&oseconds between throws.\n\n&7Reward\n&8+&bUnsubtle Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "filled_map", "rawName": "&aAssassins", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "assassins" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "filled_map", "rawName": "&aJob Search", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Pick up dropped Detective Bows.\n\n&7Progress: &a15/15\n\n&7&oThis map can be an invaluable tool\n&7&ofor finding dropped Detective Bows,\n&7&obut it can also help Murderers find\n&7&oInnocents in the last 30 seconds of\n&7&oa game!\n\n&7Reward\n&8+&6Shred Knife Skin\n\n&aCompleted!", "enchanted": false },
-    { "id": "emerald", "rawName": "&aHero of the Day", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers as an Innocent.\n\n&7Progress: &a4/4\n\n&7&oKilling the Murderer as an Innocent\n&7&omakes you the \"Hero\". This can\n&7&oeither be done with a Bow or Trap kill.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "leather", "rawName": "&aMakeshift Shield", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Block a Murderer's Knife Throw with\n&7an Arrow.\n\n&7Progress: &a5/5\n\n&7&oArrows and Thrown Knives will collide\n&7&oif they hit one another, stopping both.\n\n&7Reward\n&8+&6Wither Skull Projectile Trail\n\n&aCompleted!", "enchanted": false },
-    { "id": "blaze_rod", "rawName": "&aPythagorean Disposal", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Get double kills with Knife Throws.\n\n&7Progress: &a3/3\n\n&7&oThrown Knives will pierce through\n&76otargets, meaning you can kill multiple\n&7&oplayers with just one throw if lined\n&7&oup properly.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "bone_meal", "rawName": "&aPane-Killer", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill players with knives thrown\n&7through glass panes.\n\n&7Progress: &a4/4\n\n&7&oKnives will crack and pass through\n&7&oGlass Panes when thrown. Knives can\n&7&oalso pass through Barrier blocks.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "feather", "rawName": "&aLawmaker", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers as the Detective.\n\n&7Progress: &a15/15\n\n&7&oThe Detective does not earn\n&7&oanything upon collecting 10 or more\n&7&oGold as they already have a Bow and\n&7&oinfinite Arrows. Use this Gold\n&7&oelsewhere, like on Traps or\n&7&oConsumables.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "golden_sword", "rawName": "&aBloodlust", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Kill players as the Murderer.\n\n&7Progress: &a100/100\n\n&7&oFind a strategy that suits you. Some\n&7&oare aggressive Murderers who kill\n&7&oeveryone they see. Others are more\n&76omethodical and wait for the right\n&7&oopportunities so they are not found.\n\n&7Reward:\n&8+&5Puddle Death Cry\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "diamond", "rawName": "&aTruly Mad", "rawLore": "&8Classic / Double Up! Challenge\n\n&7Win games.\n\n&7Progress: &a100/100\n\n&7&oPut all of your acquired knowledge\n&7&oto the test for one final challenge.\n\n&7Reward\n&8+&5Creeper Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }
-  ],
-  "infection": [
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "gold_ingot", "rawName": "&aReloaded", "rawLore": "&8Infection Challenge\n\n&7Collect 6 Gold as a Survivor and\n&7earn extra Arrows.\n\n&7Progress: &a✔\n\n&7&oCollecting 6 Gold as a Survivor will\n&7&oearn you 24 extra Arrows. As the\n&7&ogame progresses, you will likely run\n&7&oout of Arrows, so it's important to\n&7&oget more!\n\n&7Reward\n&8+&bUnadorned Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "iron_sword", "rawName": "&aClassic / Double Up!", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "classic" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "rotten_flesh", "rawName": "&aFirst of Many", "rawLore": "&8Infection Challenge\n\n&7Kill an Infected.\n\n&7Progress: &a✔\n\n&7&oYou can easily distinguish Infected\n&7&oby their skin, lack of an Iron\n&7&oChestplate, and both Speed and Jump\n&7&oBoost effects.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "bone", "rawName": "&aOne of Us", "rawLore": "&8Infection Challenge\n\n&7Infect Survivors.\n\n&7Progress: &a2/2\n\n&7&oTry to sneak up on and pick off lone\n&7&oSurvivors. Once there are no\n&7&oSurvivors left, the Infected win!\n&7&oRemember, you will resp*awn as long\n&7&oas the Alpha is alive.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "gunpowder", "rawName": "&aMowing Down", "rawLore": "&8Infection Challenge\n\n&7Kill Infected.\n\n&7Progress: &a4/4\n\n&7&oInfected have the advantage in a\n&7&oclose-quarters battle. Use your\n&7&oBow's range to your advantage!\n\n&7Reward\n&8+&bStatic Death Cry\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "rotten_flesh", "rawName": "&aInfection", "rawLore": "&aYou are currently viewing this!\n&bRight-click to toggle favorite!", "enchanted": true, "isTabSwitch": "infection" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "spider_eye", "rawName": "&aDistant Transmission", "rawLore": "&8Infection Challenge\n\n&7Infect a player with a Knife Throw.\n\n&7Progress: &a✔\n\n&7&oIt can be quite difficult to infect\n&7&oSurvivors as their Bows out-range\n&7&oyou. Use your limited Knife Throws\n&7&owisely to help secure kills you\n&7&ootherwise couldn't have gotten.\n\n&7Reward\n&8+&510,000 Spoons Knife Skin\n\n&aCompleted!", "enchanted": false },
-    { "id": "iron_sword", "rawName": "&aViral Knife", "rawLore": "&8Infection Challenge\n\n&7Collect 5 Gold as an Infected and\n&7earn a Knife Throw.\n\n&7Progress: &a✔\n\n&7&oCollecting 5 Gold as an Infected will\n&7&oearn you a single Knife Throw. Right\n&7&oclick with the Knife in your hand to\n&7&othrow it.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "iron_chestplate", "rawName": "&aPost Pandemic", "rawLore": "&8Infection Challenge\n\n&7Win a game as a Survivor.\n\n&7Progress: &a✔\n\n&7&oSurvivors win by lasting until the\n&7&ogame timer runs out or when all\n&7&oInfected are dead.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "filled_map", "rawName": "&aAssassins", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "assassins" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null, null, null,
-    { "id": "wheat_seeds", "rawName": "&aCutting the Roots", "rawLore": "&8Infection Challenge\n\n&7Kill or reveal the Alpha.\n\n&7Progress: &a2/2\n\n&7&oRevealing and killing the Alpha stops\n&7&oInfected from respawning. Once the\n&7&oAlpha and all Infected are dead, the\n&7&oremaining Survivors win.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "poisonous_potato", "rawName": "&aExponentiation", "rawLore": "&8Infection Challenge\n\n&7Infect Survivors.\n\n&7Progress: &a25/25\n\n&7&oSince Infected respawn indefinitely\n&7&ountil the Alpha dies, they are able to\n&7&omake far more risky plays.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "glowstone_dust", "rawName": "&aHold Your Ground", "rawLore": "&8Infection Challenge\n\n&7Kill 5 Infected in a single game.\n\n&7Progress: &a2/2\n\n&7&oYou can shoot thrown Knives out of\n&7&othe air with Arrows, but it's also\n&7&opossible to dodge them. It's not easy\n&7&ofor Infected to earn Knife Throws!\n\n&7Reward\n&8+&5Floral Gravestone\n\n&aCompleted!", "enchanted": false },
-    { "id": "wooden_sword", "rawName": "&aPatient Zero", "rawLore": "&8Infection Challenge\n\n&7Win a game as the Alpha.\n\n&7Progress: &a✔\n\n&7&oIf you are unrevealed as the Alpha, \n&7&oit's best to stay away from Infected\n&7&oand to act as much like a Survivor\n&7&oas possible.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "fermented_spider_eye", "rawName": "&aSilver Bullet", "rawLore": "&8Infection Challenge\n\n&7Kill or reveal the Alpha.\n\n&7Progress: &a15/15\n\n&7&oRevealing and killing the Alpha stops\n&7&oInfected players from respawning.\n&7&oOnce the Alpha and all Infected are\n&7&odead, Survivors win.\n\n&7Reward\n&8+&6Glitch Projectile Trail\n\n&aCompleted!", "enchanted": false },
-    { "id": "diamond_sword", "rawName": "&aLurking Contagion", "rawLore": "&8Infection Challenge\n\n&7Infect Survivors as Alpha while not\n&7yet revealed.\n\n&7Progress: &a30/30\n\n&7&oThe Alpha can throw their Knife an\n&7&oinfinite number of times, but it has a\n&7&o15-second cooldown.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "diamond_helmet", "rawName": "&aCrowd Control", "rawLore": "&8Infection Challenge\n\n&7Kill Infected.\n\n&7Progress: &a33/33\n\n&7&oAreas of the map that only need to\n&7&obe defended from a single direction\n&7&oare great for surviving long term.\n\n&7Reward\n&8+&5Up in Flames Death Cry\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "diamond_shovel", "rawName": "&aContagion Contained", "rawLore": "&8Infection Challenge\n\n&7Win games as a Survivor.\n\n&7Progress: &a25/25\n\n&7&oIf the Alpha hasn't infected any\n&7&oSurvivors in 30 seconds, their\n&7&olocation will be shown on the map.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "water_bottle", "rawName": "&aDouble Dosage", "rawLore": "&8Infection Challenge\n\n&7Reveal AND kill the Alpha in a single\n&7game.\n\n&7Progress: &a2/2\n\n&7&oAs a Survivor, if the Alpha hasn't\n&7&obeen revealed, shoot other\n&7&oSurvivors who you suspet are\n&7&oactually the Alpha.\n\n&7Reward\n&8+&6Gold Spray Painted Shovel Knife Skin\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "diamond", "rawName": "&aTotal Outbreak", "rawLore": "&8Infection Challenge\n\n&7Infect 8 Survivors in a single game\n&7as the Alpha.\n\n&7Progress: &a✔\n\n&7&oPut all of your acquired knowledge\n&7&oto the test for one final challenge.\n\n&7Reward\n&8+&6Botanic Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }
-  ],
-  "assassins": [
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "map", "rawName": "&aFirst Job", "rawLore": "&8Assassins Challenge\n\n&7Kill your Target.\n\n&7Progress: &a✔\n\n&7&oAt the start of the match you will\n&7&oreceive a Kill Contract. Once you kill\n&7&oyour Target, you will get a new one.\n&7&oWatch out, as your Target can also\n&7&okill you!\n\n&7Reward\n&8+&bHumble Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "iron_sword", "rawName": "&aClassic / Double Up!", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "classic" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "bow", "rawName": "&aArmed", "rawLore": "&8Assassins Challenge\n\n&7Collect 5 Gold and earn a Bow.\n\n&7Progress: &a✔\n\n&7&oYou only need to collect 5 Gold to\n&7&oearn a Bow and Arrow. Use it as\n&7&oanother ranged option to kill your\n&7&oTarget or Assassin.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "rotten_flesh", "rawName": "&aInfection", "rawLore": "&eLeft-click to switch!\n&bRight-click to toggle favorite!", "enchanted": false, "isTabSwitch": "infection" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    { "id": "iron_shovel", "rawName": "&aSlaughterhouse", "rawLore": "&8Assassins Challenge\n\n&7Kill 3 players in a single game.\n\n&7Progress: &a✔\n\n&7&oKilling a player rewards you with 1\n&7&oGold. You can either save up for a\n&7&oBow or spend it on maps with\n&7&opurchasable items.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "gold_ingot", "rawName": "&aClean Job", "rawLore": "&8Assassins Challenge\n\n&7Win a game.\n\n&7Progress: &a✔\n\n&7&oThe game ends once 2 players\n&7&oremain. Only the players with at least\n&7&o1 kill get a win.\n\n&7Reward\n&8+&aFragile Plant Knife Skin\n\n&aCompleted!", "enchanted": false },
-    { "id": "iron_sword", "rawName": "&aSelf-Defense", "rawLore": "&8Assassins Challenge\n\n&7Kill your Assassin.\n\n&7Progress: &a✔\n\n&7&oOne other player in the match will\n&7&ohave you as their Target. When they\n&7&oget close to you, the edges of your\n&7&oscreen will turn red. Try to kill them\n&7&obefore they kill you!\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "feather", "rawName": "&aEye on Prey", "rawLore": "&8Assassins Challenge\n\n&7Kill players with a Bow.\n\n&7Progress: &a2/2\n\n&7&oSimilar to Knives, Bows can only be\n&7&oused to kill your Target or Assassin.\n&7&oHitting anyone else will stun you for\n&7&o5 seconds.\n\n&7Reward\n&8+&bSigh Death Cry\n\n&aCompleted!", "enchanted": false },
-    { "id": "string", "rawName": "&aCollateral Damage", "rawLore": "&8Assassins Challenge\n\n&7Kill neutral players with Traps.\n\n&7Progress: &a2/2\n\n&7&oTraps are the only way to kill\n&7&oplayers who are neither your\n&7&oTarget nor Assassin.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "filled_map", "rawName": "&aAssassins", "rawLore": "&aYou are currently viewing this!\n&bRight-click to toggle favorite!", "enchanted": true, "isTabSwitch": "assassins" },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "redstone", "rawName": "&aBounty Hunter", "rawLore": "&8Assassins Challenge\n\n&7Kill your Target.\n\n&7Progress: &a15/15\n\n&7&oWhen you kill your Target, you\n&7&oreceive whoever their Target was as\n&7&oyour new Target.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "wooden_axe", "rawName": "&aDual Proficiency", "rawLore": "&8Assassins Challenge\n\n&7Kill a player with melee and a Knife\n&7Throw in a single game.\n\n&7Progress: &a3/3\n\n&7&oRight click with a Knife to throw it.\n&7&oKnives have a cooldown of 5\n&7&oseconds between throws.\n\n&7Reward\n&8+&6Derailed Projectile Trail\n\n&aCompleted!", "enchanted": false },
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null,
-    { "id": "stick", "rawName": "&aHuntsman", "rawLore": "&8Assassins Challenge\n\n&7Kill players with a Bow.\n\n&7Progress: &a6/6\n\n&7&oArrows and thrown Knives will knock\n&7&oeach other out of the air.\n\n&7Reward\n&8+&5Warrior Gravestone\n\n&aCompleted!", "enchanted": false },
-    { "id": "diamond_sword", "rawName": "&aDead or Alive", "rawLore": "&8Assassins Challenge\n\n&7Kill your Assassin.\n\n&7Progress: &a15/15\n\n&7&oWhen you are nearing your Assassin,\n&7&oa heartbeat sound will begin to play.\n&7&oThe closer you get, the faster it\n&7&obecomes. It also shows above your\n&7&ohotbar.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "firework_star", "rawName": "&aGrand Slam", "rawLore": "&8Assassins Challenge\n\n&7Kill a player with melee, a Knife\n&7Throw, a Bow, and a Trap in a single\n&7game.\n\n&7Progress: &a✔\n\n&7&oThrown Knives can pierce through\n&7&oplayers and glass panes.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens\n\n&aCompleted!", "enchanted": false },
-    { "id": "ender_pearl", "rawName": "&aDeath Defy", "rawLore": "&8Assassins Challenge\n\n&7Kill your Assassin while stunned.\n\n&7Progress: &a✔\n\n&7&oWhile stunned, your movement is much\n&7&oslower and you are unable to use\n&7&oyour Knife. However, there are\n&7&oother ways to kill players while in\n&7&othis state.\n\n&7Reward\n&8+&6Double Death Scythe Knife Skin\n\n&aCompleted!", "enchanted": false },
-    null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "golden_hoe", "rawName": "&aSeasoned Hitman", "rawLore": "&8Assassins Challenge\n\n&7Kill players.\n\n&7Progress: &a100/100\n\n&7&oOnce 5 players remain, all players\n&7&oare shown on the map.\n\n&7Reward\n&8+&5Greed Death Cry\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false },
-    null, null,
-    { "id": "diamond", "rawName": "&aCrimson Joy", "rawLore": "&8Assassins Challenge\n\n&7Kill 7 players in a single game.\n\n&7Progress: &a✔\n\n&7&oPut all of your acquired knowledge\n&7&oto the test for one final challenge!\n\n&7Reward\n&8+&6Niche Gravestone\n\n&aCompleted!", "enchanted": false },
-    null, null,
-    { "id": "black_stained_glass_pane", "rawName": " ", "rawLore": "", "enchanted": false }
-  ]
+  "classic": buildModeArray({
+    4: { "id": "bow", "apiKey": "Firststeps", "costVal": 1, "reqLore": "Collect 10 Gold", "rewardTokens": 1000, "baseTitle": "First Steps", "rawName": "&aFirst Steps", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Collect 10 Gold and earn a Bow.\n\n&7Progress: {VAL}/1\n\n&7&oGold spawns on the ground during\n&7&othe game. Having 10 Gold in your\n&7&oinventory earns you a Bow and\n&7&oArrow, which gives you one chance\n&7&oto stop the Murderer.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    12: { "id": "diamond_sword", "apiKey": "Sneaky", "costVal": 3, "reqLore": "Kill 3 players as Murderer", "rewardTokens": 1000, "baseTitle": "Sneaky", "rawName": "&aSneaky", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Kill players as the Murderer.\n\n&7Progress: {VAL}/3\n\n&7&oThe Murderer's goal is to kill\n&7&oeveryone without anyone figuring\n&7&oout who they are. It's best to kill\n&7&opeople when no one else is looking!\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    13: { "id": "gold_ingot", "apiKey": "Highroller", "costVal": 20, "reqLore": "Spend 20 Gold", "rewardTokens": 0, "baseTitle": "High Roller", "rawName": "&aHigh Roller", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Spend Gold.\n\n&7Progress: {VAL}/20\n\n&7&oBesides Bow and Arrows, Gold can\n&7&oalso be spent on maps for other\n&7&oitems and perks, such as\n&7&oConsumables or Traps.\n\n&7Reward\n&8+&bCoffin Close Death Cry", "enchanted": false },
+    14: { "id": "apple", "apiKey": "Localspecialty", "costVal": 5, "reqLore": "Use 5 Consumables", "rewardTokens": 1000, "baseTitle": "Local Specialty", "rawName": "&aLocal Specialty", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Use Consumables.\n\n&7Progress: {VAL}/5\n\n&7&oOn some maps you are able to\n&7&opurchase Consumables for low\n&7&oamounts of Gold. They have a variety\n&7&oof effects that can get you out of a\n&7&opinch.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    15: { "id": "potion", "texture": "img/mm/water_bottle.png", "apiKey": "Cornucopia", "costVal": 5, "reqLore": "Use Consumables on 5 maps", "rewardTokens": 1000, "baseTitle": "Cornucopia", "rawName": "&aCornucopia", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Use Consumables on different maps.\n\n&7Progress: {VAL}/5\n\n&7&oOn Darkfall and Library you can find\n&7&oMystery Potions. When consumed,\n&7&oMystery Potions can either provide\n&7&oyou with a helpful or harmful effect.\n&7&oWatch out!\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    21: { "id": "bow", "apiKey": "Legacy", "costVal": 1, "reqLore": "Shoot Murderer with Det Bow", "rewardTokens": 2000, "baseTitle": "Legacy", "rawName": "&aLegacy", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Pick up a Detective Bow and shoot\n&7the Murderer.\n\n&7Progress: {VAL}/1\n\n&7&oThe Detective drops their Bow on\n&7&odeath. Any Innocent player can then\n&7&opick it up, at which point their job\n&7&obecomes to shoot the Murderer.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    23: { "id": "clock", "apiKey": "Survival", "costVal": 1, "reqLore": "Win by timeout as Innocent", "rewardTokens": 0, "baseTitle": "Survival", "rawName": "&aSurvival", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Win games due to the timer running\n&7out as Innocent.\n\n&7Progress: {VAL}/1\n\n&7&oOnce 2 non-Murderers remain, all\n&7&oplayers will be shown on the map.\n&7&oOnce 1 player is remaining, the\n&7&oMurderer gets Speed I.\n\n&7Reward\n&8+&bCampfire Leftovers Knife Skin", "enchanted": false },
+    29: { "id": "red_stained_glass_pane", "apiKey": "Serialtrapper", "costVal": 3, "reqLore": "Trap 3 Murderers", "rewardTokens": 2000, "baseTitle": "Serial Trapper", "rawName": "&aSerial Trapper", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers with Traps on\n&7different maps.\n\n&7Progress: {VAL}/3\n\n&7&oTraps give you a chance to kill the\n&7&oMurderer without a Bow, but you\n&7&ohave to lure them into one first!\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    30: { "id": "string", "apiKey": "Trapping101", "costVal": 5, "reqLore": "Activate 5 Traps", "rewardTokens": 2000, "baseTitle": "Trapping 101", "rawName": "&aTrapping 101", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Activate Traps.\n\n&7Progress: {VAL}/5\n\n&7&oCertain maps have deadly Traps that\n&7&ocan be activated with Gold. If you\n&7&oknow who the Murderer is, try and\n&7&olure them into a Trap to kill them!\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    31: { "id": "arrow", "apiKey": "Quickdraw", "costVal": 3, "reqLore": "Kill 3 Murderers with Bow", "rewardTokens": 2000, "baseTitle": "Quickdraw", "rawName": "&aQuickdraw", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers with a Bow.\n\n&7Progress: {VAL}/3\n\n&7&oClassic mode has one Murderer, while\n&7&oDouble Up! has two. Killing all\n&7&oMurderers wins the game for\n&7&osurviving Innocents and Detectives.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    39: { "id": "iron_sword", "apiKey": "Deadlyprecision", "costVal": 10, "reqLore": "Get 10 Knife Throw Kills", "rewardTokens": 0, "baseTitle": "Deadly Precision", "rawName": "&aDeadly Precision", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Kill players with Knife Throws as the\n&7Murderer.\n\n&7Progress: {VAL}/10\n\n&7&oRight click with a Knife to throw it.\n&7&oKnives have a cooldown of 10\n&7&oseconds between throws.\n\n&7Reward\n&8+&bUnsubtle Gravestone", "enchanted": false },
+    47: { "id": "filled_map", "apiKey": "Jobsearch", "costVal": 15, "reqLore": "Pick up 15 Det Bows", "rewardTokens": 0, "baseTitle": "Job Search", "rawName": "&aJob Search", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Pick up dropped Detective Bows.\n\n&7Progress: {VAL}/15\n\n&7&oThis map can be an invaluable tool\n&7&ofor finding dropped Detective Bows,\n&7&obut it can also help Murderers find\n&7&oInnocents in the last 30 seconds of\n&7&oa game!\n\n&7Reward\n&8+&6Shred Knife Skin", "enchanted": false },
+    48: { "id": "emerald", "apiKey": "Hero", "costVal": 4, "reqLore": "Kill 4 Murderers as Innocent", "rewardTokens": 2000, "baseTitle": "Hero of the Day", "rawName": "&aHero of the Day", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers as an Innocent.\n\n&7Progress: {VAL}/4\n\n&7&oKilling the Murderer as an Innocent\n&7&omakes you the \"Hero\". This can\n&7&oeither be done with a Bow or Trap kill.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    49: { "id": "leather", "apiKey": "Makeshiftshield", "costVal": 5, "reqLore": "Block 5 Knives with Arrows", "rewardTokens": 0, "baseTitle": "Makeshift Shield", "rawName": "&aMakeshift Shield", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Block a Murderer's Knife Throw with\n&7an Arrow.\n\n&7Progress: {VAL}/5\n\n&7&oArrows and Thrown Knives will collide\n&7&oif they hit one another, stopping both.\n\n&7Reward\n&8+&6Wither Skull Projectile Trail", "enchanted": false },
+    50: { "id": "blaze_rod", "apiKey": "Pythagoreandisposal", "costVal": 3, "reqLore": "Get 3 Knife double kills", "rewardTokens": 3000, "baseTitle": "Pythagorean Disposal", "rawName": "&aPythagorean Disposal", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Get double kills with Knife Throws.\n\n&7Progress: {VAL}/3\n\n&7&oThrown Knives will pierce through\n&76otargets, meaning you can kill multiple\n&7&oplayers with just one throw if lined\n&7&oup properly.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens", "enchanted": false },
+    56: { "id": "bone_meal", "apiKey": "Panekiller", "costVal": 4, "reqLore": "Kill 4 players through glass", "rewardTokens": 3000, "baseTitle": "Pane-Killer", "rawName": "&aPane-Killer", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Kill players with knives thrown\n&7through glass panes.\n\n&7Progress: {VAL}/4\n\n&7&oKnives will crack and pass through\n&7&oGlass Panes when thrown. Knives can\n&7&oalso pass through Barrier blocks.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens", "enchanted": false },
+    58: { "id": "feather", "apiKey": "Lawmaker", "costVal": 15, "reqLore": "Kill 15 Murderers as Det", "rewardTokens": 3000, "baseTitle": "Lawmaker", "rawName": "&aLawmaker", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Kill Murderers as the Detective.\n\n&7Progress: {VAL}/15\n\n&7&oThe Detective does not earn\n&7&oanything upon collecting 10 or more\n&7&oGold as they already have a Bow and\n&7&oinfinite Arrows. Use this Gold\n&7&oelsewhere, like on Traps or\n&7&oConsumables.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens", "enchanted": false },
+    67: { "id": "golden_sword", "apiKey": "Bloodlust", "costVal": 100, "reqLore": "Kill 100 players as Murderer", "rewardTokens": 0, "baseTitle": "Bloodlust", "rawName": "&aBloodlust", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Kill players as the Murderer.\n\n&7Progress: {VAL}/100\n\n&7&oFind a strategy that suits you. Some\n&7&oare aggressive Murderers who kill\n&7&oeveryone they see. Others are more\n&76omethodical and wait for the right\n&7&oopportunities so they are not found.\n\n&7Reward:\n&8+&5Puddle Death Cry", "enchanted": false },
+    76: { "id": "diamond", "apiKey": "Trulymad", "costVal": 100, "reqLore": "Win 100 games", "rewardTokens": 0, "baseTitle": "Truly Mad", "rawName": "&aTruly Mad", "baseLore": "&8Classic / Double Up! Challenge\n\n&7Win games.\n\n&7Progress: {VAL}/100\n\n&7&oPut all of your acquired knowledge\n&7&oto the test for one final challenge.\n\n&7Reward\n&8+&5Creeper Gravestone", "enchanted": false }
+  }),
+
+  "infection": buildModeArray({
+    4: { "id": "gold_ingot", "apiKey": "Reloaded", "costVal": 1, "reqLore": "Collect 6 Gold as Survivor", "rewardTokens": 0, "baseTitle": "Reloaded", "rawName": "&aReloaded", "baseLore": "&8Infection Challenge\n\n&7Collect 6 Gold as a Survivor and\n&7earn extra Arrows.\n\n&7Progress: {VAL}/1\n\n&7&oCollecting 6 Gold as a Survivor will\n&7&oearn you 24 extra Arrows. As the\n&7&ogame progresses, you will likely run\n&7&oout of Arrows, so it's important to\n&7&oget more!\n\n&7Reward\n&8+&bUnadorned Gravestone", "enchanted": false },
+    13: { "id": "rotten_flesh", "apiKey": "Firstofmany", "costVal": 1, "reqLore": "Kill an Infected", "rewardTokens": 1000, "baseTitle": "First of Many", "rawName": "&aFirst of Many", "baseLore": "&8Infection Challenge\n\n&7Kill an Infected.\n\n&7Progress: {VAL}/1\n\n&7&oYou can easily distinguish Infected\n&7&oby their skin, lack of an Iron\n&7&oChestplate, and both Speed and Jump\n&7&oBoost effects.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    14: { "id": "bone", "apiKey": "Oneofus", "costVal": 2, "reqLore": "Infect 2 Survivors", "rewardTokens": 1000, "baseTitle": "One of Us", "rawName": "&aOne of Us", "baseLore": "&8Infection Challenge\n\n&7Infect Survivors.\n\n&7Progress: {VAL}/2\n\n&7&oTry to sneak up on and pick off lone\n&7&oSurvivors. Once there are no\n&7&oSurvivors left, the Infected win!\n&7&oRemember, you will resp*awn as long\n&7&oas the Alpha is alive.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    15: { "id": "gunpowder", "apiKey": "Mowingdown", "costVal": 4, "reqLore": "Kill 4 Infected", "rewardTokens": 0, "baseTitle": "Mowing Down", "rawName": "&aMowing Down", "baseLore": "&8Infection Challenge\n\n&7Kill Infected.\n\n&7Progress: {VAL}/4\n\n&7&oInfected have the advantage in a\n&7&oclose-quarters battle. Use your\n&7&oBow's range to your advantage!\n\n&7Reward\n&8+&bStatic Death Cry", "enchanted": false },
+    21: { "id": "spider_eye", "apiKey": "Distanttransmission", "costVal": 1, "reqLore": "Infect via Knife Throw", "rewardTokens": 0, "baseTitle": "Distant Transmission", "rawName": "&aDistant Transmission", "baseLore": "&8Infection Challenge\n\n&7Infect a player with a Knife Throw.\n\n&7Progress: {VAL}/1\n\n&7&oIt can be quite difficult to infect\n&7&oSurvivors as their Bows out-range\n&7&oyou. Use your limited Knife Throws\n&7&owisely to help secure kills you\n&7&ootherwise couldn't have gotten.\n\n&7Reward\n&8+&510,000 Spoons Knife Skin", "enchanted": false },
+    22: { "id": "iron_sword", "apiKey": "Viralknife", "costVal": 1, "reqLore": "Collect 5 Gold as Infected", "rewardTokens": 1000, "baseTitle": "Viral Knife", "rawName": "&aViral Knife", "baseLore": "&8Infection Challenge\n\n&7Collect 5 Gold as an Infected and\n&7earn a Knife Throw.\n\n&7Progress: {VAL}/1\n\n&7&oCollecting 5 Gold as an Infected will\n&7&oearn you a single Knife Throw. Right\n&7&oclick with the Knife in your hand to\n&7&othrow it.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    23: { "id": "iron_chestplate", "apiKey": "Postpandemic", "costVal": 1, "reqLore": "Win as Survivor", "rewardTokens": 2000, "baseTitle": "Post Pandemic", "rawName": "&aPost Pandemic", "baseLore": "&8Infection Challenge\n\n&7Win a game as a Survivor.\n\n&7Progress: {VAL}/1\n\n&7&oSurvivors win by lasting until the\n&7&ogame timer runs out or when all\n&7&oInfected are dead.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    32: { "id": "wheat_seeds", "apiKey": "Cuttingtheroots", "costVal": 2, "reqLore": "Kill/reveal Alpha 2 times", "rewardTokens": 2000, "baseTitle": "Cutting the Roots", "rawName": "&aCutting the Roots", "baseLore": "&8Infection Challenge\n\n&7Kill or reveal the Alpha.\n\n&7Progress: {VAL}/2\n\n&7&oRevealing and killing the Alpha stops\n&7&oInfected from respawning. Once the\n&7&oAlpha and all Infected are dead, the\n&7&oremaining Survivors win.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    40: { "id": "poisonous_potato", "apiKey": "Exponentiation", "costVal": 25, "reqLore": "Infect 25 Survivors", "rewardTokens": 3000, "baseTitle": "Exponentiation", "rawName": "&aExponentiation", "baseLore": "&8Infection Challenge\n\n&7Infect Survivors.\n\n&7Progress: {VAL}/25\n\n&7&oSince Infected respawn indefinitely\n&7&ountil the Alpha dies, they are able to\n&7&omake far more risky plays.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens", "enchanted": false },
+    41: { "id": "glowstone_dust", "apiKey": "Holdground", "costVal": 2, "reqLore": "Kill 5 Infected in 1 game", "rewardTokens": 0, "baseTitle": "Hold Your Ground", "rawName": "&aHold Your Ground", "baseLore": "&8Infection Challenge\n\n&7Kill 5 Infected in a single game.\n\n&7Progress: {VAL}/2\n\n&7&oYou can shoot thrown Knives out of\n&7&othe air with Arrows, but it's also\n&7&opossible to dodge them. It's not easy\n&7&ofor Infected to earn Knife Throws!\n\n&7Reward\n&8+&5Floral Gravestone", "enchanted": false },
+    42: { "id": "wooden_sword", "apiKey": "Patientzero", "costVal": 1, "reqLore": "Win as the Alpha", "rewardTokens": 2000, "baseTitle": "Patient Zero", "rawName": "&aPatient Zero", "baseLore": "&8Infection Challenge\n\n&7Win a game as the Alpha.\n\n&7Progress: {VAL}/1\n\n&7&oIf you are unrevealed as the Alpha, \n&7&oit's best to stay away from Infected\n&7&oand to act as much like a Survivor\n&7&oas possible.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    47: { "id": "fermented_spider_eye", "apiKey": "Silverbullet", "costVal": 15, "reqLore": "Kill/reveal Alpha 15 times", "rewardTokens": 0, "baseTitle": "Silver Bullet", "rawName": "&aSilver Bullet", "baseLore": "&8Infection Challenge\n\n&7Kill or reveal the Alpha.\n\n&7Progress: {VAL}/15\n\n&7&oRevealing and killing the Alpha stops\n&7&oInfected players from respawning.\n&7&oOnce the Alpha and all Infected are\n&7&odead, Survivors win.\n\n&7Reward\n&8+&6Glitch Projectile Trail", "enchanted": false },
+    48: { "id": "diamond_sword", "apiKey": "Lurkingcontagion", "costVal": 30, "reqLore": "Infect 30 Survivors as Alpha", "rewardTokens": 3000, "baseTitle": "Lurking Contagion", "rawName": "&aLurking Contagion", "baseLore": "&8Infection Challenge\n\n&7Infect Survivors as Alpha while not\n&7yet revealed.\n\n&7Progress: {VAL}/30\n\n&7&oThe Alpha can throw their Knife an\n&7&oinfinite number of times, but it has a\n&7&o15-second cooldown.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens", "enchanted": false },
+    49: { "id": "diamond_helmet", "apiKey": "Crowdcontrol", "costVal": 33, "reqLore": "Kill 33 Infected", "rewardTokens": 0, "baseTitle": "Crowd Control", "rawName": "&aCrowd Control", "baseLore": "&8Infection Challenge\n\n&7Kill Infected.\n\n&7Progress: {VAL}/33\n\n&7&oAreas of the map that only need to\n&7&obe defended from a single direction\n&7&oare great for surviving long term.\n\n&7Reward\n&8+&5Up in Flames Death Cry", "enchanted": false },
+    58: { "id": "diamond_shovel", "apiKey": "Contagioncontained", "costVal": 25, "reqLore": "Win 25 games as Survivor", "rewardTokens": 3000, "baseTitle": "Contagion Contained", "rawName": "&aContagion Contained", "baseLore": "&8Infection Challenge\n\n&7Win games as a Survivor.\n\n&7Progress: {VAL}/25\n\n&7&oIf the Alpha hasn't infected any\n&7&oSurvivors in 30 seconds, their\n&7&olocation will be shown on the map.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens", "enchanted": false },
+    67: { "id": "potion", "texture": "img/mm/water_bottle.png", "apiKey": "Doubledosage", "costVal": 2, "reqLore": "Reveal AND kill Alpha twice", "rewardTokens": 0, "baseTitle": "Double Dosage", "rawName": "&aDouble Dosage", "baseLore": "&8Infection Challenge\n\n&7Reveal AND kill the Alpha in a single\n&7game.\n\n&7Progress: {VAL}/2\n\n&7&oAs a Survivor, if the Alpha hasn't\n&7&obeen revealed, shoot other\n&7&oSurvivors who you suspet are\n&7&oactually the Alpha.\n\n&7Reward\n&8+&6Gold Spray Painted Shovel Knife Skin", "enchanted": false },
+    76: { "id": "diamond", "apiKey": "Totaloutbreak", "costVal": 1, "reqLore": "Infect 8 Survivors as Alpha", "rewardTokens": 0, "baseTitle": "Total Outbreak", "rawName": "&aTotal Outbreak", "baseLore": "&8Infection Challenge\n\n&7Infect 8 Survivors in a single game\n&7as the Alpha.\n\n&7Progress: {VAL}/1\n\n&7&oPut all of your acquired knowledge\n&7&oto the test for one final challenge.\n\n&7Reward\n&8+&6Botanic Gravestone", "enchanted": false }
+  }),
+
+  "assassins": buildModeArray({
+    4: { "id": "map", "apiKey": "Firstjob", "costVal": 1, "reqLore": "Kill your Target", "rewardTokens": 0, "baseTitle": "First Job", "rawName": "&aFirst Job", "baseLore": "&8Assassins Challenge\n\n&7Kill your Target.\n\n&7Progress: {VAL}/1\n\n&7&oAt the start of the match you will\n&7&oreceive a Kill Contract. Once you kill\n&7&oyour Target, you will get a new one.\n&7&oWatch out, as your Target can also\n&7&okill you!\n\n&7Reward\n&8+&bHumble Gravestone", "enchanted": false },
+    13: { "id": "bow", "apiKey": "Armed", "costVal": 1, "reqLore": "Collect 5 Gold and earn a Bow", "rewardTokens": 1000, "baseTitle": "Armed", "rawName": "&aArmed", "baseLore": "&8Assassins Challenge\n\n&7Collect 5 Gold and earn a Bow.\n\n&7Progress: {VAL}/1\n\n&7&oYou only need to collect 5 Gold to\n&7&oearn a Bow and Arrow. Use it as\n&7&oanother ranged option to kill your\n&7&oTarget or Assassin.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    20: { "id": "iron_shovel", "apiKey": "Slaughterhouse", "costVal": 1, "reqLore": "Kill 3 players in 1 game", "rewardTokens": 2000, "baseTitle": "Slaughterhouse", "rawName": "&aSlaughterhouse", "baseLore": "&8Assassins Challenge\n\n&7Kill 3 players in a single game.\n\n&7Progress: {VAL}/1\n\n&7&oKilling a player rewards you with 1\n&7&oGold. You can either save up for a\n&7&oBow or spend it on maps with\n&7&opurchasable items.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    21: { "id": "gold_ingot", "apiKey": "Cleanjob", "costVal": 1, "reqLore": "Win a game", "rewardTokens": 0, "baseTitle": "Clean Job", "rawName": "&aClean Job", "baseLore": "&8Assassins Challenge\n\n&7Win a game.\n\n&7Progress: {VAL}/1\n\n&7&oThe game ends once 2 players\n&7&oremain. Only the players with at least\n&7&o1 kill get a win.\n\n&7Reward\n&8+&aFragile Plant Knife Skin", "enchanted": false },
+    22: { "id": "iron_sword", "apiKey": "Selfdefense", "costVal": 1, "reqLore": "Kill your Assassin", "rewardTokens": 1000, "baseTitle": "Self-Defense", "rawName": "&aSelf-Defense", "baseLore": "&8Assassins Challenge\n\n&7Kill your Assassin.\n\n&7Progress: {VAL}/1\n\n&7&oOne other player in the match will\n&7&ohave you as their Target. When they\n&7&oget close to you, the edges of your\n&7&oscreen will turn red. Try to kill them\n&7&obefore they kill you!\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    23: { "id": "feather", "apiKey": "Eyeonprey", "costVal": 2, "reqLore": "Kill 2 players with a Bow", "rewardTokens": 0, "baseTitle": "Eye on Prey", "rawName": "&aEye on Prey", "baseLore": "&8Assassins Challenge\n\n&7Kill players with a Bow.\n\n&7Progress: {VAL}/2\n\n&7&oSimilar to Knives, Bows can only be\n&7&oused to kill your Target or Assassin.\n&7&oHitting anyone else will stun you for\n&7&o5 seconds.\n\n&7Reward\n&8+&bSigh Death Cry", "enchanted": false },
+    24: { "id": "string", "apiKey": "Collateral", "costVal": 2, "reqLore": "Kill 2 neutral players with Traps", "rewardTokens": 1000, "baseTitle": "Collateral Damage", "rawName": "&aCollateral Damage", "baseLore": "&8Assassins Challenge\n\n&7Kill neutral players with Traps.\n\n&7Progress: {VAL}/2\n\n&7&oTraps are the only way to kill\n&7&oplayers who are neither your\n&7&oTarget nor Assassin.\n\n&7Reward\n&8+&21,000 &7Murder Mystery Tokens", "enchanted": false },
+    30: { "id": "redstone", "apiKey": "Bountyhunter", "costVal": 15, "reqLore": "Kill your Target 15 times", "rewardTokens": 2000, "baseTitle": "Bounty Hunter", "rawName": "&aBounty Hunter", "baseLore": "&8Assassins Challenge\n\n&7Kill your Target.\n\n&7Progress: {VAL}/15\n\n&7&oWhen you kill your Target, you\n&7&oreceive whoever their Target was as\n&7&oyour new Target.\n\n&7Reward\n&8+&22,000 &7Murder Mystery Tokens", "enchanted": false },
+    33: { "id": "wooden_axe", "apiKey": "Dualproficiency", "costVal": 3, "reqLore": "Melee & Knife kill 3 times", "rewardTokens": 0, "baseTitle": "Dual Proficiency", "rawName": "&aDual Proficiency", "baseLore": "&8Assassins Challenge\n\n&7Kill a player with melee and a Knife\n&7Throw in a single game.\n\n&7Progress: {VAL}/3\n\n&7&oRight click with a Knife to throw it.\n&7&oKnives have a cooldown of 5\n&7&oseconds between throws.\n\n&7Reward\n&8+&6Derailed Projectile Trail", "enchanted": false },
+    39: { "id": "stick", "apiKey": "Huntsman", "costVal": 6, "reqLore": "Kill 6 players with a Bow", "rewardTokens": 0, "baseTitle": "Huntsman", "rawName": "&aHuntsman", "baseLore": "&8Assassins Challenge\n\n&7Kill players with a Bow.\n\n&7Progress: {VAL}/6\n\n&7&oArrows and thrown Knives will knock\n&7&oeach other out of the air.\n\n&7Reward\n&8+&5Warrior Gravestone", "enchanted": false },
+    40: { "id": "diamond_sword", "apiKey": "Deadoralive", "costVal": 15, "reqLore": "Kill your Assassin 15 times", "rewardTokens": 3000, "baseTitle": "Dead or Alive", "rawName": "&aDead or Alive", "baseLore": "&8Assassins Challenge\n\n&7Kill your Assassin.\n\n&7Progress: {VAL}/15\n\n&7&oWhen you are nearing your Assassin,\n&7&oa heartbeat sound will begin to play.\n&7&oThe closer you get, the faster it\n&7&obecomes. It also shows above your\n&7&ohotbar.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens", "enchanted": false },
+    49: { "id": "firework_star", "apiKey": "Grandslam", "costVal": 1, "reqLore": "Get all 4 kill types in 1 game", "rewardTokens": 3000, "baseTitle": "Grand Slam", "rawName": "&aGrand Slam", "baseLore": "&8Assassins Challenge\n\n&7Kill a player with melee, a Knife\n&7Throw, a Bow, and a Trap in a single\n&7game.\n\n&7Progress: {VAL}/1\n\n&7&oThrown Knives can pierce through\n&7&oplayers and glass panes.\n\n&7Reward\n&8+&23,000 &7Murder Mystery Tokens", "enchanted": false },
+    50: { "id": "ender_pearl", "apiKey": "Deathdefy", "costVal": 1, "reqLore": "Kill Assassin while stunned", "rewardTokens": 0, "baseTitle": "Death Defy", "rawName": "&aDeath Defy", "baseLore": "&8Assassins Challenge\n\n&7Kill your Assassin while stunned.\n\n&7Progress: {VAL}/1\n\n&7&oWhile stunned, your movement is much\n&7&oslower and you are unable to use\n&7&oyour Knife. However, there are\n&7&oother ways to kill players while in\n&7&othis state.\n\n&7Reward\n&8+&6Double Death Scythe Knife Skin", "enchanted": false },
+    58: { "id": "golden_hoe", "apiKey": "Seasonedhitman", "costVal": 100, "reqLore": "Kill 100 players", "rewardTokens": 0, "baseTitle": "Seasoned Hitman", "rawName": "&aSeasoned Hitman", "baseLore": "&8Assassins Challenge\n\n&7Kill players.\n\n&7Progress: {VAL}/100\n\n&7&oOnce 5 players remain, all players\n&7&oare shown on the map.\n\n&7Reward\n&8+&5Greed Death Cry", "enchanted": false },
+    67: { "id": "diamond", "apiKey": "Crimsonjoy", "costVal": 1, "reqLore": "Kill 7 players in 1 game", "rewardTokens": 0, "baseTitle": "Crimson Joy", "rawName": "&aCrimson Joy", "baseLore": "&8Assassins Challenge\n\n&7Kill 7 players in a single game.\n\n&7Progress: {VAL}/1\n\n&7&oPut all of your acquired knowledge\n&7&oto the test for one final challenge!\n\n&7Reward\n&8+&6Niche Gravestone", "enchanted": false }
+  })
 };
 
-const layoutConfig = { "cols": 9, "rows": 8 };
+const layoutConfig = { "cols": 9, "rows": 9 };
+
+const starMap = {
+  '✰': 'hollow',
+  '✯': 'nautical',
+  '✦': 'four_pointed', 
+  '✥': 'four_clubs',
+  '✵': 'pinwheel',
+  '✫': 'black_open',
+  '✭': 'black_outlined',
+  '⚝': 'white_outlined',
+  '✪': 'white_circled',
+  '❀': 'flower'
+};
 
 function parseMinecraftColors(text) {
   if (!text || text.trim() === '') return '&nbsp;';
   
-  const colorMap = { 
-      '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', 
-      '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', 
-      '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 
-      'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' 
+  const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+  const isLight = ['light', 'cherry', 'ember', 'day'].includes(theme.toLowerCase());
+  
+  const colorMap = isLight ? { 
+    '0': '#000000', '1': '#0000AA', '2': '#008800', '3': '#008888', 
+    '4': '#AA0000', '5': '#AA00AA', '6': '#DD8800', '7': '#555555', 
+    '8': '#333333', '9': '#3333DD', 'a': '#22AA22', 'b': '#009999', 
+    'c': '#DD3333', 'd': '#CC00CC', 'e': '#DDAA00', 'f': '#111111' 
+  } : { 
+    '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', 
+    '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', 
+    '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 
+    'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' 
   };
   
   let html = '';
   let state = { color: '#AAAAAA', bold: false, italic: false, underline: false, strikethrough: false };
 
   function buildStyleString(s) {
-      let styles = `color: ${s.color};`;
-      if (s.bold) styles += ' font-weight: bold;';
-      if (s.italic) styles += ' font-style: italic;';
-      let decoration = [];
-      if (s.underline) decoration.push('underline');
-      if (s.strikethrough) decoration.push('line-through');
-      if (decoration.length > 0) styles += ` text-decoration: ${decoration.join(' ')};`;
-      return styles;
+    let styles = `color: ${s.color};`;
+    if (s.bold) styles += ' font-weight: bold;';
+    if (s.italic) styles += ' font-style: italic;';
+    let decoration = [];
+    if (s.underline) decoration.push('underline');
+    if (s.strikethrough) decoration.push('line-through');
+    if (decoration.length > 0) {
+      styles += ` text-decoration: ${decoration.join(' ')}; text-decoration-skip-ink: none;`;
+    }
+    return styles;
   }
 
-  let parts = text.split(/(?=&[0-9a-flmno-r])/i);
-
+  let parts = text.split(/(?=[&§][0-9a-flmno-r])/i);
   for (let part of parts) {
-      if (part.startsWith('&') && part.length >= 2) {
-          let code = part[1].toLowerCase();
-          let textContent = part.substring(2);
-
-          if (colorMap[code]) { 
-              state.color = colorMap[code]; 
-              state.bold = false; state.italic = false; state.underline = false; state.strikethrough = false;
-          } 
-          else if (code === 'l') { state.bold = true; } 
-          else if (code === 'm') { state.strikethrough = true; }
-          else if (code === 'n') { state.underline = true; }
-          else if (code === 'o') { state.italic = true; }
-          else if (code === 'r') { 
-              state.color = '#AAAAAA'; state.bold = false; state.italic = false; state.underline = false; state.strikethrough = false;
-          }
-          html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
-      } else {
-          html += `<span style="${buildStyleString(state)}">${part}</span>`;
+    if ((part.startsWith('&') || part.startsWith('§')) && part.length >= 2) {
+      let code = part[1].toLowerCase();
+      let textContent = part.substring(2);
+      if (colorMap[code]) { 
+        state.color = colorMap[code]; 
+      } 
+      else if (code === 'l') { state.bold = true; } 
+      else if (code === 'm') { state.strikethrough = true; }
+      else if (code === 'n') { state.underline = true; }
+      else if (code === 'o') { state.italic = true; }
+      else if (code === 'r') { 
+        state.color = '#AAAAAA'; 
+        state.bold = state.italic = state.underline = state.strikethrough = false;
       }
+
+      for (const [symbol, filename] of Object.entries(starMap)) {
+        if (textContent.includes(symbol)) {
+          textContent = textContent.replaceAll(symbol, `<span class="custom-star" style="-webkit-mask-image: url('img/bedwars/stars/${filename}.png'); mask-image: url('img/bedwars/stars/${filename}.png');"></span>`);
+        }
+      }
+
+      html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
+    } else {
+      let textContent = part;
+      for (const [symbol, filename] of Object.entries(starMap)) {
+        if (textContent.includes(symbol)) {
+          textContent = textContent.replaceAll(symbol, `<span class="custom-star" style="-webkit-mask-image: url('img/bedwars/stars/${filename}.png'); mask-image: url('img/bedwars/stars/${filename}.png');"></span>`);
+        }
+      }
+      html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
+    }
   }
   return html;
+}
+
+function formatNumberCompact(num) {
+  if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (num >= 1000) return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+  return num.toLocaleString();
 }
 
 function renderGrid(mode) {
@@ -339,57 +932,555 @@ function renderGrid(mode) {
   let html = '';
   const totalSlots = layoutConfig.cols * layoutConfig.rows;
   const data = modesData[mode] || [];
+  const defaultFallbackImg = typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'diamond'}) : '';
   
   for (let i = 0; i < totalSlots; i++) {
     const item = data[i];
     if (!item) {
-      html += `<div class="slot"></div>`;
+      html += `<div class="slot" data-index="${i}"></div>`;
     } else {
-      // Intercept item generation to listen for internal slot clicks
-      let slotHtml = MCEngine.makeSlotHtml(item, MCEngine.getApiFallback(item));
-      if (item.isTabSwitch) {
-        slotHtml = slotHtml.replace('<div class="item"', `<div class="item" onclick="window.location.hash='${item.isTabSwitch}'" style="cursor: pointer;"`);
+      let texture = item.texture;
+      
+      if (item.isLocked && item.apiKey && item.apiKey !== "glass") {
+        texture = typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'coal'}) : 'img/mm/coal_block.png';
+      } else if (!item.isLocked && item.texture) {
+        texture = item.texture;
+      } else {
+        texture = typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: item.originalId || item.id}) : defaultFallbackImg;
       }
-      html += slotHtml;
+      
+      const itemToRender = { ...item };
+      if (item.isLocked && item.apiKey && item.apiKey !== "glass") {
+        itemToRender.id = "coal_block"; 
+        itemToRender.rawName = `&c${item.baseTitle}`;
+        itemToRender.rawLore = item.baseLore.replace("{VAL}", `&c${item.currentProgress || 0}`) + `\n\n&cLocked!\n&eClick to show unlock path`;
+      } else if (item.apiKey && item.apiKey !== "glass") {
+        itemToRender.rawName = `&a${item.baseTitle}`;
+        itemToRender.rawLore = item.baseLore.replace("{VAL}", `&a${item.costVal}`) + `\n\n&aCompleted!`;
+      }
+
+      let slotHtml = typeof MCEngine !== 'undefined' 
+        ? MCEngine.makeSlotHtml(itemToRender, texture)
+        : `<div class="slot"><img src="${texture}"></div>`;
+        
+      html += slotHtml.replace('<div class="slot', `<div class="slot" data-index="${i}"`);
     }
   }
   grid.innerHTML = html;
+  updateSelectedVisuals();
+}
+
+function updateSelectedVisuals() {
+  document.querySelectorAll('.slot').forEach(el => {
+    const idx = parseInt(el.getAttribute('data-index'));
+    
+    el.style.removeProperty('background-color');
+    el.style.removeProperty('box-shadow');
+    el.style.removeProperty('z-index');
+
+    if (selectedNodes.has(idx)) {
+        el.style.setProperty('background-color', 'rgba(85, 255, 255, 0.6)', 'important');
+        el.style.setProperty('box-shadow', 'inset 0 0 10px rgba(0, 0, 0, 0.8)', 'important');
+        el.style.setProperty('z-index', '3', 'important');
+    } else if (currentPathNodes.has(idx)) {
+        el.style.setProperty('background-color', 'rgba(85, 255, 85, 0.45)', 'important');
+        el.style.setProperty('box-shadow', 'inset 0 0 6px rgba(0, 0, 0, 0.5)', 'important');
+        el.style.setProperty('z-index', '2', 'important');
+    }
+  });
+}
+
+function closePathPanel() {
+  const panel = document.getElementById('path-side-panel');
+  if (panel) panel.style.display = 'none';
+  selectedNodes.clear();
+  currentPathNodes.clear();
+  updateSelectedVisuals();
+}
+
+function getBaseItemTextureUrl(idx, item) {
+  if (item.texture) return item.texture;
+  if (typeof MCEngine !== 'undefined' && typeof MCEngine.getApiFallback === 'function') {
+    return MCEngine.getApiFallback({id: item.originalId || item.id});
+  }
+  return typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'diamond'}) : '';
+}
+
+function handleSlotClick(index) {
+  const currentArray = modesData[currentMode] || [];
+  const targetItem = currentArray[index];
+  
+  if (!targetItem || !targetItem.apiKey || targetItem.apiKey === "glass") return;
+
+  if (isMultiSelect) {
+    if (selectedNodes.has(index)) {
+        selectedNodes.delete(index);
+    } else {
+        selectedNodes.add(index);
+    }
+  } else {
+    if (selectedNodes.has(index)) {
+        selectedNodes.clear();
+    } else {
+        selectedNodes.clear();
+        selectedNodes.add(index);
+    }
+  }
+
+  if (selectedNodes.size === 0) {
+    closePathPanel();
+    return;
+  }
+
+  calculateCombinedPaths();
+}
+
+function renderUnlockedPanel() {
+  const panel = document.getElementById('path-side-panel');
+  const targetNameEl = document.getElementById('path-target-name');
+  const stepsContainer = document.getElementById('path-steps-container');
+  const totalCostEl = document.getElementById('path-total-cost');
+  const defaultFallbackImg = typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'diamond'}) : '';
+
+  currentPathNodes.clear();
+  updateSelectedVisuals();
+
+  let titleStr = "Selected Challenge";
+  let imgStr = defaultFallbackImg;
+  let headerFallback = defaultFallbackImg;
+
+  if(selectedNodes.size === 1) {
+      const idx = Array.from(selectedNodes)[0];
+      const item = modesData[currentMode][idx];
+      titleStr = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(item.baseTitle || item.rawName.replace(/&[0-9a-f]/gi, '')) : (item.baseTitle || item.rawName.replace(/&[0-9a-f]/gi, ''));
+      imgStr = getBaseItemTextureUrl(idx, item);
+      headerFallback = typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: item.originalId || item.id}) : defaultFallbackImg;
+  } else {
+      titleStr = `${selectedNodes.size} Challenges Selected`;
+  }
+
+  targetNameEl.innerHTML = `
+    <div class="path-header-badge">
+      <img src="${imgStr}" alt="" onerror="this.onerror=null; this.src='${headerFallback}'">
+      <div style="overflow:hidden;">
+        <div class="path-header-title">${titleStr}</div>
+        <div style="font-size:11px; color:var(--text-2);">Progression</div>
+      </div>
+    </div>
+  `;
+
+  stepsContainer.innerHTML = `
+    <div class="path-unlocked-tag">✓ Already Completed</div>
+    <div style="font-size:12px; color:var(--text-2); padding: 6px 2px; text-align:center;">
+      The selected challenge(s) are already active.
+    </div>
+  `;
+
+  totalCostEl.innerHTML = '<div style="color:var(--stat-green);">Completed</div>';
+  panel.style.display = 'flex';
+}
+
+function calculateCombinedPaths() {
+  const currentArray = modesData[currentMode];
+  let allRemaining = new Set();
+  let anyLocked = false;
+  let globalDepths = {};
+  
+  let queue = [{ current: 4, depth: 0 }];
+  let visitedBFS = new Set([4]);
+  globalDepths[4] = 0;
+
+  while(queue.length > 0) {
+      const { current, depth } = queue.shift();
+      const r = Math.floor(current / layoutConfig.cols);
+      const c = current % layoutConfig.cols;
+      const neighbours = [ { r: r - 1, c: c }, { r: r + 1, c: c }, { r: r, c: c - 1 }, { r: r, c: c + 1 } ];
+
+      for (const nb of neighbours) {
+          if (nb.r >= 0 && nb.r < layoutConfig.rows && nb.c >= 0 && nb.c < layoutConfig.cols) {
+              const nextIdx = nb.r * layoutConfig.cols + nb.c;
+              const nextItem = currentArray[nextIdx];
+              if (nextItem && nextItem.apiKey && nextItem.id !== "black_stained_glass_pane" && !visitedBFS.has(nextIdx)) {
+                  visitedBFS.add(nextIdx);
+                  globalDepths[nextIdx] = depth + 1;
+                  queue.push({ current: nextIdx, depth: depth + 1 });
+              }
+          }
+      }
+  }
+
+  selectedNodes.forEach(targetIndex => {
+      let pQueue = [{ current: 4, path: [4] }];
+      let pVisited = new Set([4]);
+      let shortestPath = null;
+
+      while (pQueue.length > 0) {
+          const { current, path } = pQueue.shift();
+          if (current === targetIndex) {
+              shortestPath = path;
+              break;
+          }
+          const r = Math.floor(current / layoutConfig.cols);
+          const c = current % layoutConfig.cols;
+          const neighbours = [ { r: r - 1, c: c }, { r: r + 1, c: c }, { r: r, c: c - 1 }, { r: r, c: c + 1 } ];
+
+          for (const nb of neighbours) {
+              if (nb.r >= 0 && nb.r < layoutConfig.rows && nb.c >= 0 && nb.c < layoutConfig.cols) {
+                  const nextIdx = nb.r * layoutConfig.cols + nb.c;
+                  const nextItem = currentArray[nextIdx];
+                  if (nextItem && nextItem.apiKey && nextItem.id !== "black_stained_glass_pane" && !pVisited.has(nextIdx)) {
+                      pVisited.add(nextIdx);
+                      pQueue.push({ current: nextIdx, path: [...path, nextIdx] });
+                  }
+              }
+          }
+      }
+
+      if (!shortestPath) shortestPath = [targetIndex];
+      
+      let targetLocked = false;
+      for (let i = 0; i < shortestPath.length; i++) {
+          const item = currentArray[shortestPath[i]];
+          if (!isLivePlayerLoaded || (item && item.isLocked)) {
+              targetLocked = true;
+              anyLocked = true;
+              for (let j = i; j < shortestPath.length; j++) {
+                  allRemaining.add(shortestPath[j]);
+              }
+              break;
+          }
+      }
+  });
+
+  if (!anyLocked && isLivePlayerLoaded) {
+      currentPathNodes.clear();
+      renderUnlockedPanel();
+  } else {
+      let sortedRemaining = Array.from(allRemaining).sort((a,b) => globalDepths[a] - globalDepths[b]);
+      currentPathNodes = new Set(sortedRemaining);
+      updateSelectedVisuals();
+      renderPathPanel(sortedRemaining);
+  }
+}
+
+function renderPathPanel(pathIndices) {
+  const panel = document.getElementById('path-side-panel');
+  const targetNameEl = document.getElementById('path-target-name');
+  const stepsContainer = document.getElementById('path-steps-container');
+  const totalCostEl = document.getElementById('path-total-cost');
+  const currentArray = modesData[currentMode];
+  const defaultFallbackImg = typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'diamond'}) : '';
+
+  let titleStr = "Selected Challenge";
+  let imgStr = defaultFallbackImg;
+  let headerFallback = defaultFallbackImg;
+
+  if(selectedNodes.size === 1) {
+      const idx = Array.from(selectedNodes)[0];
+      const item = currentArray[idx];
+      titleStr = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(item.baseTitle || item.rawName.replace(/&[0-9a-f]/gi, '')) : (item.baseTitle || item.rawName.replace(/&[0-9a-f]/gi, ''));
+      imgStr = getBaseItemTextureUrl(idx, item);
+      headerFallback = typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: item.originalId || item.id}) : defaultFallbackImg;
+  } else {
+      titleStr = `${selectedNodes.size} Challenges Selected`;
+  }
+
+  targetNameEl.innerHTML = `
+    <div class="path-header-badge">
+      <img src="${imgStr}" alt="" onerror="this.onerror=null; this.src='${headerFallback}'">
+      <div style="overflow:hidden;">
+        <div class="path-header-title">${titleStr}</div>
+        <div style="font-size:11px; color:var(--text-2);">${pathIndices.length} step${pathIndices.length === 1 ? '' : 's'} away</div>
+      </div>
+    </div>
+  `;
+
+  let stepsHtml = '';
+
+  pathIndices.forEach((idx, stepNum) => {
+    const it = currentArray[idx];
+    const stepTexture = getBaseItemTextureUrl(idx, it); 
+    const trueId = it.originalId || it.id;
+    const itemFallback = typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: trueId}) : defaultFallbackImg;
+
+    let formattedCost = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(`&e${it.reqLore}`) : it.reqLore;
+    let formattedTitle = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(it.baseTitle || it.rawName.replace(/&[0-9a-f]/gi, '')) : (it.baseTitle || it.rawName.replace(/&[0-9a-f]/gi, ''));
+
+    formattedCost = formattedCost.replace(/color:\s*#FFFF55/gi, 'color: var(--stat-yellow)');
+
+    stepsHtml += `
+      <div class="path-step-item">
+        <div class="path-step-left">
+          <img class="path-step-img" src="${stepTexture}" alt="" onerror="this.onerror=null; this.src='${itemFallback}'">
+          <span class="path-step-name">${stepNum + 1}. ${formattedTitle}</span>
+        </div>
+        <div class="path-step-cost">${formattedCost}</div>
+      </div>
+    `;
+  });
+
+  stepsContainer.innerHTML = stepsHtml;
+  totalCostEl.innerHTML = `<div style="color:var(--stat-gold);">${pathIndices.length} Challenge${pathIndices.length !== 1 ? 's' : ''}</div>`;
+  panel.style.display = 'flex';
+}
+
+function resetToDefault() {
+  isLivePlayerLoaded = false;
+  closePathPanel();
+  
+  for (const mode in modesData) {
+    modesData[mode].forEach(item => {
+      if (item && item.apiKey && item.apiKey !== "glass") {
+        item.isLocked = false;
+        item.currentProgress = item.costVal;
+        if(item.baseLore) {
+            item.rawLore = item.baseLore.replace("{VAL}", `&a${item.costVal}`) + "\n\n&aCompleted!";
+        }
+      }
+    });
+  }
+
+  const defaultCard = document.getElementById('default-info-card');
+  const summaryPanel = document.getElementById('player-summary-panel');
+  if (defaultCard) defaultCard.style.display = 'flex';
+  if (summaryPanel) summaryPanel.style.display = 'none';
+
+  const setVal = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
+
+  setVal('mm-val-1', '51 / 51');
+  setVal('mm-val-2', '49,000');
+  setVal('mm-classic', '19 / 19');
+  setVal('mm-infection', '17 / 17');
+  setVal('mm-assassins', '15 / 15');
+
+  const statusEl = document.getElementById('search-status');
+  if (statusEl) {
+    statusEl.textContent = "Previewing all max unlocked items";
+    statusEl.className = "status-gray";
+  }
+
+  renderGrid(currentMode);
+}
+
+async function fetchPlayerUnlocks(searchTerm) {
+  if (!searchTerm) return;
+  closePathPanel();
+  const statusEl = document.getElementById('search-status');
+  if (statusEl) {
+    statusEl.textContent = "Loading player stats...";
+    statusEl.className = "status-gray";
+  }
+
+  if (typeof window.showLoader === 'function') {
+    window.showLoader("Loading Descent Into Madness...");
+  }
+
+  try {
+    const param = searchTerm.length > 25 ? `uuid=${searchTerm}` : `name=${searchTerm}`;
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const apiBase = isLocal ? 'http://localhost:3000' : 'https://api.litstats.com';
+    const response = await fetch(`${apiBase}/api/player?${param}`);
+    
+    if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
+    const data = await response.json();
+    if (data.error) throw new Error(data.error);
+
+    isLivePlayerLoaded = true;
+    playerRawStats = data;
+
+    const mmStats = data.murderMystery || {};
+
+    const avatarImg = document.getElementById('player-avatar-img');
+    if (avatarImg) {
+      avatarImg.src = `https://visage.surgeplay.com/bust/${data.uuid}`;
+      avatarImg.onerror = function() {
+        this.src = `https://vzge.me/bust/${data.uuid}.png`;
+      };
+    }
+
+    const rankHtml = typeof formatRankHtml === 'function' ? formatRankHtml(data.rank, data.rankPlusColor, data.monthlyRankColor) : '';
+    const rankEl = document.getElementById('player-rank-html');
+    if (rankEl) rankEl.innerHTML = rankHtml;
+    const uText = document.getElementById('player-username-text');
+    if (uText) {
+      uText.textContent = data.username;
+      uText.style.color = typeof getRankBaseColourHex === 'function' ? getRankBaseColourHex(data.rank, data.monthlyRankColor) : '#AAAAAA';
+    }
+
+    const setVal = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    };
+
+    const wins = mmStats.wins || 0;
+    const kills = mmStats.kills || 0;
+    const deaths = mmStats.deaths || 0;
+    const fkdr = deaths > 0 ? (kills / deaths).toFixed(2) : kills.toFixed(2);
+    
+    setVal('pill-wins', wins.toLocaleString());
+    setVal('pill-kills', kills.toLocaleString());
+    setVal('pill-fkdr', fkdr);
+    setVal('pill-coins', typeof formatNumberCompact === 'function' ? formatNumberCompact(mmStats.coins || 0) : (mmStats.coins || 0));
+
+    let totalUnlocked = 0;
+    let tokensEarned = 0;
+    let modeCounts = { classic: 0, infection: 0, assassins: 0 };
+
+    for (const mode in modesData) {
+      modesData[mode].forEach(item => {
+        if (item && item.apiKey && item.apiKey !== "glass") {
+          const valObj = mmStats.descent?.[item.apiKey] 
+                      || mmStats.challenges?.[item.apiKey] 
+                      || {};
+          
+          const progressVal = valObj.progress || 0;
+          const isCompleted = valObj.claimed === true || progressVal >= item.costVal;
+          
+          item.isLocked = !isCompleted;
+          item.currentProgress = typeof progressVal === 'number' ? Math.min(progressVal, item.costVal) : (isCompleted ? item.costVal : 0);
+          
+          if (item.baseLore) {
+             item.rawLore = item.baseLore.replace("{VAL}", isCompleted ? `&a${item.costVal}` : `&c${item.currentProgress}`);
+             if (isCompleted) item.rawLore += `\n\n&aCompleted!`;
+          }
+
+          if (isCompleted) {
+            totalUnlocked++;
+            modeCounts[mode]++;
+            if (item.rewardTokens) tokensEarned += item.rewardTokens;
+          }
+        }
+      });
+    }
+
+    setVal('mm-val-1', `${totalUnlocked} / 51`);
+    setVal('mm-val-2', tokensEarned.toLocaleString());
+    setVal('mm-classic', `${modeCounts.classic} / 19`);
+    setVal('mm-infection', `${modeCounts.infection} / 17`);
+    setVal('mm-assassins', `${modeCounts.assassins} / 15`);
+
+    const defaultCard = document.getElementById('default-info-card');
+    const summaryPanel = document.getElementById('player-summary-panel');
+    if (defaultCard) defaultCard.style.display = 'none';
+    if (summaryPanel) summaryPanel.style.display = 'flex';
+
+    if (statusEl) {
+      statusEl.textContent = `Showing Descent unlocks for ${data.username}`;
+      statusEl.className = "status-green";
+    }
+    renderGrid(currentMode);
+
+  } catch (e) {
+    console.error("Fetch error:", e);
+    if (statusEl) {
+      statusEl.textContent = e.message || "Failed to fetch player data.";
+      statusEl.className = "status-red";
+    }
+  } finally {
+    if (typeof window.hideLoader === 'function') {
+      window.hideLoader();
+    }
+  }
 }
 
 function switchMode(mode) {
   if (!modesData[mode]) return;
-  
+  currentMode = mode;
   document.querySelectorAll('.gui-icon-tab').forEach(tab => tab.classList.remove('active'));
   const activeTab = document.getElementById(`tab-${mode}`);
   if (activeTab) activeTab.classList.add('active');
   
-  renderGrid(mode);
+  selectedNodes.clear();
+  currentPathNodes.clear();
+  closePathPanel();
+  
+  if (isLivePlayerLoaded && playerRawStats && playerRawStats.uuid) {
+      renderGrid(currentMode);
+  } else {
+      resetToDefault();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  let currentMode = window.location.hash.replace('#', '').toLowerCase();
-  if (!modesData[currentMode]) currentMode = 'classic';
-  
-  switchMode(currentMode);
+  let initialMode = window.location.hash.replace('#', '').toLowerCase();
+  if (!modesData[initialMode]) initialMode = 'classic';
+  switchMode(initialMode);
+
+  document.getElementById('path-settings-btn').addEventListener('click', (e) => {
+      const menu = document.getElementById('path-settings-menu');
+      menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
+      e.stopPropagation();
+  });
+
+  document.addEventListener('click', (e) => {
+      const menu = document.getElementById('path-settings-menu');
+      if(menu && e.target.id !== 'path-settings-btn' && !menu.contains(e.target)) {
+          menu.style.display = 'none';
+      }
+  });
+
+  document.getElementById('toggle-multiselect').addEventListener('change', (e) => {
+      isMultiSelect = e.target.checked;
+      if(!isMultiSelect && selectedNodes.size > 1) {
+          const first = Array.from(selectedNodes)[0];
+          selectedNodes.clear();
+          if(first !== undefined) selectedNodes.add(first);
+          updateSelectedVisuals();
+          if (selectedNodes.size > 0) calculateCombinedPaths();
+      }
+  });
+
+  document.getElementById('search-btn').addEventListener('click', () => {
+    const val = document.getElementById('player-input').value.trim();
+    fetchPlayerUnlocks(val);
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    document.getElementById('player-input').value = '';
+    resetToDefault();
+  });
+
+  document.getElementById('player-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const val = document.getElementById('player-input').value.trim();
+      fetchPlayerUnlocks(val);
+    }
+  });
+
+  document.getElementById('menu-grid').addEventListener('click', (e) => {
+    const slotEl = e.target.closest('.slot');
+    if (!slotEl) return;
+    const index = parseInt(slotEl.getAttribute('data-index'), 10);
+    if (!isNaN(index)) {
+      handleSlotClick(index);
+    }
+  });
 });
 
 window.addEventListener('hashchange', () => {
-  let currentMode = window.location.hash.replace('#', '').toLowerCase();
-  if (modesData[currentMode]) switchMode(currentMode);
+  let m = window.location.hash.replace('#', '').toLowerCase();
+  if (modesData[m]) switchMode(m);
 });
 
 document.addEventListener('tt-format', (e) => {
   const it = e.detail.item;
-  let h = `<span class="tt-name" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8);">${parseMinecraftColors(it.rawName || '&f' + it.id)}</span>`;
+  
+  let formattedName = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(it.rawName || '&f' + it.id) : (it.rawName || '&f' + it.id);
+  let h = `<span class="tt-name" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8);">${formattedName}</span>`;
   
   if (it.rawLore) {
-      const lines = it.rawLore.split('\n');
-      for (const l of lines) {
-          h += `<span class="tt-line" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px;">${parseMinecraftColors(l)}</span>`;
-      }
+    const lines = it.rawLore.split('\n');
+    for (const l of lines) {
+      let formattedLine = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(l) : l;
+      h += `<span class="tt-line" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px;">${formattedLine}</span>`;
+    }
   }
   e.detail.html = h;
 });
 </script>
+
 </body>
-</html>
+</html> 
