@@ -150,7 +150,7 @@ const TAG_DB = {
   "Paranoid much?": { type: "Map", map: "Transport" },
   "Mixed messages": { type: "Map", map: "Ancient Tomb" },
   "It's Time To Stop": { type: "Map", map: "Ancient Tomb" },
-  "Beyond The Grave": { type: "Map", map: "Ancient Tomb" },
+  "[Murder Mystery] Beyond The Grave": { type: "Map", map: "Ancient Tomb" },
   "This Isn't A Funfair ... Maybe": { type: "Map", map: "Hypixel World" },
   "Wicked Ride": { type: "Map", map: "Hypixel World" },
   "You Did Not See That Coming!": { type: "Map", map: "Hypixel World" },
@@ -161,6 +161,79 @@ const TAG_DB = {
   "Game-ception": { type: "Map", map: "Cruise Ship" },
   "JAWS!": { type: "Map", map: "Aquarium" },
   "Dropper: Well, Well, Well": { type: "Map", map: "Floating Island" }
+};
+
+const MWSkinData = {
+  "moobrawl": { class: "cow", stat: "moo_brawl", max: 600 },
+  "greedylouis": { class: "cow", stat: "greedy_louis", max: 500 },
+  "biologicalrestoration": { class: "cow", stat: "bio_restore", max: 2500 },
+  "beyondthegrave": { class: "cow", stat: "beyond_the_grave", max: 15 },
+  "treasurehunter": { class: "hunter", stat: "treasure_hunter", max: 300 },
+  "cakehunter": { class: "hunter", stat: "cake_hunter", max: 150 },
+  "onewithnature": { class: "hunter", stat: "one_with_nature", max: 50 },
+  "hammerhead": { class: "shark", stat: "hammerhead", max: 100 },
+  "oceansexplorer": { class: "shark", stat: "explorer", max: 1000 },
+  "oceansdefender": { class: "shark", stat: "defender", max: 250 },
+  "rushlord": { class: "dreadlord", stat: "rushlord", max: 20000 },
+  "breadlord": { class: "dreadlord", stat: "breadlord", max: 617 },
+  "gatheringtalentindeed": { class: "dreadlord", stat: "gathering_ti", max: 500 },
+  "timber": { class: "golem", stat: "timber", max: 5000 },
+  "ironhearted": { class: "golem", stat: "iron_hearted", max: 1000 },
+  "chestsfound": { class: "herobrine", stat: "lucky_sunny", max: 1000 },
+  "luckysunny": { class: "herobrine", stat: "lucky_sunny", max: 1000 },
+  "seasonsgreetings": { class: "herobrine", stat: "seasons_greetings", max: 1000 },
+  "sleepytime": { class: "zombie", stat: "sleepytime", max: 50 },
+  "mrclutcherson": { class: "zombie", stat: "clutcherson", max: 100 },
+  "unstoppableforce": { class: "zombie", stat: "unstoppable_force", max: 25 },
+  "potionsofdeath": { class: "arcanist", stat: "potions_of_death", max: 8 },
+  "hardassteel": { class: "arcanist", stat: "hard_as_steel", max: 5000 },
+  "abilspammer": { class: "arcanist", stat: "abil_spammer", max: 1000 },
+  "surprise": { class: "enderman", stat: "surprise", max: 2500 },
+  "sneakattack": { class: "enderman", stat: "sneak_attack", max: 100 },
+  "highonores": { class: "blaze", stat: "high_on_ores", max: 2000 },
+  "lightemup": { class: "blaze", stat: "light_em_up", max: 10 },
+  "blazecaller": { class: "blaze", stat: "blazecaller", max: 500 },
+  "marksman": { class: "skeleton", stat: "marksman", max: 25 },
+  "skeletonsbestfriend": { class: "skeleton", stat: "skele_best_friend", max: 50 },
+  "geronimo": { class: "spider", stat: "geronimo", max: 25000 },
+  "onegiantleap": { class: "spider", stat: "one_giant_leap", max: 250 },
+  "idontfeelsogood": { class: "spider", stat: "idfsg", max: 600 },
+  "massdestruction": { class: "creeper", stat: "mass_destruction", max: 3000 },
+  "instaboom": { class: "creeper", stat: "instaboom", max: 20 },
+  "dontblink": { class: "assassin", stat: "dont_blink", max: 1200 },
+  "alchemy100": { class: "assassin", stat: "alchemy_100", max: 1000 },
+  "dirtydog": { class: "werewolf", stat: "dirty_dog", max: 15 },
+  "timetodiet": { class: "werewolf", stat: "time_to_diet", max: 750 },
+  "huntingseason": { class: "werewolf", stat: "hunting_season", max: 50000 },
+  "howlingmoon": { class: "werewolf", stat: "howling_moon", max: 1000 },
+  "nightsrest": { class: "phoenix", stat: "nights_rest", max: 1000 },
+  "terminatedscript": { class: "automaton", stat: "terminated_script", max: 3000 },
+  "constructor": { class: "moleman", stat: "constructor", max: 15000 },
+  "heavyeater": { class: "moleman", stat: "heavy_eater", max: 1000 },
+  "nomnom": { class: "moleman", stat: "nom_nom", max: 1000 },
+  "recycling": { class: "renegade", stat: "recycling", max: 3000 },
+  "captaincombo": { class: "renegade", stat: "captain_combo", max: 20000 },
+  "chaseddown": { class: "renegade", stat: "chased_down", max: 20 },
+  "schoolcancelled": { class: "snowman", stat: "school_cancelled", max: 7200 },
+  "frostyfriendship": { class: "snowman", stat: "frosty_friendship", max: 500 },
+  "australianwinterseasonal": { class: "snowman", stat: "australian_winter", max: 500 },
+  "australianwinter": { class: "snowman", stat: "australian_winter", max: 500 },
+  "muchdogs": { class: "shaman", stat: "much_dogs", max: 500 },
+  "revengeofthewolves": { class: "shaman", stat: "revenge_of_the_wolves", max: 5 },
+  "livingontheedge": { class: "shaman", stat: "spring_hero", max: 250 },
+  "collector": { class: "pigman", stat: "collector", max: 500 },
+  "youngthug": { class: "pigman", stat: "young_thug", max: 5 },
+  "toughskin": { class: "pigman", stat: "tough_skin", max: 500 },
+  "graverobber": { class: "pirate", stat: "grave_robber", max: 100 },
+  "deathfromabove": { class: "pirate", stat: "death_from_above", max: 12 },
+  "burialatsea": { class: "pirate", stat: "burial_at_sea", max: 5 },
+  "youshallnotpass": { class: "squid", stat: "you_shall_not_pass", max: 10 },
+  "trustmeimadoctor": { class: "squid", stat: "trust_me_im", max: 2500 },
+  "everblind": { class: "squid", stat: "everblind", max: 250 },
+  "rewritingfate": { class: "angel", stat: "rewriting_fate", max: 250 },
+  "ashestoashes": { class: "dragon", stat: "ashes_to_ashes", max: 5 },
+  "perfectdisguise": { class: "sheep", stat: "perfect_disguise", max: 100 },
+  "woollyrespite": { class: "sheep", stat: "woolly_respite", max: 250 }
 };
 
 window.handleTopSearch = function() {
@@ -438,7 +511,6 @@ function populateFilters() {
 
     let color = percent >= 80 ? 'var(--tier-1)' : percent >= 40 ? 'var(--tier-2)' : 'var(--tier-4)';
     
-    // Percentage only for mobile devices, or when percent mode is picked
     let statLabel = `${Math.round(percent)}%`;
     if (!isMobile && gTotals) {
       if (filterLabelMode === 'points') {
@@ -621,6 +693,27 @@ function renderDashboard() {
     
     let isChallenge = ach.isOneTime || (ach.globalPct !== undefined && ach.currentAmt === undefined && !ach.allTiers);
 
+    // MW Skin Reformat Interceptor
+    let mwTargetAmt = null;
+    let mwCurrentAmt = null;
+    let mwProgPct = null;
+
+    if (cleanGame === 'Mega Walls') {
+      const t = ach.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const mwData = MWSkinData[t];
+      if (mwData) {
+        isChallenge = true; 
+        mwCurrentAmt = globalPlayerData.megaWalls?.skins?.[mwData.class]?.[mwData.stat] || 0; // responsedata: megawalls.skins.dreadlord.gathering_ti
+        mwTargetAmt = mwData.max;
+        
+        ach.mwCurrentAmt = Math.min(mwCurrentAmt, mwTargetAmt);
+        ach.mwTargetAmt = mwTargetAmt;
+        
+        ach.mwProgPct = (ach.mwCurrentAmt / ach.mwTargetAmt) * 100;
+        ach.isCompleted = ach.mwCurrentAmt >= ach.mwTargetAmt;
+      }
+    }
+
     if (isChallenge) {
       ach.calcPct = Number(ach.gamePercentUnlocked || ach.globalPct || 0);
       challenges.push(ach);
@@ -739,8 +832,21 @@ function renderDashboard() {
   }).join('');
 
   document.getElementById('col-challenge').innerHTML = challenges.slice(0, viewLimitChal).map(ach => {
-    ach.desc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, "1");
-    return generateCard(ach, false, '', '');
+    ach.desc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, ach.mwTargetAmt ? ach.mwTargetAmt.toLocaleString() : "1");
+    
+    let progressBlock = '';
+    if (ach.mwTargetAmt) {
+      let displayStr = ach.mwCurrentAmt.toLocaleString();
+      let targetStr = ach.mwTargetAmt.toLocaleString();
+      let progressText = `${displayStr} / ${targetStr}`;
+      let barClass = ach.isCompleted ? "ach-progress-fill completed-tier" : "ach-progress-fill";
+      progressBlock = `
+        <div class="ach-progress-container"><div class="${barClass}" style="width: ${ach.mwProgPct.toFixed(2)}%;"></div></div>
+        <div class="tier-progress-text">${progressText} (${ach.mwProgPct.toFixed(2)}%)</div>
+      `;
+    }
+
+    return generateCard(ach, false, progressBlock, '');
   }).join('');
 
   if (!globalPlayerData.recentAchievements) {
