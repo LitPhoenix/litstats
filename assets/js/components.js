@@ -37,7 +37,7 @@ const litHeader = `
           </div>
         </div>
 
-        <a href="angel.html" class="nav-btn">Angel's Descent</a>
+        <a href="angel.html" class="nav-btn">SkyWars</a>
         <a href="bedwars.html" class="nav-btn">Bed Wars</a>
       </nav>
 
@@ -128,7 +128,7 @@ const litHeader = `
         </div>
       </div>
 
-      <a href="angel.html" class="nav-btn">Angel's Descent</a>
+      <a href="angel.html" class="nav-btn">SkyWars</a>
         <a href="bedwars.html" class="nav-btn">Bed Wars</a>
     </nav>
   </header>
@@ -146,7 +146,8 @@ const litFooter = `
         <a href="leaderboard.html" class="nav-btn">AP Leaderboard</a>
         <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
         <a href="blitz.html" class="nav-btn">Blitz</a>
-        <a href="angel.html" class="nav-btn">Angel's Descent</a>
+        <a href="angel.html" class="nav-btn">SkyWars</a>
+        <a href="bedwars.html" class="nav-btn">Bed Wars</a>
       </div>
       <div class="footer-copyright">
         &copy; 2026 LitPhoenix. All rights reserved.
