@@ -38,6 +38,7 @@ const litHeader = `
         </div>
 
         <a href="angel.html" class="nav-btn">Angel's Descent</a>
+        <a href="bedwars.html" class="nav-btn">Bed Wars</a>
       </nav>
 
       <div class="header-controls">
@@ -86,13 +87,6 @@ const litHeader = `
               </select>
             </div>
             <div class="settings-item-row">
-              <span>Gold Rewards (AP)</span>
-              <label class="toggle-switch">
-                <input type="checkbox" id="global-gold-toggle">
-                <span class="slider"></span>
-              </label>
-            </div>
-            <div class="settings-item-row">
               <span>High Contrast</span>
               <label class="toggle-switch">
                 <input type="checkbox" id="a11y-contrast-toggle">
@@ -135,6 +129,7 @@ const litHeader = `
       </div>
 
       <a href="angel.html" class="nav-btn">Angel's Descent</a>
+        <a href="bedwars.html" class="nav-btn">Bed Wars</a>
     </nav>
   </header>
 `;
