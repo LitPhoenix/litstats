@@ -49,6 +49,25 @@
     font-family: 'MinecraftSeven', 'Minecrafter', 'Minecraft', 'Segoe UI Symbol', 'Arial', monospace !important;
   }
 
+  .custom-star {
+    display: inline-block;
+    width: 1.25em;
+    height: 1.25em;
+    background-color: currentColor;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    vertical-align: middle;
+    margin-top: -0.15em;
+
+    /* Force the shadow to be black and apply to the mask shape, not the text box */
+    text-shadow: none !important;
+    filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.8));
+  }
+
   .page-container {
     padding: 24px;
     max-width: 1040px;
@@ -503,9 +522,10 @@
 </head>
 <body>
 <script src="assets/js/components.js"></script>
+<script src="assets/js/tour.js"></script>
 
 <main class="page-container">
-  <h1 class="page-title">The Dreamfeast Progression</h1>
+  <h1 class="page-title">Dreamfeast Tracker</h1>
 
   <div class="search-container" id="tour-search-container">
     <input type="text" id="player-input" placeholder="Enter Username or UUID">
@@ -523,7 +543,7 @@
     </div>
     <div class="info-card-text" style="flex: 1;">
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <span class="info-card-title">The Dreamfeast Progression</span>
+        <span class="info-card-title">Dreamfeast Tracker</span>
         <button class="take-tour-btn" onclick="if(bedwarsTour) bedwarsTour.start(true);">Interactive Guide</button>
       </div>
       <span class="info-card-desc">Previewing full Bedwars Dreamfeast path progression. Search a player to view active unlocks and route costs.</span>
@@ -598,7 +618,6 @@
 </main>
 
 <script src="assets/js/global.js"></script>
-<script src="assets/js/tour.js"></script>
 <script src="assets/js/mc-engine.js"></script>
 <script>
 const glass = { "id": "black_stained_glass_pane", "texture": "img/bedwars/black_stained_glass_pane.png", "rawName": "&r", "baseLore": "", "enchanted": false, "isLocked": false, "apiKey": "glass" };
@@ -752,6 +771,19 @@ const menuConfig = {
 const defaultItemsBackup = JSON.parse(JSON.stringify(menuConfig.data));
 let isLivePlayerLoaded = false;
 
+const starMap = {
+  '✰': 'hollow',
+  '✯': 'nautical',
+  '✦': 'four_pointed', 
+  '✥': 'four_clubs',
+  '✵': 'pinwheel',
+  '✫': 'black_open',
+  '✭': 'black_outlined',
+  '⚝': 'white_outlined',
+  '✪': 'white_circled',
+  '❀': 'flower'
+};
+
 function parseMinecraftColors(text) {
   if (!text || text.trim() === '') return '&nbsp;';
   const colorMap = { 
@@ -792,9 +824,22 @@ function parseMinecraftColors(text) {
         state.color = '#AAAAAA'; 
         state.bold = state.italic = state.underline = state.strikethrough = false;
       }
+
+      for (const [symbol, filename] of Object.entries(starMap)) {
+        if (textContent.includes(symbol)) {
+          textContent = textContent.replaceAll(symbol, `<span class="custom-star" style="-webkit-mask-image: url('img/bedwars/stars/${filename}.png'); mask-image: url('img/bedwars/${filename}.png');"></span>`);
+        }
+      }
+
       html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
     } else {
-      html += `<span style="${buildStyleString(state)}">${part}</span>`;
+      let textContent = part;
+      for (const [symbol, filename] of Object.entries(starMap)) {
+        if (textContent.includes(symbol)) {
+          textContent = textContent.replaceAll(symbol, `<span class="custom-star" style="-webkit-mask-image: url('img/bedwars/stars/${filename}.png'); mask-image: url('img/bedwars/${filename}.png');"></span>`);
+        }
+      }
+      html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
     }
   }
   return html;
@@ -972,7 +1017,16 @@ function calculateShortestPath(targetIndex) {
 
   if (!shortestPath) shortestPath = [targetIndex];
 
-  const remainingPath = shortestPath.filter(idx => menuConfig.data[idx].isLocked);
+  const remainingPath = [];
+  for (let i = 0; i < shortestPath.length; i++) {
+    const item = menuConfig.data[shortestPath[i]];
+    if (item.isLocked) {
+      for (let j = i; j < shortestPath.length; j++) {
+        remainingPath.push(shortestPath[j]);
+      }
+      break;
+    }
+  }
 
   if (remainingPath.length === 0) {
     renderUnlockedPanel(targetIndex, menuConfig.data[targetIndex]);
@@ -1348,7 +1402,8 @@ if (typeof LitTour !== 'undefined') {
       position: 'right'
     },
     {
-      target: '.slot[data-index="23"]',
+      target: '.slot[data-index="14"]',
+      fallbackTarget: '.slot[data-index="41"]',
       title: 'Try Pathfinding',
       desc: 'Click an item to calculate its shortest continuous unlock path and required tickets!',
       position: 'right',
