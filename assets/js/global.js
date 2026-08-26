@@ -168,6 +168,36 @@ if (document.readyState === 'loading') {
   setupControls();
 }
 
+function getPlusColourHex(colourName) {
+  const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
+  return colours[colourName] || '#FF5555';
+}
+
+function getRankBaseColourHex(rank, monthlyRankColor) {
+  if (!rank || rank === 'NON') return '#AAAAAA';
+  const clean = rank.replace(/\[|\]/g, ''); 
+  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+  if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
+  if (clean.includes('MVP')) return '#55FFFF'; 
+  if (clean.includes('VIP')) return '#55FF55'; 
+  if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
+  if (clean.includes('PIG')) return '#FF55FF'; 
+  return '#AAAAAA';
+}
+
+function formatRankHtml(rank, plusColour, monthlyRankColor) {
+  if (!rank || rank === 'NON') return '';
+  const plusHex = getPlusColourHex(plusColour);
+  const cleanRank = rank.replace(/\[|\]/g, ''); 
+  const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
+
+  let formatted = cleanRank;
+  if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
+  else if (cleanRank.includes('+')) formatted = `${cleanRank.split('+')[0]}<span style="color:${plusHex}">+</span>`;
+
+  return `<span style="color:${baseColor}; font-weight:700;">[${formatted}]</span>`;
+}
+
 // --- AUDIO CONTEXT ---
 let audioCtx; 
 document.addEventListener('click', () => {
