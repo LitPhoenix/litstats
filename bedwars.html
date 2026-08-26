@@ -255,6 +255,24 @@
     color: var(--text-2);
   }
 
+  .take-tour-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .take-tour-btn:hover {
+    background: var(--surface-2, var(--input-bg));
+    color: var(--text);
+    border-color: var(--accent, var(--accent-orange));
+  }
+
   .descent-layout {
     position: relative;
     display: flex;
@@ -506,6 +524,7 @@
     <div class="info-card-text" style="flex: 1;">
       <div style="display:flex; justify-content:space-between; align-items:center;">
         <span class="info-card-title">The Dreamfeast Progression</span>
+        <button class="take-tour-btn" onclick="if(bedwarsTour) bedwarsTour.start(true);">Interactive Guide</button>
       </div>
       <span class="info-card-desc">Previewing full Bedwars Dreamfeast path progression. Search a player to view active unlocks and route costs.</span>
     </div>
@@ -579,6 +598,7 @@
 </main>
 
 <script src="assets/js/global.js"></script>
+<script src="assets/js/tour.js"></script>
 <script src="assets/js/mc-engine.js"></script>
 <script>
 const glass = { "id": "black_stained_glass_pane", "texture": "img/bedwars/black_stained_glass_pane.png", "rawName": "&r", "baseLore": "", "enchanted": false, "isLocked": false, "apiKey": "glass" };
@@ -1312,6 +1332,33 @@ async function fetchPlayerUnlocks(searchTerm) {
   }
 }
 
+let bedwarsTour = null;
+if (typeof LitTour !== 'undefined') {
+  bedwarsTour = new LitTour('bedwars', [
+    {
+      target: '#tour-search-container',
+      title: 'Search Player',
+      desc: 'Enter any username or UUID to inspect live tree unlocks, Tickets spent, and stats.',
+      position: 'bottom'
+    },
+    {
+      target: '#stats-side-panel',
+      title: 'Tree & Player Stats',
+      desc: "Displays total Dreamfeast tree costs by default, and switches to live Bed Wars summary stats when loaded.",
+      position: 'right'
+    },
+    {
+      target: '.slot[data-index="23"]',
+      title: 'Try Pathfinding',
+      desc: 'Click an item to calculate its shortest continuous unlock path and required tickets!',
+      position: 'right',
+      interactive: true,
+      pad: 4,
+      onShow: () => closePathPanel()
+    }
+  ]);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('display-title').innerText = menuConfig.title;
   resetToDefault();
@@ -1336,9 +1383,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!slotEl) return;
     const index = parseInt(slotEl.getAttribute('data-index'), 10);
     if (!isNaN(index)) {
+      if (bedwarsTour && bedwarsTour.active) {
+        bedwarsTour.skip();
+      }
       handleSlotClick(index);
     }
   });
+
+  setTimeout(() => {
+    if (bedwarsTour) bedwarsTour.start(false);
+  }, 600);
 });
 
 document.addEventListener('tt-format', (e) => {
