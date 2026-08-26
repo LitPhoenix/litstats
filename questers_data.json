@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-25T22:16:15.458Z",
+  "last_update": "2026-08-26T02:57:11.454Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -1066,15 +1066,15 @@
     },
     {
       "country": "Peru",
-      "score": 5221.8,
+      "score": 5223,
       "top_players": [
         {
           "username": "hollystormz",
           "uuid": "141e5144694046eaa7e536ed70cc1595",
           "country": "Peru",
-          "current_quests": 26109,
+          "current_quests": 26115,
           "last_month_quests": 26101,
-          "monthly_gain": 8
+          "monthly_gain": 14
         }
       ]
     },
