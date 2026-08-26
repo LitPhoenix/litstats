@@ -439,6 +439,16 @@ module.exports = async (req, res) => {
         packages: bwStats.packages || []
       },
 
+      murderMystery: {
+        coins: profile.stats?.MurderMystery?.coins || 0,
+        wins: profile.stats?.MurderMystery?.wins || 0,
+        kills: profile.stats?.MurderMystery?.kills || 0,
+        deaths: profile.stats?.MurderMystery?.deaths || 0,
+        games_played: profile.stats?.MurderMystery?.games || 0,
+        descent: profile.stats?.MurderMystery?.descent || {},
+        challenges: profile.stats?.MurderMystery?.challenges || {}
+      },
+
       megaWalls: {
         skins: {
           cow: {
