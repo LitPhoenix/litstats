@@ -540,6 +540,7 @@
 
       <div class="stats-title" style="margin-top:10px;">Slumber Stash</div>
       <div class="stat-item"><span class="stat-label">Tickets</span><span class="stat-val" style="color:var(--stat-aqua)" id="stash-tickets">0</span></div>
+      <div class="stat-item"><span class="stat-label">Coins</span><span class="stat-val" style="color:var(--stat-gold)" id="stash-coins">0</span></div>
       <div class="stat-item"><span class="stat-label">Ticket Tarts</span><span class="stat-val" style="color:var(--stat-yellow)" id="stash-tarts">0</span></div>
       <div class="stat-item"><span class="stat-label">Dreamcakes</span><span class="stat-val" style="color:var(--stat-pink)" id="stash-cakes">0</span></div>
       <div class="stat-item"><span class="stat-label">Soul Salsa</span><span class="stat-val" style="color:#ef4444" id="stash-salsa">0</span></div>
@@ -631,9 +632,9 @@ const menuConfig = {
 
     // Row 6 - First Dream of Shopkeeper Skins (Left Branch)
     glass, glass,
-    { "id": "player_head", "apiKey": "shopkeeper_the_everyman", "rawCost": "&a35 Snoring Nachos\n&c35 Jars of Soul Salsa", "baseTitle": "The Everyman Shopkeeper Skin", "rawName": "&aThe Everyman Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7To be everyone is to lack identity.", "enchanted": false },
-    { "id": "player_head", "apiKey": "shopkeeper_skin_2", "rawCost": "&d25 Dreamcakes", "baseTitle": "Shopkeeper Skin II", "rawName": "&aShopkeeper Skin II", "baseLore": "&8Shopkeeper Cosmetic", "enchanted": false },
-    { "id": "player_head", "apiKey": "shopkeeper_you_upside_down", "rawCost": "&a20 Snoring Nachos\n&c20 Jars of Soul Salsa", "baseTitle": "You! Upside-Down Shopkeeper Skin", "rawName": "&aYou! Upside-Down Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Despite inversion, it's still You!", "enchanted": false },
+    { "id": "barrier", "texture": "img/bedwars/barrier.png", "apiKey": "shopkeeper_the_everyman", "rawCost": "&a35 Snoring Nachos\n&c35 Jars of Soul Salsa", "baseTitle": "The Everyman Shopkeeper Skin", "rawName": "&aThe Everyman Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7To be everyone is to lack identity.", "enchanted": false },
+    { "id": "player_head", "apiKey": "shopkeeper_skin_2", "rawCost": "&a25 Snoring Nachos\n&c25 Jars of Soul Salsa", "baseTitle": "Charged Creeper Shopkeeper Skin", "rawName": "&aCharged Creeper Shopkeeper Skin", "baseLore": "&8Shopkeeper Cosmetic", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/upside_down.png", "apiKey": "shopkeeper_you_upside_down", "rawCost": "&a20 Snoring Nachos\n&c20 Jars of Soul Salsa", "baseTitle": "You! Upside-Down Shopkeeper Skin", "rawName": "&aYou! Upside-Down Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Despite inversion, it's still You!", "enchanted": false },
     { "id": "villager_spawn_egg", "apiKey": "first_dream_of_shopkeeper_skins", "costVal": 30, "rawCost": "&e30 Ticket Tarts", "baseTitle": "First Dream of Shopkeeper Skins", "rawName": "&aFirst Dream of Shopkeeper Skins", "baseLore": "&8Feast Extension\n\n&7Unlocks new shopkeeper skin selections.", "enchanted": false },
     null, null, null,
 
@@ -705,15 +706,15 @@ const menuConfig = {
     // Row 17 - Second Dream of Shopkeeper Skins (Right Branch)
     glass, glass, null, null, null,
     { "id": "villager_spawn_egg", "apiKey": "second_dream_of_shopkeeper_skins", "costVal": 85, "rawCost": "&e85 Ticket Tarts", "baseTitle": "Second Dream of Shopkeeper Skins", "rawName": "&aSecond Dream of Shopkeeper Skins", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Shopkeeper\n&7Skins that can be purchased.", "stack": 2, "enchanted": false },
-    { "id": "player_head", "apiKey": "shopkeeper_aiden_allpillow", "rawCost": "&a65 Snoring Nachos\n&d65 Dreamcakes", "baseTitle": "Aiden Allpillow Shopkeeper Skin", "rawName": "&aAiden Allpillow Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Anyone who enters Lucid's chamber\n&7is at risk of falling asleep. Aiden\n&7doesn't want to take any chances\n&7falling over.", "enchanted": false },
-    { "id": "player_head", "apiKey": "shopkeeper_hotel_owner", "rawCost": "&a75 Snoring Nachos\n&d75 Dreamcakes", "baseTitle": "Hotel Owner Shopkeeper Skin", "rawName": "&aHotel Owner Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7He built up the Slumber Hotel to what\n&7it is today along with Lucid.", "enchanted": false },
-    { "id": "player_head", "apiKey": "shopkeeper_visions_of_lucid", "rawCost": "&a90 Snoring Nachos\n&d90 Dreamcakes", "baseTitle": "Visions of Lucid Shopkeeper Skin", "rawName": "&aVisions of Lucid Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7The one who originally dreamt up Bed\n&7Wars. At risk of destroying his own\n&7creation, he put himself in an eternal\n&7slumber.", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/baker.png", "apiKey": "shopkeeper_aiden_allpillow", "rawCost": "&a65 Snoring Nachos\n&d65 Dreamcakes", "baseTitle": "Aiden Allpillow Shopkeeper Skin", "rawName": "&aAiden Allpillow Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Anyone who enters Lucid's chamber\n&7is at risk of falling asleep. Aiden\n&7doesn't want to take any chances\n&7falling over.", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/wizard.png", "apiKey": "shopkeeper_hotel_owner", "rawCost": "&a75 Snoring Nachos\n&d75 Dreamcakes", "baseTitle": "Hotel Owner Shopkeeper Skin", "rawName": "&aHotel Owner Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7He built up the Slumber Hotel to what\n&7it is today along with Lucid.", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/galaxy.png", "apiKey": "shopkeeper_visions_of_lucid", "rawCost": "&a90 Snoring Nachos\n&d90 Dreamcakes", "baseTitle": "Visions of Lucid Shopkeeper Skin", "rawName": "&aVisions of Lucid Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7The one who originally dreamt up Bed\n&7Wars. At risk of destroying his own\n&7creation, he put himself in an eternal\n&7slumber.", "enchanted": false },
 
     // Row 18 - Dream of Prestige (Left Branch)
     glass, glass,
     { "id": "feather", "texture": "img/bedwars/feather.png", "apiKey": "prestige_ascension_cloak", "rawCost": "&a100 Snoring Nachos\n&6100 Bowls of Nightmare Noodles\n&d100 Dreamcakes\n&c100 Jars of Soul Salsa", "baseTitle": "Prestige Ascension Cloak", "rawName": "&aPrestige Ascension Cloak", "baseLore": "&8New Lobby Cosmetic\n\n&7Show off your current Bed Wars\n&7Level with this Cloak, available in all\n&7lobbies.", "enchanted": false },
     { "id": "arrow", "texture": "img/bedwars/arrow.png", "apiKey": "prestige_projectile_trail", "rawCost": "&a85 Snoring Nachos\n&685 Bowls of Nightmare Noodles\n&d85 Dreamcakes\n&c85 Jars of Soul Salsa", "baseTitle": "Prestigious Projectile Trail", "rawName": "&aPrestigious Projectile Trail", "baseLore": "&8New Cosmetic\n\n&7The particle trail matches the color\n&7of your current Prestige!", "enchanted": false },
-    { "id": "player_head", "apiKey": "prestige_island_topper", "rawCost": "&c75 Jars of Soul Salsa\n&a75 Snoring Nachos\n&d75 Dreamcakes\n&675 Bowls of Nightmare Noodles", "baseTitle": "Prestigious Island Topper", "rawName": "&aPrestigious Island Topper", "baseLore": "&8New Cosmetic\n\n&7The Island Topper matches the color\n&7of your current Prestige!", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/tophat.png", "apiKey": "prestige_island_topper", "rawCost": "&c75 Jars of Soul Salsa\n&a75 Snoring Nachos\n&d75 Dreamcakes\n&675 Bowls of Nightmare Noodles", "baseTitle": "Prestigious Island Topper", "rawName": "&aPrestigious Island Topper", "baseLore": "&8New Cosmetic\n\n&7The Island Topper matches the color\n&7of your current Prestige!", "enchanted": false },
     { "id": "diamond", "texture": "img/bedwars/diamond.png", "apiKey": "dream_of_prestige", "costVal": 90, "rawCost": "&e90 Ticket Tarts", "baseTitle": "Dream of Prestige", "rawName": "&aDream of Prestige", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new prestigious\n&7cosmetics that can be purchased:\n &a1. &6Prestigious &7Island Topper\n &a2. &6Prestigious &7Projectile Trail\n &a3. &6Prestige Ascension &7Cloak", "enchanted": false },
     null, null, null,
 
@@ -907,25 +908,14 @@ function renderUnlockedPanel(index, item) {
 
 function calculateShortestPath(targetIndex) {
   const cols = menuConfig.cols;
-  let startNodes = [];
+  const rootIndex = 5; 
 
-  if (isLivePlayerLoaded) {
-    menuConfig.data.forEach((item, idx) => {
-      if (item && item.apiKey && !item.isLocked && item.apiKey !== "glass" && item.apiKey !== "feastfoods_cauldron") {
-        startNodes.push(idx);
-      }
-    });
-  }
-
-  if (startNodes.length === 0) {
-    startNodes = [5];
-  }
-
-  let queue = startNodes.map(node => ({
-    current: node,
-    path: (isLivePlayerLoaded && !menuConfig.data[node].isLocked) ? [] : [node]
-  }));
-  let visited = new Set(startNodes);
+  let queue = [{
+    current: rootIndex,
+    path: [rootIndex]
+  }];
+  
+  let visited = new Set([rootIndex]);
   let shortestPath = null;
 
   while (queue.length > 0) {
@@ -961,13 +951,16 @@ function calculateShortestPath(targetIndex) {
     }
   }
 
-  if (!shortestPath && targetIndex === 5) {
-    shortestPath = [5];
+  if (!shortestPath) shortestPath = [targetIndex];
+
+  const remainingPath = shortestPath.filter(idx => menuConfig.data[idx].isLocked);
+
+  if (remainingPath.length === 0) {
+    renderUnlockedPanel(targetIndex, menuConfig.data[targetIndex]);
+    return;
   }
 
-  if (shortestPath) {
-    renderPathPanel(targetIndex, shortestPath);
-  }
+  renderPathPanel(targetIndex, remainingPath);
 }
 
 function renderPathPanel(targetIndex, pathIndices) {
@@ -1245,8 +1238,8 @@ async function fetchPlayerUnlocks(searchTerm) {
         unlockedCount++;
         
         if (item.costVal !== undefined) {
-          spentTarts += item.costVal;
           mainUnlocked++;
+          spentTarts += item.costVal;
         } else {
           branchUnlocked++;
         }
@@ -1269,6 +1262,7 @@ async function fetchPlayerUnlocks(searchTerm) {
         item.rawLore = (item.baseLore || '') + `\n\n&aUNLOCKED`;
       } else {
         if (!item.originalId) item.originalId = item.id;
+        item.id = "coal_block";
         item.isLocked = true;
         item.rawName = `&c${titleBase}`;
         item.rawLore = (item.baseLore || '') + `\n\n&7Cost:\n${item.rawCost || ''}\n\n&cLocked!\n&eClick to show unlock path`;
