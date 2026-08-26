@@ -314,6 +314,46 @@
     z-index: 10;
   }
 
+  .path-settings-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 24px;
+    background: rgba(20, 20, 20, 0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-radius: 8px;
+    padding: 12px;
+    z-index: 100;
+    width: max-content;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  [data-theme="light"] .path-settings-dropdown {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(0,0,0,0.15) !important;
+  }
+
+  .path-settings-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px !important;
+    cursor: pointer;
+    color: var(--text) !important;
+    text-transform: none !important;
+    font-weight: 500 !important;
+    margin: 0;
+    font-family: 'DM Sans', sans-serif !important;
+  }
+
+  .path-settings-label input {
+    margin: 0;
+  }
+
   .path-header-badge {
     display: flex;
     align-items: center;
@@ -476,7 +516,20 @@
   }
 
   .slot {
+    position: relative;
     cursor: pointer;
+  }
+
+  html body main .mc-container .mc-grid .slot.target-node {
+    background-color: rgba(85, 255, 255, 0.5) !important;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6) !important;
+    z-index: 3 !important;
+  }
+
+  html body main .mc-container .mc-grid .slot.path-node {
+    background-color: rgba(85, 255, 85, 0.35) !important;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4) !important;
+    z-index: 2 !important;
   }
 
   @media (max-width: 1100px) {
@@ -510,7 +563,6 @@
 
   <div id="search-status" class="status-gray">Previewing all max unlocked items</div>
 
-  <!-- Default Placeholder Card -->
   <div class="info-card-placeholder" id="default-info-card">
     <div class="info-card-icon">
       <img src="img/skywars/opal.png" onerror="this.src='img/diamond.png'" alt="Angel Icon">
@@ -524,7 +576,6 @@
     </div>
   </div>
 
-  <!-- Player Summary Card -->
   <div class="player-summary-panel" id="player-summary-panel" style="display: none;">
     <div class="p-avatar-box">
       <img id="player-avatar-img" src="" alt="Avatar">
@@ -545,7 +596,6 @@
   </div>
 
   <div class="descent-layout">
-    <!-- Side Stats Panel -->
     <div class="stats-side-panel" id="stats-side-panel">
       <div class="stats-title" id="side-panel-title">Tree Overview</div>
       <div class="stat-item"><span class="stat-label" id="lbl-1">Total Opal Cost</span><span class="stat-val" style="color:var(--stat-blue)" id="sw-wins">293</span></div>
@@ -558,7 +608,6 @@
       <div class="stat-item" id="row-8" style="display:none;"><span class="stat-label" id="lbl-8">Playtime</span><span class="stat-val" style="color:var(--stat-yellow)" id="sw-playtime">0m</span></div>
     </div>
 
-    <!-- Center Interactive GUI -->
     <div class="gui-wrapper">
       <div class="mc-scale-engine">
         <div class="mc-container">
@@ -568,11 +617,19 @@
       </div>
     </div>
 
-    <!-- Unlock Path Calculation Side Panel -->
     <div class="path-side-panel" id="path-side-panel">
-      <div class="stats-title">
+      <div class="stats-title" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
         <span>Unlock Route</span>
-        <button onclick="closePathPanel()" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;">✕</button>
+        <div style="display:flex; gap:8px; align-items:center; position:relative;">
+          <button id="path-settings-btn" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;" title="Settings">⚙</button>
+          <button onclick="closePathPanel()" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;">✕</button>
+          
+          <div id="path-settings-menu" class="path-settings-dropdown">
+            <label class="path-settings-label" title="Calculate combined costs for multiple items at once.">
+              <input type="checkbox" id="toggle-multiselect"> Multi-Select Items
+            </label>
+          </div>
+        </div>
       </div>
       <div style="font-size:12px; color:var(--text-2);" id="path-target-name">Target: -</div>
       <div class="path-steps-list" id="path-steps-container"></div>
@@ -588,6 +645,9 @@
 <script src="assets/js/tour.js"></script>
 <script src="assets/js/mc-engine.js"></script>
 <script>
+let isMultiSelect = false;
+let selectedNodes = new Set();
+let currentPathNodes = new Set();
 const NUM_ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
 
 const menuConfig = {
@@ -729,6 +789,11 @@ const menuConfig = {
 const defaultItemsBackup = JSON.parse(JSON.stringify(menuConfig.data));
 let isLivePlayerLoaded = false;
 
+function getPlusColourHex(colourName) {
+  const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
+  return colours[colourName] || '#FF5555';
+}
+
 function parseMinecraftColors(text) {
   if (!text || text.trim() === '') return '&nbsp;';
   const colorMap = { 
@@ -748,7 +813,9 @@ function parseMinecraftColors(text) {
     let decoration = [];
     if (s.underline) decoration.push('underline');
     if (s.strikethrough) decoration.push('line-through');
-    if (decoration.length > 0) styles += ` text-decoration: ${decoration.join(' ')};`;
+    if (decoration.length > 0) {
+      styles += ` text-decoration: ${decoration.join(' ')}; text-decoration-skip-ink: none;`;
+    }
     return styles;
   }
 
@@ -759,7 +826,7 @@ function parseMinecraftColors(text) {
       let textContent = part.substring(2);
       if (colorMap[code]) { 
         state.color = colorMap[code]; 
-        state.bold = state.italic = state.underline = state.strikethrough = false;
+        // Do not wipe modifier states when color changes to allow persistent styling
       } 
       else if (code === 'l') { state.bold = true; } 
       else if (code === 'm') { state.strikethrough = true; }
@@ -777,10 +844,6 @@ function parseMinecraftColors(text) {
   return html;
 }
 
-function getPlusColourHex(colourName) {
-  const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
-  return colours[colourName] || '#FF5555';
-}
 
 function getRankBaseColourHex(rank, monthlyRankColor) {
   if (!rank || rank === 'NON') return '#AAAAAA';
@@ -847,20 +910,33 @@ function renderGrid() {
     }
   }
   grid.innerHTML = html;
+  updateSelectedVisuals();
+}
+
+function updateSelectedVisuals() {
+  document.querySelectorAll('.slot').forEach(el => {
+    const idx = parseInt(el.getAttribute('data-index'));
+    el.classList.remove('target-node', 'path-node');
+    if (selectedNodes.has(idx)) {
+        el.classList.add('target-node');
+    } else if (currentPathNodes.has(idx)) {
+        el.classList.add('path-node');
+    }
+  });
 }
 
 function closePathPanel() {
   const panel = document.getElementById('path-side-panel');
   if (panel) panel.style.display = 'none';
+  selectedNodes.clear();
+  currentPathNodes.clear();
+  updateSelectedVisuals();
 }
 
 function getBaseItemTextureUrl(idx, item) {
   const defaultItem = defaultItemsBackup[idx] || item;
   if (defaultItem.texture) return defaultItem.texture;
-  if (typeof MCEngine !== 'undefined' && typeof MCEngine.getApiFallback === 'function') {
-    return MCEngine.getApiFallback(defaultItem);
-  }
-  return 'img/diamond.png';
+  return MCEngine.getApiFallback(defaultItem);
 }
 
 function handleSlotClick(index) {
@@ -872,7 +948,27 @@ function handleSlotClick(index) {
     return;
   }
 
-  calculateShortestPath(index);
+  if (isMultiSelect) {
+    if (selectedNodes.has(index)) {
+        selectedNodes.delete(index);
+    } else {
+        selectedNodes.add(index);
+    }
+  } else {
+    if (selectedNodes.has(index)) {
+        selectedNodes.clear();
+    } else {
+        selectedNodes.clear();
+        selectedNodes.add(index);
+    }
+  }
+
+  if (selectedNodes.size === 0) {
+    closePathPanel();
+    return;
+  }
+
+  calculateCombinedPaths();
 }
 
 function renderUnlockedPanel(index, item) {
@@ -904,11 +1000,13 @@ function renderUnlockedPanel(index, item) {
   panel.style.display = 'flex';
 }
 
-function calculateShortestPath(targetIndex) {
+function calculateCombinedPaths() {
   const cols = menuConfig.cols;
+  let allRemaining = new Set();
+  let anyLocked = false;
+  let globalDepths = {};
 
   let startNodes = [];
-
   if (isLivePlayerLoaded) {
     menuConfig.data.forEach((item, idx) => {
       if (item && item.apiKey && !item.isLocked) {
@@ -916,74 +1014,118 @@ function calculateShortestPath(targetIndex) {
       }
     });
   }
-
   if (startNodes.length === 0) {
-    startNodes = [4];
+    startNodes = [4]; // Index 4 is Avarice (Root) in Angel's Descent
   }
 
-  let queue = startNodes.map(node => ({
-    current: node,
-    path: (isLivePlayerLoaded && !menuConfig.data[node].isLocked) ? [] : [node]
-  }));
-  let visited = new Set(startNodes);
-  let shortestPath = null;
+  // 1. Calculate global topological depth from the true root node (4)
+  let q = [{ current: 4, depth: 0 }];
+  let visitedBFS = new Set([4]);
+  globalDepths[4] = 0;
 
-  while (queue.length > 0) {
-    const { current, path } = queue.shift();
+  while (q.length > 0) {
+      const { current, depth } = q.shift();
+      const r = Math.floor(current / cols);
+      const c = current % cols;
+      const neighbours = [ { r: r - 1, c: c }, { r: r + 1, c: c }, { r: r, c: c - 1 }, { r: r, c: c + 1 } ];
 
-    if (current === targetIndex) {
-      shortestPath = path;
-      break;
-    }
-
-    const r = Math.floor(current / cols);
-    const c = current % cols;
-    const neighbours = [
-      { r: r - 1, c: c },
-      { r: r + 1, c: c },
-      { r: r, c: c - 1 },
-      { r: r, c: c + 1 }
-    ];
-
-    for (const nb of neighbours) {
-      if (nb.r >= 0 && nb.r < menuConfig.rows && nb.c >= 0 && nb.c < cols) {
-        const nextIdx = nb.r * cols + nb.c;
-        const nextItem = menuConfig.data[nextIdx];
-
-        if (nextItem && nextItem.id !== "black_stained_glass_pane" && nextItem.apiKey && !visited.has(nextIdx)) {
-          visited.add(nextIdx);
-          queue.push({
-            current: nextIdx,
-            path: [...path, nextIdx]
-          });
-        }
+      for (const nb of neighbours) {
+          if (nb.r >= 0 && nb.r < menuConfig.rows && nb.c >= 0 && nb.c < cols) {
+              const nextIdx = nb.r * cols + nb.c;
+              const nextItem = menuConfig.data[nextIdx];
+              // Use angel.html's specific block-out logic (black_stained_glass_pane)
+              if (nextItem && nextItem.apiKey && nextItem.id !== "black_stained_glass_pane" && !visitedBFS.has(nextIdx)) {
+                  visitedBFS.add(nextIdx);
+                  globalDepths[nextIdx] = depth + 1;
+                  q.push({ current: nextIdx, depth: depth + 1 });
+              }
+          }
       }
-    }
   }
 
-  if (!shortestPath && targetIndex === 4) {
-    shortestPath = [4];
-  }
+  // 2. Map shortest paths for all selected nodes
+  selectedNodes.forEach(targetIndex => {
+      let pQueue = startNodes.map(node => ({
+        current: node,
+        path: (isLivePlayerLoaded && !menuConfig.data[node].isLocked) ? [] : [node]
+      }));
+      let pVisited = new Set(startNodes);
+      let shortestPath = null;
 
-  if (shortestPath) {
-    renderPathPanel(targetIndex, shortestPath);
+      while (pQueue.length > 0) {
+          const { current, path } = pQueue.shift();
+          if (current === targetIndex) {
+              shortestPath = path;
+              break;
+          }
+          const r = Math.floor(current / cols);
+          const c = current % cols;
+          const neighbours = [ { r: r - 1, c: c }, { r: r + 1, c: c }, { r: r, c: c - 1 }, { r: r, c: c + 1 } ];
+
+          for (const nb of neighbours) {
+              if (nb.r >= 0 && nb.r < menuConfig.rows && nb.c >= 0 && nb.c < cols) {
+                  const nextIdx = nb.r * cols + nb.c;
+                  const nextItem = menuConfig.data[nextIdx];
+                  if (nextItem && nextItem.apiKey && nextItem.id !== "black_stained_glass_pane" && !pVisited.has(nextIdx)) {
+                      pVisited.add(nextIdx);
+                      pQueue.push({ current: nextIdx, path: [...path, nextIdx] });
+                  }
+              }
+          }
+      }
+
+      if (!shortestPath) shortestPath = [targetIndex];
+
+      let targetLocked = false;
+      for (let i = 0; i < shortestPath.length; i++) {
+          const item = menuConfig.data[shortestPath[i]];
+          // Enforce path breakdown in default max-tree state even if "isLocked" is visually false
+          if (!isLivePlayerLoaded || (item && item.isLocked)) {
+              targetLocked = true;
+              anyLocked = true;
+              for (let j = i; j < shortestPath.length; j++) {
+                  allRemaining.add(shortestPath[j]);
+              }
+              break;
+          }
+      }
+  });
+
+  if (!anyLocked && isLivePlayerLoaded) {
+      currentPathNodes.clear();
+      const idx = Array.from(selectedNodes)[0];
+      renderUnlockedPanel(idx, menuConfig.data[idx]);
+  } else {
+      // Sort remaining required nodes by their global depth to ensure strict top-down topological order
+      let sortedRemaining = Array.from(allRemaining).sort((a,b) => globalDepths[a] - globalDepths[b]);
+      currentPathNodes = new Set(sortedRemaining);
+      updateSelectedVisuals();
+      renderPathPanel(sortedRemaining);
   }
 }
 
-function renderPathPanel(targetIndex, pathIndices) {
+function renderPathPanel(pathIndices) {
   const panel = document.getElementById('path-side-panel');
   const targetNameEl = document.getElementById('path-target-name');
   const stepsContainer = document.getElementById('path-steps-container');
   const totalCostEl = document.getElementById('path-total-cost');
 
-  const targetItem = menuConfig.data[targetIndex];
-  const targetTexture = getBaseItemTextureUrl(targetIndex, targetItem);
+  let titleStr = "Selected Upgrade";
+  let imgStr = "img/diamond.png";
+  if(selectedNodes.size === 1) {
+      const idx = Array.from(selectedNodes)[0];
+      const item = menuConfig.data[idx];
+      titleStr = item.baseTitle || 'Selected Upgrade';
+      imgStr = getBaseItemTextureUrl(idx, item);
+  } else {
+      titleStr = `${selectedNodes.size} Items Selected`;
+  }
 
   targetNameEl.innerHTML = `
     <div class="path-header-badge">
-      <img src="${targetTexture}" alt="" onerror="this.src='img/diamond.png'">
+      <img src="${imgStr}" alt="" onerror="this.src='img/diamond.png'">
       <div style="overflow:hidden;">
-        <div class="path-header-title">${targetItem.baseTitle || 'Selected Upgrade'}</div>
+        <div class="path-header-title">${titleStr}</div>
         <div style="font-size:11px; color:var(--text-2);">${pathIndices.length} step${pathIndices.length === 1 ? '' : 's'} away</div>
       </div>
     </div>
@@ -1263,7 +1405,6 @@ async function fetchPlayerUnlocks(searchTerm) {
   }
 }
 
-// Safely instantiate Tour
 let angelTour = null;
 if (typeof LitTour !== 'undefined') {
   angelTour = new LitTour('angel', [
@@ -1294,6 +1435,30 @@ if (typeof LitTour !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('display-title').innerText = menuConfig.title;
   resetToDefault();
+
+  document.getElementById('path-settings-btn').addEventListener('click', (e) => {
+      const menu = document.getElementById('path-settings-menu');
+      menu.style.display = menu.style.display === 'none' ? 'flex' : 'none';
+      e.stopPropagation();
+  });
+
+  document.addEventListener('click', (e) => {
+      const menu = document.getElementById('path-settings-menu');
+      if(menu && e.target.id !== 'path-settings-btn' && !menu.contains(e.target)) {
+          menu.style.display = 'none';
+      }
+  });
+
+  document.getElementById('toggle-multiselect').addEventListener('change', (e) => {
+      isMultiSelect = e.target.checked;
+      if(!isMultiSelect && selectedNodes.size > 1) {
+          const first = Array.from(selectedNodes)[0];
+          selectedNodes.clear();
+          if(first !== undefined) selectedNodes.add(first);
+          updateSelectedVisuals();
+          if (selectedNodes.size > 0) calculateCombinedPaths();
+      }
+  });
 
   document.getElementById('search-btn').addEventListener('click', () => {
     const val = document.getElementById('player-input').value.trim();
