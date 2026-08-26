@@ -39,6 +39,7 @@ const litHeader = `
 
         <a href="angel.html" class="nav-btn">SkyWars</a>
         <a href="bedwars.html" class="nav-btn">Bed Wars</a>
+        <a href="mm.html" class="nav-btn">MM Tracker</a>
       </nav>
 
       <div class="header-controls">
@@ -129,7 +130,8 @@ const litHeader = `
       </div>
 
       <a href="angel.html" class="nav-btn">SkyWars</a>
-        <a href="bedwars.html" class="nav-btn">Bed Wars</a>
+      <a href="bedwars.html" class="nav-btn">Bed Wars</a>
+      <a href="mm.html" class="nav-btn">MM Tracker</a>
     </nav>
   </header>
 `;
@@ -148,6 +150,7 @@ const litFooter = `
         <a href="blitz.html" class="nav-btn">Blitz</a>
         <a href="angel.html" class="nav-btn">SkyWars</a>
         <a href="bedwars.html" class="nav-btn">Bed Wars</a>
+        <a href="mm.html" class="nav-btn">MM Tracker</a>
       </div>
       <div class="footer-copyright">
         &copy; 2026 LitPhoenix. All rights reserved.
@@ -321,15 +324,6 @@ window.setupControls = function() {
         document.documentElement.setAttribute('data-font', val);
         localStorage.setItem('litstats_font_mode', val);
       }
-    };
-  }
-
-  const goldToggle = document.getElementById('global-gold-toggle');
-  if (goldToggle) {
-    goldToggle.checked = localStorage.getItem('litstats_gold_ap') === 'true';
-    goldToggle.onchange = (e) => {
-      localStorage.setItem('litstats_gold_ap', e.target.checked ? 'true' : 'false');
-      if (typeof renderDashboard === 'function') renderDashboard();
     };
   }
 
