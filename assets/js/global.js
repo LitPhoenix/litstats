@@ -43,6 +43,58 @@ function initTheme() {
   applyTheme(savedTheme);
 }
 
+function parseMinecraftColors(text) {
+  if (!text || text.trim() === '') return '&nbsp;';
+  const colorMap = { 
+    '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', 
+    '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', 
+    '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 
+    'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' 
+  };
+  
+  let html = '';
+  let state = { color: '#AAAAAA', bold: false, italic: false, underline: false, strikethrough: false };
+
+  function buildStyleString(s) {
+    let styles = `color: ${s.color};`;
+    if (s.bold) styles += ' font-weight: bold;';
+    if (s.italic) styles += ' font-style: italic;';
+    let decoration = [];
+    if (s.underline) decoration.push('underline');
+    if (s.strikethrough) decoration.push('line-through');
+    if (decoration.length > 0) {
+      styles += ` text-decoration: ${decoration.join(' ')}; text-decoration-skip-ink: none;`;
+    }
+    return styles;
+  }
+
+  let parts = text.split(/(?=[&§][0-9a-flmno-r])/i);
+  for (let part of parts) {
+    if ((part.startsWith('&') || part.startsWith('§')) && part.length >= 2) {
+      let code = part[1].toLowerCase();
+      let textContent = part.substring(2);
+      if (colorMap[code]) { 
+        state.color = colorMap[code]; 
+        // Do not wipe modifier states when color changes to allow persistent styling
+      } 
+      else if (code === 'l') { state.bold = true; } 
+      else if (code === 'm') { state.strikethrough = true; }
+      else if (code === 'n') { state.underline = true; }
+      else if (code === 'o') { state.italic = true; }
+      else if (code === 'r') { 
+        state.color = '#AAAAAA'; 
+        state.bold = state.italic = state.underline = state.strikethrough = false;
+      }
+      html += `<span style="${buildStyleString(state)}">${textContent}</span>`;
+    } else {
+      html += `<span style="${buildStyleString(state)}">${part}</span>`;
+    }
+  }
+  return html;
+}
+
+
+
 function setupControls() {
   initTheme();
 
