@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-26T10:24:41.315Z",
+  "last_update": "2026-08-26T12:29:01.695Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -101,7 +101,8 @@
     "6119d70a8a724f2aa2ded280a8cf58bb": 21596,
     "796cf0f4332c447d88a6fbfffbe0bd70": 21487,
     "c820b113e30c4c129812db60b1601f52": 21384,
-    "f93d6ed965ee4d6a8a1a543fe94b35ea": 21960
+    "f93d6ed965ee4d6a8a1a543fe94b35ea": 21960,
+    "8eb18a9227fb4b36947177babab261cd": 21512
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
@@ -485,14 +486,6 @@
           "current_quests": 23251,
           "last_month_quests": 23228,
           "monthly_gain": 23
-        },
-        {
-          "username": "rantingbrit",
-          "uuid": "796cf0f4332c447d88a6fbfffbe0bd70",
-          "country": "UK",
-          "current_quests": 21487,
-          "last_month_quests": 21487,
-          "monthly_gain": 0
         }
       ]
     },
@@ -1024,6 +1017,14 @@
           "country": "Unknown",
           "current_quests": 21960,
           "last_month_quests": 21960,
+          "monthly_gain": 0
+        },
+        {
+          "username": "kipanator",
+          "uuid": "8eb18a9227fb4b36947177babab261cd",
+          "country": "Unknown",
+          "current_quests": 21512,
+          "last_month_quests": 21512,
           "monthly_gain": 0
         }
       ]
