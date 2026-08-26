@@ -278,17 +278,16 @@ function formatBedwarsLevel(level, scheme, activeStar, activeBracket, toggles) {
   }
 
   cA = palettes[mappedScheme] || palettes['prestige_scheme_stone'];
-  
   const rawStr = level.toString();
-  let res = '';
-  
   const chars = [bL, ...rawStr.split(''), star, bR];
+  
+  let res = '';
   for (let i = 0; i < chars.length; i++) {
     const colorIndex = Math.round(i * ((cA.length - 1) / (chars.length - 1)));
     const color = cA[colorIndex];
     
     if (i === 0 || i === chars.length - 1) {
-      res += `${color}${isUnderline}${isStrike}${chars[i]}`;
+      res += `${color}${isStrike}${chars[i]}`;
     } else {
       res += `${color}${isUnderline}${isBold}${chars[i]}`;
     }
