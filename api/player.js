@@ -333,6 +333,8 @@ module.exports = async (req, res) => {
     const finalKills = bwStats.final_kills_bedwars || bwStats.final_kills || 0;
     const fkdr = finalDeaths > 0 ? (finalKills / finalDeaths).toFixed(2) : finalKills.toFixed(2);
 
+    const mwStats = profile.stats?.Walls3 || {};
+
     const responseData = {
       username: profile.displayname || "Unknown",
       uuid: profile.uuid,
@@ -366,6 +368,133 @@ module.exports = async (req, res) => {
         dreamfeast: bwDreamfeast,
         toggles: bwToggles,
         packages: bwStats.packages || []
+      },
+
+      megaWalls: {
+        skins: {
+          cow: {
+            moo_brawl: mwStats.cow_bucket_barriers_broken || 0,
+            greedy_louis: mwStats.cow_ultra_pasteurized_drank || 0,
+            bio_restore: mwStats.cow_players_healed || 0,
+            beyond_the_grave: (mwStats.final_kills_after_final_killed || 0) + (mwStats.final_assists_after_final_killed || 0)
+          },
+          hunter: {
+            treasure_hunter: mwStats.hunter_g_activations || 0,
+            cake_hunter: mwStats.cakes_found || 0,
+            one_with_nature: (mwStats.hunter_force_of_nature_final_kills || 0) + (mwStats.hunter_force_of_nature_final_assists || 0)
+          },
+          shark: {
+            hammerhead: mwStats.shark_water_kills || 0,
+            explorer: mwStats.shark_g_activations || 0,
+            defender: mwStats.shark_defender_kills || 0
+          },
+          dreadlord: {
+            rushlord: mwStats.dreadlord_wither_damage || 0,
+            breadlord: mwStats.dreadlord_bread_crafted || 0,
+            gathering_ti: mwStats.dreadlord_dark_matter_armor || 0
+          },
+          golem: {
+            timber: mwStats.golem_wood_chopped || 0,
+            iron_hearted: mwStats.golem_iron_heart_absorption || 0
+          },
+          herobrine: {
+            lucky_sunny: mwStats.herobrine_treasures_found || 0,
+            seasons_greetings: mwStats.herobrine_iron_armor_gifted_december || 0
+          },
+          zombie: {
+            sleepytime: mwStats.zombie_beds_crafted || 0,
+            clutcherson: mwStats.zombie_a_healed_low_teammates || 0,
+            unstoppable_force: mwStats.zombie_berserked_kills || 0
+          },
+          arcanist: {
+            potions_of_death: mwStats.arcanist_c_total_final_kills || 0,
+            hard_as_steel: mwStats.arcanist_a_blocks_broken || 0,
+            abil_spammer: mwStats.arcanist_a_activations || 0
+          },
+          enderman: {
+            surprise: mwStats.enderman_activations || 0,
+            sneak_attack: (mwStats.enderman_final_kills_melee_behind || 0) + (mwStats.enderman_final_assists_melee_behind || 0)
+          },
+          blaze: {
+            high_on_ores: mwStats.blaze_amount_healed || 0,
+            light_em_up: mwStats.blaze_on_fire_final_kills || 0,
+            blazecaller: mwStats.blaze_blazes_spawned || 0
+          },
+          skeleton: {
+            marksman: mwStats.skeleton_final_kills_ranged_30 || 0,
+            skele_best_friend: mwStats.skeleton_diamond_ore_broken || 0
+          },
+          spider: {
+            geronimo: mwStats.spider_meters_fallen || 0,
+            one_giant_leap: mwStats.spider_a_kills || 0,
+            idfsg: mwStats.spider_venom_strike_poison_damage || 0
+          },
+          creeper: {
+            mass_destruction: mwStats.creeper_a_blocks_broken || 0,
+            instaboom: mwStats.creeper_primed_tnt_kills || 0
+          },
+          assassin: {
+            dont_blink: mwStats.assassin_enemies_hit || 0,
+            alchemy_100: mwStats.assassin_master_alechmy_hearts || 0
+          },
+          werewolf: {
+            dirty_dog: mwStats.werewolf_final_kills_below_10_hp || 0,
+            time_to_diet: mwStats.werewolf_steaks_eaten || 0,
+            hunting_season: mwStats.werewolf_meters_walked_speed || 0,
+            howling_moon: mwStats.werewolf_a_enemies_hit_standard || 0
+          },
+          phoenix: {
+            nights_rest: mwStats.phoenix_amount_healed || 0
+          },
+          automaton: {
+            terminated_script: mwStats.automaton_energy_syphoned || 0
+          },
+          moleman: {
+            constructor: mwStats.moleman_blocks_placed_preparation || 0,
+            heavy_eater: mwStats.moleman_c_junk_items_eaten || 0,
+            nom_nom: mwStats.moleman_c_activations || 0
+          },
+          renegade: {
+            recycling: mwStats.renegade_arrows_from_rend || 0,
+            captain_combo: mwStats.renegade_energy_from_grappling_hook || 0,
+            chased_down: mwStats.renegade_final_kills_after_grappling_hook || 0
+          },
+          snowman: {
+            school_cancelled: mwStats.snowman_blizzard_seconds_slow || 0,
+            frosty_friendship: mwStats.snowman_snowmen_built || 0,
+            australian_winter: mwStats.snowman_snowmen_players_hit || 0
+          },
+          shaman: {
+            much_dogs: mwStats.shaman_c_activations || 0,
+            revenge_of_the_wolves: mwStats.shaman_c_total_final_kills || 0,
+            spring_hero: mwStats.shaman_heroism_triggers_in_dm || 0
+          },
+          pigman: {
+            collector: mwStats.pigman_g_activations || 0,
+            young_thug: mwStats.pigman_enduranced_final_kills || 0,
+            tough_skin: mwStats.pigman_resistance_time_seconds || 0
+          },
+          pirate: {
+            grave_robber: mwStats.pirate_g_activations || 0,
+            death_from_above: mwStats.pirate_b_total_final_kills || 0,
+            burial_at_sea: mwStats.pirate_final_water_kills || 0
+          },
+          squid: {
+            you_shall_not_pass: (mwStats.squid_defender_final_kills || 0) + (mwStats.squid_defender_final_assists || 0),
+            trust_me_im: mwStats.squid_a_amount_healed || 0,
+            everblind: mwStats.squid_inner_ink_blinds || 0
+          },
+          angel: {
+            rewriting_fate: mwStats.angel_divine_interventions || 0
+          },
+          dragon: {
+            ashes_to_ashes: mwStats.dragon_final_kills_with_fire || 0
+          },
+          sheep: {
+            perfect_disguise: mwStats.sheep_perfect_disguises || 0,
+            woolly_respite: mwStats.sheep_amount_healed || 0
+          }
+        }
       },
 
       angelsDescent: {
@@ -617,8 +746,8 @@ module.exports = async (req, res) => {
     }
     responseData.blitzStars = starsUnlocked;
     
-    const kitList = ["horsetamer", "ranger", "archer", "astronaut", "troll", "meatmaster", "reaper", "shark", "reddragon", "toxicologist", "donkeytamer", "rogue", "warlock", "slimeyslime", "jockey", "golem", "viking", "speleologist", "shadow knight", "baker", "knight", "pigman", "guardian", "phoenix", "paladin", "necromancer", "scout", "hunter", "warrior", "hype train", "fisherman", "milkman", "florist", "diver", "arachnologist", "blaze", "wolftamer", "tim", "snowman", "rambo", "farmer", "armorer", "creepertamer"];
-    const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist", "rambo", "guardian", "hype train"]);
+    const kitList = ["horsetamer", "ranger", "archer", "astronaut", "troll", "meatmaster", "reaper", "shark", "reddragon", "toxicologist", "donkeytamer", "rogue", "warlock", "slimeyslime", "jockey", "golem", "viking", "speleologist", "shadow knight", "baker", "knight", "pigman", "guardian", "phoenix", "paladin", "necromancer", "scout", "hunter", "warrior", "hypetrain", "fisherman", "milkman", "florist", "diver", "arachnologist", "blaze", "wolftamer", "tim", "snowman", "rambo", "farmer", "armorer", "creepertamer"];
+    const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist", "rambo", "guardian", "hypetrain"]);
     const ultimateKits = new Set(["phoenix", "warrior", "donkeytamer", "milkman", "ranger", "rambo"]);
     
     for (const kit of kitList) {
