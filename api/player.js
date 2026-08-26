@@ -509,9 +509,9 @@ module.exports = async (req, res) => {
         kdr: swStats.deaths > 0 ? (swStats.kills / swStats.deaths).toFixed(2) : (swStats.kills || 0).toFixed(2),
         wlr: swStats.losses > 0 ? (swStats.wins / swStats.losses).toFixed(2) : (swStats.wins || 0).toFixed(2),
         timePlayed: swStats.time_played || 0,
-        potionsBrewed: (swStats.brewery?.gilded_tonic || 0) + (swStats.brewery?.builders_blend || 0) + (swStats.brewery?.corrupting_brew || 0) + (swStats.brewery?.ender_elixir || 0),
+        potionsBrewed: tieredPlayer.skywars_tonic_taker || 0,
         levelFormatted: cleanLevelFormatted,
-        corruptionChance: 5 + ((swStats.angels_offering || 0) * 1),
+        corruptionChance: (swStats.angel_of_death_level || 0) + (allPackages.includes('favor_of_the_angel') ? 1 : 0) + (swStats.angels_offering || 0),
         packages: allPackages,
         stats: swStats
       }
