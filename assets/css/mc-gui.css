@@ -1,5 +1,4 @@
 @font-face { font-family: 'Vanilla'; src: url('../fonts/Minecraft.ttf'); }
-@font-face { font-family: 'Faithful'; src: url('../fonts/mineglyph-faithful.otf'); }
 
 :root {
   --slot-size: 36px;
