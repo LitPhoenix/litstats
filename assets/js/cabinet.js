@@ -253,7 +253,7 @@ window.toggleSection = function(wrapperId, sectionId) {
   }
 };
 
-const TRUE_MAX_POSSIBLE_AP = 32510;
+const TRUE_MAX_POSSIBLE_AP = 32535;
 const TRUE_MAX_POSSIBLE_ACHS = 3500;
 
 window.toggleProgressMode = function() {
