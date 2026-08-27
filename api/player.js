@@ -417,6 +417,7 @@ module.exports = async (req, res) => {
       topQuests: [],
       gamePercentages: {},
       missingAchievements: [],
+      completedAchievements: [],
       recentAchievements: [],
       
       gameTotals: {},
@@ -690,6 +691,14 @@ module.exports = async (req, res) => {
               responseData.gameTotals[game.name].unlockedAP += ach.points;
               responseData.globalTotals.unlockedAchs++;
               responseData.globalTotals.unlockedAP += ach.points;
+              responseData.completedAchievements.push({
+                game: game.name, 
+                title: ach.name, 
+                desc: ach.description, 
+                reward: ach.points,
+                isOneTime: true,
+                globalPct: ach.gamePercentUnlocked 
+              });
             } else {
               isMaxed = false;
               responseData.missingAchievements.push({
@@ -720,16 +729,14 @@ module.exports = async (req, res) => {
               responseData.globalTotals.possibleAchs++;
               responseData.globalTotals.possibleAP += tier.points;
               
-              if (playerAmt >= tier.amount) {
-                playerUnlocked++;
-                responseData.gameTotals[game.name].unlockedAchs++;
-                responseData.gameTotals[game.name].unlockedAP += tier.points;
-                responseData.globalTotals.unlockedAchs++;
-                responseData.globalTotals.unlockedAP += tier.points;
-              } else {
-                isMaxed = false;
-                isAchMaxed = false;
-              }
+              if (playerAmt >= allTiers[0].amount) {
+                responseData.completedAchievements.push({
+                    game: game.name, 
+                    title: ach.name, 
+                    desc: ach.description, 
+                    allTiers: allTiers,
+                    currentAmt: playerAmt
+                });
             }
 
             if (!isAchMaxed) {
@@ -740,6 +747,7 @@ module.exports = async (req, res) => {
                     allTiers: allTiers,
                     currentAmt: playerAmt
                 });
+              }
             }
           }
         }
