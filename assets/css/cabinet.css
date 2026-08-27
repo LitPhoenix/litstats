@@ -696,7 +696,7 @@ body[data-theme="dark"] .maxed-stat-pill {
 .ach-title { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 14px; font-weight: 600; color: var(--text); padding-right: 40px; }
 .sleek-tag { font-size: 10px; color: var(--tag-color); border: 1px solid var(--tag-color); padding: 2px 8px; border-radius: 12px; font-weight: 600; text-transform: uppercase; }
 .ach-tip { font-size: 12px; color: var(--text-3); font-style: italic; margin-bottom: 6px; }
-.ach-desc { font-size: 12px; color: var(--text-2); line-height: 1.4; }
+.ach-desc { font-size: 14px; color: var(--text-2); line-height: 1.4; }
 .ach-reward { font-family: 'DM Sans', sans-serif !important; font-size: 12px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px; }
 .tier-progress-text { font-family: 'DM Sans', sans-serif !important; font-size: 11px; font-weight: 600; color: var(--text-2); text-align: right; margin-top: 4px; }
 
