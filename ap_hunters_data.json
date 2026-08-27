@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-26T19:30:59.694Z",
+  "last_update": "2026-08-27T05:39:12.584Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12615,
+      "score": 12616,
       "top_players": [
         {
           "username": "oJakey",
@@ -498,9 +498,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30425,
+          "current_ap": 30455,
           "last_month_ap": 30040,
-          "monthly_gain": 385,
+          "monthly_gain": 415,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2449,7 +2449,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1740,
+      "score": 1745,
       "top_players": [
         {
           "username": "nachomogsprinkle",
@@ -2464,9 +2464,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26540,
+          "current_ap": 26550,
           "last_month_ap": 26345,
-          "monthly_gain": 195,
+          "monthly_gain": 205,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games",
@@ -2955,9 +2955,9 @@
           "username": "Hacks",
           "uuid": "b5ab6db9366049ae8a9882927e46ce08",
           "country": "Unknown",
-          "current_ap": 23675,
+          "current_ap": 23670,
           "last_month_ap": 23675,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
@@ -2994,9 +2994,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
-          "current_ap": 23585,
+          "current_ap": 23600,
           "last_month_ap": 23490,
-          "monthly_gain": 95,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3020,9 +3020,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "Unknown",
-          "current_ap": 23505,
+          "current_ap": 23520,
           "last_month_ap": 23505,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
