@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-28T01:54:46.276Z",
+  "last_update": "2026-08-28T13:32:39.738Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1474,9 +1474,9 @@
           "username": "mm_dm",
           "uuid": "78a41722527449c38925f5914b005173",
           "country": "Canada",
-          "current_ap": 26195,
+          "current_ap": 26210,
           "last_month_ap": 26045,
-          "monthly_gain": 150,
+          "monthly_gain": 165,
           "maxGames": [
             "Max Quake",
             "Max SkyBlock",
@@ -2659,9 +2659,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 25150,
+          "current_ap": 25155,
           "last_month_ap": 24935,
-          "monthly_gain": 215,
+          "monthly_gain": 220,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -2738,9 +2738,9 @@
           "username": "swagkittysilver",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
-          "current_ap": 24975,
+          "current_ap": 25000,
           "last_month_ap": 24435,
-          "monthly_gain": 540,
+          "monthly_gain": 565,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -2980,6 +2980,17 @@
           ]
         },
         {
+          "username": "Oleslaw2009",
+          "uuid": "cef8bc211b264d54b07da2995d587098",
+          "country": "Unknown",
+          "current_ap": 23615,
+          "last_month_ap": 23305,
+          "monthly_gain": 310,
+          "maxGames": [
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
@@ -2990,17 +3001,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "Oleslaw2009",
-          "uuid": "cef8bc211b264d54b07da2995d587098",
-          "country": "Unknown",
-          "current_ap": 23600,
-          "last_month_ap": 23305,
-          "monthly_gain": 295,
-          "maxGames": [
             "Max Wool Games"
           ]
         },

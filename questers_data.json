@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-28T01:54:46.692Z",
+  "last_update": "2026-08-28T13:32:40.241Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -288,7 +288,7 @@
     },
     {
       "country": "Canada",
-      "score": 40632.6,
+      "score": 40635.6,
       "top_players": [
         {
           "username": "Songgg",
@@ -326,9 +326,9 @@
           "username": "radicul",
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Canada",
-          "current_quests": 22109,
+          "current_quests": 22124,
           "last_month_quests": 21866,
-          "monthly_gain": 243
+          "monthly_gain": 258
         }
       ]
     },
