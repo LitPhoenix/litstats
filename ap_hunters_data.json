@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-27T17:03:51.612Z",
+  "last_update": "2026-08-28T01:54:46.276Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -2808,9 +2808,9 @@
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
-          "current_ap": 24290,
+          "current_ap": 24300,
           "last_month_ap": 23550,
-          "monthly_gain": 740,
+          "monthly_gain": 750,
           "maxGames": [
             "Max SkyBlock",
             "Max TKR",
@@ -2980,6 +2980,20 @@
           ]
         },
         {
+          "username": "shirool",
+          "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+          "country": "Unknown",
+          "current_ap": 23615,
+          "last_month_ap": 23490,
+          "monthly_gain": 125,
+          "maxGames": [
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
@@ -2987,20 +3001,6 @@
           "last_month_ap": 23305,
           "monthly_gain": 295,
           "maxGames": [
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "shirool",
-          "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
-          "country": "Unknown",
-          "current_ap": 23600,
-          "last_month_ap": 23490,
-          "monthly_gain": 110,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
             "Max Wool Games"
           ]
         },
