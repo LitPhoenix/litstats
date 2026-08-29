@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-28T23:17:34.395Z",
+  "last_update": "2026-08-29T04:43:50.654Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32485,
     "3abe2f6bd45a4e2282d4f9014569db25": 32490,
@@ -1170,7 +1170,7 @@
     },
     {
       "country": "UK",
-      "score": 10080,
+      "score": 10093,
       "top_players": [
         {
           "username": "greaneye",
@@ -1200,9 +1200,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 31095,
+          "current_ap": 31120,
           "last_month_ap": 31005,
-          "monthly_gain": 90,
+          "monthly_gain": 115,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1216,6 +1216,7 @@
             "Max TNT Games",
             "Max VampireZ",
             "Max TKR",
+            "Max Wool Games",
             "Max Duels"
           ]
         },
@@ -2968,6 +2969,20 @@
           ]
         },
         {
+          "username": "shirool",
+          "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+          "country": "Unknown",
+          "current_ap": 23630,
+          "last_month_ap": 23490,
+          "monthly_gain": 140,
+          "maxGames": [
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
@@ -2987,20 +3002,6 @@
           "last_month_ap": 23305,
           "monthly_gain": 310,
           "maxGames": [
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "shirool",
-          "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
-          "country": "Unknown",
-          "current_ap": 23615,
-          "last_month_ap": 23490,
-          "monthly_gain": 125,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
             "Max Wool Games"
           ]
         },
