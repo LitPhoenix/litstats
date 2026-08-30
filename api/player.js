@@ -417,10 +417,15 @@ module.exports = async (req, res) => {
       topQuests: [],
       gamePercentages: {},
       missingAchievements: [],
+      completedAchievements: [],
       recentAchievements: [],
       
       gameTotals: {},
       globalTotals: { possibleAP: 0, possibleAchs: 0, unlockedAP: 0, unlockedAchs: 0 },
+      legacyGlobalTotals: { possibleAP: 0, possibleAchs: 0, unlockedAP: 0, unlockedAchs: 0 },
+      legacyGameTotals: {},
+      legacyMissing: [],
+      legacyCompleted: [],
 
       bedwars: {
         coins: bwStats.coins || 0,
@@ -491,7 +496,7 @@ module.exports = async (req, res) => {
             abil_spammer: mwStats.arcanist_a_activations || 0
           },
           enderman: {
-            surprise: mwStats.enderman_activations || 0,
+            surprise: mwStats.enderman_a_activations_standard || 0,
             sneak_attack: (mwStats.enderman_final_kills_melee_behind || 0) + (mwStats.enderman_final_assists_melee_behind || 0)
           },
           blaze: {
@@ -668,87 +673,93 @@ module.exports = async (req, res) => {
         const tGame = cachedTemplate[game.internal];
         if (!tGame) continue;
 
-        let totalPossible = 0;
-        let playerUnlocked = 0;
-        let isMaxed = true;
+        let nPoss = 0, nUnl = 0, lPoss = 0, lUnl = 0;
         
         responseData.gameTotals[game.name] = { possibleAP: 0, possibleAchs: 0, unlockedAP: 0, unlockedAchs: 0 };
+        responseData.legacyGameTotals[game.name] = { possibleAP: 0, possibleAchs: 0, unlockedAP: 0, unlockedAchs: 0 };
 
         if (tGame.one_time) {
           for (const [key, ach] of Object.entries(tGame.one_time)) {
-            if (ach.legacy) continue; 
-            totalPossible++;
-            responseData.gameTotals[game.name].possibleAchs++;
-            responseData.gameTotals[game.name].possibleAP += ach.points;
-            responseData.globalTotals.possibleAchs++;
-            responseData.globalTotals.possibleAP += ach.points;
-            
+            const isLegacy = !!ach.legacy;
             const fullId = `${game.internal}_${key.toLowerCase()}`;
-            if (cleanOneTime.includes(fullId)) {
-              playerUnlocked++;
-              responseData.gameTotals[game.name].unlockedAchs++;
-              responseData.gameTotals[game.name].unlockedAP += ach.points;
-              responseData.globalTotals.unlockedAchs++;
-              responseData.globalTotals.unlockedAP += ach.points;
-            } else {
-              isMaxed = false;
-              responseData.missingAchievements.push({
-                game: game.name, 
-                title: ach.name, 
-                desc: ach.description, 
-                reward: ach.points,
-                isOneTime: true,
-                globalPct: ach.gamePercentUnlocked 
-              });
+            const isUnlocked = cleanOneTime.includes(fullId);
+            
+            const gTotals = isLegacy ? responseData.legacyGameTotals[game.name] : responseData.gameTotals[game.name];
+            const glTotals = isLegacy ? responseData.legacyGlobalTotals : responseData.globalTotals;
+
+            gTotals.possibleAchs++;
+            gTotals.possibleAP += ach.points;
+            glTotals.possibleAchs++;
+            glTotals.possibleAP += ach.points;
+            if (isLegacy) lPoss++; else nPoss++;
+
+            if (isUnlocked) {
+              gTotals.unlockedAchs++;
+              gTotals.unlockedAP += ach.points;
+              glTotals.unlockedAchs++;
+              glTotals.unlockedAP += ach.points;
+              if (isLegacy) lUnl++; else nUnl++;
             }
+
+            const achObj = {
+              game: game.name, title: ach.name, desc: ach.description, reward: ach.points,
+              isOneTime: true, isLegacy: isLegacy, gamePct: isLegacy ? undefined : ach.gamePercentUnlocked
+            };
+
+            const targetArr = isLegacy ? (isUnlocked ? responseData.legacyCompleted : responseData.legacyMissing) 
+                                       : (isUnlocked ? responseData.completedAchievements : responseData.missingAchievements);
+            targetArr.push(achObj);
           }
         }
 
         if (tGame.tiered) {
           for (const [key, ach] of Object.entries(tGame.tiered)) {
-            if (ach.legacy) continue; 
+            const isLegacy = !!ach.legacy;
             const fullId = `${game.internal}_${key.toLowerCase()}`;
             const playerAmt = tieredPlayer[fullId] || 0;
-
             let allTiers = ach.tiers.map((t, index) => ({ tier: t.tier || index + 1, amount: t.amount, reward: t.points }));
             let isAchMaxed = true;
 
+            const gTotals = isLegacy ? responseData.legacyGameTotals[game.name] : responseData.gameTotals[game.name];
+            const glTotals = isLegacy ? responseData.legacyGlobalTotals : responseData.globalTotals;
+
             for (const tier of ach.tiers) {
-              totalPossible++;
-              responseData.gameTotals[game.name].possibleAchs++;
-              responseData.gameTotals[game.name].possibleAP += tier.points;
-              responseData.globalTotals.possibleAchs++;
-              responseData.globalTotals.possibleAP += tier.points;
-              
+              gTotals.possibleAchs++;
+              gTotals.possibleAP += tier.points;
+              glTotals.possibleAchs++;
+              glTotals.possibleAP += tier.points;
+              if (isLegacy) lPoss++; else nPoss++;
+
               if (playerAmt >= tier.amount) {
-                playerUnlocked++;
-                responseData.gameTotals[game.name].unlockedAchs++;
-                responseData.gameTotals[game.name].unlockedAP += tier.points;
-                responseData.globalTotals.unlockedAchs++;
-                responseData.globalTotals.unlockedAP += tier.points;
+                gTotals.unlockedAchs++;
+                gTotals.unlockedAP += tier.points;
+                glTotals.unlockedAchs++;
+                glTotals.unlockedAP += tier.points;
+                if (isLegacy) lUnl++; else nUnl++;
               } else {
-                isMaxed = false;
                 isAchMaxed = false;
               }
             }
 
-            if (!isAchMaxed) {
-                responseData.missingAchievements.push({
-                    game: game.name, 
-                    title: ach.name, 
-                    desc: ach.description, 
-                    allTiers: allTiers,
-                    currentAmt: playerAmt
-                });
-            }
+            const achObj = {
+              game: game.name, title: ach.name, desc: ach.description, allTiers: allTiers,
+              currentAmt: playerAmt, isLegacy: isLegacy
+            };
+
+            const completedArr = isLegacy ? responseData.legacyCompleted : responseData.completedAchievements;
+            const missingArr = isLegacy ? responseData.legacyMissing : responseData.missingAchievements;
+
+            if (playerAmt >= allTiers[0].amount) completedArr.push(achObj);
+            if (!isAchMaxed) missingArr.push(achObj);
           }
         }
 
-        if (isMaxed && totalPossible > 0) {
-          responseData.maxGames.push(game.badge);
-        } else if (totalPossible > 0) {
-          responseData.gamePercentages[game.badge] = ((playerUnlocked / totalPossible) * 100).toFixed(1);
+        if (nPoss > 0) {
+          if (nUnl >= nPoss) responseData.maxGames.push(game.badge);
+          else responseData.gamePercentages[game.badge] = ((nUnl / nPoss) * 100).toFixed(1);
         }
+        if (lPoss === 0) delete responseData.legacyGameTotals[game.name];
+        if (nPoss === 0) delete responseData.gameTotals[game.name];
       }
     }
 
