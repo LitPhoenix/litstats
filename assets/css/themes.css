@@ -121,11 +121,11 @@ html[data-theme="amethyst"] {
   --tag-border: rgba(147, 51, 234, 0.28);
   --tag-text: #ddd6fe;
 
-  --tier-1: #38bdf8;
+  --tier-1: #22bdec;
   --tier-2: #a78bfa;
   --tier-3: #c084fc;
-  --tier-4: #e11d48;
-  --tier-5: #6b0c2a;
+  --tier-4: #e11d78;
+  --tier-5: #850e3c;
 }
 
 /* 5. Cherry Blossom */
@@ -273,7 +273,7 @@ html:not([data-theme="light"]):not([data-theme="cherry"]):not([data-theme="minec
 html[data-theme="dark"] .slot:not([class*="lvl-"]):not(.locked-star-slot),
 html[data-theme="midnight"] .slot:not([class*="lvl-"]):not(.locked-star-slot),
 html[data-theme="amethyst"] .slot:not([class*="lvl-"]):not(.locked-star-slot) {
-  background: rgba(80, 80, 80, 0.3) !important;
+  background: rgba(80, 80, 80, 0.3);
 }
 
 html:not([data-theme="light"]):not([data-theme="cherry"]):not([data-theme="minecraft"]) .inv-player-box,
@@ -444,27 +444,40 @@ html[data-theme="minecraft"] h1 {
   text-shadow: 2px 2px 0 #000000;
 }
 
-/* Force Cherry Blossom game pills to use Pink gradients */
-html[data-theme="cherry"] .filter-pill,
-html[data-theme="cherry"] .incomplete-pill,
-html[data-theme="cherry"] [class*="game-pill"],
-html[data-theme="cherry"] .game-select-pill {
-  border-color: rgba(255, 133, 161, 0.4) !important;
-  color: #4a2833 !important;
+html[data-theme="cherry"] .filter-pill-fill[style*="var(--tier-1)"],
+html[data-theme="cherry"] .pill-progress[style*="var(--tier-1)"],
+html[data-theme="cherry"] .pill-fill[style*="var(--tier-1)"] {
+  background: linear-gradient(90deg, #ff4d79, #e6194b) !important;
 }
 
-/* Override the inline linear-gradient background on the pill */
-html[data-theme="cherry"] .filter-pill[style*="linear-gradient"],
-html[data-theme="cherry"] .incomplete-pill[style*="linear-gradient"],
-html[data-theme="cherry"] [class*="game-pill"][style*="linear-gradient"] {
-  /* Swaps the left cyan chunk to vivid cherry pink while keeping the right side pale pink */
-  --pill-fill: #ff7597 !important;
-  --pill-bg: rgba(255, 225, 235, 0.75) !important;
-}
-
-/* If the pill uses an internal fill div */
-html[data-theme="cherry"] .filter-pill-fill,
-html[data-theme="cherry"] .pill-progress,
-html[data-theme="cherry"] .pill-fill {
+html[data-theme="cherry"] .filter-pill-fill[style*="var(--tier-2)"],
+html[data-theme="cherry"] .pill-progress[style*="var(--tier-2)"],
+html[data-theme="cherry"] .pill-fill[style*="var(--tier-2)"] {
   background: linear-gradient(90deg, #ff93ae, #ff648b) !important;
+}
+
+html[data-theme="cherry"] .filter-pill-fill[style*="var(--tier-4)"],
+html[data-theme="cherry"] .pill-progress[style*="var(--tier-4)"],
+html[data-theme="cherry"] .pill-fill[style*="var(--tier-4)"] {
+  background: linear-gradient(90deg, #ffa8c0, #ff8dae) !important;
+}
+
+html[data-theme="cherry"] .maxed-game-pill .filter-pill-fill,
+html[data-theme="cherry"] .filter-pill-fill[style*="#00e6ff"] {
+  background: linear-gradient(90deg, #00ffccdd, #00aa8edd) !important;
+}
+
+html[data-theme="light"] .filter-pill-btn.maxed-game-pill .filter-pill-stat {
+  color: #00537a !important;
+  text-shadow: none !important;
+}
+html[data-theme="cherry"] .filter-pill-btn.maxed-game-pill .filter-pill-stat {
+  color: #00657a !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] .filter-pill-btn.maxed-game-pill {
+  border-color: #00537acc;
+}
+html[data-theme="cherry"] .filter-pill-btn.maxed-game-pill {
+  border-color: #00667acc;
 }
