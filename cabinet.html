@@ -22,8 +22,19 @@
 <main>
   <!-- Global Search Bar -->
   <div class="top-lookup-bar">
-    <input type="text" id="top-search-input" placeholder="Search Player Username..." onkeydown="if(event.key==='Enter')handleTopSearch()">
-    <button class="primary-btn" onclick="handleTopSearch()">Search</button>
+    <div class="search-group">
+      <div class="search-wrapper">
+        <input type="text" id="top-search-input" placeholder="Search Player Username..." onkeydown="if(event.key==='Enter')handleTopSearch()">
+        <button class="clear-btn" onclick="clearSearch('top-search-input')">×</button>
+      </div>
+      <button class="primary-btn search-icon-btn" onclick="handleTopSearch()" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+    </div>
+    <div class="pin-group">
+      <button class="settings-btn pin-btn" onclick="pinCurrentPlayer()" title="Pin this player">📌</button>
+      <div id="pinned-player-container" class="hidden"></div>
+    </div>
   </div>
 
   <div id="errorBox" class="loading-msg hidden" style="color: var(--red); text-align: center; margin: 20px auto;"></div>
@@ -45,12 +56,11 @@
             </div>
           </div>
 
-          <!-- Position -> AP -> Max Games -->
           <div class="stat-row">
             <span id="p-top-rank-pill" style="display:none;" class="rank-num-pill"></span>
             <div id="p-ap-container"></div>
             <div class="stat-pill maxed-stat-pill">
-              <span id="p-max-count">0 / 24 Maxed</span>
+              <span id="p-max-count">0 / 23 Maxed</span>
             </div>
           </div>
           
@@ -60,11 +70,13 @@
       <!-- Interactive Progress Bar Switcher -->
       <div class="ap-progress-container" onclick="toggleProgressMode()" title="Click to switch between Points and Achievements view">
         <div class="ap-labels-flex">
-          <span id="p-progress-label">Points Progress</span>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span id="p-progress-label">Points Progress</span>
+          </div>
           <span id="p-ap-percent">0%</span>
         </div>
         <div class="ap-bar-bg">
-          <div class="ap-bar-fill" id="p-ap-bar" style="width: 0%;"></div>
+          <div class="ap-bar-fill fancy-bar" id="p-ap-bar" style="width: 0%;"></div>
         </div>
       </div>
     </div>
@@ -74,15 +86,36 @@
       
       <div id="dashboard-column" class="dash-col-main">
         
-        <div class="todo-header-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-          <div class="dynamic-title-box" id="dynamic-dash-box">
-            <div class="dynamic-title-top" id="dynamic-dash-title">
-              <h2>Incomplete</h2>
+        <div class="todo-header-row" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="dynamic-title-box" id="dynamic-dash-box" style="margin: 0;">
+              <div class="dynamic-title-top" id="dynamic-dash-title" onclick="toggleSection('incomplete-filters-wrapper', 'dynamic-dash-title')" style="cursor: pointer; user-select: none;">
+                <h2 id="main-section-title">Incomplete</h2>
+                <span class="chevron-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </div>
             </div>
+            
+            <button class="settings-btn" id="toggle-completed-btn" onclick="toggleShowCompleted()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Show Completed
+            </button>
           </div>
           
-          <div class="header-controls" style="display: flex; gap: 8px; align-items: center;">
-            <!-- Redo Tour Button -->
+          <div class="header-controls" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; flex: 1; justify-content: flex-end;">
+            <select id="tagFilter" class="todo-select" onchange="renderDashboard()">
+              <option value="All">All Tags</option>
+              <option value="Secret">Secret</option>
+              <option value="Broken">Broken</option>
+              <option value="Map">Map</option>
+              <option value="Renown">Renown</option>
+              <option value="Cost">Cost</option>
+              <option value="Prestige">Prestige</option>
+            </select>
+            
+            <button class="settings-btn" id="toggle-legacy-btn" onclick="toggleLegacyMode()">Legacy</button>
+            
             <button class="settings-btn" id="start-tour-btn" onclick="startCabinetTour(true)" type="button" title="Redo Feature Tour">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="pointer-events:none;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
               Tour
@@ -92,7 +125,6 @@
             <div class="settings-wrapper">
               <button class="settings-btn" onclick="toggleSettingsMenu(event)" type="button">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="pointer-events:none;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                Settings
               </button>
               
               <div id="settings-menu" class="settings-menu hidden">
@@ -102,15 +134,23 @@
                     <input type="checkbox" id="excludeComp" onchange="toggleExcludeComp()">
                     <span class="slider"></span>
                   </label>
-                  <div class="tooltip-text">Hides competitive games (Mega Walls, UHC, Pit) affected by competitive bans.</div>
+                  <div class="tooltip-text">Hides competitive games (Mega Walls, UHC, Pit).</div>
                 </div>
                 <div class="setting-item tooltip-container">
-                  <span>Multi-Select</span>
+                  <span>Multi-Select Filters</span>
                   <label class="toggle-switch">
                     <input type="checkbox" id="multiSelectToggle" onchange="toggleMultiSelect()">
                     <span class="slider"></span>
                   </label>
                   <div class="tooltip-text">Select multiple games at once to filter the grid.</div>
+                </div>
+                <div class="setting-item tooltip-container">
+                  <span>Show Highest Tier</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="highestTierToggle" onchange="toggleHighestTier()">
+                    <span class="slider"></span>
+                  </label>
+                  <div class="tooltip-text">Only shows the maximum tier for tiered achievements.</div>
                 </div>
                 <div class="setting-item tooltip-container">
                   <span>Gold AP Rewards</span>
@@ -120,29 +160,26 @@
                   </label>
                   <div class="tooltip-text">Changes standard AP point icons and rewards to glowing gold AP.</div>
                 </div>
-                <div class="setting-item tooltip-container">
-                  <span>Show Highest Tier Only</span>
-                  <label class="toggle-switch">
-                    <input type="checkbox" id="highestTierToggle" onchange="toggleHighestTier()">
-                    <span class="slider"></span>
-                  </label>
-                  <div class="tooltip-text">Only shows the maximum tier for tiered achievements.</div>
+                
+                <div style="border-top: 1px solid var(--border); margin-top: 4px; padding-top: 12px; display: flex; flex-direction: column; gap: 12px;">
+                  <span style="font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase;">Tag Filters</span>
+                  <div class="setting-item">
+                    <span>Show Secret</span>
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="showSecretToggle" checked onchange="toggleTagFilter('Secret', this.checked)">
+                      <span class="slider"></span>
+                    </label>
+                  </div>
+                  <div class="setting-item">
+                    <span>Show Broken</span>
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="showBrokenToggle" checked onchange="toggleTagFilter('Broken', this.checked)">
+                      <span class="slider"></span>
+                    </label>
+                  </div>
                 </div>
-                <div class="setting-item">
-                  <span>Hide History Section</span>
-                  <label class="toggle-switch">
-                    <input type="checkbox" id="hideHistoryToggle" onchange="toggleHideHistory()">
-                    <span class="slider"></span>
-                  </label>
-                </div>
-                <div class="setting-item">
-                  <span>Hide Badge Section</span>
-                  <label class="toggle-switch">
-                    <input type="checkbox" id="hideMaxesToggle" onchange="toggleHideMaxes()">
-                    <span class="slider"></span>
-                  </label>
-                </div>
-                <div class="setting-item" style="flex-direction: column; align-items: flex-start; gap: 6px; border-top: 1px solid var(--border); padding-top: 8px;">
+
+                <div class="setting-item" style="flex-direction: column; align-items: flex-start; gap: 6px; border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px;">
                   <span>Badge Pill Label:</span>
                   <select id="filterLabelSelect" class="todo-select" style="width: 100%;" onchange="changeFilterLabelMode(this.value)">
                     <option value="percent">Percentage (%)</option>
@@ -155,18 +192,26 @@
           </div>
         </div>
         
-        <!-- Game Filter Pill Grid -->
-        <div id="gameFilterContainer"></div>
-
-        <!-- Scan Filter Search Bar -->
-        <div class="search-bar-container">
-          <input type="text" id="achSearch" placeholder="Scan for achievements by name or description..." oninput="handleAchSearch()">
+        <div id="incomplete-filters-wrapper">
+          <!-- Game Filter Pill Grid -->
+          <div id="gameFilterContainer"></div>
+          
+          <!-- Mega Walls Class Filter (Hidden by default) -->
+          <div id="mw-class-filter" class="hidden"></div>
         </div>
 
-        <div style="width: 100%; display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 20px;">
-          <button class="btn-toggle-view" onclick="toggleViewMode('bookmarks')" id="bookmarkToggleBtn">Bookmarks (0)</button>
-          <button class="btn-toggle-view" onclick="toggleViewMode('ignored')" id="ignoredToggleBtn">Show Ignored (0)</button>
+        <!-- Scan Filter Search Bar (Same line setup) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 16px 0 20px 0; gap: 16px;">
+          <div class="search-bar-container search-wrapper" style="flex-grow: 1; max-width: none; margin: 0;">
+            <input type="text" id="achSearch" placeholder="Scan for achievements by name or description..." oninput="handleAchSearch()">
+            <button class="clear-btn" onclick="clearSearch('achSearch')">×</button>
+          </div>
+          <div style="display: flex; gap: 8px; flex-shrink: 0;" id="action-btn-group">
+            <button class="btn-toggle-view" onclick="toggleViewMode('bookmarks')" id="bookmarkToggleBtn">Bookmarks (0)</button>
+            <button class="btn-toggle-view" onclick="toggleViewMode('ignored')" id="ignoredToggleBtn">Ignored (0)</button>
+          </div>
         </div>
+        
 
         <!-- Dashboard Grid -->
         <div class="dashboard-grid" id="main-dash-grid">
@@ -185,7 +230,7 @@
             </div>
             <div id="col-tiered-wrapper">
               <div class="ach-grid-col" id="col-tiered"></div>
-              <button class="show-more-btn" id="btn-more-tiered" onclick="limits.tiered += 12; renderDashboard();">Show More</button>
+              <button class="show-more-btn" id="btn-more-tiered" onclick="limits.tiered += 48; renderDashboard();">Show More</button>
             </div>
           </div>
 
@@ -203,7 +248,7 @@
             </div>
             <div id="col-challenge-wrapper">
               <div class="ach-grid-col" id="col-challenge"></div>
-              <button class="show-more-btn" id="btn-more-chal" onclick="limits.challenge += 12; renderDashboard();">Show More</button>
+              <button class="show-more-btn" id="btn-more-chal" onclick="limits.challenge += 48; renderDashboard();">Show More</button>
             </div>
           </div>
 
@@ -223,7 +268,7 @@
             </div>
             <div id="col-recent-wrapper">
               <div class="ach-grid-col history-grid" id="col-recent"></div>
-              <button class="show-more-btn" id="btn-more-rec" onclick="limits.recent += 24; renderDashboard();">Show More</button>
+              <button class="show-more-btn" id="btn-more-rec" onclick="limits.recent += 48; renderDashboard();">Show More</button>
             </div>
           </div>
 
