@@ -1074,7 +1074,7 @@ function renderDashboard() {
     ach.tagsHtml = tagsHtml;
     ach.tipHtml = tipHtml;
     
-    let isChallenge = ach.isOneTime || (ach.globalPct !== undefined && ach.currentAmt === undefined && !ach.allTiers);
+    let isChallenge = ach.isOneTime || (ach.gamePct !== undefined && ach.currentAmt === undefined && !ach.allTiers);
 
     let mwTargetAmt = null;
     let mwCurrentAmt = null;
@@ -1096,7 +1096,7 @@ function renderDashboard() {
     }
 
     if (isChallenge) {
-      ach.calcPct = Number(ach.gamePercentUnlocked || ach.globalPct || 0);
+      ach.calcPct = Number(ach.gamePercentUnlocked || ach.gamePct || 0);
       if(ach.mwTargetAmt !== undefined) {
          ach.isCompleted = ach.mwCurrentAmt >= ach.mwTargetAmt;
       } else {
@@ -1657,7 +1657,7 @@ async function initCabinet(explicitLookupId) {
       }
     }
 
-    const apiUrl = `https://api.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
+    const apiUrl = `http://localhost:3000/api/player?uuid=${encodeURIComponent(uuid)}`;
     const res = await fetch(apiUrl);
 
     if (!res.ok) {
