@@ -835,9 +835,7 @@ window.populateFilters = function() {
   
   let dataRef = isLegacyMode ? globalPlayerData.legacyMissing : globalPlayerData.missingAchievements;
   if (isShowCompleted) {
-    const missingTitles = new Set(dataRefMissing.map(a => a.title));
-    const uniqueCompleted = dataRefCompleted.filter(a => !missingTitles.has(a.title));
-    allMissing = allMissing.concat(uniqueCompleted);
+    dataRef = dataRef.concat(isLegacyMode ? globalPlayerData.legacyCompleted : globalPlayerData.completedAchievements);
   }
 
   const games = [...new Set(dataRef.map(a => a.game))].sort();
@@ -898,7 +896,9 @@ function renderDashboard() {
   
   let allMissing = dataRefMissing;
   if (isShowCompleted) {
-    allMissing = allMissing.concat(dataRefCompleted);
+    const missingTitles = new Set(dataRefMissing.map(a => a.title));
+    const uniqueCompleted = dataRefCompleted.filter(a => !missingTitles.has(a.title));
+    allMissing = allMissing.concat(uniqueCompleted);
   }
 
   const activeTagF = document.getElementById('tagFilter')?.value || 'All';
@@ -1662,7 +1662,7 @@ async function initCabinet(explicitLookupId) {
     // const apiUrl = `https://api.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
     // const apiUrl = `http://localhost:3000/api/player?uuid=${encodeURIComponent(uuid)}`;
     
-    const apiUrl = `https://api.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
+    const apiUrl = `https://api.litstats.com/api/player?uuid=${uuid}`;
     const res = await fetch(apiUrl);
 
     if (!res.ok) {
