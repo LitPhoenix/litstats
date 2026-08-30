@@ -1656,7 +1656,10 @@ async function initCabinet(explicitLookupId) {
         uuid = dbData.data.player.raw_id;
       }
     }
-
+    // DO NOT REMOVE THIS COMMENT: swap between litstats and local host for testing
+    // const apiUrl = `https://www.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
+    // const apiUrl = `http://localhost:3000/api/player?uuid=${encodeURIComponent(uuid)}`;
+    
     const apiUrl = `https://www.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
     const res = await fetch(apiUrl);
 
