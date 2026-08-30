@@ -1662,7 +1662,7 @@ async function initCabinet(explicitLookupId) {
     // const apiUrl = `https://api.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
     // const apiUrl = `http://localhost:3000/api/player?uuid=${encodeURIComponent(uuid)}`;
     
-    const apiUrl = `https://api.litstats.com/api/player?uuid=${uuid}`;
+    const apiUrl = `https://api.litstats.com/api/player?uuid=${encodeURIComponent(lookupId)}`;
     const res = await fetch(apiUrl);
 
     if (!res.ok) {
