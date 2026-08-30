@@ -835,7 +835,9 @@ window.populateFilters = function() {
   
   let dataRef = isLegacyMode ? globalPlayerData.legacyMissing : globalPlayerData.missingAchievements;
   if (isShowCompleted) {
-    dataRef = dataRef.concat(isLegacyMode ? globalPlayerData.legacyCompleted : globalPlayerData.completedAchievements);
+    const missingTitles = new Set(dataRefMissing.map(a => a.title));
+    const uniqueCompleted = dataRefCompleted.filter(a => !missingTitles.has(a.title));
+    allMissing = allMissing.concat(uniqueCompleted);
   }
 
   const games = [...new Set(dataRef.map(a => a.game))].sort();
