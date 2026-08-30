@@ -775,6 +775,7 @@ body[data-theme="dark"] .maxed-stat-pill {
   display: flex; 
   align-items: center; 
   gap: 6px; 
+  margin-right: 4px;
   overflow: hidden; 
   min-width: 0; 
 }
