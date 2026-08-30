@@ -12,13 +12,292 @@ let isHighestTierOnly = localStorage.getItem('litstats_highestTier') === 'true';
 let isHistoryHidden = localStorage.getItem('litstats_historyHidden') === 'true';
 let isMaxesHidden = localStorage.getItem('litstats_maxesHidden') === 'true';
 let isGoldApEnabled = localStorage.getItem('litstats_gold_ap') === 'true';
+
+let showSecretTags = localStorage.getItem('litstats_showSecret') !== 'false';
+let showBrokenTags = localStorage.getItem('litstats_showBroken') !== 'false';
+
 let progressDisplayMode = localStorage.getItem('litstats_progressMode') || 'points'; 
 let filterLabelMode = localStorage.getItem('litstats_filterLabelMode') || 'percent'; 
+
+let isShowCompleted = localStorage.getItem('litstats_showCompleted') === 'true';
+let isLegacyMode = false;
+let activeMwClass = null;
+
+const mwClassesList = ["Angel", "Arcanist", "Assassin", "Automaton", "Blaze", "Cow", "Creeper", "Dragon", "Dreadlord", "Enderman", "Golem", "Herobrine", "Hunter", "Moleman", "Phoenix", "Pigman", "Pirate", "Renegade", "Shaman", "Shark", "Sheep", "Skeleton", "Snowman", "Spider", "Squid", "Werewolf", "Zombie", "Legendary"];
+
+const customSkinRewards = {
+  "i am cow": "img/megawalls/cow/Cow Suit.png",
+  "moo brawl": "img/megawalls/cow/Iron Cow.png",
+  "greedy louis": "img/megawalls/cow/Skelly Moo.png",
+  "team player": "img/megawalls/cow/Fungu Madness.png",
+  "legendary cow": "img/megawalls/cow/One Serious Bull.png",
+  "beyond the grave": "img/megawalls/cow/Parasite.png",
+  "fine dining": "img/megawalls/cow/Sir Loin.png",
+  "biological restoration": "img/megawalls/cow/Sacred Bull.png",
+  "on point": "img/megawalls/hunter/Edge.png",
+  "treasure hunter": "img/megawalls/hunter/Tucson.png",
+  "yeehaw": "img/megawalls/hunter/Hippie Moon.png",
+  "ba boom": "img/megawalls/hunter/Animal Tamer.png",
+  "cake hunter": "img/megawalls/hunter/Cake Hunter.png",
+  "legendary hunter": "img/megawalls/hunter/Kuba the Caveman.png",
+  "one with nature": "img/megawalls/hunter/Annie.png",
+  "target eliminated": "img/megawalls/hunter/Bounty.png",
+  "hammerhead": "img/megawalls/shark/Shelly.png",
+  "great white": "img/megawalls/shark/Treasure.png",
+  "tiger shark": "img/megawalls/shark/Devourer.png",
+  "bull shark": "img/megawalls/shark/Wata.png",
+  "legendary shark": "img/megawalls/shark/Bblurgbl.png",
+  "oceans explorer": "img/megawalls/shark/Cosmo.png",
+  "oceans defender": "img/megawalls/shark/Chum.png",
+  "potions of death": "img/megawalls/arcanist/Drufus.png",
+  "hard as steel": "img/megawalls/arcanist/Steele.png",
+  "to infinity": "img/megawalls/arcanist/Chester.png",
+  "laser precision": "img/megawalls/arcanist/Byron Boy.png",
+  "legendary arcanist": "img/megawalls/arcanist/Emperor.png",
+  "abil spammer": "img/megawalls/arcanist/Archmage.png",
+  "tripleshot": "img/megawalls/arcanist/Arcana.png",
+  "maximum effort": "img/megawalls/dreadlord/Doomboy.png",
+  "birds eye": "img/megawalls/dreadlord/Crowe.png",
+  "rushlord": "img/megawalls/dreadlord/Rushlord.png",
+  "breadlord": "img/megawalls/dreadlord/Breadlord.png",
+  "legendary dreadlord": "img/megawalls/dreadlord/Sweets.png",
+  "gathering talent indeed": "img/megawalls/dreadlord/Frostlord.png",
+  "the chosen few": "img/megawalls/dreadlord/Conquest.png",
+  "its all ogre now": "img/megawalls/golem/Ogre.png",
+  "timber": "img/megawalls/golem/Bryce.png",
+  "taking the heat": "img/megawalls/golem/Flint.png",
+  "hammer down": "img/megawalls/golem/Victor.png",
+  "legendary golem": "img/megawalls/golem/Grey.png",
+  "judgement call": "img/megawalls/golem/Cooper.png",
+  "iron hearted": "img/megawalls/golem/Iglu.png",
+  "thunder": "img/megawalls/herobrine/Thunders.png",
+  "not a golem": "img/megawalls/herobrine/Larry.png",
+  "lucky sunny": "img/megawalls/herobrine/Sunny.png",
+  "multi kill": "img/megawalls/herobrine/Boxer.png",
+  "legendary herobrine": "img/megawalls/herobrine/Odin.png",
+  "seasons greetings": "img/megawalls/herobrine/Santabrine.png",
+  "world ender": "img/megawalls/herobrine/Jerry.png",
+  "derpbrines revenge": "img/megawalls/herobrine/Derpbrine.png",
+  "circle of trust": "img/megawalls/pigman/Super Pig.png",
+  "blowing bubbles": "img/megawalls/pigman/King Pig.png",
+  "collector": "img/megawalls/pigman/Kai.png",
+  "masterpiece": "img/megawalls/pigman/Picasso.png",
+  "legendary pigman": "img/megawalls/pigman/Bandit.png",
+  "young thug": "img/megawalls/pigman/Soos.png",
+  "tough skin": "img/megawalls/pigman/Goliath.png",
+  "alotv1": "img/megawalls/zombie/Toon.png",
+  "hug me": "img/megawalls/zombie/Jumbo.png",
+  "gone vegan": "img/megawalls/zombie/Taco.png",
+  "sleepytime": "img/megawalls/zombie/Yawn.png",
+  "legendary zombie": "img/megawalls/zombie/Gorilla.png",
+  "mr clutcherson": "img/megawalls/zombie/Furbie.png",
+  "unstoppable force": "img/megawalls/zombie/King Dainn.png",
+  "throwing hot coconuts": "img/megawalls/blaze/Mango.png",
+  "max render distance": "img/megawalls/blaze/Proto.png",
+  "blaze party": "img/megawalls/blaze/Scorch.png",
+  "high on ores": "img/megawalls/blaze/Chaze.png",
+  "legendary blaze": "img/megawalls/blaze/Ghaze.png",
+  "light em up": "img/megawalls/blaze/Matcho.png",
+  "blazecaller": "img/megawalls/blaze/Miquella.png",
+  "speed run": "img/megawalls/enderman/Dash.png",
+  "untouchable": "img/megawalls/enderman/Seeker.png",
+  "surprise": "img/megawalls/enderman/Gamer.png",
+  "sneak attack": "img/megawalls/enderman/Shadow.png",
+  "legendary enderman": "img/megawalls/enderman/Hoops.png",
+  "true teleporter": "img/megawalls/enderman/Inno.png",
+  "end to end": "img/megawalls/enderman/Plexi.png",
+  "whirlwind": "img/megawalls/shaman/Totem.png",
+  "much dogs": "img/megawalls/shaman/Doggo.png",
+  "stayin alive": "img/megawalls/shaman/Brian the Disco Bear.png",
+  "revenge of the wolves": "img/megawalls/shaman/Wolf.png",
+  "legendary shaman": "img/megawalls/shaman/Nikolaos.png",
+  "souls bound": "img/megawalls/shaman/Fina.png",
+  "call it a comeback": "img/megawalls/shaman/Avarion.png",
+  "living on the edge": "img/megawalls/shaman/Dauntless.png",
+  "you shall not pass": "img/megawalls/squid/Guardian.png",
+  "trust me im a doctor": "img/megawalls/squid/Doctor Squish.png",
+  "whirlpool": "img/megawalls/squid/K'Tulu.png",
+  "i feel sick": "img/megawalls/squid/Grumps.png",
+  "legendary squid": "img/megawalls/squid/Sea Warrior.png",
+  "fiery tomb": "img/megawalls/squid/Lava Kraken.png",
+  "everblind": "img/megawalls/squid/Glow Squid.png",
+  "peacekreeper": "img/megawalls/creeper/Johnny.png",
+  "ready set boom": "img/megawalls/creeper/Bomberdude.png",
+  "mass destruction": "img/megawalls/creeper/Destructo.png",
+  "remote detonation": "img/megawalls/creeper/Kreeft.png",
+  "legendary creeper": "img/megawalls/creeper/Cricket.png",
+  "collateral": "img/megawalls/creeper/Haze.png",
+  "instaboom": "img/megawalls/creeper/Steampunk.png",
+  "grave robber": "img/megawalls/pirate/Captain Bones.png",
+  "fire in the hole": "img/megawalls/pirate/Jameson.png",
+  "esc": "img/megawalls/pirate/Guy.png",
+  "death from above": "img/megawalls/pirate/Parrot Frank.png",
+  "legendary pirate": "img/megawalls/pirate/Fjodor.png",
+  "lady luck": "img/megawalls/pirate/Killigrew.png",
+  "burial at sea": "img/megawalls/pirate/Axe.png",
+  "think twice": "img/megawalls/sheep/Pablo.png",
+  "magical party": "img/megawalls/sheep/Mutton.png",
+  "perfect disguise": "img/megawalls/sheep/Lord Lambchop.png",
+  "woolly respite": "img/megawalls/sheep/Llama.png",
+  "teamkill": "img/megawalls/sheep/Ramsay.png",
+  "legendary sheep": "img/megawalls/sheep/Dolly.png",
+  "moodsetter": "img/megawalls/skeleton/Jazz Hands.png",
+  "bow down": "img/megawalls/skeleton/Space Armor.png",
+  "marksman": "img/megawalls/skeleton/Trick.png",
+  "skeletons best friend": "img/megawalls/skeleton/Spookster.png",
+  "legendary skeleton": "img/megawalls/skeleton/Red Ted.png",
+  "ranged training": "img/megawalls/skeleton/Symphony.png",
+  "explosive ending": "img/megawalls/skeleton/dave.png",
+  "skitterama": "img/megawalls/spider/Lethal.png",
+  "ninja 7s": "img/megawalls/spider/Vinny.png",
+  "geronimo": "img/megawalls/spider/Flutter.png",
+  "feels bad": "img/megawalls/spider/Frog.png",
+  "legendary spider": "img/megawalls/spider/Shade.png",
+  "i dont feel so good": "img/megawalls/spider/spoderman.png",
+  "one giant leap": "img/megawalls/spider/Earl.png",
+  "dirty dog": "img/megawalls/werewolf/Crunch.png",
+  "time to diet": "img/megawalls/werewolf/Bloo.png",
+  "hunting season": "img/megawalls/werewolf/Duster.png",
+  "time to feast": "img/megawalls/werewolf/Jake.png",
+  "legendary werewolf": "img/megawalls/werewolf/Cruze.png",
+  "howling moon": "img/megawalls/werewolf/Lupus.png",
+  "vegetarian": "img/megawalls/werewolf/Savage.png",
+  "the hand that feeds": "img/megawalls/angel/Athena.png",
+  "rewriting fate": "img/megawalls/angel/Goddess.png",
+  "guardian angel": "img/megawalls/angel/Chad.png",
+  "unwavering": "img/megawalls/angel/Eyeless.png",
+  "delaying the inevitable": "img/megawalls/angel/Puck.png",
+  "legendary angel": "img/megawalls/angel/Justice.png",
+  "dont blink": "img/megawalls/assassin/Hitguy.png",
+  "alchemy 100": "img/megawalls/assassin/Torny.png",
+  "thanks connor": "img/megawalls/assassin/Connor.png",
+  "morra": "img/megawalls/assassin/Blu.png",
+  "legendary assassin": "img/megawalls/assassin/Okamoto.png",
+  "contract killer": "img/megawalls/assassin/Shady.png",
+  "kingmaker": "img/megawalls/assassin/Baba Yaga.png",
+  "short circuit": "img/megawalls/automaton/Atomic.png",
+  "into the future": "img/megawalls/automaton/Fender.png",
+  "terminated script": "img/megawalls/automaton/Vacuum.png",
+  "failed experiment": "img/megawalls/automaton/Failed Experiment.png",
+  "legendary automaton": "img/megawalls/automaton/Crank.png",
+  "configuration": "img/megawalls/automaton/CCDA-3301.png",
+  "current objective survive": "img/megawalls/automaton/Soldier.png",
+  "gotcha": "img/megawalls/moleman/Truck.png",
+  "speedy mineman": "img/megawalls/moleman/Mineman Tyler.png",
+  "coming through": "img/megawalls/moleman/Jolly.png",
+  "constructor": "img/megawalls/moleman/Brick.png",
+  "legendary moleman": "img/megawalls/moleman/Graen.png",
+  "nom nom": "img/megawalls/moleman/Capybara.png",
+  "sixty feet under": "img/megawalls/moleman/Mole-rat.png",
+  "heavy eater": "img/megawalls/moleman/Rat.png",
+  "whats the big idea": "img/megawalls/phoenix/Sailor Sid.png",
+  "nights rest": "img/megawalls/phoenix/Owl.png",
+  "ashes to bashes": "img/megawalls/phoenix/Ember.png",
+  "cruising flames": "img/megawalls/phoenix/Fringe.png",
+  "legendary phoenix": "img/megawalls/phoenix/Falcon X.png",
+  "reborn": "img/megawalls/phoenix/Fae.png",
+  "simmer down": "img/megawalls/phoenix/Hotshot.png",
+  "frightful flames": "img/megawalls/dragon/Frightful.png",
+  "dragonborn": "img/megawalls/dragon/Jade.png",
+  "unbridled riches": "img/megawalls/dragon/Greg.png",
+  "ashes to ashes": "img/megawalls/dragon/Fury.png",
+  "dragons eye": "img/megawalls/dragon/Hydragon.png",
+  "legendary dragon": "img/megawalls/dragon/Pip.png",
+  "born talented": "img/megawalls/renegade/Bedrock.png",
+  "recycling": "img/megawalls/renegade/Traitor.png",
+  "inventory management": "img/megawalls/renegade/Ara.png",
+  "captain combo": "img/megawalls/renegade/Hood.png",
+  "legendary renegade": "img/megawalls/renegade/Morde.png",
+  "chased down": "img/megawalls/renegade/Deathskull.png",
+  "crossfire": "img/megawalls/renegade/Renny.png",
+  "chill sniper": "img/megawalls/snowman/Gus.png",
+  "school cancelled": "img/megawalls/snowman/Frozen.png",
+  "avalanche": "img/megawalls/snowman/Abominable.png",
+  "frosty friendship": "img/megawalls/snowman/Ice Bug.png",
+  "legendary snowman": "img/megawalls/snowman/Dobu.png",
+  "snowball fight": "img/megawalls/snowman/Feathers.png",
+  "grave digger": "img/megawalls/snowman/David.png"
+};
+
+const normalizedSkinRewards = {};
+Object.entries(customSkinRewards).forEach(([key, path]) => {
+  const normKey = key.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const parts = path.split('/');
+  const fileName = parts.pop();
+  const folder = parts.join('/');
+  
+  const cleanName = fileName.replace('.png', '');
+  const noSpaceFile = fileName.replace(/ /g, '');
+  
+  const safeFolder = folder.startsWith('/') ? folder : '/' + folder;
+  
+  normalizedSkinRewards[normKey] = {
+    path: `${safeFolder}/${noSpaceFile}`,
+    name: cleanName,
+    mwClass: parts.length > 2 ? parts[2].toLowerCase() : null // extracts class from 'img/megawalls/cow/...'
+  };
+});
+
+window.toggleLegacyMode = function() {
+  isLegacyMode = !isLegacyMode;
+  document.getElementById('toggle-legacy-btn').classList.toggle('active', isLegacyMode);
+  updateProgressDisplay();
+  populateFilters();
+  renderDashboard();
+};
+
+window.toggleShowCompleted = function() {
+  isShowCompleted = !isShowCompleted;
+  localStorage.setItem('litstats_showCompleted', isShowCompleted);
+  document.getElementById('toggle-completed-btn').classList.toggle('active', isShowCompleted);
+  populateFilters();
+  renderDashboard();
+};
+
+window.setLegacyMode = function(mode) {
+  isLegacyMode = mode;
+  document.getElementById('tab-normal').classList.toggle('active', !mode);
+  document.getElementById('tab-legacy').classList.toggle('active', mode);
+  updateProgressDisplay();
+  populateFilters();
+  renderDashboard();
+};
+
+window.clearSearch = function(id) {
+  const input = document.getElementById(id);
+  if(input) {
+    input.value = '';
+    if(id === 'achSearch') handleAchSearch();
+  }
+};
+
+window.pinCurrentPlayer = function() {
+  if (!globalPlayerData) return;
+  const currentPinned = localStorage.getItem('litstats_pinnedPlayer');
+  
+  if (currentPinned === globalPlayerData.username) {
+    localStorage.removeItem('litstats_pinnedPlayer');
+    document.getElementById('pinned-player-container').classList.add('hidden');
+  } else {
+    localStorage.setItem('litstats_pinnedPlayer', globalPlayerData.username);
+    loadPinnedPlayer();
+  }
+};
+
+function loadPinnedPlayer() {
+  const pinned = localStorage.getItem('litstats_pinnedPlayer');
+  const container = document.getElementById('pinned-player-container');
+  if (pinned) {
+    container.innerHTML = `📌 ${pinned}`;
+    container.classList.remove('hidden');
+    container.onclick = () => window.location.href = `/cabinet?player=${pinned}`;
+  }
+}
 
 const compGames = ["Mega Walls", "Pit", "UHC"];
 
 window.activeTierView = {}; 
-window.limits = { tiered: 24, challenge: 24, recent: 24 };
+window.limits = { tiered: 48, challenge: 48, recent: 48 };
 let viewMode = 'all'; 
 let ignoredAchs = JSON.parse(localStorage.getItem('litstats_ignored')) || [];
 let bookmarkedAchs = JSON.parse(localStorage.getItem('litstats_bookmarked')) || [];
@@ -61,8 +340,69 @@ function getFlagUrl(c) {
 
 const TAG_DB = {
   "Untouched": { type: "Broken", tip: "Obtainable on Dwarven, Nordic, Outback and Jungle, if these maps don't work, try leave a game you know your team will win, or eat a gapple before your absorption ends when the walls fall" },
+  "Hot Potato": { type: "Secret", desc: "Pass the hot potato after fishing it" },
+  "Main Lobby: Keep Quiet": { type: "Secret", desc: "Talk to Albus, the librarian", tip: "Go to 143 66 -31 and sneak click the NPC three times" },
+  "Main Lobby: Code Breaker": { type: "Secret", desc: "Enter the code into the vault", tip: "You must enter a 3 part code at the coordinates -33 16 90 and go inside. The first number is from the librarian after sneak them clicking 3 times. The second number is found by catching a secret fish and hovering over the text in chat, and the third is located at 208 37 -158. Put these in this same order, to open the vault!" },
+  "Main Lobby: Crash Landed": { type: "Secret", tip: "Enter the SkyBlock portal at -158, 128, 115" },
+  "Main Lobby: Hypixel Historian": { type: "Secret", tip: "Click on every bookshelf with green particles in the library to read them, each of them will be at eye level on the ground" },
+  "Sneaky Snake": { type: "Secret", desc: "Score 50 points in the snake lobby minigame", tip: "The snake arcade machines are located behind the game NPCs, up the stairs" },
+  "Dragon Wars: Voidseeker": { type: "Secret", desc: "Jump into the void", tip: "Climb up the mountain using your jump boost and wither blasts and jump off" },
+  "Dropper: Well, Well, Well": { type: "Map", map: "Floating Island", desc: "Only on the Floating Island map, you must drop down small jumps at a time to not die, and click on the frog in the well, near the bottom of the map" },
+  "Ender Spleef: No Powerhouse": { type: "Secret", desc: "Win without using any powerups" },
+  "Hypixel Says: Rebel Movement": { type: "Secret", desc: "Jump off when you are told to stand still" },
+  "Zombies: Technical Difficulties!": { type: "Secret", desc: "Interact with all of the computers on the prison map" },
+  "Zombies: What Lies Beyond?": { type: "Secret", desc: "Find the Black Hole gun, found behind the cracked wall in the storage room", tip: "Place a turret on every single teleport pad and look for the message in chat. Then place a turret in front of the cracked wall in the storage room to access the Black Hole gun" },
+  "Disasters: Titanfall": { type: "Secret", desc: "Kill a Giant during the Zombie Apocalypse", tip: "This is easier as Werewolf as you get a weapon, you can also use a Stone Sword from a powerup or kill it with lava" },
+  "Disasters: Dragon Tamer": { type: "Secret", desc: "Hit a dragon with a snowball powerup to force it to change directions" },
+  "Perfectceptionception": { type: "Secret", desc: "Complete every round first and with 100% accuracy in a single Speed Builders game" },
+  "Configuration": { type: "Secret", desc: "Final kill 3 players from one team, 2 from another, and 1 from the third in a single game", tip: "This unlocks a skin for Automaton, though can be done on any class" },
+  "We're Set": { type: "Map", map: "Gold Rush", desc: "Open the bank vault on the map Gold Rush", tip: "Don't mind the quality, but here's a video tutorial: https://www.youtube.com/watch?v=jSd1P0eiiy0" },
+  "Dragon Slayer": { type: "Secret", desc: "Kill an Ender Dragon" },
+  "That's... not the exit...": { type: "Secret", desc: "Help Ikrus in the Rift", tip: "It doesn't matter what dialogue options you pick" },
+  "\"If you wish to defeat me...\"": { type: "Secret", desc: "Defeat Sun Gecko in the Rift" },
+  "Zoop!": { type: "Secret", desc: "Pop a link of 10 Puffs in the Rift" },
+  "The ultimate scheme": { type: "Secret", desc: "Secure the final Timecharm in the Rift" },
+  "Tragedy reversed": { type: "Secret", desc: "Murder your past self in the Rift quest" },
+  "Lily Mania": { type: "Secret", desc: "ngl idk this secret ap" },
+  "Top of the Wizard food chain": { type: "Secret", desc: "Become Wizardman in the Rift quest" },
+  "Finally over...": { type: "Secret", desc: "Murder Special Agent Amog in the Rift quest" },
+  "The first to have ever done it": { type: "Secret", desc: "Return back from the breach" },
+  "Genius": { type: "Secret", desc: "Obtain a Free Will from Ubik", tip: "Select the right number from 1 to 100 when talking to Ubik on the Rift's Mountaintop. It has often been 13-15" },
+  "What the flip?": { type: "Secret", desc: "Flip the Iceberg in the Critter Safari", tip: "Tip the Iceberg at -68, 66, -43 by jumping on the edge around 20 times" },
+  "The Miracle in a Sunbeam": { type: "Secret", desc: "Encounter a Rainbug", tip: "Ring all 7 bells in the Critter Safari. Coordinates (1) -4, 96, -42 (2) 47, 55, -7 (3) -30, 125, 59 (4) -90, 109, 16 (5) -50, 81, 0 (6) -96, 46, -57 (7) -68, 66, -43. Last one requires an Icebreaker" },
+  "Hasta la vista!": { type: "Secret", desc: "Receive a postcard from your minion", tip: "Give a Free Will item to a minion in order to activate the chance of a minion leaving, lower tier minions have a higher chance to leave" },
+  "[SkyBlock] Maximum Power": { type: "Secret", desc: "Defeat Sun Gecko with all 7 modifiers enabled" },
+  "Too much joy": { type: "Secret", desc: "Sometimes too much happiness can kill you.", tip: "Wear the Sunflower Head and Right Click 20 people. Accept the message in chat so you die. https://youtu.be/TiQxrBK3Llw" },
+  "Cleaning House": { type: "Secret", desc: "Break all cobwebs in the Critter Safari", tip: "Located in the Haunted House and the small shack next to it" },
+  "Empty Flower Pot?": { type: "Secret", desc: "Place a flower in the Park's flower pot", tip: "You must place an Oxeye Daisy in the Park's flower pot, you will have to click for 5 minutes straight or longer and hear the sound increase in pitch, if it resets it means you must start over" },
+  "I am Superior": { type: "Secret", desc: "Defeat a Superior Dragon", tip: "There is a 4% chance for a Superior Dragon to spawn once all 8 eyes are placed, you must get at least 1 hit on the Dragon to get the achievement" },
+  "Sirius Business": { type: "Secret", desc: "Participate in the Dark Auction", tip: "Every hour at 0:55, 1:55... etc. an NPC called Sirius will spawn in the Wilderness at 91, 75, 176. Click on him within 35 seconds, you need a minimum of 400,000 but it is recommended to bring multiple million. Stay for the entire auction to get the achievement" },
+  "Shrimp!?!": { type: "Secret", desc: "Obtain Shrimp the Traveler Fish", tip: "Find Shrimp by mining glowing blocks in the end, or from the Auction House. Drop it on the ground and pick it up to get the achievement" },
+  "Royal Conversation": { type: "Secret", desc: "Listen to the full Royal Resident's dialogue in the Dwarven Mines", tip: "At the coordinates 63 204 200, there is an NPC who you have to talk to for over 30 minutes, he moves to 65 211 199, which you must then talk to for another 6 hours, while he counts down from 5000" },
+  "Existential Revelations": { type: "Secret", desc: "Find the mushroom in the catacombs", tip: "Find the mushroom room in dungeons, then use a Superboom TNT to blow up the wall in that room. Ignore the NPC behind the wall, instead click one of the mushrooms in the group of 3 to get the achievement" },
+  "Defeating Death": { type: "Secret", desc: "Kill a Deathmite in a dungeon", tip: "In the Ancient evil tomb room, use Superboom TNT on the Diorite blocks and kill the deathmite that has 1 billion HP. Another way is to die as mage and suffocate it using an Insta wall as a spectator. There is also a room with lava in the middle, you can use a Superboom TNT there to get it stuck to kill it" },
+  "I knew it!": { type: "Secret", desc: "Wear the full Monster Hunter armor set", tip: "Wear the Skeleton Helmet, Guardian Chestplate, Creeper Pants, and the Spider Boots at the same time" },
+  "Rebirth": { type: "Secret", desc: "Kill a fairy in the fairy room while dead", tip: "The fairy room is pink on your map, visit once you are dead and kill a fairy" },
+  "The Cult of the Fallen Star": { type: "Secret", desc: "Participate in a Cult of the Fallen Star meeting", tip: "Visit Cliffside Veins in the Dwarven Mines at -45, 193, 45. To enter, players need to arrive between 0 AM and 6 AM in-game time on either the 7th, 14th, 21st or 28th day of each SkyBlock month. The entrance to the cult's cave is at -26, 198, 40. Attend a meeting to get the achievement" },
+  "Nightmare": { type: "Secret", desc: "Complete Bednom's secret quest", tip: "Go to -31, 214, -90 in the Dwarven Mines, talk to Bednom on 3 different SkyBlock days. After the third day, go to the treasure at 3, 177, -69 and speak to him again for the achievement" },
+  "The Ring": { type: "Secret", desc: "Drop an Eternal Flame Ring into the lava in the special room in the Crystal Hollows", tip: "Killing a fished up Flaming Worm, Lava Blaze, and Lava Pigman each have a chance to drop an Eternal Flame Ring, or you can buy one. Find the ring shaped room with a chest in the middle, and drop your ring in lava for the achievement" },
+  "This is the Way": { type: "Secret", desc: "Find the Belly of the Beast", tip: "In the Crimson Isles, go to the coordinates -530 40 -890 and get eaten by the ghast mob" },
+  "The Itsy Bitsy Spider": { type: "Secret", desc: "Feed a player to Aranya", tip: "Go to the cave in the Crimson Isles at the coordinates -335 -1003, bring someone else with no armor to walk up to it and get killed, only you will get the achievement" },
+  "[SkyBlock] Geronimo!": { type: "Secret", desc: "Get launched into the air by the Blazing Volcano", tip: "Every 30 minutes the lava rises and the Blazing Volcano erupts in the Crimson Isles, stand at the top when the volcano errupts to get launched" },
+  "Meal fit for a King": { type: "Secret", desc: "Put a Trophy Fish into the Melancholic Viking's furnace at the house in the Spruce Woods" },
+  "Wasted Potential": { type: "Secret", desc: "Feed a Staff of the Volcano to a Cow", tip: "Fish up a Fire Eel with a 5% chance to drop one or buy one" },
+  "What is this place...": { type: "Secret", desc: "Enter the secret room in The End", tip: "On the large outer spikes, enter the room at -659 36 -193" },
+  "Jake's Mystery": { type: "Secret", desc: "Complete Beth's Quest", tip: "Accept Beth's 3rd garden offer, then she will tell you to visit 175 44 -470 on the Mushroom Island, click on the dirt to enter. After Beth's 4th garden visit, go back down the ladder and talk to Jake" },
+  "End Credits": { type: "Secret", desc: "Face your demise with the Temporal Pillar in the Rift", tip: "Stand in front of and die to an Enderman in the Rift's main village" },
+  "Responsible Pet Owner": { type: "Secret", desc: "Have your rabbit get squashed in the Half-Eaten Cave", tip: "In the cave by Marco's flower house in the Rift, explode some hay with your Horsezooka and let your rabbit die in the respawning hay" },
+  "One Pound Slap": { type: "Secret", desc: "Hit a player off a cliff using the Slap Fish", tip: "Obtain the Slap Fish from the Pandora's Box craft" },
+  "Wool Wars: Enderman": { type: "Secret", desc: "Go through 15 portals in one round" },
+  "Capture the Wool: Magician": { type: "Secret", desc: "Capture 2 Wools in a single game" },
+  "Sheep Wars: Shopping for Wool": { type: "Secret", desc: "Break every single magic wool in a round", tip: "Magic Wool spawns in the sky on a fixed timer, look in chat for when they spawn" },
+  "That Time of Year": { type: "Secret", desc: "Find the dancing Spooky Scary Skeleton in the Main Lobby", tip: "Under the well in the farm, enter the room with a painting to find the Skeleton" },
+  "New Years Celebrations": { type: "Secret", desc: "Watch the fireworks go off in the SkyBlock Hub or Main lobby", tip: "On New Years Eve, fireworks will display at the end of every hour 0:00, 1:00 etc." },
   "Prestige": { type: "Prestige", level: 15 },
-  "Renown": { renown: 2000 },
+  "Renown": { type: "Renown", renown: 2000 },
   "Gold": { type: "Gold", cost: "30,000,000" },
   "All hail the King!": { type: "Prestige", level: 1 },
   "Mysticism": { type: "Prestige", level: 1, renown: 10, tip: "Mysticism unlocks at Prestige 1" },
@@ -154,86 +494,84 @@ const TAG_DB = {
   "This Isn't A Funfair ... Maybe": { type: "Map", map: "Hypixel World" },
   "Wicked Ride": { type: "Map", map: "Hypixel World" },
   "You Did Not See That Coming!": { type: "Map", map: "Hypixel World" },
-  "We're Set": { type: "Map", map: "Gold Rush" },
   "It's High Noon": { type: "Map", map: "Gold Rush" },
   "Cacti Cleared": { type: "Map", map: "Gold Rush" },
   "Storm Chaser": { type: "Map", map: "Cruise Ship" },
   "Game-ception": { type: "Map", map: "Cruise Ship" },
-  "JAWS!": { type: "Map", map: "Aquarium" },
-  "Dropper: Well, Well, Well": { type: "Map", map: "Floating Island" }
+  "JAWS!": { type: "Map", map: "Aquarium" }
 };
 
 const MWSkinData = {
-  "moobrawl": { class: "cow", stat: "moo_brawl", max: 600 },
-  "greedylouis": { class: "cow", stat: "greedy_louis", max: 500 },
-  "biologicalrestoration": { class: "cow", stat: "bio_restore", max: 2500 },
-  "beyondthegrave": { class: "cow", stat: "beyond_the_grave", max: 15 },
-  "treasurehunter": { class: "hunter", stat: "treasure_hunter", max: 300 },
-  "cakehunter": { class: "hunter", stat: "cake_hunter", max: 150 },
-  "onewithnature": { class: "hunter", stat: "one_with_nature", max: 50 },
-  "hammerhead": { class: "shark", stat: "hammerhead", max: 100 },
-  "oceansexplorer": { class: "shark", stat: "explorer", max: 1000 },
-  "oceansdefender": { class: "shark", stat: "defender", max: 250 },
-  "rushlord": { class: "dreadlord", stat: "rushlord", max: 20000 },
-  "breadlord": { class: "dreadlord", stat: "breadlord", max: 617 },
-  "gatheringtalentindeed": { class: "dreadlord", stat: "gathering_ti", max: 500 },
-  "timber": { class: "golem", stat: "timber", max: 5000 },
-  "ironhearted": { class: "golem", stat: "iron_hearted", max: 1000 },
-  "chestsfound": { class: "herobrine", stat: "lucky_sunny", max: 1000 },
-  "luckysunny": { class: "herobrine", stat: "lucky_sunny", max: 1000 },
-  "seasonsgreetings": { class: "herobrine", stat: "seasons_greetings", max: 1000 },
-  "sleepytime": { class: "zombie", stat: "sleepytime", max: 50 },
-  "mrclutcherson": { class: "zombie", stat: "clutcherson", max: 100 },
-  "unstoppableforce": { class: "zombie", stat: "unstoppable_force", max: 25 },
-  "potionsofdeath": { class: "arcanist", stat: "potions_of_death", max: 8 },
-  "hardassteel": { class: "arcanist", stat: "hard_as_steel", max: 5000 },
-  "abilspammer": { class: "arcanist", stat: "abil_spammer", max: 1000 },
-  "surprise": { class: "enderman", stat: "surprise", max: 2500 },
-  "sneakattack": { class: "enderman", stat: "sneak_attack", max: 100 },
-  "highonores": { class: "blaze", stat: "high_on_ores", max: 2000 },
-  "lightemup": { class: "blaze", stat: "light_em_up", max: 10 },
-  "blazecaller": { class: "blaze", stat: "blazecaller", max: 500 },
-  "marksman": { class: "skeleton", stat: "marksman", max: 25 },
-  "skeletonsbestfriend": { class: "skeleton", stat: "skele_best_friend", max: 50 },
-  "geronimo": { class: "spider", stat: "geronimo", max: 25000 },
-  "onegiantleap": { class: "spider", stat: "one_giant_leap", max: 250 },
-  "idontfeelsogood": { class: "spider", stat: "idfsg", max: 600 },
-  "massdestruction": { class: "creeper", stat: "mass_destruction", max: 3000 },
-  "instaboom": { class: "creeper", stat: "instaboom", max: 20 },
-  "dontblink": { class: "assassin", stat: "dont_blink", max: 1200 },
-  "alchemy100": { class: "assassin", stat: "alchemy_100", max: 1000 },
-  "dirtydog": { class: "werewolf", stat: "dirty_dog", max: 15 },
-  "timetodiet": { class: "werewolf", stat: "time_to_diet", max: 750 },
-  "huntingseason": { class: "werewolf", stat: "hunting_season", max: 50000 },
-  "howlingmoon": { class: "werewolf", stat: "howling_moon", max: 1000 },
-  "nightsrest": { class: "phoenix", stat: "nights_rest", max: 1000 },
-  "terminatedscript": { class: "automaton", stat: "terminated_script", max: 3000 },
-  "constructor": { class: "moleman", stat: "constructor", max: 15000 },
-  "heavyeater": { class: "moleman", stat: "heavy_eater", max: 1000 },
-  "nomnom": { class: "moleman", stat: "nom_nom", max: 1000 },
-  "recycling": { class: "renegade", stat: "recycling", max: 3000 },
-  "captaincombo": { class: "renegade", stat: "captain_combo", max: 20000 },
-  "chaseddown": { class: "renegade", stat: "chased_down", max: 20 },
-  "schoolcancelled": { class: "snowman", stat: "school_cancelled", max: 7200 },
-  "frostyfriendship": { class: "snowman", stat: "frosty_friendship", max: 500 },
-  "australianwinterseasonal": { class: "snowman", stat: "australian_winter", max: 500 },
-  "australianwinter": { class: "snowman", stat: "australian_winter", max: 500 },
-  "muchdogs": { class: "shaman", stat: "much_dogs", max: 500 },
-  "revengeofthewolves": { class: "shaman", stat: "revenge_of_the_wolves", max: 5 },
-  "livingontheedge": { class: "shaman", stat: "spring_hero", max: 250 },
-  "collector": { class: "pigman", stat: "collector", max: 500 },
-  "youngthug": { class: "pigman", stat: "young_thug", max: 5 },
-  "toughskin": { class: "pigman", stat: "tough_skin", max: 500 },
-  "graverobber": { class: "pirate", stat: "grave_robber", max: 100 },
-  "deathfromabove": { class: "pirate", stat: "death_from_above", max: 12 },
-  "burialatsea": { class: "pirate", stat: "burial_at_sea", max: 5 },
-  "youshallnotpass": { class: "squid", stat: "you_shall_not_pass", max: 10 },
-  "trustmeimadoctor": { class: "squid", stat: "trust_me_im", max: 2500 },
-  "everblind": { class: "squid", stat: "everblind", max: 250 },
-  "rewritingfate": { class: "angel", stat: "rewriting_fate", max: 250 },
-  "ashestoashes": { class: "dragon", stat: "ashes_to_ashes", max: 5 },
-  "perfectdisguise": { class: "sheep", stat: "perfect_disguise", max: 100 },
-  "woollyrespite": { class: "sheep", stat: "woolly_respite", max: 250 }
+  "moobrawl": { class: "Cow", stat: "moo_brawl", max: 600 },
+  "greedylouis": { class: "Cow", stat: "greedy_louis", max: 500 },
+  "biologicalrestoration": { class: "Cow", stat: "bio_restore", max: 2500 },
+  "beyondthegrave": { class: "Cow", stat: "beyond_the_grave", max: 15 },
+  "treasurehunter": { class: "Hunter", stat: "treasure_hunter", max: 300 },
+  "cakehunter": { class: "Hunter", stat: "cake_hunter", max: 150 },
+  "onewithnature": { class: "Hunter", stat: "one_with_nature", max: 50 },
+  "hammerhead": { class: "Shark", stat: "hammerhead", max: 100 },
+  "oceansexplorer": { class: "Shark", stat: "explorer", max: 1000 },
+  "oceansdefender": { class: "Shark", stat: "defender", max: 250 },
+  "rushlord": { class: "Dreadlord", stat: "rushlord", max: 20000 },
+  "breadlord": { class: "Dreadlord", stat: "breadlord", max: 617 },
+  "gatheringtalentindeed": { class: "Dreadlord", stat: "gathering_ti", max: 500 },
+  "timber": { class: "Golem", stat: "timber", max: 5000 },
+  "ironhearted": { class: "Golem", stat: "iron_hearted", max: 1000 },
+  "chestsfound": { class: "Herobrine", stat: "lucky_sunny", max: 1000 },
+  "luckysunny": { class: "Herobrine", stat: "lucky_sunny", max: 1000 },
+  "seasonsgreetings": { class: "Herobrine", stat: "seasons_greetings", max: 1000 },
+  "sleepytime": { class: "Zombie", stat: "sleepytime", max: 50 },
+  "mrclutcherson": { class: "Zombie", stat: "clutcherson", max: 100 },
+  "unstoppableforce": { class: "Zombie", stat: "unstoppable_force", max: 25 },
+  "potionsofdeath": { class: "Arcanist", stat: "potions_of_death", max: 8 },
+  "hardassteel": { class: "Arcanist", stat: "hard_as_steel", max: 5000 },
+  "abilspammer": { class: "Arcanist", stat: "abil_spammer", max: 1000 },
+  "surprise": { class: "Enderman", stat: "surprise", max: 2500 },
+  "sneakattack": { class: "Enderman", stat: "sneak_attack", max: 100 },
+  "highonores": { class: "Blaze", stat: "high_on_ores", max: 2000 },
+  "lightemup": { class: "Blaze", stat: "light_em_up", max: 10 },
+  "blazecaller": { class: "Blaze", stat: "blazecaller", max: 500 },
+  "marksman": { class: "Skeleton", stat: "marksman", max: 25 },
+  "skeletonsbestfriend": { class: "Skeleton", stat: "skele_best_friend", max: 50 },
+  "geronimo": { class: "Spider", stat: "geronimo", max: 25000 },
+  "onegiantleap": { class: "Spider", stat: "one_giant_leap", max: 250 },
+  "idontfeelsogood": { class: "Spider", stat: "idfsg", max: 600 },
+  "massdestruction": { class: "Creeper", stat: "mass_destruction", max: 3000 },
+  "instaboom": { class: "Creeper", stat: "instaboom", max: 20 },
+  "dontblink": { class: "Assassin", stat: "dont_blink", max: 1200 },
+  "alchemy100": { class: "Assassin", stat: "alchemy_100", max: 1000 },
+  "dirtydog": { class: "Werewolf", stat: "dirty_dog", max: 15 },
+  "timetodiet": { class: "Werewolf", stat: "time_to_diet", max: 750 },
+  "huntingseason": { class: "Werewolf", stat: "hunting_season", max: 50000 },
+  "howlingmoon": { class: "Werewolf", stat: "howling_moon", max: 1000 },
+  "nightsrest": { class: "Phoenix", stat: "nights_rest", max: 1000 },
+  "terminatedscript": { class: "Automaton", stat: "terminated_script", max: 3000 },
+  "constructor": { class: "Moleman", stat: "constructor", max: 15000 },
+  "heavyeater": { class: "Moleman", stat: "heavy_eater", max: 1000 },
+  "nomnom": { class: "Moleman", stat: "nom_nom", max: 1000 },
+  "recycling": { class: "Renegade", stat: "recycling", max: 3000 },
+  "captaincombo": { class: "Renegade", stat: "captain_combo", max: 20000 },
+  "chaseddown": { class: "Renegade", stat: "chased_down", max: 20 },
+  "schoolcancelled": { class: "Snowman", stat: "school_cancelled", max: 7200 },
+  "frostyfriendship": { class: "Snowman", stat: "frosty_friendship", max: 500 },
+  "australianwinterseasonal": { class: "Snowman", stat: "australian_winter", max: 500 },
+  "australianwinter": { class: "Snowman", stat: "australian_winter", max: 500 },
+  "muchdogs": { class: "Shaman", stat: "much_dogs", max: 500 },
+  "revengeofthewolves": { class: "Shaman", stat: "revenge_of_the_wolves", max: 5 },
+  "livingontheedge": { class: "Shaman", stat: "spring_hero", max: 250 },
+  "collector": { class: "Pigman", stat: "collector", max: 500 },
+  "youngthug": { class: "Pigman", stat: "young_thug", max: 5 },
+  "toughskin": { class: "Pigman", stat: "tough_skin", max: 500 },
+  "graverobber": { class: "Pirate", stat: "grave_robber", max: 100 },
+  "deathfromabove": { class: "Pirate", stat: "death_from_above", max: 12 },
+  "burialatsea": { class: "Pirate", stat: "burial_at_sea", max: 5 },
+  "youshallnotpass": { class: "Squid", stat: "you_shall_not_pass", max: 10 },
+  "trustmeimadoctor": { class: "Squid", stat: "trust_me_im", max: 2500 },
+  "everblind": { class: "Squid", stat: "everblind", max: 250 },
+  "rewritingfate": { class: "Angel", stat: "rewriting_fate", max: 250 },
+  "ashestoashes": { class: "Dragon", stat: "ashes_to_ashes", max: 5 },
+  "perfectdisguise": { class: "Sheep", stat: "perfect_disguise", max: 100 },
+  "woollyrespite": { class: "Sheep", stat: "woolly_respite", max: 250 }
 };
 
 window.handleTopSearch = function() {
@@ -248,12 +586,19 @@ window.toggleSection = function(wrapperId, sectionId) {
   const wrap = document.getElementById(wrapperId);
   const sec = document.getElementById(sectionId);
   if(wrap && sec) {
-    wrap.classList.toggle('hidden');
+    const isHidden = wrap.classList.toggle('hidden');
     sec.classList.toggle('collapsed-section');
+    localStorage.setItem('litstats_collapse_' + wrapperId, isHidden);
+
+    if (wrapperId === 'col-tiered-wrapper') {
+      document.getElementById('col-challenge-section').classList.toggle('full-width', isHidden);
+    } else if (wrapperId === 'col-challenge-wrapper') {
+      document.getElementById('col-tiered-section').classList.toggle('full-width', isHidden);
+    }
   }
 };
 
-const TRUE_MAX_POSSIBLE_AP = 32535;
+const TRUE_MAX_POSSIBLE_AP = 32510;
 const TRUE_MAX_POSSIBLE_ACHS = 3500;
 
 window.toggleProgressMode = function() {
@@ -262,17 +607,23 @@ window.toggleProgressMode = function() {
   updateProgressDisplay();
 };
 
+window.toggleMwClass = function(cls) {
+  activeMwClass = (activeMwClass === cls) ? null : cls;
+  
+  document.querySelectorAll('.mw-class-pill').forEach(pill => {
+    pill.classList.toggle('active', pill.innerText.trim() === activeMwClass);
+  });
+  
+  renderDashboard();
+};
+
 function updateProgressDisplay() {
   if(!globalPlayerData) return;
-  const ap = globalPlayerData.achievementPoints || 0;
-  
-  let unlockedCount = globalPlayerData.globalTotals?.unlockedAchs || 0;
-  let totalCount = globalPlayerData.globalTotals?.possibleAchs || TRUE_MAX_POSSIBLE_ACHS;
-  let possibleAP = TRUE_MAX_POSSIBLE_AP;
-
-  if (unlockedCount === 0 && globalPlayerData.missingAchievements) {
-    unlockedCount = Math.max(0, totalCount - globalPlayerData.missingAchievements.length);
-  }
+  const glTotals = isLegacyMode ? globalPlayerData.legacyGlobalTotals : globalPlayerData.globalTotals;
+  const ap = glTotals?.unlockedAP || 0;
+  let possibleAP = glTotals?.possibleAP || (isLegacyMode ? 1000 : 32510);
+  let unlockedCount = glTotals?.unlockedAchs || 0;
+  let totalCount = glTotals?.possibleAchs || (isLegacyMode ? 100 : 3500);
   
   if (progressDisplayMode === 'points') {
     const percentage = Math.min(100, (ap / possibleAP) * 100).toFixed(2);
@@ -432,6 +783,10 @@ function toggleGameFilter(gameName) {
     activeGameFilters.has(gameName) ? activeGameFilters.delete(gameName) : activeGameFilters.add(gameName);
   }
   
+  if (!activeGameFilters.has('Mega Walls')) {
+    activeMwClass = null;
+  }
+  
   document.querySelectorAll('.filter-pill-btn').forEach(btn => {
     let name = btn.getAttribute('data-gamename');
     btn.classList.toggle('active', activeGameFilters.has(name));
@@ -474,23 +829,16 @@ function toggleHighestTier() {
   renderDashboard();
 }
 
-function toggleHideHistory() {
-  isHistoryHidden = document.getElementById('hideHistoryToggle').checked;
-  localStorage.setItem('litstats_historyHidden', isHistoryHidden);
-  document.getElementById('history-column-wrapper').style.display = isHistoryHidden ? 'none' : 'flex';
-}
-
-function toggleHideMaxes() {
-  isMaxesHidden = document.getElementById('hideMaxesToggle').checked;
-  localStorage.setItem('litstats_maxesHidden', isMaxesHidden);
-  document.getElementById('maxed-column').style.display = isMaxesHidden ? 'none' : 'block';
-}
-
-function populateFilters() {
+window.populateFilters = function() {
   const container = document.getElementById('gameFilterContainer');
   if (!globalPlayerData) return;
   
-  const games = [...new Set((globalPlayerData.missingAchievements || []).map(a => a.game))].sort();
+  let dataRef = isLegacyMode ? globalPlayerData.legacyMissing : globalPlayerData.missingAchievements;
+  if (isShowCompleted) {
+    dataRef = dataRef.concat(isLegacyMode ? globalPlayerData.legacyCompleted : globalPlayerData.completedAchievements);
+  }
+
+  const games = [...new Set(dataRef.map(a => a.game))].sort();
   const isMobile = window.innerWidth <= 800;
   
   let html = `<div class="filter-icon-grid">`;
@@ -499,31 +847,27 @@ function populateFilters() {
     let isDisabled = isCompExcluded && compGames.includes(cleanName) ? 'disabled' : '';
     let isActive = activeGameFilters.has(cleanName) ? 'active' : '';
     
-    const gTotals = globalPlayerData.gameTotals?.[cleanName];
-    let percent = 0;
-    if (gTotals && gTotals.possibleAchs > 0) {
-      percent = (gTotals.unlockedAchs / gTotals.possibleAchs) * 100;
-    } else if (globalPlayerData.gamePercentages?.[`Max ${cleanName}`]) {
-      percent = Number(globalPlayerData.gamePercentages[`Max ${cleanName}`]);
-    } else if (globalPlayerData.gamePercentages?.[cleanName]) {
-      percent = Number(globalPlayerData.gamePercentages[cleanName]);
-    }
-
-    let color = percent >= 80 ? 'var(--tier-1)' : percent >= 40 ? 'var(--tier-2)' : 'var(--tier-4)';
+    const gameTots = isLegacyMode ? globalPlayerData.legacyGameTotals?.[cleanName] : globalPlayerData.gameTotals?.[cleanName];
+    let percent = gameTots && gameTots.possibleAchs > 0 ? (gameTots.unlockedAchs / gameTots.possibleAchs) * 100 : 0;
+    let isMaxed = percent >= 100;
     
+    let maxClass = isMaxed && isShowCompleted ? 'maxed-game-pill' : '';
+    let color = percent >= 80 ? 'var(--tier-1)' : percent >= 40 ? 'var(--tier-2)' : 'var(--tier-4)';
+    if(isMaxed && isShowCompleted) color = '#00e6ff'; 
+
     let statLabel = `${Math.round(percent)}%`;
-    if (!isMobile && gTotals) {
+    if (!isMobile && gameTots) {
       if (filterLabelMode === 'points') {
-        statLabel = `${gTotals.unlockedAP.toLocaleString()} / ${gTotals.possibleAP.toLocaleString()}`;
+        statLabel = `${gameTots.unlockedAP.toLocaleString()} / ${gameTots.possibleAP.toLocaleString()}`;
       } else if (filterLabelMode === 'achs') {
-        statLabel = `${gTotals.unlockedAchs} / ${gTotals.possibleAchs}`;
+        statLabel = `${gameTots.unlockedAchs} / ${gameTots.possibleAchs}`;
       } else {
         statLabel = `${percent.toFixed(1)}%`;
       }
     }
 
     html += `
-      <div class="filter-pill-btn ${isActive} ${isDisabled}" data-gamename="${cleanName}" onclick="toggleGameFilter('${cleanName}')" title="${cleanName} (${percent.toFixed(1)}%)">
+      <div class="filter-pill-btn ${isActive} ${isDisabled} ${maxClass}" data-gamename="${cleanName}" onclick="toggleGameFilter('${cleanName}')" title="${cleanName} (${percent.toFixed(1)}%)">
         <div class="filter-pill-fill" style="width: ${percent}%; background-color: ${color};"></div>
         <img src="${getGameIconUrl(cleanName)}" class="filter-pill-icon" onerror="this.style.display='none'">
         <span class="filter-pill-name">${cleanName}</span>
@@ -546,11 +890,76 @@ function renderDashboard() {
   if (!globalPlayerData) return;
 
   const isBookmarkViewActive = viewMode === 'bookmarks';
-  let allMissing = [...(globalPlayerData.missingAchievements || [])];
+  
+  let dataRefMissing = (isLegacyMode ? globalPlayerData.legacyMissing : globalPlayerData.missingAchievements).map(a => ({...a, trulyCompleted: false}));
+  let dataRefCompleted = (isLegacyMode ? globalPlayerData.legacyCompleted : globalPlayerData.completedAchievements).map(a => ({...a, trulyCompleted: true}));
+  
+  let allMissing = dataRefMissing;
+  if (isShowCompleted) {
+    allMissing = allMissing.concat(dataRefCompleted);
+  }
+
+  const activeTagF = document.getElementById('tagFilter')?.value || 'All';
+  if (activeTagF !== 'All') {
+    allMissing = allMissing.filter(a => {
+      let cleanGame = a.game.replace('Max ', '');
+      const tData = TAG_DB[`[${cleanGame}] ${a.title}`] || TAG_DB[a.title];
+      if (!tData) return false;
+      
+      if (activeTagF === 'Cost') return tData.cost !== undefined || tData.type === 'Coins' || tData.type === 'Gold';
+      if (activeTagF === 'Renown') return tData.renown !== undefined || tData.type === 'Renown';
+      if (activeTagF === 'Prestige') return tData.type === 'Prestige';
+      
+      return tData.type === activeTagF;
+    });
+  }
 
   if (!isBookmarkViewActive) {
     if (isCompExcluded) allMissing = allMissing.filter(a => !compGames.includes(a.game.replace('Max ', '')));
     if (activeGameFilters.size > 0) allMissing = allMissing.filter(a => activeGameFilters.has(a.game.replace('Max ', '')));
+  }
+
+  const mwClassFilterContainer = document.getElementById('mw-class-filter');
+  if (activeGameFilters.size === 1 && activeGameFilters.has('Mega Walls') && !isBookmarkViewActive) {
+    mwClassFilterContainer.classList.remove('hidden');
+    mwClassFilterContainer.innerHTML = mwClassesList.map(cls => {
+      const lowerCls = cls.toLowerCase();
+      const iconPath = cls === 'Legendary' ? 'img/diamond.png' : `img/megawalls/${lowerCls}/${cls}.png`;
+      return `<div class="mw-class-pill ${activeMwClass === cls ? 'active' : ''}" onclick="toggleMwClass('${cls}')">
+        <img src="${iconPath}" onerror="this.style.display='none'">
+        ${cls}
+      </div>`;
+    }).join('');
+    
+    if (activeMwClass) {
+      allMissing = allMissing.filter(a => {
+        let t = a.title.toLowerCase();
+        
+        if (activeMwClass === 'Legendary') {
+          return t.includes('legendary');
+        }
+
+        let d = a.desc?.toLowerCase() || '';
+        let classLow = activeMwClass.toLowerCase();
+        
+        // 1. Check title/desc
+        if (t.includes(classLow) || d.includes(classLow)) return true;
+        
+        // 2. Check skin data progress mapping
+        let skinData = MWSkinData[t.replace(/[^a-z0-9]/g, '')];
+        if (skinData && skinData.class.toLowerCase() === classLow) return true;
+        
+        // 3. Check custom rewards folder path
+        const cleanTitle = t.replace(/[^a-z0-9]/g, '');
+        let customSkin = normalizedSkinRewards[cleanTitle];
+        if (customSkin && customSkin.mwClass === classLow) return true;
+        
+        return false;
+      });
+    }
+  } else {
+    mwClassFilterContainer.classList.add('hidden');
+    activeMwClass = null;
   }
 
   if (searchQuery.trim().length > 0) {
@@ -559,6 +968,11 @@ function renderDashboard() {
       (a.desc && a.desc.toLowerCase().includes(searchQuery)) ||
       a.game.toLowerCase().includes(searchQuery)
     );
+  }
+
+  const mainTitleEl = document.getElementById('main-section-title');
+  if (mainTitleEl) {
+    mainTitleEl.innerText = isShowCompleted ? "Achievements" : "Incomplete";
   }
 
   let tiered = [];
@@ -574,40 +988,13 @@ function renderDashboard() {
   const chalHImg = document.querySelector('#col-challenge-section h3 img');
   if (chalHImg) chalHImg.src = chalHeaderIconSrc;
 
+  const isMobile = window.innerWidth <= 800;
   const igBtn = document.getElementById('ignoredToggleBtn');
   const bkBtn = document.getElementById('bookmarkToggleBtn');
-  if (igBtn) igBtn.innerText = viewMode === 'ignored' ? "View All" : `Show Ignored (${ignoredAchs.length})`;
+  if (igBtn) igBtn.innerText = viewMode === 'ignored' ? "View All" : `Ignored (${ignoredAchs.length})`;
   if (igBtn) igBtn.classList.toggle('active', viewMode === 'ignored');
-  if (bkBtn) bkBtn.innerText = viewMode === 'bookmarks' ? "View All" : `Bookmarks (${bookmarkedAchs.length})`;
+  if (bkBtn) bkBtn.innerHTML = viewMode === 'bookmarks' ? "View All" : (isMobile ? `★ ${bookmarkedAchs.length}` : `Bookmarks (${bookmarkedAchs.length})`);
   if (bkBtn) bkBtn.classList.toggle('active', viewMode === 'bookmarks');
-
-  const dashBoxEl = document.getElementById('dynamic-dash-box');
-  if (activeGameFilters.size === 1 && !searchQuery && !isBookmarkViewActive) {
-    let selectedGame = activeGameFilters.values().next().value;
-    let t = globalPlayerData.gameTotals?.[selectedGame];
-    
-    if (t && t.possibleAchs > 0) {
-      let pct = Math.min(100, (t.unlockedAchs / t.possibleAchs) * 100).toFixed(1);
-      let isMax = t.unlockedAchs >= t.possibleAchs;
-      dashBoxEl.innerHTML = `
-        <div class="dynamic-title-top">
-          <img src="${getGameIconUrl(selectedGame)}" alt="">
-          <h2>${selectedGame}</h2>
-        </div>
-        <div class="game-sub-stats">
-          <span>${t.unlockedAchs} / ${t.possibleAchs} Achievements (${t.unlockedAP.toLocaleString()} / ${t.possibleAP.toLocaleString()} AP)</span>
-          <span class="game-header-bar"><span class="game-header-bar-fill" style="width: ${pct}%;"></span></span>
-          ${isMax ? '<span style="color:#F6C85F;font-weight:700;">Maxed!</span>' : ''}
-        </div>
-      `;
-    }
-  } else {
-    dashBoxEl.innerHTML = `
-      <div class="dynamic-title-top">
-        <h2>${isBookmarkViewActive ? 'Bookmarked Achievements' : 'Incomplete'}</h2>
-      </div>
-    `;
-  }
 
   allMissing.forEach(ach => {
     let uniqueId = btoa(encodeURIComponent(ach.title)); 
@@ -626,65 +1013,61 @@ function renderDashboard() {
     const tagData = TAG_DB[`[${cleanGame}] ${ach.title}`] || TAG_DB[ach.title];
 
     if (tagData) {
+      if (tagData.desc) ach.desc = tagData.desc; 
+
       if (tagData.type) {
-        let colour = tagData.type === 'Broken' ? 'var(--red)' : tagData.type === 'Map' ? 'var(--green)' : 'var(--gold)';
+        if (!showSecretTags && tagData.type === 'Secret') return;
+        if (!showBrokenTags && tagData.type === 'Broken') return;
         
-        if (tagData.type === 'Prestige' && tagData.level) {
-          let lvl = parseInt(tagData.level, 10);
-          let bCol = lvl <= 4 ? '#5555FF' : lvl <= 9 ? '#FFFF55' : lvl <= 14 ? '#FFAA00' : 
-                  lvl <= 19 ? '#FF5555' : lvl <= 24 ? '#AA00AA' : lvl <= 29 ? '#FF55FF' : 
-                  lvl <= 34 ? '#FFFFFF' : lvl <= 39 ? '#55FFFF' : lvl <= 44 ? '#0000AA' : 
-                  lvl <= 47 ? '#000000' : lvl <= 49 ? '#AA0000' : '#555555';
+        let skipTypeTag = tagData.type === 'Renown';
+
+        if (!skipTypeTag) {
+          let colour = tagData.type === 'Broken' ? 'var(--red)' : tagData.type === 'Map' ? 'var(--green)' : tagData.type === 'Secret' ? '#ff33ff' : 'var(--gold)';
           
-          const romanMap = { L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
-          let rStr = '', n = lvl;
-          for (let i of Object.keys(romanMap)) {
-            let q = Math.floor(n / romanMap[i]);
-            n -= q * romanMap[i];
-            rStr += i.repeat(q);
-          }
-          
-          tagsHtml += `<span class="sleek-tag" style="--tag-color: ${bCol};"><span style="color: ${bCol}; font-weight: bold;">[</span><span style="color: var(--text);">${rStr}</span><span style="color: ${bCol}; font-weight: bold;">]</span></span>`;
-        } else {
-          let tagText;
-          if (tagData.type === 'Map') {
-            tagText = tagData.map;
-          } else if (tagData.cost) {
-            let num = parseInt(tagData.cost.replace(/,/g, ''), 10);
-            let formattedCost = num >= 1000000 
-              ? (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M' 
-              : num >= 1000 
-                ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K' 
-                : num;
-            tagText = `${formattedCost} ${tagData.type}`;
+          if (tagData.type === 'Prestige' && tagData.level) {
+            let lvl = parseInt(tagData.level, 10);
+            let bCol = lvl <= 4 ? '#5555FF' : lvl <= 9 ? '#FFFF55' : lvl <= 14 ? '#FFAA00' : 
+                    lvl <= 19 ? '#FF5555' : lvl <= 24 ? '#AA00AA' : lvl <= 29 ? '#FF55FF' : 
+                    lvl <= 34 ? '#FFFFFF' : lvl <= 39 ? '#55FFFF' : lvl <= 44 ? '#0000AA' : 
+                    lvl <= 47 ? '#000000' : lvl <= 49 ? '#AA0000' : '#555555';
+            
+            const romanMap = { L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
+            let rStr = '', n = lvl;
+            for (let i of Object.keys(romanMap)) {
+              let q = Math.floor(n / romanMap[i]);
+              n -= q * romanMap[i];
+              rStr += i.repeat(q);
+            }
+            
+            tagsHtml += `<span class="sleek-tag" style="--tag-color: ${bCol};"><span style="color: ${bCol}; font-weight: bold;">[</span><span style="color: var(--text);">${rStr}</span><span style="color: ${bCol}; font-weight: bold;">]</span></span>`;
           } else {
-            tagText = tagData.type;
+            let tagText;
+            if (tagData.type === 'Map') {
+              tagText = tagData.map;
+            } else if (tagData.cost) {
+              let num = parseInt(tagData.cost.replace(/,/g, ''), 10);
+              let formattedCost = num >= 1000000 
+                ? (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M' 
+                : num >= 1000 
+                  ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K' 
+                  : num;
+              tagText = `${formattedCost} ${tagData.type}`;
+            } else {
+              tagText = tagData.type;
+            }
+            tagsHtml += `<span class="sleek-tag" style="--tag-color: ${colour};">${tagText}</span>`;
           }
-          
-          tagsHtml += `<span class="sleek-tag" style="--tag-color: ${colour};">${tagText}</span>`;
         }
       }
       
-      if (tagData.renown) {
-        tagsHtml += ` <span class="sleek-tag" data-tag="renown" style="margin-left: 4px;">${tagData.renown} Renown</span>`;
-      }
-
-      if (tagData.souls) {
-        tagsHtml += ` <span class="sleek-tag" style="--tag-color: #55ffff; margin-left: 4px;">${tagData.souls} Souls</span>`;
-      }
+      if (tagData.renown) tagsHtml += ` <span class="sleek-tag" data-tag="renown" style="margin-left: 4px;">${tagData.renown} Renown</span>`;
+      if (tagData.souls) tagsHtml += ` <span class="sleek-tag" style="--tag-color: #55ffff; margin-left: 4px;">${tagData.souls} Souls</span>`;
       
       if (tagData.tip) {
         let linkedTip = tagData.tip
-          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
-            let href = url.startsWith('http') ? url : `https://${url}`;
-            return `<a href="${href}" target="_blank" style="color: inherit; text-decoration: underline;">${text}</a>`;
-          })
-          .replace(/(?<!["'])(https?:\/\/[^\s<]+|www\.[^\s<]+)(?![^<]*>)/g, match => {
-            let href = match.startsWith('http') ? match : `https://${match}`;
-            return `<a href="${href}" target="_blank" style="color: inherit; text-decoration: underline;">${match}</a>`;
-          })
+          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => `<a href="${url.startsWith('http') ? url : `https://${url}`}" target="_blank" style="color: inherit; text-decoration: underline;">${text}</a>`)
+          .replace(/(?<!["'])(https?:\/\/[^\s<]+|www\.[^\s<]+)(?![^<]*>)/g, match => `<a href="${match.startsWith('http') ? match : `https://${match}`}" target="_blank" style="color: inherit; text-decoration: underline;">${match}</a>`)
           .replace(/\n/g, '<br>');
-          
         tipHtml = `<div class="ach-tip"><i>Tip: ${linkedTip}</i></div>`;
       }
     }
@@ -693,7 +1076,6 @@ function renderDashboard() {
     
     let isChallenge = ach.isOneTime || (ach.globalPct !== undefined && ach.currentAmt === undefined && !ach.allTiers);
 
-    // MW Skin Reformat Interceptor
     let mwTargetAmt = null;
     let mwCurrentAmt = null;
     let mwProgPct = null;
@@ -703,19 +1085,23 @@ function renderDashboard() {
       const mwData = MWSkinData[t];
       if (mwData) {
         isChallenge = true; 
-        mwCurrentAmt = globalPlayerData.megaWalls?.skins?.[mwData.class]?.[mwData.stat] || 0; // responsedata: megawalls.skins.dreadlord.gathering_ti
+        mwCurrentAmt = globalPlayerData.megaWalls?.skins?.[mwData.class.toLowerCase()]?.[mwData.stat] || 0;
         mwTargetAmt = mwData.max;
         
-        ach.mwCurrentAmt = Math.min(mwCurrentAmt, mwTargetAmt);
+        ach.mwCurrentAmt = mwCurrentAmt;
         ach.mwTargetAmt = mwTargetAmt;
         
-        ach.mwProgPct = (ach.mwCurrentAmt / ach.mwTargetAmt) * 100;
-        ach.isCompleted = ach.mwCurrentAmt >= ach.mwTargetAmt;
+        ach.mwProgPct = Math.min(100, (ach.mwCurrentAmt / ach.mwTargetAmt) * 100);
       }
     }
 
     if (isChallenge) {
       ach.calcPct = Number(ach.gamePercentUnlocked || ach.globalPct || 0);
+      if(ach.mwTargetAmt !== undefined) {
+         ach.isCompleted = ach.mwCurrentAmt >= ach.mwTargetAmt;
+      } else {
+         ach.isCompleted = ach.trulyCompleted;
+      }
       challenges.push(ach);
     } else {
       if (!ach.allTiers) ach.allTiers = [{ tier: ach.tier || 1, amount: ach.amount || 1, reward: ach.reward || 0 }];
@@ -729,9 +1115,9 @@ function renderDashboard() {
       let targetAmt = targetTierObj.amount;
       let trueCurrentAmt = ach.currentAmt || 0;
       
-      let displayAmt = Math.min(trueCurrentAmt, targetAmt);
-      let pct = Math.min(100, (displayAmt / targetAmt) * 100);
-      let isCompleted = trueCurrentAmt >= targetAmt;
+      let displayAmt = trueCurrentAmt;
+      let pct = Math.min(100, (trueCurrentAmt / targetAmt) * 100);
+      let isCompleted = ach.trulyCompleted || trueCurrentAmt >= targetAmt;
 
       let trueMissingObj = ach.allTiers.find(t => t.tier === firstMissing) || ach.allTiers[0];
       let sortAmt = Math.min(trueCurrentAmt, trueMissingObj.amount);
@@ -770,10 +1156,23 @@ function renderDashboard() {
     
     const notchClass = (isTiered && !isHighestTierOnly) ? 'has-tier' : 'no-notches';
     const historyClass = isHistory ? 'history-card' : '';
+    const legacyClass = ach.isLegacy ? 'legacy-challenge-card' : '';
+    
+    let customRewardImg = '';
+    
+    const cleanTitle = ach.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const skinData = normalizedSkinRewards[cleanTitle];
+    
+    if (skinData) {
+      const skinName = skinData.name;
+      const safePath = encodeURI(skinData.path);
+      customRewardImg = `<span class="custom-skin-badge" title="${skinName}"><img src="${safePath}" onerror="this.style.display='none'"> <span>${skinName}</span></span>`;
+    }
 
     return `
-      <div class="ach-card ${notchClass} ${historyClass}">
-        ${!isTiered && !isHistory ? `<span class="ach-percent">${ach.calcPct.toFixed(2)}%</span>` : ''}
+      <div class="ach-card ${notchClass} ${historyClass} ${legacyClass}">
+        ${!isTiered && !isHistory && !ach.isLegacy ? `<span class="ach-percent">${ach.calcPct.toFixed(2)}%</span>` : ''}
+        
         <div class="ach-card-header">
           <img src="${getGameIconUrl(ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
           <span class="ach-game">${ach.game.replace('Max ', '')}</span>
@@ -786,7 +1185,7 @@ function renderDashboard() {
         ${progressBlock}
 
         <div class="ach-card-footer">
-          <span class="ach-reward"><img src="${rewardIconSrc}" alt="AP" style="width:14px; height:14px; object-fit:contain;"> ${isTiered ? ach.activeReward : ach.reward} AP</span>
+          <span class="ach-reward"><img src="${rewardIconSrc}" alt="AP" style="width:14px; height:14px; object-fit:contain; flex-shrink: 0;"> <span style="white-space: nowrap; flex-shrink: 0;">${isTiered ? ach.activeReward : ach.reward} AP</span> ${customRewardImg}</span>
           ${!isHistory ? `
             <div class="ach-actions">
               <button onclick="toggleBookmark('${ach.uniqueId}')" class="ach-action-btn ${bookmarkClass}" title="Bookmark">${bookmarkIcon}</button>
@@ -799,8 +1198,8 @@ function renderDashboard() {
     `;
   };
 
-  let viewLimitTiered = searchQuery ? tiered.length : limits.tiered;
-  let viewLimitChal = searchQuery ? challenges.length : limits.challenge;
+  let viewLimitTiered = limits.tiered;
+  let viewLimitChal = limits.challenge;
 
   document.getElementById('col-tiered').innerHTML = tiered.slice(0, viewLimitTiered).map(ach => {
     let targetStr = ach.targetAmt.toLocaleString();
@@ -808,7 +1207,7 @@ function renderDashboard() {
     let parsedDesc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, targetStr);
     ach.desc = parsedDesc;
     
-    let progressText = ach.isCompleted ? `${targetStr} / ${targetStr}` : `${displayStr} / ${targetStr}`;
+    let progressText = `${displayStr} / ${targetStr}`;
     let barClass = ach.isCompleted ? "ach-progress-fill completed-tier" : "ach-progress-fill";
 
     let notches = '';
@@ -859,8 +1258,8 @@ function renderDashboard() {
     }).join('');
   }
 
-  document.getElementById('btn-more-tiered').style.display = (viewLimitTiered < tiered.length && !searchQuery) ? 'block' : 'none';
-  document.getElementById('btn-more-chal').style.display = (viewLimitChal < challenges.length && !searchQuery) ? 'block' : 'none';
+  document.getElementById('btn-more-tiered').style.display = viewLimitTiered < tiered.length ? 'block' : 'none';
+  document.getElementById('btn-more-chal').style.display = viewLimitChal < challenges.length ? 'block' : 'none';
   document.getElementById('btn-more-rec').style.display = limits.recent < recents.length ? 'block' : 'none';
 }
 
@@ -901,7 +1300,6 @@ function getApColor(ap) {
   const g = (l[1] + factor * (u[1] - l[1])) / 255;
   const b = (l[2] + factor * (u[2] - l[2])) / 255;
 
-  // RGB to HSL
   const max = Math.max(r, g, b), min = Math.min(r, g, b);
   let h, s, lit = (max + min) / 2;
 
@@ -922,7 +1320,6 @@ function getApColor(ap) {
   const isLight = ['light', 'cherry'].includes(theme);
 
   if (isLight) {
-    // Maximise saturation and drop lightness to keep text readable
     s = Math.min(1, s * 1.1);
     lit = Math.min(0.4, lit * 0.8);
   }
@@ -1109,6 +1506,8 @@ function renderCabinet(data, softRender = false) {
     if (data.leaderboardRank === 1) rankPill.classList.add('rank-1');
     else if (data.leaderboardRank === 2) rankPill.classList.add('rank-2');
     else if (data.leaderboardRank === 3) rankPill.classList.add('rank-3');
+    else if (data.leaderboardRank <= 10) rankPill.classList.add('rank-top10');
+    else if (data.leaderboardRank <= 200) rankPill.classList.add('rank-top200');
     rankPill.style.display = 'inline-flex';
   } else {
     rankPill.style.display = 'none';
@@ -1258,7 +1657,7 @@ async function initCabinet(explicitLookupId) {
       }
     }
 
-    const apiUrl = `https://api.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
+    const apiUrl = `http://localhost:3000/api/player?uuid=${encodeURIComponent(uuid)}`;
     const res = await fetch(apiUrl);
 
     if (!res.ok) {
@@ -1267,6 +1666,26 @@ async function initCabinet(explicitLookupId) {
 
     const data = await res.json();
     if (data.error) throw new Error(data.error);
+
+    try {
+      const huntersRes = await fetch('ap_hunters_data.json');
+      if (huntersRes.ok) {
+        const huntersData = await huntersRes.json();
+        
+        let allPlayers = [];
+        huntersData.country_leaderboard.forEach(c => allPlayers.push(...c.top_players));
+        allPlayers.sort((a, b) => b.current_ap - a.current_ap);
+
+        const hunterIndex = allPlayers.findIndex(h => h.uuid === data.uuid || h.username.toLowerCase() === data.username.toLowerCase());
+        
+        if (hunterIndex !== -1 && hunterIndex < 100) {
+          data.leaderboardRank = hunterIndex + 1;
+          data.country = allPlayers[hunterIndex].country || data.country;
+        }
+      }
+    } catch (err) {
+      console.log("Could not load hunters data");
+    }
 
     renderCabinet(data);
 
@@ -1285,16 +1704,46 @@ async function initCabinet(explicitLookupId) {
 window.addEventListener('resize', () => {
   if (globalPlayerData) {
     populateFilters();
+    renderDashboard();
   }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  loadPinnedPlayer();
+  if(isShowCompleted) {
+      const btn = document.getElementById('toggle-completed-btn');
+      if (btn) btn.classList.add('active');
+  }
+
+  const collapsibleSections = ['col-tiered-wrapper', 'col-challenge-wrapper', 'history-column-wrapper', 'overview-grid-wrapper', 'analytics-content-wrapper', 'incomplete-filters-wrapper'];
+  
+  collapsibleSections.forEach(id => {
+    if (localStorage.getItem('litstats_collapse_' + id) === 'true') {
+      document.getElementById(id)?.classList.add('hidden');
+      const wrapper = document.getElementById(id);
+      if (wrapper && id === 'incomplete-filters-wrapper') {
+        document.getElementById('dynamic-dash-title')?.classList.add('collapsed-section');
+      } else if (wrapper && wrapper.previousElementSibling) {
+        wrapper.previousElementSibling.classList.add('collapsed-section');
+      }
+      
+      if (id === 'col-tiered-wrapper') {
+        document.getElementById('col-challenge-section')?.classList.add('full-width');
+      } else if (id === 'col-challenge-wrapper') {
+        document.getElementById('col-tiered-section')?.classList.add('full-width');
+      }
+    }
+  });
+
   if (document.getElementById('excludeComp')) document.getElementById('excludeComp').checked = isCompExcluded;
   if (document.getElementById('multiSelectToggle')) document.getElementById('multiSelectToggle').checked = isMultiSelect;
   if (document.getElementById('highestTierToggle')) document.getElementById('highestTierToggle').checked = isHighestTierOnly;
   if (document.getElementById('hideHistoryToggle')) document.getElementById('hideHistoryToggle').checked = isHistoryHidden;
   if (document.getElementById('hideMaxesToggle')) document.getElementById('hideMaxesToggle').checked = isMaxesHidden;
   if (document.getElementById('goldApToggle')) document.getElementById('goldApToggle').checked = isGoldApEnabled;
+
+  if (document.getElementById('showSecretToggle')) document.getElementById('showSecretToggle').checked = showSecretTags;
+  if (document.getElementById('showBrokenToggle')) document.getElementById('showBrokenToggle').checked = showBrokenTags;
 
   if (isHistoryHidden) {
     document.getElementById('history-column-wrapper').style.display = 'none';
@@ -1305,3 +1754,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initCabinet();
 });
+
+if (document.getElementById('showCompletedToggle')) document.getElementById('showCompletedToggle').checked = isShowCompleted;
