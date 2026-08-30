@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-08-30T02:18:00.622Z",
+  "last_update": "2026-08-30T09:34:41.228Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 110923,
     "289e9f90a76640e0921c85dcd96385b5": 84464,
@@ -386,15 +386,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 19316.8,
+      "score": 19338.6,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 51924,
+          "current_quests": 52033,
           "last_month_quests": 50825,
-          "monthly_gain": 1099
+          "monthly_gain": 1208
         },
         {
           "username": "Itz_Pipi",
@@ -930,7 +930,7 @@
     },
     {
       "country": "Unknown",
-      "score": 26760.8,
+      "score": 26861,
       "top_players": [
         {
           "username": "Rayjer",
@@ -965,19 +965,19 @@
           "monthly_gain": 0
         },
         {
+          "username": "Spaghetti2003",
+          "uuid": "ced40338048a4382aaba0e88fc04a102",
+          "country": "Unknown",
+          "current_quests": 24479,
+          "last_month_quests": 23821,
+          "monthly_gain": 658
+        },
+        {
           "username": "ADGG",
           "uuid": "2162ee0de4c745e4a5d44659193b231c",
           "country": "Unknown",
           "current_quests": 23978,
           "last_month_quests": 23978,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Spaghetti2003",
-          "uuid": "ced40338048a4382aaba0e88fc04a102",
-          "country": "Unknown",
-          "current_quests": 23821,
-          "last_month_quests": 23821,
           "monthly_gain": 0
         },
         {
