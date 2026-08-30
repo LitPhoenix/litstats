@@ -1094,7 +1094,6 @@ body[data-theme="dark"] .maxed-stat-pill {
 .toggle-completed-btn { background: var(--surface-2); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
 .toggle-completed-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-body[data-theme="light"] #p-name { text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
 .rank-num-pill.rank-top10 { background: rgba(255, 85, 85, 0.15); border-color: #ff5555; color: #ff5555; }
 .rank-num-pill.rank-top200 { background: rgba(85, 255, 255, 0.15); border-color: #55ffff; color: #55ffff; }
 .search-wrapper { position: relative; display: flex; align-items: center; width: 100%; max-width: 340px; }
@@ -1140,3 +1139,8 @@ body[data-theme="light"] #p-name { text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
 .legacy-challenge-card:hover { border-color: var(--red); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); }
 .tooltip-text { width: max-content !important; max-width: 220px; white-space: normal; line-height: 1.4; padding: 12px; }
 .settings-menu { overflow: visible; }
+
+body.light-theme .player-name-row h1,
+body.light-theme .player-name-row .mc-rank { 
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important; 
+}
