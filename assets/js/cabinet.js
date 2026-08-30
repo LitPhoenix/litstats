@@ -1657,7 +1657,7 @@ async function initCabinet(explicitLookupId) {
       }
     }
 
-    const apiUrl = `http://litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
+    const apiUrl = `https://www.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
     const res = await fetch(apiUrl);
 
     if (!res.ok) {
