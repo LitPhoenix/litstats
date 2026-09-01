@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-01T02:32:17.321Z",
+  "last_update": "2026-09-01T09:01:04.059Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -687,9 +687,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 26845,
+          "current_ap": 26855,
           "last_month_ap": 26845,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
@@ -2065,15 +2065,15 @@
     },
     {
       "country": "Finland",
-      "score": 4394,
+      "score": 4409,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28625,
+          "current_ap": 28640,
           "last_month_ap": 28625,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
