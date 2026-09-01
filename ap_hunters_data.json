@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-01T09:01:04.059Z",
+  "last_update": "2026-09-01T14:24:12.735Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2065,15 +2065,15 @@
     },
     {
       "country": "Finland",
-      "score": 4409,
+      "score": 4434,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28640,
+          "current_ap": 28665,
           "last_month_ap": 28625,
-          "monthly_gain": 15,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
