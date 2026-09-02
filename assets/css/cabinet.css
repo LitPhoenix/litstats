@@ -157,29 +157,31 @@ main {
 
 .ap-stat-pill {
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--ap-color);
   border-radius: 8px;
   display: inline-flex;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 12px var(--ap-glow);
+  padding: 3px;
+  box-sizing: border-box;
 }
+
 .ap-stat-pill-inner {
-  border: 1px solid var(--ap-color);
-  border-radius: 6px;
-  padding: 6px 14px;
+  padding: 0 12px;
+  height: 100%;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  box-shadow: inset 0 0 12px var(--ap-glow);
-  background: var(--bg);
+  box-sizing: border-box;
 }
+
 .ap-stat-pill-inner #p-ap {
   color: var(--ap-color);
-  font-size: 20px;
+  font-size: 15px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   text-shadow: 0 0 10px var(--ap-glow);
   margin: 0;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.2px;
 }
 
 .history-card .ach-title {
