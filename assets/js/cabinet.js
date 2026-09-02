@@ -949,8 +949,13 @@ function renderDashboard() {
           belongs = t.includes('legendary');
         } else {
           let d = ach.desc?.toLowerCase() || '';
-          let skinData = MWSkinData[t.replace(/[^a-z0-9]/g, '')];
-          if (t.includes(classLow) || d.includes(classLow) || (skinData && skinData.class.toLowerCase() === classLow)) {
+          let cleanT = t.replace(/[^a-z0-9]/g, '');
+          let skinData = MWSkinData[cleanT];
+          let normSkin = normalizedSkinRewards[cleanT];
+          
+          if (t.includes(classLow) || d.includes(classLow) || 
+             (skinData && skinData.class.toLowerCase() === classLow) ||
+             (normSkin && normSkin.mwClass === classLow)) {
             belongs = true;
           }
         }
@@ -998,11 +1003,19 @@ function renderDashboard() {
       allMissing = allMissing.filter(a => {
         let t = a.title.toLowerCase();
         if (activeMwClass === 'Legendary') return t.includes('legendary');
+        
         let d = a.desc?.toLowerCase() || '';
         let classLow = activeMwClass.toLowerCase();
+        let cleanT = t.replace(/[^a-z0-9]/g, '');
+        
         if (t.includes(classLow) || d.includes(classLow)) return true;
-        let skinData = MWSkinData[t.replace(/[^a-z0-9]/g, '')];
+        
+        let skinData = MWSkinData[cleanT];
         if (skinData && skinData.class.toLowerCase() === classLow) return true;
+        
+        let normSkin = normalizedSkinRewards[cleanT];
+        if (normSkin && normSkin.mwClass === classLow) return true;
+        
         return false;
       });
     }
