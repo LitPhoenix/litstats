@@ -463,22 +463,17 @@ html[data-theme="cherry"] .pill-fill[style*="var(--tier-4)"] {
   background: linear-gradient(90deg, #ffa8c0, #ff8dae) !important;
 }
 
-html[data-theme="cherry"] .maxed-game-pill .filter-pill-fill,
-html[data-theme="cherry"] .filter-pill-fill[style*="#00e6ff"] {
-  background: linear-gradient(90deg, #00ffccdd, #00aa8edd) !important;
-}
-
 html[data-theme="light"] .filter-pill-btn.maxed-game-pill .filter-pill-stat {
-  color: #00537a !important;
+  color: #7a5900 !important;
   text-shadow: none !important;
 }
 html[data-theme="cherry"] .filter-pill-btn.maxed-game-pill .filter-pill-stat {
-  color: #00657a !important;
+  color: #7a5900 !important;
   text-shadow: none !important;
 }
 html[data-theme="light"] .filter-pill-btn.maxed-game-pill {
-  border-color: #00537acc;
+  border-color: #976700cc;
 }
 html[data-theme="cherry"] .filter-pill-btn.maxed-game-pill {
-  border-color: #00667acc;
+  border-color: #976700cc;
 }
