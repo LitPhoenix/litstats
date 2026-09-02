@@ -1094,8 +1094,33 @@ body[data-theme="dark"] .maxed-stat-pill {
 .toggle-completed-btn { background: var(--surface-2); border: 1px solid var(--border); color: var(--text); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
 .toggle-completed-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
 
-.rank-num-pill.rank-top10 { background: rgba(255, 85, 85, 0.15); border-color: #ff5555; color: #ff5555; }
-.rank-num-pill.rank-top200 { background: rgba(85, 255, 255, 0.15); border-color: #55ffff; color: #55ffff; }
+@keyframes legendaryRainbow {
+  0% { color: #ff5555; border-color: #ff5555; box-shadow: 0 0 12px rgba(255, 85, 85, 0.4); }
+  20% { color: #ffaa00; border-color: #ffaa00; box-shadow: 0 0 12px rgba(255, 170, 0, 0.4); }
+  40% { color: #55ff55; border-color: #55ff55; box-shadow: 0 0 12px rgba(85, 255, 85, 0.4); }
+  60% { color: #55ffff; border-color: #55ffff; box-shadow: 0 0 12px rgba(85, 255, 255, 0.4); }
+  80% { color: #ff55ff; border-color: #ff55ff; box-shadow: 0 0 12px rgba(255, 85, 255, 0.4); }
+  100% { color: #ff5555; border-color: #ff5555; box-shadow: 0 0 12px rgba(255, 85, 85, 0.4); }
+}
+
+@keyframes silverPulse {
+  0%, 100% { border-color: #c0c0c0; box-shadow: 0 0 4px rgba(192, 192, 192, 0.2); color: #c0c0c0; }
+  50% { border-color: #ffffff; box-shadow: 0 0 12px rgba(255, 255, 255, 0.5); color: #ffffff; }
+}
+
+@keyframes bronzePulse {
+  0%, 100% { border-color: #cd7f32; box-shadow: 0 0 4px rgba(205, 127, 50, 0.2); color: #cd7f32; }
+  50% { border-color: #ffaa00; box-shadow: 0 0 12px rgba(255, 170, 0, 0.4); color: #ffaa00; }
+}
+
+.rank-num-pill.rank-1 { background: var(--surface-2); animation: legendaryRainbow 3s linear infinite; }
+.rank-num-pill.rank-2 { background: var(--surface-2); animation: silverPulse 3s ease-in-out infinite; }
+.rank-num-pill.rank-3 { background: var(--surface-2); animation: bronzePulse 3s ease-in-out infinite; }
+.rank-num-pill.rank-top10 { background: var(--surface-2); border-color: #ff5555; color: #ff5555; box-shadow: 0 0 8px rgba(255, 85, 85, 0.3); }
+.rank-num-pill.rank-top25 { background: var(--surface-2); border-color: #ff55ff; color: #ff55ff; box-shadow: 0 0 8px rgba(255, 85, 255, 0.2); }
+.rank-num-pill.rank-top50 { background: var(--surface-2); border-color: #aa00aa; color: #aa00aa; }
+.rank-num-pill.rank-top100 { background: var(--surface-2); border-color: #5555ff; color: #5555ff; }
+.rank-num-pill.rank-top200 { background: var(--surface-2); border-color: #55ffff; color: #55ffff; }
 .search-wrapper { position: relative; display: flex; align-items: center; width: 100%; max-width: 340px; }
 .clear-btn { position: absolute; right: 10px; background: none; border: none; font-size: 18px; color: var(--text-3); cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; }
 .clear-btn:hover { color: var(--text); }
@@ -1123,17 +1148,17 @@ body[data-theme="dark"] .maxed-stat-pill {
 .mini-tab.active { background: var(--accent); color: #fff; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
 .mini-tab:not(.active):hover { color: var(--text); background: var(--surface); }
 .filter-pill-btn.maxed-game-pill { 
-    border-color: rgba(0, 230, 255, 0.4); 
+    border-color: rgba(255, 164, 16, 0.65); 
 }
 .filter-pill-btn.maxed-game-pill .filter-pill-fill {
-    background: linear-gradient(90deg, #00e6ff, #0077ff) !important;
-    opacity: 0.35; 
+    background: linear-gradient(160deg, #ffdc8f 0%, #ffa600dd 40%, #af720066 100%) !important;
+    opacity: 0.6; 
 }
 
 .filter-pill-btn.maxed-game-pill .filter-pill-stat { 
-    color: #00e6ff; 
+    color: #f3bc4c; 
     font-weight: 700; 
-    text-shadow: 0 0 8px rgba(0, 230, 255, 0.4);
+    text-shadow: 0 0 8px #ffbb0066;
 }
 .legacy-challenge-card { border-color: rgba(239, 68, 68, 0.4); background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, var(--surface-2) 100%); }
 .legacy-challenge-card:hover { border-color: var(--red); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2); }
