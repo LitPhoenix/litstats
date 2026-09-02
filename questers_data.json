@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-02T12:24:09.369Z",
+  "last_update": "2026-09-02T17:31:05.405Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -737,7 +737,7 @@
     },
     {
       "country": "Finland",
-      "score": 14848.2,
+      "score": 14904,
       "top_players": [
         {
           "username": "Mol_o",
@@ -751,9 +751,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_quests": 32746,
+          "current_quests": 33025,
           "last_month_quests": 32746,
-          "monthly_gain": 0
+          "monthly_gain": 279
         }
       ]
     },
