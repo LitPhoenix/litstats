@@ -755,7 +755,7 @@ body[data-theme="dark"] .maxed-stat-pill {
 
 .ach-progress-container { width: 100%; height: 6px; background: var(--border); border-radius: 4px; overflow: hidden; margin-top: 4px; }
 .ach-progress-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.3s ease; }
-.ach-progress-fill.completed-tier { background: var(--green); box-shadow: 0 0 6px rgba(16, 185, 129, 0.3); }
+.ach-progress-fill.completed-tier { background: var(--gold); box-shadow: 0 0 6px rgba(16, 185, 129, 0.3); }
 
 .ach-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
 .todo-game-icon { width: 24px; height: 24px; object-fit: contain; border-radius: 4px; }
@@ -1110,12 +1110,12 @@ body[data-theme="dark"] .maxed-stat-pill {
 
 @keyframes bronzePulse {
   0%, 100% { border-color: #cd7f32; box-shadow: 0 0 4px rgba(205, 127, 50, 0.2); color: #cd7f32; }
-  50% { border-color: #ffaa00; box-shadow: 0 0 12px rgba(255, 170, 0, 0.4); color: #ffaa00; }
+  50% { border-color: #cf8619; box-shadow: 0 0 10px rgba(255, 170, 0, 0.4); color: #b6781a; }
 }
 
-.rank-num-pill.rank-1 { background: var(--surface-2); animation: legendaryRainbow 3s linear infinite; }
-.rank-num-pill.rank-2 { background: var(--surface-2); animation: silverPulse 3s ease-in-out infinite; }
-.rank-num-pill.rank-3 { background: var(--surface-2); animation: bronzePulse 3s ease-in-out infinite; }
+.rank-num-pill.rank-top10 { background: var(--surface-2); animation: legendaryRainbow 3s linear infinite; }
+.rank-num-pill.rank-top25 { background: var(--surface-2); animation: silverPulse 3s ease-in-out infinite; }
+.rank-num-pill.rank-top50 { background: var(--surface-2); animation: bronzePulse 3s ease-in-out infinite; }
 .rank-num-pill.rank-top10 { background: var(--surface-2); border-color: #ff5555; color: #ff5555; box-shadow: 0 0 8px rgba(255, 85, 85, 0.3); }
 .rank-num-pill.rank-top25 { background: var(--surface-2); border-color: #ff55ff; color: #ff55ff; box-shadow: 0 0 8px rgba(255, 85, 255, 0.2); }
 .rank-num-pill.rank-top50 { background: var(--surface-2); border-color: #aa00aa; color: #aa00aa; }
