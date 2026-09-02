@@ -1554,10 +1554,7 @@ function renderCabinet(data, softRender = false) {
   if (data.leaderboardRank) {
     rankPill.textContent = `#${data.leaderboardRank}`;
     rankPill.className = 'rank-num-pill';
-    if (data.leaderboardRank === 1) rankPill.classList.add('rank-1');
-    else if (data.leaderboardRank === 2) rankPill.classList.add('rank-2');
-    else if (data.leaderboardRank === 3) rankPill.classList.add('rank-3');
-    else if (data.leaderboardRank <= 10) rankPill.classList.add('rank-top10');
+    if (data.leaderboardRank <= 10) rankPill.classList.add('rank-top10');
     else if (data.leaderboardRank <= 25) rankPill.classList.add('rank-top25');
     else if (data.leaderboardRank <= 50) rankPill.classList.add('rank-top50');
     else if (data.leaderboardRank <= 100) rankPill.classList.add('rank-top100');
