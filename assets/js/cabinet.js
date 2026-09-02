@@ -39,6 +39,7 @@ const customSkinRewards = {
   "yeehaw": "img/megawalls/hunter/Hippie Moon.png",
   "ba boom": "img/megawalls/hunter/Animal Tamer.png",
   "cake hunter": "img/megawalls/hunter/Cake Hunter.png",
+  "cake hunter tiered": "img/megawalls/hunter/Cake Hunter.png",
   "legendary hunter": "img/megawalls/hunter/Kuba the Caveman.png",
   "one with nature": "img/megawalls/hunter/Annie.png",
   "target eliminated": "img/megawalls/hunter/Bounty.png",
@@ -363,7 +364,7 @@ const TAG_DB = {
   "Zoop!": { type: "Secret", desc: "Pop a link of 10 Puffs in the Rift" },
   "The ultimate scheme": { type: "Secret", desc: "Secure the final Timecharm in the Rift" },
   "Tragedy reversed": { type: "Secret", desc: "Murder your past self in the Rift quest" },
-  "Lily Mania": { type: "Secret", desc: "ngl idk this secret ap" },
+  "Lily Mania": { type: "Secret", desc: "ngl idk this secret ap, hmu if u know @litphoenix" },
   "Top of the Wizard food chain": { type: "Secret", desc: "Become Wizardman in the Rift quest" },
   "Finally over...": { type: "Secret", desc: "Murder Special Agent Amog in the Rift quest" },
   "The first to have ever done it": { type: "Secret", desc: "Return back from the breach" },
@@ -423,6 +424,13 @@ const TAG_DB = {
   "Mountain of Wool": { type: "Wool", cost: "10,000" },
   "Magical Box": { type: "Coins", cost: "1,350,000", tip: "You can buy 100 keys for 45,000 coins\nPrice tag shown is the minimum for Tier 5" },
   "Runic Enhancements": { type: "Coins", cost: "500" },
+  "Offensive Training": { type: "Coins", cost: "50,000", tip: "Unlocked through Magical Chests with a high chance" },
+  "Support Training": { type: "Coins", cost: "50,000", tip: "Unlocked through Magical Chests with a high chance" },
+  "Disco Star": { type: "Coins", cost: "1,000,000", tip: "You need 3,000 Wins and All Combat Upgrades in order to purchase this hat" },
+  "New Toy!": { type: "Coins", cost: "50,000", tip: "Unlocked through Magical Chests with a high chance" },
+  "Lucky Pig!": { type: "Coins", cost: "250,000", tip: "Unlocked through Magical Chests with a low chance" },
+  "Deadly Pumpkin": { type: "Coins", cost: "250,000", tip: "Unlocked through Magical Chests with a low chance" },
+  "Magical Shenanigans": { type: "Coins", cost: "500", tip: "Magical Chest costs 500 coins" },
   "Melee Specialization": { type: "Coins", cost: "250,530" },
   "Health Specialization": { type: "Coins", cost: "250,530" },
   "Energy Specialization": { type: "Coins", cost: "250,530" },
@@ -853,7 +861,7 @@ window.populateFilters = function() {
     
     let maxClass = isMaxed && isShowCompleted ? 'maxed-game-pill' : '';
     let color = percent >= 80 ? 'var(--tier-1)' : percent >= 40 ? 'var(--tier-2)' : 'var(--tier-4)';
-    if(isMaxed && isShowCompleted) color = '#00e6ff'; 
+    if(isMaxed && isShowCompleted) color = '#e9af10'; 
 
     let statLabel = `${Math.round(percent)}%`;
     if (!isMobile && gameTots) {
@@ -924,38 +932,77 @@ function renderDashboard() {
   const mwClassFilterContainer = document.getElementById('mw-class-filter');
   if (activeGameFilters.size === 1 && activeGameFilters.has('Mega Walls') && !isBookmarkViewActive) {
     mwClassFilterContainer.classList.remove('hidden');
-    mwClassFilterContainer.innerHTML = mwClassesList.map(cls => {
+    
+    const classStatus = {};
+    const allMwAchs = dataRefMissing.concat(dataRefCompleted).filter(a => a.game.replace('Max ', '') === 'Mega Walls');
+    
+    mwClassesList.forEach(cls => {
+      let hasIncomplete = false;
+      let hasCompleted = false;
+      
+      allMwAchs.forEach(ach => {
+        let t = ach.title.toLowerCase();
+        let classLow = cls.toLowerCase();
+        let belongs = false;
+        
+        if (cls === 'Legendary') {
+          belongs = t.includes('legendary');
+        } else {
+          let d = ach.desc?.toLowerCase() || '';
+          let skinData = MWSkinData[t.replace(/[^a-z0-9]/g, '')];
+          if (t.includes(classLow) || d.includes(classLow) || (skinData && skinData.class.toLowerCase() === classLow)) {
+            belongs = true;
+          }
+        }
+        
+        if (belongs) {
+           let isComp = ach.trulyCompleted;
+           const skinData = MWSkinData[t.replace(/[^a-z0-9]/g, '')];
+           if (skinData) {
+              let currentAmt = globalPlayerData.megaWalls?.skins?.[skinData.class.toLowerCase()]?.[skinData.stat] || 0;
+              isComp = currentAmt >= skinData.max;
+           }
+           
+           if (isComp) hasCompleted = true;
+           else hasIncomplete = true;
+        }
+      });
+      
+      classStatus[cls] = { hasIncomplete, hasCompleted };
+    });
+
+    const availableClasses = mwClassesList.filter(cls => {
+       if (!isShowCompleted) return classStatus[cls].hasIncomplete;
+       return classStatus[cls].hasIncomplete || classStatus[cls].hasCompleted;
+    });
+
+    mwClassFilterContainer.innerHTML = availableClasses.map(cls => {
       const lowerCls = cls.toLowerCase();
       const iconPath = cls === 'Legendary' ? 'img/diamond.png' : `img/megawalls/${lowerCls}/${cls}.png`;
-      return `<div class="mw-class-pill ${activeMwClass === cls ? 'active' : ''}" onclick="toggleMwClass('${cls}')">
+      
+      const isFullyComplete = !classStatus[cls].hasIncomplete && classStatus[cls].hasCompleted;
+      const goldClass = (isShowCompleted && isFullyComplete) ? 'gold-pill' : '';
+      const activeClass = activeMwClass === cls ? 'active' : '';
+      
+      return `<div class="mw-class-pill ${activeClass} ${goldClass}" onclick="toggleMwClass('${cls}')">
         <img src="${iconPath}" onerror="this.style.display='none'">
         ${cls}
       </div>`;
     }).join('');
     
+    if (activeMwClass && !availableClasses.includes(activeMwClass)) {
+      activeMwClass = null;
+    }
+
     if (activeMwClass) {
       allMissing = allMissing.filter(a => {
         let t = a.title.toLowerCase();
-        
-        if (activeMwClass === 'Legendary') {
-          return t.includes('legendary');
-        }
-
+        if (activeMwClass === 'Legendary') return t.includes('legendary');
         let d = a.desc?.toLowerCase() || '';
         let classLow = activeMwClass.toLowerCase();
-        
-        // 1. Check title/desc
         if (t.includes(classLow) || d.includes(classLow)) return true;
-        
-        // 2. Check skin data progress mapping
         let skinData = MWSkinData[t.replace(/[^a-z0-9]/g, '')];
         if (skinData && skinData.class.toLowerCase() === classLow) return true;
-        
-        // 3. Check custom rewards folder path
-        const cleanTitle = t.replace(/[^a-z0-9]/g, '');
-        let customSkin = normalizedSkinRewards[cleanTitle];
-        if (customSkin && customSkin.mwClass === classLow) return true;
-        
         return false;
       });
     }
@@ -1162,13 +1209,15 @@ function renderDashboard() {
     
     let customRewardImg = '';
     
-    const cleanTitle = ach.title.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const skinData = normalizedSkinRewards[cleanTitle];
-    
-    if (skinData) {
-      const skinName = skinData.name;
-      const safePath = encodeURI(skinData.path);
-      customRewardImg = `<span class="custom-skin-badge" title="${skinName}"><img src="${safePath}" onerror="this.style.display='none'"> <span>${skinName}</span></span>`;
+    if (ach.game.replace('Max ', '') === 'Mega Walls') {
+      const cleanTitle = ach.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const skinData = normalizedSkinRewards[cleanTitle];
+      
+      if (skinData) {
+        const skinName = skinData.name;
+        const safePath = encodeURI(skinData.path);
+        customRewardImg = `<span class="custom-skin-badge" title="${skinName}"><img src="${safePath}" onerror="this.style.display='none'"> <span>${skinName}</span></span>`;
+      }
     }
 
     return `
@@ -1180,7 +1229,7 @@ function renderDashboard() {
           <span class="ach-game">${ach.game.replace('Max ', '')}</span>
         </div>
         
-        <span class="ach-title">${ach.title} ${ach.tagsHtml || ''}</span>
+        <span class="ach-title" ${ach.isCompleted ? 'style="color: var(--gold);"' : ''}>${ach.title} ${ach.tagsHtml || ''}</span>
         <span class="ach-desc">${ach.desc}</span>
         ${ach.tipHtml || ''}
         
@@ -1509,6 +1558,9 @@ function renderCabinet(data, softRender = false) {
     else if (data.leaderboardRank === 2) rankPill.classList.add('rank-2');
     else if (data.leaderboardRank === 3) rankPill.classList.add('rank-3');
     else if (data.leaderboardRank <= 10) rankPill.classList.add('rank-top10');
+    else if (data.leaderboardRank <= 25) rankPill.classList.add('rank-top25');
+    else if (data.leaderboardRank <= 50) rankPill.classList.add('rank-top50');
+    else if (data.leaderboardRank <= 100) rankPill.classList.add('rank-top100');
     else if (data.leaderboardRank <= 200) rankPill.classList.add('rank-top200');
     rankPill.style.display = 'inline-flex';
   } else {
