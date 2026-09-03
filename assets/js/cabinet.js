@@ -463,6 +463,7 @@ const TAG_DB = {
   "Contracts": { tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
   "Sugar Rush": { tip: "Aim for cherries, they give more gold" },
   "Blasphemous": { tip: "Check Opal costs for the the Fallen Angel Kit [here](https://www.litstats.com/angel)" },
+  "Digging Through The Descent": { tip: "Check Opal costs for the the Archeologist Kit [here](https://www.litstats.com/angel)" },
   "Lucid Dreams of Feastfood": { tip: "Check your progress [here](https://www.litstats.com/bedwars)" },
   "Murderer's Pinnacle": { tip: "Check your progress [here](https://www.litstats.com/mm)" },
   "Alpha's Pinnacle": { tip: "Check your progress [here](https://www.litstats.com/mm)" },
