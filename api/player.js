@@ -702,8 +702,13 @@ module.exports = async (req, res) => {
             }
 
             const achObj = {
-              game: game.name, title: ach.name, desc: ach.description, reward: ach.points,
-              isOneTime: true, isLegacy: isLegacy, gamePct: isLegacy ? undefined : ach.gamePercentUnlocked
+              game: game.name, 
+              title: ach.name, 
+              desc: ach.description, 
+              reward: ach.points,
+              isOneTime: true, 
+              isLegacy: isLegacy, 
+              gamePct: isLegacy ? undefined : (ach.gamePercentUnlocked || ach.globalPercentUnlocked)
             };
 
             const targetArr = isLegacy ? (isUnlocked ? responseData.legacyCompleted : responseData.legacyMissing) 
