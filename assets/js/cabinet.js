@@ -249,7 +249,17 @@ const CustomChallengeTrackers = {
   "brutalwarrior": { path: ["rawStats", "HungerGames", "exp_warrior"], max: 10000 },
   "donkeytamermaster": { path: ["rawStats", "HungerGames", "exp_donkeytamer"], max: 10000 },
   "firstranger": { path: ["rawStats", "HungerGames", "exp_ranger"], max: 10000 },
-  "phoenixmaster": { path: ["rawStats", "HungerGames", "exp_phoenix"], max: 10000 }
+  "phoenixmaster": { path: ["rawStats", "HungerGames", "exp_phoenix"], max: 10000 },
+  "iveseenitall": {
+  paths: [
+    { path: ["rawStats", "GingerBread", "gold_trophy_canyon"], req: 1, label: "Canyon" },
+    { path: ["rawStats", "GingerBread", "gold_trophy_olympus"], req: 1, label: "Olympus" },
+    { path: ["rawStats", "GingerBread", "gold_trophy_jungle"], req: 1, label: "Jungle" },
+    { path: ["rawStats", "GingerBread", "gold_trophy_retro"], req: 1, label: "Retro" },
+    { path: ["rawStats", "GingerBread", "gold_trophy_hypixel"], req: 1, label: "Hypixel" }
+  ],
+  max: 5
+}
 }
 
 const TAG_DB = {
@@ -415,6 +425,7 @@ const TAG_DB = {
   "The Gatherer": { type: "Coins", cost: "1,000" },
   "Going to the Gym": { type: "Coins", cost: "200", tip: "Kit Upgrade on Default class is 200 coins" },
   "Save your stuff": { type: "Coins", cost: "10,000" },
+  "This Is Not Even My Final Form": { type: "Coins", cost: "10,000" },
   "Contracts": { tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
   "Sugar Rush": { tip: "Aim for cherries, they give more gold" },
   "Blasphemous": { tip: "Check Opal costs for the the Fallen Angel Kit [here](https://www.litstats.com/angel)" },
@@ -1351,12 +1362,42 @@ function renderDashboard() {
     } else if (CustomChallengeTrackers[cleanTitle]) {
       const tracker = CustomChallengeTrackers[cleanTitle];
       isChallenge = true;
-      let val = globalPlayerData;
-      for (const key of tracker.path) {
-        if (val !== undefined && val !== null) val = val[key];
+      let missingLabels = [];
+
+      if (tracker.paths) {
+        customCurrentAmt = 0;
+        for (const p of tracker.paths) {
+          let val = globalPlayerData;
+          let targetPath = p.path || p;
+          let req = p.req || 1;
+
+          for (const key of targetPath) {
+            if (val !== undefined && val !== null) val = val[key];
+          }
+
+          let currentVal = typeof val === 'number' ? val : 0;
+          customCurrentAmt += Math.min(currentVal, req);
+
+          if (p.label && currentVal < req) {
+            if (req > 1) {
+              missingLabels.push(`${p.label} (${currentVal}/${req})`);
+            } else {
+              missingLabels.push(p.label);
+            }
+          }
+        }
+      } else {
+        let val = globalPlayerData;
+        for (const key of tracker.path) {
+          if (val !== undefined && val !== null) val = val[key];
+        }
+        customCurrentAmt = typeof val === 'number' ? val : 0;
       }
-      customCurrentAmt = typeof val === 'number' ? val : 0;
+
       customTargetAmt = tracker.max;
+      if (missingLabels.length > 0) {
+        ach.missingLabels = missingLabels;
+      }
     }
 
     if (customTargetAmt !== null) {
@@ -1525,6 +1566,11 @@ function renderDashboard() {
   document.getElementById('col-challenge').innerHTML = challenges.slice(0, viewLimitChal).map(ach => {
     ach.desc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, ach.customTargetAmt ? ach.customTargetAmt.toLocaleString() : "1");
     
+    let missingHtml = '';
+    if (ach.missingLabels && ach.missingLabels.length > 0) {
+      missingHtml = `<div style="font-size: 11px; color: var(--text-3); margin-top: 6px;">Missing: ${ach.missingLabels.join(', ')}</div>`;
+    }
+
     let progressBlock = '';
     if (ach.customTargetAmt) {
       let displayStr = ach.customCurrentAmt.toLocaleString();
@@ -1534,6 +1580,7 @@ function renderDashboard() {
       progressBlock = `
         <div class="ach-progress-container"><div class="${barClass}" style="width: ${ach.customProgPct.toFixed(2)}%;"></div></div>
         <div class="tier-progress-text">${progressText} (${ach.customProgPct.toFixed(2)}%)</div>
+        ${missingHtml}
       `;
     }
 
