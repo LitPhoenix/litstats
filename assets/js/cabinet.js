@@ -457,6 +457,7 @@ const TAG_DB = {
   "Deux Ex Machina": { type: "Coins", cost: "493,281", tip: "Requires max Bloodcraft, Alchemy and Cooking" },
   "Tablets of Destiny": { type: "Coins", cost: "379,843", tip: "Requires max Engineering and Enchanting" },
   "Exodus": { type: "Coins", cost: "824,937", tip: "Requires max Cooking, Armorsmithing, Bloodcraft and Engineering" },
+  "[UHC] Treasure Hunter": { type: "Coins", cost: "225,250", tip: "Requires max Strategist" },
   "Contracts": { tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
   "Sugar Rush": { tip: "Aim for cherries, they give more gold" },
   "Blasphemous": { tip: "Check Opal costs for the the Fallen Angel Kit [here](https://www.litstats.com/angel)" },
