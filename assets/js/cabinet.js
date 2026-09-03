@@ -8,6 +8,7 @@ let historicalArchiveData = {};
 
 let isCompExcluded = localStorage.getItem('litstats_excludeComp') === 'true';
 let isMultiSelect = localStorage.getItem('litstats_multiSelect') === 'true';
+let isMultiExclude = localStorage.getItem('litstats_multiExclude') === 'true';
 let isHighestTierOnly = localStorage.getItem('litstats_highestTier') === 'true';
 let isHistoryHidden = localStorage.getItem('litstats_historyHidden') === 'true';
 let isMaxesHidden = localStorage.getItem('litstats_maxesHidden') === 'true';
@@ -21,9 +22,16 @@ let filterLabelMode = localStorage.getItem('litstats_filterLabelMode') || 'perce
 
 let isShowCompleted = localStorage.getItem('litstats_showCompleted') === 'true';
 let isLegacyMode = false;
-let activeMwClass = null;
 
-const mwClassesList = ["Angel", "Arcanist", "Assassin", "Automaton", "Blaze", "Cow", "Creeper", "Dragon", "Dreadlord", "Enderman", "Golem", "Herobrine", "Hunter", "Moleman", "Phoenix", "Pigman", "Pirate", "Renegade", "Shaman", "Shark", "Sheep", "Skeleton", "Snowman", "Spider", "Squid", "Werewolf", "Zombie", "Legendary"];
+let activeMwClass = null;
+let activeArcadeGame = null;
+let activeTntGame = null;
+let activeWoolGame = null;
+
+const mwClassesList = ["Angel", "Arcanist", "Assassin", "Automaton", "Blaze", "Cow", "Creeper", "Dragon", "Dreadlord", "Enderman", "Golem", "Herobrine", "Hunter", "Moleman", "Phoenix", "Pigman", "Pirate", "Renegade", "Shaman", "Shark", "Sheep", "Skeleton", "Snowman", "Spider", "Squid", "Werewolf", "Zombie", "Legendary", "Other"];
+const arcadeGamesList = ["Blocking Dead", "Bounty Hunters", "Creeper Attack", "Disasters", "Dragon Wars", "Dropper", "Ender Spleef", "Farm Hunt", "Football", "Galaxy Wars", "Hide and Seek", "Hole in the Wall", "Hypixel Says", "Mini Walls", "Party Games", "Pixel Painters", "Pixel Party", "Throw Out", "Zombies", "Other"];
+const tntGamesList = ["Bow Spleef", "PVP Run", "TNT Run", "TNT Tag", "TNT Wizards", "Other"];
+const woolGamesList = ["Capture the Wool", "Sheep Wars", "Wool Wars", "Other"];
 
 const customSkinRewards = {
   "i am cow": "img/megawalls/cow/Cow Suit.png",
@@ -226,117 +234,22 @@ Object.entries(customSkinRewards).forEach(([key, path]) => {
   const parts = path.split('/');
   const fileName = parts.pop();
   const folder = parts.join('/');
-  
   const cleanName = fileName.replace('.png', '');
   const noSpaceFile = fileName.replace(/ /g, '');
-  
   const safeFolder = folder.startsWith('/') ? folder : '/' + folder;
   
   normalizedSkinRewards[normKey] = {
     path: `${safeFolder}/${noSpaceFile}`,
     name: cleanName,
-    mwClass: parts.length > 2 ? parts[2].toLowerCase() : null // extracts class from 'img/megawalls/cow/...'
+    mwClass: parts.length > 2 ? parts[2].toLowerCase() : null 
   };
 });
 
-window.toggleLegacyMode = function() {
-  isLegacyMode = !isLegacyMode;
-  document.getElementById('toggle-legacy-btn').classList.toggle('active', isLegacyMode);
-  updateProgressDisplay();
-  populateFilters();
-  renderDashboard();
-};
-
-window.toggleShowCompleted = function() {
-  isShowCompleted = !isShowCompleted;
-  localStorage.setItem('litstats_showCompleted', isShowCompleted);
-  document.getElementById('toggle-completed-btn').classList.toggle('active', isShowCompleted);
-  populateFilters();
-  renderDashboard();
-};
-
-window.setLegacyMode = function(mode) {
-  isLegacyMode = mode;
-  document.getElementById('tab-normal').classList.toggle('active', !mode);
-  document.getElementById('tab-legacy').classList.toggle('active', mode);
-  updateProgressDisplay();
-  populateFilters();
-  renderDashboard();
-};
-
-window.clearSearch = function(id) {
-  const input = document.getElementById(id);
-  if(input) {
-    input.value = '';
-    if(id === 'achSearch') handleAchSearch();
-  }
-};
-
-window.pinCurrentPlayer = function() {
-  if (!globalPlayerData) return;
-  const currentPinned = localStorage.getItem('litstats_pinnedPlayer');
-  
-  if (currentPinned === globalPlayerData.username) {
-    localStorage.removeItem('litstats_pinnedPlayer');
-    document.getElementById('pinned-player-container').classList.add('hidden');
-  } else {
-    localStorage.setItem('litstats_pinnedPlayer', globalPlayerData.username);
-    loadPinnedPlayer();
-  }
-};
-
-function loadPinnedPlayer() {
-  const pinned = localStorage.getItem('litstats_pinnedPlayer');
-  const container = document.getElementById('pinned-player-container');
-  if (pinned) {
-    container.innerHTML = `📌 ${pinned}`;
-    container.classList.remove('hidden');
-    container.onclick = () => window.location.href = `/cabinet?player=${pinned}`;
-  }
-}
-
-const compGames = ["Mega Walls", "Pit", "UHC"];
-
-window.activeTierView = {}; 
-window.limits = { tiered: 48, challenge: 48, recent: 48 };
-let viewMode = 'all'; 
-let ignoredAchs = JSON.parse(localStorage.getItem('litstats_ignored')) || [];
-let bookmarkedAchs = JSON.parse(localStorage.getItem('litstats_bookmarked')) || [];
-
-const countryFlags = {
-  'argentina': 'ar', 'ar': 'ar', 'australia': 'au', 'au': 'au',
-  'austria': 'at', 'at': 'at', 'belgium': 'be', 'be': 'be',
-  'brazil': 'br', 'br': 'br', 'bulgaria': 'bg', 'bg': 'bg',
-  'canada': 'ca', 'ca': 'ca', 'china': 'cn', 'cn': 'cn',
-  'croatia': 'hr', 'hr': 'hr', 'czech republic': 'cz', 'czech_republic': 'cz', 'cz': 'cz',
-  'denmark': 'dk', 'dk': 'dk', 'ecuador': 'ec', 'ec': 'ec',
-  'finland': 'fi', 'fi': 'fi', 'france': 'fr', 'fr': 'fr',
-  'germany': 'de', 'de': 'de', 'greece': 'gr', 'gr': 'gr',
-  'hungary': 'hu', 'hu': 'hu', 'india': 'in', 'in': 'in',
-  'iraq': 'iq', 'iq': 'iq', 'ireland': 'ie', 'ie': 'ie',
-  'israel': 'il', 'il': 'il', 'italy': 'it', 'it': 'it',
-  'japan': 'jp', 'jp': 'jp', 'mexico': 'mx', 'mx': 'mx',
-  'moldova': 'md', 'md': 'md', 'new zealand': 'nz', 'new_zealand': 'nz', 'nz': 'nz',
-  'norway': 'no', 'no': 'no', 'poland': 'pl', 'pl': 'pl',
-  'portugal': 'pt', 'pt': 'pt', 'romania': 'ro', 'ro': 'ro',
-  'russia': 'ru', 'ru': 'ru', 'saudi arabia': 'sa', 'saudi_arabia': 'sa', 'sa': 'sa',
-  'serbia': 'rs', 'rs': 'rs', 'south korea': 'kr', 'south_korea': 'kr', 'korea': 'kr', 'kr': 'kr',
-  'spain': 'es', 'es': 'es', 'sweden': 'se', 'se': 'se',
-  'switzerland': 'ch', 'ch': 'ch', 'syria': 'sy', 'sy': 'sy',
-  'taiwan': 'tw', 'tw': 'tw', 'the netherlands': 'nl', 'netherlands': 'nl', 'the_netherlands': 'nl', 'nl': 'nl',
-  'turkey': 'tr', 'tr': 'tr', 'uk': 'gb', 'united kingdom': 'gb', 'united_kingdom': 'gb', 'gb': 'gb',
-  'ukraine': 'ua', 'ua': 'ua', 'usa': 'us', 'us': 'us', 'united states': 'us', 'united_states': 'us',
-  'chile': 'cl', 'cl': 'cl', 'bosnia and herzegovina': 'ba', 'bosnia': 'ba', 'ba': 'ba',
-  'slovakia': 'sk', 'sk': 'sk', 'slovenia': 'si', 'si': 'si', 'lithuania': 'lt', 'lt': 'lt'
-};
-
-function getFlagUrl(c) {
-  if (!c) return null;
-  const clean = c.toLowerCase().trim().replace(/_/g, ' ');
-  if (clean === 'youtubers') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png';
-  if (clean === 'staff') return 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg';
-  if (countryFlags[clean]) return `https://flagcdn.com/w640/${countryFlags[clean]}.png`;
-  return null;
+const CustomChallengeTrackers = {
+  "brutalwarrior": { path: ["rawStats", "HungerGames", "exp_warrior"], max: 10000 },
+  "donkeytamermaster": { path: ["rawStats", "HungerGames", "exp_donkeytamer"], max: 10000 },
+  "firstranger": { path: ["rawStats", "HungerGames", "exp_ranger"], max: 10000 },
+  "phoenixmaster": { path: ["rawStats", "HungerGames", "exp_phoenix"], max: 10000 }
 }
 
 const TAG_DB = {
@@ -447,7 +360,7 @@ const TAG_DB = {
   "[Blitz] Collector": { type: "Coins", cost: "4,249,440", tip: "3 standard Level X kits costs 4,249,440, however it's free to level Ultimate kits" },
   "So Shiny": { type: "Coins", cost: "3,416,480", tip: "Standard Prestige kit costs 3,416,480, if you prestige an Ultimate kit, you only spend 2,000,000 extra" },
   "Even Shinier": { type: "Coins", cost: "3,916,480", tip: "Standard Prestige II kit costs 3,916,480, if you prestige an Ultimate kit, you only spend 2,500,000 extra" },
-  "Jack of All Trades": { type: "Coins", cost: "1,045,000", tip: "Need Ultimate kit requirements too" },
+  "[Blitz] Jack of All Trades": { type: "Coins", cost: "1,045,000", tip: "Need Ultimate kit requirements too" },
   "Superior Vote": { type: "Tokens", cost: "2,000"},
   "Fancy": { type: "Tokens", cost: "900"},
   "Musician": { type: "Tokens", cost: "125,000", tip: "All songs cost the same amount, 5,000 coins" },
@@ -489,6 +402,19 @@ const TAG_DB = {
   "Master of Masters": { type: "Coins", cost: "250,000", tip: "Requires 2000 kills with a Mastery" },
   "Kit Specialist": { type: "Coins", cost: "37,500", tip: "Cheapest 15 kits cost 37,500 coins" },
   "Feels Good Man": { type: "Coins", cost: "2,500", tip: "Cheapest kit cost 2,500 coins" },
+  "umadbro?": { type: "Coins", cost: "200" },
+  "Grafitti King": { type: "Coins", cost: "300" },
+  "Street Artist": { type: "Coins", cost: "1,100" },
+  "Armed and Dangerous": { type: "Coins", cost: "1,825,473", tip: "Pistol costs 419,725, Handgun costs 571,300, Magnum costs 834,448; for max upgrades with Ammo Clip" },
+  "Better Version Of Yourself": { type: "Coins", cost: "789,450", tip: "Each of the 3 upgrade paths cost 263,150" },
+  "Is it good now?": { type: "Coins", cost: "419,725", tip: "This is the price for Pistol" },
+  "Snazzy": { type: "Coins", cost: "50,000", tip: "Or claim free Emblem from levelling menu at Level 1" },
+  "Rubbing It In": { type: "Coins", cost: "50,000", tip: "Or claim free Glyph from levelling menu at Level 6" },
+  "Stylistic": { type: "Coins", cost: "50,000", tip: "Or claim free Scheme from levelling menu at Level 20" },
+  "Express Yourself": { type: "Coins", cost: "5,000" },
+  "The Gatherer": { type: "Coins", cost: "1,000" },
+  "Going to the Gym": { type: "Coins", cost: "200", tip: "Kit Upgrade on Default class is 200 coins" },
+  "Save your stuff": { type: "Coins", cost: "10,000" },
   "Contracts": { tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
   "Sugar Rush": { tip: "Aim for cherries, they give more gold" },
   "Blasphemous": { tip: "Check Opal costs for the the Fallen Angel Kit [here](https://www.litstats.com/angel)" },
@@ -582,6 +508,186 @@ const MWSkinData = {
   "woollyrespite": { class: "Sheep", stat: "woolly_respite", max: 250 }
 };
 
+const MW_CUSTOM_MAPPINGS = {
+  "bigleap": "Spider",
+  "unbridledriches": "Dragon",
+  "configuration": "Automaton",
+  "contractkiller": "Assassin",
+  "teamkill": "Sheep",
+  "snowballfight": "Snowman",
+  "unwavering": "Angel",
+  "borntalented": "Renegade",
+  "soulbbq": "Pigman",
+  "kingofthesprings": "Pigman"
+};
+
+function getMwClassForAchievement(title, desc) {
+  const cleanT = title.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const tLow = title.toLowerCase();
+  const dLow = (desc || '').toLowerCase();
+
+  if (MW_CUSTOM_MAPPINGS[cleanT]) return MW_CUSTOM_MAPPINGS[cleanT];
+  if (tLow.includes('legendary')) return 'Legendary';
+  if (normalizedSkinRewards[cleanT]?.mwClass) {
+    const cls = normalizedSkinRewards[cleanT].mwClass;
+    return cls.charAt(0).toUpperCase() + cls.slice(1);
+  }
+  if (MWSkinData[cleanT]?.class) return MWSkinData[cleanT].class;
+
+  for (const cls of mwClassesList) {
+    if (cls === 'Other' || cls === 'Legendary') continue;
+    const cLow = cls.toLowerCase();
+    if (tLow.includes(cLow) || dLow.includes(cLow)) return cls;
+  }
+  return 'Other';
+}
+
+const TNT_CUSTOM_MAPPINGS = {
+  "sorcery": "TNT Wizards",
+  "prosurfer": "TNT Wizards",
+  "havefun": "TNT Tag",
+  "asecondchance": "TNT Tag",
+  "holeinmypocket": "Other",
+  "conqueror": "Other",
+  "triathlon": "Other",
+  "banker": "Other",
+  "iknowhowthisworks": "Other",
+  "skilled": "Other",
+  "spooky": "Other"
+};
+
+function getTntGameForAchievement(title, desc) {
+  const cleanT = title.toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (TNT_CUSTOM_MAPPINGS[cleanT]) return TNT_CUSTOM_MAPPINGS[cleanT];
+
+  const combined = `${title} ${desc || ''}`.toLowerCase();
+  if (combined.includes('wizard')) return 'TNT Wizards';
+  if (combined.includes('tag') || combined.includes('repulsor')) return 'TNT Tag';
+  if (combined.includes('bow spleef') || combined.includes('spleef')) return 'Bow Spleef';
+  if (combined.includes('pvp run')) return 'PVP Run';
+  if (combined.includes('tnt run')) return 'TNT Run';
+
+  return 'Other';
+}
+
+function getArcadeGameForAchievement(title, desc) {
+  const combined = `${title} ${desc || ''}`.toLowerCase();
+  for (const game of arcadeGamesList) {
+    if (game === 'Other') continue;
+    if (combined.includes(game.toLowerCase())) return game;
+  }
+  return 'Other';
+}
+
+function getWoolGameForAchievement(title, desc) {
+  const combined = `${title} ${desc || ''}`.toLowerCase();
+  for (const game of woolGamesList) {
+    if (game === 'Other') continue;
+    if (combined.includes(game.toLowerCase())) return game;
+  }
+  return 'Other';
+}
+
+window.toggleLegacyMode = function() {
+  isLegacyMode = !isLegacyMode;
+  document.getElementById('toggle-legacy-btn').classList.toggle('active', isLegacyMode);
+  updateProgressDisplay();
+  populateFilters();
+  renderDashboard();
+};
+
+window.toggleShowCompleted = function() {
+  isShowCompleted = !isShowCompleted;
+  localStorage.setItem('litstats_showCompleted', isShowCompleted);
+  document.getElementById('toggle-completed-btn').classList.toggle('active', isShowCompleted);
+  populateFilters();
+  renderDashboard();
+};
+
+window.setLegacyMode = function(mode) {
+  isLegacyMode = mode;
+  document.getElementById('tab-normal').classList.toggle('active', !mode);
+  document.getElementById('tab-legacy').classList.toggle('active', mode);
+  updateProgressDisplay();
+  populateFilters();
+  renderDashboard();
+};
+
+window.clearSearch = function(id) {
+  const input = document.getElementById(id);
+  if(input) {
+    input.value = '';
+    if(id === 'achSearch') handleAchSearch();
+  }
+};
+
+window.pinCurrentPlayer = function() {
+  if (!globalPlayerData) return;
+  const currentPinned = localStorage.getItem('litstats_pinnedPlayer');
+  
+  if (currentPinned === globalPlayerData.username) {
+    localStorage.removeItem('litstats_pinnedPlayer');
+    document.getElementById('pinned-player-container').classList.add('hidden');
+  } else {
+    localStorage.setItem('litstats_pinnedPlayer', globalPlayerData.username);
+    loadPinnedPlayer();
+  }
+};
+
+function loadPinnedPlayer() {
+  const pinned = localStorage.getItem('litstats_pinnedPlayer');
+  const container = document.getElementById('pinned-player-container');
+  if (pinned) {
+    container.innerHTML = `📌 ${pinned}`;
+    container.classList.remove('hidden');
+    container.onclick = () => window.location.href = `/cabinet?player=${pinned}`;
+  }
+}
+
+const compGames = ["Mega Walls", "Pit", "UHC"];
+
+window.activeTierView = {}; 
+window.limits = { tiered: 48, challenge: 48, recent: 20 };
+let viewMode = 'all'; 
+let ignoredAchs = JSON.parse(localStorage.getItem('litstats_ignored')) || [];
+let bookmarkedAchs = JSON.parse(localStorage.getItem('litstats_bookmarked')) || [];
+
+const countryFlags = {
+  'argentina': 'ar', 'ar': 'ar', 'australia': 'au', 'au': 'au',
+  'austria': 'at', 'at': 'at', 'belgium': 'be', 'be': 'be',
+  'brazil': 'br', 'br': 'br', 'bulgaria': 'bg', 'bg': 'bg',
+  'canada': 'ca', 'ca': 'ca', 'china': 'cn', 'cn': 'cn',
+  'croatia': 'hr', 'hr': 'hr', 'czech republic': 'cz', 'czech_republic': 'cz', 'cz': 'cz',
+  'denmark': 'dk', 'dk': 'dk', 'ecuador': 'ec', 'ec': 'ec',
+  'finland': 'fi', 'fi': 'fi', 'france': 'fr', 'fr': 'fr',
+  'germany': 'de', 'de': 'de', 'greece': 'gr', 'gr': 'gr',
+  'hungary': 'hu', 'hu': 'hu', 'india': 'in', 'in': 'in',
+  'iraq': 'iq', 'iq': 'iq', 'ireland': 'ie', 'ie': 'ie',
+  'israel': 'il', 'il': 'il', 'italy': 'it', 'it': 'it',
+  'japan': 'jp', 'jp': 'jp', 'mexico': 'mx', 'mx': 'mx',
+  'moldova': 'md', 'md': 'md', 'new zealand': 'nz', 'new_zealand': 'nz', 'nz': 'nz',
+  'norway': 'no', 'no': 'no', 'poland': 'pl', 'pl': 'pl',
+  'portugal': 'pt', 'pt': 'pt', 'romania': 'ro', 'ro': 'ro',
+  'russia': 'ru', 'ru': 'ru', 'saudi arabia': 'sa', 'saudi_arabia': 'sa', 'sa': 'sa',
+  'serbia': 'rs', 'rs': 'rs', 'south korea': 'kr', 'south_korea': 'kr', 'korea': 'kr', 'kr': 'kr',
+  'spain': 'es', 'es': 'es', 'sweden': 'se', 'se': 'se',
+  'switzerland': 'ch', 'ch': 'ch', 'syria': 'sy', 'sy': 'sy',
+  'taiwan': 'tw', 'tw': 'tw', 'the netherlands': 'nl', 'netherlands': 'nl', 'the_netherlands': 'nl', 'nl': 'nl',
+  'turkey': 'tr', 'tr': 'tr', 'uk': 'gb', 'united kingdom': 'gb', 'united_kingdom': 'gb', 'gb': 'gb',
+  'ukraine': 'ua', 'ua': 'ua', 'usa': 'us', 'us': 'us', 'united states': 'us', 'united_states': 'us',
+  'chile': 'cl', 'cl': 'cl', 'bosnia and herzegovina': 'ba', 'bosnia': 'ba', 'ba': 'ba',
+  'slovakia': 'sk', 'sk': 'sk', 'slovenia': 'si', 'si': 'si', 'lithuania': 'lt', 'lt': 'lt'
+};
+
+function getFlagUrl(c) {
+  if (!c) return null;
+  const clean = c.toLowerCase().trim().replace(/_/g, ' ');
+  if (clean === 'youtubers') return 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1280px-YouTube_full-color_icon_%282017%29.svg.png';
+  if (clean === 'staff') return 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/317699597/original/fb21937c8742ee5d3de5c9e02b4d340d80a39513/setup-minecraft-server-that-you-pay.jpg';
+  if (countryFlags[clean]) return `https://flagcdn.com/w640/${countryFlags[clean]}.png`;
+  return null;
+}
+
 window.handleTopSearch = function() {
   const input = document.getElementById('top-search-input');
   const term = (input?.value || '').trim();
@@ -597,12 +703,6 @@ window.toggleSection = function(wrapperId, sectionId) {
     const isHidden = wrap.classList.toggle('hidden');
     sec.classList.toggle('collapsed-section');
     localStorage.setItem('litstats_collapse_' + wrapperId, isHidden);
-
-    if (wrapperId === 'col-tiered-wrapper') {
-      document.getElementById('col-challenge-section').classList.toggle('full-width', isHidden);
-    } else if (wrapperId === 'col-challenge-wrapper') {
-      document.getElementById('col-tiered-section').classList.toggle('full-width', isHidden);
-    }
   }
 };
 
@@ -617,11 +717,33 @@ window.toggleProgressMode = function() {
 
 window.toggleMwClass = function(cls) {
   activeMwClass = (activeMwClass === cls) ? null : cls;
-  
   document.querySelectorAll('.mw-class-pill').forEach(pill => {
     pill.classList.toggle('active', pill.innerText.trim() === activeMwClass);
   });
-  
+  renderDashboard();
+};
+
+window.toggleArcadeGame = function(game) {
+  activeArcadeGame = (activeArcadeGame === game) ? null : game;
+  document.querySelectorAll('#arcade-game-filter .sub-filter-pill').forEach(pill => {
+    pill.classList.toggle('active', pill.innerText.trim() === activeArcadeGame);
+  });
+  renderDashboard();
+};
+
+window.toggleTntGame = function(game) {
+  activeTntGame = (activeTntGame === game) ? null : game;
+  document.querySelectorAll('#tnt-game-filter .sub-filter-pill').forEach(pill => {
+    pill.classList.toggle('active', pill.innerText.trim() === activeTntGame);
+  });
+  renderDashboard();
+};
+
+window.toggleWoolGame = function(game) {
+  activeWoolGame = (activeWoolGame === game) ? null : game;
+  document.querySelectorAll('#wool-game-filter .sub-filter-pill').forEach(pill => {
+    pill.classList.toggle('active', pill.innerText.trim() === activeWoolGame);
+  });
   renderDashboard();
 };
 
@@ -791,9 +913,10 @@ function toggleGameFilter(gameName) {
     activeGameFilters.has(gameName) ? activeGameFilters.delete(gameName) : activeGameFilters.add(gameName);
   }
   
-  if (!activeGameFilters.has('Mega Walls')) {
-    activeMwClass = null;
-  }
+  if (!activeGameFilters.has('Mega Walls')) activeMwClass = null;
+  if (!activeGameFilters.has('Arcade')) activeArcadeGame = null;
+  if (!activeGameFilters.has('TNT Games')) activeTntGame = null;
+  if (!activeGameFilters.has('Wool Games')) activeWoolGame = null;
   
   document.querySelectorAll('.filter-pill-btn').forEach(btn => {
     let name = btn.getAttribute('data-gamename');
@@ -807,7 +930,6 @@ function toggleExcludeComp() {
   isCompExcluded = document.getElementById('excludeComp').checked;
   localStorage.setItem('litstats_excludeComp', isCompExcluded);
   if (isCompExcluded) compGames.forEach(g => activeGameFilters.delete(g));
-  
   populateFilters();
   renderDashboard();
 }
@@ -815,14 +937,30 @@ function toggleExcludeComp() {
 function toggleMultiSelect() {
   isMultiSelect = document.getElementById('multiSelectToggle').checked;
   localStorage.setItem('litstats_multiSelect', isMultiSelect);
+  if (isMultiSelect && isMultiExclude) {
+    isMultiExclude = false;
+    document.getElementById('multiExcludeToggle').checked = false;
+    localStorage.setItem('litstats_multiExclude', 'false');
+  }
   if (!isMultiSelect && activeGameFilters.size > 1) {
     const first = activeGameFilters.values().next().value;
     activeGameFilters.clear();
     if (first) activeGameFilters.add(first);
     populateFilters();
-    renderDashboard();
   }
+  renderDashboard();
 }
+
+window.toggleMultiExclude = function() {
+  isMultiExclude = document.getElementById('multiExcludeToggle').checked;
+  localStorage.setItem('litstats_multiExclude', isMultiExclude);
+  if (isMultiExclude && isMultiSelect) {
+    isMultiSelect = false;
+    document.getElementById('multiSelectToggle').checked = false;
+    localStorage.setItem('litstats_multiSelect', 'false');
+  }
+  renderDashboard();
+};
 
 function toggleGoldApRewards() {
   isGoldApEnabled = document.getElementById('goldApToggle').checked;
@@ -894,6 +1032,77 @@ window.setTierView = function(base64Id, tierNum) {
   renderDashboard();
 };
 
+function applyAchievementTags(ach) {
+  let tagsHtml = '';
+  let tipHtml = '';
+  let cleanGame = ach.game.replace('Max ', '');
+  const tagData = TAG_DB[`[${cleanGame}] ${ach.title}`] || TAG_DB[ach.title];
+
+  if (tagData) {
+    if (tagData.desc) ach.desc = tagData.desc;
+
+    if (tagData.type) {
+      if (!showSecretTags && tagData.type === 'Secret') return ach;
+      if (!showBrokenTags && tagData.type === 'Broken') return ach;
+      
+      let skipTypeTag = tagData.type === 'Renown';
+
+      if (!skipTypeTag) {
+        let colour = tagData.type === 'Broken' ? 'var(--red)' : tagData.type === 'Map' ? 'var(--green)' : tagData.type === 'Secret' ? '#ff33ff' : 'var(--gold)';
+        
+        if (tagData.type === 'Prestige' && tagData.level) {
+          let lvl = parseInt(tagData.level, 10);
+          let bCol = lvl <= 4 ? '#5555FF' : lvl <= 9 ? '#FFFF55' : lvl <= 14 ? '#FFAA00' : 
+                  lvl <= 19 ? '#FF5555' : lvl <= 24 ? '#AA00AA' : lvl <= 29 ? '#FF55FF' : 
+                  lvl <= 34 ? '#FFFFFF' : lvl <= 39 ? '#55FFFF' : lvl <= 44 ? '#0000AA' : 
+                  lvl <= 47 ? '#000000' : lvl <= 49 ? '#AA0000' : '#555555';
+          
+          const romanMap = { L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
+          let rStr = '', n = lvl;
+          for (let i of Object.keys(romanMap)) {
+            let q = Math.floor(n / romanMap[i]);
+            n -= q * romanMap[i];
+            rStr += i.repeat(q);
+          }
+          
+          tagsHtml += `<span class="sleek-tag" style="--tag-color: ${bCol};"><span style="color: ${bCol}; font-weight: bold;">[</span><span style="color: var(--text);">${rStr}</span><span style="color: ${bCol}; font-weight: bold;">]</span></span>`;
+        } else {
+          let tagText;
+          if (tagData.type === 'Map') {
+            tagText = tagData.map;
+          } else if (tagData.cost) {
+            let num = parseInt(tagData.cost.replace(/,/g, ''), 10);
+            let formattedCost = num >= 1000000 
+              ? (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M' 
+              : num >= 1000 
+                ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K' 
+                : num;
+            tagText = `${formattedCost} ${tagData.type}`;
+          } else {
+            tagText = tagData.type;
+          }
+          tagsHtml += `<span class="sleek-tag" style="--tag-color: ${colour};">${tagText}</span>`;
+        }
+      }
+    }
+    
+    if (tagData.renown) tagsHtml += ` <span class="sleek-tag" data-tag="renown" style="margin-left: 4px;">${tagData.renown} Renown</span>`;
+    if (tagData.souls) tagsHtml += ` <span class="sleek-tag" style="--tag-color: #55ffff; margin-left: 4px;">${tagData.souls} Souls</span>`;
+    
+    if (tagData.tip) {
+      let linkedTip = tagData.tip
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => `<a href="${url.startsWith('http') ? url : `https://${url}`}" target="_blank" style="color: inherit; text-decoration: underline;">${text}</a>`)
+        .replace(/(?<!["'])(https?:\/\/[^\s<]+|www\.[^\s<]+)(?![^<]*>)/g, match => `<a href="${match.startsWith('http') ? match : `https://${match}`}" target="_blank" style="color: inherit; text-decoration: underline;">${match}</a>`)
+        .replace(/\n/g, '<br>');
+      tipHtml = `<div class="ach-tip"><i>Tip: ${linkedTip}</i></div>`;
+    }
+  }
+  
+  ach.tagsHtml = tagsHtml;
+  ach.tipHtml = tipHtml;
+  return ach;
+}
+
 function renderDashboard() {
   if (!globalPlayerData) return;
 
@@ -904,8 +1113,8 @@ function renderDashboard() {
   
   let allMissing = dataRefMissing;
   if (isShowCompleted) {
-    const missingTitles = new Set(dataRefMissing.map(a => a.title));
-    const uniqueCompleted = dataRefCompleted.filter(a => !missingTitles.has(a.title));
+    const missingTitles = new Set(dataRefMissing.map(a => `${a.game}:${a.title}`));
+    const uniqueCompleted = dataRefCompleted.filter(a => !missingTitles.has(`${a.game}:${a.title}`));
     allMissing = allMissing.concat(uniqueCompleted);
   }
 
@@ -926,102 +1135,156 @@ function renderDashboard() {
 
   if (!isBookmarkViewActive) {
     if (isCompExcluded) allMissing = allMissing.filter(a => !compGames.includes(a.game.replace('Max ', '')));
-    if (activeGameFilters.size > 0) allMissing = allMissing.filter(a => activeGameFilters.has(a.game.replace('Max ', '')));
+    
+    if (activeGameFilters.size > 0) {
+      if (isMultiSelect && isMultiExclude) {
+        allMissing = allMissing.filter(a => !activeGameFilters.has(a.game.replace('Max ', '')));
+      } else {
+        allMissing = allMissing.filter(a => activeGameFilters.has(a.game.replace('Max ', '')));
+      }
+    }
   }
 
   const mwClassFilterContainer = document.getElementById('mw-class-filter');
-  if (activeGameFilters.size === 1 && activeGameFilters.has('Mega Walls') && !isBookmarkViewActive) {
-    mwClassFilterContainer.classList.remove('hidden');
-    
-    const classStatus = {};
-    const allMwAchs = dataRefMissing.concat(dataRefCompleted).filter(a => a.game.replace('Max ', '') === 'Mega Walls');
-    
-    mwClassesList.forEach(cls => {
-      let hasIncomplete = false;
-      let hasCompleted = false;
+  const arcadeFilterContainer = document.getElementById('arcade-game-filter');
+  const tntFilterContainer = document.getElementById('tnt-game-filter');
+  const woolFilterContainer = document.getElementById('wool-game-filter');
+  
+  mwClassFilterContainer.classList.add('hidden');
+  arcadeFilterContainer.classList.add('hidden');
+  tntFilterContainer.classList.add('hidden');
+  woolFilterContainer.classList.add('hidden');
+
+  if (activeGameFilters.size === 1 && !isBookmarkViewActive) {
+    if (activeGameFilters.has('Mega Walls')) {
+      mwClassFilterContainer.classList.remove('hidden');
+      const allMwAchs = dataRefMissing.concat(dataRefCompleted).filter(a => a.game.replace('Max ', '') === 'Mega Walls');
+      
+      const mwPillStatus = {};
+      mwClassesList.forEach(cls => mwPillStatus[cls] = { total: 0, completed: 0 });
       
       allMwAchs.forEach(ach => {
-        let t = ach.title.toLowerCase();
-        let classLow = cls.toLowerCase();
-        let belongs = false;
-        
-        if (cls === 'Legendary') {
-          belongs = t.includes('legendary');
-        } else {
-          let d = ach.desc?.toLowerCase() || '';
-          let cleanT = t.replace(/[^a-z0-9]/g, '');
-          let skinData = MWSkinData[cleanT];
-          let normSkin = normalizedSkinRewards[cleanT];
-          
-          if (t.includes(classLow) || d.includes(classLow) || 
-             (skinData && skinData.class.toLowerCase() === classLow) ||
-             (normSkin && normSkin.mwClass === classLow)) {
-            belongs = true;
-          }
-        }
-        
-        if (belongs) {
-           let isComp = ach.trulyCompleted;
-           const skinData = MWSkinData[t.replace(/[^a-z0-9]/g, '')];
-           if (skinData) {
-              let currentAmt = globalPlayerData.megaWalls?.skins?.[skinData.class.toLowerCase()]?.[skinData.stat] || 0;
-              isComp = currentAmt >= skinData.max;
-           }
-           
-           if (isComp) hasCompleted = true;
-           else hasIncomplete = true;
+        const cls = getMwClassForAchievement(ach.title, ach.desc);
+        if (mwPillStatus[cls]) {
+          mwPillStatus[cls].total++;
+          if (ach.trulyCompleted) mwPillStatus[cls].completed++;
         }
       });
-      
-      classStatus[cls] = { hasIncomplete, hasCompleted };
-    });
 
-    const availableClasses = mwClassesList.filter(cls => {
-       if (!isShowCompleted) return classStatus[cls].hasIncomplete;
-       return classStatus[cls].hasIncomplete || classStatus[cls].hasCompleted;
-    });
+      mwClassFilterContainer.innerHTML = mwClassesList.map(cls => {
+        const lowerCls = cls.toLowerCase();
+        let iconPath = cls === 'Legendary' ? 'img/diamond.png' : cls === 'Other' ? 'img/book.png' : `img/megawalls/${lowerCls}/${cls}.png`;
+        const activeClass = activeMwClass === cls ? 'active' : '';
+        const stat = mwPillStatus[cls];
+        const isComplete = stat.total > 0 && stat.completed === stat.total;
+        const goldClass = (isShowCompleted && isComplete) ? 'gold-pill' : '';
 
-    mwClassFilterContainer.innerHTML = availableClasses.map(cls => {
-      const lowerCls = cls.toLowerCase();
-      const iconPath = cls === 'Legendary' ? 'img/diamond.png' : `img/megawalls/${lowerCls}/${cls}.png`;
-      
-      const isFullyComplete = !classStatus[cls].hasIncomplete && classStatus[cls].hasCompleted;
-      const goldClass = (isShowCompleted && isFullyComplete) ? 'gold-pill' : '';
-      const activeClass = activeMwClass === cls ? 'active' : '';
-      
-      return `<div class="mw-class-pill ${activeClass} ${goldClass}" onclick="toggleMwClass('${cls}')">
-        <img src="${iconPath}" onerror="this.style.display='none'">
-        ${cls}
-      </div>`;
-    }).join('');
-    
-    if (activeMwClass && !availableClasses.includes(activeMwClass)) {
-      activeMwClass = null;
-    }
+        return `<div class="mw-class-pill ${activeClass} ${goldClass}" onclick="toggleMwClass('${cls}')">
+          <img src="${iconPath}" onerror="this.style.display='none'">
+          ${cls}
+        </div>`;
+      }).join('');
 
-    if (activeMwClass) {
-      allMissing = allMissing.filter(a => {
-        let t = a.title.toLowerCase();
-        if (activeMwClass === 'Legendary') return t.includes('legendary');
-        
-        let d = a.desc?.toLowerCase() || '';
-        let classLow = activeMwClass.toLowerCase();
-        let cleanT = t.replace(/[^a-z0-9]/g, '');
-        
-        if (t.includes(classLow) || d.includes(classLow)) return true;
-        
-        let skinData = MWSkinData[cleanT];
-        if (skinData && skinData.class.toLowerCase() === classLow) return true;
-        
-        let normSkin = normalizedSkinRewards[cleanT];
-        if (normSkin && normSkin.mwClass === classLow) return true;
-        
-        return false;
+      if (activeMwClass) {
+        allMissing = allMissing.filter(a => activeMwClass === getMwClassForAchievement(a.title, a.desc));
+      }
+    } else if (activeGameFilters.has('Arcade')) {
+      arcadeFilterContainer.classList.remove('hidden');
+      const allArcadeAchs = dataRefMissing.concat(dataRefCompleted).filter(a => a.game.replace('Max ', '') === 'Arcade');
+      
+      const arcadePillStatus = {};
+      arcadeGamesList.forEach(game => arcadePillStatus[game] = { total: 0, completed: 0 });
+
+      allArcadeAchs.forEach(ach => {
+        const game = getArcadeGameForAchievement(ach.title, ach.desc);
+        if (arcadePillStatus[game]) {
+          arcadePillStatus[game].total++;
+          if (ach.trulyCompleted) arcadePillStatus[game].completed++;
+        }
       });
+
+      arcadeFilterContainer.innerHTML = arcadeGamesList.map(game => {
+        let safeName = game.toLowerCase().replace(/ /g, '_');
+        let iconPath = game === 'Other' ? 'img/book.png' : `img/arcade/${safeName}.png`;
+        const activeClass = activeArcadeGame === game ? 'active' : '';
+        const stat = arcadePillStatus[game];
+        const isComplete = stat.total > 0 && stat.completed === stat.total;
+        const goldClass = (isShowCompleted && isComplete) ? 'gold-pill' : '';
+
+        return `<div class="sub-filter-pill ${activeClass} ${goldClass}" onclick="toggleArcadeGame('${game}')">
+          <img src="${iconPath}" onerror="this.style.display='none'">
+          ${game}
+        </div>`;
+      }).join('');
+
+      if (activeArcadeGame) {
+        allMissing = allMissing.filter(a => activeArcadeGame === getArcadeGameForAchievement(a.title, a.desc));
+      }
+    } else if (activeGameFilters.has('TNT Games')) {
+      tntFilterContainer.classList.remove('hidden');
+      const allTntAchs = dataRefMissing.concat(dataRefCompleted).filter(a => a.game.replace('Max ', '') === 'TNT Games');
+      
+      const tntPillStatus = {};
+      tntGamesList.forEach(game => tntPillStatus[game] = { total: 0, completed: 0 });
+
+      allTntAchs.forEach(ach => {
+        const game = getTntGameForAchievement(ach.title, ach.desc);
+        if (tntPillStatus[game]) {
+          tntPillStatus[game].total++;
+          if (ach.trulyCompleted) tntPillStatus[game].completed++;
+        }
+      });
+
+      tntFilterContainer.innerHTML = tntGamesList.map(game => {
+        let safeName = game.toLowerCase().replace(/ /g, '_');
+        let iconPath = game === 'Other' ? 'img/book.png' : `img/tnt/${safeName}.png`;
+        const activeClass = activeTntGame === game ? 'active' : '';
+        const stat = tntPillStatus[game];
+        const isComplete = stat.total > 0 && stat.completed === stat.total;
+        const goldClass = (isShowCompleted && isComplete) ? 'gold-pill' : '';
+
+        return `<div class="sub-filter-pill ${activeClass} ${goldClass}" onclick="toggleTntGame('${game}')">
+          <img src="${iconPath}" onerror="this.style.display='none'">
+          ${game}
+        </div>`;
+      }).join('');
+
+      if (activeTntGame) {
+        allMissing = allMissing.filter(a => activeTntGame === getTntGameForAchievement(a.title, a.desc));
+      }
+    } else if (activeGameFilters.has('Wool Games')) {
+      woolFilterContainer.classList.remove('hidden');
+      const allWoolAchs = dataRefMissing.concat(dataRefCompleted).filter(a => a.game.replace('Max ', '') === 'Wool Games');
+      
+      const woolPillStatus = {};
+      woolGamesList.forEach(game => woolPillStatus[game] = { total: 0, completed: 0 });
+
+      allWoolAchs.forEach(ach => {
+        const game = getWoolGameForAchievement(ach.title, ach.desc);
+        if (woolPillStatus[game]) {
+          woolPillStatus[game].total++;
+          if (ach.trulyCompleted) woolPillStatus[game].completed++;
+        }
+      });
+
+      woolFilterContainer.innerHTML = woolGamesList.map(game => {
+        let safeName = game.toLowerCase().replace(/ /g, '_');
+        let iconPath = game === 'Other' ? 'img/book.png' : `img/woolgames/${safeName}.png`;
+        const activeClass = activeWoolGame === game ? 'active' : '';
+        const stat = woolPillStatus[game];
+        const isComplete = stat.total > 0 && stat.completed === stat.total;
+        const goldClass = (isShowCompleted && isComplete) ? 'gold-pill' : '';
+
+        return `<div class="sub-filter-pill ${activeClass} ${goldClass}" onclick="toggleWoolGame('${game}')">
+          <img src="${iconPath}" onerror="this.style.display='none'">
+          ${game}
+        </div>`;
+      }).join('');
+
+      if (activeWoolGame) {
+        allMissing = allMissing.filter(a => activeWoolGame === getWoolGameForAchievement(a.title, a.desc));
+      }
     }
-  } else {
-    mwClassFilterContainer.classList.add('hidden');
-    activeMwClass = null;
   }
 
   if (searchQuery.trim().length > 0) {
@@ -1069,104 +1332,60 @@ function renderDashboard() {
     if (viewMode === 'bookmarks' && !isBookmarked) return;
     if (viewMode === 'all' && isIgnored) return;
 
-    let tagsHtml = '';
-    let tipHtml = '';
+    ach = applyAchievementTags(ach);
+
     let cleanGame = ach.game.replace('Max ', '');
-    const tagData = TAG_DB[`[${cleanGame}] ${ach.title}`] || TAG_DB[ach.title];
-
-    if (tagData) {
-      if (tagData.desc) ach.desc = tagData.desc; 
-
-      if (tagData.type) {
-        if (!showSecretTags && tagData.type === 'Secret') return;
-        if (!showBrokenTags && tagData.type === 'Broken') return;
-        
-        let skipTypeTag = tagData.type === 'Renown';
-
-        if (!skipTypeTag) {
-          let colour = tagData.type === 'Broken' ? 'var(--red)' : tagData.type === 'Map' ? 'var(--green)' : tagData.type === 'Secret' ? '#ff33ff' : 'var(--gold)';
-          
-          if (tagData.type === 'Prestige' && tagData.level) {
-            let lvl = parseInt(tagData.level, 10);
-            let bCol = lvl <= 4 ? '#5555FF' : lvl <= 9 ? '#FFFF55' : lvl <= 14 ? '#FFAA00' : 
-                    lvl <= 19 ? '#FF5555' : lvl <= 24 ? '#AA00AA' : lvl <= 29 ? '#FF55FF' : 
-                    lvl <= 34 ? '#FFFFFF' : lvl <= 39 ? '#55FFFF' : lvl <= 44 ? '#0000AA' : 
-                    lvl <= 47 ? '#000000' : lvl <= 49 ? '#AA0000' : '#555555';
-            
-            const romanMap = { L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
-            let rStr = '', n = lvl;
-            for (let i of Object.keys(romanMap)) {
-              let q = Math.floor(n / romanMap[i]);
-              n -= q * romanMap[i];
-              rStr += i.repeat(q);
-            }
-            
-            tagsHtml += `<span class="sleek-tag" style="--tag-color: ${bCol};"><span style="color: ${bCol}; font-weight: bold;">[</span><span style="color: var(--text);">${rStr}</span><span style="color: ${bCol}; font-weight: bold;">]</span></span>`;
-          } else {
-            let tagText;
-            if (tagData.type === 'Map') {
-              tagText = tagData.map;
-            } else if (tagData.cost) {
-              let num = parseInt(tagData.cost.replace(/,/g, ''), 10);
-              let formattedCost = num >= 1000000 
-                ? (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M' 
-                : num >= 1000 
-                  ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K' 
-                  : num;
-              tagText = `${formattedCost} ${tagData.type}`;
-            } else {
-              tagText = tagData.type;
-            }
-            tagsHtml += `<span class="sleek-tag" style="--tag-color: ${colour};">${tagText}</span>`;
-          }
-        }
-      }
-      
-      if (tagData.renown) tagsHtml += ` <span class="sleek-tag" data-tag="renown" style="margin-left: 4px;">${tagData.renown} Renown</span>`;
-      if (tagData.souls) tagsHtml += ` <span class="sleek-tag" style="--tag-color: #55ffff; margin-left: 4px;">${tagData.souls} Souls</span>`;
-      
-      if (tagData.tip) {
-        let linkedTip = tagData.tip
-          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => `<a href="${url.startsWith('http') ? url : `https://${url}`}" target="_blank" style="color: inherit; text-decoration: underline;">${text}</a>`)
-          .replace(/(?<!["'])(https?:\/\/[^\s<]+|www\.[^\s<]+)(?![^<]*>)/g, match => `<a href="${match.startsWith('http') ? match : `https://${match}`}" target="_blank" style="color: inherit; text-decoration: underline;">${match}</a>`)
-          .replace(/\n/g, '<br>');
-        tipHtml = `<div class="ach-tip"><i>Tip: ${linkedTip}</i></div>`;
-      }
-    }
-    ach.tagsHtml = tagsHtml;
-    ach.tipHtml = tipHtml;
-    
     let isChallenge = ach.isOneTime || (ach.gamePct !== undefined && ach.currentAmt === undefined && !ach.allTiers);
 
-    let mwTargetAmt = null;
-    let mwCurrentAmt = null;
-    let mwProgPct = null;
+    let customTargetAmt = null;
+    let customCurrentAmt = null;
+    let customProgPct = null;
 
-    if (cleanGame === 'Mega Walls') {
-      const t = ach.title.toLowerCase().replace(/[^a-z0-9]/g, '');
-      const mwData = MWSkinData[t];
-      if (mwData) {
-        isChallenge = true; 
-        mwCurrentAmt = globalPlayerData.megaWalls?.skins?.[mwData.class.toLowerCase()]?.[mwData.stat] || 0;
-        mwTargetAmt = mwData.max;
-        
-        ach.mwCurrentAmt = mwCurrentAmt;
-        ach.mwTargetAmt = mwTargetAmt;
-        
-        ach.mwProgPct = Math.min(100, (ach.mwCurrentAmt / ach.mwTargetAmt) * 100);
+    const cleanTitle = ach.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    if (cleanGame === 'Mega Walls' && MWSkinData[cleanTitle]) {
+      const mwData = MWSkinData[cleanTitle];
+      isChallenge = true; 
+      customCurrentAmt = globalPlayerData.megaWalls?.skins?.[mwData.class.toLowerCase()]?.[mwData.stat] || 0;
+      customTargetAmt = mwData.max;
+    } else if (CustomChallengeTrackers[cleanTitle]) {
+      const tracker = CustomChallengeTrackers[cleanTitle];
+      isChallenge = true;
+      let val = globalPlayerData;
+      for (const key of tracker.path) {
+        if (val !== undefined && val !== null) val = val[key];
       }
+      customCurrentAmt = typeof val === 'number' ? val : 0;
+      customTargetAmt = tracker.max;
+    }
+
+    if (customTargetAmt !== null) {
+      if (ach.trulyCompleted && customCurrentAmt < customTargetAmt) {
+          customCurrentAmt = customTargetAmt;
+      }
+      ach.customCurrentAmt = customCurrentAmt;
+      ach.customTargetAmt = customTargetAmt;
+      ach.customProgPct = Math.min(100, (ach.customCurrentAmt / ach.customTargetAmt) * 100);
     }
 
     if (isChallenge) {
-      ach.calcPct = Number(ach.gamePercentUnlocked || ach.gamePct || 0);
-      if(ach.mwTargetAmt !== undefined) {
-         ach.isCompleted = ach.mwCurrentAmt >= ach.mwTargetAmt;
+      ach.calcPct = (ach.gamePercentUnlocked || ach.gamePct || 0);
+
+      if(ach.customTargetAmt !== undefined) {
+         ach.isCompleted = ach.customCurrentAmt >= ach.customTargetAmt || ach.trulyCompleted;
       } else {
          ach.isCompleted = ach.trulyCompleted;
       }
       challenges.push(ach);
     } else {
       if (!ach.allTiers) ach.allTiers = [{ tier: ach.tier || 1, amount: ach.amount || 1, reward: ach.reward || 0 }];
+
+      if (ach.trulyCompleted) {
+         const maxTierAmt = ach.allTiers[ach.allTiers.length - 1].amount;
+         if ((ach.currentAmt || 0) < maxTierAmt) {
+             ach.currentAmt = maxTierAmt;
+         }
+      }
 
       let missingTiers = ach.allTiers.filter(t => (ach.currentAmt || 0) < t.amount);
       let firstMissing = missingTiers.length ? missingTiers[0].tier : ach.allTiers[ach.allTiers.length - 1].tier;
@@ -1202,12 +1421,21 @@ function renderDashboard() {
 
   let recents = [...(globalPlayerData.recentAchievements || [])];
   if (activeGameFilters.size > 0 && !isBookmarkViewActive) {
-    recents = recents.filter(a => activeGameFilters.has(a.game.replace('Max ', '')));
+    if (isMultiSelect && isMultiExclude) {
+      recents = recents.filter(a => !activeGameFilters.has(a.game.replace('Max ', '')));
+    } else {
+      recents = recents.filter(a => activeGameFilters.has(a.game.replace('Max ', '')));
+    }
   }
   const sortRec = document.getElementById('sortRecent')?.value || 'newest';
   if (sortRec === 'oldest') {
     recents = [...recents].reverse();
   }
+  
+  recents = recents.map(ach => {
+    ach.uniqueId = btoa(encodeURIComponent(ach.title));
+    return applyAchievementTags(ach);
+  });
 
   const generateCard = (ach, isTiered, progressBlock, notches, isHistory = false) => {
     let isIgnored = ignoredAchs.includes(ach.uniqueId);
@@ -1295,17 +1523,17 @@ function renderDashboard() {
   }).join('');
 
   document.getElementById('col-challenge').innerHTML = challenges.slice(0, viewLimitChal).map(ach => {
-    ach.desc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, ach.mwTargetAmt ? ach.mwTargetAmt.toLocaleString() : "1");
+    ach.desc = ach.desc.replace(/%%value%%|%tieramount%|\?/gi, ach.customTargetAmt ? ach.customTargetAmt.toLocaleString() : "1");
     
     let progressBlock = '';
-    if (ach.mwTargetAmt) {
-      let displayStr = ach.mwCurrentAmt.toLocaleString();
-      let targetStr = ach.mwTargetAmt.toLocaleString();
+    if (ach.customTargetAmt) {
+      let displayStr = ach.customCurrentAmt.toLocaleString();
+      let targetStr = ach.customTargetAmt.toLocaleString();
       let progressText = `${displayStr} / ${targetStr}`;
       let barClass = ach.isCompleted ? "ach-progress-fill completed-tier" : "ach-progress-fill";
       progressBlock = `
-        <div class="ach-progress-container"><div class="${barClass}" style="width: ${ach.mwProgPct.toFixed(2)}%;"></div></div>
-        <div class="tier-progress-text">${progressText} (${ach.mwProgPct.toFixed(2)}%)</div>
+        <div class="ach-progress-container"><div class="${barClass}" style="width: ${ach.customProgPct.toFixed(2)}%;"></div></div>
+        <div class="tier-progress-text">${progressText} (${ach.customProgPct.toFixed(2)}%)</div>
       `;
     }
 
@@ -1720,11 +1948,10 @@ async function initCabinet(explicitLookupId) {
         uuid = dbData.data.player.raw_id;
       }
     }
-    // DO NOT REMOVE THIS COMMENT: swap between litstats and local host for testing
-    // const apiUrl = `https://api.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
-    // const apiUrl = `http://localhost:3000/api/player?uuid=${encodeURIComponent(uuid)}`;
     
-    const apiUrl = `https://api.litstats.com/api/player?uuid=${encodeURIComponent(uuid)}`;
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const baseUrl = isLocal ? 'http://localhost:3000' : 'https://api.litstats.com';
+    const apiUrl = `${baseUrl}/api/player?uuid=${encodeURIComponent(uuid)}`;
     const res = await fetch(apiUrl);
 
     if (!res.ok) {
@@ -1793,17 +2020,12 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (wrapper && wrapper.previousElementSibling) {
         wrapper.previousElementSibling.classList.add('collapsed-section');
       }
-      
-      if (id === 'col-tiered-wrapper') {
-        document.getElementById('col-challenge-section')?.classList.add('full-width');
-      } else if (id === 'col-challenge-wrapper') {
-        document.getElementById('col-tiered-section')?.classList.add('full-width');
-      }
     }
   });
 
   if (document.getElementById('excludeComp')) document.getElementById('excludeComp').checked = isCompExcluded;
   if (document.getElementById('multiSelectToggle')) document.getElementById('multiSelectToggle').checked = isMultiSelect;
+  if (document.getElementById('multiExcludeToggle')) document.getElementById('multiExcludeToggle').checked = isMultiExclude;
   if (document.getElementById('highestTierToggle')) document.getElementById('highestTierToggle').checked = isHighestTierOnly;
   if (document.getElementById('hideHistoryToggle')) document.getElementById('hideHistoryToggle').checked = isHistoryHidden;
   if (document.getElementById('hideMaxesToggle')) document.getElementById('hideMaxesToggle').checked = isMaxesHidden;
