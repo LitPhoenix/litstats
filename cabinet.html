@@ -20,7 +20,6 @@
   <script src="assets/js/components.js"></script>
 
 <main>
-  <!-- Global Search Bar -->
   <div class="top-lookup-bar">
     <div class="search-group">
       <div class="search-wrapper">
@@ -41,7 +40,6 @@
 
   <div id="cabinet-content" class="hidden">
     
-    <!-- Player Profile Card -->
     <div class="profile-card">
       <div id="p-bg-flag" class="profile-bg-flag"></div>
       <div class="profile-top">
@@ -67,7 +65,6 @@
         </div>
       </div>
       
-      <!-- Interactive Progress Bar Switcher -->
       <div class="ap-progress-container" onclick="toggleProgressMode()" title="Click to switch between Points and Achievements view">
         <div class="ap-labels-flex">
           <div style="display:flex; align-items:center; gap:12px;">
@@ -81,7 +78,6 @@
       </div>
     </div>
 
-    <!-- MAIN DASHBOARD -->
     <div class="split-layout">
       
       <div id="dashboard-column" class="dash-col-main">
@@ -117,11 +113,16 @@
             <button class="settings-btn" id="toggle-legacy-btn" onclick="toggleLegacyMode()">Legacy</button>
             
             <button class="settings-btn" id="start-tour-btn" onclick="startCabinetTour(true)" type="button" title="Redo Feature Tour">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="pointer-events:none;"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="pointer-events:none;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              </svg>
               Tour
             </button>
 
-            <!-- Settings Popout Button -->
             <div class="settings-wrapper">
               <button class="settings-btn" onclick="toggleSettingsMenu(event)" type="button">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="pointer-events:none;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
@@ -143,6 +144,14 @@
                     <span class="slider"></span>
                   </label>
                   <div class="tooltip-text">Select multiple games at once to filter the grid.</div>
+                </div>
+                <div class="setting-item tooltip-container">
+                  <span>Multi-Exclude Filters</span>
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="multiExcludeToggle" onchange="toggleMultiExclude()">
+                    <span class="slider"></span>
+                  </label>
+                  <div class="tooltip-text">Exclude multiple games at once to filter the grid.</div>
                 </div>
                 <div class="setting-item tooltip-container">
                   <span>Show Highest Tier</span>
@@ -175,14 +184,13 @@
         </div>
         
         <div id="incomplete-filters-wrapper">
-          <!-- Game Filter Pill Grid -->
           <div id="gameFilterContainer"></div>
-          
-          <!-- Mega Walls Class Filter (Hidden by default) -->
-          <div id="mw-class-filter" class="hidden"></div>
+          <div id="mw-class-filter" class="hidden filter-sub-container"></div>
+          <div id="arcade-game-filter" class="hidden filter-sub-container"></div>
+          <div id="tnt-game-filter" class="hidden filter-sub-container"></div>
+          <div id="wool-game-filter" class="hidden filter-sub-container"></div>
         </div>
 
-        <!-- Scan Filter Search Bar (Same line setup) -->
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 16px 0 20px 0; gap: 16px;">
           <div class="search-bar-container search-wrapper" style="flex-grow: 1; max-width: none; margin: 0;">
             <input type="text" id="achSearch" placeholder="Scan for achievements by name or description..." oninput="handleAchSearch()">
@@ -194,8 +202,6 @@
           </div>
         </div>
         
-
-        <!-- Dashboard Grid -->
         <div class="dashboard-grid" id="main-dash-grid">
           
           <div class="dash-col" id="col-tiered-section">
@@ -219,7 +225,7 @@
           <div class="dash-col" id="col-challenge-section">
             <div class="col-header" onclick="toggleSection('col-challenge-wrapper', 'col-challenge-section')">
               <h3><img src="img/diamond.png" alt="" style="width:18px;">Challenge 
-              <span class="chevron-icon" id="chevron-tiered">
+              <span class="chevron-icon" id="chevron-chal">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </span>
               </h3>
@@ -234,12 +240,11 @@
             </div>
           </div>
 
-          <!-- History Section with Separator -->
           <div class="dash-col history-col" id="history-column-wrapper">
             <div class="section-separator"></div>
             <div class="col-header" onclick="toggleSection('col-recent-wrapper', 'history-column-wrapper')">
               <h3>History 
-              <span class="chevron-icon" id="chevron-tiered">
+              <span class="chevron-icon" id="chevron-hist">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </span>
               </h3>
@@ -250,33 +255,30 @@
             </div>
             <div id="col-recent-wrapper">
               <div class="ach-grid-col history-grid" id="col-recent"></div>
-              <button class="show-more-btn" id="btn-more-rec" onclick="limits.recent += 48; renderDashboard();">Show More</button>
+              <button class="show-more-btn" id="btn-more-rec" onclick="limits.recent += 60; renderDashboard();">Show More</button>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Game Completion Overview (Bottom Stacked) -->
       <div class="overview-section" id="maxed-column">
         <h2 class="overview-title" onclick="toggleSection('overview-grid-wrapper', 'maxed-column')">
           Game Completion Overview 
-              <span class="chevron-icon" id="chevron-tiered">
+              <span class="chevron-icon" id="chevron-max">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </span>
-              
         </h2>
         <div id="overview-grid-wrapper">
           <div class="cabinet-wrapper" id="cabinet-grid"></div>
         </div>
       </div>
 
-      <!-- AP Growth & Compare Analytics Section -->
       <div class="overview-section" id="analytics-section">
         <div class="analytics-header">
           <h2 class="overview-title" style="margin: 0;" onclick="toggleSection('analytics-content-wrapper', 'analytics-section')">
             AP Progression Analytics 
-              <span class="chevron-icon" id="chevron-tiered">
+              <span class="chevron-icon" id="chevron-ana">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </span>
           </h2>
