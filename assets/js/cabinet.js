@@ -246,7 +246,7 @@ Object.entries(customSkinRewards).forEach(([key, path]) => {
 });
 
 const CustomChallengeTrackers = {
-  "brutalwarrior": { path: ["rawStats", "HungerGames", "exp_warrior"], max: 10000 },
+  "blitz:brutalwarrior": { path: ["rawStats", "HungerGames", "exp_warrior"], max: 10000 },
   "donkeytamermaster": { path: ["rawStats", "HungerGames", "exp_donkeytamer"], max: 10000 },
   "firstranger": { path: ["rawStats", "HungerGames", "exp_ranger"], max: 10000 },
   "phoenixmaster": { path: ["rawStats", "HungerGames", "exp_phoenix"], max: 10000 },
@@ -254,9 +254,9 @@ const CustomChallengeTrackers = {
   paths: [
     { path: ["rawStats", "GingerBread", "gold_trophy_canyon"], req: 1, label: "Canyon" },
     { path: ["rawStats", "GingerBread", "gold_trophy_olympus"], req: 1, label: "Olympus" },
-    { path: ["rawStats", "GingerBread", "gold_trophy_jungle"], req: 1, label: "Jungle" },
+    { path: ["rawStats", "GingerBread", "gold_trophy_junglerush"], req: 1, label: "Jungle Rush" },
     { path: ["rawStats", "GingerBread", "gold_trophy_retro"], req: 1, label: "Retro" },
-    { path: ["rawStats", "GingerBread", "gold_trophy_hypixel"], req: 1, label: "Hypixel" }
+    { path: ["rawStats", "GingerBread", "gold_trophy_hypixelgp"], req: 1, label: "Hypixel GP" }
   ],
   max: 5
 }
@@ -1352,15 +1352,20 @@ function renderDashboard() {
     let customCurrentAmt = null;
     let customProgPct = null;
 
+    // Build keys
     const cleanTitle = ach.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const cleanGameKey = cleanGame.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const namespacedKey = `${cleanGameKey}:${cleanTitle}`;
+    
+    // Check for a namespaced match first, fallback to the generic title
+    const tracker = CustomChallengeTrackers[namespacedKey] || CustomChallengeTrackers[cleanTitle];
 
     if (cleanGame === 'Mega Walls' && MWSkinData[cleanTitle]) {
       const mwData = MWSkinData[cleanTitle];
       isChallenge = true; 
       customCurrentAmt = globalPlayerData.megaWalls?.skins?.[mwData.class.toLowerCase()]?.[mwData.stat] || 0;
       customTargetAmt = mwData.max;
-    } else if (CustomChallengeTrackers[cleanTitle]) {
-      const tracker = CustomChallengeTrackers[cleanTitle];
+    } else if (tracker) {
       isChallenge = true;
       let missingLabels = [];
 
