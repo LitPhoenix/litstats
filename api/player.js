@@ -410,6 +410,9 @@ module.exports = async (req, res) => {
       rank: getPlayerRank(profile),
       rankPlusColor: profile.rankPlusColor || 'RED',
       monthlyRankColor: profile.monthlyRankColor || 'GOLD',
+
+      rawStats: profile.stats || {},
+      rawAchievements: profile.achievements || {},
       
       achievementPoints: profile.achievementPoints || 0,
       questsCompleted: 0, 
@@ -824,7 +827,11 @@ module.exports = async (req, res) => {
         wins: hg.wins || (hg.wins_solo_normal || 0) + (hg.wins_teams_normal || 0),
         timePlayed: hg.time_played || hg.timePlaying || 0,
         currentKit: hg.defaultkit || hg.auto_spawn_kit || 'None',
-        exp_rambo: ramboExpVal
+        exp_rambo: ramboExpVal,
+        exp_ranger: hg.exp_ranger || 0,
+        exp_warrior: hg.exp_warrior || 0,
+        exp_donkeytamer: hg.exp_donkeytamer || 0,
+        exp_phoenix: hg.exp_phoenix || 0
     };
 
     const starCosts = {
