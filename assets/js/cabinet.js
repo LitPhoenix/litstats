@@ -458,6 +458,8 @@ const TAG_DB = {
   "Tablets of Destiny": { type: "Coins", cost: "379,843", tip: "Requires max Engineering and Enchanting" },
   "Exodus": { type: "Coins", cost: "824,937", tip: "Requires max Cooking, Armorsmithing, Bloodcraft and Engineering" },
   "[UHC] Treasure Hunter": { type: "Coins", cost: "225,250", tip: "Requires max Strategist" },
+  "Accidental Summoning": { type: "Coins", cost: "9,250", tip: "Pandora's Box costs 9,250 coins to unlock" },
+  "Dragon Warrior": { type: "Coins", cost: "215,250", tip: "Requires max Weaponsmithing and Armorsmithing" },
   "Contracts": { tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
   "Sugar Rush": { tip: "Aim for cherries, they give more gold" },
   "Blasphemous": { tip: "Check Opal costs for the the Fallen Angel Kit [here](https://www.litstats.com/angel)" },
