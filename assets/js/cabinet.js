@@ -259,7 +259,8 @@ const CustomChallengeTrackers = {
     { path: ["rawStats", "GingerBread", "gold_trophy_hypixelgp"], req: 1, label: "Hypixel GP" }
   ],
   max: 5
-}
+},
+"veteran": { path: ["rawAchievements", "walls3_jack_of_all_trades"], max: 12 }
 }
 
 const TAG_DB = {
@@ -425,7 +426,17 @@ const TAG_DB = {
   "The Gatherer": { type: "Coins", cost: "1,000" },
   "Going to the Gym": { type: "Coins", cost: "200", tip: "Kit Upgrade on Default class is 200 coins" },
   "Save your stuff": { type: "Coins", cost: "10,000" },
-  "This Is Not Even My Final Form": { type: "Coins", cost: "10,000" },
+  "This Is Not Even My Final Form": { type: "Coins", cost: "57,500" },
+  "This is my final form!": { type: "Coins", cost: "302,500" },
+  "[Mega Walls] Veteran": { type: "Coins", cost: "115,000" },
+  "Exchange": { type: "Coins", cost: "320,000" },
+  "Wunderbar": { type: "Coins", cost: "1,302,500" },
+  "Magnate": { type: "Coins", cost: "2,052,500" },
+  "Completionist": { type: "Coins", cost: "3,052,500" },
+  "Moctezuma": { type: "Coins", cost: "4,840,000" },
+  "Zombie Leader": { type: "Coins", cost: "67,500" },
+  "Herobrine Super Saiyan": { type: "Coins", cost: "77,500" },
+  "Skeleton Supremacy": { type: "Coins", cost: "92,500" },
   "Contracts": { tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
   "Sugar Rush": { tip: "Aim for cherries, they give more gold" },
   "Blasphemous": { tip: "Check Opal costs for the the Fallen Angel Kit [here](https://www.litstats.com/angel)" },
