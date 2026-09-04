@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-04T20:02:22.146Z",
+  "last_update": "2026-09-04T22:13:44.056Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1780,7 +1780,7 @@
     },
     {
       "country": "Russia",
-      "score": 7083,
+      "score": 7085,
       "top_players": [
         {
           "username": "anrie",
@@ -1817,9 +1817,9 @@
           "username": "bubulS",
           "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
           "country": "Russia",
-          "current_ap": 25955,
+          "current_ap": 25960,
           "last_month_ap": 25955,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Pit",
             "Max VampireZ",
