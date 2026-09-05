@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-05T01:54:37.128Z",
+  "last_update": "2026-09-05T06:30:06.620Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -675,9 +675,9 @@
           "username": "Mazk",
           "uuid": "059abcc217c2422f9d9f92e8dea2e607",
           "country": "USA",
-          "current_ap": 26865,
+          "current_ap": 26875,
           "last_month_ap": 26865,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Blitz",
             "Max TKR"
@@ -1386,7 +1386,7 @@
     },
     {
       "country": "Canada",
-      "score": 9450,
+      "score": 9449,
       "top_players": [
         {
           "username": "Songgg",
@@ -1448,12 +1448,12 @@
           ]
         },
         {
-          "username": "GlennCraigMeyer",
+          "username": "5beve",
           "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
           "country": "Canada",
-          "current_ap": 26855,
+          "current_ap": 26850,
           "last_month_ap": 26855,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max TNT Games"
           ]
@@ -2568,15 +2568,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1410,
+      "score": 1430,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 27000,
+          "current_ap": 27020,
           "last_month_ap": 27000,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
