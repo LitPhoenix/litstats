@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-05T06:30:06.620Z",
+  "last_update": "2026-09-05T11:29:16.481Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -200,7 +200,8 @@
     "3d55b88551fe48d997bae3412cd8aa72": 23375,
     "d8c93138750f4388a3a99bd98b03192b": 23350,
     "8d66db5ea90b4137854808b97e0ca5c7": 23345,
-    "d91eb87c945b490b82a2638c8cf5a291": 23310
+    "d91eb87c945b490b82a2638c8cf5a291": 23310,
+    "01834d8a3c7a49c796589979d7a9ab74": 23325
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -2399,7 +2400,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1800,
+      "score": 1813,
       "top_players": [
         {
           "username": "nachomogsprinkle",
@@ -2414,9 +2415,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26660,
+          "current_ap": 26685,
           "last_month_ap": 26600,
-          "monthly_gain": 60,
+          "monthly_gain": 85,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games",
@@ -3080,13 +3081,15 @@
           ]
         },
         {
-          "username": "o3w",
-          "uuid": "d91eb87c945b490b82a2638c8cf5a291",
+          "username": "huvo",
+          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
-          "current_ap": 23310,
-          "last_month_ap": 23310,
+          "current_ap": 23325,
+          "last_month_ap": 23325,
           "monthly_gain": 0,
-          "maxGames": []
+          "maxGames": [
+            "Max VampireZ"
+          ]
         }
       ]
     },
