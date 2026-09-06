@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-06T17:53:03.602Z",
+  "last_update": "2026-09-06T19:45:17.728Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -674,6 +674,19 @@
           ]
         },
         {
+          "username": "hjx",
+          "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+          "country": "USA",
+          "current_ap": 26900,
+          "last_month_ap": 26845,
+          "monthly_gain": 55,
+          "maxGames": [
+            "Max TKR",
+            "Max Wool Games",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Mazk",
           "uuid": "059abcc217c2422f9d9f92e8dea2e607",
           "country": "USA",
@@ -683,19 +696,6 @@
           "maxGames": [
             "Max Blitz",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "hjx",
-          "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
-          "country": "USA",
-          "current_ap": 26880,
-          "last_month_ap": 26845,
-          "monthly_gain": 35,
-          "maxGames": [
-            "Max TKR",
-            "Max Wool Games",
-            "Max Build Battle"
           ]
         },
         {
@@ -2959,9 +2959,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
-          "current_ap": 23680,
+          "current_ap": 23690,
           "last_month_ap": 23645,
-          "monthly_gain": 35,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3071,6 +3071,17 @@
           ]
         },
         {
+          "username": "huvo",
+          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+          "country": "Unknown",
+          "current_ap": 23370,
+          "last_month_ap": 23325,
+          "monthly_gain": 45,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        },
+        {
           "username": "ULTRAVIOLETlamb",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "Unknown",
@@ -3080,17 +3091,6 @@
           "maxGames": [
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "huvo",
-          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
-          "country": "Unknown",
-          "current_ap": 23345,
-          "last_month_ap": 23325,
-          "monthly_gain": 20,
-          "maxGames": [
-            "Max VampireZ"
           ]
         }
       ]
