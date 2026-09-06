@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-05T23:27:58.065Z",
+  "last_update": "2026-09-06T01:48:55.257Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2401,7 +2401,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1813,
+      "score": 1815,
       "top_players": [
         {
           "username": "nachomogsprinkle",
@@ -2416,9 +2416,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26685,
+          "current_ap": 26690,
           "last_month_ap": 26600,
-          "monthly_gain": 85,
+          "monthly_gain": 90,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games",
@@ -2659,6 +2659,22 @@
           ]
         },
         {
+          "username": "EuanKC",
+          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+          "country": "Unknown",
+          "current_ap": 25210,
+          "last_month_ap": 25170,
+          "monthly_gain": 40,
+          "maxGames": [
+            "Max SkyBlock",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "swagkittysilver",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
@@ -2668,22 +2684,6 @@
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
-          ]
-        },
-        {
-          "username": "EuanKC",
-          "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
-          "country": "Unknown",
-          "current_ap": 25195,
-          "last_month_ap": 25170,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max SkyBlock",
-            "Max Murder Mystery",
-            "Max TKR",
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
