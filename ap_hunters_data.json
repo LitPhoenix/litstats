@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-07T06:46:59.645Z",
+  "last_update": "2026-09-07T13:48:23.409Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1326,9 +1326,9 @@
           "username": "Dyrh",
           "uuid": "37c6f7335d874321ac4f57c7a5062c71",
           "country": "UK",
-          "current_ap": 25580,
+          "current_ap": 25585,
           "last_month_ap": 25570,
-          "monthly_gain": 10,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Arena Brawl",
             "Max VampireZ",
@@ -2402,7 +2402,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1823,
+      "score": 1845,
       "top_players": [
         {
           "username": "nachomogsprinkle",
@@ -2417,9 +2417,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26705,
+          "current_ap": 26750,
           "last_month_ap": 26600,
-          "monthly_gain": 105,
+          "monthly_gain": 150,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games",
@@ -2676,7 +2676,7 @@
           ]
         },
         {
-          "username": "swagkittysilver",
+          "username": "QUAKEGOATSILVER",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
           "current_ap": 25210,
