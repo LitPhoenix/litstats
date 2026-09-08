@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-08T20:27:58.587Z",
+  "last_update": "2026-09-08T23:46:31.501Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2617,7 +2617,7 @@
     },
     {
       "country": "Unknown",
-      "score": 685,
+      "score": 693,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2640,9 +2640,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25745,
+          "current_ap": 25760,
           "last_month_ap": 25745,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -2704,6 +2704,20 @@
           ]
         },
         {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 25105,
+          "last_month_ap": 25080,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
@@ -2713,20 +2727,6 @@
           "maxGames": [
             "Max SkyBlock",
             "Max Arcade",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 25090,
-          "last_month_ap": 25080,
-          "monthly_gain": 10,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
             "Max Duels"
           ]
         },
@@ -3097,15 +3097,15 @@
     },
     {
       "country": "Syria",
-      "score": 645,
+      "score": 650,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26240,
+          "current_ap": 26245,
           "last_month_ap": 26195,
-          "monthly_gain": 45,
+          "monthly_gain": 50,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -3261,15 +3261,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 220,
+      "score": 260,
       "top_players": [
         {
           "username": "WHYSN1SOGOOD",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 25815,
+          "current_ap": 25855,
           "last_month_ap": 25815,
-          "monthly_gain": 0,
+          "monthly_gain": 40,
           "maxGames": [
             "Max VampireZ"
           ]
