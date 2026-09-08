@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-08T12:23:27.083Z",
+  "last_update": "2026-09-08T17:41:53.881Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2402,7 +2402,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1860,
+      "score": 1870,
       "top_players": [
         {
           "username": "nachomogsprinkle",
@@ -2417,9 +2417,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26780,
+          "current_ap": 26800,
           "last_month_ap": 26600,
-          "monthly_gain": 180,
+          "monthly_gain": 200,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games",
@@ -2534,9 +2534,9 @@
           "username": "radicul",
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Australia",
-          "current_ap": 25195,
+          "current_ap": 25205,
           "last_month_ap": 25195,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max TKR",
             "Max Wool Games"
@@ -2664,18 +2664,6 @@
           ]
         },
         {
-          "username": "nonoooooooo",
-          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
-          "country": "Unknown",
-          "current_ap": 25230,
-          "last_month_ap": 25230,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Duels"
-          ]
-        },
-        {
           "username": "QUAKEGOATSILVER",
           "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
           "country": "Unknown",
@@ -2688,6 +2676,18 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
+          ]
+        },
+        {
+          "username": "nonoooooooo",
+          "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+          "country": "Unknown",
+          "current_ap": 25230,
+          "last_month_ap": 25230,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Duels"
           ]
         },
         {
