@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-09T08:28:44.526Z",
+  "last_update": "2026-09-09T14:02:24.720Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1140,9 +1140,9 @@
           "username": "Charcutier",
           "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
           "country": "France",
-          "current_ap": 25050,
+          "current_ap": 25055,
           "last_month_ap": 25050,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1354,9 +1354,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24450,
+          "current_ap": 24460,
           "last_month_ap": 24425,
-          "monthly_gain": 25,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Mega Walls"
           ]
