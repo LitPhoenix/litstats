@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-09T02:03:30.238Z",
+  "last_update": "2026-09-09T08:28:44.927Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -723,15 +723,15 @@
     },
     {
       "country": "Argentina",
-      "score": 8575.6,
+      "score": 8636.6,
       "top_players": [
         {
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_quests": 42878,
+          "current_quests": 43183,
           "last_month_quests": 42878,
-          "monthly_gain": 0
+          "monthly_gain": 305
         }
       ]
     },
@@ -970,19 +970,19 @@
           "monthly_gain": 0
         },
         {
+          "username": "emperqr",
+          "uuid": "3f93a29a5a994f9397f1ac20fb18e652",
+          "country": "Unknown",
+          "current_quests": 24420,
+          "last_month_quests": 23295,
+          "monthly_gain": 1125
+        },
+        {
           "username": "ADGG",
           "uuid": "2162ee0de4c745e4a5d44659193b231c",
           "country": "Unknown",
           "current_quests": 23978,
           "last_month_quests": 23978,
-          "monthly_gain": 0
-        },
-        {
-          "username": "emperqr",
-          "uuid": "3f93a29a5a994f9397f1ac20fb18e652",
-          "country": "Unknown",
-          "current_quests": 23295,
-          "last_month_quests": 23295,
           "monthly_gain": 0
         },
         {
