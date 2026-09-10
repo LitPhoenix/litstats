@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-10T01:59:28.082Z",
+  "last_update": "2026-09-10T07:00:19.927Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -677,9 +677,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 26980,
+          "current_ap": 27005,
           "last_month_ap": 26845,
-          "monthly_gain": 135,
+          "monthly_gain": 160,
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
@@ -1492,9 +1492,9 @@
           "username": "Crooder",
           "uuid": "266b09b979a345909824aa9d31ffe8ba",
           "country": "Canada",
-          "current_ap": 25325,
+          "current_ap": 25335,
           "last_month_ap": 25275,
-          "monthly_gain": 50,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Smash Heroes",
             "Max VampireZ"
@@ -2256,7 +2256,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3607,
+      "score": 3611,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2293,9 +2293,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 26180,
+          "current_ap": 26195,
           "last_month_ap": 26105,
-          "monthly_gain": 75,
+          "monthly_gain": 90,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2651,9 +2651,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 25245,
+          "current_ap": 25270,
           "last_month_ap": 25170,
-          "monthly_gain": 75,
+          "monthly_gain": 100,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -3045,6 +3045,7 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Pit",
+            "Max SkyBlock",
             "Max VampireZ"
           ]
         },
