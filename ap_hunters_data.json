@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-10T12:29:28.793Z",
+  "last_update": "2026-09-10T17:24:35.503Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2534,9 +2534,9 @@
           "username": "radicul",
           "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
           "country": "Australia",
-          "current_ap": 25205,
+          "current_ap": 25220,
           "last_month_ap": 25195,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": [
             "Max TKR",
             "Max Wool Games"
@@ -2617,15 +2617,15 @@
     },
     {
       "country": "Unknown",
-      "score": 735,
+      "score": 755,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 26245,
+          "current_ap": 26265,
           "last_month_ap": 26205,
-          "monthly_gain": 40,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Warlords",
             "Max TNT Games",
@@ -3050,6 +3050,18 @@
           ]
         },
         {
+          "username": "huvo",
+          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+          "country": "Unknown",
+          "current_ap": 23395,
+          "last_month_ap": 23325,
+          "monthly_gain": 70,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
@@ -3072,17 +3084,6 @@
           ]
         },
         {
-          "username": "huvo",
-          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
-          "country": "Unknown",
-          "current_ap": 23370,
-          "last_month_ap": 23325,
-          "monthly_gain": 45,
-          "maxGames": [
-            "Max VampireZ"
-          ]
-        },
-        {
           "username": "ULTRAVIOLETlamb",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "Unknown",
@@ -3098,15 +3099,15 @@
     },
     {
       "country": "Syria",
-      "score": 650,
+      "score": 665,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26245,
+          "current_ap": 26260,
           "last_month_ap": 26195,
-          "monthly_gain": 50,
+          "monthly_gain": 65,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
