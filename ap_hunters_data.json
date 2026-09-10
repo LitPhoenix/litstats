@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-10T20:13:27.457Z",
+  "last_update": "2026-09-10T23:33:45.486Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -3099,15 +3099,15 @@
     },
     {
       "country": "Syria",
-      "score": 665,
+      "score": 680,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26260,
+          "current_ap": 26275,
           "last_month_ap": 26195,
-          "monthly_gain": 65,
+          "monthly_gain": 80,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -3453,9 +3453,9 @@
           "username": "SpaceDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
-          "current_ap": 24020,
+          "current_ap": 24055,
           "last_month_ap": 24020,
-          "monthly_gain": 0,
+          "monthly_gain": 35,
           "maxGames": []
         }
       ]

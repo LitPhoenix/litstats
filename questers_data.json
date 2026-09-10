@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-10T20:13:27.913Z",
+  "last_update": "2026-09-10T23:33:45.770Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -331,15 +331,15 @@
     },
     {
       "country": "Croatia",
-      "score": 12675.6,
+      "score": 12702.2,
       "top_players": [
         {
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_quests": 63378,
+          "current_quests": 63511,
           "last_month_quests": 62825,
-          "monthly_gain": 553
+          "monthly_gain": 686
         }
       ]
     },
@@ -567,9 +567,9 @@
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_quests": 32040,
+          "current_quests": 32049,
           "last_month_quests": 31972,
-          "monthly_gain": 68
+          "monthly_gain": 77
         },
         {
           "username": "vasiv",
@@ -1107,15 +1107,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 5168.2,
+      "score": 5171.6,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 25841,
+          "current_quests": 25858,
           "last_month_quests": 25558,
-          "monthly_gain": 283
+          "monthly_gain": 300
         }
       ]
     },
