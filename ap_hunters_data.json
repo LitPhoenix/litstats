@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-09T22:06:30.079Z",
+  "last_update": "2026-09-10T01:59:28.082Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -677,9 +677,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 26960,
+          "current_ap": 26980,
           "last_month_ap": 26845,
-          "monthly_gain": 115,
+          "monthly_gain": 135,
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
@@ -2617,15 +2617,15 @@
     },
     {
       "country": "Unknown",
-      "score": 700,
+      "score": 735,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 26210,
+          "current_ap": 26245,
           "last_month_ap": 26205,
-          "monthly_gain": 5,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Warlords",
             "Max TNT Games",
