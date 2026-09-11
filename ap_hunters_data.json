@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-11T17:25:53.013Z",
+  "last_update": "2026-09-11T20:13:55.736Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1782,7 +1782,7 @@
     },
     {
       "country": "Russia",
-      "score": 7103,
+      "score": 7113,
       "top_players": [
         {
           "username": "anrie",
@@ -1820,9 +1820,9 @@
           "username": "bubulS",
           "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
           "country": "Russia",
-          "current_ap": 25960,
+          "current_ap": 25980,
           "last_month_ap": 25955,
-          "monthly_gain": 5,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Pit",
             "Max VampireZ",
@@ -1991,15 +1991,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5495,
+      "score": 5520,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 31090,
+          "current_ap": 31115,
           "last_month_ap": 31045,
-          "monthly_gain": 45,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -3100,15 +3100,15 @@
     },
     {
       "country": "Syria",
-      "score": 700,
+      "score": 715,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26295,
+          "current_ap": 26310,
           "last_month_ap": 26195,
-          "monthly_gain": 100,
+          "monthly_gain": 115,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
