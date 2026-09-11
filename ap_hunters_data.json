@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-10T23:33:45.486Z",
+  "last_update": "2026-09-11T01:58:45.721Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2617,15 +2617,15 @@
     },
     {
       "country": "Unknown",
-      "score": 755,
+      "score": 775,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 26265,
+          "current_ap": 26285,
           "last_month_ap": 26205,
-          "monthly_gain": 60,
+          "monthly_gain": 80,
           "maxGames": [
             "Max Warlords",
             "Max TNT Games",
@@ -3099,15 +3099,15 @@
     },
     {
       "country": "Syria",
-      "score": 680,
+      "score": 700,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26275,
+          "current_ap": 26295,
           "last_month_ap": 26195,
-          "monthly_gain": 80,
+          "monthly_gain": 100,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
