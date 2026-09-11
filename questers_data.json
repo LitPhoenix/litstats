@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-11T20:13:56.207Z",
+  "last_update": "2026-09-11T23:42:00.551Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -199,7 +199,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49821.4,
+      "score": 49821.8,
       "top_players": [
         {
           "username": "Skorlex",
@@ -213,9 +213,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_quests": 40783,
+          "current_quests": 40785,
           "last_month_quests": 40764,
-          "monthly_gain": 19
+          "monthly_gain": 21
         },
         {
           "username": "Edzio",
@@ -383,15 +383,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 19395.8,
+      "score": 19435.4,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 52319,
+          "current_quests": 52517,
           "last_month_quests": 52062,
-          "monthly_gain": 257
+          "monthly_gain": 455
         },
         {
           "username": "Itz_Pipi",
@@ -419,15 +419,15 @@
     },
     {
       "country": "UK",
-      "score": 36130.8,
+      "score": 36146,
       "top_players": [
         {
           "username": "SanjayPatel35812",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
-          "current_quests": 50230,
+          "current_quests": 50279,
           "last_month_quests": 50215,
-          "monthly_gain": 15
+          "monthly_gain": 64
         },
         {
           "username": "Weeknd",
@@ -441,9 +441,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_quests": 35628,
+          "current_quests": 35655,
           "last_month_quests": 35628,
-          "monthly_gain": 0
+          "monthly_gain": 27
         },
         {
           "username": "Shazombie",
@@ -693,7 +693,7 @@
     },
     {
       "country": "Chile",
-      "score": 21818.6,
+      "score": 21824.6,
       "top_players": [
         {
           "username": "xBxnny",
@@ -707,9 +707,9 @@
           "username": "MrRodd",
           "uuid": "f33bcc883074424784ccb6126eb65264",
           "country": "Chile",
-          "current_quests": 41868,
+          "current_quests": 41898,
           "last_month_quests": 41868,
-          "monthly_gain": 0
+          "monthly_gain": 30
         },
         {
           "username": "memeister",
@@ -723,15 +723,15 @@
     },
     {
       "country": "Argentina",
-      "score": 8636.6,
+      "score": 8651.8,
       "top_players": [
         {
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_quests": 43183,
+          "current_quests": 43259,
           "last_month_quests": 42878,
-          "monthly_gain": 305
+          "monthly_gain": 381
         }
       ]
     },
@@ -847,7 +847,7 @@
     },
     {
       "country": "Sweden",
-      "score": 11350.4,
+      "score": 11353.4,
       "top_players": [
         {
           "username": "sForce",
@@ -861,9 +861,9 @@
           "username": "Reeedly",
           "uuid": "5de0cd7c0baf4d4facb117618a3b5fd7",
           "country": "Sweden",
-          "current_quests": 23404,
+          "current_quests": 23419,
           "last_month_quests": 23404,
-          "monthly_gain": 0
+          "monthly_gain": 15
         }
       ]
     },
@@ -1135,15 +1135,15 @@
     },
     {
       "country": "Israel",
-      "score": 4952,
+      "score": 4977.6,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_quests": 24760,
+          "current_quests": 24888,
           "last_month_quests": 24760,
-          "monthly_gain": 0
+          "monthly_gain": 128
         }
       ]
     },
