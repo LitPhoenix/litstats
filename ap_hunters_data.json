@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-11T12:27:05.392Z",
+  "last_update": "2026-09-11T17:25:53.013Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1354,9 +1354,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24460,
+          "current_ap": 24485,
           "last_month_ap": 24425,
-          "monthly_gain": 35,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Mega Walls"
           ]
@@ -1991,15 +1991,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5470,
+      "score": 5495,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 31065,
+          "current_ap": 31090,
           "last_month_ap": 31045,
-          "monthly_gain": 20,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2015,7 +2015,8 @@
             "Max VampireZ",
             "Max TKR",
             "Max Wool Games",
-            "Max Duels"
+            "Max Duels",
+            "Max Build Battle"
           ]
         }
       ]
@@ -2989,9 +2990,9 @@
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23625,
+          "current_ap": 23645,
           "last_month_ap": 23615,
-          "monthly_gain": 10,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Wool Games"
           ]
