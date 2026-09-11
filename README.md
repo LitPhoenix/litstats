@@ -6,4 +6,4 @@ Currently featuring:
 - Skywars Descent tracker
 - Murder Mystery Descent trackers (for each mode)
 - Blitz kit information and stats overview
-### made by litphoenix 
+#### made by litphoenix 
