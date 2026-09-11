@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-11T06:55:22.862Z",
+  "last_update": "2026-09-11T12:27:05.392Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2906,17 +2906,6 @@
           "maxGames": []
         },
         {
-          "username": "DarkSilent",
-          "uuid": "93b354235bd44e9a8ebf43763d90c96a",
-          "country": "Unknown",
-          "current_ap": 23895,
-          "last_month_ap": 23895,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max SkyClash"
-          ]
-        },
-        {
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
@@ -2953,6 +2942,17 @@
             "Max Arena Brawl",
             "Max TKR",
             "Max Duels"
+          ]
+        },
+        {
+          "username": "DarkSilent",
+          "uuid": "93b354235bd44e9a8ebf43763d90c96a",
+          "country": "Unknown",
+          "current_ap": 23705,
+          "last_month_ap": 23895,
+          "monthly_gain": -190,
+          "maxGames": [
+            "Max SkyClash"
           ]
         },
         {
