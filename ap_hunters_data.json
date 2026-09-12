@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-12T16:38:30.116Z",
+  "last_update": "2026-09-12T19:51:36.275Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1492,9 +1492,9 @@
           "username": "Crooder",
           "uuid": "266b09b979a345909824aa9d31ffe8ba",
           "country": "Canada",
-          "current_ap": 25335,
+          "current_ap": 25370,
           "last_month_ap": 25275,
-          "monthly_gain": 60,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Smash Heroes",
             "Max VampireZ"
@@ -1652,7 +1652,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8209,
+      "score": 8213,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1702,9 +1702,9 @@
           "username": "BU1LDERS",
           "uuid": "3b6994dadd264c7986ffd85df3db4289",
           "country": "The Netherlands",
-          "current_ap": 27000,
+          "current_ap": 27015,
           "last_month_ap": 27000,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2946,6 +2946,20 @@
           ]
         },
         {
+          "username": "shirool",
+          "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+          "country": "Unknown",
+          "current_ap": 23725,
+          "last_month_ap": 23645,
+          "monthly_gain": 80,
+          "maxGames": [
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "DarkSilent",
           "uuid": "93b354235bd44e9a8ebf43763d90c96a",
           "country": "Unknown",
@@ -2954,20 +2968,6 @@
           "monthly_gain": -190,
           "maxGames": [
             "Max SkyClash"
-          ]
-        },
-        {
-          "username": "shirool",
-          "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
-          "country": "Unknown",
-          "current_ap": 23705,
-          "last_month_ap": 23645,
-          "monthly_gain": 60,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
           ]
         },
         {
@@ -2990,9 +2990,9 @@
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23645,
+          "current_ap": 23670,
           "last_month_ap": 23615,
-          "monthly_gain": 30,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -3001,9 +3001,9 @@
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
-          "current_ap": 23620,
+          "current_ap": 23640,
           "last_month_ap": 23620,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -3100,15 +3100,15 @@
     },
     {
       "country": "Syria",
-      "score": 730,
+      "score": 740,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26325,
+          "current_ap": 26335,
           "last_month_ap": 26195,
-          "monthly_gain": 130,
+          "monthly_gain": 140,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -3377,9 +3377,9 @@
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Italy",
-          "current_ap": 25100,
+          "current_ap": 25125,
           "last_month_ap": 25090,
-          "monthly_gain": 10,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Murder Mystery",
             "Max Wool Games"
