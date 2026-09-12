@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-12T08:14:04.940Z",
+  "last_update": "2026-09-12T16:38:30.116Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2321,7 +2321,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2664,
+      "score": 2665,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2353,9 +2353,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26370,
+          "current_ap": 26375,
           "last_month_ap": 26350,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
