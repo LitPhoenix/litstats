@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-12T02:02:55.549Z",
+  "last_update": "2026-09-12T08:14:04.940Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -791,9 +791,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25785,
+          "current_ap": 25800,
           "last_month_ap": 25785,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -2618,7 +2618,7 @@
     },
     {
       "country": "Unknown",
-      "score": 775,
+      "score": 800,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2641,9 +2641,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25765,
+          "current_ap": 25815,
           "last_month_ap": 25745,
-          "monthly_gain": 20,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Wool Games"
           ]
