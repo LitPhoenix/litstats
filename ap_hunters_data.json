@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-12T21:50:59.600Z",
+  "last_update": "2026-09-12T23:34:02.172Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1354,9 +1354,9 @@
           "username": "martinbelike",
           "uuid": "fdfcc24e742746e592d666150e771a93",
           "country": "UK",
-          "current_ap": 24485,
+          "current_ap": 24495,
           "last_month_ap": 24425,
-          "monthly_gain": 60,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Mega Walls"
           ]
@@ -3100,15 +3100,15 @@
     },
     {
       "country": "Syria",
-      "score": 775,
+      "score": 785,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26370,
+          "current_ap": 26380,
           "last_month_ap": 26195,
-          "monthly_gain": 175,
+          "monthly_gain": 185,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
