@@ -1228,7 +1228,7 @@ function renderDashboard() {
         const activeClass = activeMwClass === cls ? 'active' : '';
         const stat = mwPillStatus[cls];
         const isComplete = stat.total > 0 && stat.completed === stat.total;
-        const goldClass = (isShowCompleted && isComplete) ? 'gold-pill' : '';
+        const goldClass = isComplete ? 'gold-pill' : '';
 
         return `<div class="mw-class-pill ${activeClass} ${goldClass}" onclick="toggleMwClass('${cls}')">
           <img src="${iconPath}" onerror="this.style.display='none'">
@@ -1260,7 +1260,7 @@ function renderDashboard() {
         const activeClass = activeArcadeGame === game ? 'active' : '';
         const stat = arcadePillStatus[game];
         const isComplete = stat.total > 0 && stat.completed === stat.total;
-        const goldClass = (isShowCompleted && isComplete) ? 'gold-pill' : '';
+        const goldClass = isComplete ? 'gold-pill' : '';
 
         return `<div class="sub-filter-pill ${activeClass} ${goldClass}" onclick="toggleArcadeGame('${game}')">
           <img src="${iconPath}" onerror="this.style.display='none'">
@@ -1292,7 +1292,7 @@ function renderDashboard() {
         const activeClass = activeTntGame === game ? 'active' : '';
         const stat = tntPillStatus[game];
         const isComplete = stat.total > 0 && stat.completed === stat.total;
-        const goldClass = (isShowCompleted && isComplete) ? 'gold-pill' : '';
+        const goldClass = isComplete ? 'gold-pill' : '';
 
         return `<div class="sub-filter-pill ${activeClass} ${goldClass}" onclick="toggleTntGame('${game}')">
           <img src="${iconPath}" onerror="this.style.display='none'">
@@ -1324,7 +1324,7 @@ function renderDashboard() {
         const activeClass = activeWoolGame === game ? 'active' : '';
         const stat = woolPillStatus[game];
         const isComplete = stat.total > 0 && stat.completed === stat.total;
-        const goldClass = (isShowCompleted && isComplete) ? 'gold-pill' : '';
+        const goldClass = isComplete ? 'gold-pill' : '';
 
         return `<div class="sub-filter-pill ${activeClass} ${goldClass}" onclick="toggleWoolGame('${game}')">
           <img src="${iconPath}" onerror="this.style.display='none'">
