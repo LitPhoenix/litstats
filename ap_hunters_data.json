@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-12T19:51:36.275Z",
+  "last_update": "2026-09-12T21:50:59.600Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -775,6 +775,19 @@
           ]
         },
         {
+          "username": "kipanator",
+          "uuid": "8eb18a9227fb4b36947177babab261cd",
+          "country": "USA",
+          "current_ap": 25825,
+          "last_month_ap": 25785,
+          "monthly_gain": 40,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Colerer",
           "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
           "country": "USA",
@@ -785,19 +798,6 @@
             "Max Blitz",
             "Max Walls",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "kipanator",
-          "uuid": "8eb18a9227fb4b36947177babab261cd",
-          "country": "USA",
-          "current_ap": 25800,
-          "last_month_ap": 25785,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max TKR",
-            "Max Duels"
           ]
         },
         {
@@ -3100,15 +3100,15 @@
     },
     {
       "country": "Syria",
-      "score": 740,
+      "score": 775,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26335,
+          "current_ap": 26370,
           "last_month_ap": 26195,
-          "monthly_gain": 140,
+          "monthly_gain": 175,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
