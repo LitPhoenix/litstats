@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-13T17:09:08.503Z",
+  "last_update": "2026-09-13T20:00:28.286Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2617,6 +2617,37 @@
       ]
     },
     {
+      "country": "Syria",
+      "score": 810,
+      "top_players": [
+        {
+          "username": "3badh",
+          "uuid": "11f24315871f43f296d5daa2bfc4911d",
+          "country": "Syria",
+          "current_ap": 26405,
+          "last_month_ap": 26195,
+          "monthly_gain": 210,
+          "maxGames": [
+            "Max TNT Games",
+            "Max Wool Games"
+          ]
+        },
+        {
+          "username": "stevcn",
+          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+          "country": "Syria",
+          "current_ap": 25230,
+          "last_month_ap": 25230,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Wool Games"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Unknown",
       "score": 800,
       "top_players": [
@@ -3099,37 +3130,6 @@
       ]
     },
     {
-      "country": "Syria",
-      "score": 790,
-      "top_players": [
-        {
-          "username": "3badh",
-          "uuid": "11f24315871f43f296d5daa2bfc4911d",
-          "country": "Syria",
-          "current_ap": 26385,
-          "last_month_ap": 26195,
-          "monthly_gain": 190,
-          "maxGames": [
-            "Max TNT Games",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "stevcn",
-          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
-          "country": "Syria",
-          "current_ap": 25230,
-          "last_month_ap": 25230,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Wool Games"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Iraq",
       "score": 575,
       "top_players": [
@@ -3264,15 +3264,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 260,
+      "score": 265,
       "top_players": [
         {
           "username": "WHYSN1SOGOOD",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 25855,
+          "current_ap": 25860,
           "last_month_ap": 25815,
-          "monthly_gain": 40,
+          "monthly_gain": 45,
           "maxGames": [
             "Max VampireZ"
           ]
