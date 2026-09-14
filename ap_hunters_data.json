@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-14T09:22:32.650Z",
+  "last_update": "2026-09-14T16:04:48.432Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2169,9 +2169,9 @@
           "username": "Ofek",
           "uuid": "1121d718b08145fe8b8a3728639d6723",
           "country": "Israel",
-          "current_ap": 24505,
+          "current_ap": 24515,
           "last_month_ap": 24495,
-          "monthly_gain": 10,
+          "monthly_gain": 20,
           "maxGames": [
             "Max UHC",
             "Max Speed UHC"
@@ -2194,9 +2194,9 @@
           "username": "Slime",
           "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
           "country": "Israel",
-          "current_ap": 23735,
+          "current_ap": 23745,
           "last_month_ap": 23735,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": []
         }
       ]
@@ -2978,6 +2978,18 @@
           ]
         },
         {
+          "username": "DarkSilent",
+          "uuid": "93b354235bd44e9a8ebf43763d90c96a",
+          "country": "Unknown",
+          "current_ap": 23730,
+          "last_month_ap": 23895,
+          "monthly_gain": -165,
+          "maxGames": [
+            "Max Warlords",
+            "Max SkyClash"
+          ]
+        },
+        {
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
@@ -2989,17 +3001,6 @@
             "Max VampireZ",
             "Max TKR",
             "Max Wool Games"
-          ]
-        },
-        {
-          "username": "DarkSilent",
-          "uuid": "93b354235bd44e9a8ebf43763d90c96a",
-          "country": "Unknown",
-          "current_ap": 23705,
-          "last_month_ap": 23895,
-          "monthly_gain": -190,
-          "maxGames": [
-            "Max SkyClash"
           ]
         },
         {
