@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-14T02:14:39.159Z",
+  "last_update": "2026-09-14T09:22:32.970Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -286,7 +286,7 @@
     },
     {
       "country": "Canada",
-      "score": 40681.2,
+      "score": 40682.4,
       "top_players": [
         {
           "username": "Songgg",
@@ -308,9 +308,9 @@
           "username": "Motthe",
           "uuid": "1240b9bf22254cd5903e20cc097b0043",
           "country": "Canada",
-          "current_quests": 29431,
+          "current_quests": 29437,
           "last_month_quests": 29310,
-          "monthly_gain": 121
+          "monthly_gain": 127
         },
         {
           "username": "FlyHak",
@@ -1066,15 +1066,15 @@
     },
     {
       "country": "Peru",
-      "score": 5223,
+      "score": 5225.8,
       "top_players": [
         {
           "username": "hollystormz",
           "uuid": "141e5144694046eaa7e536ed70cc1595",
           "country": "Peru",
-          "current_quests": 26115,
+          "current_quests": 26129,
           "last_month_quests": 26115,
-          "monthly_gain": 0
+          "monthly_gain": 14
         }
       ]
     },
