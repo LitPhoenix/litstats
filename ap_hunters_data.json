@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-16T19:12:43.491Z",
+  "last_update": "2026-09-16T22:29:54.155Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1237,6 +1237,22 @@
           ]
         },
         {
+          "username": "Evdia",
+          "uuid": "aad6a2754e9c4744bd335213853f023f",
+          "country": "UK",
+          "current_ap": 29100,
+          "last_month_ap": 29100,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Mega Walls",
+            "Max Blitz",
+            "Max SkyBlock",
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
@@ -1251,22 +1267,6 @@
             "Max TKR",
             "Max Wool Games",
             "Max Crazy Walls"
-          ]
-        },
-        {
-          "username": "Evdia",
-          "uuid": "aad6a2754e9c4744bd335213853f023f",
-          "country": "UK",
-          "current_ap": 29100,
-          "last_month_ap": 29100,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Mega Walls",
-            "Max Blitz",
-            "Max SkyBlock",
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR"
           ]
         },
         {
@@ -2195,9 +2195,9 @@
           "username": "Slime",
           "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
           "country": "Israel",
-          "current_ap": 23745,
+          "current_ap": 23760,
           "last_month_ap": 23735,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": []
         }
       ]
