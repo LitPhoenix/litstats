@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-15T23:50:13.667Z",
+  "last_update": "2026-09-16T02:14:20.738Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -384,15 +384,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 19448.6,
+      "score": 19473.4,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 52583,
+          "current_quests": 52707,
           "last_month_quests": 52062,
-          "monthly_gain": 521
+          "monthly_gain": 645
         },
         {
           "username": "Itz_Pipi",
@@ -716,29 +716,29 @@
     },
     {
       "country": "Argentina",
-      "score": 8651.8,
+      "score": 8682.4,
       "top_players": [
         {
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_quests": 43259,
+          "current_quests": 43412,
           "last_month_quests": 42878,
-          "monthly_gain": 381
+          "monthly_gain": 534
         }
       ]
     },
     {
       "country": "Finland",
-      "score": 14972,
+      "score": 14985,
       "top_players": [
         {
           "username": "Mol_o",
           "uuid": "40deca8a49a941428ac96315bb15e3f2",
           "country": "Finland",
-          "current_quests": 41609,
+          "current_quests": 41674,
           "last_month_quests": 41495,
-          "monthly_gain": 114
+          "monthly_gain": 179
         },
         {
           "username": "shirool",
@@ -1108,15 +1108,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 5185.4,
+      "score": 5189.2,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 25927,
+          "current_quests": 25946,
           "last_month_quests": 25558,
-          "monthly_gain": 369
+          "monthly_gain": 388
         }
       ]
     },
@@ -1150,15 +1150,15 @@
     },
     {
       "country": "Hungary",
-      "score": 4951,
+      "score": 4955,
       "top_players": [
         {
           "username": "FlaashX",
           "uuid": "7afbca3f75d8494b8b6a381dfa18e16b",
           "country": "Hungary",
-          "current_quests": 24755,
+          "current_quests": 24775,
           "last_month_quests": 24642,
-          "monthly_gain": 113
+          "monthly_gain": 133
         }
       ]
     },
