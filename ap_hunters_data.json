@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-17T02:18:43.562Z",
+  "last_update": "2026-09-17T09:01:02.543Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1759,9 +1759,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24640,
+          "current_ap": 24645,
           "last_month_ap": 24625,
-          "monthly_gain": 15,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
@@ -2259,7 +2259,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3612,
+      "score": 3614,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2296,9 +2296,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 26200,
+          "current_ap": 26205,
           "last_month_ap": 26105,
-          "monthly_gain": 95,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2651,7 +2651,7 @@
     },
     {
       "country": "Unknown",
-      "score": 810,
+      "score": 818,
       "top_players": [
         {
           "username": "Rayjer",
@@ -2674,9 +2674,9 @@
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Unknown",
-          "current_ap": 25815,
+          "current_ap": 25830,
           "last_month_ap": 25745,
-          "monthly_gain": 70,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Wool Games"
           ]
