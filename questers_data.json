@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-17T09:01:02.886Z",
+  "last_update": "2026-09-17T14:33:03.539Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -200,15 +200,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49859.4,
+      "score": 49865.2,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 111458,
+          "current_quests": 111487,
           "last_month_quests": 111281,
-          "monthly_gain": 177
+          "monthly_gain": 206
         },
         {
           "username": "ErtrycheZ",
@@ -384,15 +384,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 19473.4,
+      "score": 19481,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 52707,
+          "current_quests": 52745,
           "last_month_quests": 52062,
-          "monthly_gain": 645
+          "monthly_gain": 683
         },
         {
           "username": "Itz_Pipi",
@@ -1093,6 +1093,20 @@
       ]
     },
     {
+      "country": "Netherlands",
+      "score": 5202.8,
+      "top_players": [
+        {
+          "username": "Timkoensurvival",
+          "uuid": "743c12bffc7348fb8525effead057de2",
+          "country": "Netherlands",
+          "current_quests": 26014,
+          "last_month_quests": 25558,
+          "monthly_gain": 456
+        }
+      ]
+    },
+    {
       "country": "Romania",
       "score": 5198.8,
       "top_players": [
@@ -1103,20 +1117,6 @@
           "current_quests": 25994,
           "last_month_quests": 25994,
           "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Netherlands",
-      "score": 5196.6,
-      "top_players": [
-        {
-          "username": "Timkoensurvival",
-          "uuid": "743c12bffc7348fb8525effead057de2",
-          "country": "Netherlands",
-          "current_quests": 25983,
-          "last_month_quests": 25558,
-          "monthly_gain": 425
         }
       ]
     },
