@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-18T02:05:08.016Z",
+  "last_update": "2026-09-18T08:36:04.001Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -200,7 +200,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49871.6,
+      "score": 49872,
       "top_players": [
         {
           "username": "Skorlex",
@@ -238,9 +238,9 @@
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_quests": 28825,
+          "current_quests": 28827,
           "last_month_quests": 28750,
-          "monthly_gain": 75
+          "monthly_gain": 77
         },
         {
           "username": "trql",
@@ -332,15 +332,15 @@
     },
     {
       "country": "Croatia",
-      "score": 12749.6,
+      "score": 12754.8,
       "top_players": [
         {
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_quests": 63748,
+          "current_quests": 63774,
           "last_month_quests": 62825,
-          "monthly_gain": 923
+          "monthly_gain": 949
         }
       ]
     },
@@ -568,9 +568,9 @@
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_quests": 32100,
+          "current_quests": 32101,
           "last_month_quests": 31972,
-          "monthly_gain": 128
+          "monthly_gain": 129
         },
         {
           "username": "vasiv",
