@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-18T08:36:04.001Z",
+  "last_update": "2026-09-18T13:59:06.447Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -200,15 +200,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49872,
+      "score": 49872.8,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 111487,
+          "current_quests": 111491,
           "last_month_quests": 111281,
-          "monthly_gain": 206
+          "monthly_gain": 210
         },
         {
           "username": "ErtrycheZ",
@@ -876,15 +876,15 @@
     },
     {
       "country": "Australia",
-      "score": 15610,
+      "score": 15610.2,
       "top_players": [
         {
           "username": "Bikkie",
           "uuid": "12ecedbce19b448cad38aa4f57f3afda",
           "country": "Australia",
-          "current_quests": 30938,
+          "current_quests": 30939,
           "last_month_quests": 30927,
-          "monthly_gain": 11
+          "monthly_gain": 12
         },
         {
           "username": "TotalDramaIsland",
@@ -1080,15 +1080,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 5205.8,
+      "score": 5209.8,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 26029,
+          "current_quests": 26049,
           "last_month_quests": 25558,
-          "monthly_gain": 471
+          "monthly_gain": 491
         }
       ]
     },
