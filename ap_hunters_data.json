@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-19T21:55:46.455Z",
+  "last_update": "2026-09-19T23:47:09.632Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -518,9 +518,9 @@
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
-          "current_ap": 29475,
+          "current_ap": 29480,
           "last_month_ap": 29475,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Quake",
             "Max TNT Games",
@@ -2620,15 +2620,15 @@
     },
     {
       "country": "Syria",
-      "score": 870,
+      "score": 890,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26465,
+          "current_ap": 26485,
           "last_month_ap": 26195,
-          "monthly_gain": 270,
+          "monthly_gain": 290,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -2638,9 +2638,9 @@
           "username": "stevcn",
           "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
           "country": "Syria",
-          "current_ap": 25230,
+          "current_ap": 25235,
           "last_month_ap": 25230,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Murder Mystery",
             "Max VampireZ",
@@ -2685,9 +2685,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 25325,
+          "current_ap": 25350,
           "last_month_ap": 25170,
-          "monthly_gain": 155,
+          "monthly_gain": 180,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
