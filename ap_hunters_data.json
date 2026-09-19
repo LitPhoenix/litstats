@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-19T02:09:13.452Z",
+  "last_update": "2026-09-19T08:23:45.340Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -780,9 +780,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25875,
+          "current_ap": 25900,
           "last_month_ap": 25785,
-          "monthly_gain": 90,
+          "monthly_gain": 115,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -2195,9 +2195,9 @@
           "username": "Slime",
           "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
           "country": "Israel",
-          "current_ap": 23770,
+          "current_ap": 23780,
           "last_month_ap": 23735,
-          "monthly_gain": 35,
+          "monthly_gain": 45,
           "maxGames": []
         }
       ]
@@ -2947,6 +2947,20 @@
           ]
         },
         {
+          "username": "shirool",
+          "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+          "country": "Unknown",
+          "current_ap": 23740,
+          "last_month_ap": 23645,
+          "monthly_gain": 95,
+          "maxGames": [
+            "Max Warlords",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "DirtyAvocado",
           "uuid": "8d167f27157d488394f6b6142ccc16be",
           "country": "Unknown",
@@ -2957,20 +2971,6 @@
             "Max Arena Brawl",
             "Max TKR",
             "Max Duels"
-          ]
-        },
-        {
-          "username": "shirool",
-          "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
-          "country": "Unknown",
-          "current_ap": 23735,
-          "last_month_ap": 23645,
-          "monthly_gain": 90,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games"
           ]
         },
         {
