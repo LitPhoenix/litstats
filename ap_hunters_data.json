@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-19T19:46:11.693Z",
+  "last_update": "2026-09-19T21:55:46.455Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1367,9 +1367,9 @@
           "username": "DTN_Alpap",
           "uuid": "14016bbfdcf547dab04549b49e891dc8",
           "country": "UK",
-          "current_ap": 24235,
+          "current_ap": 24240,
           "last_month_ap": 24230,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Paintball"
           ]
@@ -2619,6 +2619,37 @@
       ]
     },
     {
+      "country": "Syria",
+      "score": 870,
+      "top_players": [
+        {
+          "username": "3badh",
+          "uuid": "11f24315871f43f296d5daa2bfc4911d",
+          "country": "Syria",
+          "current_ap": 26465,
+          "last_month_ap": 26195,
+          "monthly_gain": 270,
+          "maxGames": [
+            "Max TNT Games",
+            "Max Wool Games"
+          ]
+        },
+        {
+          "username": "stevcn",
+          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+          "country": "Syria",
+          "current_ap": 25230,
+          "last_month_ap": 25230,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max Wool Games"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Unknown",
       "score": 848,
       "top_players": [
@@ -3091,43 +3122,12 @@
           "username": "ULTRAVIOLETlamb",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "Unknown",
-          "current_ap": 23350,
+          "current_ap": 23355,
           "last_month_ap": 23350,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Duels",
             "Max Build Battle"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Syria",
-      "score": 840,
-      "top_players": [
-        {
-          "username": "3badh",
-          "uuid": "11f24315871f43f296d5daa2bfc4911d",
-          "country": "Syria",
-          "current_ap": 26435,
-          "last_month_ap": 26195,
-          "monthly_gain": 240,
-          "maxGames": [
-            "Max TNT Games",
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "stevcn",
-          "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
-          "country": "Syria",
-          "current_ap": 25230,
-          "last_month_ap": 25230,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max Wool Games"
           ]
         }
       ]
