@@ -1095,19 +1095,6 @@
           ]
         },
         {
-          "username": "Uleb",
-          "uuid": "2baaec9272fd487294e673eb4ec35201",
-          "country": "Serbia",
-          "current_ap": 27450,
-          "last_month_ap": 27445,
-          "monthly_gain": 5,
-          "maxGames": [
-            "Max TKR",
-            "Max Duels",
-            "Max Build Battle"
-          ]
-        },
-        {
           "username": "enoitna",
           "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
           "country": "France",
@@ -1899,6 +1886,19 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
+          ]
+        },
+        {
+          "username": "Uleb",
+          "uuid": "2baaec9272fd487294e673eb4ec35201",
+          "country": "Serbia",
+          "current_ap": 27450,
+          "last_month_ap": 27445,
+          "monthly_gain": 5,
+          "maxGames": [
+            "Max TKR",
+            "Max Duels",
+            "Max Build Battle"
           ]
         },
         {
