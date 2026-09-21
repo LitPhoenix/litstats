@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-21T16:06:26.079Z",
+  "last_update": "2026-09-21T21:23:45.921Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -582,9 +582,9 @@
           "username": "DTN_Kyra",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 28005,
+          "current_ap": 28020,
           "last_month_ap": 28005,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ"
@@ -1993,15 +1993,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5580,
+      "score": 5600,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 31175,
+          "current_ap": 31195,
           "last_month_ap": 31045,
-          "monthly_gain": 130,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -3457,9 +3457,9 @@
           "username": "SpaceDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
-          "current_ap": 24060,
+          "current_ap": 24070,
           "last_month_ap": 24020,
-          "monthly_gain": 40,
+          "monthly_gain": 50,
           "maxGames": []
         }
       ]
