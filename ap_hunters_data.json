@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-21T09:25:13.629Z",
+  "last_update": "2026-09-21T16:06:26.079Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1846,7 +1846,7 @@
     },
     {
       "country": "Russia",
-      "score": 7113,
+      "score": 7115,
       "top_players": [
         {
           "username": "anrie",
@@ -1884,9 +1884,9 @@
           "username": "bubulS",
           "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
           "country": "Russia",
-          "current_ap": 25980,
+          "current_ap": 25985,
           "last_month_ap": 25955,
-          "monthly_gain": 25,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Pit",
             "Max VampireZ",
@@ -2768,9 +2768,9 @@
           "username": "sosal",
           "uuid": "14fc22531af545cf918eec7b30527272",
           "country": "Unknown",
-          "current_ap": 25070,
+          "current_ap": 25075,
           "last_month_ap": 25070,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2921,9 +2921,9 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 23965,
+          "current_ap": 23985,
           "last_month_ap": 23910,
-          "monthly_gain": 55,
+          "monthly_gain": 75,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
