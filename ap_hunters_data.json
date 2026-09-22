@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-22T20:39:57.475Z",
+  "last_update": "2026-09-22T23:55:47.124Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2072,7 +2072,7 @@
     },
     {
       "country": "Finland",
-      "score": 4466,
+      "score": 4473,
       "top_players": [
         {
           "username": "Champiez",
@@ -2112,9 +2112,9 @@
           "username": "MatiasSiltanen",
           "uuid": "e9a871c29903474687b0b045edd35ae9",
           "country": "Finland",
-          "current_ap": 26590,
+          "current_ap": 26615,
           "last_month_ap": 26585,
-          "monthly_gain": 5,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
