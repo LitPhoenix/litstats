@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-23T14:32:55.447Z",
+  "last_update": "2026-09-23T19:19:47.840Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -2484,7 +2484,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1710,
+      "score": 1718,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2501,9 +2501,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26505,
+          "current_ap": 26520,
           "last_month_ap": 26445,
-          "monthly_gain": 60,
+          "monthly_gain": 75,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -2620,15 +2620,15 @@
     },
     {
       "country": "Syria",
-      "score": 890,
+      "score": 910,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26485,
+          "current_ap": 26505,
           "last_month_ap": 26195,
-          "monthly_gain": 290,
+          "monthly_gain": 310,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -2934,9 +2934,9 @@
           "username": "ichhabevape",
           "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
           "country": "Unknown",
-          "current_ap": 23915,
+          "current_ap": 23925,
           "last_month_ap": 23910,
-          "monthly_gain": 5,
+          "monthly_gain": 15,
           "maxGames": []
         },
         {
