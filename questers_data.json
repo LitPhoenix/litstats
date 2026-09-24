@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-24T08:52:01.114Z",
+  "last_update": "2026-09-24T14:32:00.920Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -200,7 +200,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49882.8,
+      "score": 49889.2,
       "top_players": [
         {
           "username": "Skorlex",
@@ -238,9 +238,9 @@
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_quests": 28830,
+          "current_quests": 28862,
           "last_month_quests": 28750,
-          "monthly_gain": 80
+          "monthly_gain": 112
         },
         {
           "username": "trql",
@@ -982,9 +982,9 @@
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Unknown",
-          "current_quests": 23178,
+          "current_quests": 23221,
           "last_month_quests": 22929,
-          "monthly_gain": 249
+          "monthly_gain": 292
         },
         {
           "username": "zsomi123",
@@ -1065,6 +1065,20 @@
       ]
     },
     {
+      "country": "Netherlands",
+      "score": 5234.2,
+      "top_players": [
+        {
+          "username": "Timkoensurvival",
+          "uuid": "743c12bffc7348fb8525effead057de2",
+          "country": "Netherlands",
+          "current_quests": 26171,
+          "last_month_quests": 25558,
+          "monthly_gain": 613
+        }
+      ]
+    },
+    {
       "country": "Peru",
       "score": 5228.6,
       "top_players": [
@@ -1075,20 +1089,6 @@
           "current_quests": 26143,
           "last_month_quests": 26115,
           "monthly_gain": 28
-        }
-      ]
-    },
-    {
-      "country": "Netherlands",
-      "score": 5227,
-      "top_players": [
-        {
-          "username": "Timkoensurvival",
-          "uuid": "743c12bffc7348fb8525effead057de2",
-          "country": "Netherlands",
-          "current_quests": 26135,
-          "last_month_quests": 25558,
-          "monthly_gain": 577
         }
       ]
     },
