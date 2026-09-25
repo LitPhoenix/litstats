@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-25T02:23:40.436Z",
+  "last_update": "2026-09-25T09:12:26.436Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -780,9 +780,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 25905,
+          "current_ap": 25930,
           "last_month_ap": 25785,
-          "monthly_gain": 120,
+          "monthly_gain": 145,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -2179,6 +2179,15 @@
           ]
         },
         {
+          "username": "Slime",
+          "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
+          "country": "Israel",
+          "current_ap": 23785,
+          "last_month_ap": 23735,
+          "monthly_gain": 50,
+          "maxGames": []
+        },
+        {
           "username": "alonmario1",
           "uuid": "ba804eff1d3f48348048350cc686a3f6",
           "country": "Israel",
@@ -2190,15 +2199,6 @@
             "Max VampireZ",
             "Max TKR"
           ]
-        },
-        {
-          "username": "Slime",
-          "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
-          "country": "Israel",
-          "current_ap": 23780,
-          "last_month_ap": 23735,
-          "monthly_gain": 45,
-          "maxGames": []
         }
       ]
     },
@@ -2701,9 +2701,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 25235,
+          "current_ap": 25245,
           "last_month_ap": 25155,
-          "monthly_gain": 80,
+          "monthly_gain": 90,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
