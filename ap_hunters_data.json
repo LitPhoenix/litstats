@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-26T02:28:34.830Z",
+  "last_update": "2026-09-26T08:56:38.622Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -766,9 +766,9 @@
           "username": "Coduhy",
           "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
           "country": "USA",
-          "current_ap": 25960,
+          "current_ap": 25965,
           "last_month_ap": 25960,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max TKR",
             "Max Wool Games",
@@ -1325,6 +1325,17 @@
           ]
         },
         {
+          "username": "martinbelike",
+          "uuid": "fdfcc24e742746e592d666150e771a93",
+          "country": "UK",
+          "current_ap": 24770,
+          "last_month_ap": 24425,
+          "monthly_gain": 345,
+          "maxGames": [
+            "Max Mega Walls"
+          ]
+        },
+        {
           "username": "SanjayPatel35812",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
@@ -1337,17 +1348,6 @@
             "Max Walls",
             "Max TKR",
             "Max Wool Games"
-          ]
-        },
-        {
-          "username": "martinbelike",
-          "uuid": "fdfcc24e742746e592d666150e771a93",
-          "country": "UK",
-          "current_ap": 24745,
-          "last_month_ap": 24425,
-          "monthly_gain": 320,
-          "maxGames": [
-            "Max Mega Walls"
           ]
         },
         {
@@ -2259,7 +2259,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3615,
+      "score": 3619,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2296,9 +2296,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 26210,
+          "current_ap": 26225,
           "last_month_ap": 26105,
-          "monthly_gain": 105,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3008,9 +3008,9 @@
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23700,
+          "current_ap": 23725,
           "last_month_ap": 23615,
-          "monthly_gain": 85,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Wool Games"
           ]
