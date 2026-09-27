@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-27T00:03:32.394Z",
+  "last_update": "2026-09-27T07:19:39.044Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -200,15 +200,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49889.2,
+      "score": 49897.8,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 111534,
+          "current_quests": 111577,
           "last_month_quests": 111281,
-          "monthly_gain": 253
+          "monthly_gain": 296
         },
         {
           "username": "ErtrycheZ",
@@ -632,9 +632,9 @@
           "username": "Nightire",
           "uuid": "db365262927d48f5bf54cdeddcf4dae6",
           "country": "USA",
-          "current_quests": 22681,
+          "current_quests": 22764,
           "last_month_quests": 22681,
-          "monthly_gain": 0
+          "monthly_gain": 83
         },
         {
           "username": "lolitsaxel",
