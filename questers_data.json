@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-29T10:14:40.561Z",
+  "last_update": "2026-09-29T17:15:17.805Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111281,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -406,15 +406,15 @@
     },
     {
       "country": "Belgium",
-      "score": 10112.2,
+      "score": 10194.4,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 50561,
+          "current_quests": 50972,
           "last_month_quests": 50254,
-          "monthly_gain": 307
+          "monthly_gain": 718
         }
       ]
     },
@@ -600,9 +600,9 @@
           "username": "huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 25217,
+          "current_quests": 25229,
           "last_month_quests": 24701,
-          "monthly_gain": 516
+          "monthly_gain": 528
         },
         {
           "username": "Dragons",
@@ -1136,15 +1136,15 @@
     },
     {
       "country": "Israel",
-      "score": 4981,
+      "score": 5011,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_quests": 24905,
+          "current_quests": 25055,
           "last_month_quests": 24760,
-          "monthly_gain": 145
+          "monthly_gain": 295
         }
       ]
     },
