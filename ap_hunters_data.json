@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-09-29T17:15:17.345Z",
+  "last_update": "2026-09-29T21:39:03.003Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32515,
     "9cc15d802eb44f2aaf2075604ce452d5": 32495,
@@ -1290,10 +1290,11 @@
           "username": "JinxRaider23",
           "uuid": "d297331b7ff9452babd6828871bc2636",
           "country": "UK",
-          "current_ap": 25915,
+          "current_ap": 25945,
           "last_month_ap": 25910,
-          "monthly_gain": 5,
+          "monthly_gain": 35,
           "maxGames": [
+            "Max SkyBlock",
             "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
@@ -1922,7 +1923,7 @@
     },
     {
       "country": "Germany",
-      "score": 6613,
+      "score": 6615,
       "top_players": [
         {
           "username": "NightMan976",
@@ -1969,9 +1970,9 @@
           "username": "Smappy",
           "uuid": "9d3220330bfa402987411bf9baf75309",
           "country": "Germany",
-          "current_ap": 25875,
+          "current_ap": 25885,
           "last_month_ap": 25845,
-          "monthly_gain": 30,
+          "monthly_gain": 40,
           "maxGames": [
             "Max VampireZ",
             "Max Wool Games"
@@ -2574,15 +2575,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1450,
+      "score": 1470,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 27045,
+          "current_ap": 27065,
           "last_month_ap": 27000,
-          "monthly_gain": 45,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
