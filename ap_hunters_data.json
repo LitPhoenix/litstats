@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-01T07:59:33.317Z",
+  "last_update": "2026-10-01T15:04:03.230Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2170,9 +2170,9 @@
           "username": "Ofek",
           "uuid": "1121d718b08145fe8b8a3728639d6723",
           "country": "Israel",
-          "current_ap": 24520,
+          "current_ap": 24530,
           "last_month_ap": 24520,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max UHC",
             "Max Speed UHC"
@@ -2207,7 +2207,7 @@
       "score": 3766,
       "top_players": [
         {
-          "username": "Lumenoz",
+          "username": "Boonoz",
           "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
           "country": "Norway",
           "current_ap": 28975,
@@ -2620,15 +2620,15 @@
     },
     {
       "country": "Syria",
-      "score": 990,
+      "score": 1095,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26585,
+          "current_ap": 26690,
           "last_month_ap": 26585,
-          "monthly_gain": 0,
+          "monthly_gain": 105,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -3454,7 +3454,7 @@
       "score": 0,
       "top_players": [
         {
-          "username": "SpaceDano",
+          "username": "SpookyDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
           "current_ap": 24075,
