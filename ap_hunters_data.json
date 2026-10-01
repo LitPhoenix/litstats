@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-01T15:04:03.230Z",
+  "last_update": "2026-10-01T20:40:29.113Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -677,13 +677,14 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 27120,
+          "current_ap": 27145,
           "last_month_ap": 27120,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
+            "Max Duels",
             "Max Build Battle"
           ]
         },
@@ -762,6 +763,19 @@
           ]
         },
         {
+          "username": "kipanator",
+          "uuid": "8eb18a9227fb4b36947177babab261cd",
+          "country": "USA",
+          "current_ap": 25990,
+          "last_month_ap": 25965,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Coduhy",
           "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
           "country": "USA",
@@ -773,19 +787,6 @@
             "Max Wool Games",
             "Max Duels",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "kipanator",
-          "uuid": "8eb18a9227fb4b36947177babab261cd",
-          "country": "USA",
-          "current_ap": 25965,
-          "last_month_ap": 25965,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max TKR",
-            "Max Duels"
           ]
         },
         {
