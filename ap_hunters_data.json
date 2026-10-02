@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-01T20:40:29.113Z",
+  "last_update": "2026-10-02T01:13:23.485Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1366,9 +1366,9 @@
           "username": "Woomy",
           "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
           "country": "UK",
-          "current_ap": 23535,
+          "current_ap": 23550,
           "last_month_ap": 23535,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -3268,15 +3268,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 265,
+      "score": 300,
       "top_players": [
         {
           "username": "WHYSN1SOGOOD",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 25860,
+          "current_ap": 25895,
           "last_month_ap": 25860,
-          "monthly_gain": 0,
+          "monthly_gain": 35,
           "maxGames": [
             "Max VampireZ"
           ]
