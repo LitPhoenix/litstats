@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-04T07:35:10.405Z",
+  "last_update": "2026-10-04T13:35:07.579Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -383,7 +383,7 @@
     },
     {
       "country": "Taiwan",
-      "score": 19969,
+      "score": 19977.8,
       "top_players": [
         {
           "username": "Summer_Albert",
@@ -397,9 +397,9 @@
           "username": "Itz_Pipi",
           "uuid": "ae655706622d410cb36b9a8c4e1f1be4",
           "country": "Taiwan",
-          "current_quests": 46451,
+          "current_quests": 46495,
           "last_month_quests": 44660,
-          "monthly_gain": 1791
+          "monthly_gain": 1835
         }
       ]
     },
@@ -591,17 +591,17 @@
           "username": "meln",
           "uuid": "cafd6a1e45ea4082a56ad0bf697d6c90",
           "country": "USA",
-          "current_quests": 27357,
+          "current_quests": 27371,
           "last_month_quests": 27357,
-          "monthly_gain": 0
+          "monthly_gain": 14
         },
         {
           "username": "huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 25246,
+          "current_quests": 25271,
           "last_month_quests": 25235,
-          "monthly_gain": 11
+          "monthly_gain": 36
         },
         {
           "username": "Dragons",
@@ -787,15 +787,15 @@
     },
     {
       "country": "Japan",
-      "score": 22375.8,
+      "score": 22380,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_quests": 34309,
+          "current_quests": 34330,
           "last_month_quests": 34309,
-          "monthly_gain": 0
+          "monthly_gain": 21
         },
         {
           "username": "Taich25",
@@ -986,6 +986,14 @@
           "monthly_gain": 44
         },
         {
+          "username": "etrap",
+          "uuid": "f93d6ed965ee4d6a8a1a543fe94b35ea",
+          "country": "Unknown",
+          "current_quests": 22861,
+          "last_month_quests": 21960,
+          "monthly_gain": 901
+        },
+        {
           "username": "zsomi123",
           "uuid": "6ddd8bcbfa9f46a3b0e40dc47d9fe969",
           "country": "Unknown",
@@ -1007,14 +1015,6 @@
           "country": "Unknown",
           "current_quests": 22129,
           "last_month_quests": 22129,
-          "monthly_gain": 0
-        },
-        {
-          "username": "etrap",
-          "uuid": "f93d6ed965ee4d6a8a1a543fe94b35ea",
-          "country": "Unknown",
-          "current_quests": 21960,
-          "last_month_quests": 21960,
           "monthly_gain": 0
         },
         {
