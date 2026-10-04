@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-04T13:35:07.145Z",
+  "last_update": "2026-10-04T17:57:07.276Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -659,9 +659,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 27180,
+          "current_ap": 27190,
           "last_month_ap": 27120,
-          "monthly_gain": 60,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
@@ -2622,15 +2622,15 @@
     },
     {
       "country": "Syria",
-      "score": 1130,
+      "score": 1140,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26725,
+          "current_ap": 26735,
           "last_month_ap": 26585,
-          "monthly_gain": 140,
+          "monthly_gain": 150,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -3309,7 +3309,7 @@
       "score": 0,
       "top_players": [
         {
-          "username": "Melongan",
+          "username": "EmotionalFlare",
           "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
           "country": "Turkey",
           "current_ap": 25595,
