@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-04T00:14:47.927Z",
+  "last_update": "2026-10-04T07:35:09.987Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2622,15 +2622,15 @@
     },
     {
       "country": "Syria",
-      "score": 1105,
+      "score": 1130,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26700,
+          "current_ap": 26725,
           "last_month_ap": 26585,
-          "monthly_gain": 115,
+          "monthly_gain": 140,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -3099,6 +3099,18 @@
           ]
         },
         {
+          "username": "ULTRAVIOLETlamb",
+          "uuid": "d8c93138750f4388a3a99bd98b03192b",
+          "country": "Unknown",
+          "current_ap": 23405,
+          "last_month_ap": 23365,
+          "monthly_gain": 40,
+          "maxGames": [
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
@@ -3107,18 +3119,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Pit"
-          ]
-        },
-        {
-          "username": "ULTRAVIOLETlamb",
-          "uuid": "d8c93138750f4388a3a99bd98b03192b",
-          "country": "Unknown",
-          "current_ap": 23385,
-          "last_month_ap": 23365,
-          "monthly_gain": 20,
-          "maxGames": [
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
