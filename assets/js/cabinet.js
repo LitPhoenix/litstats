@@ -344,7 +344,7 @@ const TAG_DB = {
   "Big Belly": { type: "Prestige", level: 7, renown: 50, tip: "Soup is 30 renown, Olympus is 20 renown, Steaks from pants enchant, Golden Head from its perk, Golden Apple from disabling healing perks" },
   "Fast Pass": { type: "Prestige", level: 10, renown: 100 },
   "The XX": { type: "Prestige", level: 20},
-  "Big Time": { type: "Prestige", level: 25, renown: 3400 },
+  "Big Time": { type: "Prestige", level: 25, renown: 3420 },
   "Well, well": { souls: 10 },
   "Mountain of Wool": { type: "Wool", cost: "10,000" },
   "Magical Box": { type: "Coins", cost: "1,350,000", tip: "You can buy 100 keys for 45,000 coins\nPrice tag shown is the minimum for Tier 5" },
