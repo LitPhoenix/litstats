@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-04T17:57:07.673Z",
+  "last_update": "2026-10-04T20:38:47.420Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -199,15 +199,15 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49916.2,
+      "score": 49922.2,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 111597,
+          "current_quests": 111627,
           "last_month_quests": 111597,
-          "monthly_gain": 0
+          "monthly_gain": 30
         },
         {
           "username": "ErtrycheZ",
@@ -253,9 +253,9 @@
           "username": "titi2502",
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "France",
-          "current_quests": 26314,
+          "current_quests": 26327,
           "last_month_quests": 26314,
-          "monthly_gain": 0
+          "monthly_gain": 13
         },
         {
           "username": "TournamentTokens",
@@ -1065,15 +1065,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 5306.4,
+      "score": 5308.4,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 26532,
+          "current_quests": 26542,
           "last_month_quests": 26409,
-          "monthly_gain": 123
+          "monthly_gain": 133
         }
       ]
     },
