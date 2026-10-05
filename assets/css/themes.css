@@ -310,7 +310,7 @@ html[data-theme="dark"] body::before {
   background-size: cover;
   background-position: center;
   filter: blur(6px);
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 html:not([data-theme]) body::after,
@@ -328,7 +328,7 @@ html[data-theme="light"] body::before {
   background-size: cover;
   background-position: center;
   filter: blur(6px);
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 /* 3. Cherry Blossom Background */
@@ -340,7 +340,7 @@ html[data-theme="cherry"] body::before {
   background-size: cover;
   background-position: center;
   filter: blur(6px);
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 /* 4. Amethyst Background */
@@ -352,7 +352,7 @@ html[data-theme="amethyst"] body::before {
   background-size: cover;
   background-position: center;
   filter: blur(6px);
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 /* 5. Minecraft Horizon Ribbon + Tiled Stone */
