@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-04T20:38:47.420Z",
+  "last_update": "2026-10-05T00:20:40.574Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -199,7 +199,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49922.2,
+      "score": 49922.6,
       "top_players": [
         {
           "username": "Skorlex",
@@ -213,9 +213,9 @@
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_quests": 40787,
+          "current_quests": 40789,
           "last_month_quests": 40787,
-          "monthly_gain": 0
+          "monthly_gain": 2
         },
         {
           "username": "Edzio",
@@ -285,15 +285,15 @@
     },
     {
       "country": "Canada",
-      "score": 40757.2,
+      "score": 40762.8,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
-          "current_quests": 85259,
+          "current_quests": 85287,
           "last_month_quests": 85164,
-          "monthly_gain": 95
+          "monthly_gain": 123
         },
         {
           "username": "enderdrxgon",
@@ -729,15 +729,15 @@
     },
     {
       "country": "Finland",
-      "score": 15092.4,
+      "score": 15100.4,
       "top_players": [
         {
           "username": "Mol_o",
           "uuid": "40deca8a49a941428ac96315bb15e3f2",
           "country": "Finland",
-          "current_quests": 41757,
+          "current_quests": 41797,
           "last_month_quests": 41757,
-          "monthly_gain": 0
+          "monthly_gain": 40
         },
         {
           "username": "shirool",
@@ -1065,15 +1065,15 @@
     },
     {
       "country": "Netherlands",
-      "score": 5308.4,
+      "score": 5314,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "Netherlands",
-          "current_quests": 26542,
+          "current_quests": 26570,
           "last_month_quests": 26409,
-          "monthly_gain": 133
+          "monthly_gain": 161
         }
       ]
     },
