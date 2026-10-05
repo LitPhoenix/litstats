@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-05T00:20:40.574Z",
+  "last_update": "2026-10-05T07:53:55.159Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -419,15 +419,15 @@
     },
     {
       "country": "UK",
-      "score": 36180,
+      "score": 36181,
       "top_players": [
         {
           "username": "SanjayPatel35812",
           "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
           "country": "UK",
-          "current_quests": 50357,
+          "current_quests": 50362,
           "last_month_quests": 50336,
-          "monthly_gain": 21
+          "monthly_gain": 26
         },
         {
           "username": "Weeknd",
@@ -1021,9 +1021,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "Unknown",
-          "current_quests": 21871,
+          "current_quests": 21883,
           "last_month_quests": 21736,
-          "monthly_gain": 135
+          "monthly_gain": 147
         }
       ]
     },
