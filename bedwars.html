@@ -176,11 +176,12 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 14px 20px;
+    padding: 14px 20seapx;
     margin: 0 auto 20px auto;
     box-shadow: var(--shadow);
     align-items: center;
     gap: 18px;
+    padding: 8px 12px;
     width: fit-content;
     max-width: 100%;
     box-sizing: border-box;
@@ -590,7 +591,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin: 0 auto;
+    margin: 8px;
   }
 
   .mc-scale-engine {
@@ -646,6 +647,53 @@
       left: auto;
       width: min(100%, 460px);
     }
+
+    .player-summary-panel {
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      gap: 12px;
+    }
+    
+    .p-details {
+      display: contents; 
+    }
+
+    .p-name-line {
+      grid-column: 1 / -1; 
+      display: flex;
+      flex-wrap: nowrap; 
+      align-items: center;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .p-level-badge {
+      flex-shrink: 1;
+      min-width: 0; /* badge to shrink below its content size if necessary */
+      white-space: nowrap; 
+      overflow: hidden;
+    }
+
+    #player-username-text, 
+    #player-rank-html {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .p-avatar-box {
+      grid-column: 1;
+    }
+
+    .p-pills-row {
+      grid-column: 2;
+      display: flex;
+      flex-wrap: wrap; 
+      align-content: flex-start;
+      overflow: hidden;
+      max-height: 84px; /* set to match avatar height to hide overflowing pills */
+    }
+
   }
 </style>
 </head>
@@ -705,61 +753,66 @@
     <div class="stats-side-col">
       <div class="stats-side-panel" id="stats-side-panel">
         <div class="stats-title" id="side-panel-title">Tree Overview</div>
-        <div class="stat-item"><span class="stat-label" id="lbl-1">Total Unlocks</span><span class="stat-val" style="color:var(--stat-green)" id="bw-val-1">0 / 51</span></div>
-        <div class="stat-item"><span class="stat-label" id="lbl-2">Total Spent</span><span class="stat-val" style="color:var(--stat-yellow)" id="bw-val-2">1,050 Tarts</span></div>
-        <div style="font-size:11px; color:var(--text-3); text-align:right; margin-top:-8px;" id="lbl-2-desc">(1,050,000 Tickets in total)</div>
-        <div class="stat-item"><span class="stat-label" id="lbl-3">Main Path Items</span><span class="stat-val" style="color:var(--stat-green)" id="bw-val-3">0 / 21</span></div>
-        <div class="stat-item"><span class="stat-label" id="lbl-4">Branch Items</span><span class="stat-val" style="color:var(--stat-darkgreen)" id="bw-val-4">0 / 30</span></div>
-
-        <div class="stats-title" style="margin-top:10px;">Slumber Stash</div>
-        <div class="stat-item"><span class="stat-label">Tickets</span><span class="stat-val" style="color:var(--stat-aqua)" id="stash-tickets">0</span></div>
-        <div class="stat-item"><span class="stat-label">Ticket Tarts</span><span class="stat-val" style="color:var(--stat-yellow)" id="stash-tarts">0</span></div>
-        <div class="stat-item"><span class="stat-label">Dreamcakes</span><span class="stat-val" style="color:var(--stat-pink)" id="stash-cakes">0</span></div>
-        <div class="stat-item"><span class="stat-label">Soul Salsa</span><span class="stat-val" style="color:#ef4444" id="stash-salsa">0</span></div>
-        <div class="stat-item"><span class="stat-label">Nightmare Noodles</span><span class="stat-val" style="color:var(--stat-gold)" id="stash-noodles">0</span></div>
-        <div class="stat-item"><span class="stat-label">Snoring Nachos</span><span class="stat-val" style="color:var(--stat-green)" id="stash-nachos">0</span></div>
+        <div class="stat-item"><span class="stat-label" id="lbl-1">Unlocks</span><span class="stat-val" style="color:var(--stat-green)" id="bw-val-1">0 / 51</span></div>
+        <div class="stat-item"><span class="stat-label" id="lbl-2">Spent</span>
+          <span class="stat-val" style="color:var(--stat-yellow)" id="bw-val-2">1,051 / 1,051 Tarts</span></div>
+          <span class="stat-val" style="color:var(--stat-pink)" id="bw-val-3">960 / 960 Dreamcakes</span>
+          <span class="stat-val" style="color:var(--red)" id="bw-val-4">655 / 655 Salsa</span>
+          <span class="stat-val" style="color:var(--stat-gold)" id="bw-val-5">545 / 545 Noodles</span>
+          <span class="stat-val" style="color:var(--stat-green)" id="bw-val-6">635 / 635 Nachos</span>
+          <span class="stat-val" style="color:var(--stat-aqua)" id="bw-val-6b">2,218,500 Tickets</span>
+        <div class="stat-item"><span class="stat-label" id="lbl-3">Main Path Items</span><span class="stat-val" style="color:var(--stat-green)" id="bw-val-7">0 / 21</span></div>
+        <div class="stat-item"><span class="stat-label" id="lbl-4">Branch Items</span><span class="stat-val" style="color:var(--stat-darkgreen)" id="bw-val-8">0 / 30</span></div>
+        <div class="stat-item"><span class="stat-label">Tickets</span><span class="stat-val" style="color:var(--stat-aqua)" id="stash-tickets"></span></div>
       </div>
 
       <div class="stats-side-panel">
         <div class="stats-title">Cooking Recipes</div>
 
         <div class="recipe-block">
-          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:var(--stat-yellow);">Ticket Tart</span><span class="stat-val" style="color:var(--stat-yellow);">1,000 Tickets</span></div>
-        </div>
-
-        <div class="recipe-block">
-          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:var(--stat-pink);">Dreamcake</span><span class="stat-val" style="color:var(--stat-yellow);">500 Tickets</span></div>
+          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:var(--stat-yellow);">Ticket Tart</span><span class="stat-val" style="color:var(--stat-yellow)" id="stash-tarts">0</span></div>
           <div class="recipe-ingredients">
-            <div>• <span style="color:#ef4444;">x100</span> Shop Spice</div>
-            <div>• <span style="color:var(--text);">x1,000</span> Iron Essence</div>
-            <div>• <span style="color:#ffa500;">x10</span> Forge Coal</div>
+            <div>• <span class="stat-val" style="color:var(--stat-yellow);">750 Tickets</span></div>
           </div>
         </div>
 
         <div class="recipe-block">
-          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:#ef4444;">Soul Salsa</span><span class="stat-val" style="color:var(--stat-yellow);">500 Tickets</span></div>
+          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:var(--stat-pink);">Dreamcake</span><span class="stat-val" style="color:var(--stat-pink)" id="stash-cakes">0</span></div>
           <div class="recipe-ingredients">
-            <div>• <span style="color:#ef4444;">x50</span> Player Souls</div>
-            <div>• <span style="color:#00aaaa;">x500</span> Ender Dust</div>
-            <div>• <span style="color:var(--text);">x10</span> Potion Bottles</div>
+            <div>• <span class="stat-val" style="color:var(--stat-yellow);">500 Tickets</span></div>
+            <div>• <span style="color:#ef4444;">x550</span> Shop Spice</div>
+            <div>• <span style="color:var(--text);">x4,000</span> Iron Essence</div>
+            <div>• <span style="color:#ffa500;">x15</span> Forge Coal</div>
           </div>
         </div>
 
         <div class="recipe-block">
-          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:#ffa500;">Nightmare Noodles</span><span class="stat-val" style="color:var(--stat-yellow);">500 Tickets</span></div>
+          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:#ef4444;">Soul Salsa</span><span class="stat-val" style="color:#ef4444;" id="stash-salsa">0</span></div>
           <div class="recipe-ingredients">
-            <div>• <span style="color:#a855f7;">x25</span> Void Husks</div>
-            <div>• <span style="color:#ffa500;">x250</span> Gold Essence</div>
-            <div>• <span style="color:var(--text);">x15</span> Bed Sheets</div>
+            <div>• <span class="stat-val" style="color:var(--stat-yellow);">500 Tickets</span></div>
+            <div>• <span style="color:#ef4444;">x40</span> Player Souls</div>
+            <div>• <span style="color:#00aaaa;">x100</span> Ender Dust</div>
+            <div>• <span style="color:var(--text);">x5</span> Potion Bottles</div>
           </div>
         </div>
 
         <div class="recipe-block">
-          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:#22c55e;">Snoring Nachos</span><span class="stat-val" style="color:var(--stat-yellow);">500 Tickets</span></div>
+          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:#ffa500;">Nightmare Noodles</span><span class="stat-val" style="color:#ffa500;" id="stash-noodles">0</span></div>
           <div class="recipe-ingredients">
-            <div>• <span style="color:#22c55e;">x50</span> Emerald Essence</div>
-            <div>• <span style="color:#00aaaa;">x50</span> Diamond Essence</div>
-            <div>• <span style="color:#3b82f6;">x3</span> Nether Stars</div>
+            <div>• <span class="stat-val" style="color:var(--stat-yellow);">500 Tickets</span></div>
+            <div>• <span style="color:#a855f7;">x30</span> Void Husks</div>
+            <div>• <span style="color:#ffa500;">x400</span> Gold Essence</div>
+            <div>• <span style="color:var(--text);">x20</span> Bed Sheets</div>
+          </div>
+        </div>
+
+        <div class="recipe-block">
+          <div class="stat-item"><span class="stat-label" style="font-weight:600; color:#22c55e;">Snoring Nachos</span><span class="stat-val" style="color:#22c55e;" id="stash-nachos">0</span></div>
+          <div class="recipe-ingredients">
+            <div>• <span class="stat-val" style="color:var(--stat-yellow);">500 Tickets</span></div>
+            <div>• <span style="color:#22c55e;">x35</span> Emerald Essence</div>
+            <div>• <span style="color:#00aaaa;">x150</span> Diamond Essence</div>
+            <div>• <span style="color:#3b82f6;">x5</span> Nether Stars</div>
           </div>
         </div>
       </div>
@@ -849,14 +902,14 @@ const menuConfig = {
 
     glass, glass, null, null, null,
     { "id": "nether_star", "texture": "img/bedwars/nether_star.png", "apiKey": "dream_of_prestige_stars", "costVal": 25, "rawCost": "&e25 Ticket Tarts", "baseTitle": "Dream of Prestige Stars", "rawName": "&aDream of Prestige Stars", "baseLore": "&8Feast Extension\n\n&7Unlocks selectable prestige stars.", "enchanted": false },
-    { "id": "prismarine_shard", "texture": "img/bedwars/prismarine_shard.png", "apiKey": "prestige_star_four_pointed", "rawCost": "&a15 Snoring Nachos §8| &d15 Dreamcakes", "baseTitle": "Four-Pointed Prestige Star", "rawName": "&aFour-Pointed Prestige Star", "baseLore": "&8New Cosmetic\n\n&7Customize the star icon in your\n&7prestige.\n\n&7Preview: &c[&61&e7&a6&b2&d★&5] &7→ &c[&61&e7&a6&b2&d✦&5]", "enchanted": false },
-    { "id": "hopper", "texture": "img/bedwars/hopper.png", "apiKey": "prestige_star_hollow", "rawCost": "&a20 Snoring Nachos §8| &d20 Dreamcakes", "baseTitle": "Hollow Prestige Star", "rawName": "&aHollow Prestige Star", "baseLore": "&8New Cosmetic\n\n&7Customize the star icon in your\n&7prestige.\n\n&7Preview: &c[&61&e7&a6&b2&d★&5] &7→ &c[&61&e7&a6&b2&d✰&5]", "enchanted": false },
-    { "id": "oak_boat", "texture": "img/bedwars/oak_boat.png", "apiKey": "prestige_star_nautical", "rawCost": "&a30 Snoring Nachos §8| &d30 Dreamcakes", "baseTitle": "Nautical Prestige Star", "rawName": "&aNautical Prestige Star", "baseLore": "&8New Cosmetic\n\n&7Customize the star icon in your\n&7prestige.\n\n&7Preview: &c[&61&e7&a6&b2&d★&5] &7→ &c[&61&e7&a6&b2&d✯&5]", "enchanted": false },
+    { "id": "prismarine_shard", "texture": "img/bedwars/prismarine_shard.png", "apiKey": "prestige_star_four_pointed", "rawCost": "&a15 Snoring Nachos\n&d15 Dreamcakes", "baseTitle": "Four-Pointed Prestige Star", "rawName": "&aFour-Pointed Prestige Star", "baseLore": "&8New Cosmetic\n\n&7Customize the star icon in your\n&7prestige.\n\n&7Preview: &c[&61&e7&a6&b2&d★&5] &7→ &c[&61&e7&a6&b2&d✦&5]", "enchanted": false },
+    { "id": "hopper", "texture": "img/bedwars/hopper.png", "apiKey": "prestige_star_hollow", "rawCost": "&a20 Snoring Nachos\n&d20 Dreamcakes", "baseTitle": "Hollow Prestige Star", "rawName": "&aHollow Prestige Star", "baseLore": "&8New Cosmetic\n\n&7Customize the star icon in your\n&7prestige.\n\n&7Preview: &c[&61&e7&a6&b2&d★&5] &7→ &c[&61&e7&a6&b2&d✰&5]", "enchanted": false },
+    { "id": "oak_boat", "texture": "img/bedwars/oak_boat.png", "apiKey": "prestige_star_nautical", "rawCost": "&a30 Snoring Nachos\n&d30 Dreamcakes", "baseTitle": "Nautical Prestige Star", "rawName": "&aNautical Prestige Star", "baseLore": "&8New Cosmetic\n\n&7Customize the star icon in your\n&7prestige.\n\n&7Preview: &c[&61&e7&a6&b2&d★&5] &7→ &c[&61&e7&a6&b2&d✯&5]", "enchanted": false },
 
     glass, glass,
-    { "id": "barrier", "texture": "img/bedwars/barrier.png", "apiKey": "shopkeeper_the_everyman", "rawCost": "&a35 Snoring Nachos §8| &c35 Jars of Soul Salsa", "baseTitle": "The Everyman Shopkeeper Skin", "rawName": "&aThe Everyman Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7To be everyone is to lack identity.", "enchanted": false },
-    { "id": "player_head", "texture": "img/bedwars/charged_creeper.png", "apiKey": "shopkeeper_skin_2", "rawCost": "&a25 Snoring Nachos §8| &c25 Jars of Soul Salsa", "baseTitle": "Invisible Shopkeeper Skin", "rawName": "&aInvisible Shopkeeper Skin", "baseLore": "&8Shopkeeper Cosmetic", "enchanted": false },
-    { "id": "player_head", "texture": "img/bedwars/upside_down.png", "apiKey": "shopkeeper_you_upside_down", "rawCost": "&a20 Snoring Nachos §8| &c20 Jars of Soul Salsa", "baseTitle": "You! Upside-Down Shopkeeper Skin", "rawName": "&aYou! Upside-Down Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Despite inversion, it's still You!", "enchanted": false },
+    { "id": "barrier", "texture": "img/bedwars/barrier.png", "apiKey": "shopkeeper_the_everyman", "rawCost": "&a35 Snoring Nachos\n&c35 Jars of Soul Salsa", "baseTitle": "The Everyman Shopkeeper Skin", "rawName": "&aThe Everyman Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7To be everyone is to lack identity.", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/charged_creeper.png", "apiKey": "shopkeeper_skin_2", "rawCost": "&a25 Snoring Nachos\n&c25 Jars of Soul Salsa", "baseTitle": "Invisible Shopkeeper Skin", "rawName": "&aInvisible Shopkeeper Skin", "baseLore": "&8Shopkeeper Cosmetic", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/upside_down.png", "apiKey": "shopkeeper_you_upside_down", "rawCost": "&a20 Snoring Nachos\n&c20 Jars of Soul Salsa", "baseTitle": "You! Upside-Down Shopkeeper Skin", "rawName": "&aYou! Upside-Down Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Despite inversion, it's still You!", "enchanted": false },
     { "id": "villager_spawn_egg", "apiKey": "first_dream_of_shopkeeper_skins", "costVal": 30, "rawCost": "&e30 Ticket Tarts", "baseTitle": "First Dream of Shopkeeper Skins", "rawName": "&aFirst Dream of Shopkeeper Skins", "baseLore": "&8Feast Extension\n\n&7Unlocks new shopkeeper skin selections.", "enchanted": false },
     null, null, null,
 
@@ -879,9 +932,9 @@ const menuConfig = {
 
     glass, glass, null, null, null,
     { "id": "dark_oak_fence", "texture": "img/bedwars/dark_oak_fence.png", "apiKey": "dream_of_prestige_brackets", "costVal": 50, "rawCost": "&e50 Ticket Tarts", "baseTitle": "Dream of Prestige Brackets", "rawName": "&aDream of Prestige Brackets", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Prestige\n&7Brackets that can be purchased.", "enchanted": false },
-    { "id": "spruce_fence", "texture": "img/bedwars/spruce_fence.png", "apiKey": "prestige_bracket_parenthesis", "rawCost": "&c35 Jars of Soul Salsa §8| &d35 Dreamcakes", "baseTitle": "Parenthesis Prestige Bracket", "rawName": "&aParenthesis Prestige Bracket", "baseLore": "&8New Cosmetic\n\n&7Customize the brackets in your\n&7prestige.\n\n&7Preview: &c[&e1762&d★&c] &7→ &c(&e1762&d★&c)", "enchanted": false },
-    { "id": "oak_fence", "texture": "img/bedwars/oak_fence.png", "apiKey": "prestige_bracket_curly_brace", "rawCost": "&c40 Jars of Soul Salsa §8| &d40 Dreamcakes", "baseTitle": "Curly Brace Prestige Bracket", "rawName": "&aCurly Brace Prestige Bracket", "baseLore": "&8New Cosmetic\n\n&7Customize the brackets in your\n&7prestige.\n\n&7Preview: &c[&e1762&d★&c] &7→ &c{&e1762&d★&c}", "enchanted": false },
-    { "id": "birch_fence", "texture": "img/bedwars/birch_fence.png", "apiKey": "prestige_bracket_angled", "rawCost": "&c50 Jars of Soul Salsa §8| &d50 Dreamcakes", "baseTitle": "Angled Prestige Bracket", "rawName": "&aAngled Prestige Bracket", "baseLore": "&8New Cosmetic\n\n&7Customize the brackets in your\n&7prestige.\n\n&7Preview: &c[&e1762&d★&c] &7→ &c<&e1762&d★&c>", "enchanted": false },
+    { "id": "spruce_fence", "texture": "img/bedwars/spruce_fence.png", "apiKey": "prestige_bracket_parenthesis", "rawCost": "&c35 Jars of Soul Salsa\n&d35 Dreamcakes", "baseTitle": "Parenthesis Prestige Bracket", "rawName": "&aParenthesis Prestige Bracket", "baseLore": "&8New Cosmetic\n\n&7Customize the brackets in your\n&7prestige.\n\n&7Preview: &c[&e1762&d★&c] &7→ &c(&e1762&d★&c)", "enchanted": false },
+    { "id": "oak_fence", "texture": "img/bedwars/oak_fence.png", "apiKey": "prestige_bracket_curly_brace", "rawCost": "&c40 Jars of Soul Salsa\n&d40 Dreamcakes", "baseTitle": "Curly Brace Prestige Bracket", "rawName": "&aCurly Brace Prestige Bracket", "baseLore": "&8New Cosmetic\n\n&7Customize the brackets in your\n&7prestige.\n\n&7Preview: &c[&e1762&d★&c] &7→ &c{&e1762&d★&c}", "enchanted": false },
+    { "id": "birch_fence", "texture": "img/bedwars/birch_fence.png", "apiKey": "prestige_bracket_angled", "rawCost": "&c50 Jars of Soul Salsa\n&d50 Dreamcakes", "baseTitle": "Angled Prestige Bracket", "rawName": "&aAngled Prestige Bracket", "baseLore": "&8New Cosmetic\n\n&7Customize the brackets in your\n&7prestige.\n\n&7Preview: &c[&e1762&d★&c] &7→ &c<&e1762&d★&c>", "enchanted": false },
 
     glass, glass,
     { "id": "feather", "texture": "img/bedwars/feather.png", "apiKey": "challenge_halved_and_doubled", "rawCost": "&655 Bowls of Nightmare Noodles", "baseTitle": "Halved & Doubled", "rawName": "&aHalved & Doubled", "baseLore": "&8New Challenge\n\n&7A new Bed Wars Challenge:\n &61. &7You deal half the damage and\n &7take double the damage\n &62. &7Items in the shop cost double and\n &7give half as much\n\n&6Reward:\n &8- &cYin & Yang Shopkeeper Skin\n &8- &cArrow Spiral Projectile Trail", "enchanted": false },
@@ -917,9 +970,9 @@ const menuConfig = {
 
     glass, glass, null, null, null,
     { "id": "villager_spawn_egg", "apiKey": "second_dream_of_shopkeeper_skins", "costVal": 85, "rawCost": "&e85 Ticket Tarts", "baseTitle": "Second Dream of Shopkeeper Skins", "rawName": "&aSecond Dream of Shopkeeper Skins", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Shopkeeper\n&7Skins that can be purchased.", "stack": 2, "enchanted": false },
-    { "id": "player_head", "texture": "img/bedwars/baker.png", "apiKey": "shopkeeper_aiden_allpillow", "rawCost": "&a65 Snoring Nachos §8| &d65 Dreamcakes", "baseTitle": "Aiden Allpillow Shopkeeper Skin", "rawName": "&aAiden Allpillow Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Anyone who enters Lucid's chamber\n&7is at risk of falling asleep. Aiden\n&7doesn't want to take any chances\n&7falling over.", "enchanted": false },
-    { "id": "player_head", "texture": "img/bedwars/wizard.png", "apiKey": "shopkeeper_hotel_owner", "rawCost": "&a75 Snoring Nachos §8| &d75 Dreamcakes", "baseTitle": "Hotel Owner Shopkeeper Skin", "rawName": "&aHotel Owner Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7He built up the Slumber Hotel to what\n&7it is today along with Lucid.", "enchanted": false },
-    { "id": "player_head", "texture": "img/bedwars/galaxy.png", "apiKey": "shopkeeper_visions_of_lucid", "rawCost": "&a90 Snoring Nachos §8| &d90 Dreamcakes", "baseTitle": "Visions of Lucid Shopkeeper Skin", "rawName": "&aVisions of Lucid Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7The one who originally dreamt up Bed\n&7Wars. At risk of destroying his own\n&7creation, he put himself in an eternal\n&7slumber.", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/baker.png", "apiKey": "shopkeeper_aiden_allpillow", "rawCost": "&a65 Snoring Nachos\n&d65 Dreamcakes", "baseTitle": "Aiden Allpillow Shopkeeper Skin", "rawName": "&aAiden Allpillow Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7Anyone who enters Lucid's chamber\n&7is at risk of falling asleep. Aiden\n&7doesn't want to take any chances\n&7falling over.", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/wizard.png", "apiKey": "shopkeeper_hotel_owner", "rawCost": "&a75 Snoring Nachos\n&d75 Dreamcakes", "baseTitle": "Hotel Owner Shopkeeper Skin", "rawName": "&aHotel Owner Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7He built up the Slumber Hotel to what\n&7it is today along with Lucid.", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/galaxy.png", "apiKey": "shopkeeper_visions_of_lucid", "rawCost": "&a90 Snoring Nachos\n&d90 Dreamcakes", "baseTitle": "Visions of Lucid Shopkeeper Skin", "rawName": "&aVisions of Lucid Shopkeeper Skin", "baseLore": "&8New Cosmetic\n\n&7The one who originally dreamt up Bed\n&7Wars. At risk of destroying his own\n&7creation, he put himself in an eternal\n&7slumber.", "enchanted": false },
 
     glass, glass,
     { "id": "feather", "texture": "img/bedwars/feather.png", "apiKey": "prestige_ascension_cloak", "rawCost": "&a100 Snoring Nachos\n&6100 Bowls of Nightmare Noodles\n&d100 Dreamcakes\n&c100 Jars of Soul Salsa", "baseTitle": "Prestige Ascension Cloak", "rawName": "&aPrestige Ascension Cloak", "baseLore": "&8New Lobby Cosmetic\n\n&7Show off your current Bed Wars\n&7Level with this Cloak, available in all\n&7lobbies.", "enchanted": false },
@@ -1288,19 +1341,19 @@ function renderPathPanel(pathIndices) {
   let totalHtml = '';
   
   if (showRawMats) {
-      let tickets = (reqTarts * 1000) + (reqCakes * 500) + (reqSalsa * 500) + (reqNoodles * 500) + (reqNachos * 500);
-      let shopSpice = reqCakes * 100;
-      let ironEssence = reqCakes * 1000;
-      let forgeCoal = reqCakes * 10;
-      let playerSouls = reqSalsa * 50;
-      let enderDust = reqSalsa * 500;
-      let potionBottles = reqSalsa * 10;
-      let voidHusks = reqNoodles * 25;
-      let goldEssence = reqNoodles * 250;
-      let bedSheets = reqNoodles * 15;
-      let emeraldEssence = reqNachos * 50;
-      let diamondEssence = reqNachos * 50;
-      let netherStars = reqNachos * 3;
+      let tickets = (reqTarts * 750) + (reqCakes * 500) + (reqSalsa * 500) + (reqNoodles * 500) + (reqNachos * 500);
+      let shopSpice = reqCakes * 550;
+      let ironEssence = reqCakes * 4000;
+      let forgeCoal = reqCakes * 15;
+      let playerSouls = reqSalsa * 40;
+      let enderDust = reqSalsa * 100;
+      let potionBottles = reqSalsa * 5;
+      let voidHusks = reqNoodles * 30;
+      let goldEssence = reqNoodles * 400;
+      let bedSheets = reqNoodles * 20;
+      let emeraldEssence = reqNachos * 35;
+      let diamondEssence = reqNachos * 150;
+      let netherStars = reqNachos * 5;
 
       if(tickets > 0) totalHtml += `<div style="color:var(--stat-aqua);">${tickets.toLocaleString()} Tickets</div>`;
       if(shopSpice > 0) totalHtml += `<div style="color:#ef4444;">${shopSpice.toLocaleString()} Shop Spice</div>`;
@@ -1447,8 +1500,8 @@ function resetToDefault() {
     if (el) el.textContent = text;
   };
 
-  setLbl('lbl-1', 'Total Unlocks');
-  setLbl('lbl-2', 'Total Spent');
+  setLbl('lbl-1', 'Unlocks');
+  setLbl('lbl-2', 'Spent');
   setLbl('lbl-3', 'Main Path Items');
   setLbl('lbl-4', 'Branch Items');
 
@@ -1457,17 +1510,22 @@ function resetToDefault() {
     if (el) el.textContent = val;
   };
 
-  setVal('bw-val-1', '0 / 51');
-  setVal('bw-val-2', '1,050 Tarts');
-  setVal('bw-val-3', '0 / 21');
-  setVal('bw-val-4', '0 / 30');
+  setVal('bw-val-1', '51 / 51');
+  setVal('bw-val-2', '1,051 Tarts');
+  setVal('bw-val-3', '960 Dreamcakes');
+  setVal('bw-val-4', '655 Salsa');
+  setVal('bw-val-5', '545 Noodles');
+  setVal('bw-val-6', '635 Nachos');
+  setVal('bw-val-6b', '2,218,500 Tickets');
+  setVal('bw-val-7', '21 / 21');
+  setVal('bw-val-8', '30 / 30');
+  setVal('stash-tickets', '');
 
-  setVal('stash-tickets', '0');
-  setVal('stash-tarts', '0');
-  setVal('stash-cakes', '0');
-  setVal('stash-salsa', '0');
-  setVal('stash-noodles', '0');
-  setVal('stash-nachos', '0');
+  setVal('stash-tarts', '');
+  setVal('stash-cakes', '');
+  setVal('stash-salsa', '');
+  setVal('stash-noodles', '');
+  setVal('stash-nachos', '');
 
   const statusEl = document.getElementById('search-status');
   if (statusEl) {
@@ -1648,22 +1706,26 @@ async function fetchPlayerUnlocks(searchTerm) {
     const sideTitle = document.getElementById('side-panel-title');
     if (sideTitle) sideTitle.textContent = "Dreamfeast Progress";
 
-    const totalTicketsSpent = (spentTarts * 1000) + ((spentCakes + spentSalsa + spentNoodles + spentNachos) * 500);
+    const totalTicketsSpent = (spentTarts * 750) + ((spentCakes + spentSalsa + spentNoodles + spentNachos) * 500);
 
     setVal('bw-val-1', `${unlockedCount} / 51`);
-    setVal('bw-val-2', `${spentTarts.toLocaleString()} Tarts`);
-    document.getElementById('lbl-2-desc').textContent = `(${totalTicketsSpent.toLocaleString()} Tickets in total)`;
-    setVal('bw-val-3', `${mainUnlocked} / 21`);
-    setVal('bw-val-4', `${branchUnlocked} / 30`);
+    setVal('bw-val-2', `${spentTarts.toLocaleString()} / 1,051 Tarts`);
+    setVal('bw-val-3', `${spentCakes.toLocaleString()} / 960 Dreamcakes`);
+    setVal('bw-val-4', `${spentSalsa.toLocaleString()} / 655 Salsa`);
+    setVal('bw-val-5', `${spentNoodles.toLocaleString()} / 545 Noodles`);
+    setVal('bw-val-6', `${spentNachos.toLocaleString()} / 635 Nachos`);
+    setVal('bw-val-6b', `${totalTicketsSpent.toLocaleString()} / 2.2M Tickets`);
+    setVal('bw-val-7', `${mainUnlocked} / 21`);
+    setVal('bw-val-8', `${branchUnlocked} / 30`);
 
     document.getElementById('lbl-2').textContent = "Total Spent";
 
-    setVal('stash-tickets', userTickets.toLocaleString());
-    setVal('stash-tarts', userTarts.toLocaleString());
-    setVal('stash-cakes', userCakes.toLocaleString());
-    setVal('stash-salsa', userSalsa.toLocaleString());
-    setVal('stash-noodles', userNoodles.toLocaleString());
-    setVal('stash-nachos', userNachos.toLocaleString());
+    setVal('stash-tickets', `${userTickets.toLocaleString()}`);
+    setVal('stash-tarts', `${userTarts.toLocaleString()}`);
+    setVal('stash-cakes', `${userCakes.toLocaleString()}`);
+    setVal('stash-salsa', `${userSalsa.toLocaleString()}`);
+    setVal('stash-noodles', `${userNoodles.toLocaleString()}`);
+    setVal('stash-nachos', `${userNachos.toLocaleString()}`);
 
     const defaultCard = document.getElementById('default-info-card');
     const summaryPanel = document.getElementById('player-summary-panel');
