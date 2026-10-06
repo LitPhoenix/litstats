@@ -79,32 +79,26 @@
   .gui-icon-tabs {
     display: flex;
     gap: 16px;
-    margin-bottom: 20px;
     justify-content: center;
-    background: var(--surface);
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
     max-width: 420px;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: var(--shadow);
+    margin: auto;
+    margin-top: 6px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
   
   .gui-icon-tab {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 8px;
     align-items: center;
     background: var(--surface-2, var(--input-bg));
-    border: 2px solid var(--border);
-    border-radius: 6px;
-    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 12px;
     cursor: pointer;
     text-decoration: none;
-    min-width: 90px;
+    min-width: 50px;
     transition: all 0.15s ease-in-out;
   }
   
@@ -164,6 +158,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    /* Hide the text labels */
+    .gui-icon-tab .tab-label {
+      display: none;
+    }
+
+    /* Adjust padding and width for clean square buttons */
+    .gui-icon-tab {
+      padding: 8px;
+      min-width: auto;
+      justify-content: center;
+    }
+
+    /* Reduce gap in the container */
+    .gui-icon-tabs {
+      gap: 8px;
+    }
+
+    .gui-wrapper {
+      margin-top: -4px;
     }
   }
 
@@ -248,8 +263,8 @@
   }
 
   .p-avatar-box {
-    width: 84px;
-    height: 84px;
+    width: 64px;
+    height: 64px;
     flex-shrink: 0;
   }
 
@@ -271,7 +286,7 @@
     gap: 10px;
     font-size: 1.35rem;
     font-weight: 700;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
   }
 
   .p-level-badge {
@@ -281,7 +296,7 @@
     border-radius: 6px;
     font-size: 15px;
     font-weight: 700;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
   }
 
   .p-pills-row {
@@ -304,7 +319,7 @@
     display: flex;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 6px;
     padding: 16px 22px;
     margin: 0 auto 20px auto;
     box-shadow: var(--shadow);
@@ -602,7 +617,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .mc-scale-engine {
@@ -676,21 +691,8 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
     </button>
   </div>
+
   
-  <div class="gui-icon-tabs">
-    <a href="#classic" class="gui-icon-tab" id="tab-classic" onclick="switchMode('classic')">
-      <img src="img/mm/iron_sword.png" alt="Classic" class="tab-icon" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'iron_sword'}) : '')">
-      <span class="tab-label">Classic</span>
-    </a>
-    <a href="#infection" class="gui-icon-tab" id="tab-infection" onclick="switchMode('infection')">
-      <img src="img/mm/rotten_flesh.png" alt="Infection" class="tab-icon" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'rotten_flesh'}) : '')">
-      <span class="tab-label">Infection</span>
-    </a>
-    <a href="#assassins" class="gui-icon-tab" id="tab-assassins" onclick="switchMode('assassins')">
-      <img src="img/mm/filled_map.png" alt="Assassins" class="tab-icon" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'map'}) : '')">
-      <span class="tab-label">Assassins</span>
-    </a>
-  </div>
 
   <div id="search-status" class="status-gray">Previewing all max unlocked challenges</div>
 
@@ -722,21 +724,22 @@
       </div>
     </div>
   </div>
+  <div class="gui-icon-tabs">
+    <a href="#classic" class="gui-icon-tab" id="tab-classic" onclick="switchMode('classic')">
+      <img src="img/mm/iron_sword.png" alt="Classic" class="tab-icon" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'iron_sword'}) : '')">
+      <span class="tab-label">Classic</span>
+    </a>
+    <a href="#infection" class="gui-icon-tab" id="tab-infection" onclick="switchMode('infection')">
+      <img src="img/mm/rotten_flesh.png" alt="Infection" class="tab-icon" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'rotten_flesh'}) : '')">
+      <span class="tab-label">Infection</span>
+    </a>
+    <a href="#assassins" class="gui-icon-tab" id="tab-assassins" onclick="switchMode('assassins')">
+      <img src="img/mm/filled_map.png" alt="Assassins" class="tab-icon" onerror="this.onerror=null; this.src=(typeof MCEngine !== 'undefined' ? MCEngine.getApiFallback({id: 'map'}) : '')">
+      <span class="tab-label">Assassins</span>
+    </a>
+  </div>
 
   <div class="descent-layout">
-    <div class="stats-side-col">
-      <div class="stats-side-panel" id="stats-side-panel">
-        <div class="stats-title" id="side-panel-title">Descent Overview</div>
-        <div class="stat-item"><span class="stat-label">Total Challenges</span><span class="stat-val" style="color:var(--stat-green)" id="mm-val-1">51 / 51</span></div>
-        <div class="stat-item"><span class="stat-label">Tokens Earned</span><span class="stat-val" style="color:var(--stat-yellow)" id="mm-val-2">49,000</span></div>
-
-        <div class="stats-title" style="margin-top:10px;">Mode Progress</div>
-        <div class="stat-item"><span class="stat-label">Classic / Double Up!</span><span class="stat-val" style="color:var(--stat-aqua)" id="mm-classic">19 / 19</span></div>
-        <div class="stat-item"><span class="stat-label">Infection</span><span class="stat-val" style="color:var(--stat-pink)" id="mm-infection">17 / 17</span></div>
-        <div class="stat-item"><span class="stat-label">Assassins</span><span class="stat-val" style="color:var(--stat-red)" id="mm-assassins">15 / 15</span></div>
-      </div>
-    </div>
-
     <div class="gui-wrapper">
       <div class="mc-scale-engine">
         <div class="mc-container">
@@ -745,6 +748,20 @@
         </div>
       </div>
     </div>
+    <div class="stats-side-col">
+      <div class="stats-side-panel" id="stats-side-panel">
+        <div class="stats-title" id="side-panel-title">Descent Overview</div>
+        <div class="stat-item"><span class="stat-label">Total Challenges</span><span class="stat-val" style="color:var(--stat-green)" id="mm-val-1">51 / 51</span></div>
+        <div class="stat-item"><span class="stat-label">Tokens Earned</span><span class="stat-val" style="color:var(--stat-darkgreen)" id="mm-val-2">49,000</span></div>
+
+        <div class="stats-title" style="margin-top:10px;">Mode Progress</div>
+        <div class="stat-item"><span class="stat-label">Classic / Double Up!</span><span class="stat-val" style="color:var(--stat-aqua)" id="mm-classic">19 / 19</span></div>
+        <div class="stat-item"><span class="stat-label">Infection</span><span class="stat-val" style="color:var(--stat-pink)" id="mm-infection">17 / 17</span></div>
+        <div class="stat-item"><span class="stat-label">Assassins</span><span class="stat-val" style="color:var(--stat-red)" id="mm-assassins">15 / 15</span></div>
+      </div>
+    </div>
+
+    
 
     <div class="path-side-panel" id="path-side-panel">
       <div class="stats-title" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
@@ -1230,7 +1247,7 @@ function renderPathPanel(pathIndices) {
     let formattedCost = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(`&e${it.reqLore}`) : it.reqLore;
     let formattedTitle = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(it.baseTitle || it.rawName.replace(/&[0-9a-f]/gi, '')) : (it.baseTitle || it.rawName.replace(/&[0-9a-f]/gi, ''));
 
-    formattedCost = formattedCost.replace(/color:\s*#FFFF55/gi, 'color: var(--stat-yellow)');
+    formattedCost = formattedCost.replace(/color:\s*#FFFF55/gi, 'color: var(--stat-gold)');
 
     stepsHtml += `
       <div class="path-step-item">
@@ -1493,13 +1510,13 @@ document.addEventListener('tt-format', (e) => {
   const it = e.detail.item;
   
   let formattedName = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(it.rawName || '&f' + it.id) : (it.rawName || '&f' + it.id);
-  let h = `<span class="tt-name" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8);">${formattedName}</span>`;
+  let h = `<span class="tt-name" style="text-shadow: 2px 2px 2px rgba(0,0,0,0.6);">${formattedName}</span>`;
   
   if (it.rawLore) {
     const lines = it.rawLore.split('\n');
     for (const l of lines) {
       let formattedLine = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(l) : l;
-      h += `<span class="tt-line" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px;">${formattedLine}</span>`;
+      h += `<span class="tt-line" style="text-shadow: 2px 2px 2px rgba(0,0,0,0.6); min-height: 16px;">${formattedLine}</span>`;
     }
   }
   e.detail.html = h;
