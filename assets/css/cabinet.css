@@ -927,7 +927,7 @@ body[data-theme="dark"] .maxed-stat-pill {
 .rank-num-pill.rank-top10 { background: var(--surface-2); animation: legendaryRainbow 3s linear infinite; }
 .rank-num-pill.rank-top25 { background: var(--surface-2); animation: silverPulse 3s ease-in-out infinite; }
 .rank-num-pill.rank-top50 { background: var(--surface-2); animation: bronzePulse 3s ease-in-out infinite; }
-.rank-num-pill.rank-top100 { background: var(--surface-2); border-color: #533bda; color: #3b3bda; }
+.rank-num-pill.rank-top100 { background: var(--surface-2); border-color: #3b3bda; color: #3b3bda; }
 .rank-num-pill.rank-top200 { background: var(--surface-2); border-color: #309030; color: #309030; }
 .search-wrapper { position: relative; display: flex; align-items: center; width: 100%; max-width: 340px; }
 .clear-btn { position: absolute; right: 10px; background: none; border: none; font-size: 18px; color: var(--text-3); cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; }
