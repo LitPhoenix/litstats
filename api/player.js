@@ -771,6 +771,12 @@ module.exports = async (req, res) => {
       }
     }
 
+    // Max Seasonal = all four event sets maxed (the individual Summer/Christmas/Easter/Halloween badges stay too).
+    const seasonalBadges = ["Max Summer", "Max Christmas", "Max Easter", "Max Halloween"];
+    if (seasonalBadges.every(b => responseData.maxGames.includes(b)) && !responseData.maxGames.includes("Max Seasonal")) {
+      responseData.maxGames.push("Max Seasonal");
+    }
+
     responseData.missingAchievements.sort((a, b) => a.reward - b.reward);
 
     const achDictionary = {};
@@ -848,8 +854,8 @@ module.exports = async (req, res) => {
     }
     responseData.blitzStars = starsUnlocked;
     
-    const kitList = ["horsetamer", "ranger", "archer", "astronaut", "troll", "meatmaster", "reaper", "shark", "reddragon", "toxicologist", "donkeytamer", "rogue", "warlock", "slimeyslime", "jockey", "golem", "viking", "speleologist", "shadow knight", "baker", "knight", "pigman", "guardian", "phoenix", "paladin", "necromancer", "scout", "hunter", "warrior", "hypetrain", "fisherman", "milkman", "florist", "diver", "arachnologist", "blaze", "wolftamer", "tim", "snowman", "rambo", "farmer", "armorer", "creepertamer"];
-    const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist", "rambo", "guardian", "hypetrain"]);
+    const kitList = ["horsetamer", "ranger", "archer", "astronaut", "troll", "meatmaster", "reaper", "shark", "reddragon", "toxicologist", "donkeytamer", "rogue", "warlock", "slimeyslime", "jockey", "golem", "viking", "speleologist", "shadow knight", "baker", "knight", "pigman", "guardian", "phoenix", "paladin", "necromancer", "scout", "hunter", "warrior", "hype train", "fisherman", "milkman", "florist", "diver", "arachnologist", "blaze", "wolftamer", "tim", "snowman", "rambo", "farmer", "armorer", "creepertamer"];
+    const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist", "rambo", "guardian", "hype train"]);
     const ultimateKits = new Set(["phoenix", "warrior", "donkeytamer", "milkman", "ranger", "rambo"]);
     
     for (const kit of kitList) {
