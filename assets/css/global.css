@@ -184,7 +184,7 @@ h1, h2 {
 #p-name,
 .player-name,
 .rank-coloured-name {
-  color: inherit !important;
+  color: inherit;
 }
 
 .tier-header::before,
@@ -1039,7 +1039,7 @@ input[type="search"]::placeholder,
 html[data-theme="light"] .nav-dropdown-menu {
   background-color: #ffffff !important;
   border: 1px solid rgba(0, 0, 0, 0.12) !important;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 12px 28px rgba(64, 64, 64, 0.1) !important;
 }
 
 html[data-theme="cherry"] .nav-dropdown-menu {
