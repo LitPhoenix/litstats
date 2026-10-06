@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-06T17:36:23.013Z",
+  "last_update": "2026-10-06T22:01:39.451Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -737,9 +737,9 @@
           "username": "SnowmanHaqs",
           "uuid": "cf0e056bfae246f48053bd7979772f63",
           "country": "USA",
-          "current_ap": 26425,
+          "current_ap": 26405,
           "last_month_ap": 26425,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -818,9 +818,9 @@
           "username": "lyraava",
           "uuid": "6d84e8ed95b3452095221594b9e448fe",
           "country": "USA",
-          "current_ap": 25735,
+          "current_ap": 25715,
           "last_month_ap": 25735,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1115,9 +1115,9 @@
           "username": "horri",
           "uuid": "04f4bddb99004950ab605a20f41c6a98",
           "country": "France",
-          "current_ap": 26270,
+          "current_ap": 26280,
           "last_month_ap": 26275,
-          "monthly_gain": -5,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Blitz",
             "Max SkyBlock",
@@ -1923,7 +1923,7 @@
     },
     {
       "country": "Germany",
-      "score": 6615,
+      "score": 6605,
       "top_players": [
         {
           "username": "NightMan976",
@@ -1948,9 +1948,9 @@
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28500,
+          "current_ap": 28480,
           "last_month_ap": 28500,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max Smash Heroes",
             "Max Paintball",
@@ -2125,7 +2125,7 @@
     },
     {
       "country": "Israel",
-      "score": 4251,
+      "score": 4255,
       "top_players": [
         {
           "username": "eliadbg",
@@ -2162,9 +2162,9 @@
           "username": "TinyRex",
           "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
           "country": "Israel",
-          "current_ap": 26320,
+          "current_ap": 26335,
           "last_month_ap": 26310,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": []
         },
         {
@@ -2743,9 +2743,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 25125,
+          "current_ap": 25135,
           "last_month_ap": 25105,
-          "monthly_gain": 20,
+          "monthly_gain": 30,
           "maxGames": [
             "Max SkyBlock",
             "Max Arcade",
@@ -2959,9 +2959,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
-          "current_ap": 23800,
+          "current_ap": 23825,
           "last_month_ap": 23780,
-          "monthly_gain": 20,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3037,9 +3037,9 @@
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
-          "current_ap": 23645,
+          "current_ap": 23660,
           "last_month_ap": 23645,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -3077,9 +3077,9 @@
           "username": "ULTRAVIOLETlamb",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "Unknown",
-          "current_ap": 23465,
+          "current_ap": 23480,
           "last_month_ap": 23365,
-          "monthly_gain": 100,
+          "monthly_gain": 115,
           "maxGames": [
             "Max Duels",
             "Max Build Battle"
