@@ -175,7 +175,7 @@
     display: flex;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 14px 20seapx;
     margin: 0 auto 20px auto;
     box-shadow: var(--shadow);
@@ -213,7 +213,7 @@
     gap: 10px;
     font-size: 1.35rem;
     font-weight: 700;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
   }
 
   .p-level-badge {
@@ -223,11 +223,11 @@
     border-radius: 6px;
     font-size: 15px;
     font-weight: 700;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
   }
 
   .p-level-badge span {
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.8) !important;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6) !important;
   }
 
   .p-pills-row {
@@ -255,7 +255,7 @@
     display: flex;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 16px 22px;
     margin: 0 auto 20px auto;
     box-shadow: var(--shadow);
@@ -277,7 +277,7 @@
     justify-content: center;
     background: var(--surface-2, var(--input-bg));
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 8px;
   }
 
   .info-card-icon img {
@@ -346,7 +346,7 @@
     width: 100%;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 14px;
     box-shadow: var(--shadow);
     display: flex;
@@ -384,7 +384,7 @@
     width: 270px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 16px;
     box-shadow: var(--shadow);
     display: none;
@@ -750,16 +750,38 @@
   </div>
 
   <div class="descent-layout">
+    <div class="gui-wrapper">
+      <div class="mc-scale-engine">
+        <div class="mc-container">
+          <div class="mc-title" id="display-title">The Dreamfeast</div>
+          <div class="mc-grid" id="menu-grid"></div>
+        </div>
+      </div>
+    </div>
     <div class="stats-side-col">
       <div class="stats-side-panel" id="stats-side-panel">
-        <div class="stats-title" id="side-panel-title">Tree Overview</div>
+        <div class="stats-title" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+        <span>Unlock Route</span>
+        <div style="display:flex; gap:8px; align-items:center; position:relative;">
+          <button id="path-settings-btn" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;" title="Settings">⚙</button>
+          
+          <div id="path-settings-menu" class="path-settings-dropdown">
+            <label class="path-settings-label" title="Calculate combined costs for multiple items at once.">
+              <input type="checkbox" id="toggle-multiselect"> Multi-Select Items
+            </label>
+            <label class="path-settings-label" title="Displays the underlying Essence, Souls, and Spices instead of high-level feast foods.">
+              <input type="checkbox" id="toggle-raw-mats"> Show Raw Materials
+            </label>
+          </div>
+        </div>
+      </div>
         <div class="stat-item"><span class="stat-label" id="lbl-1">Unlocks</span><span class="stat-val" style="color:var(--stat-green)" id="bw-val-1">0 / 51</span></div>
         <div class="stat-item"><span class="stat-label" id="lbl-2">Spent</span>
           <span class="stat-val" style="color:var(--stat-yellow)" id="bw-val-2">1,051 / 1,051 Tarts</span></div>
-          <span class="stat-val" style="color:var(--stat-pink)" id="bw-val-3">960 / 960 Dreamcakes</span>
-          <span class="stat-val" style="color:var(--red)" id="bw-val-4">655 / 655 Salsa</span>
+          <span class="stat-val" style="color:var(--stat-pink)" id="bw-val-3">885 / 885 Dreamcakes</span>
+          <span class="stat-val" style="color:var(--red)" id="bw-val-4">750 / 750 Salsa</span>
           <span class="stat-val" style="color:var(--stat-gold)" id="bw-val-5">545 / 545 Noodles</span>
-          <span class="stat-val" style="color:var(--stat-green)" id="bw-val-6">635 / 635 Nachos</span>
+          <span class="stat-val" style="color:var(--stat-green)" id="bw-val-6">755 / 755 Nachos</span>
           <span class="stat-val" style="color:var(--stat-aqua)" id="bw-val-6b">2,218,500 Tickets</span>
         <div class="stat-item"><span class="stat-label" id="lbl-3">Main Path Items</span><span class="stat-val" style="color:var(--stat-green)" id="bw-val-7">0 / 21</span></div>
         <div class="stat-item"><span class="stat-label" id="lbl-4">Branch Items</span><span class="stat-val" style="color:var(--stat-darkgreen)" id="bw-val-8">0 / 30</span></div>
@@ -818,30 +840,13 @@
       </div>
     </div>
 
-    <div class="gui-wrapper">
-      <div class="mc-scale-engine">
-        <div class="mc-container">
-          <div class="mc-title" id="display-title">The Dreamfeast</div>
-          <div class="mc-grid" id="menu-grid"></div>
-        </div>
-      </div>
-    </div>
+    
 
     <div class="path-side-panel" id="path-side-panel">
       <div class="stats-title" style="display:flex; justify-content:space-between; align-items:center; width:100%;">
         <span>Unlock Route</span>
         <div style="display:flex; gap:8px; align-items:center; position:relative;">
-          <button id="path-settings-btn" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;" title="Settings">⚙</button>
           <button onclick="closePathPanel()" style="background:none; border:none; color:var(--text-2); cursor:pointer; font-size:14px;">✕</button>
-          
-          <div id="path-settings-menu" class="path-settings-dropdown">
-            <label class="path-settings-label" title="Calculate combined costs for multiple items at once.">
-              <input type="checkbox" id="toggle-multiselect"> Multi-Select Items
-            </label>
-            <label class="path-settings-label" title="Displays the underlying Essence, Souls, and Spices instead of high-level feast foods.">
-              <input type="checkbox" id="toggle-raw-mats"> Show Raw Materials
-            </label>
-          </div>
         </div>
       </div>
       <div style="font-size:12px; color:var(--text-2);" id="path-target-name">Target: -</div>
@@ -876,9 +881,9 @@ const menuConfig = {
     null, null, null,
 
     glass, glass,
-    { "id": "jungle_log", "texture": "img/bedwars/jungle_log.png", "apiKey": "woodSkin_jungle_log", "rawCost": "&d10 Dreamcakes", "baseTitle": "Jungle Log Wood Skin", "rawName": "&aJungle Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
-    { "id": "birch_log", "texture": "img/bedwars/birch_log.png", "apiKey": "woodSkin_birch_log", "rawCost": "&d10 Dreamcakes", "baseTitle": "Birch Log Wood Skin", "rawName": "&aBirch Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
-    { "id": "oak_log", "texture": "img/bedwars/oak_log.png", "apiKey": "woodSkin_oak_log", "rawCost": "&d10 Dreamcakes", "baseTitle": "Oak Log Wood Skin", "rawName": "&aOak Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "jungle_log", "texture": "img/bedwars/jungle_log.png", "apiKey": "woodSkin_jungle_log", "rawCost": "&a5 Snoring Nachos\n&c5 Jars of Soul Salsa", "baseTitle": "Jungle Log Wood Skin", "rawName": "&aJungle Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "birch_log", "texture": "img/bedwars/birch_log.png", "apiKey": "woodSkin_birch_log", "rawCost": "&a3 Snoring Nachos\n&c3 Jars of Soul Salsa", "baseTitle": "Birch Log Wood Skin", "rawName": "&aBirch Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "oak_log", "texture": "img/bedwars/oak_log.png", "apiKey": "woodSkin_oak_log", "rawCost": "&a2 Snoring Nachos\n&c2 Jars of Soul Salsa", "baseTitle": "Oak Log Wood Skin", "rawName": "&aOak Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
     { "id": "sapling", "texture": "img/bedwars/sapling.png", "apiKey": "first_dream_of_wood_skins", "costVal": 5, "rawCost": "&e5 Ticket Tarts", "baseTitle": "First Dream of Wood Skins", "rawName": "&aFirst Dream of Wood Skins", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Wood Skins\n&7that can be purchased:\n &a1. &6Oak Log &7Wood Skin\n &a2. &6Birch Log &7Wood Skin\n &a3. &6Jungle Log &7Wood Skin", "enchanted": false },
     null, null, null,
 
@@ -924,9 +929,9 @@ const menuConfig = {
     null, null, null,
 
     glass, glass,
-    { "id": "acacia_log", "texture": "img/bedwars/acacia_log.png", "apiKey": "woodSkin_acacia_log", "rawCost": "&d15 Dreamcakes", "baseTitle": "Acacia Log Wood Skin", "rawName": "&aAcacia Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
-    { "id": "dark_oak_log", "texture": "img/bedwars/dark_oak_log.png", "apiKey": "woodSkin_dark_oak_log", "rawCost": "&d15 Dreamcakes", "baseTitle": "Dark Oak Log Wood Skin", "rawName": "&aDark Oak Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
-    { "id": "spruce_log", "texture": "img/bedwars/spruce_log.png", "apiKey": "woodSkin_spruce_log", "rawCost": "&d15 Dreamcakes", "baseTitle": "Spruce Log Wood Skin", "rawName": "&aSpruce Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "acacia_log", "texture": "img/bedwars/acacia_log.png", "apiKey": "woodSkin_acacia_log", "rawCost": "&a45 Snoring Nachos\n&c45 Jars of Soul Salsa", "baseTitle": "Acacia Log Wood Skin", "rawName": "&aAcacia Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "dark_oak_log", "texture": "img/bedwars/dark_oak_log.png", "apiKey": "woodSkin_dark_oak_log", "rawCost": "&a35 Snoring Nachos\n&c35 Jars of Soul Salsa", "baseTitle": "Dark Oak Log Wood Skin", "rawName": "&aDark Oak Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
+    { "id": "spruce_log", "texture": "img/bedwars/spruce_log.png", "apiKey": "woodSkin_spruce_log", "rawCost": "&a30 Snoring Nachos\n&c30 Jars of Soul Salsa", "baseTitle": "Spruce Log Wood Skin", "rawName": "&aSpruce Log Wood Skin", "baseLore": "&8New Cosmetic\n\n&7Selectable Wood Skin.", "enchanted": false },
     { "id": "acacia_sapling", "texture": "img/bedwars/acacia_sapling.png", "apiKey": "second_dream_of_wood_skins", "costVal": 45, "rawCost": "&e45 Ticket Tarts", "baseTitle": "Second Dream of Wood Skins", "rawName": "&aSecond Dream of Wood Skins", "baseLore": "&8Feast Extension\n\n&7Lucid dreams up remaining Wood Skins.", "stack": 2, "enchanted": false },
     null, null, null,
 
@@ -958,7 +963,7 @@ const menuConfig = {
     { "id": "powered_rail", "texture": "img/bedwars/powered_rail.png", "apiKey": "toggle_strikethrough_brackets", "rawCost": "&d65 Dreamcakes", "baseTitle": "Toggle &mStrikethrough&r Brackets", "rawName": "&aToggle &mStrikethrough&r&a Brackets", "baseLore": "&8Prestige Formatting\n\n&7Toggle whether you want the\n&7brackets in your Prestige\n&7struckthrough or not!\n\n&7Preview: &c[&e1762&d✪&c] &7→ &c&m[&r&e1762&d✪&c&m]&r", "enchanted": false },
 
     glass, glass,
-    { "id": "golden_helmet", "texture": "img/bedwars/golden_helmet.png", "apiKey": "killmessages_glorious", "rawCost": "&c75 Jars of Soul Salsa", "baseTitle": "Glorious Kill Messages", "rawName": "&aGlorious Kill Messages", "baseLore": "&8New Cosmetic\n\n&7Shouts your number of final kills and\n&7bed destroys.\n&8(Originally from Tournament Hall)", "enchanted": false },
+    { "id": "golden_helmet", "texture": "img/bedwars/golden_helmet.png", "apiKey": "killmessages_glorious", "rawCost": "&c70 Jars of Soul Salsa", "baseTitle": "Glorious Kill Messages", "rawName": "&aGlorious Kill Messages", "baseLore": "&8New Cosmetic\n\n&7Shouts your number of final kills and\n&7bed destroys.\n&8(Originally from Tournament Hall)", "enchanted": false },
     { "id": "yellow_wool", "texture": "img/bedwars/yellow_wool.png", "apiKey": "toggle_rainbow_kill_messages", "rawCost": "&c60 Jars of Soul Salsa", "baseTitle": "Toggle Rainbow Kill Messages", "rawName": "&aToggle Rainbow Kill Messages", "baseLore": "&8New Cosmetic\n\n&7Toggle whether you want your kill\n&7messages &cR&6a&ei&an&bb&do&5w &7or not!", "enchanted": false },
     { "id": "red_wool", "texture": "img/bedwars/red_wool.png", "apiKey": "killmessages_lucid", "rawCost": "&c55 Jars of Soul Salsa", "baseTitle": "Lucid Kill Messages", "rawName": "&aLucid Kill Messages", "baseLore": "&8New Cosmetic\n\n&7Knock your enemies into a good\n&7night's rest.", "enchanted": false },
     { "id": "oak_sign", "texture": "img/bedwars/oak_sign.png", "apiKey": "dream_of_kill_messages", "costVal": 75, "rawCost": "&e75 Ticket Tarts", "baseTitle": "Dream of Kill Messages", "rawName": "&aDream of Kill Messages", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new Kill\n&7Messages that can be purchased:\n &a1. &6Lucid &7Kill Messages\n &a2. &7Toggle &cR&6a&ei&an&bb&do&5w &7Kill Messages\n &a3. &6Glorious &7Kill Messages", "enchanted": false },
@@ -977,7 +982,7 @@ const menuConfig = {
     glass, glass,
     { "id": "feather", "texture": "img/bedwars/feather.png", "apiKey": "prestige_ascension_cloak", "rawCost": "&a100 Snoring Nachos\n&6100 Bowls of Nightmare Noodles\n&d100 Dreamcakes\n&c100 Jars of Soul Salsa", "baseTitle": "Prestige Ascension Cloak", "rawName": "&aPrestige Ascension Cloak", "baseLore": "&8New Lobby Cosmetic\n\n&7Show off your current Bed Wars\n&7Level with this Cloak, available in all\n&7lobbies.", "enchanted": false },
     { "id": "arrow", "texture": "img/bedwars/arrow.png", "apiKey": "prestige_projectile_trail", "rawCost": "&a85 Snoring Nachos\n&685 Bowls of Nightmare Noodles\n&d85 Dreamcakes\n&c85 Jars of Soul Salsa", "baseTitle": "Prestigious Projectile Trail", "rawName": "&aPrestigious Projectile Trail", "baseLore": "&8New Cosmetic\n\n&7The particle trail matches the color\n&7of your current Prestige!", "enchanted": false },
-    { "id": "player_head", "texture": "img/bedwars/tophat.png", "apiKey": "prestige_island_topper", "rawCost": "&c75 Jars of Soul Salsa\n&a75 Snoring Nachos\n&d75 Dreamcakes\n&675 Bowls of Nightmare Noodles", "baseTitle": "Prestigious Island Topper", "rawName": "&aPrestigious Island Topper", "baseLore": "&8New Cosmetic\n\n&7The Island Topper matches the color\n&7of your current Prestige!", "enchanted": false },
+    { "id": "player_head", "texture": "img/bedwars/tophat.png", "apiKey": "prestige_island_topper", "rawCost": "&a75 Snoring Nachos\n&675 Bowls of Nightmare Noodles\n&d75 Dreamcakes\n&c75 Jars of Soul Salsa", "baseTitle": "Prestigious Island Topper", "rawName": "&aPrestigious Island Topper", "baseLore": "&8New Cosmetic\n\n&7The Island Topper matches the color\n&7of your current Prestige!", "enchanted": false },
     { "id": "diamond", "texture": "img/bedwars/diamond.png", "apiKey": "dream_of_prestige", "costVal": 90, "rawCost": "&e90 Ticket Tarts", "baseTitle": "Dream of Prestige", "rawName": "&aDream of Prestige", "baseLore": "&8Feast Extension\n\n&7Lucid will dream up 3 new prestigious\n&7cosmetics that can be purchased:\n &a1. &6Prestigious &7Island Topper\n &a2. &6Prestigious &7Projectile Trail\n &a3. &6Prestige Ascension &7Cloak", "enchanted": false },
     null, null, null,
 
@@ -1312,7 +1317,7 @@ function renderPathPanel(pathIndices) {
         .replace(/Ticket Tarts/gi, 'Tarts')
         .replace(/Ticket Tart/gi, 'Tart');
 
-      shortCost = shortCost.replace(/\n/g, ' §8| ');
+      shortCost = shortCost.replace(/\n/g, '\n');
     }
 
     let formattedCost = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(shortCost || '') : (shortCost || '');
@@ -1512,10 +1517,10 @@ function resetToDefault() {
 
   setVal('bw-val-1', '51 / 51');
   setVal('bw-val-2', '1,051 Tarts');
-  setVal('bw-val-3', '960 Dreamcakes');
-  setVal('bw-val-4', '655 Salsa');
+  setVal('bw-val-3', '885 Dreamcakes');
+  setVal('bw-val-4', '750 Salsa');
   setVal('bw-val-5', '545 Noodles');
-  setVal('bw-val-6', '635 Nachos');
+  setVal('bw-val-6', '755 Nachos');
   setVal('bw-val-6b', '2,218,500 Tickets');
   setVal('bw-val-7', '21 / 21');
   setVal('bw-val-8', '30 / 30');
@@ -1710,15 +1715,15 @@ async function fetchPlayerUnlocks(searchTerm) {
 
     setVal('bw-val-1', `${unlockedCount} / 51`);
     setVal('bw-val-2', `${spentTarts.toLocaleString()} / 1,051 Tarts`);
-    setVal('bw-val-3', `${spentCakes.toLocaleString()} / 960 Dreamcakes`);
-    setVal('bw-val-4', `${spentSalsa.toLocaleString()} / 655 Salsa`);
+    setVal('bw-val-3', `${spentCakes.toLocaleString()} / 885 Dreamcakes`);
+    setVal('bw-val-4', `${spentSalsa.toLocaleString()} / 750 Salsa`);
     setVal('bw-val-5', `${spentNoodles.toLocaleString()} / 545 Noodles`);
-    setVal('bw-val-6', `${spentNachos.toLocaleString()} / 635 Nachos`);
+    setVal('bw-val-6', `${spentNachos.toLocaleString()} / 755 Nachos`);
     setVal('bw-val-6b', `${totalTicketsSpent.toLocaleString()} / 2.2M Tickets`);
     setVal('bw-val-7', `${mainUnlocked} / 21`);
     setVal('bw-val-8', `${branchUnlocked} / 30`);
 
-    document.getElementById('lbl-2').textContent = "Total Spent";
+    document.getElementById('lbl-2').textContent = "Spent";
 
     setVal('stash-tickets', `${userTickets.toLocaleString()}`);
     setVal('stash-tarts', `${userTarts.toLocaleString()}`);
@@ -1848,13 +1853,13 @@ document.addEventListener('tt-format', (e) => {
   const it = e.detail.item;
   
   let formattedName = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(it.rawName || '&f' + it.id) : (it.rawName || '&f' + it.id);
-  let h = `<span class="tt-name" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8);">${formattedName}</span>`;
+  let h = `<span class="tt-name" style="text-shadow: 2px 2px 2px rgba(0,0,0,0.6);">${formattedName}</span>`;
   
   if (it.rawLore) {
     const lines = it.rawLore.split('\n');
     for (const l of lines) {
       let formattedLine = typeof parseMinecraftColors === 'function' ? parseMinecraftColors(l) : l;
-      h += `<span class="tt-line" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.8); min-height: 16px;">${formattedLine}</span>`;
+      h += `<span class="tt-line" style="text-shadow: 2px 2px 2px rgba(0,0,0,0.6); min-height: 16px;">${formattedLine}</span>`;
     }
   }
   e.detail.html = h;
