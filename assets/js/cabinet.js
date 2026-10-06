@@ -2064,7 +2064,7 @@ async function initCabinet(explicitLookupId) {
 
         const hunterIndex = allPlayers.findIndex(h => h.uuid === data.uuid || h.username.toLowerCase() === data.username.toLowerCase());
         
-        if (hunterIndex !== -1 && hunterIndex < 100) {
+        if (hunterIndex !== -1 && hunterIndex < 200) {
           data.leaderboardRank = hunterIndex + 1;
           data.country = allPlayers[hunterIndex].country || data.country;
         }
