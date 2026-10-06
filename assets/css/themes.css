@@ -28,7 +28,7 @@
   --shadow: 0 4px 16px rgba(255, 81, 0, 0.04), 0 8px 32px rgba(0,0,0,0.04);
   --radius: 12px;
 
-  --tag-bg: rgba(0, 0, 0, 0.03);
+  --tag-bg: rgba(54, 54, 54, 0.03);
   --tag-border: rgba(0, 0, 0, 0.15);
   --tag-text: #1a1512;
 
@@ -36,7 +36,7 @@
   --tier-2: #eab308;
   --tier-3: #ff8400;
   --tier-4: #ff5100;
-  --tier-5: #991b1b;
+  --tier-5: #a91919;
 }
 
 /* 2. Dark Ember (Default Dark) */
