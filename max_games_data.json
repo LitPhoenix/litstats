@@ -1,0 +1,7204 @@
+{
+ "last_update": "2026-10-06T03:14:45.403Z",
+ "source_update": "2026-10-06T03:14:45.312Z",
+ "catalog": [
+  {
+   "id": "uhc",
+   "name": "UHC",
+   "badge": "Max UHC",
+   "tier": "1st",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "pit",
+   "name": "Pit",
+   "badge": "Max Pit",
+   "tier": "1st",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "megawalls",
+   "name": "Mega Walls",
+   "badge": "Max Mega Walls",
+   "tier": "1st",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "skywars",
+   "name": "SkyWars",
+   "badge": "Max SkyWars",
+   "tier": "1st",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "blitz",
+   "name": "Blitz",
+   "badge": "Max Blitz",
+   "tier": "1st",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "smashheroes",
+   "name": "Smash Heroes",
+   "badge": "Max Smash Heroes",
+   "tier": "2nd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "bedwars",
+   "name": "Bed Wars",
+   "badge": "Max Bed Wars",
+   "tier": "2nd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "copsandcrims",
+   "name": "Cops and Crims",
+   "badge": "Max Cops and Crims",
+   "tier": "2nd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "quake",
+   "name": "Quake",
+   "badge": "Max Quake",
+   "tier": "2nd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "paintball",
+   "name": "Paintball",
+   "badge": "Max Paintball",
+   "tier": "2nd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "arenabrawl",
+   "name": "Arena Brawl",
+   "badge": "Max Arena Brawl",
+   "tier": "2nd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "skyblock",
+   "name": "SkyBlock",
+   "badge": "Max SkyBlock",
+   "tier": "3rd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "speeduhc",
+   "name": "Speed UHC",
+   "badge": "Max Speed UHC",
+   "tier": "3rd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "warlords",
+   "name": "Warlords",
+   "badge": "Max Warlords",
+   "tier": "3rd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "walls",
+   "name": "Walls",
+   "badge": "Max Walls",
+   "tier": "3rd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "tntgames",
+   "name": "TNT Games",
+   "badge": "Max TNT Games",
+   "tier": "3rd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "arcade",
+   "name": "Arcade",
+   "badge": "Max Arcade",
+   "tier": "3rd",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "murdermystery",
+   "name": "Murder Mystery",
+   "badge": "Max Murder Mystery",
+   "tier": "4th",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "vampirez",
+   "name": "VampireZ",
+   "badge": "Max VampireZ",
+   "tier": "4th",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "tkr",
+   "name": "TKR",
+   "badge": "Max TKR",
+   "tier": "4th",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "woolgames",
+   "name": "Wool Games",
+   "badge": "Max Wool Games",
+   "tier": "4th",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "duels",
+   "name": "Duels",
+   "badge": "Max Duels",
+   "tier": "4th",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "buildbattle",
+   "name": "Build Battle",
+   "badge": "Max Build Battle",
+   "tier": "4th",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "seasonal",
+   "name": "Seasonal",
+   "badge": "Max Seasonal",
+   "tier": "extra",
+   "derived": true,
+   "parent": null
+  },
+  {
+   "id": "crazywalls",
+   "name": "Crazy Walls",
+   "badge": "Max Crazy Walls",
+   "tier": "extra",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "skyclash",
+   "name": "SkyClash",
+   "badge": "Max SkyClash",
+   "tier": "extra",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "general",
+   "name": "General",
+   "badge": "Max General",
+   "tier": "extra",
+   "derived": false,
+   "parent": null
+  },
+  {
+   "id": "summer",
+   "name": "Summer",
+   "badge": "Max Summer",
+   "tier": "seasonal-part",
+   "derived": false,
+   "parent": "seasonal"
+  },
+  {
+   "id": "christmas",
+   "name": "Christmas",
+   "badge": "Max Christmas",
+   "tier": "seasonal-part",
+   "derived": false,
+   "parent": "seasonal"
+  },
+  {
+   "id": "easter",
+   "name": "Easter",
+   "badge": "Max Easter",
+   "tier": "seasonal-part",
+   "derived": false,
+   "parent": "seasonal"
+  },
+  {
+   "id": "halloween",
+   "name": "Halloween",
+   "badge": "Max Halloween",
+   "tier": "seasonal-part",
+   "derived": false,
+   "parent": "seasonal"
+  }
+ ],
+ "games": {
+  "uhc": {
+   "signature": "0f0b1f310125",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3bd74c4d69e04d76965f256b814b9a44",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1121d718b08145fe8b8a3728639d6723",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "pit": {
+   "signature": "12c5b4a6624e",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "12ecedbce19b448cad38aa4f57f3afda",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8f0349e80fee4394b66d0e32fb09002d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bde72daebb4640ae90ee096f26bb5f85",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "megawalls": {
+   "signature": "343a72bb7be4",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "aad6a2754e9c4744bd335213853f023f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "fdfcc24e742746e592d666150e771a93",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "skywars": {
+   "signature": "63f08a3fc98c",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8edc188a258c461b91ac9844a44ec989",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "blitz": {
+   "signature": "676788c004f3",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8682b351e9c241639291935776608054",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "aad6a2754e9c4744bd335213853f023f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7120f3c4c18a4753baf3d90af928f860",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7456ccb5c8e24271a721a394191d0602",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dbb5f49cc2394912b1ca89783632d068",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "059abcc217c2422f9d9f92e8dea2e607",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31283097ed0d4628a595eb094130b223",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf0e056bfae246f48053bd7979772f63",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "04f4bddb99004950ab605a20f41c6a98",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6333479985aa448392625f6a5a6876c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "a481c0951d3246169ebe1dd6f583d357",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9f16e788457c44fc8c24b90167569420",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7a49c7d7b03243bd86b11fd88214e3b2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "smashheroes": {
+   "signature": "a0d31181e287",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9adb4d8fd664d4098d4e70bb3d15ee6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dbb5f49cc2394912b1ca89783632d068",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11a41ffd6abc42f8b484e7534118a503",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d84e8ed95b3452095221594b9e448fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "266b09b979a345909824aa9d31ffe8ba",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "72250a1d144c48d882231209ffcaf82d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2e1884f69c294bd589e6d7709b100298",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cdea33877a37413da44e365acc9f7a50",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8415341022134dbe969b81ed3ff6cd6f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "bedwars": {
+   "signature": "f7f3468d9a13",
+   "lastReset": null,
+   "players": []
+  },
+  "copsandcrims": {
+   "signature": "b74cd0204edb",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "quake": {
+   "signature": "276e7504e07e",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "78a41722527449c38925f5914b005173",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "a481c0951d3246169ebe1dd6f583d357",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11b8466e2c724fe994a00cada8112674",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2e1884f69c294bd589e6d7709b100298",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9f16e788457c44fc8c24b90167569420",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cdea33877a37413da44e365acc9f7a50",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b5ab6db9366049ae8a9882927e46ce08",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "paintball": {
+   "signature": "f263e6841bde",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "88c0e6ff872a4a94838536b40423dc41",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0324177073ee43df82f3825488c83b60",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "281aef4684e94e759c7860a055549fe7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d84e8ed95b3452095221594b9e448fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ad988df25a274cf592b66c9562834230",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2e1884f69c294bd589e6d7709b100298",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "82fc95c49afc4b8182b6cefeac42874e",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9f16e788457c44fc8c24b90167569420",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "14016bbfdcf547dab04549b49e891dc8",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9d98449f501a47359a05534728c621c1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b2cbfed76872468fac2842af0cd4877b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b5ab6db9366049ae8a9882927e46ce08",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9dccd818228640bfa33174d8dc86dfb7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "arenabrawl": {
+   "signature": "1eefdc460f7b",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "992df94349aa4409ac6a890f6a947a17",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7120f3c4c18a4753baf3d90af928f860",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d84e8ed95b3452095221594b9e448fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "37c6f7335d874321ac4f57c7a5062c71",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8d167f27157d488394f6b6142ccc16be",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b5ab6db9366049ae8a9882927e46ce08",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "skyblock": {
+   "signature": "8daa46521675",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "aad6a2754e9c4744bd335213853f023f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "559860c584174a7c90a8f79332802516",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf0e056bfae246f48053bd7979772f63",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "04f4bddb99004950ab605a20f41c6a98",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "78a41722527449c38925f5914b005173",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d297331b7ff9452babd6828871bc2636",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d84e8ed95b3452095221594b9e448fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "99fcc41648bc45718c6cebfaf501da97",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "40884fdda30c4c26ba00abef570469e0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cdea33877a37413da44e365acc9f7a50",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8c8ba6d440554b1886ad1777c5066282",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bde72daebb4640ae90ee096f26bb5f85",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "speeduhc": {
+   "signature": "b143da692944",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8682b351e9c241639291935776608054",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "88c0e6ff872a4a94838536b40423dc41",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7120f3c4c18a4753baf3d90af928f860",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1485b2b58ad54eaca304a90a18746196",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3bd74c4d69e04d76965f256b814b9a44",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dbb5f49cc2394912b1ca89783632d068",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "281aef4684e94e759c7860a055549fe7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d84e8ed95b3452095221594b9e448fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11b8466e2c724fe994a00cada8112674",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "171faf6b54c045d884ba95f27049984f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1121d718b08145fe8b8a3728639d6723",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8ace6f57323d4a349441a1ca863f5072",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e5525c64899b40e49ab5b019e66e137d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "warlords": {
+   "signature": "95071be3a5ba",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "aad6a2754e9c4744bd335213853f023f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "992df94349aa4409ac6a890f6a947a17",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "88c0e6ff872a4a94838536b40423dc41",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7120f3c4c18a4753baf3d90af928f860",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f13bced3fe9044a6831e0496c0cab1e9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "559860c584174a7c90a8f79332802516",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9adb4d8fd664d4098d4e70bb3d15ee6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dbb5f49cc2394912b1ca89783632d068",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e3292ca36c5e43cbacd01c52adaca375",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0324177073ee43df82f3825488c83b60",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "78a41722527449c38925f5914b005173",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d84e8ed95b3452095221594b9e448fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "171faf6b54c045d884ba95f27049984f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "40884fdda30c4c26ba00abef570469e0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e44b43cda004469eb1a8a00c1952a92b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "82fc95c49afc4b8182b6cefeac42874e",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cc596a56d1d245a08a4292fd1e36a128",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ba804eff1d3f48348048350cc686a3f6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "93b354235bd44e9a8ebf43763d90c96a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "a06aea053b6b47da8931a453e1f9632f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "walls": {
+   "signature": "2aa74d59bcd9",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8682b351e9c241639291935776608054",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "88c0e6ff872a4a94838536b40423dc41",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dbb5f49cc2394912b1ca89783632d068",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11a41ffd6abc42f8b484e7534118a503",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11b8466e2c724fe994a00cada8112674",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2e1884f69c294bd589e6d7709b100298",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ab4645d4f2934af9b02d3c6ff296317a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9f16e788457c44fc8c24b90167569420",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "79e033c9e772499896561e0d7d117301",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8edc188a258c461b91ac9844a44ec989",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b5ab6db9366049ae8a9882927e46ce08",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8415341022134dbe969b81ed3ff6cd6f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1ee8f444029b41db84a0b2a34415cdf0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "tntgames": {
+   "signature": "79fb89cd8514",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11f24315871f43f296d5daa2bfc4911d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "72250a1d144c48d882231209ffcaf82d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0c1f10f9134e496399b6502270055a10",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3c38a419050345f2bce19bd3d1fc055c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "arcade": {
+   "signature": "1e97f4b59214",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf0e056bfae246f48053bd7979772f63",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d1160f1c9104aa082c64487645e2c3d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "murdermystery": {
+   "signature": "1e9a722e871c",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d297331b7ff9452babd6828871bc2636",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e44b43cda004469eb1a8a00c1952a92b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cc596a56d1d245a08a4292fd1e36a128",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8c8ba6d440554b1886ad1777c5066282",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "vampirez": {
+   "signature": "605acbabeae0",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8682b351e9c241639291935776608054",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "aad6a2754e9c4744bd335213853f023f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "992df94349aa4409ac6a890f6a947a17",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "88c0e6ff872a4a94838536b40423dc41",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7120f3c4c18a4753baf3d90af928f860",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f13bced3fe9044a6831e0496c0cab1e9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7456ccb5c8e24271a721a394191d0602",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "559860c584174a7c90a8f79332802516",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1485b2b58ad54eaca304a90a18746196",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dbb5f49cc2394912b1ca89783632d068",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0324177073ee43df82f3825488c83b60",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31283097ed0d4628a595eb094130b223",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "281aef4684e94e759c7860a055549fe7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "04f4bddb99004950ab605a20f41c6a98",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "78a41722527449c38925f5914b005173",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11a41ffd6abc42f8b484e7534118a503",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6333479985aa448392625f6a5a6876c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b431497b4094a1d8e15335e81454c4a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "be11708dcb0946bd9608d29af61269ec",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9d3220330bfa402987411bf9baf75309",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "c08043d19f334a3e8189695cf356cd16",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d84e8ed95b3452095221594b9e448fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ad988df25a274cf592b66c9562834230",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "37c6f7335d874321ac4f57c7a5062c71",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11b8466e2c724fe994a00cada8112674",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "171faf6b54c045d884ba95f27049984f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "266b09b979a345909824aa9d31ffe8ba",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "72250a1d144c48d882231209ffcaf82d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0c1f10f9134e496399b6502270055a10",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6a040159d71841129271ce291b226587",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "14fc22531af545cf918eec7b30527272",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0ca18b7f6cb74731865b69e5511f0ff1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d3ec92d80ed4cf3aded1c5d7db7dfe3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4019260a28f544c2a35a0a1f35108a96",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2e1884f69c294bd589e6d7709b100298",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ab4645d4f2934af9b02d3c6ff296317a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "c7b1528ce5604302a279c16e7e135038",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "82fc95c49afc4b8182b6cefeac42874e",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "12ecedbce19b448cad38aa4f57f3afda",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8ace6f57323d4a349441a1ca863f5072",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e5525c64899b40e49ab5b019e66e137d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d481389154d4421ae0d47533b8ce8d3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "df968d057a4445c2a5118faa3e5d7e3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9f16e788457c44fc8c24b90167569420",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "82b6b4ca76004360af77d0d141a2e83a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "decd08e13b754a6788b65181f302c94d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cc596a56d1d245a08a4292fd1e36a128",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9d98449f501a47359a05534728c621c1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b2cbfed76872468fac2842af0cd4877b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "79e033c9e772499896561e0d7d117301",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7a49c7d7b03243bd86b11fd88214e3b2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1b8b7e076bcb4795b21a408197d4ded7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ba804eff1d3f48348048350cc686a3f6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "a621a7a79f324b5c83449e4453ad454d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b5ab6db9366049ae8a9882927e46ce08",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "a06aea053b6b47da8931a453e1f9632f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9dccd818228640bfa33174d8dc86dfb7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8415341022134dbe969b81ed3ff6cd6f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1ee8f444029b41db84a0b2a34415cdf0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "tkr": {
+   "signature": "b46f2552a248",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8682b351e9c241639291935776608054",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "aad6a2754e9c4744bd335213853f023f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "992df94349aa4409ac6a890f6a947a17",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "88c0e6ff872a4a94838536b40423dc41",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7120f3c4c18a4753baf3d90af928f860",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f13bced3fe9044a6831e0496c0cab1e9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "559860c584174a7c90a8f79332802516",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9adb4d8fd664d4098d4e70bb3d15ee6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2baaec9272fd487294e673eb4ec35201",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1485b2b58ad54eaca304a90a18746196",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dbb5f49cc2394912b1ca89783632d068",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "059abcc217c2422f9d9f92e8dea2e607",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e3292ca36c5e43cbacd01c52adaca375",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0324177073ee43df82f3825488c83b60",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e37ccf10fe9643789745e0432ca096b2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31283097ed0d4628a595eb094130b223",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "281aef4684e94e759c7860a055549fe7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "04f4bddb99004950ab605a20f41c6a98",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "78a41722527449c38925f5914b005173",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11a41ffd6abc42f8b484e7534118a503",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6333479985aa448392625f6a5a6876c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d297331b7ff9452babd6828871bc2636",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2f066b0e58fd4db6a24bfbce5ab5bdb4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "c08043d19f334a3e8189695cf356cd16",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d84e8ed95b3452095221594b9e448fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ad988df25a274cf592b66c9562834230",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "a481c0951d3246169ebe1dd6f583d357",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "37c6f7335d874321ac4f57c7a5062c71",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11b8466e2c724fe994a00cada8112674",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "99fcc41648bc45718c6cebfaf501da97",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "171faf6b54c045d884ba95f27049984f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e44b43cda004469eb1a8a00c1952a92b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "72250a1d144c48d882231209ffcaf82d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0c1f10f9134e496399b6502270055a10",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "14fc22531af545cf918eec7b30527272",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0ca18b7f6cb74731865b69e5511f0ff1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6d3ec92d80ed4cf3aded1c5d7db7dfe3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4019260a28f544c2a35a0a1f35108a96",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2e1884f69c294bd589e6d7709b100298",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "23498017b5654aa0b9949effbbdd147e",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ab4645d4f2934af9b02d3c6ff296317a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "c7b1528ce5604302a279c16e7e135038",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "82fc95c49afc4b8182b6cefeac42874e",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "12ecedbce19b448cad38aa4f57f3afda",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8ace6f57323d4a349441a1ca863f5072",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "df968d057a4445c2a5118faa3e5d7e3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9f16e788457c44fc8c24b90167569420",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cdea33877a37413da44e365acc9f7a50",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3c38a419050345f2bce19bd3d1fc055c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "decd08e13b754a6788b65181f302c94d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9d98449f501a47359a05534728c621c1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "79e033c9e772499896561e0d7d117301",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1b8b7e076bcb4795b21a408197d4ded7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ba804eff1d3f48348048350cc686a3f6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8f0349e80fee4394b66d0e32fb09002d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8d167f27157d488394f6b6142ccc16be",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "a621a7a79f324b5c83449e4453ad454d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b5ab6db9366049ae8a9882927e46ce08",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8415341022134dbe969b81ed3ff6cd6f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6be718564437499fbb6242e17fbaa0c3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9872248cdad742f785657dbf78d9c756",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3d55b88551fe48d997bae3412cd8aa72",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "woolgames": {
+   "signature": "c43063aac7cc",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8682b351e9c241639291935776608054",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "559860c584174a7c90a8f79332802516",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9adb4d8fd664d4098d4e70bb3d15ee6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3bd74c4d69e04d76965f256b814b9a44",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0324177073ee43df82f3825488c83b60",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11f24315871f43f296d5daa2bfc4911d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e9a871c29903474687b0b045edd35ae9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf0e056bfae246f48053bd7979772f63",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d297331b7ff9452babd6828871bc2636",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "00eb09d164b54ab08114d119eebbb903",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9d3220330bfa402987411bf9baf75309",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ad988df25a274cf592b66c9562834230",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e44b43cda004469eb1a8a00c1952a92b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "fe7bf008272246f18421d39db8042257",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "c7b1528ce5604302a279c16e7e135038",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "decd08e13b754a6788b65181f302c94d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cc596a56d1d245a08a4292fd1e36a128",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1b8b7e076bcb4795b21a408197d4ded7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8f0349e80fee4394b66d0e32fb09002d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cef8bc211b264d54b07da2995d587098",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0d405677379c43139db69485749d9d31",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9872248cdad742f785657dbf78d9c756",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "duels": {
+   "signature": "a96e7d0c3b86",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "343139d84b91435c90a6d0054a709ca5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2baaec9272fd487294e673eb4ec35201",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3bd74c4d69e04d76965f256b814b9a44",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e9a871c29903474687b0b045edd35ae9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf0e056bfae246f48053bd7979772f63",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d297331b7ff9452babd6828871bc2636",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b431497b4094a1d8e15335e81454c4a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e44b43cda004469eb1a8a00c1952a92b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "c7b1528ce5604302a279c16e7e135038",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cc596a56d1d245a08a4292fd1e36a128",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8c8ba6d440554b1886ad1777c5066282",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8d167f27157d488394f6b6142ccc16be",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d8c93138750f4388a3a99bd98b03192b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "buildbattle": {
+   "signature": "06b8d3665874",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2baaec9272fd487294e673eb4ec35201",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "78a41722527449c38925f5914b005173",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "4b431497b4094a1d8e15335e81454c4a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "c7b1528ce5604302a279c16e7e135038",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d8c93138750f4388a3a99bd98b03192b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "crazywalls": {
+   "signature": "99da67ffe732",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8682b351e9c241639291935776608054",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3bd74c4d69e04d76965f256b814b9a44",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8415341022134dbe969b81ed3ff6cd6f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "skyclash": {
+   "signature": "f80df0212072",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "f9adb4d8fd664d4098d4e70bb3d15ee6",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "171faf6b54c045d884ba95f27049984f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "93b354235bd44e9a8ebf43763d90c96a",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "8415341022134dbe969b81ed3ff6cd6f",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    }
+   ]
+  },
+  "general": {
+   "signature": "b4468a3618d2",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2baaec9272fd487294e673eb4ec35201",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "1485b2b58ad54eaca304a90a18746196",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3bd74c4d69e04d76965f256b814b9a44",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d33a4d925db84c30a28e528239471102",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "31283097ed0d4628a595eb094130b223",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cf0e056bfae246f48053bd7979772f63",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d297331b7ff9452babd6828871bc2636",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "40884fdda30c4c26ba00abef570469e0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4019260a28f544c2a35a0a1f35108a96",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "82b6b4ca76004360af77d0d141a2e83a",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cdea33877a37413da44e365acc9f7a50",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "0e42568a6d934984bc699c60ab1895d8",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8c8ba6d440554b1886ad1777c5066282",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "a621a7a79f324b5c83449e4453ad454d",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cef8bc211b264d54b07da2995d587098",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6d1160f1c9104aa082c64487645e2c3d",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    }
+   ]
+  },
+  "summer": {
+   "signature": "f2c013f7d09a",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8682b351e9c241639291935776608054",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "aad6a2754e9c4744bd335213853f023f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "992df94349aa4409ac6a890f6a947a17",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "88c0e6ff872a4a94838536b40423dc41",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f13bced3fe9044a6831e0496c0cab1e9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "343139d84b91435c90a6d0054a709ca5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "559860c584174a7c90a8f79332802516",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f9adb4d8fd664d4098d4e70bb3d15ee6",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "1485b2b58ad54eaca304a90a18746196",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3bd74c4d69e04d76965f256b814b9a44",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dbb5f49cc2394912b1ca89783632d068",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d33a4d925db84c30a28e528239471102",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "0324177073ee43df82f3825488c83b60",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "11f24315871f43f296d5daa2bfc4911d",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e37ccf10fe9643789745e0432ca096b2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e9a871c29903474687b0b045edd35ae9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "31283097ed0d4628a595eb094130b223",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cf0e056bfae246f48053bd7979772f63",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "281aef4684e94e759c7860a055549fe7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "04f4bddb99004950ab605a20f41c6a98",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "78a41722527449c38925f5914b005173",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "11a41ffd6abc42f8b484e7534118a503",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d297331b7ff9452babd6828871bc2636",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "be11708dcb0946bd9608d29af61269ec",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9d3220330bfa402987411bf9baf75309",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2f066b0e58fd4db6a24bfbce5ab5bdb4",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "ad988df25a274cf592b66c9562834230",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "a481c0951d3246169ebe1dd6f583d357",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "171faf6b54c045d884ba95f27049984f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "40884fdda30c4c26ba00abef570469e0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "0c1f10f9134e496399b6502270055a10",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6a040159d71841129271ce291b226587",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6d3ec92d80ed4cf3aded1c5d7db7dfe3",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4019260a28f544c2a35a0a1f35108a96",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "ab4645d4f2934af9b02d3c6ff296317a",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "c7b1528ce5604302a279c16e7e135038",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "82fc95c49afc4b8182b6cefeac42874e",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9f16e788457c44fc8c24b90167569420",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f94ade5012374648b0423fc0b66cac0a",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cdea33877a37413da44e365acc9f7a50",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "0e42568a6d934984bc699c60ab1895d8",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8c8ba6d440554b1886ad1777c5066282",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "b2cbfed76872468fac2842af0cd4877b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "79e033c9e772499896561e0d7d117301",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "0ff62bf91bda4c6b92b8f2d0ca4ed835",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "1b8b7e076bcb4795b21a408197d4ded7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8f0349e80fee4394b66d0e32fb09002d",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "a621a7a79f324b5c83449e4453ad454d",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9872248cdad742f785657dbf78d9c756",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    }
+   ]
+  },
+  "christmas": {
+   "signature": "b302959c1317",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "998d3241aec046ad9d5009f56d28e413",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "aad6a2754e9c4744bd335213853f023f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "992df94349aa4409ac6a890f6a947a17",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "343139d84b91435c90a6d0054a709ca5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2baaec9272fd487294e673eb4ec35201",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e9a871c29903474687b0b045edd35ae9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cf0e056bfae246f48053bd7979772f63",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "78a41722527449c38925f5914b005173",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d297331b7ff9452babd6828871bc2636",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4b431497b4094a1d8e15335e81454c4a",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "ad988df25a274cf592b66c9562834230",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "40884fdda30c4c26ba00abef570469e0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e44b43cda004469eb1a8a00c1952a92b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "fe7bf008272246f18421d39db8042257",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6d481389154d4421ae0d47533b8ce8d3",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "82b6b4ca76004360af77d0d141a2e83a",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cc596a56d1d245a08a4292fd1e36a128",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "b2cbfed76872468fac2842af0cd4877b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8d167f27157d488394f6b6142ccc16be",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "a621a7a79f324b5c83449e4453ad454d",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cef8bc211b264d54b07da2995d587098",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6be718564437499fbb6242e17fbaa0c3",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9872248cdad742f785657dbf78d9c756",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    }
+   ]
+  },
+  "easter": {
+   "signature": "6823d056c39b",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "743c12bffc7348fb8525effead057de2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "bfe045f7babf4d1c8f00556716576c34",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7289394c9ad843b48213c3e338e1490f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "396c6009191449f691fc86e6d60f7243",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8682b351e9c241639291935776608054",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "aad6a2754e9c4744bd335213853f023f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6248c4ae570147369f5cd94192a55094",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "77edb6fda6ef4097914ddc698242fe04",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "1485b2b58ad54eaca304a90a18746196",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3bd74c4d69e04d76965f256b814b9a44",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "059abcc217c2422f9d9f92e8dea2e607",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e37ccf10fe9643789745e0432ca096b2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e9a871c29903474687b0b045edd35ae9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "cf0e056bfae246f48053bd7979772f63",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d297331b7ff9452babd6828871bc2636",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4b431497b4094a1d8e15335e81454c4a",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "a481c0951d3246169ebe1dd6f583d357",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "40884fdda30c4c26ba00abef570469e0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "fe7bf008272246f18421d39db8042257",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "6a040159d71841129271ce291b226587",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4019260a28f544c2a35a0a1f35108a96",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8c8ba6d440554b1886ad1777c5066282",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "a621a7a79f324b5c83449e4453ad454d",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9872248cdad742f785657dbf78d9c756",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    }
+   ]
+  },
+  "halloween": {
+   "signature": "acada012e7e8",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e9a871c29903474687b0b045edd35ae9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    }
+   ]
+  },
+  "seasonal": {
+   "signature": "775bee8418f5",
+   "lastReset": null,
+   "players": [
+    {
+     "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "24132c1e1e504da499e1c2953880acd9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "dc2eaa964e0242589f2731a11aacea55",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e9a871c29903474687b0b045edd35ae9",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    },
+    {
+     "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+     "firstSeen": "2026-10-06T03:14:45.403Z"
+    }
+   ]
+  }
+ },
+ "players": {
+  "3abe2f6bd45a4e2282d4f9014569db25": {
+   "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+   "username": "anrie",
+   "country": "Russia",
+   "ap": 32520,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "AQUA"
+  },
+  "41825ee5f46b406b9bb74aea7eb2742b": {
+   "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
+   "username": "oJakey",
+   "country": "USA",
+   "ap": 32520,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "9cc15d802eb44f2aaf2075604ce452d5": {
+   "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
+   "username": "vasiv",
+   "country": "USA",
+   "ap": 32500,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "3de9779b0ed34ca196575639b57e2c3b": {
+   "uuid": "3de9779b0ed34ca196575639b57e2c3b",
+   "username": "Yann31_",
+   "country": "France",
+   "ap": 32430,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "7289394c9ad843b48213c3e338e1490f": {
+   "uuid": "7289394c9ad843b48213c3e338e1490f",
+   "username": "Sharsherah",
+   "country": "USA",
+   "ap": 31430,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "47d70a979a2c4ea5957a488fe8c052df": {
+   "uuid": "47d70a979a2c4ea5957a488fe8c052df",
+   "username": "NightMan976",
+   "country": "Germany",
+   "ap": 30685,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "3bd74c4d69e04d76965f256b814b9a44": {
+   "uuid": "3bd74c4d69e04d76965f256b814b9a44",
+   "username": "CowKou",
+   "country": "Japan",
+   "ap": 27345,
+   "rank": "MVP+",
+   "rankPlusColor": "LIGHT_PURPLE",
+   "monthlyRankColor": "AQUA"
+  },
+  "1121d718b08145fe8b8a3728639d6723": {
+   "uuid": "1121d718b08145fe8b8a3728639d6723",
+   "username": "Ofek",
+   "country": "Israel",
+   "ap": 24555,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "3d12e102ea444d4d8b269bebacd720f0": {
+   "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+   "username": "Battalius",
+   "country": "Unknown",
+   "ap": 24425,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "24132c1e1e504da499e1c2953880acd9": {
+   "uuid": "24132c1e1e504da499e1c2953880acd9",
+   "username": "tobias49",
+   "country": "Denmark",
+   "ap": 32205,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "743c12bffc7348fb8525effead057de2": {
+   "uuid": "743c12bffc7348fb8525effead057de2",
+   "username": "Timkoensurvival",
+   "country": "The Netherlands",
+   "ap": 32185,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "bfe045f7babf4d1c8f00556716576c34": {
+   "uuid": "bfe045f7babf4d1c8f00556716576c34",
+   "username": "ErtrycheZ",
+   "country": "France",
+   "ap": 31635,
+   "rank": "MVP",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "f7a452bae2874e8fb98b5b2a20cedbf9": {
+   "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
+   "username": "mustangk",
+   "country": "Hungary",
+   "ap": 31270,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "31b5211af8b64ea8abc6b16d6dddb07b": {
+   "uuid": "31b5211af8b64ea8abc6b16d6dddb07b",
+   "username": "NEmQnjA",
+   "country": "Serbia",
+   "ap": 30845,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "396c6009191449f691fc86e6d60f7243": {
+   "uuid": "396c6009191449f691fc86e6d60f7243",
+   "username": "righter",
+   "country": "USA",
+   "ap": 30455,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "AQUA"
+  },
+  "de800b3ca269499e9bcb6ab43e86b4c5": {
+   "uuid": "de800b3ca269499e9bcb6ab43e86b4c5",
+   "username": "bubulS",
+   "country": "Russia",
+   "ap": 25990,
+   "rank": "VIP",
+   "rankPlusColor": "DARK_GRAY",
+   "monthlyRankColor": "GOLD"
+  },
+  "f1c38498d6b74d7089313d2e3b2c28b2": {
+   "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
+   "username": "Kinderfeest",
+   "country": "The Netherlands",
+   "ap": 25500,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "AQUA"
+  },
+  "0a3e7efc5bb3461eb18f47a64e4d9721": {
+   "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+   "username": "ToastyOosty",
+   "country": "Unknown",
+   "ap": 25350,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "GOLD"
+  },
+  "f4bee4a9c1ca4b929563f4f8148b2968": {
+   "uuid": "f4bee4a9c1ca4b929563f4f8148b2968",
+   "username": "adjective_n0un",
+   "country": "Canada",
+   "ap": 25175,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "AQUA"
+  },
+  "12ecedbce19b448cad38aa4f57f3afda": {
+   "uuid": "12ecedbce19b448cad38aa4f57f3afda",
+   "username": "Bikkie",
+   "country": "Australia",
+   "ap": 24605,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "f2b587fe0b2347dca0908d4832e047d5": {
+   "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+   "username": "_Tk3",
+   "country": "Unknown",
+   "ap": 24375,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "7d96f585618f4b328d7ebdea16ca1d71": {
+   "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+   "username": "tommy042001",
+   "country": "Unknown",
+   "ap": 23895,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "8f0349e80fee4394b66d0e32fb09002d": {
+   "uuid": "8f0349e80fee4394b66d0e32fb09002d",
+   "username": "NoHaxJustTaiwan",
+   "country": "Taiwan",
+   "ap": 23765,
+   "rank": "MVP+",
+   "rankPlusColor": "WHITE",
+   "monthlyRankColor": "GOLD"
+  },
+  "bde72daebb4640ae90ee096f26bb5f85": {
+   "uuid": "bde72daebb4640ae90ee096f26bb5f85",
+   "username": "mohtele",
+   "country": "Canada",
+   "ap": 23585,
+   "rank": "NON",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "GOLD"
+  },
+  "92d13bad96ba4a959d1d3cd40a70cec7": {
+   "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
+   "username": "Jyahp",
+   "country": "Unknown",
+   "ap": 23460,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "58f4b39fbea342aebff47c541c8bf1c7": {
+   "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+   "username": "22charizard",
+   "country": "Unknown",
+   "ap": 23395,
+   "rank": "MVP+",
+   "rankPlusColor": "LIGHT_PURPLE",
+   "monthlyRankColor": "AQUA"
+  },
+  "4b5257d509bc460f8a82a79510f17fc9": {
+   "uuid": "4b5257d509bc460f8a82a79510f17fc9",
+   "username": "dreamtminecraft1",
+   "country": "Poland",
+   "ap": 30530,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "aad6a2754e9c4744bd335213853f023f": {
+   "uuid": "aad6a2754e9c4744bd335213853f023f",
+   "username": "Evdia",
+   "country": "UK",
+   "ap": 29100,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "0baf466458bf4090a761e3cd8b9e5ca6": {
+   "uuid": "0baf466458bf4090a761e3cd8b9e5ca6",
+   "username": "Breesily",
+   "country": "Serbia",
+   "ap": 28455,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "3d07a6ad5e5b43a59fe2e99b70c95d88": {
+   "uuid": "3d07a6ad5e5b43a59fe2e99b70c95d88",
+   "username": "DetectiveAndrew",
+   "country": "Canada",
+   "ap": 26705,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "fdfcc24e742746e592d666150e771a93": {
+   "uuid": "fdfcc24e742746e592d666150e771a93",
+   "username": "15_step",
+   "country": "UK",
+   "ap": 24860,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "289e9f90a76640e0921c85dcd96385b5": {
+   "uuid": "289e9f90a76640e0921c85dcd96385b5",
+   "username": "Songgg",
+   "country": "Canada",
+   "ap": 32135,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "998d3241aec046ad9d5009f56d28e413": {
+   "uuid": "998d3241aec046ad9d5009f56d28e413",
+   "username": "STAYEZ",
+   "country": "Denmark",
+   "ap": 30405,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "d7e0ec9bc36f4d44abd2ff1a1043cebd": {
+   "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+   "username": "Iaan",
+   "country": "Argentina",
+   "ap": 26535,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "8edc188a258c461b91ac9844a44ec989": {
+   "uuid": "8edc188a258c461b91ac9844a44ec989",
+   "username": "A0E",
+   "country": "USA",
+   "ap": 23875,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "e698edd3e0124b2f8fa2ccb109b0d0b0": {
+   "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
+   "username": "Dragons",
+   "country": "USA",
+   "ap": 30955,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "8b87c1da0a114a988235c7f54bf48b51": {
+   "uuid": "8b87c1da0a114a988235c7f54bf48b51",
+   "username": "Physiological",
+   "country": "USA",
+   "ap": 29350,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "GOLD"
+  },
+  "8682b351e9c241639291935776608054": {
+   "uuid": "8682b351e9c241639291935776608054",
+   "username": "60c",
+   "country": "UK",
+   "ap": 29100,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "7120f3c4c18a4753baf3d90af928f860": {
+   "uuid": "7120f3c4c18a4753baf3d90af928f860",
+   "username": "enderdrxgon",
+   "country": "Canada",
+   "ap": 28320,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "7456ccb5c8e24271a721a394191d0602": {
+   "uuid": "7456ccb5c8e24271a721a394191d0602",
+   "username": "DTN_Kyra",
+   "country": "USA",
+   "ap": 28025,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "6119d70a8a724f2aa2ded280a8cf58bb": {
+   "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
+   "username": "cakecakecake",
+   "country": "USA",
+   "ap": 27620,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "AQUA"
+  },
+  "dc2eaa964e0242589f2731a11aacea55": {
+   "uuid": "dc2eaa964e0242589f2731a11aacea55",
+   "username": "tormin",
+   "country": "USA",
+   "ap": 27145,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "AQUA"
+  },
+  "dbb5f49cc2394912b1ca89783632d068": {
+   "uuid": "dbb5f49cc2394912b1ca89783632d068",
+   "username": "TotalDramaIsland",
+   "country": "Australia",
+   "ap": 27140,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "059abcc217c2422f9d9f92e8dea2e607": {
+   "uuid": "059abcc217c2422f9d9f92e8dea2e607",
+   "username": "Mazk",
+   "country": "USA",
+   "ap": 26940,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "31283097ed0d4628a595eb094130b223": {
+   "uuid": "31283097ed0d4628a595eb094130b223",
+   "username": "Ownerd",
+   "country": "The Netherlands",
+   "ap": 26520,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "cf0e056bfae246f48053bd7979772f63": {
+   "uuid": "cf0e056bfae246f48053bd7979772f63",
+   "username": "SnowmanHaqs",
+   "country": "USA",
+   "ap": 26425,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "AQUA"
+  },
+  "0e32634dffea4e69b45cae23ea7f4e02": {
+   "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
+   "username": "beegirlval",
+   "country": "Czech Republic",
+   "ap": 26400,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "04f4bddb99004950ab605a20f41c6a98": {
+   "uuid": "04f4bddb99004950ab605a20f41c6a98",
+   "username": "horri",
+   "country": "France",
+   "ap": 26275,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "AQUA"
+  },
+  "6333479985aa448392625f6a5a6876c0": {
+   "uuid": "6333479985aa448392625f6a5a6876c0",
+   "username": "Hounce",
+   "country": "South Korea",
+   "ap": 26040,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "AQUA"
+  },
+  "63488c2cf2dc48c0951bdf71efbbdb09": {
+   "uuid": "63488c2cf2dc48c0951bdf71efbbdb09",
+   "username": "Colerer",
+   "country": "USA",
+   "ap": 25800,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "GOLD"
+  },
+  "a481c0951d3246169ebe1dd6f583d357": {
+   "uuid": "a481c0951d3246169ebe1dd6f583d357",
+   "username": "noobay",
+   "country": "Croatia",
+   "ap": 25630,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "9f16e788457c44fc8c24b90167569420": {
+   "uuid": "9f16e788457c44fc8c24b90167569420",
+   "username": "recordheat",
+   "country": "USA",
+   "ap": 24315,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_AQUA",
+   "monthlyRankColor": "GOLD"
+  },
+  "7a49c7d7b03243bd86b11fd88214e3b2": {
+   "uuid": "7a49c7d7b03243bd86b11fd88214e3b2",
+   "username": "J2J",
+   "country": "Australia",
+   "ap": 23900,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "1fc7b5e6c8e1433ba41e7013ab0a3582": {
+   "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
+   "username": "greaneye",
+   "country": "UK",
+   "ap": 31460,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_GREEN",
+   "monthlyRankColor": "AQUA"
+  },
+  "e8a9fe3e37f546f8876feae46fd902bb": {
+   "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
+   "username": "XandaPandaMC",
+   "country": "UK",
+   "ap": 31165,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "73fcd3eb97b54a4b8ab9b34e1c57e2f4": {
+   "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
+   "username": "Egomaster",
+   "country": "Germany",
+   "ap": 28500,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "af61bb5b6e3a426591e0049ca7a8330f": {
+   "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
+   "username": "xPeyo",
+   "country": "France",
+   "ap": 28260,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "f9adb4d8fd664d4098d4e70bb3d15ee6": {
+   "uuid": "f9adb4d8fd664d4098d4e70bb3d15ee6",
+   "username": "ZenBenn",
+   "country": "Czech Republic",
+   "ap": 27540,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "f9fe4ed41242460db7dbd7bfd054e082": {
+   "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
+   "username": "enoitna",
+   "country": "France",
+   "ap": 26810,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "1f15c58cdf3c419bba39b89e256d8a86": {
+   "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+   "username": "Chevio",
+   "country": "Norway",
+   "ap": 26345,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "eb2814a894d748dc87c2cb2eedfe1306": {
+   "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+   "username": "mihannah",
+   "country": "Croatia",
+   "ap": 26285,
+   "rank": "MVP+",
+   "rankPlusColor": "LIGHT_PURPLE",
+   "monthlyRankColor": "AQUA"
+  },
+  "11a41ffd6abc42f8b484e7534118a503": {
+   "uuid": "11a41ffd6abc42f8b484e7534118a503",
+   "username": "kawaiinex",
+   "country": "Ukraine",
+   "ap": 26100,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "8eb18a9227fb4b36947177babab261cd": {
+   "uuid": "8eb18a9227fb4b36947177babab261cd",
+   "username": "kipanator",
+   "country": "USA",
+   "ap": 26025,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "6d84e8ed95b3452095221594b9e448fe": {
+   "uuid": "6d84e8ed95b3452095221594b9e448fe",
+   "username": "lyraava",
+   "country": "USA",
+   "ap": 25735,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "73c22246f2ea4f84827ae0b141d6e33d": {
+   "uuid": "73c22246f2ea4f84827ae0b141d6e33d",
+   "username": "NickIsOffline",
+   "country": "USA",
+   "ap": 25675,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "266b09b979a345909824aa9d31ffe8ba": {
+   "uuid": "266b09b979a345909824aa9d31ffe8ba",
+   "username": "Crooder",
+   "country": "Canada",
+   "ap": 25385,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "72250a1d144c48d882231209ffcaf82d": {
+   "uuid": "72250a1d144c48d882231209ffcaf82d",
+   "username": "koprr",
+   "country": "Czech Republic",
+   "ap": 25195,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "4f9182ff532e4dd0a77ebc0994c1562b": {
+   "uuid": "4f9182ff532e4dd0a77ebc0994c1562b",
+   "username": "Charcutier",
+   "country": "France",
+   "ap": 25055,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "2e1884f69c294bd589e6d7709b100298": {
+   "uuid": "2e1884f69c294bd589e6d7709b100298",
+   "username": "Lilaaay",
+   "country": "Unknown",
+   "ap": 24875,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "AQUA"
+  },
+  "cdea33877a37413da44e365acc9f7a50": {
+   "uuid": "cdea33877a37413da44e365acc9f7a50",
+   "username": "SeaOtterFan",
+   "country": "USA",
+   "ap": 24215,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "GOLD"
+  },
+  "2c8e1e5d1fbd466fb6770fdd65359cd5": {
+   "uuid": "2c8e1e5d1fbd466fb6770fdd65359cd5",
+   "username": "pehi",
+   "country": "Canada",
+   "ap": 24005,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "8415341022134dbe969b81ed3ff6cd6f": {
+   "uuid": "8415341022134dbe969b81ed3ff6cd6f",
+   "username": "MockBall",
+   "country": "Unknown",
+   "ap": 23560,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "7d92df9db6f04ef4b24ded24ae739198": {
+   "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+   "username": "Champiez",
+   "country": "Finland",
+   "ap": 28730,
+   "rank": "MVP+",
+   "rankPlusColor": "YELLOW",
+   "monthlyRankColor": "AQUA"
+  },
+  "77edb6fda6ef4097914ddc698242fe04": {
+   "uuid": "77edb6fda6ef4097914ddc698242fe04",
+   "username": "sirumair9505",
+   "country": "USA",
+   "ap": 27780,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "bf6b32ef38934d9e90b8a1037e16b972": {
+   "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
+   "username": "iiris",
+   "country": "The Netherlands",
+   "ap": 24710,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "f61b81b44faf4fc58b00405721f19f84": {
+   "uuid": "f61b81b44faf4fc58b00405721f19f84",
+   "username": "Cabbiss",
+   "country": "USA",
+   "ap": 29570,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "56b991d1a9c243d7984df6e6a409cd59": {
+   "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+   "username": "eliadbg",
+   "country": "Israel",
+   "ap": 28520,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "78a41722527449c38925f5914b005173": {
+   "uuid": "78a41722527449c38925f5914b005173",
+   "username": "mm_dm",
+   "country": "Canada",
+   "ap": 26210,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "98a4b53f22cd4a18a7b8a4000c98d0cd": {
+   "uuid": "98a4b53f22cd4a18a7b8a4000c98d0cd",
+   "username": "KyRant",
+   "country": "UK",
+   "ap": 26070,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "11b8466e2c724fe994a00cada8112674": {
+   "uuid": "11b8466e2c724fe994a00cada8112674",
+   "username": "aphunterview",
+   "country": "Spain",
+   "ap": 25550,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "666ef25282ec47b881c5b3e474c3ec2b": {
+   "uuid": "666ef25282ec47b881c5b3e474c3ec2b",
+   "username": "Hailette",
+   "country": "Canada",
+   "ap": 25060,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "GOLD"
+  },
+  "cbb48c0b007745b8a5a6e8cd5fca808a": {
+   "uuid": "cbb48c0b007745b8a5a6e8cd5fca808a",
+   "username": "Brano",
+   "country": "Canada",
+   "ap": 24730,
+   "rank": "MVP++",
+   "rankPlusColor": "LIGHT_PURPLE",
+   "monthlyRankColor": "AQUA"
+  },
+  "22eb4504ff954677ba3e6cc87c8e271c": {
+   "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+   "username": "Misqu",
+   "country": "Serbia",
+   "ap": 24065,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "b5ab6db9366049ae8a9882927e46ce08": {
+   "uuid": "b5ab6db9366049ae8a9882927e46ce08",
+   "username": "Hacks",
+   "country": "Unknown",
+   "ap": 23670,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "88c0e6ff872a4a94838536b40423dc41": {
+   "uuid": "88c0e6ff872a4a94838536b40423dc41",
+   "username": "IAmKroty",
+   "country": "Croatia",
+   "ap": 28470,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "6248c4ae570147369f5cd94192a55094": {
+   "uuid": "6248c4ae570147369f5cd94192a55094",
+   "username": "Paskwal",
+   "country": "The Netherlands",
+   "ap": 27960,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "0324177073ee43df82f3825488c83b60": {
+   "uuid": "0324177073ee43df82f3825488c83b60",
+   "username": "Craftian9",
+   "country": "Croatia",
+   "ap": 26760,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "281aef4684e94e759c7860a055549fe7": {
+   "uuid": "281aef4684e94e759c7860a055549fe7",
+   "username": "Pocketing",
+   "country": "USA",
+   "ap": 26320,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "dda3fc724a8f467b8a8033aadde1b569": {
+   "uuid": "dda3fc724a8f467b8a8033aadde1b569",
+   "username": "julikabuwu",
+   "country": "Spain",
+   "ap": 26000,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "4b48e58c5304407ab8c761fbe125ff3b": {
+   "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
+   "username": "giorgy",
+   "country": "Greece",
+   "ap": 25720,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "ad988df25a274cf592b66c9562834230": {
+   "uuid": "ad988df25a274cf592b66c9562834230",
+   "username": "sForce",
+   "country": "Norway",
+   "ap": 25640,
+   "rank": "MVP+",
+   "rankPlusColor": "LIGHT_PURPLE",
+   "monthlyRankColor": "GOLD"
+  },
+  "5c1acb0d23fa4ded8bdf20acf508e7d0": {
+   "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
+   "username": "Avula",
+   "country": "UK",
+   "ap": 24755,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "82fc95c49afc4b8182b6cefeac42874e": {
+   "uuid": "82fc95c49afc4b8182b6cefeac42874e",
+   "username": "xBxnny",
+   "country": "Chile",
+   "ap": 24625,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "27a214e4b2644bcea2f5584ea2b994a3": {
+   "uuid": "27a214e4b2644bcea2f5584ea2b994a3",
+   "username": "jenidu",
+   "country": "Unknown",
+   "ap": 24280,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "GOLD"
+  },
+  "27a86e7999a64f32a8ae44b2ea310fe1": {
+   "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
+   "username": "animethighs68",
+   "country": "USA",
+   "ap": 24240,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "14016bbfdcf547dab04549b49e891dc8": {
+   "uuid": "14016bbfdcf547dab04549b49e891dc8",
+   "username": "DTN_Alpap",
+   "country": "UK",
+   "ap": 24240,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "9d98449f501a47359a05534728c621c1": {
+   "uuid": "9d98449f501a47359a05534728c621c1",
+   "username": "Samuzl",
+   "country": "USA",
+   "ap": 24050,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "b2cbfed76872468fac2842af0cd4877b": {
+   "uuid": "b2cbfed76872468fac2842af0cd4877b",
+   "username": "tyelur",
+   "country": "Unknown",
+   "ap": 24050,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "35de049d7fcc4d129fe03eb48f5c3804": {
+   "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
+   "username": "0HfLUfFIE",
+   "country": "Hong Kong",
+   "ap": 23965,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "9dccd818228640bfa33174d8dc86dfb7": {
+   "uuid": "9dccd818228640bfa33174d8dc86dfb7",
+   "username": "Justin_Jefferson",
+   "country": "Unknown",
+   "ap": 23570,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "992df94349aa4409ac6a890f6a947a17": {
+   "uuid": "992df94349aa4409ac6a890f6a947a17",
+   "username": "Thomas1665",
+   "country": "France",
+   "ap": 28790,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "GOLD"
+  },
+  "37c6f7335d874321ac4f57c7a5062c71": {
+   "uuid": "37c6f7335d874321ac4f57c7a5062c71",
+   "username": "Dyrh",
+   "country": "UK",
+   "ap": 25595,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "8d167f27157d488394f6b6142ccc16be": {
+   "uuid": "8d167f27157d488394f6b6142ccc16be",
+   "username": "DirtyAvocado",
+   "country": "Unknown",
+   "ap": 23735,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "4885c9a84e714b21be94fd7d5e3c0171": {
+   "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
+   "username": "Boonoz",
+   "country": "Norway",
+   "ap": 28955,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "eab5c169c27140c6aba22f3c3f23c7c0": {
+   "uuid": "eab5c169c27140c6aba22f3c3f23c7c0",
+   "username": "Posey",
+   "country": "France",
+   "ap": 28745,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "AQUA"
+  },
+  "f8338f46fc6b4dcdb77842667a6903f8": {
+   "uuid": "f8338f46fc6b4dcdb77842667a6903f8",
+   "username": "Kickuxer",
+   "country": "Israel",
+   "ap": 27885,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "559860c584174a7c90a8f79332802516": {
+   "uuid": "559860c584174a7c90a8f79332802516",
+   "username": "MineElzu60",
+   "country": "Finland",
+   "ap": 27810,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "2cfc8db571ed4eb3aacd53b8abff5ee2": {
+   "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
+   "username": "Stuffy",
+   "country": "USA",
+   "ap": 26820,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "dde31282b7be4cc0bea437a22ee0c6d7": {
+   "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
+   "username": "ILiveInAWall",
+   "country": "New Zealand",
+   "ap": 26800,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "40efa3f0ba0c4a11abfab74d8edff3eb": {
+   "uuid": "40efa3f0ba0c4a11abfab74d8edff3eb",
+   "username": "Saucers",
+   "country": "USA",
+   "ap": 26705,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "96f645ba026b4e45bc34dd8f0531334c": {
+   "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+   "username": "Amony",
+   "country": "Iraq",
+   "ap": 26175,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "d297331b7ff9452babd6828871bc2636": {
+   "uuid": "d297331b7ff9452babd6828871bc2636",
+   "username": "JinxRaider23",
+   "country": "UK",
+   "ap": 25945,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "99fcc41648bc45718c6cebfaf501da97": {
+   "uuid": "99fcc41648bc45718c6cebfaf501da97",
+   "username": "needycatboy",
+   "country": "USA",
+   "ap": 25515,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "40884fdda30c4c26ba00abef570469e0": {
+   "uuid": "40884fdda30c4c26ba00abef570469e0",
+   "username": "Niko702",
+   "country": "Germany",
+   "ap": 25425,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "24c6a4ad771b4328a49b9c6f9196ace3": {
+   "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
+   "username": "EuanKC",
+   "country": "Unknown",
+   "ap": 25415,
+   "rank": "MVP+",
+   "rankPlusColor": "WHITE",
+   "monthlyRankColor": "GOLD"
+  },
+  "6f5ceade0f984d8fbf6bed73765101cc": {
+   "uuid": "6f5ceade0f984d8fbf6bed73765101cc",
+   "username": "QUAKEGOATSILVER",
+   "country": "Unknown",
+   "ap": 25230,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "b9aa26ec20b447a59a4ad10cc08a46fe": {
+   "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
+   "username": "ohDevil",
+   "country": "Unknown",
+   "ap": 25125,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "e3fc5b36a60f4ff1ac2df06405a20601": {
+   "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+   "username": "InInk",
+   "country": "Unknown",
+   "ap": 24340,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "8c8ba6d440554b1886ad1777c5066282": {
+   "uuid": "8c8ba6d440554b1886ad1777c5066282",
+   "username": "xOptic",
+   "country": "Unknown",
+   "ap": 24055,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "1485b2b58ad54eaca304a90a18746196": {
+   "uuid": "1485b2b58ad54eaca304a90a18746196",
+   "username": "C4PS",
+   "country": "USA",
+   "ap": 27370,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "171faf6b54c045d884ba95f27049984f": {
+   "uuid": "171faf6b54c045d884ba95f27049984f",
+   "username": "SvenTerror",
+   "country": "The Netherlands",
+   "ap": 25440,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "8ace6f57323d4a349441a1ca863f5072": {
+   "uuid": "8ace6f57323d4a349441a1ca863f5072",
+   "username": "Kqnfetka",
+   "country": "Russia",
+   "ap": 24475,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "e5525c64899b40e49ab5b019e66e137d": {
+   "uuid": "e5525c64899b40e49ab5b019e66e137d",
+   "username": "ImWolf85",
+   "country": "USA",
+   "ap": 24445,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "GOLD"
+  },
+  "cf8b2bc61fec40fb8c7554a99fed8baa": {
+   "uuid": "cf8b2bc61fec40fb8c7554a99fed8baa",
+   "username": "Andorite",
+   "country": "Canada",
+   "ap": 29650,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "baebdae38c064f40a3dda17bda5ecbf5": {
+   "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+   "username": "Respawnless",
+   "country": "USA",
+   "ap": 28790,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "f13bced3fe9044a6831e0496c0cab1e9": {
+   "uuid": "f13bced3fe9044a6831e0496c0cab1e9",
+   "username": "Rcnnie",
+   "country": "USA",
+   "ap": 28075,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "3b6994dadd264c7986ffd85df3db4289": {
+   "uuid": "3b6994dadd264c7986ffd85df3db4289",
+   "username": "BU1LDERS",
+   "country": "The Netherlands",
+   "ap": 27080,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "7638efa55b784c41ac34a4c59b2b86df": {
+   "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+   "username": "Summer_Albert",
+   "country": "Taiwan",
+   "ap": 27065,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "e3292ca36c5e43cbacd01c52adaca375": {
+   "uuid": "e3292ca36c5e43cbacd01c52adaca375",
+   "username": "Fossilised",
+   "country": "UK",
+   "ap": 26770,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "AQUA"
+  },
+  "ac97442ca125422cbd72ae60cdd8340f": {
+   "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+   "username": "Rayjer",
+   "country": "Unknown",
+   "ap": 26330,
+   "rank": "VIP",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "GOLD"
+  },
+  "e44b43cda004469eb1a8a00c1952a92b": {
+   "uuid": "e44b43cda004469eb1a8a00c1952a92b",
+   "username": "Qacu",
+   "country": "Japan",
+   "ap": 25355,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "cc596a56d1d245a08a4292fd1e36a128": {
+   "uuid": "cc596a56d1d245a08a4292fd1e36a128",
+   "username": "FuyajouRuri",
+   "country": "Japan",
+   "ap": 24060,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "cca4b5f5f0e54d9193fc5f8c66724766": {
+   "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+   "username": "shirool",
+   "country": "Unknown",
+   "ap": 23800,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "ba804eff1d3f48348048350cc686a3f6": {
+   "uuid": "ba804eff1d3f48348048350cc686a3f6",
+   "username": "alonmario1",
+   "country": "Israel",
+   "ap": 23780,
+   "rank": "MVP+",
+   "rankPlusColor": "GOLD",
+   "monthlyRankColor": "AQUA"
+  },
+  "93b354235bd44e9a8ebf43763d90c96a": {
+   "uuid": "93b354235bd44e9a8ebf43763d90c96a",
+   "username": "DarkSilent",
+   "country": "Unknown",
+   "ap": 23765,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "a06aea053b6b47da8931a453e1f9632f": {
+   "uuid": "a06aea053b6b47da8931a453e1f9632f",
+   "username": "zabolec",
+   "country": "Poland",
+   "ap": 23590,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "AQUA"
+  },
+  "b2b30608b0744cdfa5512f7f2fa06408": {
+   "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
+   "username": "Woomy",
+   "country": "UK",
+   "ap": 23550,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "ab4645d4f2934af9b02d3c6ff296317a": {
+   "uuid": "ab4645d4f2934af9b02d3c6ff296317a",
+   "username": "memeister",
+   "country": "Chile",
+   "ap": 24740,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "79e033c9e772499896561e0d7d117301": {
+   "uuid": "79e033c9e772499896561e0d7d117301",
+   "username": "riyako",
+   "country": "Brazil",
+   "ap": 23930,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "1ee8f444029b41db84a0b2a34415cdf0": {
+   "uuid": "1ee8f444029b41db84a0b2a34415cdf0",
+   "username": "twww",
+   "country": "Taiwan",
+   "ap": 23440,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "AQUA"
+  },
+  "db31ce2250814b1d94345cbb8d07fe4f": {
+   "uuid": "db31ce2250814b1d94345cbb8d07fe4f",
+   "username": "5beve",
+   "country": "Canada",
+   "ap": 26850,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "11f24315871f43f296d5daa2bfc4911d": {
+   "uuid": "11f24315871f43f296d5daa2bfc4911d",
+   "username": "3badh",
+   "country": "Syria",
+   "ap": 26735,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "e20c8b534c054c3db9c079a6fd982c9b": {
+   "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+   "username": "EmotionalFlare",
+   "country": "Turkey",
+   "ap": 25595,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "AQUA"
+  },
+  "0c1f10f9134e496399b6502270055a10": {
+   "uuid": "0c1f10f9134e496399b6502270055a10",
+   "username": "Seymour4444",
+   "country": "Portugal",
+   "ap": 25155,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "3c38a419050345f2bce19bd3d1fc055c": {
+   "uuid": "3c38a419050345f2bce19bd3d1fc055c",
+   "username": "azyugo",
+   "country": "Czech Republic",
+   "ap": 24155,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "GOLD"
+  },
+  "6d1160f1c9104aa082c64487645e2c3d": {
+   "uuid": "6d1160f1c9104aa082c64487645e2c3d",
+   "username": "7hu",
+   "country": "Lithuania",
+   "ap": 23415,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "cdc3d11920c3401c9903468bc4d82fe3": {
+   "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+   "username": "hjx",
+   "country": "USA",
+   "ap": 27190,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "9f532f0b78fc4dc49c1f95665d890fce": {
+   "uuid": "9f532f0b78fc4dc49c1f95665d890fce",
+   "username": "stevcn",
+   "country": "Syria",
+   "ap": 25235,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "00b5bbf550084470a4dd3c2e1b9049fb": {
+   "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+   "username": "leonl",
+   "country": "Italy",
+   "ap": 25155,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "7bfed5378957477bada8e64cf5fa99f1": {
+   "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+   "username": "aikosHD",
+   "country": "Unknown",
+   "ap": 25090,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "ddc92083ea134a11a5ddd2a7edcde137": {
+   "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
+   "username": "litphoenix",
+   "country": "UK",
+   "ap": 29315,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "6bb0a8005e3346f8a18ce706dc5f5ccf": {
+   "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
+   "username": "Sayapi",
+   "country": "Argentina",
+   "ap": 26850,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "4b431497b4094a1d8e15335e81454c4a": {
+   "uuid": "4b431497b4094a1d8e15335e81454c4a",
+   "username": "lofaet",
+   "country": "Moldova",
+   "ap": 25920,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "be11708dcb0946bd9608d29af61269ec": {
+   "uuid": "be11708dcb0946bd9608d29af61269ec",
+   "username": "WHYSN1SOGOOD",
+   "country": "Ecuador",
+   "ap": 25900,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "9d3220330bfa402987411bf9baf75309": {
+   "uuid": "9d3220330bfa402987411bf9baf75309",
+   "username": "Smappy",
+   "country": "Germany",
+   "ap": 25885,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "c08043d19f334a3e8189695cf356cd16": {
+   "uuid": "c08043d19f334a3e8189695cf356cd16",
+   "username": "JurassicBox",
+   "country": "USA",
+   "ap": 25745,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "1cf6bb869dc74417bfcf7536bb30578c": {
+   "uuid": "1cf6bb869dc74417bfcf7536bb30578c",
+   "username": "nonoooooooo",
+   "country": "Unknown",
+   "ap": 25230,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "6a040159d71841129271ce291b226587": {
+   "uuid": "6a040159d71841129271ce291b226587",
+   "username": "Aldix",
+   "country": "Czech Republic",
+   "ap": 25130,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "14fc22531af545cf918eec7b30527272": {
+   "uuid": "14fc22531af545cf918eec7b30527272",
+   "username": "sosal",
+   "country": "Unknown",
+   "ap": 25075,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "AQUA"
+  },
+  "0ca18b7f6cb74731865b69e5511f0ff1": {
+   "uuid": "0ca18b7f6cb74731865b69e5511f0ff1",
+   "username": "BenOuiMaxi",
+   "country": "Canada",
+   "ap": 25010,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "6d3ec92d80ed4cf3aded1c5d7db7dfe3": {
+   "uuid": "6d3ec92d80ed4cf3aded1c5d7db7dfe3",
+   "username": "nrteu",
+   "country": "USA",
+   "ap": 24985,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "4019260a28f544c2a35a0a1f35108a96": {
+   "uuid": "4019260a28f544c2a35a0a1f35108a96",
+   "username": "morof",
+   "country": "Russia",
+   "ap": 24890,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "c7b1528ce5604302a279c16e7e135038": {
+   "uuid": "c7b1528ce5604302a279c16e7e135038",
+   "username": "Sunta",
+   "country": "Unknown",
+   "ap": 24700,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "6d481389154d4421ae0d47533b8ce8d3": {
+   "uuid": "6d481389154d4421ae0d47533b8ce8d3",
+   "username": "Stylee",
+   "country": "Unknown",
+   "ap": 24445,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "df968d057a4445c2a5118faa3e5d7e3b": {
+   "uuid": "df968d057a4445c2a5118faa3e5d7e3b",
+   "username": "typefast",
+   "country": "Ukraine",
+   "ap": 24380,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "82b6b4ca76004360af77d0d141a2e83a": {
+   "uuid": "82b6b4ca76004360af77d0d141a2e83a",
+   "username": "Cluelesss",
+   "country": "Unknown",
+   "ap": 24275,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "decd08e13b754a6788b65181f302c94d": {
+   "uuid": "decd08e13b754a6788b65181f302c94d",
+   "username": "Shazuh",
+   "country": "USA",
+   "ap": 24080,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "1b8b7e076bcb4795b21a408197d4ded7": {
+   "uuid": "1b8b7e076bcb4795b21a408197d4ded7",
+   "username": "KaoriMiyazono",
+   "country": "France",
+   "ap": 23830,
+   "rank": "VIP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "GOLD"
+  },
+  "a621a7a79f324b5c83449e4453ad454d": {
+   "uuid": "a621a7a79f324b5c83449e4453ad454d",
+   "username": "titi2502",
+   "country": "Unknown",
+   "ap": 23735,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "01834d8a3c7a49c796589979d7a9ab74": {
+   "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+   "username": "huvo",
+   "country": "Unknown",
+   "ap": 23430,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "14552d0d4cb949b59d4f7d1875b0ad94": {
+   "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
+   "username": "baseballaholic",
+   "country": "USA",
+   "ap": 27455,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "2baaec9272fd487294e673eb4ec35201": {
+   "uuid": "2baaec9272fd487294e673eb4ec35201",
+   "username": "Uleb",
+   "country": "Serbia",
+   "ap": 27445,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "e37ccf10fe9643789745e0432ca096b2": {
+   "uuid": "e37ccf10fe9643789745e0432ca096b2",
+   "username": "ZERATHIX",
+   "country": "Czech Republic",
+   "ap": 26625,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "f326f15b6fab42ad83fe3f0f0ba9994b": {
+   "uuid": "f326f15b6fab42ad83fe3f0f0ba9994b",
+   "username": "Coduhy",
+   "country": "USA",
+   "ap": 25965,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_GRAY",
+   "monthlyRankColor": "GOLD"
+  },
+  "2f066b0e58fd4db6a24bfbce5ab5bdb4": {
+   "uuid": "2f066b0e58fd4db6a24bfbce5ab5bdb4",
+   "username": "puffleman3",
+   "country": "UK",
+   "ap": 25795,
+   "rank": "MVP+",
+   "rankPlusColor": "LIGHT_PURPLE",
+   "monthlyRankColor": "AQUA"
+  },
+  "2a8842a87cfe40fc8ed200f91908a7fa": {
+   "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
+   "username": "radicul",
+   "country": "Australia",
+   "ap": 25220,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "23498017b5654aa0b9949effbbdd147e": {
+   "uuid": "23498017b5654aa0b9949effbbdd147e",
+   "username": "combatively",
+   "country": "USA",
+   "ap": 24765,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "6be718564437499fbb6242e17fbaa0c3": {
+   "uuid": "6be718564437499fbb6242e17fbaa0c3",
+   "username": "Paczuszka",
+   "country": "Poland",
+   "ap": 23510,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "9872248cdad742f785657dbf78d9c756": {
+   "uuid": "9872248cdad742f785657dbf78d9c756",
+   "username": "Pqssible",
+   "country": "USA",
+   "ap": 23440,
+   "rank": "MVP+",
+   "rankPlusColor": "LIGHT_PURPLE",
+   "monthlyRankColor": "GOLD"
+  },
+  "3d55b88551fe48d997bae3412cd8aa72": {
+   "uuid": "3d55b88551fe48d997bae3412cd8aa72",
+   "username": "MacchuPicchu",
+   "country": "Unknown",
+   "ap": 23375,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "AQUA"
+  },
+  "8d66db5ea90b4137854808b97e0ca5c7": {
+   "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
+   "username": "hentor5",
+   "country": "Sweden",
+   "ap": 23345,
+   "rank": "MVP+",
+   "rankPlusColor": "RED",
+   "monthlyRankColor": "AQUA"
+  },
+  "e9a871c29903474687b0b045edd35ae9": {
+   "uuid": "e9a871c29903474687b0b045edd35ae9",
+   "username": "MatiasSiltanen",
+   "country": "Finland",
+   "ap": 26615,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "00eb09d164b54ab08114d119eebbb903": {
+   "uuid": "00eb09d164b54ab08114d119eebbb903",
+   "username": "ToggleFly",
+   "country": "Unknown",
+   "ap": 25900,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "fe7bf008272246f18421d39db8042257": {
+   "uuid": "fe7bf008272246f18421d39db8042257",
+   "username": "irkt",
+   "country": "Brazil",
+   "ap": 25305,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "11949c8a9c084ada8afc66fcbcb005fc": {
+   "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
+   "username": "pumpkan",
+   "country": "Unknown",
+   "ap": 25000,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "cef8bc211b264d54b07da2995d587098": {
+   "uuid": "cef8bc211b264d54b07da2995d587098",
+   "username": "Oleslaw2009",
+   "country": "Unknown",
+   "ap": 23705,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "GOLD"
+  },
+  "d61cd4e9fcf146d2bd1dd9b494405b07": {
+   "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+   "username": "Quent120",
+   "country": "Unknown",
+   "ap": 23630,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "0d405677379c43139db69485749d9d31": {
+   "uuid": "0d405677379c43139db69485749d9d31",
+   "username": "ciyp",
+   "country": "Denmark",
+   "ap": 23570,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
+  "343139d84b91435c90a6d0054a709ca5": {
+   "uuid": "343139d84b91435c90a6d0054a709ca5",
+   "username": "Boogatomyooga",
+   "country": "USA",
+   "ap": 28015,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "0cfa3f33d16f46949ae6e5a4a1ea547d": {
+   "uuid": "0cfa3f33d16f46949ae6e5a4a1ea547d",
+   "username": "warido37",
+   "country": "The Netherlands",
+   "ap": 23840,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "d8c93138750f4388a3a99bd98b03192b": {
+   "uuid": "d8c93138750f4388a3a99bd98b03192b",
+   "username": "ULTRAVIOLETlamb",
+   "country": "Unknown",
+   "ap": 23430,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "d33a4d925db84c30a28e528239471102": {
+   "uuid": "d33a4d925db84c30a28e528239471102",
+   "username": "GusTheMonkey",
+   "country": "New Zealand",
+   "ap": 26840,
+   "rank": "MVP++",
+   "rankPlusColor": "GREEN",
+   "monthlyRankColor": "AQUA"
+  },
+  "0e42568a6d934984bc699c60ab1895d8": {
+   "uuid": "0e42568a6d934984bc699c60ab1895d8",
+   "username": "SpookyDano",
+   "country": "Bosnia and Herzegovina",
+   "ap": 24075,
+   "rank": "MVP+",
+   "rankPlusColor": "DARK_PURPLE",
+   "monthlyRankColor": "GOLD"
+  },
+  "5dd1035bc9b2491e892a71ac3e952c3c": {
+   "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
+   "username": "ichhabevape",
+   "country": "Unknown",
+   "ap": 23905,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "68e1a6b0b49d45fe90661241a5b61a00": {
+   "uuid": "68e1a6b0b49d45fe90661241a5b61a00",
+   "username": "TinyRex",
+   "country": "Israel",
+   "ap": 26320,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
+  "f94ade5012374648b0423fc0b66cac0a": {
+   "uuid": "f94ade5012374648b0423fc0b66cac0a",
+   "username": "Xylim",
+   "country": "Unknown",
+   "ap": 24220,
+   "rank": "MVP+",
+   "rankPlusColor": "YELLOW",
+   "monthlyRankColor": "AQUA"
+  },
+  "0ff62bf91bda4c6b92b8f2d0ca4ed835": {
+   "uuid": "0ff62bf91bda4c6b92b8f2d0ca4ed835",
+   "username": "nevqr",
+   "country": "Slovakia",
+   "ap": 23870,
+   "rank": "MVP+",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  }
+ }
+}
