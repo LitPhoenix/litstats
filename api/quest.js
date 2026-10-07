@@ -1,6 +1,8 @@
 // GET /api/quest?uuid=...  (or ?name=...)  -> a lean quest payload for questing.html.
 // Lighter than /api/player (no raw achievement/stat dumps) and cached for less time, so progress feels live.
-const { buildQuestResponse } = require('./_quest_lib');
+// If _quest_lib.js is missing from the deploy, answer with a readable JSON error instead of crashing the function.
+let buildQuestResponse = null, libError = null;
+try { ({ buildQuestResponse } = require('./_quest_lib')); } catch (e) { libError = e.message; }
 
 let defsCache = null, defsTime = 0, gamesCache = null, gamesTime = 0;
 
@@ -43,6 +45,8 @@ module.exports = async (req, res) => {
     if (requestOrigin && !isAllowed) return res.status(403).json({ error: 'Access Denied: Direct browser origin blocked.' });
   }
 
+  if (!buildQuestResponse) return res.status(500).json({ error: `Quest library failed to load: ${libError}` });
+
   const { uuid, name } = req.query;
   let targetUuid = uuid;
   if (name && !uuid) {
@@ -83,6 +87,6 @@ module.exports = async (req, res) => {
     return res.status(200).json(body);
   } catch (error) {
     console.error('quest api error:', error);
-    return res.status(500).json({ error: 'Failed to load quest data' });
+    return res.status(500).json({ error: `Failed to load quest data: ${error.message}` });
   }
 };
