@@ -78,7 +78,7 @@ html[data-theme="dark"] {
 html[data-theme="midnight"] {
   --bg: #010102;
   --surface: #121315eb;
-  --surface-2: #101113e0;
+  --surface-2: #0e0f12e0;
   --accent: #677d8e;
   --accent-soft: rgba(99, 99, 107, 0.15);
   --accent-2: #8a8a94;
