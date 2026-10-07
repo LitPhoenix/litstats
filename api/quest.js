@@ -79,7 +79,16 @@ module.exports = async (req, res) => {
     if (pData.rateLimited) return res.status(429).json({ error: 'Hypixel rate limit reached. Try again shortly.' });
     if (!pData.success || !pData.player) return res.status(404).json({ error: 'Player not found on Hypixel' });
 
-    const body = buildQuestResponse(pData.player, defsCache, gamesCache);
+    // ?debug=<questId> returns the raw definition + this player's raw entry, for checking field names / reset times
+    if (req.query.debug) {
+      const id = String(req.query.debug);
+      const def = Object.values(defsCache.quests || {}).flat().find(x => x.id === id) || null;
+      const raw = (pData.player.quests || {})[id] || null;
+      const iso = ms => new Date(ms).toISOString();
+      return res.status(200).json({ id, def, player: raw && { ...raw, completions: (raw.completions || []).slice(-8).map(c => ({ ...c, iso: iso(c.time) })) },
+        now: iso(Date.now()), sampleKeys: Object.keys(pData.player.quests || {}).slice(0, 12) });
+    }
+    const body = buildQuestResponse(pData.player, defsCache, gamesCache, { history: req.query.history === '1' });
     body.uuid = pData.player.uuid || targetUuid;
     body.rank = getPlayerRank(pData.player);
     body.rankPlusColor = pData.player.rankPlusColor || 'RED';
