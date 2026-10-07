@@ -1,0 +1,178 @@
+/* Max Games page. Builds on global.css variables; hero/search/table/player-cell styles come from leaderboard.css. */
+
+.mg-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+/* ---------- Game list ---------- */
+.mg-picker {
+  position: sticky;
+  top: 92px;
+  max-height: calc(100dvh - 112px);
+  overflow-y: auto;
+  padding: 0 6px 12px 0;
+  scrollbar-width: thin;
+}
+
+.mg-tier { margin-top: 18px; }
+.mg-tier-label {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 0 10px 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--text-3);
+}
+.mg-tier-label small { font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: 0; }
+
+.mg-row {
+  position: relative;
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; padding: 8px 10px;
+  border: 0; border-radius: 10px;
+  background: transparent; color: var(--text);
+  font: inherit; font-size: 14px; font-weight: 500; text-align: left;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.mg-row:hover { background: var(--surface); }
+.mg-row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.mg-row img { width: 26px; height: 26px; object-fit: contain; flex: none; }
+.mg-row .mg-row-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mg-row .mg-row-count { font-size: 13px; font-weight: 500; color: var(--text-3); }
+.mg-row.empty img, .mg-row.empty .mg-row-name { opacity: 0.5; }
+
+.mg-row.active { background: var(--accent-soft); }
+.mg-row.active::before {
+  content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px; border-radius: 3px; background: var(--accent);
+}
+.mg-row.active .mg-row-count { color: var(--accent); }
+
+/* A searched player is on this list */
+.mg-row.hit .mg-row-count::before {
+  content: ''; display: inline-block; width: 6px; height: 6px; margin-right: 8px;
+  border-radius: 50%; background: var(--accent); vertical-align: middle; transform: translateY(-1px);
+}
+.mg-row.hit .mg-row-name { color: var(--text); font-weight: 600; }
+
+.mg-row-overall { font-weight: 600; padding: 10px; }
+.mg-row-overall + .mg-tier { margin-top: 12px; }
+
+.mg-row.disabled { cursor: default; opacity: 0.55; }
+.mg-row.disabled:hover { background: transparent; }
+.mg-row.disabled .mg-row-count { font-size: 12px; }
+
+/* ---------- Info tips ---------- */
+.mg-tip { position: relative; display: inline-flex; align-items: center; vertical-align: middle; margin-left: 6px; }
+.mg-info {
+  width: 16px; height: 16px; padding: 0; border-radius: 50%;
+  border: 1px solid var(--border-strong, var(--text-3)); background: transparent; color: var(--text-3);
+  font: inherit; font-size: 10px; font-weight: 700; line-height: 1; cursor: help;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.mg-info:hover, .mg-info:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+.mg-tip-body {
+  visibility: hidden; opacity: 0; position: absolute; z-index: 100;
+  top: calc(100% + 8px); left: -8px; width: 250px; padding: 10px 12px;
+  background: var(--surface); backdrop-filter: blur(16px) saturate(150%); -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid var(--border-strong, var(--border)); border-radius: var(--radius); box-shadow: var(--shadow);
+  font-size: 12px; font-weight: 400; line-height: 1.5; color: var(--text-2);
+  text-transform: none; letter-spacing: normal; text-align: left; white-space: normal;
+  transition: opacity 0.15s;
+}
+.mg-tip.up .mg-tip-body { top: auto; bottom: calc(100% + 8px); }
+.mg-tip.right .mg-tip-body { left: auto; right: -8px; }
+.mg-tip:hover .mg-tip-body, .mg-tip:focus-within .mg-tip-body, .mg-tip.open .mg-tip-body { visibility: visible; opacity: 1; }
+
+/* ---------- Results ---------- */
+.mg-results-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.mg-results-head img { width: 44px; height: 44px; object-fit: contain; }
+.mg-results-head h2 { font-size: 24px; font-weight: 700; line-height: 1.15; }
+.mg-results-head .mg-meta { font-size: 13px; color: var(--text-3); margin-top: 2px; }
+.mg-results-head .mg-meta strong { color: var(--text-2); font-weight: 600; }
+
+.mg-note {
+  margin: 0 0 14px; padding: 10px 14px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--text-2); font-size: 13px; line-height: 1.45;
+}
+
+.mg-subtabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.mg-subtab {
+  padding: 7px 14px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-2);
+  font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.mg-subtab span { margin-left: 6px; font-weight: 500; color: var(--text-3); }
+.mg-subtab:hover { border-color: var(--border-strong, var(--text-3)); }
+.mg-subtab.active { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+.mg-subtab.active span { color: var(--accent); }
+
+/* Player summary card (exact name typed, or after a live lookup) */
+#mg-me { margin-bottom: 14px; }
+.mg-me {
+  padding: 14px 16px; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--surface);
+}
+.mg-me-top { display: flex; align-items: center; gap: 12px; }
+.mg-me-top img { width: 40px; height: 40px; border-radius: 8px; flex: none; }
+.mg-me-id { flex: 1; min-width: 0; }
+.mg-me-id .mg-name { font-size: 16px; }
+.mg-me-sub { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+.mg-me-link { font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; white-space: nowrap; }
+.mg-me-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.mg-bar { height: 4px; border-radius: 4px; background: var(--border); overflow: hidden; margin-top: 8px; }
+.mg-bar > i { display: block; height: 100%; background: var(--accent); border-radius: 4px; }
+.mg-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.mg-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 6px;
+  border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--text-2);
+  font: inherit; font-size: 12px; font-weight: 500; cursor: pointer;
+}
+.mg-chip img { width: 16px; height: 16px; object-fit: contain; }
+.mg-chip:hover { border-color: var(--border-strong, var(--text-3)); color: var(--text); }
+.mg-chip.active { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+
+/* Table */
+#mg-table .player-row { cursor: pointer; }
+.mg-name { font-weight: 600; color: var(--text); text-decoration: none; }
+.mg-name.ranked { color: var(--rank-c); }
+body.light-theme .mg-name.ranked { color: color-mix(in srgb, var(--rank-c) 62%, #000); }
+#mg-table .player-row:hover .mg-name { text-decoration: underline; text-underline-offset: 3px; }
+#mg-table .mg-rank-tag { margin-right: 6px; font-size: 13px; }
+
+/* Numbers: DM Sans, never DM Mono. .tn (global.js tabNum) gives every digit the same width so columns line up. */
+#mg-table .rank, .mg-row-count, .mg-subtab span { font-family: 'DM Sans', sans-serif; }
+#mg-table .rank { font-weight: 600; }
+#mg-table .ap-cell { font-family: 'DM Sans', sans-serif; font-weight: 700; }
+.tn { white-space: nowrap; }
+.tn i { font-style: normal; display: inline-block; width: 0.66em; text-align: center; }
+.tn b { font-weight: inherit; display: inline-block; width: 0.32em; text-align: center; }
+
+/* Players who were already maxed when tracking began */
+#mg-table .rank.pre { opacity: 0.6; }
+#mg-table tr.mg-divider td {
+  padding: 7px 16px; font-size: 11px; color: var(--text-3); background: var(--surface);
+  border-bottom: 1px solid var(--border); cursor: default;
+}
+
+.mg-maxed { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.mg-maxed .mg-bar { width: 72px; margin: 0; }
+
+.mg-empty { text-align: center; padding: 40px 20px !important; color: var(--text-3); line-height: 1.5; }
+.mg-empty strong { display: block; color: var(--text-2); font-size: 15px; margin-bottom: 4px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .mg-layout { grid-template-columns: 1fr; gap: 20px; }
+  .mg-picker { position: static; max-height: 340px; padding: 6px; border: 1px solid var(--border); border-radius: var(--radius); }
+  .mg-results { scroll-margin-top: 84px; }
+}
+@media (max-width: 560px) {
+  .mg-col-country, #mg-table td.mg-country-cell { display: none; }
+  .mg-results-head h2 { font-size: 20px; }
+  .mg-maxed .mg-bar { display: none; }
+}
