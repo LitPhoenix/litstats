@@ -153,7 +153,7 @@ tbody tr.country-row:hover {
 .pos-same { color: var(--gold); }
 
 /* Expanded Drawers */
-.player-expanded-row { display: none; background: rgba(0,0,0,0.15); border-bottom: 1px solid var(--border); box-shadow: inset 0 4px 10px rgba(0,0,0,0.1); }
+.player-expanded-row { display: none; background: var(--accent-soft); border-bottom: 1px solid var(--border); box-shadow: inset 0 4px 10px rgba(0,0,0,0.1); }
 .player-expanded-row.open { display: table-row; }
 .maxes-container { padding: 16px 16px 24px 40px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 
@@ -176,7 +176,7 @@ tbody tr.country-row:hover {
 .tooltip-content .formula { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 6px; font-family: 'DM Mono', monospace; color: var(--accent); text-align: center; border: 1px solid var(--border); margin-top: 12px; }
 
 /* Status & Layouts */
-.table-footer { padding: 12px 16px; text-align: right; font-size: 11px; color: var(--text-3); border-top: 1px solid var(--border); background: rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: flex-end; gap: 6px; border-bottom-left-radius: calc(var(--radius) - 1px); border-bottom-right-radius: calc(var(--radius) - 1px); }
+.table-footer { padding: 12px 16px; text-align: right; font-size: 11px; color: var(--text-3); border-top: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; justify-content: flex-end; gap: 6px; border-bottom-left-radius: calc(var(--radius) - 1px); border-bottom-right-radius: calc(var(--radius) - 1px); }
 .table-footer .dot {
   display: inline-block;
   color: var(--green);
@@ -203,7 +203,7 @@ tbody tr.country-row:hover {
 .country-players-inner { padding: 0 16px 12px 40px; }
 
 .sub-player-list { display: flex; flex-direction: column; gap: 4px; padding-top: 8px; }
-.sub-player { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0,0,0,0.15); border-radius: 8px; font-size: 13px; border: 1px solid transparent; transition: all 0.2s; }
+.sub-player { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(87, 78, 53, 0.1); border-radius: 8px; font-size: 13px; border: 1px solid transparent; transition: all 0.2s; }
 .sub-player:hover { border-color: var(--accent); transform: translateX(2px); box-shadow: 0 2px 8px var(--accent-soft); }
 .sub-player-left { display: flex; align-items: center; gap: 10px; }
 .sub-rank { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-3); width: 20px; }
@@ -301,3 +301,14 @@ tbody tr:has(.rank-2):hover td:first-child { box-shadow: inset 4px 0 0 var(--sil
 
 tbody tr:has(.rank-3):hover { background: linear-gradient(90deg, rgba(205, 127, 50, 0.18) 0%, transparent 60%); box-shadow: none; }
 tbody tr:has(.rank-3):hover td:first-child { box-shadow: inset 4px 0 0 var(--bronze); }
+
+/* ===== Max Games additions (safe to paste at the bottom of your own leaderboard.css) ===== */
+
+/* Usernames take the rank colour; darkened a little on light themes so green/aqua/yellow stay readable */
+.player-name.ranked, .sub-name.ranked, .country-name.ranked { color: var(--rank-c); }
+body.light-theme .player-name.ranked, body.light-theme .sub-name.ranked, body.light-theme .country-name.ranked { color: color-mix(in srgb, var(--rank-c) 62%, #000); }
+
+/* Digit-aligned numbers (see tabNum() in global.js). DM Sans has no tabular figures, so each digit gets a fixed box. */
+.tn { white-space: nowrap; }
+.tn i { font-style: normal; display: inline-block; width: 0.66em; text-align: center; }
+.tn b { font-weight: inherit; display: inline-block; width: 0.32em; text-align: center; }
