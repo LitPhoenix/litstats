@@ -22,6 +22,7 @@ const litHeader = `
           <div id="nav-leaderboard-menu" class="nav-dropdown-menu">
             <a href="leaderboard.html"><img src="img/diamond.png" alt=""> AP Leaderboard</a>
             <a href="quest.html"><img src="img/xp.png" alt=""> Quest Leaderboard</a>
+            <a href="maxgames.html"><img src="img/games/Arcade-64.png" alt=""> Max Games</a>
           </div>
         </div>
 
@@ -114,6 +115,7 @@ const litHeader = `
         <div class="mobile-accordion-body hidden">
           <a href="leaderboard.html" class="nav-btn sub-link"><img src="img/diamond.png" alt=""> AP Leaderboard</a>
           <a href="quest.html" class="nav-btn sub-link"><img src="img/xp.png" alt=""> Quest Leaderboard</a>
+          <a href="maxgames.html" class="nav-btn sub-link"><img src="img/games/Arcade-64.png" alt=""> Max Games</a>
         </div>
       </div>
 
@@ -147,6 +149,7 @@ const litFooter = `
         <a href="index.html" class="nav-btn">Home</a>
         <a href="leaderboard.html" class="nav-btn">AP Leaderboard</a>
         <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
+        <a href="maxgames.html" class="nav-btn">Max Games</a>
         <a href="blitz.html" class="nav-btn">Blitz</a>
         <a href="angel.html" class="nav-btn">SkyWars</a>
         <a href="bedwars.html" class="nav-btn">Bed Wars</a>
