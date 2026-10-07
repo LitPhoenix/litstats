@@ -167,7 +167,7 @@ body.light-theme .mg-name.ranked { color: color-mix(in srgb, var(--rank-c) 62%, 
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
-  .mg-layout { grid-template-columns: 1fr; gap: 20px; }
+  .mg-layout { grid-template-columns: 1fr; gap: 20px; display: inline; }
   .mg-picker { position: static; max-height: 340px; padding: 6px; border: 1px solid var(--border); border-radius: var(--radius); }
   .mg-results { scroll-margin-top: 84px; }
 }
