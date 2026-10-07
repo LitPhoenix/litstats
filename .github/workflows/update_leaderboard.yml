@@ -30,7 +30,7 @@ jobs:
       - name: Run Update Scripts
         env:
           HYPIXEL_API_KEY: ${{ secrets.HYPIXEL_API_KEY }}
-          MAXGAMES_API_URL: https://www.litstats.com/api/maxgames
+          MAXGAMES_API_URL: https://api.litstats.com/api/maxgames
         run: |
           node scripts/update_leaderboard.js
           node scripts/update_quests.js
