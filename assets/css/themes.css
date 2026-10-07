@@ -76,7 +76,7 @@ html[data-theme="dark"] {
 
 /* 3. Stealth (Midnight) */
 html[data-theme="midnight"] {
-  --bg: #030304;
+  --bg: #010102;
   --surface: #121315eb;
   --surface-2: #101113e0;
   --accent: #677d8e;
