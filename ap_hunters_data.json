@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-06T22:01:39.451Z",
+  "last_update": "2026-10-07T01:15:54.601Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1482,9 +1482,9 @@
           "username": "Crooder",
           "uuid": "266b09b979a345909824aa9d31ffe8ba",
           "country": "Canada",
-          "current_ap": 25385,
+          "current_ap": 25405,
           "last_month_ap": 25385,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Smash Heroes",
             "Max VampireZ"
@@ -2407,15 +2407,15 @@
     },
     {
       "country": "New Zealand",
-      "score": 1848,
+      "score": 1878,
       "top_players": [
         {
           "username": "GusTheMonkey",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
-          "current_ap": 26840,
+          "current_ap": 26870,
           "last_month_ap": 26860,
-          "monthly_gain": -20,
+          "monthly_gain": 10,
           "maxGames": []
         },
         {
@@ -2959,9 +2959,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
-          "current_ap": 23825,
+          "current_ap": 23830,
           "last_month_ap": 23780,
-          "monthly_gain": 45,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3077,9 +3077,9 @@
           "username": "ULTRAVIOLETlamb",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "Unknown",
-          "current_ap": 23480,
+          "current_ap": 23520,
           "last_month_ap": 23365,
-          "monthly_gain": 115,
+          "monthly_gain": 155,
           "maxGames": [
             "Max Duels",
             "Max Build Battle"
@@ -3249,6 +3249,23 @@
       ]
     },
     {
+      "country": "Ecuador",
+      "score": 355,
+      "top_players": [
+        {
+          "username": "WHYSN1SOGOOD",
+          "uuid": "be11708dcb0946bd9608d29af61269ec",
+          "country": "Ecuador",
+          "current_ap": 25950,
+          "last_month_ap": 25860,
+          "monthly_gain": 90,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Moldova",
       "score": 305,
       "top_players": [
@@ -3263,23 +3280,6 @@
             "Max VampireZ",
             "Max Duels",
             "Max Build Battle"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Ecuador",
-      "score": 305,
-      "top_players": [
-        {
-          "username": "WHYSN1SOGOOD",
-          "uuid": "be11708dcb0946bd9608d29af61269ec",
-          "country": "Ecuador",
-          "current_ap": 25900,
-          "last_month_ap": 25860,
-          "monthly_gain": 40,
-          "maxGames": [
-            "Max VampireZ"
           ]
         }
       ]
