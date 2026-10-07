@@ -25,6 +25,18 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 
 function fmt(n) { return Number(n).toLocaleString(); }
+function rankTagHTML(p) {
+  // formatRankText lives in global.js. Returns '' for non-ranked players or when the JSON has no rank yet.
+  if (!p || typeof formatRankText !== 'function') return '';
+  const tag = formatRankText(p.rank, p.rankPlusColor, p.monthlyRankColor);
+  return tag ? `${tag} ` : '';
+}
+function nameAttrs(p, cls, extraStyle = '', fallbackColour = '') {
+  // Coloured to match the rank. Falls back to the normal text colour for non-ranked players.
+  const col = typeof rankNameColour === 'function' ? rankNameColour(p.rank, p.monthlyRankColor) : '';
+  if (col) return `class="${cls} ranked" style="--rank-c:${col};${extraStyle}"`;
+  return `class="${cls}" style="${extraStyle}${fallbackColour ? `color:${fallbackColour};` : ''}"`;
+}
 function getRankClass(r) { return r === 1 ? 'rank-1' : r === 2 ? 'rank-2' : r === 3 ? 'rank-3' : ''; }
 
 function getFlagHTML(c) {
@@ -95,6 +107,9 @@ function getGameIconUrl(gameName) {
 }
 
 function renderMaxesHTML(container, maxes, uuid) {
+  // The four seasonal parts have no icon of their own; "Max Seasonal" represents them.
+  const seasonalParts = ["Max Summer", "Max Christmas", "Max Easter", "Max Halloween"];
+  maxes = maxes.filter(m => !seasonalParts.includes(m));
   const localPlayer = allPlayersList.find(p => p.uuid === uuid);
   const identifier = localPlayer?.username || uuid;
 
@@ -134,11 +149,11 @@ function renderNextPlayersBatch() {
         <td>
           <div class="player-cell">
             <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" alt="${p.username} avatar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
-            <span class="player-name">${p.username}</span>
+            <span ${nameAttrs(p, 'player-name')}>${rankTagHTML(p)}${p.username}</span>
           </div>
         </td>
         <td><div class="flag-cell">${getFlagHTML(p.country)}<span class="country-name">${p.country}</span></div></td>
-        <td class="ap-cell" style="text-align: right;">${fmt(p.current_ap)}</td>
+        <td class="ap-cell" style="text-align: right;">${typeof tabNum === 'function' ? tabNum(p.current_ap) : fmt(p.current_ap)}</td>
         <td style="text-align: right;">${gainHTML}</td>
     `;
     fragment.appendChild(tr);
@@ -177,7 +192,7 @@ function renderNextCountriesBatch() {
       <td style="padding-left: 40px;">
         <div class="player-cell" style="gap:8px;">
           <img class="player-avatar" style="width:24px;height:24px;border-radius:4px;" src="https://minotar.net/helm/${topP.username||'?'}/100" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${topP.uuid}.png'">
-          <span class="country-name" style="font-weight:600; color:var(--text);">${topP.username || 'Unknown'}</span>
+          <span ${nameAttrs(topP, 'country-name', 'font-weight:600;', 'var(--text)')}>${topP.username ? rankTagHTML(topP) : ''}${topP.username || 'Unknown'}</span>
         </div>
       </td>
       <td style="text-align:right; padding-right:20px;"><span class="expand-icon">▶</span></td>
@@ -189,7 +204,7 @@ function renderNextCountriesBatch() {
           <div class="sub-player-left">
             <span class="sub-rank">${i+1}</span>
             <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
-            <span class="sub-name">${sp.username}</span>
+            <span ${nameAttrs(sp, 'sub-name')}>${rankTagHTML(sp)}${sp.username}</span>
           </div>
           <span class="sub-ap">${fmt(sp.current_ap)} AP</span>
         </div>
