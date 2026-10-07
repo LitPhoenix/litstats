@@ -373,7 +373,7 @@
       const hour = Math.floor(Date.now() / 3600000);
       const [staticRes, liveRes] = await Promise.allSettled([
         fetch(`max_games_data.json?v=${hour}`),
-        fetch('/api/maxgames').then(r => (r.ok ? r.json() : null)),
+        fetch('https://api.litstats.com/api/maxgames').then(r => (r.ok ? r.json() : null)),
       ]);
       if (staticRes.status !== 'fulfilled' || !staticRes.value.ok) throw new Error('Data fetch failed (file not found or network error)');
       data = await staticRes.value.json();
