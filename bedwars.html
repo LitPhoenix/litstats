@@ -784,7 +784,7 @@
           <span class="stat-val" style="color:var(--stat-green)" id="bw-val-6">755 / 755 Nachos</span>
           <span class="stat-val" style="color:var(--stat-aqua)" id="bw-val-6b">2,218,500 Tickets</span>
         <div class="stat-item"><span class="stat-label" id="lbl-3">Main Path Items</span><span class="stat-val" style="color:var(--stat-green)" id="bw-val-7">0 / 21</span></div>
-        <div class="stat-item"><span class="stat-label" id="lbl-4">Branch Items</span><span class="stat-val" style="color:var(--stat-darkgreen)" id="bw-val-8">0 / 30</span></div>
+        <div class="stat-item"><span class="stat-label" id="lbl-4">Branch Items</span><span class="stat-val" style="color:var(--stat-darkgreen)" id="bw-val-8">0 / 39</span></div>
         <div class="stat-item"><span class="stat-label">Tickets</span><span class="stat-val" style="color:var(--stat-aqua)" id="stash-tickets"></span></div>
       </div>
 
@@ -1523,7 +1523,7 @@ function resetToDefault() {
   setVal('bw-val-6', '755 Nachos');
   setVal('bw-val-6b', '2,218,500 Tickets');
   setVal('bw-val-7', '21 / 21');
-  setVal('bw-val-8', '30 / 30');
+  setVal('bw-val-8', '39 / 39');
   setVal('stash-tickets', '');
 
   setVal('stash-tarts', '');
@@ -1721,7 +1721,7 @@ async function fetchPlayerUnlocks(searchTerm) {
     setVal('bw-val-6', `${spentNachos.toLocaleString()} / 755 Nachos`);
     setVal('bw-val-6b', `${totalTicketsSpent.toLocaleString()} / 2.2M Tickets`);
     setVal('bw-val-7', `${mainUnlocked} / 21`);
-    setVal('bw-val-8', `${branchUnlocked} / 30`);
+    setVal('bw-val-8', `${branchUnlocked} / 39`);
 
     document.getElementById('lbl-2').textContent = "Spent";
 
