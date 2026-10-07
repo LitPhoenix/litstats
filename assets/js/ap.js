@@ -60,7 +60,7 @@ async function togglePlayerExpand(uuid) {
 
   container.innerHTML = `<span style="color:var(--text-3); font-size:12px; font-weight: 500;">Loading maxed games from network...</span>`;
   try {
-    const res = await fetch(`/api/player?uuid=${uuid}`);
+    const res = await fetch(`https://api.litstats.com/api/player?uuid=${uuid}`);
     if (res.status === 429) throw new Error('RATE_LIMIT');
     const data = await res.json();
     if (data.error) throw new Error(data.error); 
