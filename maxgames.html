@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LitStats - Max Games Leaderboard</title>
+  <meta name="title" content="LitStats - Max Games Leaderboard">
+  <meta name="description" content="See who has every achievement in each Hypixel game, in the order they got there.">
+  <meta name="theme-color" content="#ff5100">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://litstats.com/maxgames">
+  <meta property="og:title" content="LitStats - Max Games Leaderboard">
+  <meta property="og:description" content="See who has every achievement in each Hypixel game, in the order they got there.">
+  <meta property="og:image" content="https://litstats.com/img/lq-opengraph.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://litstats.com/maxgames">
+  <meta property="twitter:title" content="LitStats - Max Games Leaderboard">
+  <meta property="twitter:description" content="See who has every achievement in each Hypixel game, in the order they got there.">
+  <meta property="twitter:image" content="https://litstats.com/img/lq-opengraph.jpg">
+
+  <link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://minotar.net">
+  <link rel="preload" as="image" href="img/lq-bg-embers.jpg" media="(prefers-color-scheme: dark)">
+  <link rel="preload" as="image" href="img/lq-bg-embers-light.jpg" media="(prefers-color-scheme: light)">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/global.css">
+  <!-- Reused for the hero, search box, table shell and player cells so this page matches the AP leaderboard -->
+  <link rel="stylesheet" href="assets/css/leaderboard.css">
+  <link rel="stylesheet" href="assets/css/maxgames.css">
+</head>
+<body>
+
+  <script src="assets/js/components.js"></script>
+
+  <main>
+    <div class="hero">
+      <h1><img src="img/diamond.png" alt="" style="width: 32px; height: 32px; object-fit: contain; vertical-align: middle; margin-right: 12px; margin-bottom: 4px;">Max Games</h1>
+      <p>Who has every achievement in a game, listed in the order we first saw them get there. Pick a game.</p>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search a player, press Enter to check them live" autocomplete="off">
+      <div id="searchResults" class="search-results-info hidden"></div>
+    </div>
+
+    <div class="shortcuts-panel">
+      <div class="shortcut-item"><kbd>/</kbd> Search</div>
+      <div class="shortcut-item"><kbd>Enter</kbd> Check live</div>
+      <div class="shortcut-item"><kbd>Esc</kbd> Clear</div>
+    </div>
+
+    <div class="loading-msg" id="mg-loading">Loading max games...</div>
+    <div class="error-msg hidden" id="mg-error">Failed to load data.</div>
+
+    <div class="mg-layout hidden" id="mg-layout">
+      <aside class="mg-picker" id="mg-picker" aria-label="Choose a game"></aside>
+
+      <section class="mg-results" id="mg-results" aria-live="polite">
+        <div class="mg-results-head" id="mg-head"></div>
+        <div class="mg-subtabs hidden" id="mg-subtabs" role="tablist" aria-label="Seasonal parts"></div>
+
+        <div id="mg-me" class="hidden"></div>
+
+        <div class="table-wrap">
+          <div class="spark-bg"></div>
+          <div class="table-inner">
+            <table id="mg-table" style="table-layout: fixed; width: 100%;">
+              <thead id="mg-thead"></thead>
+              <tbody id="mg-tbody"></tbody>
+            </table>
+            <div class="table-footer"><span class="dot"></span>Updated: <span class="last-updated-time">-</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="bottom-fade"></div>
+  <div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
+
+  <script src="assets/js/global.js"></script>
+  <script src="assets/js/credits.js"></script>
+  <script src="assets/js/maxgames.js"></script>
+</body>
+</html>
