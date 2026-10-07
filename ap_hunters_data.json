@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-07T07:53:52.288Z",
+  "last_update": "2026-10-07T14:54:55.442Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -593,9 +593,9 @@
           "username": "Boogatomyooga",
           "uuid": "343139d84b91435c90a6d0054a709ca5",
           "country": "USA",
-          "current_ap": 27995,
+          "current_ap": 28000,
           "last_month_ap": 27985,
-          "monthly_gain": 10,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Duels"
           ]
@@ -1160,7 +1160,7 @@
     },
     {
       "country": "UK",
-      "score": 10106,
+      "score": 10108,
       "top_players": [
         {
           "username": "greaneye",
@@ -1224,6 +1224,23 @@
           ]
         },
         {
+          "username": "60c",
+          "uuid": "8682b351e9c241639291935776608054",
+          "country": "UK",
+          "current_ap": 29125,
+          "last_month_ap": 29100,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Blitz",
+            "Max Speed UHC",
+            "Max Walls",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Crazy Walls"
+          ]
+        },
+        {
           "username": "Evdia",
           "uuid": "aad6a2754e9c4744bd335213853f023f",
           "country": "UK",
@@ -1237,23 +1254,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "60c",
-          "uuid": "8682b351e9c241639291935776608054",
-          "country": "UK",
-          "current_ap": 29100,
-          "last_month_ap": 29100,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Blitz",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Crazy Walls"
           ]
         },
         {
@@ -1732,9 +1732,9 @@
           "username": "SvenTerror",
           "uuid": "171faf6b54c045d884ba95f27049984f",
           "country": "The Netherlands",
-          "current_ap": 25440,
+          "current_ap": 25445,
           "last_month_ap": 25440,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Speed UHC",
             "Max Warlords",
@@ -1772,7 +1772,7 @@
     },
     {
       "country": "Serbia",
-      "score": 7143,
+      "score": 7148,
       "top_players": [
         {
           "username": "NEmQnjA",
@@ -1817,9 +1817,9 @@
           "username": "Uleb",
           "uuid": "2baaec9272fd487294e673eb4ec35201",
           "country": "Serbia",
-          "current_ap": 27445,
+          "current_ap": 27465,
           "last_month_ap": 27465,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": [
             "Max TKR",
             "Max Duels",
@@ -2936,9 +2936,9 @@
           "username": "ichhabevape",
           "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
           "country": "Unknown",
-          "current_ap": 23905,
+          "current_ap": 23920,
           "last_month_ap": 23925,
-          "monthly_gain": -20,
+          "monthly_gain": -5,
           "maxGames": []
         },
         {
@@ -3018,6 +3018,18 @@
           ]
         },
         {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "Unknown",
+          "current_ap": 23680,
+          "last_month_ap": 23645,
+          "monthly_gain": 35,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Hacks",
           "uuid": "b5ab6db9366049ae8a9882927e46ce08",
           "country": "Unknown",
@@ -3031,18 +3043,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "Quent120",
-          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
-          "country": "Unknown",
-          "current_ap": 23670,
-          "last_month_ap": 23645,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
