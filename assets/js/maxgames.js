@@ -299,7 +299,7 @@
         const db = await dbRes.json();
         if (db.code !== 'player.found') throw new Error('NOT_FOUND');
         const uuid = db.data.player.raw_id;
-        const res = await fetch(`/api/player?uuid=${uuid}`);
+        const res = await fetch(`https://api.litstats.com/api/player?uuid=${uuid}`);
         if (res.status === 429) throw new Error('RATE_LIMIT');
         const v = await res.json();
         if (v.error === 'Player not found on Hypixel') throw new Error('NOT_FOUND');
