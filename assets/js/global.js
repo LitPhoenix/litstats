@@ -48,12 +48,12 @@ function parseMinecraftColors(text) {
   const colorMap = { 
     '0': '#000000', '1': '#0000AA', '2': '#00AA00', '3': '#00AAAA', 
     '4': '#AA0000', '5': '#AA00AA', '6': '#FFAA00', '7': '#AAAAAA', 
-    '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#55FFFF', 
+    '8': '#555555', '9': '#5555FF', 'a': '#55FF55', 'b': '#3fe5e5', 
     'c': '#FF5555', 'd': '#FF55FF', 'e': '#FFFF55', 'f': '#FFFFFF' 
   };
   
   let html = '';
-  let state = { color: '#AAAAAA', bold: false, italic: false, underline: false, strikethrough: false };
+  let state = { color: '#9d9da0', bold: false, italic: false, underline: false, strikethrough: false };
 
   function buildStyleString(s) {
     let styles = `color: ${s.color};`;
@@ -221,34 +221,53 @@ if (document.readyState === 'loading') {
 }
 
 function getPlusColourHex(colourName) {
-  const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#FFFF55', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
+  const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#f0f047', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#FFFFFF', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
   return colours[colourName] || '#FF5555';
 }
 
 function getRankBaseColourHex(rank, monthlyRankColor) {
-  if (!rank || rank === 'NON') return '#AAAAAA';
+  if (!rank || rank === 'NON') return 'var(--text-3)';
   const clean = rank.replace(/\[|\]/g, ''); 
-  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#30e3e3' : '#FFAA00';
   if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
-  if (clean.includes('MVP')) return '#55FFFF'; 
+  if (clean.includes('MVP')) return '#30e3e3'; 
   if (clean.includes('VIP')) return '#55FF55'; 
   if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
-  if (clean.includes('PIG')) return '#FF55FF'; 
-  return '#AAAAAA';
+  if (clean.includes('PIG') || clean.includes('INNIT')) return '#FF55FF'; 
+  return 'var(--text-2)';
 }
 
-function formatRankHtml(rank, plusColour, monthlyRankColor) {
+function formatRankText(rank, plusColour, monthlyRankColor) {
   if (!rank || rank === 'NON') return '';
-  const plusHex = getPlusColourHex(plusColour);
   const cleanRank = rank.replace(/\[|\]/g, ''); 
   const baseColor = getRankBaseColourHex(rank, monthlyRankColor);
 
+  let plusHex = cleanRank.includes('VIP') ? '#FFAA00' : getPlusColourHex(plusColour);
+
   let formatted = cleanRank;
-  if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
+  if (cleanRank === 'STAFF' || cleanRank.includes('staff')) formatted = `<span style="color:#FFAA00">ዞ</span>`;
+  else if (cleanRank === 'YOUTUBE' || cleanRank.includes('youtube')) formatted = `<span style="color:#FFFFFF">YOUTUBE</span>`;
+  else if (cleanRank.includes('PIG')) formatted = `PIG<span style="color:#00FFFF">+++</span>`;
+  else if (cleanRank.includes('++')) formatted = `MVP<span style="color:${plusHex}">++</span>`;
   else if (cleanRank.includes('+')) formatted = `${cleanRank.split('+')[0]}<span style="color:${plusHex}">+</span>`;
 
   return `<span style="color:${baseColor}; font-weight:700;">[${formatted}]</span>`;
 }
+
+// Username colour that matches the rank (VIP green, MVP aqua, MVP++ gold...). '' for non-ranked players.
+function rankNameColour(rank, monthlyRankColor) {
+  const col = getRankBaseColourHex(rank, monthlyRankColor);
+  return col.startsWith('#') ? col : '';
+}
+
+// DM Sans has no tabular figures (a "1" is about half the width of a "0"), so numbers in right-aligned
+// columns don't line up. Wrapping each digit in a fixed-width box fixes it. Pair with .tn in CSS.
+function tabNum(n) {
+  return `<span class="tn">${Number(n).toLocaleString().replace(/[0-9]/g, '<i>$&</i>').replace(/[,.]/g, '<b>$&</b>')}</span>`;
+}
+
+// Older pages call formatRankHtml; keep it pointing at the same formatter.
+function formatRankHtml(rank, plusColour, monthlyRankColor) { return formatRankText(rank, plusColour, monthlyRankColor); }
 
 // --- AUDIO CONTEXT ---
 let audioCtx; 
