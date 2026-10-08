@@ -2,8 +2,10 @@
  * Shared max-games list for players found by live lookups (the part a GitHub Action can't see).
  * Stored in a Redis hash on Upstash (Vercel Marketplace). Dependency free: talks to the REST API with fetch.
  *
- * Env (either naming works):
- *   UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN   or   KV_REST_API_URL / KV_REST_API_TOKEN
+ * Env: found by suffix, so any prefix Vercel/Upstash gave you works, e.g.
+ *   UPSTASH_KV_REST_API_URL + UPSTASH_KV_REST_API_TOKEN      (what a Vercel-created "upstash-kv-..." database sets)
+ *   UPSTASH_REDIS_REST_URL  + UPSTASH_REDIS_REST_TOKEN       KV_REST_API_URL + KV_REST_API_TOKEN
+ * The READ_ONLY token is never used (it can't write).
  *
  * The leading underscore stops Vercel exposing this file as an endpoint.
  */
@@ -18,9 +20,19 @@ const TRACKED = new Set([
   'Max General', 'Max Summer', 'Max Christmas', 'Max Easter', 'Max Halloween', 'Max Crazy Walls', 'Max SkyClash',
 ]);
 
-const endpoint = () => process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
-const token = () => process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
-const isConfigured = () => !!(endpoint() && token());
+function findEnvName(suffixes) {
+  return Object.keys(process.env).find(k => !k.includes('READ_ONLY') && suffixes.some(sfx => k.endsWith(sfx)) && process.env[k]);
+}
+const urlName = () => findEnvName(['REST_API_URL', 'REDIS_REST_URL']);
+const tokenName = () => findEnvName(['REST_API_TOKEN', 'REDIS_REST_TOKEN']);
+const endpoint = () => process.env[urlName()];
+const token = () => process.env[tokenName()];
+const isConfigured = () => !!(urlName() && tokenName());
+
+/** Safe to expose: variable NAMES only, never values. */
+function status() {
+  return { configured: isConfigured(), urlVariable: urlName() || null, tokenVariable: tokenName() || null };
+}
 
 async function redis(command) {
   const res = await fetch(endpoint(), {
@@ -71,13 +83,13 @@ async function registerPlayer(player) {
 }
 
 async function listPlayers() {
-  if (!isConfigured()) return { configured: false, players: {} };
+  if (!isConfigured()) return { ...status(), players: {} };
   const flat = (await redis(['HGETALL', KEY])) || [];
   const players = {};
   for (let i = 0; i < flat.length; i += 2) {
     try { players[flat[i]] = JSON.parse(flat[i + 1]); } catch (e) { /* skip bad record */ }
   }
-  return { configured: true, players };
+  return { ...status(), count: Object.keys(players).length, players };
 }
 
-module.exports = { registerPlayer, listPlayers, buildRecord, TRACKED };
+module.exports = { registerPlayer, listPlayers, buildRecord, status, TRACKED };
