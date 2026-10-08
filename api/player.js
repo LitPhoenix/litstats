@@ -1,3 +1,7 @@
+// Shared max-games list (optional: does nothing until the Upstash/Vercel KV env vars exist).
+let registerPlayer = async () => {};
+try { ({ registerPlayer } = require('./_maxgames_registry')); } catch (e) { /* registry file not deployed */ }
+
 let cachedTemplate = null;
 let templateFetchTime = 0;
 
@@ -762,10 +766,12 @@ module.exports = async (req, res) => {
           }
         }
 
-        if (nPoss > 0) {
-          if (nUnl >= nPoss) responseData.maxGames.push(game.badge);
-          else responseData.gamePercentages[game.badge] = ((nUnl / nPoss) * 100).toFixed(1);
-        }
+        // Crazy Walls and SkyClash are removed games: every one of their achievements is flagged legacy, so nPoss is 0
+        // and they could never be "maxed". For legacy games the legacy achievements count (same as update_leaderboard.js).
+        const maxPoss = game.legacy ? nPoss + lPoss : nPoss;
+        const maxUnl  = game.legacy ? nUnl + lUnl : nUnl;
+        if (maxPoss > 0 && maxUnl >= maxPoss) responseData.maxGames.push(game.badge);
+        if (nPoss > 0 && nUnl < nPoss) responseData.gamePercentages[game.badge] = ((nUnl / nPoss) * 100).toFixed(1);
         if (lPoss === 0) delete responseData.legacyGameTotals[game.name];
         if (nPoss === 0) delete responseData.gameTotals[game.name];
       }
@@ -854,8 +860,8 @@ module.exports = async (req, res) => {
     }
     responseData.blitzStars = starsUnlocked;
     
-    const kitList = ["horsetamer", "ranger", "archer", "astronaut", "troll", "meatmaster", "reaper", "shark", "reddragon", "toxicologist", "donkeytamer", "rogue", "warlock", "slimeyslime", "jockey", "golem", "viking", "speleologist", "shadow knight", "baker", "knight", "pigman", "guardian", "phoenix", "paladin", "necromancer", "scout", "hunter", "warrior", "hype train", "fisherman", "milkman", "florist", "diver", "arachnologist", "blaze", "wolftamer", "tim", "snowman", "rambo", "farmer", "armorer", "creepertamer"];
-    const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist", "rambo", "guardian", "hype train"]);
+    const kitList = ["horsetamer", "ranger", "archer", "astronaut", "troll", "meatmaster", "reaper", "shark", "reddragon", "toxicologist", "donkeytamer", "rogue", "warlock", "slimeyslime", "jockey", "golem", "viking", "speleologist", "shadow knight", "baker", "knight", "pigman", "guardian", "phoenix", "paladin", "necromancer", "scout", "hunter", "warrior", "hypetrain", "fisherman", "milkman", "florist", "diver", "arachnologist", "blaze", "wolftamer", "tim", "snowman", "rambo", "farmer", "armorer", "creepertamer"];
+    const defaultKits = new Set(["armorer", "meatmaster", "archer", "baker", "fisherman", "hunter", "knight", "ranger", "scout", "speleologist", "rambo", "guardian", "hypetrain"]);
     const ultimateKits = new Set(["phoenix", "warrior", "donkeytamer", "milkman", "ranger", "rambo"]);
     
     for (const kit of kitList) {
@@ -913,6 +919,15 @@ module.exports = async (req, res) => {
     responseData.blitzKits = blitzKits;
     responseData.blitzPrestiges = blitzPrestiges;
     responseData.kitStats = kitStats;
+
+    // Add this player to the shared max-games list (waits briefly; never blocks or breaks the response).
+    try {
+      const outcome = await Promise.race([
+        registerPlayer(responseData).catch(err => ({ error: err.message })),
+        new Promise(r => setTimeout(() => r({ timeout: true }), 1500)),
+      ]);
+      if (outcome && (outcome.error || outcome.timeout)) console.error('max games register:', outcome);
+    } catch (e) {}
 
     return res.status(200).json(responseData);
 
