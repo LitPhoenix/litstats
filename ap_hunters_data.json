@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-08T01:27:39.302Z",
+  "last_update": "2026-10-08T08:10:51.937Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -766,9 +766,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 26060,
+          "current_ap": 26075,
           "last_month_ap": 25965,
-          "monthly_gain": 95,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -2704,9 +2704,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 25350,
+          "current_ap": 25335,
           "last_month_ap": 25245,
-          "monthly_gain": 105,
+          "monthly_gain": 90,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -3047,6 +3047,18 @@
           ]
         },
         {
+          "username": "ULTRAVIOLETlamb",
+          "uuid": "d8c93138750f4388a3a99bd98b03192b",
+          "country": "Unknown",
+          "current_ap": 23590,
+          "last_month_ap": 23365,
+          "monthly_gain": 225,
+          "maxGames": [
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "Justin_Jefferson",
           "uuid": "9dccd818228640bfa33174d8dc86dfb7",
           "country": "Unknown",
@@ -3056,18 +3068,6 @@
           "maxGames": [
             "Max Paintball",
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "ULTRAVIOLETlamb",
-          "uuid": "d8c93138750f4388a3a99bd98b03192b",
-          "country": "Unknown",
-          "current_ap": 23565,
-          "last_month_ap": 23365,
-          "monthly_gain": 200,
-          "maxGames": [
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -3475,9 +3475,9 @@
           "username": "0HfLUfFIE",
           "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
           "country": "Hong Kong",
-          "current_ap": 23965,
+          "current_ap": 23985,
           "last_month_ap": 23965,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Paintball",
             "Max Warlords",
