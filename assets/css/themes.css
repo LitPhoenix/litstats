@@ -7,6 +7,7 @@
   --bg: #fdfaf8;
   --bg-glow: rgba(255, 100, 0, 0.02); 
   --surface: rgba(255, 253, 253, 0.65);
+  --surface-block: #ffffff;
   --surface-2: rgba(255, 245, 240, 0.8); 
   --border: rgba(221, 208, 208, 0.6);
   --border-strong: #e0c5b4;
@@ -45,6 +46,7 @@ html[data-theme="dark"] {
   --bg: #0a0504; 
   --bg-glow: rgba(255, 75, 20, 0.04); 
   --surface: rgba(26, 19, 16, 0.65);
+  --surface-block: #1a1310;
   --surface-2: rgba(14, 10, 8, 0.6);
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 98, 26, 0.25); 
@@ -78,6 +80,7 @@ html[data-theme="dark"] {
 html[data-theme="midnight"] {
   --bg: #010102;
   --surface: #121315eb;
+  --surface-block: #121315;
   --surface-2: #0e0f12e0;
   --accent: #677d8e;
   --accent-soft: rgba(99, 99, 107, 0.15);
@@ -105,6 +108,7 @@ html[data-theme="midnight"] {
 html[data-theme="amethyst"] {
   --bg: #060309;
   --surface: rgba(16, 9, 22, 0.85);
+  --surface-block: #100916;
   --surface-2: rgba(10, 5, 14, 0.82);
   --accent: #7c3aed;
   --accent-soft: rgba(124, 58, 237, 0.14);
@@ -133,6 +137,7 @@ html[data-theme="cherry"] {
   --bg: #fff5f7;
   --bg-glow: rgba(255, 179, 198, 0.15);
   --surface: rgba(255, 240, 245, 0.78);
+  --surface-block: #fff0f5;
   --surface-2: rgba(255, 225, 235, 0.75);
   --border: rgba(255, 179, 198, 0.45);
   --border-strong: #ff85a1;
@@ -163,6 +168,7 @@ html[data-theme="cherry"] {
 html[data-theme="minecraft"] {
   --bg: #181818;
   --surface: rgba(36, 32, 30, 0.94);
+  --surface-block: #24201e;
   --surface-2: rgba(26, 23, 21, 0.92);
   --border: #443c37;
   --border-strong: #5e9433;
@@ -441,7 +447,7 @@ html[data-theme="minecraft"] .nav-btn {
 html[data-theme="minecraft"] .page-title,
 html[data-theme="minecraft"] .hero-title,
 html[data-theme="minecraft"] h1 {
-  color: #ffffff !important;
+  color: #ffffff;
   text-shadow: 2px 2px 0 #000000;
 }
 
