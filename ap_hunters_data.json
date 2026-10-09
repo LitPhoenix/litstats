@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-08T22:39:48.207Z",
+  "last_update": "2026-10-09T03:34:03.079Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1748,9 +1748,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24710,
+          "current_ap": 24725,
           "last_month_ap": 24690,
-          "monthly_gain": 20,
+          "monthly_gain": 35,
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
@@ -2074,15 +2074,15 @@
     },
     {
       "country": "Finland",
-      "score": 4504,
+      "score": 4529,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28730,
+          "current_ap": 28755,
           "last_month_ap": 28705,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2578,15 +2578,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1470,
+      "score": 1485,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 27065,
+          "current_ap": 27080,
           "last_month_ap": 27065,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -2745,12 +2745,13 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "Unknown",
-          "current_ap": 25135,
+          "current_ap": 25185,
           "last_month_ap": 25105,
-          "monthly_gain": 30,
+          "monthly_gain": 80,
           "maxGames": [
             "Max SkyBlock",
             "Max Arcade",
+            "Max Wool Games",
             "Max Duels"
           ]
         },
@@ -3216,6 +3217,23 @@
       ]
     },
     {
+      "country": "Ecuador",
+      "score": 430,
+      "top_players": [
+        {
+          "username": "SATURNO",
+          "uuid": "be11708dcb0946bd9608d29af61269ec",
+          "country": "Ecuador",
+          "current_ap": 26025,
+          "last_month_ap": 25860,
+          "monthly_gain": 165,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Spain",
       "score": 405,
       "top_players": [
@@ -3246,23 +3264,6 @@
             "Max Walls",
             "Max VampireZ",
             "Max TKR"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Ecuador",
-      "score": 360,
-      "top_players": [
-        {
-          "username": "WHYSN1SOGOOD",
-          "uuid": "be11708dcb0946bd9608d29af61269ec",
-          "country": "Ecuador",
-          "current_ap": 25955,
-          "last_month_ap": 25860,
-          "monthly_gain": 95,
-          "maxGames": [
-            "Max VampireZ"
           ]
         }
       ]
