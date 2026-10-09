@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-09T17:42:45.456Z",
+  "last_update": "2026-10-09T22:00:50.366Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -200,7 +200,8 @@
     "58f4b39fbea342aebff47c541c8bf1c7": 23395,
     "3d55b88551fe48d997bae3412cd8aa72": 23375,
     "d8c93138750f4388a3a99bd98b03192b": 23365,
-    "8d66db5ea90b4137854808b97e0ca5c7": 23345
+    "8d66db5ea90b4137854808b97e0ca5c7": 23345,
+    "81760cdc19964181a5c51ce17dd86597": 23405
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -2074,7 +2075,7 @@
     },
     {
       "country": "Finland",
-      "score": 4529,
+      "score": 4530,
       "top_players": [
         {
           "username": "Champiez",
@@ -2114,9 +2115,9 @@
           "username": "MatiasSiltanen",
           "uuid": "e9a871c29903474687b0b045edd35ae9",
           "country": "Finland",
-          "current_ap": 26640,
+          "current_ap": 26645,
           "last_month_ap": 26615,
-          "monthly_gain": 25,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Arcade",
             "Max Wool Games",
@@ -2127,15 +2128,15 @@
     },
     {
       "country": "Israel",
-      "score": 4279,
+      "score": 4299,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_ap": 28520,
+          "current_ap": 28540,
           "last_month_ap": 28540,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Arena Brawl",
             "Max Quake",
@@ -2835,6 +2836,21 @@
           ]
         },
         {
+          "username": "_Tk3",
+          "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+          "country": "Unknown",
+          "current_ap": 24430,
+          "last_month_ap": 24055,
+          "monthly_gain": 375,
+          "maxGames": [
+            "Max Pit",
+            "Max Arena Brawl",
+            "Max Paintball",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "Battalius",
           "uuid": "3d12e102ea444d4d8b269bebacd720f0",
           "country": "Unknown",
@@ -2844,21 +2860,6 @@
           "maxGames": [
             "Max UHC",
             "Max Blitz",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "_Tk3",
-          "uuid": "f2b587fe0b2347dca0908d4832e047d5",
-          "country": "Unknown",
-          "current_ap": 24385,
-          "last_month_ap": 24055,
-          "monthly_gain": 330,
-          "maxGames": [
-            "Max Pit",
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max VampireZ",
             "Max TKR"
           ]
         },
@@ -3024,9 +3025,9 @@
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "Unknown",
-          "current_ap": 23695,
+          "current_ap": 23715,
           "last_month_ap": 23645,
-          "monthly_gain": 50,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -3114,6 +3115,15 @@
           ]
         },
         {
+          "username": "johnush",
+          "uuid": "81760cdc19964181a5c51ce17dd86597",
+          "country": "Unknown",
+          "current_ap": 23405,
+          "last_month_ap": 23405,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
@@ -3190,15 +3200,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 450,
+      "score": 460,
       "top_players": [
         {
           "username": "SATURNO",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 26045,
+          "current_ap": 26055,
           "last_month_ap": 25860,
-          "monthly_gain": 185,
+          "monthly_gain": 195,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -3440,17 +3450,6 @@
           "last_month_ap": 24295,
           "monthly_gain": 0,
           "maxGames": []
-        },
-        {
-          "username": "hentor5",
-          "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
-          "country": "Sweden",
-          "current_ap": 23345,
-          "last_month_ap": 23345,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max TKR"
-          ]
         }
       ]
     },

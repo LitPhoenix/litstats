@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-09T17:42:45.781Z",
+  "last_update": "2026-10-09T22:00:50.774Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -199,7 +199,7 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49933.8,
+      "score": 49937.6,
       "top_players": [
         {
           "username": "Skorlex",
@@ -229,17 +229,17 @@
           "username": "enoitna",
           "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
           "country": "France",
-          "current_quests": 29533,
+          "current_quests": 29543,
           "last_month_quests": 29533,
-          "monthly_gain": 0
+          "monthly_gain": 10
         },
         {
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
-          "current_quests": 28964,
+          "current_quests": 28973,
           "last_month_quests": 28911,
-          "monthly_gain": 53
+          "monthly_gain": 62
         },
         {
           "username": "trql",
@@ -253,17 +253,17 @@
           "username": "titi2502",
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "France",
-          "current_quests": 26327,
+          "current_quests": 26338,
           "last_month_quests": 26314,
-          "monthly_gain": 13
+          "monthly_gain": 24
         },
         {
           "username": "TournamentTokens",
           "uuid": "52206b9a3e8446c995fa9f2d4e8c0078",
           "country": "France",
-          "current_quests": 25929,
+          "current_quests": 25964,
           "last_month_quests": 25929,
-          "monthly_gain": 0
+          "monthly_gain": 35
         },
         {
           "username": "wadfrere",
@@ -489,7 +489,7 @@
     },
     {
       "country": "USA",
-      "score": 46361.4,
+      "score": 46367.8,
       "top_players": [
         {
           "username": "Trtx",
@@ -500,12 +500,12 @@
           "monthly_gain": 0
         },
         {
-          "username": "xBlue_Space",
+          "username": "Shazuh",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
-          "current_quests": 49034,
+          "current_quests": 49066,
           "last_month_quests": 49016,
-          "monthly_gain": 18
+          "monthly_gain": 50
         },
         {
           "username": "Respawnless",
@@ -1021,9 +1021,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "Unknown",
-          "current_quests": 21883,
+          "current_quests": 21932,
           "last_month_quests": 21736,
-          "monthly_gain": 147
+          "monthly_gain": 196
         }
       ]
     },
