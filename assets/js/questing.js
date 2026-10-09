@@ -11,7 +11,7 @@
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const DAY = 86400000;
 
-  const MC = { BLACK: '#000000', DARK_BLUE: '#0000AA', DARK_GREEN: '#00AA00', DARK_AQUA: '#00AAAA', DARK_RED: '#AA0000', DARK_PURPLE: '#AA00AA', GOLD: '#FFAA00', GRAY: '#AAAAAA', DARK_GRAY: '#555555', BLUE: '#5555FF', GREEN: '#55FF55', AQUA: '#55FFFF', RED: '#FF5555', LIGHT_PURPLE: '#FF55FF', YELLOW: '#FFFF55', WHITE: '#FFFFFF' };
+  const MC = { BLACK: '#000000', DARK_BLUE: '#0000AA', DARK_GREEN: '#00AA00', DARK_AQUA: '#00AAAA', DARK_RED: '#AA0000', DARK_PURPLE: '#AA00AA', GOLD: '#FFAA00', GRAY: '#AAAAAA', DARK_GRAY: '#555555', BLUE: '#5555FF', GREEN: '#55FF55', AQUA: '#36e9e9', RED: '#FF5555', LIGHT_PURPLE: '#FF55FF', YELLOW: '#FFFF55', WHITE: '#FFFFFF' };
 
   const S = { data: null, uuid: null, name: null, param: '', kind: 'all', game: 'all', sort: 'game', filter: '', hideDone: false, easy: false,
               open: new Map(), events: [], days: new Map(), year: null, sel: null, calOpen: false, hasHist: false, timer: null, refreshing: false };
@@ -105,7 +105,8 @@
   function showTip(t) {
     if (!tipBox) {
       tipBox = document.createElement('div');
-      tipBox.style.cssText = 'position:fixed;z-index:9999;display:none;max-width:320px;padding:10px 12px;border-radius:10px;background:#1c1c22;color:#f1f1f4;border:1px solid rgba(255,255,255,.15);font-size:12px;line-height:1.55;box-shadow:0 10px 28px rgba(0,0,0,.4);pointer-events:none;white-space:pre-line;text-align:left';
+      // Updated background, color, and border to use theme variables
+      tipBox.style.cssText = 'position:fixed;z-index:9999;display:none;max-width:320px;padding:10px 12px;border-radius:10px;background:var(--surface);color:var(--text);border:1px solid var(--border);font-size:12px;line-height:1.55;box-shadow:0 10px 28px rgba(0,0,0,.4);pointer-events:none;white-space:pre-line;text-align:left';
       document.body.appendChild(tipBox);
     }
     tipBox.textContent = t.dataset.info || t.dataset.tip; tipBox.style.display = 'block';
@@ -207,7 +208,7 @@
     const d = S.data, rv = rankView(d);
     $('qt-empty').classList.add('hidden'); $('qt-content').classList.remove('hidden');
     const n = $('p-name'); n.textContent = S.name; n.style.color = rv.c;
-    $('p-avatar').src = `https://minotar.net/helm/${d.uuid}/96.png`;
+    $('p-avatar').src = `https://vzge.me/bust/${d.uuid}.png`;
     const cs = getComputedStyle(n);
     const r = $('p-rank'); r.className = ''; r.style.cssText = `font-size:${cs.fontSize};line-height:${cs.lineHeight};font-weight:${cs.fontWeight};margin:0 10px 0 0;color:${rv.c};display:${rv.tag ? 'inline' : 'none'}`; r.innerHTML = rv.tag;
     const nameRow = n.parentElement; if (nameRow) { nameRow.style.display = 'flex'; nameRow.style.alignItems = 'baseline'; }
@@ -281,6 +282,7 @@
     let body = '';
     if (!done) {
       const paired = x.lines.length === x.obj.length && x.obj.length > 0;
+      const getPct = (curr, target) => target > 0 ? Math.round((curr / target) * 100) : 0;
       if (paired) body = x.lines.map((l, i) => `<div class="qt-obj"><div class="qt-obj-head"><span>${esc(l)}</span><b>${cnt(x.obj[i])}</b></div><div class="qt-bar"><i style="width:${Math.round(x.obj[i][0] / x.obj[i][1] * 100)}%"></i></div></div>`).join('');
       else body = (x.lines.length ? `<div class="qt-lines">${x.lines.map(l => `<div>${esc(l)}</div>`).join('')}</div>` : '') +
         x.obj.map(o => `<div class="qt-obj"><div class="qt-obj-head"><span></span><b>${cnt(o)}</b></div><div class="qt-bar"><i style="width:${Math.round(o[0] / o[1] * 100)}%"></i></div></div>`).join('');
