@@ -136,9 +136,9 @@ html[data-theme="amethyst"] {
 html[data-theme="cherry"] {
   --bg: #fff5f7;
   --bg-glow: rgba(255, 179, 198, 0.15);
-  --surface: rgba(255, 240, 245, 0.78);
+  --surface: rgba(255, 250, 251, 0.85);
   --surface-block: #fff0f5;
-  --surface-2: rgba(255, 245, 250, 0.8);
+  --surface-2: rgba(255, 250, 252, 0.938);
   --border: rgba(255, 179, 198, 0.45);
   --border-strong: #ff85a1;
   --input-bg: #ffffff;
@@ -243,8 +243,8 @@ html[data-theme="midnight"] .mc-container,
 html[data-theme="amethyst"] .mc-container {
   background: rgba(35, 35, 35, 0.95) !important;
   border-color: rgba(255, 255, 255, 0.15) !important;
-  border-right-color: rgba(0, 0, 0, 0.8) !important;
-  border-bottom-color: rgba(0, 0, 0, 0.8) !important;
+  border-right-color: rgba(0, 0, 0, 0.4) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Remove text shadows across all themes so Dark Ember isn't the odd one out */
