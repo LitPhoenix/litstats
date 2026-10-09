@@ -5,6 +5,8 @@ let buildQuestResponse = null, libError = null;
 try { ({ buildQuestResponse } = require('./_quest_lib')); } catch (e) { libError = e.message; }
 
 let defsCache = null, defsTime = 0, gamesCache = null, gamesTime = 0;
+// Short in-memory cache so the calendar's follow-up (history) request doesn't cost a second Hypixel call
+const playerCache = new Map();
 
 async function safeFetchJSON(url, options = {}) {
   const res = await fetch(url, options);
@@ -56,7 +58,7 @@ module.exports = async (req, res) => {
       targetUuid = (await m.json()).id;
     } catch (e) { return res.status(500).json({ error: 'Mojang API error' }); }
   }
-  if (!targetUuid) return res.status(400).json({ error: 'Missing UUID or Name' });
+  if (!targetUuid && req.query.debug !== 'summary') return res.status(400).json({ error: 'Missing UUID or Name' });
 
   const API_KEY = process.env.HYPIXEL_API_KEY;
   if (!API_KEY) return res.status(500).json({ error: 'Server missing API Key' });
@@ -75,7 +77,19 @@ module.exports = async (req, res) => {
     }
     if (!defsCache) return res.status(502).json({ error: 'Quest definitions unavailable' });
 
-    const pData = await safeFetchJSON(`https://api.hypixel.net/v2/player?uuid=${targetUuid}`, { headers: { 'API-Key': API_KEY } });
+    // ?debug=summary -> how the site classifies quests (daily/weekly/special per game). No player needed.
+    if (req.query.debug === 'summary') return res.status(200).json(require('./_quest_lib').summarizeDefs(defsCache, gamesCache));
+
+    let pData;
+    const hit = playerCache.get(targetUuid);
+    if (hit && Date.now() - hit.t < 45000) pData = hit.data;
+    else {
+      pData = await safeFetchJSON(`https://api.hypixel.net/v2/player?uuid=${targetUuid}`, { headers: { 'API-Key': API_KEY } });
+      if (pData && pData.success && pData.player) {
+        playerCache.set(targetUuid, { t: Date.now(), data: pData });
+        if (playerCache.size > 100) playerCache.delete(playerCache.keys().next().value);
+      }
+    }
     if (pData.rateLimited) return res.status(429).json({ error: 'Hypixel rate limit reached. Try again shortly.' });
     if (!pData.success || !pData.player) return res.status(404).json({ error: 'Player not found on Hypixel' });
 
@@ -93,6 +107,11 @@ module.exports = async (req, res) => {
     body.rank = getPlayerRank(pData.player);
     body.rankPlusColor = pData.player.rankPlusColor || 'RED';
     body.monthlyRankColor = pData.player.monthlyRankColor || 'GOLD';
+    // Feed the per-game leaderboard (Upstash). Waits briefly so Vercel doesn't cut it off; never blocks the response for long.
+    if (req.query.history !== '1') {
+      try { await Promise.race([require('./_quest_board').record(body.uuid, pData.player.displayname, body.byGame), new Promise(r => setTimeout(r, 800))]); }
+      catch (e) { console.warn('quest board skipped:', e.message); }
+    }
     return res.status(200).json(body);
   } catch (error) {
     console.error('quest api error:', error);
