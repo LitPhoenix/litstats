@@ -1,0 +1,185 @@
+/* Questing page. Reuses cabinet.css (profile card, search bar), leaderboard.css (table) and maxgames.css (results layout). */
+
+/* ---- Surfaces: solid cards instead of see-through ones. Falls back to light/dark by OS or the site's theme attribute. ---- */
+:root {
+  --qt-card: #16161bab; --qt-card-2: #1d1d24be; --qt-line: rgba(255,255,255,.08); --qt-line-2: rgba(255,255,255,.18);
+  --qt-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px rgba(0,0,0,.28);
+  --qt-green: #34d27b; --qt-blue: #5aa7ff; --qt-purple: #b982ff;
+}
+@media (prefers-color-scheme: light) {
+  :root { --qt-card: #ffffffba; --qt-card-2: #f6f3efba; --qt-line: rgba(40,25,10,.10); --qt-line-2: rgba(40,25,10,.22); --qt-shadow: 0 6px 20px rgba(60,40,20,.08); --qt-green: #1f9d57; --qt-blue: #2a73d1; --qt-purple: #7d4bd6; }
+}
+:root[data-theme="light"], html.light, body.light { --qt-card: #ffffffa4; --qt-card-2: #f6f3ef98; --qt-line: rgba(40,25,10,.10); --qt-line-2: rgba(40,25,10,.22); --qt-shadow: 0 6px 20px rgba(60,40,20,.08); --qt-green: #1f9d57; --qt-blue: #2a73d1; --qt-purple: #7d4bd6; }
+:root[data-theme="dark"], html.dark, body.dark { --qt-card: #16161ba2; --qt-card-2: #1d1d249e; --qt-line: rgba(255,255,255,.08); --qt-line-2: rgba(255,255,255,.18); --qt-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px rgba(0,0,0,.28); --qt-green: #34d27b; --qt-blue: #5aa7ff; --qt-purple: #b982ff; }
+
+html { scrollbar-gutter: stable; }
+main { max-width: min(1560px, 96vw); }
+#panel-player, #qt-content { width: 100%; box-sizing: border-box; min-width: 0; }
+.hidden { display: none !important; }
+
+.qt-tabs { margin: 18px 0 20px; }
+.qt-empty { max-width: 520px; margin: 48px auto; text-align: center; color: var(--text-3); line-height: 1.55; font-size: 14px; }
+.qt-empty strong { display: block; color: var(--text-2); font-size: 16px; margin-bottom: 6px; }
+.qt-loading { font-size: 13px; color: var(--text-3); }
+
+/* Reset countdowns in the profile card */
+.qt-pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--qt-line); background: var(--qt-card-2); color: var(--text-2); font-size: 12px; font-weight: 600; }
+.qt-pill b { color: var(--text); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---- Summary cards ---- */
+.qt-totals { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 16px 0; }
+.qt-stat { padding: 14px 16px; border-radius: 14px; border: 1px solid var(--qt-line); background: var(--qt-card); box-shadow: var(--qt-shadow); }
+.qt-stat-label { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-3); }
+.qt-stat-value { margin-top: 4px; font-size: 26px; font-weight: 700; color: var(--text); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.qt-stat-value small { font-size: 14px; font-weight: 500; color: var(--text-3); }
+.qt-stat-sub { margin-top: 6px; font-size: 12px; color: var(--text-3); }
+
+.qt-bar { height: 5px; border-radius: 5px; background: var(--qt-line); overflow: hidden; }
+.qt-bar > i { display: block; height: 100%; border-radius: 5px; background: var(--accent); }
+.qt-bar.done > i { background: var(--qt-green); }
+.qt-stat .qt-bar { margin-top: 10px; }
+
+/* ---- Toolbar (sticks under the nav while you scroll the board) ---- */
+.qt-toolbar { position: sticky; top: 68px; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px; margin: 0 0 12px; border-radius: 14px; border: 1px solid var(--qt-line); background: var(--qt-card); box-shadow: var(--qt-shadow); }
+.qt-seg { display: inline-flex; padding: 3px; border-radius: 10px; border: 1px solid var(--qt-line); background: var(--qt-card-2); }
+.qt-seg button { padding: 6px 14px; border: 0; border-radius: 8px; background: transparent; color: var(--text-2); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.qt-seg button.active { background: var(--accent-soft); color: var(--text); }
+.qt-select, .qt-input { height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--qt-line); background: var(--qt-card-2); color: var(--text); font: inherit; font-size: 13px; }
+.qt-input { flex: 1; min-width: 160px; }
+.qt-select:focus, .qt-input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.qt-toggle { height: 36px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--qt-line); background: var(--qt-card-2); color: var(--text-2); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.qt-toggle[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+#qt-toggle-easy { margin-left: auto; }
+#qt-toggle-done { margin-left: 0; }
+
+.qt-fast { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; margin: 0 2px 14px; font-size: 13px; color: var(--text-3); }
+.qt-fast b { color: var(--text); font-weight: 700; font-variant-numeric: tabular-nums; }
+.qt-fast-links { margin-left: auto; display: inline-flex; gap: 14px; }
+.qt-fast-links button { border: 0; background: none; color: var(--text-3); font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; padding: 0; }
+.qt-fast-links button:hover { color: var(--text); }
+
+/* ---- Board: games dealt into columns; each card is independent ---- */
+.qt-cols { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 12px; align-items: start; }
+.qt-col { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.qt-flat { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 12px; align-items: start; }
+.qt-none { padding: 26px; text-align: center; color: var(--text-3); font-size: 13px; border: 1px dashed var(--qt-line-2); border-radius: 14px; }
+
+.qt-group, .qt-fcard { position: relative; border-radius: 14px; border: 1px solid var(--qt-line); background: var(--qt-card); box-shadow: var(--qt-shadow); }
+.qt-fcard { padding: 2px 14px; }
+.qt-group-head { position: relative; display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 14px; border: 0; background: none; color: var(--text); font: inherit; text-align: left; cursor: pointer; border-radius: 14px; }
+.qt-group-head:hover { background: var(--qt-card-2); }
+.qt-gicon { width: 26px; height: 26px; object-fit: contain; flex: none; }
+.qt-gicon.sm { width: 18px; height: 18px; margin-right: 8px; vertical-align: -4px; }
+.qt-gname { font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qt-gcount { font-size: 12px; font-weight: 700; color: var(--text-3); padding: 2px 8px; border-radius: 999px; background: var(--qt-card-2); font-variant-numeric: tabular-nums; }
+.qt-group.complete .qt-gcount { color: var(--qt-green); }
+.qt-gspace { flex: 1; }
+.qt-gxp { font-size: 12px; color: var(--text-3); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.qt-chev { width: 8px; height: 8px; border-right: 2px solid var(--text-3); border-bottom: 2px solid var(--text-3); transform: rotate(45deg); margin: -3px 2px 0 2px; transition: transform .15s; flex: none; }
+.qt-group.closed .qt-chev { transform: rotate(-45deg); margin: 0 4px 0 0; }
+.qt-gbar { position: absolute; left: 14px; right: 14px; bottom: 0; height: 2px; background: var(--qt-line); border-radius: 2px; overflow: hidden; }
+.qt-gbar i { display: block; height: 100%; background: var(--accent); }
+.qt-group.complete .qt-gbar i { background: var(--qt-green); }
+.qt-group-body { padding: 0 14px 6px; }
+.qt-group.closed .qt-group-body { display: none; }
+
+.qt-sub { display: flex; justify-content: space-between; margin: 8px 0 0; padding-top: 8px; border-top: 1px solid var(--qt-line); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); }
+.qt-sub:first-child { border-top: 0; margin-top: 0; padding-top: 2px; }
+
+/* Quest row = checklist item */
+.qt-q { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; column-gap: 10px; row-gap: 4px; padding: 10px 0; border-top: 1px solid var(--qt-line); align-items: center; }
+.qt-group-body > .qt-q:first-child, .qt-sub + .qt-q, .qt-fcard .qt-q { border-top: 0; }
+.qt-st { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--qt-line-2); box-sizing: border-box; position: relative; }
+.qt-st.progress { border: 0; background: conic-gradient(var(--accent) calc(var(--p) * 1%), var(--qt-line-2) 0); }
+.qt-st.progress::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--qt-card); }
+.qt-st.done { background: var(--qt-green); }
+.qt-st.done::after { content: ''; position: absolute; left: 5px; top: 2px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.qt-q-top { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 6px; min-width: 0; }
+.qt-q-name { font-size: 13.5px; font-weight: 650; color: var(--text); }
+.qt-q-side { display: flex; align-items: center; gap: 6px; white-space: nowrap; font-size: 11.5px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.qt-ok { color: var(--qt-green); font-weight: 600; }
+.qt-q-body { grid-column: 2 / 4; min-width: 0; }
+.qt-q.done .qt-q-name { color: var(--text-3); font-weight: 600; }
+
+.qt-lines { font-size: 12px; line-height: 1.45; color: var(--text-2); margin-bottom: 6px; }
+.qt-obj + .qt-obj, .qt-lines + .qt-obj + .qt-obj { margin-top: 8px; }
+.qt-obj-head { display: grid; grid-template-columns: minmax(0, 1fr) 64px; column-gap: 10px; align-items: baseline; font-size: 12px; line-height: 1.4; color: var(--text-2); margin-bottom: 4px; }
+.qt-obj-head b { text-align: right; font-weight: 600; color: var(--text-3); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+
+/* pills */
+.qt-p { padding: 1px 7px; border-radius: 999px; font-size: 10px; font-weight: 700; line-height: 1.5; border: 1px solid currentColor; white-space: nowrap; }
+.qt-p.easy { color: var(--qt-green); }
+.qt-p.once { color: var(--qt-blue); }
+.qt-p.tag, .qt-p.special { color: var(--qt-purple); }
+.qt-p.daily { color: var(--text-3); border-color: var(--qt-line-2); }
+.qt-p.weekly { color: var(--accent); }
+
+.qt-info { display: inline-block; color: var(--text-3); cursor: help; font-size: 14px; line-height: 1; outline: 0; }
+.qt-info:hover, .qt-info:focus { color: var(--text); }
+
+/* ---- Calendar ---- */
+.qt-card { width: 100%; box-sizing: border-box; min-width: 0; margin-top: 16px; padding: 18px 20px; border-radius: 14px; border: 1px solid var(--qt-line); background: var(--qt-card); box-shadow: var(--qt-shadow); }
+.qt-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.qt-card-head h2 { font-size: 18px; font-weight: 700; }
+.qt-card-actions { display: flex; align-items: center; gap: 10px; }
+.qt-cal-stats { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-bottom: 16px; min-height: 54px; }
+.qt-cal-stats div { font-size: 12px; color: var(--text-3); }
+.qt-cal-stats b { display: block; font-size: 18px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.qt-cal-scroll { overflow-x: auto; padding-bottom: 6px; }
+#qt-cal { display: inline-grid; grid-template-columns: 28px auto; gap: 4px 6px; }
+.qt-cal-days { display: grid; grid-template-rows: repeat(7, 13px); gap: 3px; font-size: 10px; color: var(--text-3); line-height: 13px; margin-top: 18px; }
+.qt-cal-months, .qt-cal-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 13px; gap: 3px; }
+.qt-cal-months { height: 14px; font-size: 10px; color: var(--text-3); white-space: nowrap; }
+.qt-cal-grid { grid-template-rows: repeat(7, 13px); }
+.qt-cal-grid button, .qt-cal-legend i { width: 13px; height: 13px; border-radius: 3px; border: 0; padding: 0; display: block; }
+.qt-cal-grid button { cursor: pointer; }
+.qt-cal-grid button:hover { outline: 2px solid var(--text-3); outline-offset: 1px; }
+.qt-cal-grid button.sel { outline: 2px solid var(--accent); outline-offset: 1px; }
+.lv0 { background: var(--qt-line); } .lv1 { background: color-mix(in srgb, var(--accent) 30%, var(--qt-line)); }
+.lv2 { background: color-mix(in srgb, var(--accent) 55%, var(--qt-line)); } .lv3 { background: color-mix(in srgb, var(--accent) 80%, var(--qt-line)); }
+.lv4 { background: var(--accent); }
+.qt-cal-legend { display: flex; align-items: center; gap: 4px; justify-content: flex-end; margin-top: 8px; font-size: 11px; color: var(--text-3); }
+.qt-cal-legend span:first-child { margin-right: 4px; } .qt-cal-legend span:last-child { margin-left: 4px; }
+
+.qt-scrub { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
+.qt-scrub input[type=range] { flex: 1; accent-color: var(--accent); min-width: 0; }
+.qt-scrub button { height: 32px; min-width: 32px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--qt-line); background: var(--qt-card-2); color: var(--text-2); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.qt-scrub button:hover { border-color: var(--accent); color: var(--text); }
+
+/* Day panel has a fixed size so scrubbing never resizes the card */
+.qt-day { min-height: 380px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--qt-line); font-size: 13px; color: var(--text-3); }
+.qt-day h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.qt-day-sum { font-size: 13px; color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qt-day-sum b { color: var(--text); }
+.qt-tz { color: var(--text-3); font-size: 11px; margin-left: 4px; }
+.qt-day-games { font-size: 12px; color: var(--text-3); margin: 2px 0 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qt-hours-wrap { margin-bottom: 10px; }
+.qt-hours-wrap.empty { opacity: .3; }
+.qt-hours { display: flex; align-items: flex-end; gap: 2px; height: 40px; }
+.qt-hours b { flex: 1; height: 100%; display: flex; align-items: flex-end; cursor: default; }
+.qt-hours b i { display: block; width: 100%; background: var(--accent); border-radius: 2px 2px 0 0; min-height: 2px; opacity: .85; }
+.qt-hours b:hover i { opacity: 1; }
+.qt-hours-axis { display: grid; grid-template-columns: repeat(4, 1fr); font-size: 10px; color: var(--text-3); margin-top: 3px; }
+.qt-hours-cap { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+.qt-day-list { list-style: none; margin: 0; padding: 0 4px 0 0; display: grid; gap: 6px; height: 200px; max-height: 200px; overflow-y: auto; scrollbar-gutter: stable; align-content: start; }
+.qt-day-list li { display: flex; align-items: center; gap: 8px; min-width: 0; color: var(--text-2); }
+.qt-day-list li img { width: 18px; height: 18px; object-fit: contain; flex: none; }
+.qt-li-name { font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qt-li-game { color: var(--text-3); font-size: 12px; white-space: nowrap; }
+.qt-day-list li em { font-style: normal; font-size: 10px; font-weight: 700; color: var(--text-3); margin-left: auto; }
+.qt-day-list li time { min-width: 84px; text-align: right; font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+
+/* ---- Most quests by game ---- */
+.mg-picker { display: flex; flex-direction: column; gap: 6px; }
+.qt-game-btn { display: flex; justify-content: space-between; align-items: center; gap: 10px; width: 100%; padding: 9px 12px; border-radius: 10px; border: 1px solid var(--qt-line); background: var(--qt-card); color: var(--text-2); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; text-align: left; }
+.qt-game-btn b { font-weight: 700; color: var(--text-3); font-size: 12px; font-variant-numeric: tabular-nums; }
+.qt-game-btn.active { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+.qt-game-btn-name { display: inline-flex; align-items: center; }
+.mg-results-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+
+@media (max-width: 1180px) { .qt-totals { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .qt-toolbar { position: static; }
+  #qt-toggle-easy { margin-left: 0; }
+  .qt-card { padding: 14px; }
+}
