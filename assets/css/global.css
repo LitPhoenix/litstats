@@ -542,7 +542,7 @@ span[data-tag="renown"] {
   border-radius: 10px;
   padding: 16px;
   width: 270px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4) !important;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1029,7 +1029,7 @@ input[type="search"]::placeholder,
   border-radius: 8px;
   padding: 6px;
   min-width: 190px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4) !important;
   display: flex;
   flex-direction: column;
   gap: 4px;
