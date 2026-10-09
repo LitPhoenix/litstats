@@ -12,7 +12,15 @@ const litHeader = `
 
       <!-- Desktop Nav with Hover Dropdowns -->
       <nav class="nav-links desktop-nav">
-        <a href="index.html" class="nav-btn">AP Tracker</a>
+        <div class="nav-dropdown-wrapper">
+          <button type="button" class="nav-btn nav-dropdown-btn">
+            Trackers ${navChevron}
+          </button>
+          <div id="nav-trackers-menu" class="nav-dropdown-menu">
+            <a href="index.html"><img src="img/diamond.png" alt=""> AP Tracker</a>
+            <a href="questing.html"><img src="img/xp.png" alt=""> Quest Tracker</a>
+          </div>
+        </div>
         
         <!-- Leaderboards Dropdown -->
         <div class="nav-dropdown-wrapper">
@@ -105,7 +113,17 @@ const litHeader = `
 
     <!-- Mobile Navigation -->
     <nav class="mobile-nav" id="mobileNav">
-      <a href="index.html" class="nav-btn">AP Tracker</a>
+      <!-- Mobile Trackers Accordion -->
+      <div class="mobile-accordion">
+        <button type="button" class="nav-btn mobile-accordion-header" onclick="toggleMobileAccordion(this)">
+          <span>Trackers</span>
+          ${navChevron}
+        </button>
+        <div class="mobile-accordion-body hidden">
+          <a href="index.html" class="nav-btn sub-link"><img src="img/diamond.png" alt=""> AP Tracker</a>
+          <a href="questing.html" class="nav-btn sub-link"><img src="img/xp.png" alt=""> Quest Tracker</a>
+        </div>
+      </div>
       
       <div class="mobile-accordion">
         <button type="button" class="nav-btn mobile-accordion-header" onclick="toggleMobileAccordion(this)">
