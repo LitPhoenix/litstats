@@ -6,7 +6,7 @@
 :root, html[data-theme="light"] {
   --bg: #fdfaf8;
   --bg-glow: rgba(255, 100, 0, 0.02); 
-  --surface: rgba(255, 253, 253, 0.65);
+  --surface: rgba(255, 253, 253, 0.75);
   --surface-block: #ffffff;
   --surface-2: rgba(255, 245, 240, 0.8); 
   --border: rgba(221, 208, 208, 0.6);
