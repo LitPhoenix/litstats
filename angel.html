@@ -187,7 +187,7 @@
     gap: 10px;
     font-size: 1.35rem;
     font-weight: 700;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
   }
 
   .p-level-badge {
@@ -870,9 +870,9 @@ function parseMinecraftColors(text) {
 function getRankBaseColourHex(rank, monthlyRankColor) {
   if (!rank || rank === 'NON') return '#AAAAAA';
   const clean = rank.replace(/\[|\]/g, ''); 
-  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#36e9e9' : '#FFAA00';
   if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
-  if (clean.includes('MVP')) return '#55FFFF'; 
+  if (clean.includes('MVP')) return '#36e9e9'; 
   if (clean.includes('VIP')) return '#55FF55'; 
   if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
   if (clean.includes('PIG')) return '#FF55FF'; 
