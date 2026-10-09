@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>LitStats - Questing</title>
+  <meta name="description" content="Track your Hypixel daily and weekly quests, see your questing history on a calendar, and find the top questers in every game.">
+  <meta name="theme-color" content="#ff5100">
+
+  <link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/cabinet.css">      <!-- profile card, search bar, pin -->
+  <link rel="stylesheet" href="assets/css/leaderboard.css">  <!-- table shell for the top questers tab -->
+  <link rel="stylesheet" href="assets/css/maxgames.css">     <!-- game list + results layout (reused) -->
+  <link rel="stylesheet" href="assets/css/questing.css">
+  <link rel="preload" as="image" href="img/lq-bg-embers.png" media="(prefers-color-scheme: dark)">
+  <link rel="preload" as="image" href="img/lq-bg-embers-light.png" media="(prefers-color-scheme: light)">
+</head>
+<body>
+
+  <script src="assets/js/components.js"></script>
+
+<main>
+  <div class="top-lookup-bar">
+    <div class="search-group">
+      <div class="search-wrapper">
+        <input type="text" id="top-search-input" placeholder="Search Player Username..." onkeydown="if(event.key==='Enter')handleTopSearch()">
+        <button class="clear-btn" onclick="clearSearch('top-search-input')">×</button>
+      </div>
+      <button class="primary-btn search-icon-btn" onclick="handleTopSearch()" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+    </div>
+    <div class="pin-group">
+      <button class="settings-btn pin-btn" onclick="pinCurrentPlayer()" title="Pin this player">📌</button>
+      <div id="pinned-player-container" class="hidden"></div>
+    </div>
+  </div>
+
+  <div id="errorBox" class="loading-msg hidden" style="color: var(--red); text-align: center; margin: 20px auto;"></div>
+
+  <div class="tabs qt-tabs">
+    <button class="tab-btn active" data-tab="player">Player Quests</button>
+    <button class="tab-btn" data-tab="top">Most Quests by Game</button>
+  </div>
+
+  <!-- ============ PLAYER TAB ============ -->
+  <section id="panel-player">
+    <div id="qt-empty" class="qt-empty">
+      <strong>Look up a player</strong>
+      See what they have left today and this week, their progress, and a calendar of every quest they have ever finished.
+    </div>
+
+    <div id="qt-content" class="hidden">
+      <div class="profile-card qt-profile">
+        <div class="profile-top">
+          <img id="p-avatar" class="player-avatar" src="" alt="Avatar">
+          <div class="player-info-container">
+            <div class="player-name-row">
+              <span class="mc-rank" id="p-rank" style="display:none;"></span>
+              <h1 id="p-name" style="margin:0;">Loading...</h1>
+            </div>
+            <div class="stat-row" id="qt-reset-row"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qt-totals" id="qt-totals"></div>
+
+      <div class="qt-toolbar">
+        <div class="qt-seg" id="qt-kind" role="tablist" aria-label="Quest type">
+          <button type="button" class="active" data-kind="all">All</button>
+          <button type="button" data-kind="daily">Daily</button>
+          <button type="button" data-kind="weekly">Weekly</button>
+          <button type="button" data-kind="special" class="hidden">Special</button>
+        </div>
+        <select id="qt-game" class="qt-select" aria-label="Game"></select>
+        <select id="qt-sort" class="qt-select" aria-label="Sort quests">
+          <option value="game">Group by game</option>
+          <option value="easy">Easiest first</option>
+          <option value="close">Closest to done</option>
+          <option value="xp">Most XP first</option>
+        </select>
+        <input type="text" id="qt-filter" class="qt-input" placeholder="Filter quests..." autocomplete="off">
+        <button type="button" id="qt-toggle-easy" class="qt-toggle" aria-pressed="false">Easy only</button>
+        <button type="button" id="qt-toggle-done" class="qt-toggle" aria-pressed="false"></button>
+      </div>
+
+      <div class="qt-fast" id="qt-fast"></div>
+
+      <div id="qt-lists"></div>
+
+      <div class="qt-card" id="qt-calendar-card">
+        <div class="qt-card-head">
+          <h2>Questing calendar</h2>
+          <div class="qt-card-actions">
+            <select id="qt-year" class="qt-select hidden" aria-label="Year"></select>
+            <button type="button" id="qt-cal-open" class="qt-toggle" style="margin-left:0">Show calendar</button>
+          </div>
+        </div>
+        <div id="qt-cal-body" class="hidden">
+          <div class="qt-cal-stats" id="qt-cal-stats"></div>
+          <div class="qt-cal-scroll"><div id="qt-cal"></div></div>
+          <div class="qt-cal-legend"><span>Less</span><i class="lv0"></i><i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i><span>More</span></div>
+          <div id="qt-day" class="qt-day"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TOP QUESTERS TAB ============ -->
+  <section id="panel-top" class="hidden">
+    <div class="loading-msg" id="top-loading">Loading top questers...</div>
+    <div class="qt-empty hidden" id="top-missing">
+      <strong>No per-game rankings yet</strong>
+      Rankings fill in automatically as players are looked up on this page.
+    </div>
+    <div class="mg-layout hidden" id="top-layout">
+      <aside class="mg-picker" id="top-picker" aria-label="Choose a game"></aside>
+      <section class="mg-results">
+        <div class="mg-results-head" id="top-head"></div>
+        <div class="search-container" style="margin-bottom:12px;"><input type="text" id="top-filter" class="search-input" placeholder="Search players..." autocomplete="off"></div>
+        <div class="table-wrap">
+          <div class="spark-bg"></div>
+          <div class="table-inner">
+            <table style="table-layout: fixed; width: 100%;">
+              <thead><tr>
+                <th class="rank" style="width:12%;">#</th><th style="width:58%;">Player</th><th style="text-align:right;width:30%;">Quests</th>
+              </tr></thead>
+              <tbody id="top-tbody"></tbody>
+            </table>
+            <div class="table-footer"><span class="dot"></span>Updated: <span id="top-updated">-</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<div class="bottom-fade"></div>
+<div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
+
+<script src="assets/js/global.js"></script>
+<script src="assets/js/credits.js"></script>
+<script src="assets/js/quest-overrides.js"></script>
+<script src="assets/js/questing.js"></script>
+</body>
+</html>
