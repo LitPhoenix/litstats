@@ -863,7 +863,7 @@ function getPlusColourHex(colourName) {
 function getRankBaseColourHex(rank, monthlyRankColor) {
   if (!rank || rank === 'NON') return 'var(--text-3)';
   const clean = rank.replace(/\[|\]/g, ''); 
-  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#55FFFF' : '#FFAA00';
+  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#36e9e9' : '#FFAA00';
   if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
   if (clean.includes('MVP')) return '#36e9e9'; 
   if (clean.includes('VIP')) return '#55FF55'; 
@@ -1103,9 +1103,9 @@ function applyAchievementTags(ach) {
         
         if (tagData.type === 'Prestige' && tagData.level) {
           let lvl = parseInt(tagData.level, 10);
-          let bCol = lvl <= 4 ? '#5555FF' : lvl <= 9 ? '#FFFF55' : lvl <= 14 ? '#FFAA00' : 
+          let bCol = lvl <= 4 ? '#5555FF' : lvl <= 9 ? '#FACC15' : lvl <= 14 ? '#FFAA00' : 
                   lvl <= 19 ? '#FF5555' : lvl <= 24 ? '#AA00AA' : lvl <= 29 ? '#FF55FF' : 
-                  lvl <= 34 ? '#FFFFFF' : lvl <= 39 ? '#55FFFF' : lvl <= 44 ? '#0000AA' : 
+                  lvl <= 34 ? '#FFFFFF' : lvl <= 39 ? 'var(--blue)' : lvl <= 44 ? '#0000AA' : 
                   lvl <= 47 ? '#000000' : lvl <= 49 ? '#AA0000' : '#555555';
           
           const romanMap = { L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
@@ -1116,7 +1116,7 @@ function applyAchievementTags(ach) {
             rStr += i.repeat(q);
           }
           
-          tagsHtml += `<span class="sleek-tag" style="--tag-color: ${bCol};"><span style="color: ${bCol}; font-weight: bold;">[</span><span style="color: var(--text);">${rStr}</span><span style="color: ${bCol}; font-weight: bold;">]</span></span>`;
+          tagsHtml += `<span class="sleek-tag" style="--tag-color: ${bCol};"><span style="color: var(--text);">${rStr}</span></span>`;
         } else {
           let tagText;
           if (tagData.type === 'Map') {
@@ -1138,7 +1138,7 @@ function applyAchievementTags(ach) {
     }
     
     if (tagData.renown) tagsHtml += ` <span class="sleek-tag" data-tag="renown" style="margin-left: 4px;">${tagData.renown} Renown</span>`;
-    if (tagData.souls) tagsHtml += ` <span class="sleek-tag" style="--tag-color: #55ffff; margin-left: 4px;">${tagData.souls} Souls</span>`;
+    if (tagData.souls) tagsHtml += ` <span class="sleek-tag" style="--tag-color: #41dada; margin-left: 4px;">${tagData.souls} Souls</span>`;
     
     if (tagData.tip) {
       let linkedTip = tagData.tip
@@ -2071,6 +2071,15 @@ async function initCabinet(explicitLookupId) {
       }
     } catch (err) {
       console.log("Could not load hunters data");
+    }
+
+    try {
+      const archiveRes = await fetch('ap_history_archive.json');
+      if (archiveRes.ok) {
+        historicalArchiveData = await archiveRes.json();
+      }
+    } catch (err) {
+      console.log("Could not load historical archive data");
     }
 
     renderCabinet(data);
