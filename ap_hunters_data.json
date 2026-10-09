@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-09T11:01:52.215Z",
+  "last_update": "2026-10-09T17:42:45.456Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2914,9 +2914,9 @@
           "username": "xOptic",
           "uuid": "8c8ba6d440554b1886ad1777c5066282",
           "country": "Unknown",
-          "current_ap": 24065,
+          "current_ap": 24085,
           "last_month_ap": 24020,
-          "monthly_gain": 45,
+          "monthly_gain": 65,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -3000,9 +3000,9 @@
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
-          "current_ap": 23740,
+          "current_ap": 23750,
           "last_month_ap": 23725,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -3089,6 +3089,18 @@
           ]
         },
         {
+          "username": "huvo",
+          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
+          "country": "Unknown",
+          "current_ap": 23440,
+          "last_month_ap": 23430,
+          "monthly_gain": 10,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Wool Games"
+          ]
+        },
+        {
           "username": "Jyahp",
           "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
           "country": "Unknown",
@@ -3099,18 +3111,6 @@
             "Max Pit",
             "Max SkyBlock",
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "huvo",
-          "uuid": "01834d8a3c7a49c796589979d7a9ab74",
-          "country": "Unknown",
-          "current_ap": 23430,
-          "last_month_ap": 23430,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Wool Games"
           ]
         },
         {
@@ -3189,6 +3189,23 @@
       ]
     },
     {
+      "country": "Ecuador",
+      "score": 450,
+      "top_players": [
+        {
+          "username": "SATURNO",
+          "uuid": "be11708dcb0946bd9608d29af61269ec",
+          "country": "Ecuador",
+          "current_ap": 26045,
+          "last_month_ap": 25860,
+          "monthly_gain": 185,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        }
+      ]
+    },
+    {
       "country": "South Korea",
       "score": 445,
       "top_players": [
@@ -3217,33 +3234,16 @@
       ]
     },
     {
-      "country": "Ecuador",
-      "score": 430,
-      "top_players": [
-        {
-          "username": "SATURNO",
-          "uuid": "be11708dcb0946bd9608d29af61269ec",
-          "country": "Ecuador",
-          "current_ap": 26025,
-          "last_month_ap": 25860,
-          "monthly_gain": 165,
-          "maxGames": [
-            "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Spain",
-      "score": 405,
+      "score": 425,
       "top_players": [
         {
           "username": "julikabuwu",
           "uuid": "dda3fc724a8f467b8a8033aadde1b569",
           "country": "Spain",
-          "current_ap": 26000,
+          "current_ap": 26020,
           "last_month_ap": 26000,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
