@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-10T01:33:57.087Z",
+ "last_update": "2026-10-10T07:54:34.350Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-10T01:33:56.659Z",
+ "source_update": "2026-10-10T07:54:33.956Z",
  "catalog": [
   {
    "id": "uhc",
@@ -1664,11 +1664,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -2964,11 +2964,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -3938,11 +3938,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "3b6994dadd264c7986ffd85df3db4289",
+     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+     "uuid": "3b6994dadd264c7986ffd85df3db4289",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -5030,7 +5030,7 @@
    "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
    "username": "0HfLUfFIE",
    "country": "Hong Kong",
-   "ap": 23990,
+   "ap": 24015,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "AQUA"
@@ -5120,7 +5120,7 @@
    "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
    "username": "ILiveInAWall",
    "country": "New Zealand",
-   "ap": 26800,
+   "ap": 26780,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "AQUA"
@@ -5278,6 +5278,15 @@
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
   },
+  "7638efa55b784c41ac34a4c59b2b86df": {
+   "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+   "username": "Summer_Albert",
+   "country": "Taiwan",
+   "ap": 27110,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
   "3b6994dadd264c7986ffd85df3db4289": {
    "uuid": "3b6994dadd264c7986ffd85df3db4289",
    "username": "BU1LDERS",
@@ -5286,15 +5295,6 @@
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "AQUA"
-  },
-  "7638efa55b784c41ac34a4c59b2b86df": {
-   "uuid": "7638efa55b784c41ac34a4c59b2b86df",
-   "username": "Summer_Albert",
-   "country": "Taiwan",
-   "ap": 27100,
-   "rank": "MVP++",
-   "rankPlusColor": "DARK_BLUE",
-   "monthlyRankColor": "GOLD"
   },
   "e3292ca36c5e43cbacd01c52adaca375": {
    "uuid": "e3292ca36c5e43cbacd01c52adaca375",
@@ -5525,7 +5525,7 @@
    "uuid": "be11708dcb0946bd9608d29af61269ec",
    "username": "SATURNO",
    "country": "Ecuador",
-   "ap": 26055,
+   "ap": 26090,
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"

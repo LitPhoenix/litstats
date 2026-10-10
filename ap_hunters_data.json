@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-10T01:33:56.659Z",
+  "last_update": "2026-10-10T07:54:33.956Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2410,7 +2410,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1878,
+      "score": 1868,
       "top_players": [
         {
           "username": "GusTheMonkey",
@@ -2425,9 +2425,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26800,
+          "current_ap": 26780,
           "last_month_ap": 26800,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games",
@@ -2579,15 +2579,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1505,
+      "score": 1515,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 27100,
+          "current_ap": 27110,
           "last_month_ap": 27065,
-          "monthly_gain": 35,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -3200,15 +3200,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 460,
+      "score": 495,
       "top_players": [
         {
           "username": "SATURNO",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 26055,
+          "current_ap": 26090,
           "last_month_ap": 25860,
-          "monthly_gain": 195,
+          "monthly_gain": 230,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -3476,9 +3476,9 @@
           "username": "0HfLUfFIE",
           "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
           "country": "Hong Kong",
-          "current_ap": 23990,
+          "current_ap": 24015,
           "last_month_ap": 23965,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Paintball",
             "Max Warlords",
