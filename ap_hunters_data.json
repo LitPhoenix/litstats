@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-10T07:54:33.956Z",
+  "last_update": "2026-10-10T14:07:04.261Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1722,9 +1722,9 @@
           "username": "Kinderfeest",
           "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
           "country": "The Netherlands",
-          "current_ap": 25500,
+          "current_ap": 25520,
           "last_month_ap": 25520,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock"
@@ -2690,9 +2690,9 @@
           "username": "EuanKC",
           "uuid": "24c6a4ad771b4328a49b9c6f9196ace3",
           "country": "Unknown",
-          "current_ap": 25415,
+          "current_ap": 25475,
           "last_month_ap": 25415,
-          "monthly_gain": 0,
+          "monthly_gain": 60,
           "maxGames": [
             "Max SkyBlock",
             "Max Murder Mystery",
@@ -2895,9 +2895,9 @@
           "username": "Cluelesss",
           "uuid": "82b6b4ca76004360af77d0d141a2e83a",
           "country": "Unknown",
-          "current_ap": 24275,
+          "current_ap": 24255,
           "last_month_ap": 24275,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -2998,6 +2998,18 @@
           ]
         },
         {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "Unknown",
+          "current_ap": 23750,
+          "last_month_ap": 23645,
+          "monthly_gain": 105,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Oleslaw2009",
           "uuid": "cef8bc211b264d54b07da2995d587098",
           "country": "Unknown",
@@ -3018,18 +3030,6 @@
           "maxGames": [
             "Max Arena Brawl",
             "Max TKR",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "Quent120",
-          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
-          "country": "Unknown",
-          "current_ap": 23715,
-          "last_month_ap": 23645,
-          "monthly_gain": 70,
-          "maxGames": [
-            "Max Wool Games",
             "Max Duels"
           ]
         },
