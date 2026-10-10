@@ -26,6 +26,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ap_history_archive.json
+          git add ap_history_archive.yml
           git commit -m "chore: record monthly AP snapshot" || exit 0
           git push
