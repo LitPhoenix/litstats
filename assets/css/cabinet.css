@@ -1075,7 +1075,7 @@ body.density-list .custom-skin-badge img, body.density-compact .custom-skin-badg
 /* =========================================================================
    List layout: streamlined header, icon-strip game filter
    ========================================================================= */
-body.density-list .profile-card { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 10px 14px; padding: 4px 2px; background: none !important; border: 0 !important; box-shadow: none !important; }
+body.density-list .profile-card { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 10px 14px; padding: 4px 2px; background: none !important; border: 0 !important; box-shadow: none !important; backdrop-filter: none !important ;  -webkit-backdrop-filter: none !important; }
 body.density-list .profile-card::before { display: none; }
 body.density-list .profile-bg-flag, body.density-list #p-avatar, body.density-list #p-top-rank-pill,
 body.density-list .maxed-stat-pill, body.density-list .ap-bar-bg, body.density-list #p-progress-label { display: none !important; }
