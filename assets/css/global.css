@@ -161,7 +161,7 @@ html[data-font="minecraft"] .ach-title,
 html[data-font="minecraft"] .dynamic-title-top h2,
 html[data-font="minecraft"] .tier-label,
 html[data-font="minecraft"] .hero-title {
-  font-weight: 700 !important;
+  font-weight: 500 !important;
 }
 
 html[data-theme="minecraft"] #p-name,
