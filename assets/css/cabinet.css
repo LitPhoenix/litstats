@@ -892,8 +892,8 @@ body[data-theme="dark"] .maxed-stat-pill {
 .tier-group.rare .game-badge.achieved:hover { border-color: rgba(205, 127, 50, 1); box-shadow: inset 0 0 20px rgba(205, 127, 50, 0.25), 0 8px 20px rgba(205, 127, 50, 0.3); }
 
 .tier-group.common .tier-label { color: #a8a29e; }
-.tier-group.common .game-badge.achieved { border-color: rgba(168, 162, 158, 0.5); box-shadow: inset 0 0 10px rgba(168, 162, 158, 0.08), 0 4px 10px rgba(0,0,0,0.15); }
-.tier-group.common .game-badge.achieved:hover { border-color: rgba(168, 162, 158, 0.9); box-shadow: inset 0 0 16px rgba(168, 162, 158, 0.15), 0 8px 18px rgba(0,0,0,0.25); }
+.tier-group.common .game-badge.achieved { border-color: rgba(121, 117, 114, 0.5); box-shadow: inset 0 0 10px rgba(168, 162, 158, 0.08), 0 4px 10px rgba(0,0,0,0.15); }
+.tier-group.common .game-badge.achieved:hover { border-color: rgba(139, 135, 132, 0.9); box-shadow: inset 0 0 16px rgba(168, 162, 158, 0.12), 0 8px 18px rgba(0,0,0,0.25); }
 
 .tier-group.legacy .tier-label { color: var(--red); }
 .tier-group.legacy .game-badge.achieved { border-style: dashed; border-color: rgba(239, 68, 68, 0.6); background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, var(--surface-2) 65%); }
@@ -964,3 +964,174 @@ body.light-theme .player-name-row h1, body.light-theme .player-name-row .mc-rank
 .sub-filter-pill.gold-pill { color: var(--gold); border-color: rgba(255, 170, 0, 0.4); }
 .sub-filter-pill.gold-pill:hover { border-color: var(--gold); background: rgba(255, 170, 0, 0.1); }
 .sub-filter-pill.gold-pill.active { background: color-mix(in srgb, var(--gold) 55%, transparent); color: var(--text); border-color: var(--gold); }
+
+/* =========================================================================
+   Layout density  (Settings > Layout)   body.density-compact / body.density-list
+   ========================================================================= */
+
+/* ---- shared: tighter chrome around the cards ---- */
+body.density-compact .profile-card, body.density-list .profile-card { padding: 12px 18px; gap: 10px; margin-bottom: 14px !important; }
+body.density-compact .player-avatar, body.density-list .player-avatar { height: 56px; }
+body.density-compact .player-name-row h1, body.density-list .player-name-row h1 { font-size: 26px; }
+body.density-compact .profile-top, body.density-list .profile-top { gap: 20px; }
+body.density-compact .dashboard-grid, body.density-list .dashboard-grid { column-gap: 16px; margin-top: 4px; }
+body.density-compact .col-header h3, body.density-list .col-header h3 { font-size: 14px; }
+@media (min-width: 801px) {
+  body.density-compact .filter-icon-grid, body.density-list .filter-icon-grid { grid-template-columns: repeat(8, minmax(0, 1fr)) !important; gap: 4px !important; padding: 6px 8px !important; }
+}
+body.density-compact .filter-pill-btn, body.density-list .filter-pill-btn { height: 28px; }
+body.density-compact .filter-pill-name, body.density-list .filter-pill-name { font-size: 11.5px; }
+
+/* ---- Compact: same cards, much less padding, 2-line descriptions ---- */
+body.density-compact .ach-grid-col, body.density-compact .history-grid,
+body.density-compact .dash-col.full-width .ach-grid-col { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+body.density-compact .ach-card { padding: 10px 12px; gap: 4px; border-radius: 5px; }
+body.density-compact .ach-card.has-tier { padding-bottom: 20px; }
+body.density-compact .ach-card.no-notches { padding-bottom: 10px !important; }
+body.density-compact .ach-card:hover { transform: none; }
+body.density-compact .ach-card-header { gap: 6px; margin-bottom: 0; }
+body.density-compact .todo-game-icon { width: 18px; height: 18px; }
+body.density-compact .ach-game { font-size: 9px; letter-spacing: 0.8px; }
+body.density-compact .ach-percent { top: 10px; right: 12px; font-size: 11px; }
+body.density-compact .ach-title { font-size: 13px; gap: 5px; padding-right: 34px; line-height: 1.25; }
+body.density-compact .sleek-tag { font-size: 9px; padding: 1px 6px; }
+body.density-compact .ach-desc { font-size: 12px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+body.density-compact .ach-tip { font-size: 11px; margin-bottom: 2px; }
+body.density-compact .ach-progress-container { height: 4px; margin-top: 2px; }
+body.density-compact .tier-progress-text { font-size: 10.5px; margin-top: 2px; }
+body.density-compact .ach-card-footer { padding-top: 6px; }
+body.density-compact .tier-notch-container { bottom: 7px; left: 12px; right: 12px; gap: 4px; }
+body.density-compact .ach-action-btn { font-size: 11px; padding: 2px; }
+
+/* ---- List: one two-line row per achievement inside a single bordered table ---- */
+/* columns: 1 icon | 2 title+desc | 3 tier pips | 4 progress text+bar | 5 rarity % | 6 reward+actions */
+body.density-list .ach-grid-col, body.density-list .history-grid, body.density-list .dash-col.full-width .ach-grid-col {
+  display: flex; flex-direction: column; gap: 0;
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface-2);
+}
+body.density-list .ach-card {
+  --pct: 0px;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) var(--tiers, 0px) var(--prog, 160px) var(--pct) auto;
+  column-gap: 10px; row-gap: 1px; align-items: center;
+  min-height: 46px; padding: 7px 12px !important;
+  border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent;
+}
+body.density-list #col-challenge .ach-card { --pct: 50px; }
+body.density-list #col-tiered .ach-card { --tiers: 46px; }
+body.density-list.highest-tier #col-tiered .ach-card { --tiers: 0px; }
+body.density-list.hide-card-pct { --prog: 116px; }
+body.density-list.hide-rarity #col-challenge .ach-card { --pct: 0px; }
+body.density-list .ach-card:last-child { border-bottom: 0; }
+body.density-list .ach-card:hover { transform: none; box-shadow: none; background: color-mix(in srgb, var(--accent) 7%, transparent); }
+
+body.density-list .ach-card-header { grid-column: 1; grid-row: 1 / span 2; margin: 0; align-self: center; }
+body.density-list .todo-game-icon { width: 22px; height: 22px; }
+body.density-list .ach-game { display: none; }                     /* game shows as the icon (hover for its name) */
+/* titles may wrap to two lines instead of being cut off */
+body.density-list .ach-title { grid-column: 2; grid-row: 1; display: block; padding: 0; font-size: 13.5px; line-height: 1.25; white-space: normal; overflow: hidden; max-height: 2.55em; }
+body.density-list .ach-title .sleek-tag { font-size: 9px; padding: 0 6px; margin-left: 6px; vertical-align: 1px; }
+body.density-list .ach-desc { grid-column: 2; grid-row: 2; font-size: 12px; line-height: 1.25; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* no progress bar on this row: let the text use the space that would have been reserved for it */
+body.density-list .ach-card.no-prog .ach-title, body.density-list .ach-card.no-prog .ach-desc { grid-column: 2 / 5; }
+body.density-list .tier-notch-container { position: static; grid-column: 3; grid-row: 1 / span 2; align-self: center; display: flex; gap: 3px; width: 100%; height: 6px; margin: 0; }
+body.density-list .tier-notch { flex: 1; height: 6px; border-radius: 3px; position: relative; }
+body.density-list .tier-notch::before { content: ''; position: absolute; left: -2px; right: -2px; top: -8px; bottom: -8px; }   /* bigger click target */
+body.density-list .tier-progress-text { grid-column: 4; grid-row: 1; margin: 0; font-size: 11px; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.density-list .ach-progress-container { grid-column: 4; grid-row: 2; height: 4px; margin: 0; }
+body.density-list .ach-percent { position: static; grid-column: 5; grid-row: 1 / span 2; text-align: right; font-size: 11px; }
+body.density-list .ach-card-footer { grid-column: 6; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 1px; margin: 0; padding: 0; border: 0; }
+body.density-list .ach-reward { flex: none; margin: 0; font-size: 12px; gap: 5px; }
+body.density-list .ach-ap-icon { display: none !important; }       /* sleek: just the number, no diamond */
+body.density-list .ach-actions { gap: 4px; }
+body.density-list .ach-action-btn { font-size: 11px; padding: 1px 3px; }
+body.density-list .ach-tip, body.density-list .ach-missing { grid-column: 2 / 6; grid-row: 3; margin: 2px 0 0; font-size: 11px; line-height: 1.3; }
+body.density-list .ach-card.has-tier, body.density-list .ach-card.no-notches { padding-bottom: 7px !important; }
+body.density-list .history-card .ach-title { padding: 0; }
+
+/* custom skin reward: just the face (name on hover), no pill */
+body.density-list .custom-skin-badge, body.density-compact .custom-skin-badge { background: none; border: 0; padding: 0; max-width: none; gap: 0; }
+body.density-list .custom-skin-badge span, body.density-compact .custom-skin-badge span { display: none; }
+body.density-list .custom-skin-badge img, body.density-compact .custom-skin-badge img { width: 18px; height: 18px; border-radius: 3px; }
+
+@media (max-width: 700px) {
+  body.density-list .ach-card { grid-template-columns: 24px minmax(0, 1fr) auto; }
+  body.density-list .ach-card-header { grid-row: 1 / span 3; }
+  body.density-list .ach-title, body.density-list .ach-desc, body.density-list .ach-card.no-prog .ach-title, body.density-list .ach-card.no-prog .ach-desc { grid-column: 2; }
+  body.density-list .ach-progress-container { grid-column: 2; grid-row: 3; }
+  body.density-list .tier-progress-text { grid-column: 3; grid-row: 3; }
+  body.density-list .ach-card-footer { grid-column: 3; grid-row: 1 / span 2; }
+  body.density-list .ach-percent, body.density-list .tier-notch-container { display: none; }
+  body.density-list .ach-tip, body.density-list .ach-missing { grid-column: 2 / -1; }
+}
+
+/* ---- Multi-exclude: selected games are hidden, so show them as struck out ---- */
+.exclude-mode .filter-pill-btn.active { border-color: #ef4444 !important; box-shadow: 0 0 8px rgba(239, 68, 68, 0.45); background: color-mix(in srgb, #ef4444 14%, transparent) !important; }
+.exclude-mode .filter-pill-btn.active .filter-pill-name { text-decoration: line-through; opacity: 0.75; }
+.exclude-mode .filter-pill-btn.active .filter-pill-icon { filter: grayscale(1); opacity: 0.6; }
+.exclude-mode .filter-pill-btn.active .filter-pill-stat { visibility: hidden; }
+.exclude-mode .filter-pill-btn.active::after { content: '✕'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; font-weight: 700; color: #ef4444; z-index: 3; }
+
+
+/* =========================================================================
+   List layout: streamlined header, icon-strip game filter
+   ========================================================================= */
+body.density-list .profile-card { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 10px 14px; padding: 4px 2px; background: none !important; border: 0 !important; box-shadow: none !important; }
+body.density-list .profile-card::before { display: none; }
+body.density-list .profile-bg-flag, body.density-list #p-avatar, body.density-list #p-top-rank-pill,
+body.density-list .maxed-stat-pill, body.density-list .ap-bar-bg, body.density-list #p-progress-label { display: none !important; }
+body.density-list .profile-top { flex: 0 1 auto; gap: 0; width: auto; }
+body.density-list .player-info-container { width: auto; justify-content: flex-start; gap: 10px 14px; }
+body.density-list .stat-row { display: contents; }
+body.density-list .ap-progress-container { width: auto; margin: 0; gap: 0; flex: none; }
+body.density-list .ap-labels-flex { width: auto; margin: 0; }
+body.density-list #p-ap-percent { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); font-size: 13px; }
+
+/* Compact chips: every game keeps its name; chips flow and wrap instead of sitting in a fixed 6/8-column grid */
+body.filters-chips .filter-icon-grid { display: flex !important; flex-wrap: wrap; gap: 4px !important; padding: 6px 8px !important; }
+body.filters-chips .filter-pill-btn { flex: 0 0 auto; width: auto !important; height: 26px; padding: 0 9px 0 6px; gap: 6px; }
+body.filters-chips .filter-pill-icon { width: 16px; height: 16px; }
+body.filters-chips .filter-pill-name { flex: none; margin-left: 0; font-size: 11.5px; }
+body.filters-chips .filter-pill-stat { font-size: 10px; opacity: 0.85; }
+
+/* Small helm + flag beside the name (list layout only) */
+.p-helm, .p-mini-flag { display: none; }
+body.density-list .p-helm { display: inline-block; width: 28px; height: 28px; border-radius: 5px; image-rendering: pixelated; margin-right: 8px; vertical-align: middle; }
+body.density-list .p-mini-flag[data-ok="1"] { display: inline-block; width: 20px; height: 14px; object-fit: cover; border-radius: 2px; border: 1px solid var(--border-strong); margin-left: 8px; vertical-align: middle; }
+body.density-list .player-name-row { display: flex; align-items: center; }
+
+/* =========================================================================
+   Show / Hide settings
+   ========================================================================= */
+body.hide-hero-pct .ap-progress-container { display: none !important; }
+body.hide-card-ap .ach-ap-icon, body.hide-card-ap .ach-ap-amt { display: none !important; }
+body.hide-card-pct .ach-pct { display: none !important; }
+body.hide-rarity .ach-percent { display: none !important; }
+
+/* =========================================================================
+   Tiered / Challenge sections: headers share one row, the open list takes the freed width
+   ========================================================================= */
+#main-dash-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 24px; row-gap: 4px; align-items: start; }
+#main-dash-grid > #col-tiered-section, #main-dash-grid > #col-challenge-section { display: contents; }
+#col-tiered-section > .col-header { grid-column: 1; grid-row: 1; }
+#col-tiered-wrapper { grid-column: 1; grid-row: 2; min-width: 0; }
+#col-challenge-section > .col-header { grid-column: 2; grid-row: 1; }
+#col-challenge-wrapper { grid-column: 2; grid-row: 2; min-width: 0; }
+#main-dash-grid > .history-col { grid-column: 1 / -1; grid-row: 3; }
+
+#main-dash-grid.tiered-collapsed { grid-template-columns: auto minmax(0, 1fr); }
+#main-dash-grid.tiered-collapsed #col-challenge-wrapper { grid-column: 1 / -1; }
+#main-dash-grid.tiered-collapsed #sortTiered { display: none; }
+#main-dash-grid.challenge-collapsed { grid-template-columns: minmax(0, 1fr) auto; }
+#main-dash-grid.challenge-collapsed #col-tiered-wrapper { grid-column: 1 / -1; }
+#main-dash-grid.challenge-collapsed #sortChallenge { display: none; }
+#main-dash-grid.tiered-collapsed.challenge-collapsed { grid-template-columns: auto auto; justify-content: start; }
+/* the open section now spans the full row, so let its cards use the extra width */
+#main-dash-grid.tiered-collapsed #col-challenge .ach-grid-col, #main-dash-grid.challenge-collapsed #col-tiered .ach-grid-col { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+#main-dash-grid .col-header { padding-right: 4px; gap: 12px; }
+
+@media (max-width: 800px) {
+  #main-dash-grid, #main-dash-grid.tiered-collapsed, #main-dash-grid.challenge-collapsed, #main-dash-grid.tiered-collapsed.challenge-collapsed { grid-template-columns: minmax(0, 1fr); }
+  #col-tiered-section > .col-header, #col-challenge-section > .col-header, #col-tiered-wrapper, #col-challenge-wrapper, #main-dash-grid > .history-col { grid-column: 1 !important; grid-row: auto !important; }
+  #main-dash-grid .col-header { margin-top: 12px; }
+}
