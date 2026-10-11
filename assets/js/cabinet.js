@@ -297,7 +297,7 @@ const CustomChallengeTrackers = {
 },
 "veteran": { path: ["rawAchievements", "walls3_jack_of_all_trades"], max: 12 },
 "blitz:jackofalltrades": { path: ["rawAchievements", "blitz_kit_collector"], max: 31 },
-"champion": { path: ["rawStats", "uhc", "score"], max: 10000 },
+"champion!": { path: ["rawStats", "uhc", "score"], max: 10000 },
 }
 
 const TAG_DB = {
