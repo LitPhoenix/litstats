@@ -48,8 +48,10 @@
           
           <div style="display:flex; flex-direction:column; gap:8px;">
             <div class="player-name-row">
+              <img id="p-helm" class="p-helm" alt="" onerror="this.style.display='none'">
               <span class="mc-rank" id="p-rank" style="display:none;"></span>
               <h1 id="p-name" style="margin:0;">Loading...</h1>
+              <img id="p-mini-flag" class="p-mini-flag" alt="" data-ok="0">
               <div id="p-custom-badges"></div>
             </div>
           </div>
@@ -171,13 +173,38 @@
                 </div>
 
                 <div class="setting-item" style="flex-direction: column; align-items: flex-start; gap: 6px; border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px;">
+                  <span>Layout:</span>
+                  <select id="densitySelect" class="todo-select" style="width: 100%;" onchange="changeDensity(this.value)">
+                    <option value="comfortable">Comfortable (cards)</option>
+                    <option value="compact">Compact (dense cards)</option>
+                    <option value="list">List (one row each)</option>
+                  </select>
+                </div>
+
+                <div class="setting-item" style="flex-direction: column; align-items: flex-start; gap: 6px; padding-top: 4px;">
                   <span>Badge Pill Label:</span>
                   <select id="filterLabelSelect" class="todo-select" style="width: 100%;" onchange="changeFilterLabelMode(this.value)">
                     <option value="percent">Percentage (%)</option>
                     <option value="points">Points (X / X)</option>
                     <option value="achs">Achievements (X / X)</option>
+                    <option value="none">Hidden</option>
                   </select>
                 </div>
+
+                <div class="setting-item" style="flex-direction: column; align-items: flex-start; gap: 6px; padding-top: 4px;">
+                  <span>Game Filter Style:</span>
+                  <select id="filterStyleSelect" class="todo-select" style="width: 100%;" onchange="changeFilterStyle(this.value)">
+                    <option value="auto">Auto (compact chips in List layout)</option>
+                    <option value="grid">Grid (6 per row)</option>
+                    <option value="chips">Compact chips (all names, flowing)</option>
+                  </select>
+                </div>
+
+                <div style="border-top: 1px solid var(--border); margin-top: 8px; padding-top: 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-3);">Show / Hide</div>
+                <div class="setting-item"><span>% complete (header)</span><label class="toggle-switch"><input type="checkbox" id="disp-heroPct" checked onchange="toggleDisplayPref('heroPct', this.checked)"><span class="slider"></span></label></div>
+                <div class="setting-item"><span>AP reward (cards)</span><label class="toggle-switch"><input type="checkbox" id="disp-cardAp" checked onchange="toggleDisplayPref('cardAp', this.checked)"><span class="slider"></span></label></div>
+                <div class="setting-item"><span>% complete (cards)</span><label class="toggle-switch"><input type="checkbox" id="disp-cardPct" checked onchange="toggleDisplayPref('cardPct', this.checked)"><span class="slider"></span></label></div>
+                <div class="setting-item"><span>Rarity % (cards)</span><label class="toggle-switch"><input type="checkbox" id="disp-rarity" checked onchange="toggleDisplayPref('rarity', this.checked)"><span class="slider"></span></label></div>
               </div>
             </div>
           </div>
