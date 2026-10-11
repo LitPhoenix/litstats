@@ -13,6 +13,12 @@ let isHighestTierOnly = localStorage.getItem('litstats_highestTier') === 'true';
 let isHistoryHidden = localStorage.getItem('litstats_historyHidden') === 'true';
 let isMaxesHidden = localStorage.getItem('litstats_maxesHidden') === 'true';
 let isGoldApEnabled = localStorage.getItem('litstats_gold_ap') === 'true';
+let uiDensity = localStorage.getItem('litstats_density') || 'comfortable';   // 'comfortable' | 'compact' | 'list'
+let uiFilterStyle = localStorage.getItem('litstats_filterStyle') || 'auto';  // 'auto' (compact chips in list layout) | 'grid' | 'chips'
+if (!['auto', 'grid', 'chips'].includes(uiFilterStyle)) uiFilterStyle = 'auto';
+const DISPLAY_DEFAULTS = { heroPct: true, cardAp: true, cardPct: true, rarity: true };
+let displayPrefs = { ...DISPLAY_DEFAULTS };
+try { Object.assign(displayPrefs, JSON.parse(localStorage.getItem('litstats_display') || '{}')); } catch (e) {}
 
 let showSecretTags = localStorage.getItem('litstats_showSecret') !== 'false';
 let showBrokenTags = localStorage.getItem('litstats_showBroken') !== 'false';
@@ -245,7 +251,36 @@ Object.entries(customSkinRewards).forEach(([key, path]) => {
   };
 });
 
+// Bed Wars Dreamfeast "main path": 21 items, bought with Ticket Tarts at 1, 5, 10, 15 ... 95, 100 (1,051 total).
+// Paste the 21 apiKeys in PATH ORDER (cheapest first). In the browser console on the Bed Wars page run:
+//   menuConfig.data.filter(i => i.costVal !== undefined).sort((a, b) => a.costVal - b.costVal).map(i => i.apiKey)
+const BW_MAIN_PATH_KEYS = [
+  // "apikey_for_1_tart", "apikey_for_5_tarts", ... (21 entries)
+];
+const bwTartCost = i => i === 0 ? 1 : i * 5;                 // 1, 5, 10, ... 100
+const BW_MAIN_PATH_TOTAL = 1051;
+
+function bwDreamfeastMainPath(data) {
+  if (BW_MAIN_PATH_KEYS.length !== 21) return null;           // not configured yet: card falls back to a plain challenge
+  const bw = (data && data.bedwars) || {};
+  const boon = bw.boon || {}, feast = bw.dreamfeast || {}, toggles = bw.toggles || {};
+  const owned = key => {                                      // same unlock test the Dreamfeast page uses
+    const lower = key.toLowerCase();
+    return Boolean(boon[key] || boon[lower] || boon[key.replace('_boon', '')] || feast[key] || feast[lower] || feast[`${key}_boon`] || toggles[key] || toggles[lower]);
+  };
+  let items = 0, tarts = 0, next = null;
+  BW_MAIN_PATH_KEYS.forEach((key, i) => {
+    if (owned(key)) { items++; tarts += bwTartCost(i); }
+    else if (next === null) next = i;
+  });
+  return {
+    current: tarts,
+    note: items >= 21 ? `All 21 main path items bought` : `${items} / 21 main path items${next !== null ? ` · next one costs ${bwTartCost(next)} Tart${bwTartCost(next) === 1 ? '' : 's'}` : ''}`
+  };
+}
+
 const CustomChallengeTrackers = {
+  "bedwars:luciddreamsoffeastfood": { compute: bwDreamfeastMainPath, max: BW_MAIN_PATH_TOTAL, unit: "Tarts" },
   "blitz:brutalwarrior": { path: ["rawStats", "HungerGames", "exp_warrior"], max: 10000 },
   "donkeytamermaster": { path: ["rawStats", "HungerGames", "exp_donkeytamer"], max: 10000 },
   "firstranger": { path: ["rawStats", "HungerGames", "exp_ranger"], max: 10000 },
@@ -262,6 +297,7 @@ const CustomChallengeTrackers = {
 },
 "veteran": { path: ["rawAchievements", "walls3_jack_of_all_trades"], max: 12 },
 "blitz:jackofalltrades": { path: ["rawAchievements", "blitz_kit_collector"], max: 31 },
+"champion": { path: ["rawStats", "uhc", "score"], max: 10000 },
 }
 
 const TAG_DB = {
@@ -754,8 +790,18 @@ window.toggleSection = function(wrapperId, sectionId) {
     const isHidden = wrap.classList.toggle('hidden');
     sec.classList.toggle('collapsed-section');
     localStorage.setItem('litstats_collapse_' + wrapperId, isHidden);
+    syncDashLayout();
   }
 };
+
+// Collapsing Tiered/Challenge keeps both headers on one row; the open list takes the freed width (see #main-dash-grid CSS).
+function syncDashLayout() {
+  const grid = document.getElementById('main-dash-grid');
+  if (!grid) return;
+  const hidden = id => { const el = document.getElementById(id); return !!(el && el.classList.contains('hidden')); };
+  grid.classList.toggle('tiered-collapsed', hidden('col-tiered-wrapper'));
+  grid.classList.toggle('challenge-collapsed', hidden('col-challenge-wrapper'));
+}
 
 const TRUE_MAX_POSSIBLE_AP = 32510;
 const TRUE_MAX_POSSIBLE_ACHS = 3500;
@@ -953,7 +999,7 @@ document.addEventListener('click', (e) => {
 function toggleGameFilter(gameName) {
   if (isCompExcluded && compGames.includes(gameName)) return;
 
-  if (!isMultiSelect) {
+  if (!isMultiSelect && !isMultiExclude) {          // single-select unless one of the multi modes is on
     if (activeGameFilters.has(gameName) && activeGameFilters.size === 1) {
       activeGameFilters.clear();
     } else {
@@ -992,15 +1038,48 @@ function toggleMultiSelect() {
     isMultiExclude = false;
     document.getElementById('multiExcludeToggle').checked = false;
     localStorage.setItem('litstats_multiExclude', 'false');
-  }
-  if (!isMultiSelect && activeGameFilters.size > 1) {
+    activeGameFilters.clear();                      // "selected" meant "excluded" a moment ago, so start clean
+  } else if (!isMultiSelect && !isMultiExclude && activeGameFilters.size > 1) {
     const first = activeGameFilters.values().next().value;
     activeGameFilters.clear();
     if (first) activeGameFilters.add(first);
-    populateFilters();
   }
+  populateFilters();
   renderDashboard();
 }
+
+// ---- Layout density (Settings > Layout): purely a body class, so switching is instant and needs no re-render ----
+function applyDensity() {
+  document.body.classList.remove('density-compact', 'density-list');
+  if (uiDensity === 'compact' || uiDensity === 'list') document.body.classList.add('density-' + uiDensity);
+  document.body.classList.toggle('filters-chips', uiFilterStyle === 'chips' || (uiFilterStyle === 'auto' && uiDensity === 'list'));
+  document.body.classList.toggle('highest-tier', !!isHighestTierOnly);
+  const hideClass = { heroPct: 'hide-hero-pct', cardAp: 'hide-card-ap', cardPct: 'hide-card-pct', rarity: 'hide-rarity' };
+  Object.keys(hideClass).forEach(k => {
+    document.body.classList.toggle(hideClass[k], !displayPrefs[k]);
+    const cb = document.getElementById('disp-' + k);
+    if (cb) cb.checked = !!displayPrefs[k];
+  });
+  const sel = document.getElementById('densitySelect');
+  if (sel) sel.value = uiDensity;
+  const fs = document.getElementById('filterStyleSelect');
+  if (fs) fs.value = uiFilterStyle;
+}
+window.changeFilterStyle = function(val) {
+  uiFilterStyle = ['auto', 'grid', 'chips'].includes(val) ? val : 'auto';
+  localStorage.setItem('litstats_filterStyle', uiFilterStyle);
+  applyDensity();
+};
+window.toggleDisplayPref = function(key, checked) {
+  displayPrefs[key] = !!checked;
+  localStorage.setItem('litstats_display', JSON.stringify(displayPrefs));
+  applyDensity();
+};
+window.changeDensity = function(val) {
+  uiDensity = ['comfortable', 'compact', 'list'].includes(val) ? val : 'comfortable';
+  localStorage.setItem('litstats_density', uiDensity);
+  applyDensity();
+};
 
 window.toggleMultiExclude = function() {
   isMultiExclude = document.getElementById('multiExcludeToggle').checked;
@@ -1010,6 +1089,10 @@ window.toggleMultiExclude = function() {
     document.getElementById('multiSelectToggle').checked = false;
     localStorage.setItem('litstats_multiSelect', 'false');
   }
+  // Selected games mean "show" in one mode and "hide" in the other, so reset the selection when switching.
+  activeGameFilters.clear();
+  activeMwClass = activeArcadeGame = activeTntGame = activeWoolGame = null;
+  populateFilters();
   renderDashboard();
 };
 
@@ -1023,6 +1106,7 @@ function toggleGoldApRewards() {
 function toggleHighestTier() {
   isHighestTierOnly = document.getElementById('highestTierToggle').checked;
   localStorage.setItem('litstats_highestTier', isHighestTierOnly);
+  document.body.classList.toggle('highest-tier', isHighestTierOnly);
   renderDashboard();
 }
 
@@ -1038,7 +1122,7 @@ window.populateFilters = function() {
   const games = [...new Set(dataRef.map(a => a.game))].sort();
   const isMobile = window.innerWidth <= 800;
   
-  let html = `<div class="filter-icon-grid">`;
+  let html = `<div class="filter-icon-grid ${isMultiExclude ? 'exclude-mode' : ''}">`;
   games.forEach(g => { 
     let cleanName = g.replace('Max ', '');
     let isDisabled = isCompExcluded && compGames.includes(cleanName) ? 'disabled' : '';
@@ -1062,6 +1146,7 @@ window.populateFilters = function() {
         statLabel = `${percent.toFixed(1)}%`;
       }
     }
+    if (filterLabelMode === 'none') statLabel = '';
 
     html += `
       <div class="filter-pill-btn ${isActive} ${isDisabled} ${maxClass}" data-gamename="${cleanName}" onclick="toggleGameFilter('${cleanName}')" title="${cleanName} (${percent.toFixed(1)}%)">
@@ -1188,7 +1273,7 @@ function renderDashboard() {
     if (isCompExcluded) allMissing = allMissing.filter(a => !compGames.includes(a.game.replace('Max ', '')));
     
     if (activeGameFilters.size > 0) {
-      if (isMultiSelect && isMultiExclude) {
+      if (isMultiExclude) {
         allMissing = allMissing.filter(a => !activeGameFilters.has(a.game.replace('Max ', '')));
       } else {
         allMissing = allMissing.filter(a => activeGameFilters.has(a.game.replace('Max ', '')));
@@ -1206,7 +1291,7 @@ function renderDashboard() {
   tntFilterContainer.classList.add('hidden');
   woolFilterContainer.classList.add('hidden');
 
-  if (activeGameFilters.size === 1 && !isBookmarkViewActive) {
+  if (activeGameFilters.size === 1 && !isMultiExclude && !isBookmarkViewActive) {
     if (activeGameFilters.has('Mega Walls')) {
       mwClassFilterContainer.classList.remove('hidden');
       const allMwAchs = dataRefMissing.concat(dataRefCompleted).filter(a => a.game.replace('Max ', '') === 'Mega Walls');
@@ -1398,7 +1483,12 @@ function renderDashboard() {
     const namespacedKey = `${cleanGameKey}:${cleanTitle}`;
     
     // Check for a namespaced match first, fallback to the generic title
-    const tracker = CustomChallengeTrackers[namespacedKey] || CustomChallengeTrackers[cleanTitle];
+    let tracker = CustomChallengeTrackers[namespacedKey] || CustomChallengeTrackers[cleanTitle];
+    let trackerResult = null;
+    if (tracker && tracker.compute) {                 // computed trackers (e.g. Dreamfeast main path)
+      trackerResult = tracker.compute(globalPlayerData);
+      if (!trackerResult) tracker = null;             // not configured: behave like an untracked challenge
+    }
 
     if (cleanGame === 'Mega Walls' && MWSkinData[cleanTitle]) {
       const mwData = MWSkinData[cleanTitle];
@@ -1409,7 +1499,11 @@ function renderDashboard() {
       isChallenge = true;
       let missingLabels = [];
 
-      if (tracker.paths) {
+      if (trackerResult) {
+        customCurrentAmt = trackerResult.current;
+        if (trackerResult.note) ach.trackerNote = trackerResult.note;
+        if (tracker.unit) ach.trackerUnit = tracker.unit;
+      } else if (tracker.paths) {
         customCurrentAmt = 0;
         for (const p of tracker.paths) {
           let val = globalPlayerData;
@@ -1507,7 +1601,7 @@ function renderDashboard() {
 
   let recents = [...(globalPlayerData.recentAchievements || [])];
   if (activeGameFilters.size > 0 && !isBookmarkViewActive) {
-    if (isMultiSelect && isMultiExclude) {
+    if (isMultiExclude) {
       recents = recents.filter(a => !activeGameFilters.has(a.game.replace('Max ', '')));
     } else {
       recents = recents.filter(a => activeGameFilters.has(a.game.replace('Max ', '')));
@@ -1548,22 +1642,22 @@ function renderDashboard() {
     }
 
     return `
-      <div class="ach-card ${notchClass} ${historyClass} ${legacyClass}">
+      <div class="ach-card ${notchClass} ${historyClass} ${legacyClass} ${/ach-progress-container/.test(progressBlock) ? '' : 'no-prog'}">
         ${!isTiered && !isHistory && !ach.isLegacy ? `<span class="ach-percent">${ach.calcPct.toFixed(2)}%</span>` : ''}
         
-        <div class="ach-card-header">
+        <div class="ach-card-header" title="${ach.game.replace('Max ', '')}">
           <img src="${getGameIconUrl(ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
           <span class="ach-game">${ach.game.replace('Max ', '')}</span>
         </div>
         
         <span class="ach-title" ${ach.isCompleted ? 'style="color: var(--gold);"' : ''}>${ach.title} ${ach.tagsHtml || ''}</span>
-        <span class="ach-desc">${ach.desc}</span>
+        <span class="ach-desc" title="${String(ach.desc).replace(/<[^>]*>/g, '').replace(/"/g, '&quot;')}">${ach.desc}</span>
         ${ach.tipHtml || ''}
         
         ${progressBlock}
 
         <div class="ach-card-footer">
-          <span class="ach-reward"><img src="${rewardIconSrc}" alt="AP" style="width:14px; height:14px; object-fit:contain; flex-shrink: 0;"> <span style="white-space: nowrap; flex-shrink: 0;">${isTiered ? ach.activeReward : ach.reward} AP</span> ${customRewardImg}</span>
+          <span class="ach-reward"><img class="ach-ap-icon" src="${rewardIconSrc}" alt="AP" style="width:14px; height:14px; object-fit:contain; flex-shrink: 0;"> <span class="ach-ap-amt" style="white-space: nowrap; flex-shrink: 0;">${isTiered ? ach.activeReward : ach.reward} AP</span> ${customRewardImg}</span>
           ${!isHistory ? `
             <div class="ach-actions">
               <button onclick="toggleBookmark('${ach.uniqueId}')" class="ach-action-btn ${bookmarkClass}" title="Bookmark">${bookmarkIcon}</button>
@@ -1602,7 +1696,7 @@ function renderDashboard() {
 
     let progressBlock = `
       <div class="ach-progress-container"><div class="${barClass}" style="width: ${ach.calcPct.toFixed(2)}%;"></div></div>
-      <div class="tier-progress-text">${progressText} (${ach.calcPct.toFixed(2)}%)</div>
+      <div class="tier-progress-text">${progressText} <span class="ach-pct">(${ach.calcPct.toFixed(2)}%)</span></div>
     `;
 
     return generateCard(ach, true, progressBlock, notches);
@@ -1613,18 +1707,19 @@ function renderDashboard() {
     
     let missingHtml = '';
     if (ach.missingLabels && ach.missingLabels.length > 0) {
-      missingHtml = `<div style="font-size: 11px; color: var(--text-3); margin-top: 6px;">Missing: ${ach.missingLabels.join(', ')}</div>`;
+      missingHtml = `<div class="ach-missing" style="font-size: 11px; color: var(--text-3); margin-top: 6px;">Missing: ${ach.missingLabels.join(', ')}</div>`;
     }
 
     let progressBlock = '';
     if (ach.customTargetAmt) {
       let displayStr = ach.customCurrentAmt.toLocaleString();
       let targetStr = ach.customTargetAmt.toLocaleString();
-      let progressText = `${displayStr} / ${targetStr}`;
+      let progressText = `${displayStr} / ${targetStr}${ach.trackerUnit ? ' ' + ach.trackerUnit : ''}`;
       let barClass = ach.isCompleted ? "ach-progress-fill completed-tier" : "ach-progress-fill";
+      if (ach.trackerNote) missingHtml = `<div class="ach-missing" style="font-size: 11px; color: var(--text-3); margin-top: 6px;">${ach.trackerNote}</div>`;
       progressBlock = `
         <div class="ach-progress-container"><div class="${barClass}" style="width: ${ach.customProgPct.toFixed(2)}%;"></div></div>
-        <div class="tier-progress-text">${progressText} (${ach.customProgPct.toFixed(2)}%)</div>
+        <div class="tier-progress-text">${progressText} <span class="ach-pct">(${ach.customProgPct.toFixed(2)}%)</span></div>
         ${missingHtml}
       `;
     }
@@ -1871,6 +1966,8 @@ function renderCabinet(data, softRender = false) {
   document.getElementById('p-avatar').src = `https://visage.surgeplay.com/bust/${data.uuid}`;
   document.getElementById('p-avatar').onerror = function() { this.src = `https://vzge.me/bust/${data.uuid}.png`; };
   
+  const helmEl = document.getElementById('p-helm');
+  if (helmEl && data.username) { helmEl.style.display = ''; helmEl.src = `https://minotar.net/helm/${encodeURIComponent(data.username)}/100`; }
   const nameEl = document.getElementById('p-name');
   nameEl.textContent = data.username;
   nameEl.style.setProperty('color', getRankBaseColourHex(data.rank, data.monthlyRankColor), 'important');
@@ -1910,6 +2007,13 @@ function renderCabinet(data, softRender = false) {
     } else {
       bgFlagEl.style.display = 'none';
     }
+  }
+
+  const miniFlagEl = document.getElementById('p-mini-flag');
+  if (miniFlagEl) {
+    const fu = data.country && data.country !== 'Unknown' ? getFlagUrl(data.country) : null;
+    if (fu) { miniFlagEl.src = fu.replace('/w640/', '/w40/'); miniFlagEl.alt = data.country; miniFlagEl.title = data.country; miniFlagEl.dataset.ok = '1'; }
+    else { miniFlagEl.removeAttribute('src'); miniFlagEl.dataset.ok = '0'; }
   }
 
   const isGoldOverride = localStorage.getItem('litstats_gold_ap') === 'true';
@@ -2124,6 +2228,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  applyDensity();
+  syncDashLayout();
   if (document.getElementById('excludeComp')) document.getElementById('excludeComp').checked = isCompExcluded;
   if (document.getElementById('multiSelectToggle')) document.getElementById('multiSelectToggle').checked = isMultiSelect;
   if (document.getElementById('multiExcludeToggle')) document.getElementById('multiExcludeToggle').checked = isMultiExclude;
