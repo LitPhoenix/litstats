@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-10T23:05:50.719Z",
+  "last_update": "2026-10-11T10:26:45.778Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -582,9 +582,9 @@
           "username": "DTN_Kyra",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 28025,
+          "current_ap": 28045,
           "last_month_ap": 28020,
-          "monthly_gain": 5,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ"
@@ -705,9 +705,9 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26820,
+          "current_ap": 26840,
           "last_month_ap": 26840,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": [
             "Max SkyBlock",
             "Max Warlords",
@@ -2075,15 +2075,15 @@
     },
     {
       "country": "Finland",
-      "score": 4534,
+      "score": 4549,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28755,
+          "current_ap": 28770,
           "last_month_ap": 28705,
-          "monthly_gain": 50,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2410,7 +2410,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1868,
+      "score": 1883,
       "top_players": [
         {
           "username": "GusTheMonkey",
@@ -2425,9 +2425,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26780,
+          "current_ap": 26810,
           "last_month_ap": 26800,
-          "monthly_gain": -20,
+          "monthly_gain": 10,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games",
@@ -2489,7 +2489,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1725,
+      "score": 1728,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2506,9 +2506,9 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26535,
+          "current_ap": 26540,
           "last_month_ap": 26520,
-          "monthly_gain": 15,
+          "monthly_gain": 20,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -2706,9 +2706,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 25405,
+          "current_ap": 25430,
           "last_month_ap": 25245,
-          "monthly_gain": 160,
+          "monthly_gain": 185,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -2760,9 +2760,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 25090,
+          "current_ap": 25095,
           "last_month_ap": 25105,
-          "monthly_gain": -15,
+          "monthly_gain": -10,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
@@ -3118,9 +3118,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Unknown",
-          "current_ap": 23410,
+          "current_ap": 23430,
           "last_month_ap": 23405,
-          "monthly_gain": 5,
+          "monthly_gain": 25,
           "maxGames": []
         },
         {
