@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-11T10:26:46.064Z",
+ "last_update": "2026-10-11T17:00:07.731Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-11T10:26:45.778Z",
+ "source_update": "2026-10-11T17:00:06.844Z",
  "catalog": [
   {
    "id": "uhc",
@@ -2718,11 +2718,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "79e033c9e772499896561e0d7d117301",
+     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+     "uuid": "79e033c9e772499896561e0d7d117301",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -3256,11 +3256,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "79e033c9e772499896561e0d7d117301",
+     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+     "uuid": "79e033c9e772499896561e0d7d117301",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -4454,7 +4454,7 @@
    "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
    "username": "Dragons",
    "country": "USA",
-   "ap": 30955,
+   "ap": 30975,
    "rank": "MVP++",
    "rankPlusColor": "DARK_BLUE",
    "monthlyRankColor": "GOLD"
@@ -5336,7 +5336,7 @@
    "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
    "username": "shirool",
    "country": "Unknown",
-   "ap": 23930,
+   "ap": 23955,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"

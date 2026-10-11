@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-11T10:26:45.778Z",
+  "last_update": "2026-10-11T17:00:06.844Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -381,7 +381,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12615,
+      "score": 12617,
       "top_players": [
         {
           "username": "oJakey",
@@ -474,9 +474,9 @@
           "username": "Dragons",
           "uuid": "e698edd3e0124b2f8fa2ccb109b0d0b0",
           "country": "USA",
-          "current_ap": 30955,
+          "current_ap": 30975,
           "last_month_ap": 30975,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Blitz",
             "Max Paintball",
@@ -2940,9 +2940,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
-          "current_ap": 23930,
+          "current_ap": 23955,
           "last_month_ap": 23780,
-          "monthly_gain": 150,
+          "monthly_gain": 175,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",

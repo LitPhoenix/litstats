@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-11T10:26:46.032Z",
+  "last_update": "2026-10-11T17:00:07.704Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -685,15 +685,15 @@
     },
     {
       "country": "Argentina",
-      "score": 8849,
+      "score": 8852.6,
       "top_players": [
         {
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_quests": 44245,
+          "current_quests": 44263,
           "last_month_quests": 43621,
-          "monthly_gain": 624
+          "monthly_gain": 642
         }
       ]
     },
