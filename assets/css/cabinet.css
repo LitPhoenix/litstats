@@ -1095,7 +1095,7 @@ body.filters-chips .filter-pill-stat { font-size: 10px; opacity: 0.85; }
 
 /* Small helm + flag beside the name (list layout only) */
 .p-helm, .p-mini-flag { display: none; }
-body.density-list .p-helm { display: inline-block; width: 28px; height: 28px; border-radius: 5px; image-rendering: pixelated; margin-right: 8px; vertical-align: middle; }
+body.density-list .p-helm { display: inline-block; width: 28px; height: 28px; border-radius: 2px; image-rendering: pixelated; margin-right: 8px; vertical-align: middle; }
 body.density-list .p-mini-flag[data-ok="1"] { display: inline-block; width: 20px; height: 14px; object-fit: cover; border-radius: 2px; border: 1px solid var(--border-strong); margin-left: 8px; vertical-align: middle; }
 body.density-list .player-name-row { display: flex; align-items: center; }
 
