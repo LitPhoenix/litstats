@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-12T08:17:02.297Z",
+  "last_update": "2026-10-12T19:32:38.673Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -768,9 +768,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 26185,
+          "current_ap": 26200,
           "last_month_ap": 25965,
-          "monthly_gain": 220,
+          "monthly_gain": 235,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -979,9 +979,9 @@
           "username": "Pqssible",
           "uuid": "9872248cdad742f785657dbf78d9c756",
           "country": "USA",
-          "current_ap": 23440,
+          "current_ap": 23420,
           "last_month_ap": 23440,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max TKR",
             "Max Wool Games"
@@ -2076,15 +2076,15 @@
     },
     {
       "country": "Finland",
-      "score": 4549,
+      "score": 4559,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28770,
+          "current_ap": 28780,
           "last_month_ap": 28705,
-          "monthly_gain": 65,
+          "monthly_gain": 75,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2264,7 +2264,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3649,
+      "score": 3651,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2301,9 +2301,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 26345,
+          "current_ap": 26355,
           "last_month_ap": 26235,
-          "monthly_gain": 110,
+          "monthly_gain": 120,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2953,9 +2953,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Unknown",
-          "current_ap": 23985,
+          "current_ap": 24000,
           "last_month_ap": 23780,
-          "monthly_gain": 205,
+          "monthly_gain": 220,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3103,6 +3103,15 @@
           ]
         },
         {
+          "username": "johnush",
+          "uuid": "81760cdc19964181a5c51ce17dd86597",
+          "country": "Unknown",
+          "current_ap": 23445,
+          "last_month_ap": 23405,
+          "monthly_gain": 40,
+          "maxGames": []
+        },
+        {
           "username": "Jyahp",
           "uuid": "92d13bad96ba4a959d1d3cd40a70cec7",
           "country": "Unknown",
@@ -3126,15 +3135,6 @@
             "Max VampireZ",
             "Max Wool Games"
           ]
-        },
-        {
-          "username": "johnush",
-          "uuid": "81760cdc19964181a5c51ce17dd86597",
-          "country": "Unknown",
-          "current_ap": 23430,
-          "last_month_ap": 23405,
-          "monthly_gain": 25,
-          "maxGames": []
         },
         {
           "username": "22charizard",
