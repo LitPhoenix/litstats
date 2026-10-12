@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-11T21:13:17.597Z",
+ "last_update": "2026-10-12T00:51:06.240Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-11T21:13:17.245Z",
+ "source_update": "2026-10-12T00:51:05.802Z",
  "catalog": [
   {
    "id": "uhc",
@@ -2502,11 +2502,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -2768,6 +2768,10 @@
     {
      "uuid": "1ee8f444029b41db84a0b2a34415cdf0",
      "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3abc42d8a881459296c23e9160e943e3",
+     "firstSeen": "2026-10-12T00:51:06.240Z"
     }
    ]
   },
@@ -3016,11 +3020,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -3314,6 +3318,10 @@
     {
      "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
      "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "3abc42d8a881459296c23e9160e943e3",
+     "firstSeen": "2026-10-12T00:51:06.240Z"
     }
    ]
   },
@@ -3482,11 +3490,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+     "uuid": "ac97442ca125422cbd72ae60cdd8340f",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -4679,7 +4687,7 @@
    "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
    "username": "mihannah",
    "country": "Croatia",
-   "ap": 26325,
+   "ap": 26345,
    "rank": "MVP+",
    "rankPlusColor": "LIGHT_PURPLE",
    "monthlyRankColor": "AQUA"
@@ -4688,7 +4696,7 @@
    "uuid": "8eb18a9227fb4b36947177babab261cd",
    "username": "kipanator",
    "country": "USA",
-   "ap": 26145,
+   "ap": 26185,
    "rank": "MVP++",
    "rankPlusColor": "DARK_BLUE",
    "monthlyRankColor": "GOLD"
@@ -5336,7 +5344,7 @@
    "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
    "username": "shirool",
    "country": "Unknown",
-   "ap": 23955,
+   "ap": 23985,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -5525,7 +5533,7 @@
    "uuid": "be11708dcb0946bd9608d29af61269ec",
    "username": "SATURNO",
    "country": "Ecuador",
-   "ap": 26145,
+   "ap": 26160,
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -5682,6 +5690,12 @@
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
+  },
+  "3abc42d8a881459296c23e9160e943e3": {
+   "uuid": "3abc42d8a881459296c23e9160e943e3",
+   "username": "Meloby",
+   "country": "Unknown",
+   "ap": 24660
   },
   "2baaec9272fd487294e673eb4ec35201": {
    "uuid": "2baaec9272fd487294e673eb4ec35201",
