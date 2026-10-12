@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-12T00:51:05.802Z",
+  "last_update": "2026-10-12T08:17:02.297Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2976,9 +2976,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
-          "current_ap": 23905,
+          "current_ap": 23930,
           "last_month_ap": 23880,
-          "monthly_gain": 25,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Pit",
             "Max TKR",
@@ -3150,6 +3150,23 @@
       ]
     },
     {
+      "country": "Ecuador",
+      "score": 585,
+      "top_players": [
+        {
+          "username": "SATURNO",
+          "uuid": "be11708dcb0946bd9608d29af61269ec",
+          "country": "Ecuador",
+          "current_ap": 26180,
+          "last_month_ap": 25860,
+          "monthly_gain": 320,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Iraq",
       "score": 580,
       "top_players": [
@@ -3164,23 +3181,6 @@
             "Max SkyBlock",
             "Max Wool Games",
             "Max Build Battle"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Ecuador",
-      "score": 565,
-      "top_players": [
-        {
-          "username": "SATURNO",
-          "uuid": "be11708dcb0946bd9608d29af61269ec",
-          "country": "Ecuador",
-          "current_ap": 26160,
-          "last_month_ap": 25860,
-          "monthly_gain": 300,
-          "maxGames": [
-            "Max VampireZ"
           ]
         }
       ]
