@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-12T19:32:38.673Z",
+  "last_update": "2026-10-13T01:44:51.839Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -768,9 +768,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 26200,
+          "current_ap": 26210,
           "last_month_ap": 25965,
-          "monthly_gain": 235,
+          "monthly_gain": 245,
           "maxGames": [
             "Max Smash Heroes",
             "Max TKR",
@@ -1162,7 +1162,7 @@
     },
     {
       "country": "UK",
-      "score": 10111,
+      "score": 10121,
       "top_players": [
         {
           "username": "greaneye",
@@ -1192,9 +1192,9 @@
           "username": "XandaPandaMC",
           "uuid": "e8a9fe3e37f546f8876feae46fd902bb",
           "country": "UK",
-          "current_ap": 31165,
+          "current_ap": 31185,
           "last_month_ap": 31165,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1750,9 +1750,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24725,
+          "current_ap": 24775,
           "last_month_ap": 24690,
-          "monthly_gain": 35,
+          "monthly_gain": 85,
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
@@ -2076,7 +2076,7 @@
     },
     {
       "country": "Finland",
-      "score": 4559,
+      "score": 4564,
       "top_players": [
         {
           "username": "Champiez",
@@ -2116,9 +2116,9 @@
           "username": "MatiasSiltanen",
           "uuid": "e9a871c29903474687b0b045edd35ae9",
           "country": "Finland",
-          "current_ap": 26660,
+          "current_ap": 26680,
           "last_month_ap": 26615,
-          "monthly_gain": 45,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Arcade",
             "Max Wool Games",
@@ -2129,15 +2129,15 @@
     },
     {
       "country": "Israel",
-      "score": 4299,
+      "score": 4319,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_ap": 28540,
+          "current_ap": 28560,
           "last_month_ap": 28540,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Arena Brawl",
             "Max Quake",
@@ -2964,6 +2964,20 @@
           ]
         },
         {
+          "username": "tommy042001",
+          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+          "country": "Unknown",
+          "current_ap": 23945,
+          "last_month_ap": 23880,
+          "monthly_gain": 65,
+          "maxGames": [
+            "Max Pit",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "ichhabevape",
           "uuid": "5dd1035bc9b2491e892a71ac3e952c3c",
           "country": "Unknown",
@@ -2971,20 +2985,6 @@
           "last_month_ap": 23925,
           "monthly_gain": 15,
           "maxGames": []
-        },
-        {
-          "username": "tommy042001",
-          "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
-          "country": "Unknown",
-          "current_ap": 23930,
-          "last_month_ap": 23880,
-          "monthly_gain": 50,
-          "maxGames": [
-            "Max Pit",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
         },
         {
           "username": "DarkSilent",
@@ -3106,9 +3106,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Unknown",
-          "current_ap": 23445,
+          "current_ap": 23455,
           "last_month_ap": 23405,
-          "monthly_gain": 40,
+          "monthly_gain": 50,
           "maxGames": []
         },
         {
