@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-13T01:44:51.839Z",
+  "last_update": "2026-10-13T08:42:40.112Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1380,7 +1380,7 @@
     },
     {
       "country": "Canada",
-      "score": 9410,
+      "score": 9414,
       "top_players": [
         {
           "username": "Songgg",
@@ -1429,9 +1429,9 @@
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
-          "current_ap": 28320,
+          "current_ap": 28335,
           "last_month_ap": 28320,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Blitz",
             "Max Arena Brawl",
@@ -2626,15 +2626,15 @@
     },
     {
       "country": "Syria",
-      "score": 1170,
+      "score": 1180,
       "top_players": [
         {
           "username": "3badh",
           "uuid": "11f24315871f43f296d5daa2bfc4911d",
           "country": "Syria",
-          "current_ap": 26765,
+          "current_ap": 26775,
           "last_month_ap": 26585,
-          "monthly_gain": 180,
+          "monthly_gain": 190,
           "maxGames": [
             "Max TNT Games",
             "Max Wool Games"
@@ -3106,9 +3106,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Unknown",
-          "current_ap": 23455,
+          "current_ap": 23465,
           "last_month_ap": 23405,
-          "monthly_gain": 50,
+          "monthly_gain": 60,
           "maxGames": []
         },
         {
