@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-13T08:42:40.337Z",
+ "last_update": "2026-10-13T17:15:39.458Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-13T08:42:40.112Z",
+ "source_update": "2026-10-13T17:15:38.578Z",
  "catalog": [
   {
    "id": "uhc",
@@ -1608,15 +1608,15 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
      "uuid": "992df94349aa4409ac6a890f6a947a17",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
      "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-     "firstSeen": "2026-10-06T02:17:57.433Z"
-    },
-    {
-     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -2024,11 +2024,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "uuid": "7d92df9db6f04ef4b24ded24ae739198",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -2394,15 +2394,15 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
      "uuid": "992df94349aa4409ac6a890f6a947a17",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
      "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-     "firstSeen": "2026-10-06T02:17:57.433Z"
-    },
-    {
-     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -2876,15 +2876,15 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
+     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
      "uuid": "992df94349aa4409ac6a890f6a947a17",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
      "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-     "firstSeen": "2026-10-06T02:17:57.433Z"
-    },
-    {
-     "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -4417,7 +4417,7 @@
    "uuid": "fdfcc24e742746e592d666150e771a93",
    "username": "15_step",
    "country": "UK",
-   "ap": 24840,
+   "ap": 24860,
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -5272,7 +5272,7 @@
    "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
    "username": "Respawnless",
    "country": "USA",
-   "ap": 28770,
+   "ap": 28790,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
