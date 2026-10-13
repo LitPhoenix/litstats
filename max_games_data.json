@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-13T17:15:39.458Z",
+ "last_update": "2026-10-13T22:05:46.025Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-13T17:15:38.578Z",
+ "source_update": "2026-10-13T22:05:45.609Z",
  "catalog": [
   {
    "id": "uhc",
@@ -2566,11 +2566,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "37c6f7335d874321ac4f57c7a5062c71",
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "uuid": "37c6f7335d874321ac4f57c7a5062c71",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -3104,11 +3104,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "37c6f7335d874321ac4f57c7a5062c71",
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "uuid": "37c6f7335d874321ac4f57c7a5062c71",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -5434,7 +5434,7 @@
    "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
    "username": "EmotionalFlare",
    "country": "Turkey",
-   "ap": 25595,
+   "ap": 25615,
    "rank": "MVP++",
    "rankPlusColor": "DARK_BLUE",
    "monthlyRankColor": "AQUA"
@@ -5755,7 +5755,7 @@
    "uuid": "23498017b5654aa0b9949effbbdd147e",
    "username": "combatively",
    "country": "USA",
-   "ap": 24745,
+   "ap": 24750,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
