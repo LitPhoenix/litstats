@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-14T09:08:55.490Z",
+  "last_update": "2026-10-14T14:48:39.844Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2076,19 +2076,20 @@
     },
     {
       "country": "Finland",
-      "score": 4529,
+      "score": 4554,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28780,
+          "current_ap": 28805,
           "last_month_ap": 28705,
-          "monthly_gain": 75,
+          "monthly_gain": 100,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
             "Max TNT Games",
+            "Max Arcade",
             "Max Murder Mystery",
             "Max VampireZ",
             "Max TKR",
@@ -2967,9 +2968,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Unknown",
-          "current_ap": 23945,
+          "current_ap": 23950,
           "last_month_ap": 23880,
-          "monthly_gain": 65,
+          "monthly_gain": 70,
           "maxGames": [
             "Max Pit",
             "Max TKR",
@@ -2985,6 +2986,17 @@
           "last_month_ap": 23925,
           "monthly_gain": 15,
           "maxGames": []
+        },
+        {
+          "username": "Oleslaw2009",
+          "uuid": "cef8bc211b264d54b07da2995d587098",
+          "country": "Unknown",
+          "current_ap": 23770,
+          "last_month_ap": 23725,
+          "monthly_gain": 45,
+          "maxGames": [
+            "Max Wool Games"
+          ]
         },
         {
           "username": "DarkSilent",
@@ -3020,17 +3032,6 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "Oleslaw2009",
-          "uuid": "cef8bc211b264d54b07da2995d587098",
-          "country": "Unknown",
-          "current_ap": 23750,
-          "last_month_ap": 23725,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Wool Games"
           ]
         },
         {
