@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-15T02:17:36.832Z",
+  "last_update": "2026-10-15T08:41:46.320Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -482,7 +482,7 @@
     },
     {
       "country": "USA",
-      "score": 46409.2,
+      "score": 46410,
       "top_players": [
         {
           "username": "Trtx",
@@ -496,9 +496,9 @@
           "username": "Shazuh",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
-          "current_quests": 49099,
+          "current_quests": 49103,
           "last_month_quests": 49016,
-          "monthly_gain": 83
+          "monthly_gain": 87
         },
         {
           "username": "Respawnless",
@@ -592,9 +592,9 @@
           "username": "huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_quests": 25406,
+          "current_quests": 25415,
           "last_month_quests": 25235,
-          "monthly_gain": 171
+          "monthly_gain": 180
         },
         {
           "username": "Dragons",
