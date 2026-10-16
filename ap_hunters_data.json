@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-16T08:36:59.636Z",
+  "last_update": "2026-10-16T14:25:48.803Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2436,9 +2436,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 23500,
+          "current_ap": 23530,
           "last_month_ap": 23405,
-          "monthly_gain": 95,
+          "monthly_gain": 125,
           "maxGames": []
         }
       ]
@@ -2663,7 +2663,7 @@
     },
     {
       "country": "New Zealand",
-      "score": 1853,
+      "score": 1860,
       "top_players": [
         {
           "username": "GusTheMonkey",
@@ -2678,9 +2678,9 @@
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
           "country": "New Zealand",
-          "current_ap": 26810,
+          "current_ap": 26825,
           "last_month_ap": 26800,
-          "monthly_gain": 10,
+          "monthly_gain": 25,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games",
@@ -2712,9 +2712,9 @@
           "username": "Qacu",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
-          "current_ap": 25395,
+          "current_ap": 25405,
           "last_month_ap": 25350,
-          "monthly_gain": 45,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -3134,9 +3134,9 @@
           "username": "huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "Unknown",
-          "current_ap": 23440,
+          "current_ap": 23465,
           "last_month_ap": 23430,
-          "monthly_gain": 10,
+          "monthly_gain": 35,
           "maxGames": [
             "Max VampireZ",
             "Max Wool Games"
