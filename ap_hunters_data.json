@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-16T14:25:48.803Z",
+  "last_update": "2026-10-16T19:09:05.857Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2342,9 +2342,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_ap": 24020,
+          "current_ap": 24030,
           "last_month_ap": 23780,
-          "monthly_gain": 240,
+          "monthly_gain": 250,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2691,15 +2691,15 @@
     },
     {
       "country": "Japan",
-      "score": 1730,
+      "score": 1710,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_ap": 27345,
+          "current_ap": 27325,
           "last_month_ap": 27345,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max UHC",
             "Max Speed UHC",
