@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-17T11:51:34.340Z",
+  "last_update": "2026-10-17T14:38:45.279Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1088,7 +1088,7 @@
     },
     {
       "country": "France",
-      "score": 11079,
+      "score": 11078,
       "top_players": [
         {
           "username": "Yann31_",
@@ -1182,9 +1182,9 @@
           "username": "xPeyo",
           "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
           "country": "France",
-          "current_ap": 28260,
+          "current_ap": 28240,
           "last_month_ap": 28260,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2402,9 +2402,9 @@
           "username": "Ofek",
           "uuid": "1121d718b08145fe8b8a3728639d6723",
           "country": "Israel",
-          "current_ap": 24535,
+          "current_ap": 24545,
           "last_month_ap": 24520,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max UHC",
             "Max Speed UHC"
