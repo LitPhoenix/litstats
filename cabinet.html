@@ -18,6 +18,7 @@
 <body>
 
   <script src="assets/js/components.js"></script>
+  <script src="assets/js/pin.js"></script>
 
 <main>
   <div class="top-lookup-bar">
@@ -200,10 +201,19 @@
                   </select>
                 </div>
 
+                <div class="setting-item" style="flex-direction: column; align-items: flex-start; gap: 6px; padding-top: 4px;">
+                  <span>Tier Indicator (List layout):</span>
+                  <select id="tierStyleSelect" class="todo-select" style="width: 100%;" onchange="changeTierStyle(this.value)">
+                    <option value="chip">Number chip (3/4)</option>
+                    <option value="dots">Colour dots</option>
+                  </select>
+                </div>
+
                 <div style="border-top: 1px solid var(--border); margin-top: 8px; padding-top: 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-3);">Show / Hide</div>
                 <div class="setting-item"><span>% complete (header)</span><label class="toggle-switch"><input type="checkbox" id="disp-heroPct" checked onchange="toggleDisplayPref('heroPct', this.checked)"><span class="slider"></span></label></div>
                 <div class="setting-item"><span>AP reward (cards)</span><label class="toggle-switch"><input type="checkbox" id="disp-cardAp" checked onchange="toggleDisplayPref('cardAp', this.checked)"><span class="slider"></span></label></div>
-                <div class="setting-item"><span>% complete (cards)</span><label class="toggle-switch"><input type="checkbox" id="disp-cardPct" checked onchange="toggleDisplayPref('cardPct', this.checked)"><span class="slider"></span></label></div>
+                <div class="setting-item"><span>% complete (tiered cards)</span><label class="toggle-switch"><input type="checkbox" id="disp-tierPct" onchange="toggleDisplayPref('tierPct', this.checked)"><span class="slider"></span></label></div>
+                <div class="setting-item"><span>% complete (challenge cards)</span><label class="toggle-switch"><input type="checkbox" id="disp-chalPct" checked onchange="toggleDisplayPref('chalPct', this.checked)"><span class="slider"></span></label></div>
                 <div class="setting-item"><span>Rarity % (cards)</span><label class="toggle-switch"><input type="checkbox" id="disp-rarity" checked onchange="toggleDisplayPref('rarity', this.checked)"><span class="slider"></span></label></div>
               </div>
             </div>
@@ -333,4 +343,4 @@
   <script src="assets/js/credits.js"></script>
   <script src="assets/js/cabinet.js"></script>
 </body>
-</html>
+</html>  
