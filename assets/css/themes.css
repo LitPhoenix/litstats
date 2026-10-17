@@ -6,7 +6,7 @@
 :root, html[data-theme="light"] {
   --bg: #fdfaf8;
   --bg-glow: rgba(255, 100, 0, 0.02); 
-  --surface: rgba(255, 253, 253, 0.75);
+  --surface: rgba(255, 253, 253, 0.85);
   --surface-block: #ffffff;
   --surface-2: rgba(254, 251, 249, 0.8); 
   --border: rgba(221, 208, 208, 0.6);
@@ -45,7 +45,7 @@ html:not([data-theme]),
 html[data-theme="dark"] {
   --bg: #0a0504; 
   --bg-glow: rgba(255, 75, 20, 0.04); 
-  --surface: rgba(26, 19, 16, 0.65);
+  --surface: rgba(15, 11, 9, 0.85);
   --surface-block: #1a1310;
   --surface-2: rgba(14, 10, 8, 0.6);
   --border: rgba(255, 255, 255, 0.08);
@@ -136,7 +136,7 @@ html[data-theme="amethyst"] {
 html[data-theme="cherry"] {
   --bg: #fff5f7;
   --bg-glow: rgba(255, 179, 198, 0.15);
-  --surface: rgba(255, 250, 251, 0.85);
+  --surface: rgba(255, 250, 251, 0.9);
   --surface-block: #fff0f5;
   --surface-2: rgba(255, 250, 252, 0.938);
   --border: rgba(255, 179, 198, 0.45);
