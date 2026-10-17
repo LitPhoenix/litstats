@@ -16,7 +16,8 @@ let isGoldApEnabled = localStorage.getItem('litstats_gold_ap') === 'true';
 let uiDensity = localStorage.getItem('litstats_density') || 'comfortable';   // 'comfortable' | 'compact' | 'list'
 let uiFilterStyle = localStorage.getItem('litstats_filterStyle') || 'auto';  // 'auto' (compact chips in list layout) | 'grid' | 'chips'
 if (!['auto', 'grid', 'chips'].includes(uiFilterStyle)) uiFilterStyle = 'auto';
-const DISPLAY_DEFAULTS = { heroPct: true, cardAp: true, cardPct: true, rarity: true };
+const DISPLAY_DEFAULTS = { heroPct: true, cardAp: true, tierPct: false, chalPct: true, rarity: true };
+let uiTierStyle = localStorage.getItem('litstats_tierStyle') === 'dots' ? 'dots' : 'chip';   // List layout: numbered chip or colour dots
 let displayPrefs = { ...DISPLAY_DEFAULTS };
 try { Object.assign(displayPrefs, JSON.parse(localStorage.getItem('litstats_display') || '{}')); } catch (e) {}
 
@@ -93,8 +94,8 @@ const customSkinRewards = {
   "seasons greetings": "img/megawalls/herobrine/Santabrine.png",
   "world ender": "img/megawalls/herobrine/Jerry.png",
   "derpbrines revenge": "img/megawalls/herobrine/Derpbrine.png",
-  "soul bbq": "img/megawalls/pigman/Super Pig.png",
-  "king of the springs": "img/megawalls/pigman/King Pig.png",
+  "circle of trust": "img/megawalls/pigman/Super Pig.png",
+  "blowing bubbles": "img/megawalls/pigman/King Pig.png",
   "collector": "img/megawalls/pigman/Kai.png",
   "masterpiece": "img/megawalls/pigman/Picasso.png",
   "legendary pigman": "img/megawalls/pigman/Bandit.png",
@@ -166,7 +167,7 @@ const customSkinRewards = {
   "skitterama": "img/megawalls/spider/Lethal.png",
   "ninja 7s": "img/megawalls/spider/Vinny.png",
   "geronimo": "img/megawalls/spider/Flutter.png",
-  "big leap": "img/megawalls/spider/Frog.png",
+  "feels bad": "img/megawalls/spider/Frog.png",
   "legendary spider": "img/megawalls/spider/Shade.png",
   "i dont feel so good": "img/megawalls/spider/spoderman.png",
   "one giant leap": "img/megawalls/spider/Earl.png",
@@ -252,11 +253,13 @@ Object.entries(customSkinRewards).forEach(([key, path]) => {
 });
 
 // Bed Wars Dreamfeast "main path": 21 items, bought with Ticket Tarts at 1, 5, 10, 15 ... 95, 100 (1,051 total).
-// Paste the 21 apiKeys in PATH ORDER (cheapest first). In the browser console on the Bed Wars page run:
-//   menuConfig.data.filter(i => i.costVal !== undefined).sort((a, b) => a.costVal - b.costVal).map(i => i.apiKey)
+// The 21 apiKeys in path order (cheapest first), taken from menuConfig on the Bed Wars page.
 const BW_MAIN_PATH_KEYS = [
-  // "apikey_for_1_tart", "apikey_for_5_tarts", ... (21 entries)
-];
+  "appetizer_boon", "first_dream_of_wood_skins", "dream_of_animals", "first_nightmare_of_challenges", "first_course_boon",
+  "dream_of_prestige_stars", "first_dream_of_shopkeeper_skins", "second_nightmare_of_challenges", "second_course_boon", "second_dream_of_wood_skins",
+  "dream_of_prestige_brackets", "third_nightmare_of_challenges", "third_course_boon", "team_color_selector", "dream_of_prestige_formatting",
+  "dream_of_kill_messages", "fourth_course_boon", "second_dream_of_shopkeeper_skins", "dream_of_prestige", "golden_starting_sword", "dessert_boon"
+];   // costs 1, 5, 10, 15 ... 95, 100 tarts
 const bwTartCost = i => i === 0 ? 1 : i * 5;                 // 1, 5, 10, ... 100
 const BW_MAIN_PATH_TOTAL = 1051;
 
@@ -1054,7 +1057,8 @@ function applyDensity() {
   if (uiDensity === 'compact' || uiDensity === 'list') document.body.classList.add('density-' + uiDensity);
   document.body.classList.toggle('filters-chips', uiFilterStyle === 'chips' || (uiFilterStyle === 'auto' && uiDensity === 'list'));
   document.body.classList.toggle('highest-tier', !!isHighestTierOnly);
-  const hideClass = { heroPct: 'hide-hero-pct', cardAp: 'hide-card-ap', cardPct: 'hide-card-pct', rarity: 'hide-rarity' };
+  document.body.classList.toggle('tier-dots', uiTierStyle === 'dots');
+  const hideClass = { heroPct: 'hide-hero-pct', cardAp: 'hide-card-ap', tierPct: 'hide-tier-pct', chalPct: 'hide-chal-pct', rarity: 'hide-rarity' };
   Object.keys(hideClass).forEach(k => {
     document.body.classList.toggle(hideClass[k], !displayPrefs[k]);
     const cb = document.getElementById('disp-' + k);
@@ -1064,10 +1068,17 @@ function applyDensity() {
   if (sel) sel.value = uiDensity;
   const fs = document.getElementById('filterStyleSelect');
   if (fs) fs.value = uiFilterStyle;
+  const ts = document.getElementById('tierStyleSelect');
+  if (ts) ts.value = uiTierStyle;
 }
 window.changeFilterStyle = function(val) {
   uiFilterStyle = ['auto', 'grid', 'chips'].includes(val) ? val : 'auto';
   localStorage.setItem('litstats_filterStyle', uiFilterStyle);
+  applyDensity();
+};
+window.changeTierStyle = function(val) {
+  uiTierStyle = val === 'dots' ? 'dots' : 'chip';
+  localStorage.setItem('litstats_tierStyle', uiTierStyle);
   applyDensity();
 };
 window.toggleDisplayPref = function(key, checked) {
@@ -1162,6 +1173,16 @@ window.populateFilters = function() {
   const sel = document.getElementById('filterLabelSelect');
   if (sel) sel.value = filterLabelMode;
 }
+
+// Tier chip (List layout): click = next tier, right-click = previous tier
+window.tierMeta = {};
+window.cycleTier = function(id, dir) {
+  const m = window.tierMeta[id];
+  if (!m || !m.tiers.length) return;
+  const cur = window.activeTierView[id] || m.cur;
+  const i = Math.max(0, m.tiers.indexOf(cur));
+  setTierView(id, m.tiers[(i + dir + m.tiers.length) % m.tiers.length]);
+};
 
 window.setTierView = function(base64Id, tierNum) {
   window.activeTierView[base64Id] = parseInt(tierNum);
@@ -1641,6 +1662,13 @@ function renderDashboard() {
       }
     }
 
+    let tierChipHtml = '';
+    if (isTiered && !isHighestTierOnly && ach.allTiers && ach.allTiers.length > 1) {
+      const n = ach.allTiers.length;
+      const pos = Math.max(0, ach.allTiers.findIndex(t => t.tier === ach.viewingTierNum)) + 1;
+      tierChipHtml = `<button type="button" class="tier-chip" style="--tc: var(--tier-${ach.viewingTierNum})" title="Tier ${pos} of ${n}. Click for the next tier, right-click for the previous" onclick="cycleTier('${ach.uniqueId}', 1)" oncontextmenu="cycleTier('${ach.uniqueId}', -1); return false;">${pos}<i>/${n}</i></button>`;
+    }
+
     return `
       <div class="ach-card ${notchClass} ${historyClass} ${legacyClass} ${/ach-progress-container/.test(progressBlock) ? '' : 'no-prog'}">
         ${!isTiered && !isHistory && !ach.isLegacy ? `<span class="ach-percent">${ach.calcPct.toFixed(2)}%</span>` : ''}
@@ -1661,11 +1689,11 @@ function renderDashboard() {
           ${!isHistory ? `
             <div class="ach-actions">
               <button onclick="toggleBookmark('${ach.uniqueId}')" class="ach-action-btn ${bookmarkClass}" title="Bookmark">${bookmarkIcon}</button>
-              <button onclick="toggleIgnore('${ach.uniqueId}')" class="ach-action-btn" title="${ignoreText}">${ignoreText}</button>
+              <button onclick="toggleIgnore('${ach.uniqueId}')" class="ach-action-btn ach-ignore" title="${ignoreText}"><span class="lbl">${ignoreText}</span><span class="sym">${isIgnored ? '+' : '\u2212'}</span></button>
             </div>
           ` : ''}
         </div>
-        ${isTiered && !isHighestTierOnly ? `<div class="tier-notch-container">${notches}</div>` : ''}
+        ${isTiered && !isHighestTierOnly ? `<div class="tier-notch-container">${notches}</div>${tierChipHtml}` : ''}
       </div>
     `;
   };
@@ -1683,6 +1711,7 @@ function renderDashboard() {
     let barClass = ach.isCompleted ? "ach-progress-fill completed-tier" : "ach-progress-fill";
 
     let notches = '';
+    if (ach.allTiers && ach.allTiers.length > 0) window.tierMeta[ach.uniqueId] = { tiers: ach.allTiers.map((t, i) => t.tier || i + 1), cur: ach.viewingTierNum };
     if(!isHighestTierOnly && ach.allTiers && ach.allTiers.length > 0) {
       ach.allTiers.forEach((tierObj, index) => {
         const tierNum = tierObj.tier || index + 1;
@@ -2114,7 +2143,19 @@ function renderCabinet(data, softRender = false) {
 
 async function initCabinet(explicitLookupId) {
   const urlParams = new URLSearchParams(window.location.search);
-  const lookupId = explicitLookupId || urlParams.get('player') || urlParams.get('uuid');
+  let lookupId = explicitLookupId || urlParams.get('player') || urlParams.get('uuid');
+
+  // No player in the URL: fall back to this tab's active search, then the site-wide pin
+  if (!lookupId) {
+    let fallback = null;
+    try { fallback = sessionStorage.getItem('active_player_session') || localStorage.getItem('litstats_pinnedPlayer'); } catch (e) {}
+    if (fallback) {
+      lookupId = fallback;
+      const topInput = document.getElementById('top-search-input');
+      if (topInput) topInput.value = fallback;
+      window.history.replaceState(null, '', `${window.location.pathname}?player=${encodeURIComponent(fallback)}`);
+    }
+  }
 
   const errorBox = document.getElementById('errorBox');
   if (errorBox) {
