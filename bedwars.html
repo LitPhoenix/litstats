@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" href="assets/css/global.css">
 <link rel="stylesheet" href="assets/css/mc-gui.css">
+<script src="assets/js/pin.js" data-anchor="#player-input"></script>
 
 <style>
   :root {
@@ -704,7 +705,7 @@
 <main class="page-container">
   <h1 class="page-title">Dreamfeast Tracker</h1>
 
-  <div class="search-container" id="tour-search-container">
+  <div class="search-container">
     <input type="text" id="player-input" placeholder="Enter Username or UUID">
     <button id="search-btn" class="btn-primary">
   <span class="btn-text">Load Unlocks</span>
@@ -1578,6 +1579,7 @@ async function fetchPlayerUnlocks(searchTerm) {
     if (data.error) throw new Error(data.error);
 
     isLivePlayerLoaded = true;
+    history.replaceState(null, '', '?player=' + encodeURIComponent(data.username)); // keeps the URL shareable
 
     const bwData = data.bedwars || {};
     const boonMap = bwData.boon || {};
@@ -1760,7 +1762,7 @@ let bedwarsTour = null;
 if (typeof LitTour !== 'undefined') {
   bedwarsTour = new LitTour('bedwars', [
     {
-      target: '#tour-search-container',
+      target: '#player-input',
       title: 'Search Player',
       desc: 'Enter any username or UUID to inspect live tree unlocks, Tickets spent, and stats.',
       position: 'bottom'
@@ -1769,14 +1771,14 @@ if (typeof LitTour !== 'undefined') {
       target: '#stats-side-panel',
       title: 'Tree & Player Stats',
       desc: "Displays total Dreamfeast tree costs by default, and switches to live Bed Wars summary stats when loaded.",
-      position: 'right'
+      position: 'top'
     },
     {
       target: '.slot[data-index="14"]',
       fallbackTarget: '.slot[data-index="41"]',
-      title: 'Try Pathfinding',
+      title: 'Click to Pathfind',
       desc: 'Click an item to calculate its shortest continuous unlock path and required tickets!',
-      position: 'right',
+      position: 'top',
       interactive: true,
       pad: 4,
       onShow: () => closePathPanel()
@@ -1844,8 +1846,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Deep-link: /bedwars?player=NAME loads that player straight away
+  const urlPlayer = (new URLSearchParams(window.location.search).get('player') || '').trim();
+  if (urlPlayer) {
+    document.getElementById('player-input').value = urlPlayer;
+    fetchPlayerUnlocks(urlPlayer);
+  }
+
   setTimeout(() => {
-    if (bedwarsTour) bedwarsTour.start(false);
+    if (bedwarsTour && !urlPlayer) bedwarsTour.start(false);
   }, 600);
 });
 
