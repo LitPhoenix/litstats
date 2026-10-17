@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-17T14:38:45.279Z",
+  "last_update": "2026-10-17T18:03:49.418Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1088,7 +1088,7 @@
     },
     {
       "country": "France",
-      "score": 11078,
+      "score": 11079,
       "top_players": [
         {
           "username": "Yann31_",
@@ -1182,9 +1182,9 @@
           "username": "xPeyo",
           "uuid": "af61bb5b6e3a426591e0049ca7a8330f",
           "country": "France",
-          "current_ap": 28240,
+          "current_ap": 28260,
           "last_month_ap": 28260,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -1295,15 +1295,15 @@
     },
     {
       "country": "UK",
-      "score": 10083,
+      "score": 10068,
       "top_players": [
         {
           "username": "greaneye",
           "uuid": "1fc7b5e6c8e1433ba41e7013ab0a3582",
           "country": "UK",
-          "current_ap": 31460,
+          "current_ap": 31445,
           "last_month_ap": 31460,
-          "monthly_gain": 0,
+          "monthly_gain": -15,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -1911,9 +1911,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_ap": 24775,
+          "current_ap": 24805,
           "last_month_ap": 24690,
-          "monthly_gain": 85,
+          "monthly_gain": 115,
           "maxGames": [
             "Max Cops and Crims",
             "Max Quake",
@@ -2342,9 +2342,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_ap": 24035,
+          "current_ap": 24040,
           "last_month_ap": 23780,
-          "monthly_gain": 255,
+          "monthly_gain": 260,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2436,9 +2436,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 23540,
+          "current_ap": 23570,
           "last_month_ap": 23405,
-          "monthly_gain": 135,
+          "monthly_gain": 165,
           "maxGames": []
         }
       ]
@@ -2691,15 +2691,15 @@
     },
     {
       "country": "Japan",
-      "score": 1710,
+      "score": 1730,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
-          "current_ap": 27325,
+          "current_ap": 27345,
           "last_month_ap": 27345,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": [
             "Max UHC",
             "Max Speed UHC",
@@ -2959,9 +2959,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 25450,
+          "current_ap": 25460,
           "last_month_ap": 25245,
-          "monthly_gain": 205,
+          "monthly_gain": 215,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock",
@@ -3107,9 +3107,9 @@
           "username": "Justin_Jefferson",
           "uuid": "9dccd818228640bfa33174d8dc86dfb7",
           "country": "Unknown",
-          "current_ap": 23570,
+          "current_ap": 23585,
           "last_month_ap": 23570,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ"
