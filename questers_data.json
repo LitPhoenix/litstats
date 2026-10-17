@@ -1,221 +1,234 @@
 {
-  "last_update": "2026-10-17T21:52:49.151Z",
+  "last_update": "2026-10-17T22:32:08.009Z",
   "month_start_snapshot": {
-    "53c51b4607e649d0b81826bc2d64df82": 111740,
-    "289e9f90a76640e0921c85dcd96385b5": 85331,
+    "53c51b4607e649d0b81826bc2d64df82": 111597,
+    "289e9f90a76640e0921c85dcd96385b5": 85164,
     "eb2814a894d748dc87c2cb2eedfe1306": 64019,
     "5409757b87344c0394b10bf966a2d594": 60700,
-    "7638efa55b784c41ac34a4c59b2b86df": 53790,
-    "d8e38381ee814ad781a898519de77100": 51273,
-    "5c1acb0d23fa4ded8bdf20acf508e7d0": 50382,
+    "7638efa55b784c41ac34a4c59b2b86df": 52954,
+    "d8e38381ee814ad781a898519de77100": 50972,
+    "5c1acb0d23fa4ded8bdf20acf508e7d0": 50336,
     "be89a70209224dca982f83546327a7aa": 50000,
-    "decd08e13b754a6788b65181f302c94d": 49103,
-    "baebdae38c064f40a3dda17bda5ecbf5": 48360,
-    "ae655706622d410cb36b9a8c4e1f1be4": 46527,
+    "decd08e13b754a6788b65181f302c94d": 49016,
+    "baebdae38c064f40a3dda17bda5ecbf5": 48186,
     "3863e1c33eb342159e45a17f16c0fb4c": 46506,
     "8415341022134dbe969b81ed3ff6cd6f": 45816,
-    "d7e0ec9bc36f4d44abd2ff1a1043cebd": 44337,
+    "ae655706622d410cb36b9a8c4e1f1be4": 44660,
     "82fc95c49afc4b8182b6cefeac42874e": 43717,
-    "7120f3c4c18a4753baf3d90af928f860": 43121,
-    "f33bcc883074424784ccb6126eb65264": 42037,
-    "40deca8a49a941428ac96315bb15e3f2": 41830,
-    "bfe045f7babf4d1c8f00556716576c34": 40791,
+    "d7e0ec9bc36f4d44abd2ff1a1043cebd": 43621,
+    "7120f3c4c18a4753baf3d90af928f860": 43066,
+    "f33bcc883074424784ccb6126eb65264": 41968,
+    "40deca8a49a941428ac96315bb15e3f2": 41757,
+    "bfe045f7babf4d1c8f00556716576c34": 40787,
     "22eb4504ff954677ba3e6cc87c8e271c": 39347,
     "4cb3c1f60fbe4d66a81c687d4ba0f092": 38771,
     "f6b0f49430704cfc8d0205c5873ed76d": 38730,
     "d7bae5950a3d4e4c92c2765b04bb45bf": 37179,
     "39b5964b6e924774b8aa1aaf676d4cf3": 37160,
     "ec97c47379da469793bfa7b9af48e137": 35851,
-    "8682b351e9c241639291935776608054": 35734,
-    "f61b81b44faf4fc58b00405721f19f84": 34771,
+    "8682b351e9c241639291935776608054": 35692,
     "27be3470303a4f1b8e366ac44d5f56cf": 34720,
+    "f61b81b44faf4fc58b00405721f19f84": 34686,
     "77edb6fda6ef4097914ddc698242fe04": 34671,
-    "3bd74c4d69e04d76965f256b814b9a44": 34330,
     "66923dc43af644bba499071739732284": 34310,
-    "cca4b5f5f0e54d9193fc5f8c66724766": 34260,
+    "3bd74c4d69e04d76965f256b814b9a44": 34309,
+    "cca4b5f5f0e54d9193fc5f8c66724766": 33705,
     "c577637912a84f44990877ceb86064d9": 33605,
-    "ad988df25a274cf592b66c9562834230": 33409,
+    "ad988df25a274cf592b66c9562834230": 33348,
     "616eb57f51b441018734724efc998f53": 32359,
-    "41825ee5f46b406b9bb74aea7eb2742b": 32288,
+    "41825ee5f46b406b9bb74aea7eb2742b": 32183,
     "b9b6e4fd53894abd968508b885d64534": 31820,
-    "9cc15d802eb44f2aaf2075604ce452d5": 31009,
+    "9cc15d802eb44f2aaf2075604ce452d5": 31007,
     "12ecedbce19b448cad38aa4f57f3afda": 30939,
     "11b8466e2c724fe994a00cada8112674": 30790,
     "55f7863b1e9f41b89b51bb8d792ae28e": 30505,
-    "f9fe4ed41242460db7dbd7bfd054e082": 29543,
-    "1240b9bf22254cd5903e20cc097b0043": 29521,
+    "f9fe4ed41242460db7dbd7bfd054e082": 29533,
     "ac97442ca125422cbd72ae60cdd8340f": 29485,
-    "3de9779b0ed34ca196575639b57e2c3b": 28973,
+    "1240b9bf22254cd5903e20cc097b0043": 29437,
+    "3de9779b0ed34ca196575639b57e2c3b": 28911,
     "d4ef6ea1d12f4da09f690507b2327e43": 28549,
     "153377202f274dd09dc838b83c09b104": 27602,
     "9a071ef2b19b4b339ebf9c4d3b0af0bc": 27570,
-    "cafd6a1e45ea4082a56ad0bf697d6c90": 27371,
-    "743c12bffc7348fb8525effead057de2": 26939,
-    "4995579a28f647dfbc03f33fd2aec058": 26851,
+    "cafd6a1e45ea4082a56ad0bf697d6c90": 27357,
     "92464ae772c4446db4d4bcf8569e953e": 26668,
-    "3abe2f6bd45a4e2282d4f9014569db25": 26607,
     "4bba10d5597e4dfbaf32e58f5b5e8300": 26598,
-    "a621a7a79f324b5c83449e4453ad454d": 26338,
-    "141e5144694046eaa7e536ed70cc1595": 26161,
+    "3abe2f6bd45a4e2282d4f9014569db25": 26575,
+    "743c12bffc7348fb8525effead057de2": 26409,
+    "a621a7a79f324b5c83449e4453ad454d": 26314,
+    "141e5144694046eaa7e536ed70cc1595": 26143,
     "7475921e9e5b401ba91c9d187f5dd3a1": 26036,
     "9f97b0041b85422489e9061c0eb74ba0": 25994,
-    "52206b9a3e8446c995fa9f2d4e8c0078": 25964,
+    "52206b9a3e8446c995fa9f2d4e8c0078": 25929,
     "72250a1d144c48d882231209ffcaf82d": 25883,
-    "01834d8a3c7a49c796589979d7a9ab74": 25431,
     "fe7bf008272246f18421d39db8042257": 25370,
     "fe0d23d926054c62921afa2d71a3cc2c": 25351,
-    "56b991d1a9c243d7984df6e6a409cd59": 25193,
+    "01834d8a3c7a49c796589979d7a9ab74": 25235,
+    "56b991d1a9c243d7984df6e6a409cd59": 25055,
     "26f62ec0b55e46b993a34b184080a0eb": 24987,
-    "ced40338048a4382aaba0e88fc04a102": 24927,
     "7afbca3f75d8494b8b6a381dfa18e16b": 24775,
-    "aad6a2754e9c4744bd335213853f023f": 24730,
-    "bc4e34b5a28d49d4b61d8a6f4901533b": 24650,
+    "aad6a2754e9c4744bd335213853f023f": 24674,
     "e698edd3e0124b2f8fa2ccb109b0d0b0": 24609,
+    "bc4e34b5a28d49d4b61d8a6f4901533b": 24602,
     "8fe8adb1793942d0a852f8d2bb239b16": 24525,
+    "ced40338048a4382aaba0e88fc04a102": 24479,
     "3f93a29a5a994f9397f1ac20fb18e652": 24420,
     "dbb5f49cc2394912b1ca89783632d068": 24239,
-    "bf6b32ef38934d9e90b8a1037e16b972": 24089,
     "e3292ca36c5e43cbacd01c52adaca375": 24066,
     "2d0095e5a83242649f088f3f20846f07": 23980,
     "2162ee0de4c745e4a5d44659193b231c": 23978,
-    "35de049d7fcc4d129fe03eb48f5c3804": 23718,
+    "bf6b32ef38934d9e90b8a1037e16b972": 23927,
     "5ccea82011bf4511b298ba04893e0784": 23691,
-    "7d92df9db6f04ef4b24ded24ae739198": 23583,
+    "35de049d7fcc4d129fe03eb48f5c3804": 23677,
     "9899b3edf2364d318fe33c7278a2d4a8": 23511,
     "ab4645d4f2934af9b02d3c6ff296317a": 23508,
-    "5de0cd7c0baf4d4facb117618a3b5fd7": 23451,
-    "d6c5986a52994cc883e1a4b02a6fb76b": 23360,
-    "14016bbfdcf547dab04549b49e891dc8": 23295,
-    "f24adae07cae47bd8f99bff313d97460": 23216,
-    "f93d6ed965ee4d6a8a1a543fe94b35ea": 22861,
+    "5de0cd7c0baf4d4facb117618a3b5fd7": 23429,
+    "7d92df9db6f04ef4b24ded24ae739198": 23343,
+    "14016bbfdcf547dab04549b49e891dc8": 23276,
+    "d6c5986a52994cc883e1a4b02a6fb76b": 23218,
+    "f24adae07cae47bd8f99bff313d97460": 23131,
     "af193f3ea82148489129dc9d32f8dc67": 22781,
     "db365262927d48f5bf54cdeddcf4dae6": 22764,
-    "6ddd8bcbfa9f46a3b0e40dc47d9fe969": 22681,
+    "6ddd8bcbfa9f46a3b0e40dc47d9fe969": 22662,
     "3efd540b06ae4141861672f6510c99e8": 22415,
     "4019260a28f544c2a35a0a1f35108a96": 22413,
-    "796cf0f4332c447d88a6fbfffbe0bd70": 22363,
-    "2a8842a87cfe40fc8ed200f91908a7fa": 22356,
+    "2a8842a87cfe40fc8ed200f91908a7fa": 22324,
     "34f5e925a1454ed5b08a357fd96b7eec": 22225,
     "8a4a5046009a4a23acb58841a8e49356": 22129,
-    "8eb18a9227fb4b36947177babab261cd": 22040,
     "4b715312d0bb45a5b766184613c45aa4": 21980,
+    "f93d6ed965ee4d6a8a1a543fe94b35ea": 21960,
     "9f16e788457c44fc8c24b90167569420": 21768,
-    "2ad002d5144a413e9de436f5dc766651": 21760
+    "2ad002d5144a413e9de436f5dc766651": 21760,
+    "27a86e7999a64f32a8ae44b2ea310fe1": 21749,
+    "8eb18a9227fb4b36947177babab261cd": 21736,
+    "6e49ddeb14ae471f99ffa01f4929b848": 21660,
+    "4995579a28f647dfbc03f33fd2aec058": 26851,
+    "796cf0f4332c447d88a6fbfffbe0bd70": 22363,
+    "6119d70a8a724f2aa2ded280a8cf58bb": 0,
+    "e2bf0a2f2cf24fc29512511ddc10201a": 0,
+    "b12c6b822faa4ebfaab429982dab58ed": 0,
+    "4b48e58c5304407ab8c761fbe125ff3b": 0
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
     "289e9f90a76640e0921c85dcd96385b5": "Canada",
-    "5409757b87344c0394b10bf966a2d594": "Poland",
     "eb2814a894d748dc87c2cb2eedfe1306": "Croatia",
+    "5409757b87344c0394b10bf966a2d594": "Poland",
+    "7638efa55b784c41ac34a4c59b2b86df": "Taiwan",
+    "d8e38381ee814ad781a898519de77100": "Belgium",
+    "5c1acb0d23fa4ded8bdf20acf508e7d0": "UK",
     "be89a70209224dca982f83546327a7aa": "USA",
     "decd08e13b754a6788b65181f302c94d": "USA",
-    "5c1acb0d23fa4ded8bdf20acf508e7d0": "UK",
-    "d8e38381ee814ad781a898519de77100": "Belgium",
-    "3863e1c33eb342159e45a17f16c0fb4c": "Czech Republic",
     "baebdae38c064f40a3dda17bda5ecbf5": "USA",
-    "82fc95c49afc4b8182b6cefeac42874e": "Chile",
-    "7638efa55b784c41ac34a4c59b2b86df": "Taiwan",
+    "3863e1c33eb342159e45a17f16c0fb4c": "Czech Republic",
     "8415341022134dbe969b81ed3ff6cd6f": "USA",
     "ae655706622d410cb36b9a8c4e1f1be4": "Taiwan",
+    "82fc95c49afc4b8182b6cefeac42874e": "Chile",
+    "d7e0ec9bc36f4d44abd2ff1a1043cebd": "Argentina",
     "7120f3c4c18a4753baf3d90af928f860": "Canada",
-    "bfe045f7babf4d1c8f00556716576c34": "France",
-    "40deca8a49a941428ac96315bb15e3f2": "Finland",
     "f33bcc883074424784ccb6126eb65264": "Chile",
+    "40deca8a49a941428ac96315bb15e3f2": "Finland",
+    "bfe045f7babf4d1c8f00556716576c34": "France",
     "22eb4504ff954677ba3e6cc87c8e271c": "Serbia",
     "4cb3c1f60fbe4d66a81c687d4ba0f092": "USA",
     "f6b0f49430704cfc8d0205c5873ed76d": "France",
-    "d7e0ec9bc36f4d44abd2ff1a1043cebd": "Argentina",
     "d7bae5950a3d4e4c92c2765b04bb45bf": "USA",
+    "39b5964b6e924774b8aa1aaf676d4cf3": "Hong Kong",
     "ec97c47379da469793bfa7b9af48e137": "UK",
     "8682b351e9c241639291935776608054": "UK",
-    "39b5964b6e924774b8aa1aaf676d4cf3": "Hong Kong",
     "27be3470303a4f1b8e366ac44d5f56cf": "Poland",
     "f61b81b44faf4fc58b00405721f19f84": "USA",
     "77edb6fda6ef4097914ddc698242fe04": "USA",
-    "c577637912a84f44990877ceb86064d9": "Luxembourg",
-    "3bd74c4d69e04d76965f256b814b9a44": "Japan",
     "66923dc43af644bba499071739732284": "UK",
+    "3bd74c4d69e04d76965f256b814b9a44": "Japan",
+    "cca4b5f5f0e54d9193fc5f8c66724766": "Finland",
+    "c577637912a84f44990877ceb86064d9": "Luxembourg",
     "ad988df25a274cf592b66c9562834230": "Sweden",
-    "b9b6e4fd53894abd968508b885d64534": "Mexico",
     "616eb57f51b441018734724efc998f53": "USA",
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
+    "b9b6e4fd53894abd968508b885d64534": "Mexico",
+    "9cc15d802eb44f2aaf2075604ce452d5": "USA",
     "12ecedbce19b448cad38aa4f57f3afda": "Australia",
     "11b8466e2c724fe994a00cada8112674": "Spain",
-    "9cc15d802eb44f2aaf2075604ce452d5": "USA",
     "55f7863b1e9f41b89b51bb8d792ae28e": "Japan",
     "f9fe4ed41242460db7dbd7bfd054e082": "France",
     "1240b9bf22254cd5903e20cc097b0043": "Canada",
-    "cca4b5f5f0e54d9193fc5f8c66724766": "Finland",
     "3de9779b0ed34ca196575639b57e2c3b": "France",
-    "9a071ef2b19b4b339ebf9c4d3b0af0bc": "USA",
     "153377202f274dd09dc838b83c09b104": "Portugal",
+    "9a071ef2b19b4b339ebf9c4d3b0af0bc": "USA",
     "cafd6a1e45ea4082a56ad0bf697d6c90": "USA",
-    "3abe2f6bd45a4e2282d4f9014569db25": "Russia",
     "4bba10d5597e4dfbaf32e58f5b5e8300": "France",
+    "3abe2f6bd45a4e2282d4f9014569db25": "Russia",
+    "743c12bffc7348fb8525effead057de2": "The Netherlands",
+    "a621a7a79f324b5c83449e4453ad454d": "France",
+    "141e5144694046eaa7e536ed70cc1595": "Peru",
     "7475921e9e5b401ba91c9d187f5dd3a1": "Philippines",
     "9f97b0041b85422489e9061c0eb74ba0": "Romania",
-    "141e5144694046eaa7e536ed70cc1595": "Peru",
-    "72250a1d144c48d882231209ffcaf82d": "Czech Republic",
-    "a621a7a79f324b5c83449e4453ad454d": "France",
     "52206b9a3e8446c995fa9f2d4e8c0078": "France",
+    "72250a1d144c48d882231209ffcaf82d": "Czech Republic",
     "fe7bf008272246f18421d39db8042257": "Brazil",
-    "bc4e34b5a28d49d4b61d8a6f4901533b": "Japan",
-    "26f62ec0b55e46b993a34b184080a0eb": "Poland",
-    "dbb5f49cc2394912b1ca89783632d068": "Australia",
-    "743c12bffc7348fb8525effead057de2": "Netherlands",
-    "2d0095e5a83242649f088f3f20846f07": "France",
-    "aad6a2754e9c4744bd335213853f023f": "UK",
-    "e3292ca36c5e43cbacd01c52adaca375": "UK",
-    "7afbca3f75d8494b8b6a381dfa18e16b": "Hungary",
-    "e698edd3e0124b2f8fa2ccb109b0d0b0": "USA",
-    "5ccea82011bf4511b298ba04893e0784": "Canada",
-    "8fe8adb1793942d0a852f8d2bb239b16": "USA",
-    "35de049d7fcc4d129fe03eb48f5c3804": "Hong Kong",
-    "ab4645d4f2934af9b02d3c6ff296317a": "Chile",
-    "9899b3edf2364d318fe33c7278a2d4a8": "UK",
+    "01834d8a3c7a49c796589979d7a9ab74": "USA",
     "56b991d1a9c243d7984df6e6a409cd59": "Israel",
+    "26f62ec0b55e46b993a34b184080a0eb": "Poland",
+    "7afbca3f75d8494b8b6a381dfa18e16b": "Hungary",
+    "aad6a2754e9c4744bd335213853f023f": "UK",
+    "e698edd3e0124b2f8fa2ccb109b0d0b0": "USA",
+    "bc4e34b5a28d49d4b61d8a6f4901533b": "Japan",
+    "8fe8adb1793942d0a852f8d2bb239b16": "USA",
+    "dbb5f49cc2394912b1ca89783632d068": "Australia",
+    "e3292ca36c5e43cbacd01c52adaca375": "UK",
+    "2d0095e5a83242649f088f3f20846f07": "France",
+    "2162ee0de4c745e4a5d44659193b231c": "South Korea",
+    "bf6b32ef38934d9e90b8a1037e16b972": "The Netherlands",
+    "5ccea82011bf4511b298ba04893e0784": "Canada",
+    "35de049d7fcc4d129fe03eb48f5c3804": "Hong Kong",
+    "9899b3edf2364d318fe33c7278a2d4a8": "UK",
+    "ab4645d4f2934af9b02d3c6ff296317a": "Chile",
     "5de0cd7c0baf4d4facb117618a3b5fd7": "Sweden",
+    "7d92df9db6f04ef4b24ded24ae739198": "Finland",
+    "14016bbfdcf547dab04549b49e891dc8": "UK",
+    "d6c5986a52994cc883e1a4b02a6fb76b": "USA",
+    "f24adae07cae47bd8f99bff313d97460": "Australia",
     "af193f3ea82148489129dc9d32f8dc67": "The Netherlands",
     "db365262927d48f5bf54cdeddcf4dae6": "USA",
     "3efd540b06ae4141861672f6510c99e8": "Japan",
-    "01834d8a3c7a49c796589979d7a9ab74": "USA",
-    "14016bbfdcf547dab04549b49e891dc8": "UK",
     "4019260a28f544c2a35a0a1f35108a96": "Russia",
-    "d6c5986a52994cc883e1a4b02a6fb76b": "USA",
+    "2a8842a87cfe40fc8ed200f91908a7fa": "Australia",
+    "8a4a5046009a4a23acb58841a8e49356": "Japan",
     "4b715312d0bb45a5b766184613c45aa4": "USA",
-    "bf6b32ef38934d9e90b8a1037e16b972": "The Netherlands",
     "9f16e788457c44fc8c24b90167569420": "USA",
     "2ad002d5144a413e9de436f5dc766651": "Poland",
     "27a86e7999a64f32a8ae44b2ea310fe1": "USA",
+    "8eb18a9227fb4b36947177babab261cd": "USA",
     "6e49ddeb14ae471f99ffa01f4929b848": "France",
+    "4995579a28f647dfbc03f33fd2aec058": "Brazil",
+    "796cf0f4332c447d88a6fbfffbe0bd70": "UK",
     "6119d70a8a724f2aa2ded280a8cf58bb": "USA",
     "e2bf0a2f2cf24fc29512511ddc10201a": "Romania",
     "b12c6b822faa4ebfaab429982dab58ed": "UK",
-    "2a8842a87cfe40fc8ed200f91908a7fa": "Canada",
-    "796cf0f4332c447d88a6fbfffbe0bd70": "UK",
-    "4b48e58c5304407ab8c761fbe125ff3b": "Greece",
-    "f24adae07cae47bd8f99bff313d97460": "Australia"
+    "4b48e58c5304407ab8c761fbe125ff3b": "Greece"
   },
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49955.4,
+      "score": 104877,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
           "current_quests": 111740,
-          "last_month_quests": 111740,
-          "monthly_gain": 0
+          "last_month_quests": 111597,
+          "monthly_gain": 143,
+          "maxGames": []
         },
         {
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
           "current_quests": 40791,
-          "last_month_quests": 40791,
-          "monthly_gain": 0
+          "last_month_quests": 40787,
+          "monthly_gain": 4,
+          "maxGames": []
         },
         {
           "username": "Edzio",
@@ -223,23 +236,26 @@
           "country": "France",
           "current_quests": 38730,
           "last_month_quests": 38730,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "enoitna",
           "uuid": "f9fe4ed41242460db7dbd7bfd054e082",
           "country": "France",
           "current_quests": 29543,
-          "last_month_quests": 29543,
-          "monthly_gain": 0
+          "last_month_quests": 29533,
+          "monthly_gain": 10,
+          "maxGames": []
         },
         {
           "username": "Yann31_",
           "uuid": "3de9779b0ed34ca196575639b57e2c3b",
           "country": "France",
           "current_quests": 28973,
-          "last_month_quests": 28973,
-          "monthly_gain": 0
+          "last_month_quests": 28911,
+          "monthly_gain": 62,
+          "maxGames": []
         },
         {
           "username": "trql",
@@ -247,23 +263,26 @@
           "country": "France",
           "current_quests": 26598,
           "last_month_quests": 26598,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "titi2502",
           "uuid": "a621a7a79f324b5c83449e4453ad454d",
           "country": "France",
           "current_quests": 26338,
-          "last_month_quests": 26338,
-          "monthly_gain": 0
+          "last_month_quests": 26314,
+          "monthly_gain": 24,
+          "maxGames": []
         },
         {
           "username": "TournamentTokens",
           "uuid": "52206b9a3e8446c995fa9f2d4e8c0078",
           "country": "France",
           "current_quests": 25964,
-          "last_month_quests": 25964,
-          "monthly_gain": 0
+          "last_month_quests": 25929,
+          "monthly_gain": 35,
+          "maxGames": []
         },
         {
           "username": "wadfrere",
@@ -271,37 +290,50 @@
           "country": "France",
           "current_quests": 23980,
           "last_month_quests": 23980,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Unknown",
+          "uuid": "6e49ddeb14ae471f99ffa01f4929b848",
+          "country": "France",
+          "current_quests": 21660,
+          "last_month_quests": 21660,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Canada",
-      "score": 40804,
+      "score": 76385,
       "top_players": [
         {
           "username": "Songgg",
           "uuid": "289e9f90a76640e0921c85dcd96385b5",
           "country": "Canada",
           "current_quests": 85331,
-          "last_month_quests": 85331,
-          "monthly_gain": 0
+          "last_month_quests": 85164,
+          "monthly_gain": 167,
+          "maxGames": []
         },
         {
           "username": "enderdrxgon",
           "uuid": "7120f3c4c18a4753baf3d90af928f860",
           "country": "Canada",
           "current_quests": 43121,
-          "last_month_quests": 43121,
-          "monthly_gain": 0
+          "last_month_quests": 43066,
+          "monthly_gain": 55,
+          "maxGames": []
         },
         {
           "username": "Motthe",
           "uuid": "1240b9bf22254cd5903e20cc097b0043",
           "country": "Canada",
           "current_quests": 29521,
-          "last_month_quests": 29521,
-          "monthly_gain": 0
+          "last_month_quests": 29437,
+          "monthly_gain": 84,
+          "maxGames": []
         },
         {
           "username": "FlyHak",
@@ -309,187 +341,14 @@
           "country": "Canada",
           "current_quests": 23691,
           "last_month_quests": 23691,
-          "monthly_gain": 0
-        },
-        {
-          "username": "radicul",
-          "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
-          "country": "Canada",
-          "current_quests": 22356,
-          "last_month_quests": 22356,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Croatia",
-      "score": 12803.8,
-      "top_players": [
-        {
-          "username": "mihannah",
-          "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
-          "country": "Croatia",
-          "current_quests": 64019,
-          "last_month_quests": 64019,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Poland",
-      "score": 28433.4,
-      "top_players": [
-        {
-          "username": "huntz",
-          "uuid": "5409757b87344c0394b10bf966a2d594",
-          "country": "Poland",
-          "current_quests": 60700,
-          "last_month_quests": 60700,
-          "monthly_gain": 0
-        },
-        {
-          "username": "kitty675",
-          "uuid": "27be3470303a4f1b8e366ac44d5f56cf",
-          "country": "Poland",
-          "current_quests": 34720,
-          "last_month_quests": 34720,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Cacto",
-          "uuid": "26f62ec0b55e46b993a34b184080a0eb",
-          "country": "Poland",
-          "current_quests": 24987,
-          "last_month_quests": 24987,
-          "monthly_gain": 0
-        },
-        {
-          "username": "BluPlays",
-          "uuid": "2ad002d5144a413e9de436f5dc766651",
-          "country": "Poland",
-          "current_quests": 21760,
-          "last_month_quests": 21760,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Taiwan",
-      "score": 20063.4,
-      "top_players": [
-        {
-          "username": "Summer_Albert",
-          "uuid": "7638efa55b784c41ac34a4c59b2b86df",
-          "country": "Taiwan",
-          "current_quests": 53790,
-          "last_month_quests": 53790,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Itz_Pipi",
-          "uuid": "ae655706622d410cb36b9a8c4e1f1be4",
-          "country": "Taiwan",
-          "current_quests": 46527,
-          "last_month_quests": 46527,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Belgium",
-      "score": 10254.6,
-      "top_players": [
-        {
-          "username": "Bonbonblok",
-          "uuid": "d8e38381ee814ad781a898519de77100",
-          "country": "Belgium",
-          "current_quests": 51273,
-          "last_month_quests": 51273,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "UK",
-      "score": 36201.4,
-      "top_players": [
-        {
-          "username": "SanjayPatel35812",
-          "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
-          "country": "UK",
-          "current_quests": 50382,
-          "last_month_quests": 50382,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Weeknd",
-          "uuid": "ec97c47379da469793bfa7b9af48e137",
-          "country": "UK",
-          "current_quests": 35851,
-          "last_month_quests": 35851,
-          "monthly_gain": 0
-        },
-        {
-          "username": "60c",
-          "uuid": "8682b351e9c241639291935776608054",
-          "country": "UK",
-          "current_quests": 35734,
-          "last_month_quests": 35734,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Shazombie",
-          "uuid": "66923dc43af644bba499071739732284",
-          "country": "UK",
-          "current_quests": 34310,
-          "last_month_quests": 34310,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Evdia",
-          "uuid": "aad6a2754e9c4744bd335213853f023f",
-          "country": "UK",
-          "current_quests": 24730,
-          "last_month_quests": 24730,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Fossilised",
-          "uuid": "e3292ca36c5e43cbacd01c52adaca375",
-          "country": "UK",
-          "current_quests": 24066,
-          "last_month_quests": 24066,
-          "monthly_gain": 0
-        },
-        {
-          "username": "CelsiusPeachVibe",
-          "uuid": "9899b3edf2364d318fe33c7278a2d4a8",
-          "country": "UK",
-          "current_quests": 23511,
-          "last_month_quests": 23511,
-          "monthly_gain": 0
-        },
-        {
-          "username": "DTN_Alpap",
-          "uuid": "14016bbfdcf547dab04549b49e891dc8",
-          "country": "UK",
-          "current_quests": 23295,
-          "last_month_quests": 23295,
-          "monthly_gain": 0
-        },
-        {
-          "username": "rantingbrit",
-          "uuid": "796cf0f4332c447d88a6fbfffbe0bd70",
-          "country": "UK",
-          "current_quests": 22363,
-          "last_month_quests": 22363,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "USA",
-      "score": 46410,
+      "score": 51818,
       "top_players": [
         {
           "username": "Trtx",
@@ -497,23 +356,26 @@
           "country": "USA",
           "current_quests": 50000,
           "last_month_quests": 50000,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Shazuh",
           "uuid": "decd08e13b754a6788b65181f302c94d",
           "country": "USA",
           "current_quests": 49103,
-          "last_month_quests": 49103,
-          "monthly_gain": 0
+          "last_month_quests": 49016,
+          "monthly_gain": 87,
+          "maxGames": []
         },
         {
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
           "current_quests": 48360,
-          "last_month_quests": 48360,
-          "monthly_gain": 0
+          "last_month_quests": 48186,
+          "monthly_gain": 174,
+          "maxGames": []
         },
         {
           "username": "MockBall",
@@ -521,7 +383,8 @@
           "country": "USA",
           "current_quests": 45816,
           "last_month_quests": 45816,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "QuestCompleted",
@@ -529,7 +392,8 @@
           "country": "USA",
           "current_quests": 38771,
           "last_month_quests": 38771,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "StevenR8",
@@ -537,15 +401,17 @@
           "country": "USA",
           "current_quests": 37179,
           "last_month_quests": 37179,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
           "current_quests": 34771,
-          "last_month_quests": 34771,
-          "monthly_gain": 0
+          "last_month_quests": 34686,
+          "monthly_gain": 85,
+          "maxGames": []
         },
         {
           "username": "sirumair9505",
@@ -553,7 +419,8 @@
           "country": "USA",
           "current_quests": 34671,
           "last_month_quests": 34671,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Dadje",
@@ -561,23 +428,26 @@
           "country": "USA",
           "current_quests": 32359,
           "last_month_quests": 32359,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
           "current_quests": 32288,
-          "last_month_quests": 32288,
-          "monthly_gain": 0
+          "last_month_quests": 32183,
+          "monthly_gain": 105,
+          "maxGames": []
         },
         {
           "username": "vasiv",
           "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
           "country": "USA",
           "current_quests": 31009,
-          "last_month_quests": 31009,
-          "monthly_gain": 0
+          "last_month_quests": 31007,
+          "monthly_gain": 2,
+          "maxGames": []
         },
         {
           "username": "Villahs",
@@ -585,23 +455,26 @@
           "country": "USA",
           "current_quests": 27570,
           "last_month_quests": 27570,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "meln",
           "uuid": "cafd6a1e45ea4082a56ad0bf697d6c90",
           "country": "USA",
           "current_quests": 27371,
-          "last_month_quests": 27371,
-          "monthly_gain": 0
+          "last_month_quests": 27357,
+          "monthly_gain": 14,
+          "maxGames": []
         },
         {
           "username": "huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
           "current_quests": 25431,
-          "last_month_quests": 25431,
-          "monthly_gain": 0
+          "last_month_quests": 25235,
+          "monthly_gain": 196,
+          "maxGames": []
         },
         {
           "username": "Dragons",
@@ -609,7 +482,8 @@
           "country": "USA",
           "current_quests": 24609,
           "last_month_quests": 24609,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "zeytrixx",
@@ -617,15 +491,17 @@
           "country": "USA",
           "current_quests": 24525,
           "last_month_quests": 24525,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "culorfuj",
           "uuid": "d6c5986a52994cc883e1a4b02a6fb76b",
           "country": "USA",
           "current_quests": 23360,
-          "last_month_quests": 23360,
-          "monthly_gain": 0
+          "last_month_quests": 23218,
+          "monthly_gain": 142,
+          "maxGames": []
         },
         {
           "username": "Nightire",
@@ -633,7 +509,17 @@
           "country": "USA",
           "current_quests": 22764,
           "last_month_quests": 22764,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "kipanator",
+          "uuid": "8eb18a9227fb4b36947177babab261cd",
+          "country": "USA",
+          "current_quests": 22040,
+          "last_month_quests": 21736,
+          "monthly_gain": 304,
+          "maxGames": []
         },
         {
           "username": "lolitsaxel",
@@ -641,7 +527,8 @@
           "country": "USA",
           "current_quests": 21980,
           "last_month_quests": 21980,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "recordheat",
@@ -649,49 +536,209 @@
           "country": "USA",
           "current_quests": 21768,
           "last_month_quests": 21768,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Czech Republic",
-      "score": 14477.8,
-      "top_players": [
-        {
-          "username": "Tetrizz",
-          "uuid": "3863e1c33eb342159e45a17f16c0fb4c",
-          "country": "Czech Republic",
-          "current_quests": 46506,
-          "last_month_quests": 46506,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
-          "username": "koprr",
-          "uuid": "72250a1d144c48d882231209ffcaf82d",
-          "country": "Czech Republic",
-          "current_quests": 25883,
-          "last_month_quests": 25883,
-          "monthly_gain": 0
+          "username": "Unknown",
+          "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
+          "country": "USA",
+          "current_quests": 21749,
+          "last_month_quests": 21749,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Unknown",
+          "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
+          "country": "USA",
+          "current_quests": 0,
+          "last_month_quests": 0,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
-      "country": "Argentina",
-      "score": 8867.4,
+      "country": "Poland",
+      "score": 46227,
       "top_players": [
         {
-          "username": "Iaan",
-          "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
-          "country": "Argentina",
-          "current_quests": 44337,
-          "last_month_quests": 44337,
-          "monthly_gain": 0
+          "username": "huntz",
+          "uuid": "5409757b87344c0394b10bf966a2d594",
+          "country": "Poland",
+          "current_quests": 60700,
+          "last_month_quests": 60700,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "kitty675",
+          "uuid": "27be3470303a4f1b8e366ac44d5f56cf",
+          "country": "Poland",
+          "current_quests": 34720,
+          "last_month_quests": 34720,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Cacto",
+          "uuid": "26f62ec0b55e46b993a34b184080a0eb",
+          "country": "Poland",
+          "current_quests": 24987,
+          "last_month_quests": 24987,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "BluPlays",
+          "uuid": "2ad002d5144a413e9de436f5dc766651",
+          "country": "Poland",
+          "current_quests": 21760,
+          "last_month_quests": 21760,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Taiwan",
+      "score": 44414,
+      "top_players": [
+        {
+          "username": "Summer_Albert",
+          "uuid": "7638efa55b784c41ac34a4c59b2b86df",
+          "country": "Taiwan",
+          "current_quests": 53790,
+          "last_month_quests": 52954,
+          "monthly_gain": 836,
+          "maxGames": []
+        },
+        {
+          "username": "Itz_Pipi",
+          "uuid": "ae655706622d410cb36b9a8c4e1f1be4",
+          "country": "Taiwan",
+          "current_quests": 46527,
+          "last_month_quests": 44660,
+          "monthly_gain": 1867,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Croatia",
+      "score": 42259,
+      "top_players": [
+        {
+          "username": "mihannah",
+          "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
+          "country": "Croatia",
+          "current_quests": 64019,
+          "last_month_quests": 64019,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "UK",
+      "score": 40565,
+      "top_players": [
+        {
+          "username": "SanjayPatel35812",
+          "uuid": "5c1acb0d23fa4ded8bdf20acf508e7d0",
+          "country": "UK",
+          "current_quests": 50382,
+          "last_month_quests": 50336,
+          "monthly_gain": 46,
+          "maxGames": []
+        },
+        {
+          "username": "Weeknd",
+          "uuid": "ec97c47379da469793bfa7b9af48e137",
+          "country": "UK",
+          "current_quests": 35851,
+          "last_month_quests": 35851,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "60c",
+          "uuid": "8682b351e9c241639291935776608054",
+          "country": "UK",
+          "current_quests": 35734,
+          "last_month_quests": 35692,
+          "monthly_gain": 42,
+          "maxGames": []
+        },
+        {
+          "username": "Shazombie",
+          "uuid": "66923dc43af644bba499071739732284",
+          "country": "UK",
+          "current_quests": 34310,
+          "last_month_quests": 34310,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Evdia",
+          "uuid": "aad6a2754e9c4744bd335213853f023f",
+          "country": "UK",
+          "current_quests": 24730,
+          "last_month_quests": 24674,
+          "monthly_gain": 56,
+          "maxGames": []
+        },
+        {
+          "username": "Fossilised",
+          "uuid": "e3292ca36c5e43cbacd01c52adaca375",
+          "country": "UK",
+          "current_quests": 24066,
+          "last_month_quests": 24066,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "CelsiusPeachVibe",
+          "uuid": "9899b3edf2364d318fe33c7278a2d4a8",
+          "country": "UK",
+          "current_quests": 23511,
+          "last_month_quests": 23511,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "DTN_Alpap",
+          "uuid": "14016bbfdcf547dab04549b49e891dc8",
+          "country": "UK",
+          "current_quests": 23295,
+          "last_month_quests": 23276,
+          "monthly_gain": 19,
+          "maxGames": []
+        },
+        {
+          "username": "rantingbrit",
+          "uuid": "796cf0f4332c447d88a6fbfffbe0bd70",
+          "country": "UK",
+          "current_quests": 22363,
+          "last_month_quests": 22363,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Unknown",
+          "uuid": "b12c6b822faa4ebfaab429982dab58ed",
+          "country": "UK",
+          "current_quests": 0,
+          "last_month_quests": 0,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Chile",
-      "score": 21852.4,
+      "score": 32533,
       "top_players": [
         {
           "username": "xBxnny",
@@ -699,15 +746,17 @@
           "country": "Chile",
           "current_quests": 43717,
           "last_month_quests": 43717,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "MrRodd",
           "uuid": "f33bcc883074424784ccb6126eb65264",
           "country": "Chile",
           "current_quests": 42037,
-          "last_month_quests": 42037,
-          "monthly_gain": 0
+          "last_month_quests": 41968,
+          "monthly_gain": 69,
+          "maxGames": []
         },
         {
           "username": "memeister",
@@ -715,79 +764,110 @@
           "country": "Chile",
           "current_quests": 23508,
           "last_month_quests": 23508,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Belgium",
+      "score": 29513,
+      "top_players": [
+        {
+          "username": "Bonbonblok",
+          "uuid": "d8e38381ee814ad781a898519de77100",
+          "country": "Belgium",
+          "current_quests": 51273,
+          "last_month_quests": 50972,
+          "monthly_gain": 301,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Czech Republic",
+      "score": 26808,
+      "top_players": [
+        {
+          "username": "Tetrizz",
+          "uuid": "3863e1c33eb342159e45a17f16c0fb4c",
+          "country": "Czech Republic",
+          "current_quests": 46506,
+          "last_month_quests": 46506,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "koprr",
+          "uuid": "72250a1d144c48d882231209ffcaf82d",
+          "country": "Czech Republic",
+          "current_quests": 25883,
+          "last_month_quests": 25883,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Finland",
-      "score": 15218,
+      "score": 26774,
       "top_players": [
         {
           "username": "Mol_o",
           "uuid": "40deca8a49a941428ac96315bb15e3f2",
           "country": "Finland",
           "current_quests": 41830,
-          "last_month_quests": 41830,
-          "monthly_gain": 0
+          "last_month_quests": 41757,
+          "monthly_gain": 73,
+          "maxGames": []
         },
         {
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
           "current_quests": 34260,
-          "last_month_quests": 34260,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Serbia",
-      "score": 7869.4,
-      "top_players": [
-        {
-          "username": "Misqu",
-          "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
-          "country": "Serbia",
-          "current_quests": 39347,
-          "last_month_quests": 39347,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Hong Kong",
-      "score": 12175.6,
-      "top_players": [
-        {
-          "username": "epicercaner",
-          "uuid": "39b5964b6e924774b8aa1aaf676d4cf3",
-          "country": "Hong Kong",
-          "current_quests": 37160,
-          "last_month_quests": 37160,
-          "monthly_gain": 0
+          "last_month_quests": 33705,
+          "monthly_gain": 555,
+          "maxGames": []
         },
         {
-          "username": "0HfLUfFIE",
-          "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
-          "country": "Hong Kong",
-          "current_quests": 23718,
-          "last_month_quests": 23718,
-          "monthly_gain": 0
+          "username": "Champiez",
+          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
+          "country": "Finland",
+          "current_quests": 23575,
+          "last_month_quests": 23343,
+          "monthly_gain": 232,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Argentina",
+      "score": 22577,
+      "top_players": [
+        {
+          "username": "Iaan",
+          "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+          "country": "Argentina",
+          "current_quests": 44337,
+          "last_month_quests": 43621,
+          "monthly_gain": 716,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Japan",
-      "score": 22380,
+      "score": 17749,
       "top_players": [
         {
           "username": "CowKou",
           "uuid": "3bd74c4d69e04d76965f256b814b9a44",
           "country": "Japan",
           "current_quests": 34330,
-          "last_month_quests": 34330,
-          "monthly_gain": 0
+          "last_month_quests": 34309,
+          "monthly_gain": 21,
+          "maxGames": []
         },
         {
           "username": "Taich25",
@@ -795,15 +875,17 @@
           "country": "Japan",
           "current_quests": 30505,
           "last_month_quests": 30505,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "Hayaoki",
           "uuid": "bc4e34b5a28d49d4b61d8a6f4901533b",
           "country": "Japan",
           "current_quests": 24650,
-          "last_month_quests": 24650,
-          "monthly_gain": 0
+          "last_month_quests": 24602,
+          "monthly_gain": 48,
+          "maxGames": []
         },
         {
           "username": "Tonaken",
@@ -811,13 +893,86 @@
           "country": "Japan",
           "current_quests": 22415,
           "last_month_quests": 22415,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "rem_hypixel",
+          "uuid": "8a4a5046009a4a23acb58841a8e49356",
+          "country": "Japan",
+          "current_quests": 22129,
+          "last_month_quests": 22129,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Serbia",
+      "score": 17587,
+      "top_players": [
+        {
+          "username": "Misqu",
+          "uuid": "22eb4504ff954677ba3e6cc87c8e271c",
+          "country": "Serbia",
+          "current_quests": 39347,
+          "last_month_quests": 39347,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Hong Kong",
+      "score": 16379,
+      "top_players": [
+        {
+          "username": "epicercaner",
+          "uuid": "39b5964b6e924774b8aa1aaf676d4cf3",
+          "country": "Hong Kong",
+          "current_quests": 37160,
+          "last_month_quests": 37160,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "0HfLUfFIE",
+          "uuid": "35de049d7fcc4d129fe03eb48f5c3804",
+          "country": "Hong Kong",
+          "current_quests": 23718,
+          "last_month_quests": 23677,
+          "monthly_gain": 41,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Sweden",
+      "score": 12495,
+      "top_players": [
+        {
+          "username": "sForce",
+          "uuid": "ad988df25a274cf592b66c9562834230",
+          "country": "Sweden",
+          "current_quests": 33409,
+          "last_month_quests": 33348,
+          "monthly_gain": 61,
+          "maxGames": []
+        },
+        {
+          "username": "Reeedly",
+          "uuid": "5de0cd7c0baf4d4facb117618a3b5fd7",
+          "country": "Sweden",
+          "current_quests": 23451,
+          "last_month_quests": 23429,
+          "monthly_gain": 22,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Luxembourg",
-      "score": 6721,
+      "score": 11845,
       "top_players": [
         {
           "username": "Koide",
@@ -825,49 +980,14 @@
           "country": "Luxembourg",
           "current_quests": 33605,
           "last_month_quests": 33605,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Sweden",
-      "score": 11372,
-      "top_players": [
-        {
-          "username": "sForce",
-          "uuid": "ad988df25a274cf592b66c9562834230",
-          "country": "Sweden",
-          "current_quests": 33409,
-          "last_month_quests": 33409,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Reeedly",
-          "uuid": "5de0cd7c0baf4d4facb117618a3b5fd7",
-          "country": "Sweden",
-          "current_quests": 23451,
-          "last_month_quests": 23451,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Mexico",
-      "score": 6364,
-      "top_players": [
-        {
-          "username": "x_o22",
-          "uuid": "b9b6e4fd53894abd968508b885d64534",
-          "country": "Mexico",
-          "current_quests": 31820,
-          "last_month_quests": 31820,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Australia",
-      "score": 15678.8,
+      "score": 10842,
       "top_players": [
         {
           "username": "Bikkie",
@@ -875,7 +995,8 @@
           "country": "Australia",
           "current_quests": 30939,
           "last_month_quests": 30939,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "TotalDramaIsland",
@@ -883,21 +1004,47 @@
           "country": "Australia",
           "current_quests": 24239,
           "last_month_quests": 24239,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "irdga",
           "uuid": "f24adae07cae47bd8f99bff313d97460",
           "country": "Australia",
           "current_quests": 23216,
-          "last_month_quests": 23216,
-          "monthly_gain": 0
+          "last_month_quests": 23131,
+          "monthly_gain": 85,
+          "maxGames": []
+        },
+        {
+          "username": "radicul",
+          "uuid": "2a8842a87cfe40fc8ed200f91908a7fa",
+          "country": "Australia",
+          "current_quests": 22356,
+          "last_month_quests": 22324,
+          "monthly_gain": 32,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Mexico",
+      "score": 10060,
+      "top_players": [
+        {
+          "username": "x_o22",
+          "uuid": "b9b6e4fd53894abd968508b885d64534",
+          "country": "Mexico",
+          "current_quests": 31820,
+          "last_month_quests": 31820,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Spain",
-      "score": 6158,
+      "score": 9030,
       "top_players": [
         {
           "username": "ArelyPEITUDA",
@@ -905,273 +1052,56 @@
           "country": "Spain",
           "current_quests": 30790,
           "last_month_quests": 30790,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Unknown",
-      "score": 27380.8,
-      "top_players": [
-        {
-          "username": "Rayjer",
-          "uuid": "ac97442ca125422cbd72ae60cdd8340f",
-          "country": "Unknown",
-          "current_quests": 29485,
-          "last_month_quests": 29485,
-          "monthly_gain": 0
-        },
-        {
-          "username": "wannabemykitten",
-          "uuid": "d4ef6ea1d12f4da09f690507b2327e43",
-          "country": "Unknown",
-          "current_quests": 28549,
-          "last_month_quests": 28549,
-          "monthly_gain": 0
-        },
-        {
-          "username": "OLegendaryEnder",
-          "uuid": "4995579a28f647dfbc03f33fd2aec058",
-          "country": "Unknown",
-          "current_quests": 26851,
-          "last_month_quests": 26851,
-          "monthly_gain": 0
-        },
-        {
-          "username": "JokeHit",
-          "uuid": "92464ae772c4446db4d4bcf8569e953e",
-          "country": "Unknown",
-          "current_quests": 26668,
-          "last_month_quests": 26668,
-          "monthly_gain": 0
-        },
-        {
-          "username": "MI7RAN",
-          "uuid": "fe0d23d926054c62921afa2d71a3cc2c",
-          "country": "Unknown",
-          "current_quests": 25351,
-          "last_month_quests": 25351,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Spaghetti2003",
-          "uuid": "ced40338048a4382aaba0e88fc04a102",
-          "country": "Unknown",
-          "current_quests": 24927,
-          "last_month_quests": 24927,
-          "monthly_gain": 0
-        },
-        {
-          "username": "emperqr",
-          "uuid": "3f93a29a5a994f9397f1ac20fb18e652",
-          "country": "Unknown",
-          "current_quests": 24420,
-          "last_month_quests": 24420,
-          "monthly_gain": 0
-        },
-        {
-          "username": "ADGG",
-          "uuid": "2162ee0de4c745e4a5d44659193b231c",
-          "country": "Unknown",
-          "current_quests": 23978,
-          "last_month_quests": 23978,
-          "monthly_gain": 0
-        },
-        {
-          "username": "Champiez",
-          "uuid": "7d92df9db6f04ef4b24ded24ae739198",
-          "country": "Unknown",
-          "current_quests": 23583,
-          "last_month_quests": 23583,
-          "monthly_gain": 0
-        },
-        {
-          "username": "etrap",
-          "uuid": "f93d6ed965ee4d6a8a1a543fe94b35ea",
-          "country": "Unknown",
-          "current_quests": 22861,
-          "last_month_quests": 22861,
-          "monthly_gain": 0
-        },
-        {
-          "username": "zsomi123",
-          "uuid": "6ddd8bcbfa9f46a3b0e40dc47d9fe969",
-          "country": "Unknown",
-          "current_quests": 22681,
-          "last_month_quests": 22681,
-          "monthly_gain": 0
-        },
-        {
-          "username": "sEriUz",
-          "uuid": "34f5e925a1454ed5b08a357fd96b7eec",
-          "country": "Unknown",
-          "current_quests": 22225,
-          "last_month_quests": 22225,
-          "monthly_gain": 0
-        },
-        {
-          "username": "rem_hypixel",
-          "uuid": "8a4a5046009a4a23acb58841a8e49356",
-          "country": "Unknown",
-          "current_quests": 22129,
-          "last_month_quests": 22129,
-          "monthly_gain": 0
-        },
-        {
-          "username": "kipanator",
-          "uuid": "8eb18a9227fb4b36947177babab261cd",
-          "country": "Unknown",
-          "current_quests": 22040,
-          "last_month_quests": 22040,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Portugal",
-      "score": 5520.4,
-      "top_players": [
-        {
-          "username": "pedrominecraft11",
-          "uuid": "153377202f274dd09dc838b83c09b104",
-          "country": "Portugal",
-          "current_quests": 27602,
-          "last_month_quests": 27602,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Netherlands",
-      "score": 5387.8,
-      "top_players": [
-        {
-          "username": "Timkoensurvival",
-          "uuid": "743c12bffc7348fb8525effead057de2",
-          "country": "Netherlands",
-          "current_quests": 26939,
-          "last_month_quests": 26939,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Russia",
-      "score": 9804,
-      "top_players": [
-        {
-          "username": "anrie",
-          "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
-          "country": "Russia",
-          "current_quests": 26607,
-          "last_month_quests": 26607,
-          "monthly_gain": 0
-        },
-        {
-          "username": "morof",
-          "uuid": "4019260a28f544c2a35a0a1f35108a96",
-          "country": "Russia",
-          "current_quests": 22413,
-          "last_month_quests": 22413,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Peru",
-      "score": 5232.2,
-      "top_players": [
-        {
-          "username": "hollystormz",
-          "uuid": "141e5144694046eaa7e536ed70cc1595",
-          "country": "Peru",
-          "current_quests": 26161,
-          "last_month_quests": 26161,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Philippines",
-      "score": 5207.2,
-      "top_players": [
-        {
-          "username": "wahk",
-          "uuid": "7475921e9e5b401ba91c9d187f5dd3a1",
-          "country": "Philippines",
-          "current_quests": 26036,
-          "last_month_quests": 26036,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Romania",
-      "score": 5198.8,
-      "top_players": [
-        {
-          "username": "raducu",
-          "uuid": "9f97b0041b85422489e9061c0eb74ba0",
-          "country": "Romania",
-          "current_quests": 25994,
-          "last_month_quests": 25994,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "Brazil",
-      "score": 5074,
+      "score": 6896,
       "top_players": [
+        {
+          "username": "OLegendaryEnder",
+          "uuid": "4995579a28f647dfbc03f33fd2aec058",
+          "country": "Brazil",
+          "current_quests": 26851,
+          "last_month_quests": 26851,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
         {
           "username": "irkt",
           "uuid": "fe7bf008272246f18421d39db8042257",
           "country": "Brazil",
           "current_quests": 25370,
           "last_month_quests": 25370,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Israel",
-      "score": 5038.6,
-      "top_players": [
-        {
-          "username": "eliadbg",
-          "uuid": "56b991d1a9c243d7984df6e6a409cd59",
-          "country": "Israel",
-          "current_quests": 25193,
-          "last_month_quests": 25193,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
-      "country": "Hungary",
-      "score": 4955,
-      "top_players": [
-        {
-          "username": "FlaashX",
-          "uuid": "7afbca3f75d8494b8b6a381dfa18e16b",
-          "country": "Hungary",
-          "current_quests": 24775,
-          "last_month_quests": 24775,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
     {
       "country": "The Netherlands",
-      "score": 9374,
+      "score": 6599,
       "top_players": [
+        {
+          "username": "Timkoensurvival",
+          "uuid": "743c12bffc7348fb8525effead057de2",
+          "country": "The Netherlands",
+          "current_quests": 26939,
+          "last_month_quests": 26409,
+          "monthly_gain": 530,
+          "maxGames": []
+        },
         {
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
           "current_quests": 24089,
-          "last_month_quests": 24089,
-          "monthly_gain": 0
+          "last_month_quests": 23927,
+          "monthly_gain": 162,
+          "maxGames": []
         },
         {
           "username": "Th3three",
@@ -1179,7 +1109,248 @@
           "country": "The Netherlands",
           "current_quests": 22781,
           "last_month_quests": 22781,
-          "monthly_gain": 0
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Portugal",
+      "score": 5842,
+      "top_players": [
+        {
+          "username": "pedrominecraft11",
+          "uuid": "153377202f274dd09dc838b83c09b104",
+          "country": "Portugal",
+          "current_quests": 27602,
+          "last_month_quests": 27602,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Russia",
+      "score": 5174,
+      "top_players": [
+        {
+          "username": "anrie",
+          "uuid": "3abe2f6bd45a4e2282d4f9014569db25",
+          "country": "Russia",
+          "current_quests": 26607,
+          "last_month_quests": 26575,
+          "monthly_gain": 32,
+          "maxGames": []
+        },
+        {
+          "username": "morof",
+          "uuid": "4019260a28f544c2a35a0a1f35108a96",
+          "country": "Russia",
+          "current_quests": 22413,
+          "last_month_quests": 22413,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Peru",
+      "score": 4401,
+      "top_players": [
+        {
+          "username": "hollystormz",
+          "uuid": "141e5144694046eaa7e536ed70cc1595",
+          "country": "Peru",
+          "current_quests": 26161,
+          "last_month_quests": 26143,
+          "monthly_gain": 18,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Philippines",
+      "score": 4276,
+      "top_players": [
+        {
+          "username": "wahk",
+          "uuid": "7475921e9e5b401ba91c9d187f5dd3a1",
+          "country": "Philippines",
+          "current_quests": 26036,
+          "last_month_quests": 26036,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Romania",
+      "score": 4234,
+      "top_players": [
+        {
+          "username": "raducu",
+          "uuid": "9f97b0041b85422489e9061c0eb74ba0",
+          "country": "Romania",
+          "current_quests": 25994,
+          "last_month_quests": 25994,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Unknown",
+          "uuid": "e2bf0a2f2cf24fc29512511ddc10201a",
+          "country": "Romania",
+          "current_quests": 0,
+          "last_month_quests": 0,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Israel",
+      "score": 3433,
+      "top_players": [
+        {
+          "username": "eliadbg",
+          "uuid": "56b991d1a9c243d7984df6e6a409cd59",
+          "country": "Israel",
+          "current_quests": 25193,
+          "last_month_quests": 25055,
+          "monthly_gain": 138,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Hungary",
+      "score": 3015,
+      "top_players": [
+        {
+          "username": "FlaashX",
+          "uuid": "7afbca3f75d8494b8b6a381dfa18e16b",
+          "country": "Hungary",
+          "current_quests": 24775,
+          "last_month_quests": 24775,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "South Korea",
+      "score": 2218,
+      "top_players": [
+        {
+          "username": "ADGG",
+          "uuid": "2162ee0de4c745e4a5d44659193b231c",
+          "country": "South Korea",
+          "current_quests": 23978,
+          "last_month_quests": 23978,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Greece",
+      "score": 0,
+      "top_players": [
+        {
+          "username": "Unknown",
+          "uuid": "4b48e58c5304407ab8c761fbe125ff3b",
+          "country": "Greece",
+          "current_quests": 0,
+          "last_month_quests": 0,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Unknown",
+      "score": 12864,
+      "top_players": [
+        {
+          "username": "Rayjer",
+          "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+          "country": "Unknown",
+          "current_quests": 29485,
+          "last_month_quests": 29485,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "wannabemykitten",
+          "uuid": "d4ef6ea1d12f4da09f690507b2327e43",
+          "country": "Unknown",
+          "current_quests": 28549,
+          "last_month_quests": 28549,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "JokeHit",
+          "uuid": "92464ae772c4446db4d4bcf8569e953e",
+          "country": "Unknown",
+          "current_quests": 26668,
+          "last_month_quests": 26668,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "MI7RAN",
+          "uuid": "fe0d23d926054c62921afa2d71a3cc2c",
+          "country": "Unknown",
+          "current_quests": 25351,
+          "last_month_quests": 25351,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Spaghetti2003",
+          "uuid": "ced40338048a4382aaba0e88fc04a102",
+          "country": "Unknown",
+          "current_quests": 24927,
+          "last_month_quests": 24479,
+          "monthly_gain": 448,
+          "maxGames": []
+        },
+        {
+          "username": "emperqr",
+          "uuid": "3f93a29a5a994f9397f1ac20fb18e652",
+          "country": "Unknown",
+          "current_quests": 24420,
+          "last_month_quests": 24420,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "etrap",
+          "uuid": "f93d6ed965ee4d6a8a1a543fe94b35ea",
+          "country": "Unknown",
+          "current_quests": 22861,
+          "last_month_quests": 21960,
+          "monthly_gain": 901,
+          "maxGames": []
+        },
+        {
+          "username": "zsomi123",
+          "uuid": "6ddd8bcbfa9f46a3b0e40dc47d9fe969",
+          "country": "Unknown",
+          "current_quests": 22681,
+          "last_month_quests": 22662,
+          "monthly_gain": 19,
+          "maxGames": []
+        },
+        {
+          "username": "sEriUz",
+          "uuid": "34f5e925a1454ed5b08a357fd96b7eec",
+          "country": "Unknown",
+          "current_quests": 22225,
+          "last_month_quests": 22225,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     }
