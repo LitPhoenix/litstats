@@ -61,8 +61,7 @@ main { max-width: min(1560px, 96vw); }
 .qt-fast-links button:hover { color: var(--text); }
 
 /* ---- Board: games dealt into columns; each card is independent ---- */
-.qt-cols { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 12px; align-items: start; backdrop-filter: blur(24px) saturate(150%); 
-  -webkit-backdrop-filter: blur(24px) saturate(150%); }
+.qt-cols { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 12px; align-items: start; }
 .qt-col { display: flex; flex-direction: column; gap: 12px; min-width: 0; backdrop-filter: blur(24px) saturate(150%); 
   -webkit-backdrop-filter: blur(24px) saturate(150%); }
 .qt-flat { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 12px; align-items: start; }
@@ -189,3 +188,113 @@ main { max-width: min(1560px, 96vw); }
   #qt-toggle-easy { margin-left: 0; }
   .qt-card { padding: 14px; }
 }
+
+/* =========================================================================
+   v5: task states, hide quests / games, Hypixel-time reset pills, no overflow
+   ========================================================================= */
+/* counts can be long ("1,500,000/1,500,000"): size the column to the text so it never spills out of the card */
+.qt-obj-head { grid-template-columns: minmax(0, 1fr) auto; }
+.qt-obj-head b { white-space: nowrap; }
+.qt-pill small { font-weight: 500; color: var(--text-3); margin-left: 2px; }
+
+/* a quest with several tasks: finished task = green + tick, started task = striped, untouched = empty track */
+.qt-bar.obj-done > i { background: var(--qt-green); }
+
+.qt-obj.is-done .qt-obj-head span { color: var(--text-3); }
+.qt-obj.is-done .qt-obj-head b { color: var(--qt-green); }
+.qt-p.tasks { color: var(--accent); }
+
+/* hide a quest (per player) or a whole game (everyone you look up) */
+.qt-skip { border: 0; background: none; color: var(--text-3); font-size: 11px; line-height: 1; padding: 3px 4px; border-radius: 6px; cursor: pointer; opacity: .5; transition: opacity .12s; }
+.qt-q:hover .qt-skip, .qt-skip:focus-visible { opacity: 1; }
+.qt-skip:hover { color: var(--text); background: var(--surface-2); }
+.qt-unskip, .qt-linkbtn { border: 1px solid var(--border-2); background: none; color: var(--text-2); font: inherit; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; cursor: pointer; }
+.qt-linkbtn { border: 0; padding: 0; font-size: 12px; color: var(--accent); }
+.qt-unskip:hover { color: var(--text); border-color: var(--accent); }
+.qt-q.is-hidden, .qt-group.is-hidden { opacity: .5; }
+.qt-ghide { display: inline-flex; align-items: center; margin-left: 2px; padding: 2px 6px; border-radius: 6px; color: var(--text-3); font-size: 15px; line-height: 1; opacity: .55; cursor: pointer; }
+.qt-group-head:hover .qt-ghide { opacity: 1; }
+.qt-ghide:hover { color: var(--red, #ef4444); background: var(--surface-2); }
+.qt-ghide.restore { font-size: 11px; font-weight: 600; opacity: 1; border: 1px solid var(--border-2); border-radius: 999px; color: var(--text-2); }
+@media (hover: none) { .qt-skip, .qt-ghide { opacity: .8; } }
+
+
+/* =========================================================================
+   v6: customisable page (sections, cards, rows), quests-by-game panel, Customize drawer
+   ========================================================================= */
+#qt-content { display: flex; flex-direction: column; }
+.qt-off { display: none !important; }
+.qt-totals { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+
+/* checklist row options (body classes set from the Customize drawer) */
+body.ui-no-xp .qt-xp { display: none; }
+body.ui-no-desc .qt-lines, body.ui-no-desc .qt-obj-head > span { display: none; }
+body.ui-no-desc .qt-obj-head { grid-template-columns: minmax(0, 1fr); }
+body.ui-no-bars .qt-q .qt-bar { display: none; }
+body.ui-no-kind .qt-p.daily, body.ui-no-kind .qt-p.weekly, body.ui-no-kind .qt-p.monthly, body.ui-no-kind .qt-p.special { display: none; }
+body.ui-no-tasks .qt-p.tasks { display: none; }
+body.ui-no-easy .qt-p.easy { display: none; }
+body.ui-no-hide .qt-skip, body.ui-no-hide .qt-ghide:not(.restore) { display: none; }
+body.ui-compact .qt-q { padding: 6px 0; row-gap: 2px; }
+body.ui-compact .qt-lines { margin-bottom: 3px; }
+body.ui-compact .qt-obj + .qt-obj { margin-top: 5px; }
+body.ui-compact .qt-group-head { padding: 8px 12px; }
+body.ui-compact .qt-group-body { padding: 0 12px 4px; }
+.qt-p.monthly { color: var(--accent-2, var(--accent)); }
+
+/* quests by game: a quiet secondary panel under the checklist */
+.qt-games { padding: 0; margin-top: 16px; }
+.qt-games-head { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px 18px; border: 0; background: none; color: var(--text); font: inherit; text-align: left; cursor: pointer; border-radius: inherit; }
+.qt-games-head:hover { background: var(--surface-2); }
+.qt-games-head h2 { font-size: 16px; font-weight: 700; margin: 0; }
+.qt-games-total { margin-left: auto; font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.qt-games:not(.open) .qt-chev { transform: rotate(-45deg); margin: 0 4px 0 0; }
+.qt-games-body { padding: 2px 18px 16px; }
+.qt-gtiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+.qt-gtile { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+.qt-gtile:hover { border-color: var(--accent); }
+.qt-gtile .qt-gicon { width: 22px; height: 22px; }
+.qt-gt-name { flex: 1; min-width: 0; font-size: 12.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qt-gtile b { font-size: 13px; font-weight: 700; margin-left: auto; font-variant-numeric: tabular-nums; }
+.qt-gt-bar { flex: 1 0 100%; height: 3px; border-radius: 3px; background: var(--border); overflow: hidden; }
+.qt-gt-bar i { display: block; height: 100%; background: var(--accent); }
+
+.qt-order { display: grid; gap: 4px; margin-bottom: 6px; }
+.qt-order-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2); font-size: 13px; font-weight: 600; }
+.qt-order-row button { border: 0; background: none; color: var(--text-2); font-size: 14px; padding: 2px 8px; border-radius: 6px; cursor: pointer; }
+.qt-order-row button:hover:not(:disabled) { background: var(--border); color: var(--text); }
+.qt-order-row button:disabled { opacity: .3; cursor: default; }
+
+
+/* =========================================================================
+   v7: settings menu (cabinet look), XP switch, calendar stats + both clocks
+   ========================================================================= */
+.settings-menu.qt-settings { width: 310px; max-height: min(80vh, 780px); overflow-y: auto; overflow-x: hidden; gap: 12px; z-index: 1000; }
+.qt-set-title { margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--text-3); }
+.qt-settings > .setting-item:first-child { margin-top: 0; }
+.qt-set-label small { display: block; margin-top: 2px; font-size: 11px; font-weight: 500; color: var(--text-3); }
+.setting-item.qt-set-select { flex-direction: column; align-items: flex-start; gap: 6px; }
+.qt-set-select .todo-select { width: 100%; }
+.qt-set-foot { border-top: 1px solid var(--border); padding-top: 12px; }
+.qt-set-foot .settings-btn { width: 100%; justify-content: center; }
+
+/* "Show XP values" off: every XP number disappears */
+body.ui-no-xp .qt-xp, body.ui-no-xp .qt-gxp, body.ui-no-xp .qt-xp-any { display: none !important; }
+
+/* calendar header: per-day stats on the left, the two streaks on the right */
+.qt-cal-stats { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px 28px; }
+.qt-cs-left, .qt-cs-right { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.qt-cs-right { margin-left: auto; padding-left: 28px; border-left: 1px solid var(--border); }
+.qt-cal-stats small { display: block; margin-top: 2px; font-size: 11px; font-weight: 400; color: var(--text-3); }
+.qt-cal-stats b span { font-size: 13px; font-weight: 500; color: var(--text-3); }
+.qt-cal-note { flex: 1 0 100%; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; line-height: 1.5; color: var(--text-3); }
+@media (max-width: 760px) { .qt-cs-right { margin-left: 0; padding-left: 0; border-left: 0; } }
+
+/* day panel: which window the quest day covers, and both clocks per quest */
+.qt-day-window { margin: 2px 0 6px; font-size: 12px; line-height: 1.5; color: var(--text-3); }
+.qt-hours-axis span { display: flex; flex-direction: column; }
+.qt-hours-axis span i { font-style: normal; font-size: 9.5px; opacity: .7; }
+.qt-day-listhead { display: grid; grid-template-columns: minmax(0, 1fr) 150px 150px; gap: 8px; padding: 0 4px 4px 0; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-3); }
+.qt-day-listhead span:not(:first-child) { text-align: right; }
+.qt-day-list li time { min-width: 150px; }
+.qt-day-list li time.alt { color: var(--text-3); }
