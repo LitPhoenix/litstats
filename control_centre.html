@@ -77,6 +77,40 @@
 
     .btn-icon { background: transparent; border: none; color: var(--text-3); cursor: pointer; padding: 4px; border-radius: 4px; transition: 0.2s; font-size: 14px; }
     .btn-icon:hover { background: var(--red-soft); color: var(--red); }
+    /* ===== Two-list upload + country cross-check ===== */
+    .actions-panel.dragging { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .load-status { flex-basis: 100%; font-size: 13px; color: var(--text-2); min-height: 18px; margin: 0; }
+    .load-status.error { color: var(--red); }
+    .chip { display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border-strong); color: var(--text-3); }
+    .chip.on { color: var(--green); background: var(--green-soft); border-color: transparent; }
+
+    .list-toggle { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 8px; overflow: hidden; }
+    .seg { background: var(--surface-2); color: var(--text-2); border: none; padding: 7px 14px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+    .seg + .seg { border-left: 1px solid var(--border-strong); }
+    .seg[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+    .btn:focus-visible, .seg:focus-visible, .xc-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .hint { font-size: 12px; color: var(--text-3); margin: -4px 0 12px; }
+
+    .xc { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+    .xc-ok { color: var(--green); background: var(--green-soft); }
+    .xc-warn { color: var(--amber, #d99a00); background: var(--amber-soft, rgba(217, 154, 0, 0.14)); }
+    .xc-bad { color: var(--red); background: var(--red-soft); }
+    .xc-muted { color: var(--text-3); }
+
+    .xc-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .xc-bulk { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+    .xc-btn { background: var(--surface-2); border: 1px solid var(--border-strong); color: var(--text); padding: 4px 10px; border-radius: 6px; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .xc-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--border); }
+    .xc-btn:disabled { opacity: 0.5; cursor: default; }
+    .xc-list { border: 1px solid var(--border); border-radius: 8px; background: var(--surface-2); max-height: 340px; overflow-y: auto; }
+    .xc-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .xc-row:last-child { border-bottom: none; }
+    .xc-row .xc-what { flex: 1 1 320px; color: var(--text-2); }
+    .xc-row .xc-what b { color: var(--text); }
+    .xc-row .xc-acts { display: flex; gap: 6px; }
+    .xc-tag { display: inline-block; min-width: 74px; text-align: center; font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 10px; }
+    .xc-empty { font-size: 13px; color: var(--text-3); margin: 0; }
+    .xc-note { font-size: 12px; color: var(--text-3); margin: 10px 0 0; }
   </style>
 </head>
 <body>
@@ -84,31 +118,49 @@
   <script src="assets/js/components.js"></script>
 
   <main>
-    <div class="panel actions-panel">
-        <button class="btn" onclick="document.getElementById('fileInput').click()">📂 Load JSON File</button>
-        <input type="file" id="fileInput" accept=".json" style="display: none;" onchange="loadExistingJSON(event)">
-        
+    <div class="panel actions-panel" id="actionsPanel">
+        <button class="btn" onclick="document.getElementById('fileInput').click()">📂 Load JSON File(s)</button>
+        <input type="file" id="fileInput" accept=".json,application/json" multiple style="display: none;" onchange="loadFiles(this.files); this.value = '';">
+
+        <span class="chip" id="chipAp">AP: not loaded</span>
+        <span class="chip" id="chipQuest">Quests: not loaded</span>
+
         <button class="btn btn-primary" onclick="exportJSON('ap')">📥 Export AP JSON</button>
         <button class="btn btn-primary" onclick="exportJSON('quest')">📥 Export Quest JSON</button>
+
+        <p class="load-status" id="loadStatus" role="status" aria-live="polite">Select both files at once (Ctrl/⌘-click) or drop them on this bar. Each one is detected as AP or Quests automatically.</p>
+    </div>
+
+    <div class="panel" id="xcPanel">
+      <h2>🔎 Country cross-check</h2>
+      <div id="xcBody"></div>
     </div>
 
     <div class="panel">
       <h2>🔌 Process Nadeshiko Data</h2>
-      <p style="font-size: 13px; color: var(--text-3); margin-bottom: 12px;">Paste the raw JSON response from the Nadeshiko API here to automatically add new players and update existing scores.</p>
+      <p style="font-size: 13px; color: var(--text-3); margin-bottom: 12px;">Paste the raw JSON response from the Nadeshiko API here to automatically add new players and update existing scores. It updates the list currently selected in the player database below (<strong id="nadeshikoTarget">AP Hunters</strong>). New players inherit their country from the other list when it is known there.</p>
       <div class="textarea-wrap">
         <textarea id="nadeshikoInput" placeholder='{"count":100000,"data":[{"uuid":"...","tagged_name":"...","value":"..."}]}'></textarea>
       </div>
-      <button class="btn" onclick="importNadeshiko()">🚀 Sync Nadeshiko Data</button>
+      <button class="btn" id="nadeshikoBtn" onclick="importNadeshiko()">🚀 Sync Nadeshiko Data</button>
     </div>
 
     <div class="panel" style="flex: 1; display: flex; flex-direction: column;">
       <div class="table-toolbar">
-        <h2>👥 Player Database (<span id="playerCount">0</span>)</h2>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+          <h2 style="margin-bottom: 0;">👥 Player Database (<span id="playerCount">0</span>)</h2>
+          <div class="list-toggle" role="group" aria-label="Which list to view and edit">
+            <button type="button" class="seg" id="segAp" aria-pressed="true" onclick="setActiveList('ap')">AP Hunters</button>
+            <button type="button" class="seg" id="segQuest" aria-pressed="false" onclick="setActiveList('quest')">Questers</button>
+          </div>
+        </div>
         <div style="display: flex; gap: 12px;">
           <input type="text" id="searchBar" class="search-bar" placeholder="Search UUID, Name, Country..." oninput="renderTable()">
           <button class="btn btn-primary" onclick="addBlankPlayer()">➕ New Player</button>
         </div>
       </div>
+
+      <p class="hint">Editing a country here updates that player in both lists.</p>
 
       <div class="table-container">
         <table>
@@ -120,6 +172,7 @@
               <th style="width: 120px;">Start Score</th>
               <th style="width: 120px;">Current Score</th>
               <th style="width: 100px;">Gain</th>
+              <th style="width: 150px;">Other list</th>
               <th style="width: 60px; text-align: center;">Del</th>
             </tr>
           </thead>
@@ -148,9 +201,153 @@
       'youtubers': 'yt', 'staff': 'staff'
     };
 
-    let players = {}; 
+    // ===== State: two lists, one view =====
+    // Each list is { uuid: { uuid, username, country, startScore, currentScore, maxGames, extra } }.
+    // `extra` carries any other player fields from the file (rank, rankPlusColor, ...) so exporting doesn't wipe them.
+    const LISTS = {
+      ap:    { key: 'ap',    label: 'AP Hunters', short: 'AP',     loaded: false, players: {} },
+      quest: { key: 'quest', label: 'Questers',   short: 'Quests', loaded: false, players: {} }
+    };
+    let activeList = 'ap';
+    const otherKey = k => (k === 'ap' ? 'quest' : 'ap');
+    const curPlayers = () => LISTS[activeList].players;
+    const isTemp = uuid => String(uuid).startsWith('new_');
+
+    const KNOWN_PLAYER_KEYS = new Set(['username', 'uuid', 'country', 'current_ap', 'last_month_ap', 'current_quests', 'last_month_quests', 'monthly_gain', 'maxGames']);
+
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+
+    // ===== Country normalisation =====
+    // Spellings are matched case-insensitively. These aliases map to the spelling the public pages' flag tables use.
+    const COUNTRY_ALIASES = { 'netherlands': 'The Netherlands', 'united kingdom': 'UK', 'united states': 'USA', 'us': 'USA' };
+    const FLAG_KEYS_LC = Object.fromEntries(Object.keys(countryFlags).map(k => [k.toLowerCase(), k]));
+    function canonCountry(c) {
+      const t = String(c ?? '').trim();
+      if (!t || t.toLowerCase() === 'unknown') return 'Unknown';
+      const lc = t.toLowerCase();
+      return COUNTRY_ALIASES[lc] || FLAG_KEYS_LC[lc] || t;
+    }
+    const isUnknownCountry = c => canonCountry(c) === 'Unknown';
+
+    // ===== Loading =====
+    function detectType(db, filename) {
+      let ap = 0, quest = 0;
+      (db.country_leaderboard || []).forEach(c => (c.top_players || []).forEach(p => {
+        if ('current_ap' in p) ap++;
+        if ('current_quests' in p) quest++;
+      }));
+      if (ap > quest) return 'ap';
+      if (quest > ap) return 'quest';
+      const n = String(filename || '').toLowerCase();   // empty leaderboard: fall back to the file name
+      if (/hunter|(^|[^a-z])ap([^a-z]|$)/.test(n)) return 'ap';
+      if (/quest/.test(n)) return 'quest';
+      return null;
+    }
+
+    function buildList(db, type) {
+      const snapshots = db.month_start_snapshot || {};
+      const mappings = db.manual_country_mapping || {};
+      const scoreField = type === 'ap' ? 'current_ap' : 'current_quests';
+
+      const board = {};
+      (db.country_leaderboard || []).forEach(c => (c.top_players || []).forEach(p => {
+        const extra = {};
+        Object.keys(p).forEach(k => { if (!KNOWN_PLAYER_KEYS.has(k)) extra[k] = p[k]; });
+        board[p.uuid] = { name: p.username, current: p[scoreField], maxes: p.maxGames || [], extra, bucket: c.country };
+      }));
+
+      const out = {};
+      const uuids = new Set([...Object.keys(snapshots), ...Object.keys(board), ...Object.keys(mappings)]);
+      uuids.forEach(uuid => {
+        const b = board[uuid];
+        // The manual mapping is the source of truth; where a player is placed on the board only fills gaps.
+        const country = !isUnknownCountry(mappings[uuid]) ? mappings[uuid]
+                      : (b && !isUnknownCountry(b.bucket) ? b.bucket : 'Unknown');
+        const current = (b && b.current) || snapshots[uuid] || 0;
+        out[uuid] = {
+          uuid,
+          username: (b && b.name) || 'Unknown',
+          country,
+          startScore: uuid in snapshots ? snapshots[uuid] : (b ? current : 0),
+          currentScore: current,
+          maxGames: (b && b.maxes) || [],
+          extra: (b && b.extra) || {}
+        };
+      });
+      return out;
+    }
+
+    function readFileText(file) {
+      return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(r.result);
+        r.onerror = () => reject(r.error);
+        r.readAsText(file);
+      });
+    }
+
+    async function loadFiles(fileList) {
+      const files = Array.from(fileList || []);
+      if (!files.length) return;
+
+      const notes = [];
+      const loadedNow = [];
+      let hadProblem = false;
+
+      for (const file of files) {
+        try {
+          const db = JSON.parse(await readFileText(file));
+          const type = detectType(db, file.name);
+          if (!type) {
+            notes.push(`${file.name}: couldn’t tell whether this is the AP or the Quest file.`);
+            hadProblem = true; continue;
+          }
+          if (loadedNow.includes(type)) {
+            notes.push(`${file.name}: skipped, another ${LISTS[type].short} file was already chosen.`);
+            hadProblem = true; continue;
+          }
+          LISTS[type].players = buildList(db, type);
+          LISTS[type].loaded = true;
+          loadedNow.push(type);
+          notes.push(`${LISTS[type].label}: ${Object.keys(LISTS[type].players).length} players from ${file.name}.`);
+        } catch (err) {
+          notes.push(`${file.name}: not valid JSON.`);
+          hadProblem = true;
+        }
+      }
+
+      if (loadedNow.length === 1) activeList = loadedNow[0];   // one file: show it. Two: leave the view alone.
+      setStatus(notes.join(' '), hadProblem && !loadedNow.length);
+      renderAll();
+    }
+
+    function setStatus(msg, isError) {
+      const el = document.getElementById('loadStatus');
+      el.textContent = msg;
+      el.classList.toggle('error', !!isError);
+    }
+
+    function setActiveList(key) {
+      activeList = key;
+      document.getElementById('searchBar').value = '';
+      renderAll();
+    }
+
+    // ===== Table =====
+    function crossCell(p) {
+      const o = LISTS[otherKey(activeList)];
+      if (!o.loaded) return `<span class="xc xc-muted" title="Load the other file to cross-check">–</span>`;
+      const op = o.players[p.uuid];
+      if (!op) return `<span class="xc xc-muted" title="Not in the ${esc(o.label)} list">not in ${esc(o.short)}</span>`;
+      const a = canonCountry(p.country), b = canonCountry(op.country);
+      if (a === b) return a === 'Unknown' ? `<span class="xc xc-muted">unknown in both</span>` : `<span class="xc xc-ok">✓ matches</span>`;
+      if (a === 'Unknown') return `<span class="xc xc-warn" title="${esc(o.label)} has a country for this player. Use the cross-check panel to fill it.">${esc(o.short)}: ${esc(b)}</span>`;
+      if (b === 'Unknown') return `<span class="xc xc-warn" title="${esc(o.label)} has no country for this player.">${esc(o.short)}: none</span>`;
+      return `<span class="xc xc-bad" title="The two lists disagree. Resolve it in the cross-check panel.">≠ ${esc(o.short)}: ${esc(b)}</span>`;
+    }
 
     function renderTable() {
+      const players = curPlayers();
       const tbody = document.getElementById('tableBody');
       const q = document.getElementById('searchBar').value.toLowerCase();
       tbody.innerHTML = '';
@@ -173,14 +370,14 @@
           <td>
             <div class="flag-wrap">
               ${getFlagHTML(p.country)}
-              <input class="edit-input" type="text" value="${p.country}" onchange="updatePlayer('${p.uuid}', 'country', this.value)">
+              <input class="edit-input" type="text" value="${esc(p.country)}" onchange="updatePlayer('${p.uuid}', 'country', this.value)">
             </div>
           </td>
           <td>
-            <input class="edit-input" style="font-weight:600;" type="text" value="${p.username}" placeholder="Loading..." onchange="handleNameChange('${p.uuid}', this.value)">
+            <input class="edit-input" style="font-weight:600;" type="text" value="${esc(p.username)}" placeholder="Loading..." onchange="handleNameChange('${p.uuid}', this.value)">
           </td>
           <td>
-            <input class="edit-input mono" type="text" value="${p.uuid}" placeholder="Paste UUID..." onchange="handleUuidChange('${p.uuid}', this.value)">
+            <input class="edit-input mono" type="text" value="${esc(p.uuid)}" placeholder="Paste UUID..." onchange="handleUuidChange('${p.uuid}', this.value)">
           </td>
           <td>
             <input class="edit-input mono" type="number" value="${p.startScore}" onchange="updatePlayer('${p.uuid}', 'startScore', this.value)">
@@ -189,6 +386,7 @@
             <input class="edit-input mono" type="number" value="${p.currentScore}" onchange="updatePlayer('${p.uuid}', 'currentScore', this.value)">
           </td>
           <td>${gainHtml}</td>
+          <td>${crossCell(p)}</td>
           <td style="text-align: center;">
             <button class="btn-icon" onclick="deletePlayer('${p.uuid}')">✖</button>
           </td>
@@ -208,136 +406,94 @@
       return `<img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg" class="flag-img" loading="lazy">`;
     }
 
+    // ===== Edits =====
+    function setCountryEverywhere(uuid, country) {
+      Object.values(LISTS).forEach(l => { if (l.players[uuid]) l.players[uuid].country = country; });
+    }
+
     function updatePlayer(uuid, field, value) {
-      if(field === 'startScore' || field === 'currentScore') {
+      const players = curPlayers();
+      if (!players[uuid]) return;
+      if (field === 'startScore' || field === 'currentScore') {
         players[uuid][field] = parseFloat(value) || 0;
+      } else if (field === 'country') {
+        const v = value.trim();
+        setCountryEverywhere(uuid, !v || v.toLowerCase() === 'unknown' ? 'Unknown' : v);   // country belongs to the person, not the list
       } else {
         players[uuid][field] = value.trim();
       }
-      renderTable();
+      renderAll();
+    }
+
+    // A player who has no country here but has one in the other list inherits it.
+    function inheritCountry(uuid, listKey, current) {
+      if (!isUnknownCountry(current)) return current;
+      const op = LISTS[otherKey(listKey)].players[uuid];
+      return op && !isUnknownCountry(op.country) ? canonCountry(op.country) : 'Unknown';
     }
 
     async function handleNameChange(oldUuid, newName) {
+      const key = activeList, players = LISTS[key].players;
       newName = newName.trim();
-      if (!newName) return renderTable();
+      if (!newName) return renderAll();
       if (players[oldUuid].username.toLowerCase() === newName.toLowerCase()) return;
 
       const res = await fetch(`https://playerdb.co/api/player/minecraft/${newName}`);
       const data = await res.json();
-      
+
       if (data.code === 'player.found') {
         const newUuid = data.data.player.raw_id;
         players[newUuid] = { ...players[oldUuid], username: data.data.player.username, uuid: newUuid };
+        players[newUuid].country = inheritCountry(newUuid, key, players[newUuid].country);
         if (oldUuid !== newUuid) delete players[oldUuid];
       } else {
         alert("Minecraft Username not found!");
       }
-      renderTable();
+      renderAll();
     }
 
     async function handleUuidChange(oldUuid, newUuid) {
+      const key = activeList, players = LISTS[key].players;
       newUuid = newUuid.trim().replace(/-/g, '');
-      if (!newUuid || oldUuid === newUuid) return renderTable();
+      if (!newUuid || oldUuid === newUuid) return renderAll();
 
       const res = await fetch(`https://playerdb.co/api/player/minecraft/${newUuid}`);
       const data = await res.json();
-      
+
       if (data.code === 'player.found') {
         players[newUuid] = { ...players[oldUuid], username: data.data.player.username, uuid: newUuid };
+        players[newUuid].country = inheritCountry(newUuid, key, players[newUuid].country);
         delete players[oldUuid];
       } else {
         alert("Minecraft UUID not found!");
       }
-      renderTable();
+      renderAll();
     }
 
     function deletePlayer(uuid) {
-      if(confirm(`Remove ${players[uuid].username} from tracking?`)) {
+      const players = curPlayers();
+      if (confirm(`Remove ${players[uuid].username} from tracking?`)) {
         delete players[uuid];
-        renderTable();
+        renderAll();
       }
     }
 
     function addBlankPlayer() {
-      const tempId = 'new_' + Math.floor(Math.random()*10000);
-      players[tempId] = { uuid: tempId, username: '', country: 'Unknown', startScore: 0, currentScore: 0, maxGames: [] };
+      const tempId = 'new_' + Math.floor(Math.random() * 10000);
+      curPlayers()[tempId] = { uuid: tempId, username: '', country: 'Unknown', startScore: 0, currentScore: 0, maxGames: [], extra: {} };
       document.getElementById('searchBar').value = '';
-      renderTable();
-    }
-
-    function loadExistingJSON(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        try {
-          const db = JSON.parse(ev.target.result);
-          players = {}; 
-
-          const snapshots = db.month_start_snapshot || {};
-          const mappings = db.manual_country_mapping || {};
-          
-          const cachedPlayers = {};
-          if(db.country_leaderboard) {
-            db.country_leaderboard.forEach(c => {
-              c.top_players.forEach(p => {
-                cachedPlayers[p.uuid] = { 
-                  name: p.username, 
-                  current: p.current_ap || p.current_quests || 0,
-                  maxes: p.maxGames || [] 
-                };
-              });
-            });
-          }
-
-          Object.keys(snapshots).forEach(uuid => {
-            players[uuid] = {
-              uuid: uuid,
-              username: cachedPlayers[uuid]?.name || "Unknown",
-              country: mappings[uuid] || "Unknown",
-              startScore: snapshots[uuid],
-              currentScore: cachedPlayers[uuid]?.current || snapshots[uuid],
-              maxGames: cachedPlayers[uuid]?.maxes || [] 
-            };
-          });
-
-          Object.keys(mappings).forEach(uuid => {
-            if(!players[uuid]) {
-              players[uuid] = {
-                uuid: uuid,
-                username: cachedPlayers[uuid]?.name || "Unknown",
-                country: mappings[uuid],
-                startScore: 0,
-                currentScore: cachedPlayers[uuid]?.current || 0,
-                maxGames: cachedPlayers[uuid]?.maxes || [] 
-              };
-            }
-          });
-
-          alert("Successfully loaded database!");
-          renderTable();
-          
-          Object.values(players).forEach(p => {
-            if(p.username === "Unknown" && !p.uuid.startsWith('new_')) {
-               handleUuidChange(p.uuid, p.uuid); 
-            }
-          });
-
-        } catch (err) {
-          alert("Invalid JSON format.");
-        }
-      };
-      reader.readAsText(file);
+      renderAll();
     }
 
     function importNadeshiko() {
       const text = document.getElementById('nadeshikoInput').value;
-      if(!text) return;
+      if (!text) return;
+      const key = activeList, players = LISTS[key].players;
       try {
         const data = JSON.parse(text);
         if (!data.data) throw new Error("Missing 'data' array.");
 
+        let inherited = 0;
         data.data.forEach(p => {
           const cleanName = p.tagged_name.replace(/§./g, '').replace(/\[.*?\]/g, '').trim();
           const uuid = p.uuid;
@@ -345,28 +501,41 @@
 
           if (players[uuid]) {
             players[uuid].currentScore = value;
-            players[uuid].username = cleanName; 
+            players[uuid].username = cleanName;
           } else {
+            const country = inheritCountry(uuid, key, 'Unknown');
+            if (country !== 'Unknown') inherited++;
             players[uuid] = {
               uuid: uuid,
               username: cleanName,
-              country: 'Unknown',
+              country,
               startScore: value,
               currentScore: value,
-              maxGames: [] 
+              maxGames: [],
+              extra: {}
             };
           }
         });
-        
-        alert(`Successfully synced ${data.data.length} Nadeshiko records!`);
+        LISTS[key].loaded = true;
+
+        alert(`Successfully synced ${data.data.length} Nadeshiko records into ${LISTS[key].label}!` +
+              (inherited ? `\n${inherited} new player(s) got their country from the other list.` : ''));
         document.getElementById('nadeshikoInput').value = '';
-        renderTable();
+        renderAll();
       } catch (e) {
         alert("Error parsing Nadeshiko JSON: " + e.message);
       }
     }
 
+    // ===== Export (one list at a time, as before) =====
     function exportJSON(type) {
+      const list = LISTS[type];
+      const players = list.players;
+      if (!Object.keys(players).length) {
+        setStatus(`${list.label} is empty. Load its file or sync Nadeshiko data first.`, true);
+        return;
+      }
+
       const db = {
         last_update: new Date().toISOString(),
         month_start_snapshot: {},
@@ -377,19 +546,14 @@
       const cMap = {};
 
       Object.values(players).forEach(p => {
+        const country = isUnknownCountry(p.country) ? 'Unknown' : p.country.trim();
         db.month_start_snapshot[p.uuid] = p.startScore;
-        if(p.country !== "Unknown") db.manual_country_mapping[p.uuid] = p.country;
+        if (country !== "Unknown") db.manual_country_mapping[p.uuid] = country;
 
-        if(!cMap[p.country]) cMap[p.country] = [];
-        
-        const playerEntry = {
-          username: p.username,
-          uuid: p.uuid,
-          country: p.country,
-          monthly_gain: p.currentScore - p.startScore,
-          maxGames: p.maxGames || [] 
-        };
+        if (!cMap[country]) cMap[country] = [];
 
+        // Same key order the daily updater writes, with any extra fields (rank, rankPlusColor, ...) kept.
+        const playerEntry = { username: p.username, uuid: p.uuid, country };
         if (type === 'ap') {
           playerEntry.current_ap = p.currentScore;
           playerEntry.last_month_ap = p.startScore;
@@ -397,20 +561,23 @@
           playerEntry.current_quests = p.currentScore;
           playerEntry.last_month_quests = p.startScore;
         }
+        playerEntry.monthly_gain = p.currentScore - p.startScore;
+        Object.assign(playerEntry, p.extra || {});
+        playerEntry.maxGames = p.maxGames || [];
 
-        cMap[p.country].push(playerEntry);
+        cMap[country].push(playerEntry);
       });
 
-      const weights = [1.0, 0.50, 0.25, 0.10, 0.05]; 
+      const weights = [1.0, 0.50, 0.25, 0.10, 0.05];
       const allP = Object.values(players);
       const sortedGlobal = [...allP].sort((a,b) => b.currentScore - a.currentScore);
-      
+
       const baseline = sortedGlobal.length >= 100 ? sortedGlobal[99].currentScore : (sortedGlobal[sortedGlobal.length - 1]?.currentScore || 0);
 
       db.country_leaderboard = Object.keys(cMap).map(c => {
         const plist = cMap[c];
         plist.sort((a, b) => type === 'ap' ? b.current_ap - a.current_ap : b.current_quests - a.current_quests);
-        
+
         const top5 = plist.slice(0, 5);
         const score = top5.reduce((sum, p, i) => {
           const val = type === 'ap' ? p.current_ap : p.current_quests;
@@ -437,7 +604,168 @@
       URL.revokeObjectURL(url);
     }
 
-    renderTable();
+    // ===== Country cross-check =====
+    function displayName(uuid) {
+      for (const l of Object.values(LISTS)) {
+        const p = l.players[uuid];
+        if (p && p.username && p.username !== 'Unknown') return p.username;
+      }
+      return String(uuid).slice(0, 8) + '…';
+    }
+
+    function findIssues() {
+      const A = LISTS.ap, Q = LISTS.quest;
+      const both = A.loaded && Q.loaded;
+      const out = { both, overlap: 0, conflicts: [], fills: [], spellings: [], unresolved: [] };
+
+      // Spelling / blank values, per list (also useful with only one file loaded).
+      Object.values(LISTS).forEach(l => {
+        if (!l.loaded) return;
+        Object.entries(l.players).forEach(([uuid, p]) => {
+          if (isTemp(uuid)) return;
+          const c = canonCountry(p.country);
+          if (c !== String(p.country ?? '').trim()) out.spellings.push({ uuid, list: l.key, from: p.country, to: c });
+        });
+      });
+
+      if (!both) return out;
+
+      Object.keys(A.players).forEach(uuid => {
+        const q = Q.players[uuid];
+        if (!q || isTemp(uuid)) return;
+        out.overlap++;
+        const a = canonCountry(A.players[uuid].country), b = canonCountry(q.country);
+        if (a === b) { if (a === 'Unknown') out.unresolved.push({ uuid }); return; }
+        if (a === 'Unknown') out.fills.push({ uuid, list: 'ap', to: b, from: 'quest' });
+        else if (b === 'Unknown') out.fills.push({ uuid, list: 'quest', to: a, from: 'ap' });
+        else out.conflicts.push({ uuid, ap: a, quest: b });
+      });
+      return out;
+    }
+
+    function renderDiscrepancies() {
+      const body = document.getElementById('xcBody');
+      const iss = findIssues();
+      const fixable = iss.fills.length + iss.spellings.length;
+
+      const chip = (n, cls, text) => `<span class="xc ${n ? cls : 'xc-muted'}">${n} ${text}</span>`;
+      let html = '';
+
+      if (!iss.both) {
+        html += `<p class="xc-empty">Load both files (select them together, or drop them on the bar at the top) to compare countries between the lists.</p>`;
+      } else {
+        html += `<div class="xc-summary">
+          <span class="xc xc-muted">${iss.overlap} players are in both lists</span>
+          ${chip(iss.conflicts.length, 'xc-bad', iss.conflicts.length === 1 ? 'conflict' : 'conflicts')}
+          ${chip(iss.fills.length, 'xc-warn', 'can be filled')}
+          ${chip(iss.spellings.length, 'xc-warn', iss.spellings.length === 1 ? 'spelling to fix' : 'spellings to fix')}
+          ${chip(iss.unresolved.length, 'xc-muted', 'unknown in both')}
+        </div>`;
+      }
+
+      if (fixable || iss.conflicts.length > 1) {
+        html += `<div class="xc-bulk">
+          <button type="button" class="xc-btn" data-act="fix-all" ${fixable ? '' : 'disabled'}>Fill all &amp; fix spellings (${fixable})</button>
+          ${iss.conflicts.length > 1 ? `
+            <button type="button" class="xc-btn" data-act="prefer" data-prefer="ap">Resolve all conflicts with AP</button>
+            <button type="button" class="xc-btn" data-act="prefer" data-prefer="quest">Resolve all conflicts with Quests</button>` : ''}
+        </div>`;
+      }
+
+      const rows = [];
+      iss.conflicts.forEach(c => rows.push(`
+        <div class="xc-row">
+          <span class="xc-tag xc-bad">Conflict</span>
+          <span class="xc-what"><b>${esc(displayName(c.uuid))}</b>: AP says <b>${esc(c.ap)}</b>, Quests says <b>${esc(c.quest)}</b></span>
+          <span class="xc-acts">
+            <button type="button" class="xc-btn" data-act="use" data-uuid="${esc(c.uuid)}" data-to="${esc(c.ap)}">Use ${esc(c.ap)} (AP)</button>
+            <button type="button" class="xc-btn" data-act="use" data-uuid="${esc(c.uuid)}" data-to="${esc(c.quest)}">Use ${esc(c.quest)} (Quests)</button>
+          </span>
+        </div>`));
+      iss.fills.forEach(f => rows.push(`
+        <div class="xc-row">
+          <span class="xc-tag xc-warn">Fill</span>
+          <span class="xc-what"><b>${esc(displayName(f.uuid))}</b>: ${esc(LISTS[f.list].short)} has no country, ${esc(LISTS[f.from].short)} says <b>${esc(f.to)}</b></span>
+          <span class="xc-acts"><button type="button" class="xc-btn" data-act="set" data-list="${f.list}" data-uuid="${esc(f.uuid)}" data-to="${esc(f.to)}">Fill ${esc(LISTS[f.list].short)}</button></span>
+        </div>`));
+      iss.spellings.forEach(s => rows.push(`
+        <div class="xc-row">
+          <span class="xc-tag xc-warn">Spelling</span>
+          <span class="xc-what"><b>${esc(displayName(s.uuid))}</b> (${esc(LISTS[s.list].short)}): “${esc(s.from)}” → “${esc(s.to)}”</span>
+          <span class="xc-acts"><button type="button" class="xc-btn" data-act="set" data-list="${s.list}" data-uuid="${esc(s.uuid)}" data-to="${esc(s.to)}">Fix</button></span>
+        </div>`));
+      if (iss.unresolved.length) rows.push(`
+        <div class="xc-row">
+          <span class="xc-tag xc-muted">Unresolved</span>
+          <span class="xc-what">${iss.unresolved.length} player(s) have no country in either list. Set them by hand in the table.</span>
+          <span class="xc-acts"><button type="button" class="xc-btn" data-act="show-unknown">Show in table</button></span>
+        </div>`);
+
+      if (rows.length) {
+        html += `<div class="xc-list">${rows.join('')}</div>`;
+        html += `<p class="xc-note">Changes stay in this page until you export. Export both files to keep them.</p>`;
+      } else if (iss.both) {
+        html += `<p class="xc-empty">✓ No discrepancies. Every player in both lists has the same country.</p>`;
+      }
+
+      body.innerHTML = html;
+    }
+
+    document.getElementById('xcBody').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-act]');
+      if (!btn || btn.disabled) return;
+      const { act, uuid, to, list, prefer } = btn.dataset;
+      const iss = findIssues();
+
+      if (act === 'set') {
+        if (LISTS[list].players[uuid]) LISTS[list].players[uuid].country = to;
+      } else if (act === 'use') {
+        setCountryEverywhere(uuid, to);
+      } else if (act === 'fix-all') {
+        iss.spellings.forEach(s => { if (LISTS[s.list].players[s.uuid]) LISTS[s.list].players[s.uuid].country = s.to; });
+        findIssues().fills.forEach(f => { LISTS[f.list].players[f.uuid].country = f.to; });   // recomputed after spellings are fixed
+        setStatus(`Filled ${iss.fills.length} and fixed ${iss.spellings.length} spelling(s). Export both files to keep the changes.`);
+      } else if (act === 'prefer') {
+        iss.conflicts.forEach(c => setCountryEverywhere(c.uuid, c[prefer]));
+        setStatus(`Resolved ${iss.conflicts.length} conflict(s) using the ${LISTS[prefer].short} country. Export both files to keep the changes.`);
+      } else if (act === 'show-unknown') {
+        document.getElementById('searchBar').value = 'unknown';
+      }
+      renderAll();
+    });
+
+    // ===== Chrome: chips, toggle, drag & drop =====
+    function renderChrome() {
+      Object.values(LISTS).forEach(l => {
+        const chip = document.getElementById(l.key === 'ap' ? 'chipAp' : 'chipQuest');
+        const n = Object.keys(l.players).length;
+        chip.textContent = l.loaded || n ? `${l.short}: ${n} players` : `${l.short}: not loaded`;
+        chip.classList.toggle('on', l.loaded || n > 0);
+        const seg = document.getElementById(l.key === 'ap' ? 'segAp' : 'segQuest');
+        seg.setAttribute('aria-pressed', String(l.key === activeList));
+      });
+      document.getElementById('nadeshikoTarget').textContent = LISTS[activeList].label;
+      document.getElementById('nadeshikoBtn').textContent = `🚀 Sync Nadeshiko Data → ${LISTS[activeList].short}`;
+    }
+
+    function renderAll() {
+      renderChrome();
+      renderTable();
+      renderDiscrepancies();
+    }
+
+    const dropZone = document.getElementById('actionsPanel');
+    ['dragenter', 'dragover'].forEach(ev => dropZone.addEventListener(ev, (e) => {
+      if (e.dataTransfer && Array.from(e.dataTransfer.types || []).includes('Files')) { e.preventDefault(); dropZone.classList.add('dragging'); }
+    }));
+    ['dragleave', 'drop'].forEach(ev => dropZone.addEventListener(ev, () => dropZone.classList.remove('dragging')));
+    dropZone.addEventListener('drop', (e) => {
+      if (!e.dataTransfer || !e.dataTransfer.files.length) return;
+      e.preventDefault();
+      loadFiles(e.dataTransfer.files);
+    });
+
+    renderAll();
   </script>
 </body>
 </html>
