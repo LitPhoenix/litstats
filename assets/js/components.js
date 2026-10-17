@@ -17,7 +17,7 @@ const litHeader = `
             Trackers ${navChevron}
           </button>
           <div id="nav-trackers-menu" class="nav-dropdown-menu">
-            <a href="index.html"><img src="img/diamond.png" alt=""> AP Tracker</a>
+            <a href="cabinet.html"><img src="img/diamond.png" alt=""> AP Tracker</a>
             <a href="questing.html"><img src="img/xp.png" alt=""> Quest Tracker</a>
           </div>
         </div>
@@ -31,6 +31,7 @@ const litHeader = `
             <a href="leaderboard.html"><img src="img/diamond.png" alt=""> AP Leaderboard</a>
             <a href="quest.html"><img src="img/xp.png" alt=""> Quest Leaderboard</a>
             <a href="maxgames.html"><img src="img/games/Arcade-64.png" alt=""> Max Games</a>
+            <a href="ranking.html"><img src="img/diamond.png" alt=""> Global Ranking</a>
           </div>
         </div>
 
@@ -120,7 +121,7 @@ const litHeader = `
           ${navChevron}
         </button>
         <div class="mobile-accordion-body hidden">
-          <a href="index.html" class="nav-btn sub-link"><img src="img/diamond.png" alt=""> AP Tracker</a>
+          <a href="cabinet.html" class="nav-btn sub-link"><img src="img/diamond.png" alt=""> AP Tracker</a>
           <a href="questing.html" class="nav-btn sub-link"><img src="img/xp.png" alt=""> Quest Tracker</a>
         </div>
       </div>
@@ -134,6 +135,7 @@ const litHeader = `
           <a href="leaderboard.html" class="nav-btn sub-link"><img src="img/diamond.png" alt=""> AP Leaderboard</a>
           <a href="quest.html" class="nav-btn sub-link"><img src="img/xp.png" alt=""> Quest Leaderboard</a>
           <a href="maxgames.html" class="nav-btn sub-link"><img src="img/games/Arcade-64.png" alt=""> Max Games</a>
+          <a href="ranking.html" class="nav-btn sub-link"><img src="img/diamond.png" alt=""> Global Ranking</a>
         </div>
       </div>
 
@@ -168,6 +170,7 @@ const litFooter = `
         <a href="leaderboard.html" class="nav-btn">AP Leaderboard</a>
         <a href="quest.html" class="nav-btn">Quest Leaderboard</a>
         <a href="maxgames.html" class="nav-btn">Max Games</a>
+        <a href="ranking.html" class="nav-btn">Global Ranking</a>
         <a href="blitz.html" class="nav-btn">Blitz</a>
         <a href="angel.html" class="nav-btn">SkyWars</a>
         <a href="bedwars.html" class="nav-btn">Bed Wars</a>
