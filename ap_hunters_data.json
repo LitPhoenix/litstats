@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-16T22:20:58.885Z",
+  "last_update": "2026-10-17T02:03:30.231Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -785,9 +785,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26320,
+          "current_ap": 26335,
           "last_month_ap": 26320,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -2102,7 +2102,7 @@
     },
     {
       "country": "Germany",
-      "score": 6570,
+      "score": 6580,
       "top_players": [
         {
           "username": "NightMan976",
@@ -2127,9 +2127,9 @@
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28480,
+          "current_ap": 28500,
           "last_month_ap": 28500,
-          "monthly_gain": -20,
+          "monthly_gain": 0,
           "maxGames": [
             "Max Smash Heroes",
             "Max Paintball",
@@ -2342,9 +2342,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_ap": 24030,
+          "current_ap": 24035,
           "last_month_ap": 23780,
-          "monthly_gain": 250,
+          "monthly_gain": 255,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2436,9 +2436,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 23530,
+          "current_ap": 23540,
           "last_month_ap": 23405,
-          "monthly_gain": 125,
+          "monthly_gain": 135,
           "maxGames": []
         }
       ]
