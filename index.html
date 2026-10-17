@@ -63,28 +63,114 @@
       gap: 10px; 
       width: 100%; 
       max-width: 480px; 
-      margin-bottom: 24px;
+      margin-bottom: 14px;
     }
-    .search-input { 
-      flex: 1; 
+    /* Search bar with platform dropdown prefix */
+    .search-bar {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: center;
       height: 48px;
-      padding: 0 18px; 
-      background: var(--surface); 
-      border: 1px solid var(--border-strong); 
-      border-radius: 8px; 
-      color: var(--text); 
-      font-size: 15px; 
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-bar:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .search-input {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      padding: 0 16px 0 4px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 15px;
       font-family: inherit;
-      backdrop-filter: blur(12px); 
-      box-shadow: var(--shadow); 
-      transition: border-color 0.2s, box-shadow 0.2s; 
       outline: none;
     }
-    .search-input:focus { 
-      border-color: var(--accent); 
-      box-shadow: 0 0 0 3px var(--accent-soft); 
+    .platform-select { position: relative; height: 100%; flex-shrink: 0; }
+    .platform-trigger {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 8px 0 12px;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--border);
+      border-radius: 8px 0 0 8px;
+      color: var(--text-2);
+      font-family: inherit;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: background 0.15s;
     }
-    
+    .platform-trigger:hover, .platform-select.open .platform-trigger { background: var(--surface-2); }
+    .platform-trigger img { width: 22px; height: 22px; object-fit: contain; image-rendering: pixelated; }
+    .platform-trigger-label {
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      transition: max-width 0.2s ease, opacity 0.2s ease;
+    }
+    .platform-select.open .platform-trigger-label { max-width: 130px; opacity: 1; }
+    .platform-trigger svg { width: 14px; height: 14px; transition: transform 0.2s; }
+    .platform-select.open .platform-trigger svg { transform: rotate(180deg); }
+
+    .platform-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: -1px;
+      z-index: 50;
+      width: 260px;
+      max-width: calc(100vw - 32px);
+      padding: 6px;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.28);
+    }
+    .platform-select.open .platform-menu { display: block; }
+    .platform-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 10px;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+    }
+    .platform-item:hover, .platform-item:focus-visible { background: var(--surface-2); outline: none; }
+    .platform-item[aria-selected="true"] { background: var(--accent-soft); }
+    .platform-item img { width: 24px; height: 24px; object-fit: contain; image-rendering: pixelated; flex-shrink: 0; }
+    .platform-item .route { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 400; color: var(--text-3); }
+    .platform-divider { height: 1px; margin: 6px 4px; background: var(--border); }
+    .platform-item.lucky { color: var(--accent); }
+    .platform-item.lucky svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .platform-item.lucky .route { color: var(--accent); opacity: 0.8; font-family: inherit; font-size: 11px; }
+
     .search-btn { 
       height: 48px;
       background: var(--accent); 
@@ -104,6 +190,14 @@
       transform: translateY(-2px); 
       box-shadow: 0 6px 18px rgba(255, 81, 0, 0.4); 
       filter: brightness(1.08); 
+    }
+
+    .port-status {
+      min-height: 20px;
+      margin: 10px 0 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
     }
 
     /* Mini Leaderboard Card */
@@ -223,17 +317,29 @@
 <body>
 
   <script src="assets/js/components.js"></script>
+  <script src="assets/js/pin.js" data-redirect="false"></script>
 
   <main>
     <div class="portfolio-center">
       <h1>LitStats AP Tracker</h1>
-      <p>Enter a Hypixel username to view their achievement cabinet, trophies, and missing progress.</p>
+      <p>Enter a Hypixel username, pick a tracker, and jump straight to their stats.</p>
       
       <!-- Clean Search Bar -->
       <div class="search-wrap">
-        <input type="text" id="portSearch" class="search-input" placeholder="Enter username (e.g. litphoenix)" spellcheck="false" onkeydown="if(event.key==='Enter') goToCabinet()">
-        <button class="search-btn" onclick="goToCabinet()">Search</button>
+        <div class="search-bar">
+          <div class="platform-select" id="platformSelect">
+            <button type="button" class="platform-trigger" id="platformTrigger" aria-haspopup="listbox" aria-expanded="false" onclick="togglePlatformMenu(event)">
+              <img id="triggerIcon" src="" alt="">
+              <span class="platform-trigger-label" id="triggerLabel"></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="platform-menu" id="platformMenu" role="listbox"></div>
+          </div>
+          <input type="text" id="portSearch" class="search-input" placeholder="Enter username (e.g. litphoenix)" spellcheck="false" autocomplete="off" onkeydown="if(event.key==='Enter') goToSearch()">
+        </div>
+        <button class="search-btn" onclick="goToSearch()">Search</button>
       </div>
+      <div id="portStatus" class="port-status" aria-live="polite"></div>
       <div id="portError" style="color: var(--red); margin-bottom: 20px; font-size: 14px; font-weight: 600; display:none;"></div>
 
       <!-- Mini Leaderboard -->
@@ -316,14 +422,14 @@
               <span class="tool-desc">SkyWars tree, opal upgrades & progression</span>
             </div>
           </a>
-          <a href="mm.html" class="tool-tile">
+          <a href="murdermystery.html" class="tool-tile">
             <img src="img/games/MurderMystery-64.png" alt="Descent Into Madness">
             <div class="tool-info">
               <span class="tool-name">Descent Into Madness</span>
               <span class="tool-desc">Murder Mystery tracker & progression</span>
             </div>
           </a>
-          <a href="bedwars.html" class="tool-tile">
+          <a href="dreamfeast.html" class="tool-tile">
             <img src="img/games/BedWars-64.png" alt="Dreamfeast">
             <div class="tool-info">
               <span class="tool-name">Dreamfeast</span>
@@ -342,19 +448,139 @@
   <script src="assets/js/global.js"></script>
   <script src="assets/js/credits.js"></script>
   <script>
-    function goToCabinet() {
-      const val = document.getElementById('portSearch').value.trim();
+    // ---- Search platforms -------------------------------------------------
+    // Edit routes here. {p} is replaced with the URL-encoded username.
+    const PLATFORMS = [
+      { id: 'ap',    label: 'AP Tracker',     icon: 'img/diamond.png',                 url: '/cabinet?player={p}' },
+      { id: 'quest', label: 'Quest Tracker',  icon: 'img/xp.png',                      url: '/questing?name={p}' },
+      { id: 'blitz', label: 'Blitz',          icon: 'img/games/SG-64.png',             url: '/blitz?player={p}' },
+      { id: 'bw',    label: 'Bed Wars',       icon: 'img/games/BedWars-64.png',        url: '/bedwars?player={p}' },
+      { id: 'sw',    label: 'SkyWars',        icon: 'img/games/Skywars-64.png',        url: '/angel?player={p}' },
+      { id: 'mm',    label: 'Murder Mystery', icon: 'img/games/MurderMystery-64.png',  url: '/mm?player={p}' },
+      { id: 'rank',  label: 'Ranking',        icon: 'img/mm/iron_sword.png',           url: '/ranking?player={p}' }
+    ];
+
+    const DICE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.2" fill="currentColor"/></svg>';
+
+    let selectedPlatform = PLATFORMS[0];
+
+    function buildUrl(platform, name) {
+      return platform.url.replace('{p}', encodeURIComponent(name));
+    }
+
+    function getName() {
+      return document.getElementById('portSearch').value.trim();
+    }
+
+    function showError(msg) {
       const err = document.getElementById('portError');
-      if (!val) { 
-        err.textContent = "Please enter a username."; 
-        err.style.display = "block"; 
-        return; 
+      err.textContent = msg;
+      err.style.display = msg ? 'block' : 'none';
+    }
+
+    // ---- Dropdown ---------------------------------------------------------
+    function updateTrigger() {
+      const trig = document.getElementById('platformTrigger');
+      document.getElementById('triggerIcon').src = selectedPlatform.icon;
+      document.getElementById('triggerLabel').textContent = selectedPlatform.label;
+      trig.title = selectedPlatform.label;
+      trig.setAttribute('aria-label', 'Search in: ' + selectedPlatform.label);
+    }
+
+    function renderPlatformMenu() {
+      const menu = document.getElementById('platformMenu');
+      menu.innerHTML = '';
+      PLATFORMS.forEach(pl => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'platform-item';
+        b.setAttribute('role', 'option');
+        b.setAttribute('aria-selected', pl.id === selectedPlatform.id);
+        b.innerHTML = `<img src="${pl.icon}" alt=""><span>${pl.label}</span><span class="route">${pl.url.split('?')[0]}</span>`;
+        b.onclick = () => selectPlatform(pl);
+        menu.appendChild(b);
+      });
+      const div = document.createElement('div');
+      div.className = 'platform-divider';
+      menu.appendChild(div);
+      const lucky = document.createElement('button');
+      lucky.type = 'button';
+      lucky.className = 'platform-item lucky';
+      lucky.innerHTML = `${DICE_SVG}<span>I'm Feeling Lucky</span><span class="route">random page</span>`;
+      lucky.onclick = feelingLucky;
+      menu.appendChild(lucky);
+    }
+
+    function setMenuOpen(open) {
+      const wrap = document.getElementById('platformSelect');
+      wrap.classList.toggle('open', open);
+      document.getElementById('platformTrigger').setAttribute('aria-expanded', open);
+    }
+
+    function togglePlatformMenu(e) {
+      e.stopPropagation();
+      const open = !document.getElementById('platformSelect').classList.contains('open');
+      setMenuOpen(open);
+      if (open) {
+        const sel = document.querySelector('#platformMenu .platform-item[aria-selected="true"]');
+        if (sel) sel.focus();
       }
-      // Use clean route /cabinet directly
-      window.location.href = `/cabinet?player=${encodeURIComponent(val)}`;
+    }
+
+    function selectPlatform(pl) {
+      selectedPlatform = pl;
+      updateTrigger();
+      renderPlatformMenu();
+      setMenuOpen(false);
+      document.getElementById('portSearch').focus();
+    }
+
+    function initPlatformSelect() {
+      updateTrigger();
+      renderPlatformMenu();
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('#platformSelect')) setMenuOpen(false);
+      });
+      document.getElementById('platformSelect').addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') { setMenuOpen(false); document.getElementById('platformTrigger').focus(); return; }
+        if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+        const items = Array.from(document.querySelectorAll('#platformMenu .platform-item'));
+        const i = items.indexOf(document.activeElement);
+        if (i === -1 && e.key === 'ArrowDown') { setMenuOpen(true); items[0].focus(); }
+        else if (i !== -1) { items[(i + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length].focus(); }
+        e.preventDefault();
+      });
+    }
+
+    // ---- Actions ----------------------------------------------------------
+    function goToSearch() {
+      const val = getName();
+      if (!val) { showError('Please enter a username.'); return; }
+      showError('');
+      window.location.href = buildUrl(selectedPlatform, val);
+    }
+    window.goToCabinet = goToSearch; // keep the old name working for any other script
+
+    // Username stays as typed; only the destination page is random.
+    function feelingLucky() {
+      const name = getName();
+      setMenuOpen(false);
+      if (!name) {
+        showError("Enter a username first, then I'll pick the page.");
+        document.getElementById('portSearch').focus();
+        return;
+      }
+      showError('');
+      const pick = PLATFORMS[Math.floor(Math.random() * PLATFORMS.length)];
+      selectedPlatform = pick;
+      updateTrigger();
+      renderPlatformMenu();
+      document.getElementById('portStatus').textContent = `🎲 Taking ${name} to ${pick.label}...`;
+      setTimeout(() => { window.location.href = buildUrl(pick, name); }, 700);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      initPlatformSelect();
       const searchInput = document.getElementById('portSearch');
       if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -365,7 +591,7 @@
 
         // Carryover Auto-Fill
         const params = new URLSearchParams(window.location.search);
-        const playerParam = params.get('player') || params.get('uuid') || sessionStorage.getItem('active_player_session');
+        const playerParam = params.get('player') || params.get('uuid') || sessionStorage.getItem('active_player_session') || (window.LitPin && LitPin.get());
         if (playerParam) {
           searchInput.value = playerParam;
           if (typeof window.syncNavigationLinks === 'function') {
