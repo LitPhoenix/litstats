@@ -4,7 +4,6 @@
   const API = 'https://api.litstats.com/api/quest';
   const TOP_URL = 'quest_games.json';
   const PIN_KEY = 'litstats_pinnedPlayer';   // same key cabinet.js uses (a plain username)
-  const AUTO_LOAD_CALENDAR = true;           // load history in the background after the quests show (false = only when 'Show calendar' is clicked)
   const REGISTER_MAXGAMES = true;            // ping /api/player once per searched player so they join the max-games list
   const $ = id => document.getElementById(id);
   const fmt = n => Number(n).toLocaleString();
@@ -13,15 +12,94 @@
 
   const MC = { BLACK: '#000000', DARK_BLUE: '#0000AA', DARK_GREEN: '#00AA00', DARK_AQUA: '#00AAAA', DARK_RED: '#AA0000', DARK_PURPLE: '#AA00AA', GOLD: '#FFAA00', GRAY: '#AAAAAA', DARK_GRAY: '#555555', BLUE: '#5555FF', GREEN: '#55FF55', AQUA: '#36e9e9', RED: '#FF5555', LIGHT_PURPLE: '#FF55FF', YELLOW: '#FFFF55', WHITE: '#FFFFFF' };
 
-  const S = { data: null, uuid: null, name: null, param: '', kind: 'all', game: 'all', sort: 'game', filter: '', hideDone: false, easy: false,
-              open: new Map(), events: [], days: new Map(), year: null, sel: null, calOpen: false, hasHist: false, timer: null, refreshing: false };
+  // ---------- saved preferences ----------
+  // Everything persists through Store, so adding accounts later means swapping this one object for a synced version.
+  //   litstats_quest_prefs_v1          UI preferences + games you've hidden (apply to every player you look up)
+  //   litstats_quest_player_v1:<uuid>  per-player data (quests hidden for that player)
+  const Store = {
+    read(key, fallback) { try { const v = JSON.parse(localStorage.getItem(key)); return v && typeof v === 'object' ? v : fallback; } catch (e) { return fallback; } },
+    write(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} },
+    prefs() { return this.read('litstats_quest_prefs_v1', {}); },
+    savePrefs(p) { this.write('litstats_quest_prefs_v1', { v: 1, ...p }); },
+    player(uuid) { return this.read(`litstats_quest_player_v1:${uuid}`, { skip: [] }); },
+    savePlayer(uuid, d) { this.write(`litstats_quest_player_v1:${uuid}`, { v: 1, ...d }); }
+  };
+  const saved = Store.prefs();
+
+  // Every option the Customize drawer controls, with its default. Saved in the browser with the other preferences.
+  const SECTION_KEYS = ['stats', 'board', 'games', 'calendar'];
+  const UI_DEFAULTS = {
+    order: SECTION_KEYS.slice(),
+    secStats: true, secGames: true, secCalendar: true, calAuto: true,
+    excludeComp: false, showXp: true,
+    cardTotal: true, cardDaily: true, cardWeekly: true, cardXp: false, cardStreak: true,
+    pillDaily: true, pillWeekly: true, pillMonthly: true,
+    rowDesc: true, rowBars: true, rowKind: true, rowTasks: true, rowEasy: true, rowHide: true, rowDensity: 'comfortable', columns: 'auto',
+    gamesOpen: false, gamesSort: 'count', gamesIcons: true, gamesNames: true, gamesShare: true, gamesHidden: false,
+    timeMode: 'hypixel'
+  };
+  const UI = { ...UI_DEFAULTS, ...(saved.ui || {}) };
+  UI.order = [...(Array.isArray(UI.order) ? UI.order : []).filter(k => SECTION_KEYS.includes(k)), ...SECTION_KEYS.filter(k => !(UI.order || []).includes(k))];
+  const COMP_GAMES = new Set(['walls3', 'megawalls', 'uhc', 'pit']);          // Mega Walls, UHC, The Pit
+  const isCompOut = x => UI.excludeComp && COMP_GAMES.has(x.game);
+  const KIND_LABEL = { daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly', special: 'Special' };
+
+  const S = { data: null, uuid: null, name: null, param: '', kind: saved.kind || 'all', game: 'all', sort: saved.sort || 'game', filter: '', hideDone: !!saved.hideDone, easy: !!saved.easy,
+              skip: new Set(), hideGames: new Set(saved.hiddenGames || []), showHidden: false, open: new Map(Object.entries(saved.open || {})), events: [], days: new Map(), year: null, sel: null, calOpen: false, hasHist: false, gamesOpen: !!UI.gamesOpen, timer: null, refreshing: false };
 
   // ---------- helpers ----------
   const pad = n => String(n).padStart(2, '0');
+  const savePrefs = () => Store.savePrefs({ kind: S.kind, sort: S.sort, hideDone: S.hideDone, easy: S.easy, open: Object.fromEntries(S.open), hiddenGames: [...S.hideGames], ui: UI });
+  const saveSkip = () => Store.savePlayer(S.uuid, { skip: [...S.skip] });
+
+  // ---------- Hypixel time ----------
+  // Every date and clock time on this page is shown in Hypixel's zone (US Eastern), where quests reset at midnight.
+  const HX_ZONE = 'America/New_York';
+  let tzOpt, hxDate, hxHourFmt, hxZoneFmt;
+  function buildTz() {                                    // rebuilt when "Times shown in" changes
+    tzOpt = UI.timeMode === 'local' ? {} : { timeZone: HX_ZONE };
+    hxDate = new Intl.DateTimeFormat('en-CA', { ...tzOpt, year: 'numeric', month: '2-digit', day: '2-digit' });
+    hxHourFmt = new Intl.DateTimeFormat('en-US', { ...tzOpt, hour: '2-digit', hourCycle: 'h23' });
+    hxZoneFmt = new Intl.DateTimeFormat('en-US', { ...tzOpt, timeZoneName: 'short' });
+  }
+  buildTz();
+  const tzIsHypixel = () => UI.timeMode !== 'local';
+  const hxKey = ms => {                                   // 'YYYY-MM-DD' of this instant in the chosen zone
+    const s = hxDate.format(ms);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+    const p = {}; hxDate.formatToParts(ms).forEach(x => { p[x.type] = x.value; });
+    return `${p.year}-${p.month}-${p.day}`;
+  };
+  const hxHour = ms => parseInt(hxHourFmt.format(ms), 10) % 24;
+  const hxYear = () => +hxKey(Date.now()).slice(0, 4);
+  const hxAbbr = ms => { const z = hxZoneFmt.formatToParts(ms).find(p => p.type === 'timeZoneName'); return z ? z.value : 'ET'; };
+  const hxTime = (ms, secs = true) => new Date(ms).toLocaleTimeString('en-US', { ...tzOpt, hour: 'numeric', minute: '2-digit', ...(secs ? { second: '2-digit' } : {}) });
+  // Hypixel's clock ('hx') and the viewer's ('me') are shown side by side wherever it matters
+  const zoneOf = w => w === 'hx' ? { timeZone: HX_ZONE } : {};
+  const primaryZone = () => tzIsHypixel() ? 'hx' : 'me', otherZone = () => tzIsHypixel() ? 'me' : 'hx';
+  const clock = (ms, w, secs = false) => new Date(ms).toLocaleTimeString('en-US', { ...zoneOf(w), hour: 'numeric', minute: '2-digit', ...(secs ? { second: '2-digit' } : {}) });
+  const zoneAbbr = (ms, w) => { const z = new Intl.DateTimeFormat('en-US', { ...zoneOf(w), timeZoneName: 'short' }).formatToParts(ms).find(p => p.type === 'timeZoneName'); return z ? z.value : (w === 'hx' ? 'ET' : 'local'); };
+  const zoneName = w => w === 'hx' ? 'Hypixel time' : 'your time';
+  function zoneOffset(ms, w) {
+    const f = new Intl.DateTimeFormat('en-US', { ...zoneOf(w), hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const o = {}; f.formatToParts(ms).forEach(p => { o[p.type] = p.value; });
+    return Date.UTC(+o.year, +o.month - 1, +o.day, +o.hour % 24, +o.minute, +o.second) - Math.floor(ms / 1000) * 1000;
+  }
+  function dayStart(key, w) {                              // the instant a calendar day ('YYYY-MM-DD') begins in that zone
+    const [y, m, d] = key.split('-').map(Number), mid = Date.UTC(y, m - 1, d), noonOff = zoneOffset(mid + 12 * 3600000, w);
+    let g = mid - noonOff;
+    const off = zoneOffset(g, w);
+    if (off !== noonOff) g = mid - off;
+    return g;
+  }
+  const nextKey = k => keyOf(addDays(parseKey(k), 1));
+  const prettyKey = k => parseKey(k).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const tzLabel = ms => tzIsHypixel() ? `Hypixel time (${hxAbbr(ms)})` : `Your time (${hxAbbr(ms)})`;
+  // Plain calendar maths below (keyOf / parseKey / addDays) never touches a clock, so the browser zone doesn't matter there.
   const keyOf = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
   const parseKey = k => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); };
   const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
-  const timeStr = ms => new Date(ms).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', second: '2-digit' });
+  const timeStr = ms => hxTime(ms);
   function dur(ms) {
     if (ms < 0) ms = 0;
     const s = Math.floor(ms / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
@@ -71,7 +149,7 @@
 
   // ---------- manual edits (assets/js/quest-overrides.js) ----------
   // Keys match by id, or by name ignoring case, punctuation and the "Daily Quest:" prefix.
-  const PREFIX_RE = /^(daily|weekly|mythic|special)\s+quest:\s*/i;
+  const PREFIX_RE = /^(daily|weekly|monthly|mythic|special)\s+quest:\s*/i;
   const norm = t => String(t).toLowerCase().replace(PREFIX_RE, '').replace(/[^a-z0-9]+/g, ' ').trim();
   const OV = window.QUEST_OVERRIDES || {}, OVN = {};
   Object.entries(OV).forEach(([k, v]) => { const [g, n] = k.includes('|') ? k.split('|') : [null, k]; OVN[(g ? g.trim().toLowerCase() + '|' : '') + norm(n)] = v; });
@@ -84,13 +162,14 @@
       if (m) {
         const p = m[1].toLowerCase();
         x.name = x.name.slice(m[0].length);
-        x.kind = p === 'weekly' ? 'weekly' : p === 'special' ? 'special' : 'daily';
+        x.kind = p === 'weekly' ? 'weekly' : p === 'monthly' ? 'monthly' : p === 'special' ? 'special' : 'daily';
         if (p === 'mythic') x.tag = 'Mythic';
       }
       let d = String(x.desc || '').replace(/§./g, '').replace(/%%\w+%%/g, '').replace(/[ \t]+/g, ' ').trim();
       if (!d.includes('\n') && x.obj.length > 1) d = d.replace(SPLIT, '\n');
       x.desc = d;
       const o = OV[x.id] || OVN[`${x.game}|${norm(x.name)}`] || OVN[norm(x.name)] || {};
+      if (x.tag === 'Special') x.tag = null;                // 'Special' is the quest's kind, shown by its tab / label
       if (o.hide) return null;
       x.easy = !!o.easy; x.icon = o.icon || null; x.info = toLines(o.info) || [];
       if (o.name) x.name = o.name;
@@ -142,8 +221,9 @@
   }
 
   // ---------- loading ----------
-  async function fetchQuest(param, history) {
-    const res = await fetch(`${API}?${param}${history ? '&history=1' : ''}`);
+  const needStreak = () => UI.secStats && UI.cardStreak;
+  async function fetchQuest(param, history, streak) {
+    const res = await fetch(`${API}?${param}${history ? '&history=1' : ''}${streak ? '&streak=1' : ''}`);
     const body = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(body.error || (res.status === 404 ? 'The /api/quest endpoint was not found on api.litstats.com.' : `Request failed (${res.status})`));
     return body;
@@ -157,17 +237,25 @@
     const param = uuidLike ? `uuid=${q.replace(/-/g, '')}` : `name=${encodeURIComponent(q)}`;
     if (!opts.silent) { $('qt-empty').classList.add('hidden'); $('qt-content').classList.add('hidden'); showLoader('Loading quests...'); }
     try {
-      const body = await fetchQuest(param, opts.silent && S.calOpen);
+      const body = await fetchQuest(param, opts.silent && S.calOpen, needStreak());
       if (opts.silent && !body.history && S.data) body.history = S.data.history;   // keep history already loaded
+      if (opts.silent && !body.streak && S.data && S.data.streak) body.streak = S.data.streak;
       body.quests = decorate(body.quests);
       S.data = body; S.uuid = body.uuid; S.name = body.name || q; S.param = `uuid=${body.uuid}`;
+      S.skip = new Set(Store.player(body.uuid).skip || []);
+      if (!opts.silent) S.showHidden = false;
       if (!opts.silent) {
-        S.calOpen = false; S.hasHist = false; S.events = []; S.days = new Map(); S.sel = null;
+        S.calOpen = false; S.hasHist = false; S.events = []; S.days = new Map(); S.sel = null; S.gamesOpen = !!UI.gamesOpen;
         const u = new URL(location.href); u.searchParams.delete('uuid'); u.searchParams.delete('player'); u.searchParams.set('name', S.name);
         history.replaceState(null, '', u);
       } else if (body.history) prepare();
       render();
-      if (!opts.silent) { registerForMaxGames(S.uuid); if (AUTO_LOAD_CALENDAR) showCalendar(); }
+      if (!opts.silent) {
+        registerForMaxGames(S.uuid);
+        histPromise = null;
+        if (UI.calAuto && UI.secCalendar) showCalendar();
+        else if (needStreak() && !body.streak) loadHistory().then(() => { if (S.data) renderTotals(); }).catch(() => {});   // older API: get the streak from history
+      }
     } catch (e) {
       if (!opts.silent) { $('qt-empty').classList.remove('hidden'); $('qt-empty').innerHTML = '<strong>Look up a player</strong>See what they have left today and this week, their progress, and a calendar of every quest they have ever finished.'; showError(e.message); }
     } finally { if (!opts.silent) hideLoader(); }
@@ -188,7 +276,7 @@
     for (let i = 0; i < h.t.length; i++) {
       sec += h.t[i];
       S.events.push({ ts: sec * 1000, qi: h.q[i] });
-      const k = keyOf(new Date(sec * 1000));
+      const k = hxKey(sec * 1000);
       if (!S.days.has(k)) S.days.set(k, []);
       S.days.get(k).push(i);
     }
@@ -197,8 +285,8 @@
     if (!years.includes(S.year)) S.year = years[0];
   }
   function yearsList() {
-    const cur = new Date().getFullYear();
-    const first = S.events.length ? new Date(S.events[0].ts).getFullYear() : cur;
+    const cur = hxYear();
+    const first = S.events.length ? +hxKey(S.events[0].ts).slice(0, 4) : cur;
     const out = []; for (let y = cur; y >= first; y--) out.push(y);
     return out;
   }
@@ -212,24 +300,47 @@
     const cs = getComputedStyle(n);
     const r = $('p-rank'); r.className = ''; r.style.cssText = `font-size:${cs.fontSize};line-height:${cs.lineHeight};font-weight:${cs.fontWeight};margin:0 10px 0 0;color:${rv.c};display:${rv.tag ? 'inline' : 'none'}`; r.innerHTML = rv.tag;
     const nameRow = n.parentElement; if (nameRow) { nameRow.style.display = 'flex'; nameRow.style.alignItems = 'baseline'; }
-    $('qt-reset-row').innerHTML = `<span class="qt-pill">Daily reset in <b id="qt-cd-d">-</b></span><span class="qt-pill">Weekly reset in <b id="qt-cd-w">-</b></span>`;
+    renderPills();
     startCountdown();
     $('qt-cal-body').classList.toggle('hidden', !S.calOpen);
     $('qt-year').classList.toggle('hidden', !S.calOpen);
     $('qt-cal-open').textContent = S.calOpen ? 'Hide calendar' : 'Show calendar';
-    const sp = document.querySelector('#qt-kind [data-kind="special"]');
-    if (sp) sp.classList.toggle('hidden', !d.quests.some(x => x.kind === 'special'));
-    renderTotals(); renderGameSelect(); renderLists();
+    ['special', 'monthly'].forEach(k => {
+      const b = document.querySelector(`#qt-kind [data-kind="${k}"]`);
+      if (b) b.classList.toggle('hidden', !d.quests.some(x => x.kind === k));
+    });
+    if (['special', 'monthly'].includes(S.kind) && !d.quests.some(x => x.kind === S.kind)) S.kind = 'all';
+    $('qt-kind').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.kind === S.kind));
+    $('qt-sort').value = S.sort;
+    renderTotals(); renderGameSelect(); renderLists(); renderGames();
     if (S.calOpen && S.hasHist) renderCalendar();
+  }
+
+  function updateCountdowns() {
+    const r = S.data && S.data.resets; if (!r) return;
+    const now = Date.now(), set = (id, ms) => { const el = $(id); if (el && ms) el.textContent = dur(ms - now); };
+    set('qt-cd-d', r.dailyNext); set('qt-cd-w', r.weeklyNext); set('qt-cd-m', r.monthlyNext);
+  }
+
+  function renderPills() {
+    const row = $('qt-reset-row'), d = S.data;
+    if (!row || !d) return;
+    const rs = d.resets, hasMonthly = d.quests.some(x => x.kind === 'monthly');
+    const p = primaryZone(), o = otherZone();
+    const wd = (ms, w) => new Date(ms).toLocaleDateString('en-US', { ...zoneOf(w), weekday: 'short' });
+    const md = (ms, w) => new Date(ms).toLocaleDateString('en-US', { ...zoneOf(w), month: 'short', day: 'numeric' });
+    const both = (ms, fmtDay) => [p, o].map(w => `${fmtDay ? fmtDay(ms, w) + ' ' : ''}${clock(ms, w)} ${zoneAbbr(ms, w)}`).join(' · ');
+    const pill = (on, label, id, ms, fmtDay) => on ? `<span class="qt-pill">${label} reset in <b id="${id}">-</b><small>${both(ms, fmtDay)}</small></span>` : '';
+    row.innerHTML = pill(UI.pillDaily, 'Daily', 'qt-cd-d', rs.dailyNext) + pill(UI.pillWeekly, 'Weekly', 'qt-cd-w', rs.weeklyNext, wd) +
+      (hasMonthly && rs.monthlyNext ? pill(UI.pillMonthly, 'Monthly', 'qt-cd-m', rs.monthlyNext, md) : '');
+    updateCountdowns();
   }
 
   function startCountdown() {
     clearInterval(S.timer);
     const tick = () => {
       const now = Date.now(), r = S.data.resets;
-      const a = $('qt-cd-d'), b = $('qt-cd-w');
-      if (a) a.textContent = dur(r.dailyNext - now);
-      if (b) b.textContent = dur(r.weeklyNext - now);
+      updateCountdowns();
       if (now >= r.dailyNext && !S.refreshing) {          // a reset just passed: pull fresh progress
         S.refreshing = true;
         loadPlayer(S.uuid, { silent: true }).finally(() => { S.refreshing = false; });
@@ -238,30 +349,38 @@
     tick(); S.timer = setInterval(tick, 1000);
   }
 
+  const isHiddenQ = x => S.skip.has(x.id) || S.hideGames.has(x.game);
+
   function renderTotals() {
-    const q = S.data.quests;
+    const q = S.data.quests.filter(x => !isHiddenQ(x) && !isCompOut(x));          // hidden quests, hidden games and excluded comp games don't count
+    const nHidden = S.data.quests.filter(x => isHiddenQ(x) && !isCompOut(x)).length;
     const count = k => { const l = q.filter(x => x.kind === k); return { done: l.filter(x => x.status === 'done').length, all: l.length, xp: l.filter(x => x.status !== 'done').reduce((a, x) => a + x.xp, 0) }; };
-    const dly = count('daily'), wk = count('weekly');
     const bar = (a, b) => `<div class="qt-bar ${a === b && b ? 'done' : ''}"><i style="width:${b ? Math.round(a / b * 100) : 0}%"></i></div>`;
-    const top = Object.entries(S.data.byGame || {}).filter(([g]) => g !== 'other').sort((a, b) => b[1] - a[1])[0];
-    const xpLeft = dly.xp + wk.xp, easyLeft = q.filter(x => x.easy && x.status !== 'done').length;
-    $('qt-totals').innerHTML = `
-      <div class="qt-stat"><div class="qt-stat-label">Quests completed</div><div class="qt-stat-value">${fmt(S.data.total)}</div><div class="qt-stat-sub">${top ? `Most in ${esc(gname(top[0]))} (${fmt(top[1])})` : '&nbsp;'}</div></div>
-      <div class="qt-stat"><div class="qt-stat-label">Daily today</div><div class="qt-stat-value">${dly.done}<small> / ${dly.all}</small></div>${bar(dly.done, dly.all)}<div class="qt-stat-sub">${dly.all - dly.done} left, ${fmt(dly.xp)} XP</div></div>
-      <div class="qt-stat"><div class="qt-stat-label">Weekly this week</div><div class="qt-stat-value">${wk.done}<small> / ${wk.all}</small></div>${bar(wk.done, wk.all)}<div class="qt-stat-sub">${wk.all - wk.done} left, ${fmt(wk.xp)} XP</div></div>
-      <div class="qt-stat"><div class="qt-stat-label">XP still available</div><div class="qt-stat-value">${fmt(xpLeft)}</div><div class="qt-stat-sub">${easyLeft ? easyLeft + ' easy quests left' : 'Daily + weekly'}</div></div>`;
+    const card = (label, value, sub, extra = '') => `<div class="qt-stat"><div class="qt-stat-label">${label}</div><div class="qt-stat-value">${value}</div>${extra}<div class="qt-stat-sub">${sub}</div></div>`;
+    const prog = (label, k) => { const c = count(k); return card(label, `${c.done}<small> / ${c.all}</small>`, `${c.all - c.done} left<span class="qt-xp-any">, ${fmt(c.xp)} XP</span>`, bar(c.done, c.all)); };
+    const top = Object.entries(S.data.byGame || {}).filter(([g]) => g !== 'other' && !(UI.excludeComp && COMP_GAMES.has(g))).sort((a, b) => b[1] - a[1])[0];
+    const xpLeft = q.filter(x => x.status !== 'done').reduce((a, x) => a + x.xp, 0), easyLeft = q.filter(x => x.easy && x.status !== 'done').length;
+    const st = getStreak(), days = n => `${n}<small> day${n === 1 ? '' : 's'}</small>`;
+    const out = [];
+    if (UI.cardTotal) out.push(card('Quests completed', fmt(S.data.total), top ? `Most in ${esc(gname(top[0]))} (${fmt(top[1])})` : '&nbsp;'));
+    if (UI.cardDaily) out.push(prog('Daily quests', 'daily'));
+    if (UI.cardWeekly) out.push(prog('Weekly quests', 'weekly'));
+    if (UI.cardXp && UI.showXp) out.push(card('XP still available', fmt(xpLeft), `${easyLeft ? easyLeft + ' easy quests left' : 'Everything still to do'}${nHidden ? ` · ${nHidden} hidden` : ''}`));
+    if (UI.cardStreak) out.push(card('Current streak', st ? days(st.current) : '-', !st ? 'Loading...' : st.doneToday ? 'Today counted ✓' : st.current ? `Quest within ${dur(S.data.resets.dailyNext - Date.now())} to keep it` : 'Quest today to start one'));
+    $('qt-totals').innerHTML = out.join('');
   }
 
   // ---------- render: quest board ----------
   const isEasy = x => !!x.easy;
   const fracOf = x => x.status === 'done' ? 1 : x.obj.length ? x.obj.reduce((a, o) => a + o[0] / o[1], 0) / x.obj.length : 0;
-  const colCount = () => window.innerWidth >= 1180 ? 3 : window.innerWidth >= 760 ? 2 : 1;
+  const autoCols = () => window.innerWidth >= 1180 ? 3 : window.innerWidth >= 760 ? 2 : 1;
+  const colCount = () => UI.columns === 'auto' ? autoCols() : Math.min(+UI.columns || 3, window.innerWidth < 760 ? 1 : window.innerWidth < 1180 ? 2 : 4);
   const cnt = o => `${fmt(o[0])}/${fmt(o[1])}`;
 
   function renderGameSelect() {
     const sel = $('qt-game'), keep = S.game, left = {};
-    S.data.quests.forEach(x => { if (x.status !== 'done') left[x.game] = (left[x.game] || 0) + 1; });
-    const games = [...new Set(S.data.quests.map(x => x.game))].sort((a, b) => gname(a).localeCompare(gname(b)));
+    S.data.quests.forEach(x => { if (x.status !== 'done' && !isHiddenQ(x) && !isCompOut(x)) left[x.game] = (left[x.game] || 0) + 1; });
+    const games = [...new Set(S.data.quests.filter(x => !isCompOut(x)).map(x => x.game))].sort((a, b) => gname(a).localeCompare(gname(b)));
     sel.innerHTML = `<option value="all">All games</option>` + games.map(g => `<option value="${esc(g)}">${esc(gname(g))} (${left[g] || 0} left)</option>`).join('');
     sel.value = games.includes(keep) ? keep : 'all'; S.game = sel.value;
     const t = $('qt-toggle-done'); t.textContent = S.hideDone ? 'Show completed' : 'Hide completed'; t.setAttribute('aria-pressed', S.hideDone);
@@ -271,23 +390,33 @@
   // One quest as a checklist row. `flat` = shown outside a game card, so it carries its own kind badge.
   function qHTML(x, opts = {}) {
     const done = x.status === 'done', pct = Math.round(fracOf(x) * 100);
+    const hid = S.skip.has(x.id);
     const pills = [];
-    if (opts.kindPill) pills.push(`<span class="qt-p ${x.kind}">${x.kind === 'weekly' ? 'Weekly' : x.kind === 'special' ? 'Special' : 'Daily'}</span>`);
-    if (x.tag) pills.push(`<span class="qt-p tag">${esc(x.tag)}</span>`);
+    if (opts.kindPill) pills.push(`<span class="qt-p ${x.kind}">${KIND_LABEL[x.kind] || 'Daily'}</span>`);
+    if (x.tag && x.tag !== 'Special') pills.push(`<span class="qt-p tag">${esc(x.tag)}</span>`);
     if (x.once) pills.push('<span class="qt-p once" title="This quest can only be completed once">One-time</span>');
     if (!done && x.easy) pills.push('<span class="qt-p easy">Easy</span>');
+    // multi-task quests say how many tasks are finished
+    const tasksDone = x.obj.filter(o => o[0] >= o[1]).length;
+    if (!done && x.obj.length > 1 && tasksDone > 0) pills.push(`<span class="qt-p tasks" title="${tasksDone} of ${x.obj.length} tasks finished">${tasksDone}/${x.obj.length} tasks</span>`);
     const info = x.info.length ? `<span class="qt-info" tabindex="0" role="note" aria-label="More info" data-info="${esc(x.info.join('\n'))}">ⓘ</span>` : '';
-    const side = done ? `<span class="qt-ok">Done ${x.last ? ago(x.last) : ''}</span>` : `${x.xp ? `<span class="qt-xp">${fmt(x.xp)} XP</span>` : ''}${info}`;
+    const hideBtn = hid ? `<button type="button" class="qt-unskip" data-unskip="${esc(x.id)}">Restore</button>`
+      : done ? '' : `<button type="button" class="qt-skip" data-skip="${esc(x.id)}" title="Hide this quest for ${esc(S.name)}" aria-label="Hide this quest">✕</button>`;
+    const side = done ? `<span class="qt-ok">Done ${x.last ? ago(x.last) : ''}</span>${hideBtn}` : `${x.xp ? `<span class="qt-xp">${fmt(x.xp)} XP</span>` : ''}${info}${hideBtn}`;
 
+    // each task: finished = green + tick, otherwise the normal bar
+    const objHTML = (label, o) => {
+      const full = o[0] >= o[1];
+      return `<div class="qt-obj${full ? ' is-done' : ''}"><div class="qt-obj-head"><span>${esc(label)}</span><b>${full ? '✓ ' : ''}${cnt(o)}</b></div>` +
+        `<div class="qt-bar ${full ? 'obj-done' : ''}"><i style="width:${Math.round(o[0] / o[1] * 100)}%"></i></div></div>`;
+    };
     let body = '';
     if (!done) {
       const paired = x.lines.length === x.obj.length && x.obj.length > 0;
-      const getPct = (curr, target) => target > 0 ? Math.round((curr / target) * 100) : 0;
-      if (paired) body = x.lines.map((l, i) => `<div class="qt-obj"><div class="qt-obj-head"><span>${esc(l)}</span><b>${cnt(x.obj[i])}</b></div><div class="qt-bar"><i style="width:${Math.round(x.obj[i][0] / x.obj[i][1] * 100)}%"></i></div></div>`).join('');
-      else body = (x.lines.length ? `<div class="qt-lines">${x.lines.map(l => `<div>${esc(l)}</div>`).join('')}</div>` : '') +
-        x.obj.map(o => `<div class="qt-obj"><div class="qt-obj-head"><span></span><b>${cnt(o)}</b></div><div class="qt-bar"><i style="width:${Math.round(o[0] / o[1] * 100)}%"></i></div></div>`).join('');
+      if (paired) body = x.lines.map((l, i) => objHTML(l, x.obj[i])).join('');
+      else body = (x.lines.length ? `<div class="qt-lines">${x.lines.map(l => `<div>${esc(l)}</div>`).join('')}</div>` : '') + x.obj.map(o => objHTML('', o)).join('');
     }
-    return `<div class="qt-q ${x.status}" title="${esc(x.id)}">
+    return `<div class="qt-q ${x.status}${hid ? ' is-hidden' : ''}" title="${esc(x.id)}">
       <span class="qt-st ${x.status}" style="--p:${pct}" aria-label="${x.status}"></span>
       <div class="qt-q-top"><span class="qt-q-name">${opts.icon ? iconTag(x.game, 'qt-gicon sm', x.icon) : ''}${esc(x.name)}</span>${pills.join('')}</div>
       <div class="qt-q-side">${side}</div>
@@ -300,19 +429,20 @@
   function groupHTML(g, items, all) {
     const done = all.filter(x => x.status === 'done').length, total = all.length, allDone = done === total;
     const single = items.length === 1;
-    const kinds = ['daily', 'weekly', 'special'].filter(k => items.some(x => x.kind === k));
+    const kinds = ['daily', 'weekly', 'monthly', 'special'].filter(k => items.some(x => x.kind === k));
     const xpLeft = items.filter(x => x.status !== 'done').reduce((a, x) => a + x.xp, 0);
     const sorted = k => items.filter(x => x.kind === k).sort((a, b) => stRank[a.status] - stRank[b.status] || fracOf(b) - fracOf(a) || a.name.localeCompare(b.name));
     const body = kinds.map(k => {
       const list = sorted(k), d = list.filter(x => x.status === 'done').length;
-      return (kinds.length > 1 ? `<div class="qt-sub"><span>${k === 'daily' ? 'Daily' : k === 'weekly' ? 'Weekly' : 'Special'}</span><span>${d}/${list.length}</span></div>` : '') +
+      return (kinds.length > 1 ? `<div class="qt-sub"><span>${KIND_LABEL[k]}</span><span>${d}/${list.length}</span></div>` : '') +
         list.map(x => qHTML(x, { kindPill: kinds.length === 1 })).join('');
     }).join('');
     const open = isOpen(g, allDone);
-    return `<section class="qt-group ${open ? '' : 'closed'} ${allDone ? 'complete' : ''}" data-g="${esc(g)}" data-done="${allDone ? 1 : 0}">
+    return `<section class="qt-group ${open ? '' : 'closed'} ${allDone ? 'complete' : ''} ${S.hideGames.has(g) ? 'is-hidden' : ''}" data-g="${esc(g)}" data-done="${allDone ? 1 : 0}">
       <button type="button" class="qt-group-head" aria-expanded="${open}">
-        ${iconTag(g, 'qt-gicon', (all.find(q => q.icon) || {}).icon)}<span class="qt-gname">${esc(gname(g))}</span>
+        ${iconTag(g, 'qt-gicon')}<span class="qt-gname">${esc(gname(g))}</span>
         <span class="qt-gcount">${done}/${total}</span><span class="qt-gspace"></span>
+        ${S.hideGames.has(g) ? `<span class="qt-ghide restore" role="button" tabindex="0" data-unhidegame="${esc(g)}">Restore game</span>` : `<span class="qt-ghide" role="button" tabindex="0" data-hidegame="${esc(g)}" title="Hide ${esc(gname(g))} entirely (every player)" aria-label="Hide ${esc(gname(g))}">⊘</span>`}
         ${single || !xpLeft ? '' : `<span class="qt-gxp">${fmt(xpLeft)} XP left</span>`}<span class="qt-chev" aria-hidden="true"></span>
         ${single ? '' : `<span class="qt-gbar"><i style="width:${total ? Math.round(done / total * 100) : 0}%"></i></span>`}
       </button><div class="qt-group-body">${body}</div></section>`;
@@ -326,13 +456,18 @@
 
   function renderLists() {
     const f = S.filter.toLowerCase();
-    const base = S.data.quests.filter(x => (S.kind === 'all' || x.kind === S.kind) && (S.game === 'all' || x.game === S.game) &&
+    const base = S.data.quests.filter(x => !isCompOut(x) && (S.kind === 'all' || x.kind === S.kind) && (S.game === 'all' || x.game === S.game) &&
       (!f || (x.name + ' ' + x.lines.join(' ') + ' ' + gname(x.game)).toLowerCase().includes(f)));
-    const left = base.filter(x => x.status !== 'done');
-    $('qt-fast').innerHTML = `<span><b>${left.length}</b> left</span><span><b>${left.filter(isEasy).length}</b> easy</span><span><b>${fmt(left.reduce((a, x) => a + x.xp, 0))}</b> XP available</span>` +
+    const hiddenQ = base.filter(x => S.skip.has(x.id) && !S.hideGames.has(x.game)).length;
+    const hiddenG = new Set(base.filter(x => S.hideGames.has(x.game)).map(x => x.game)).size;
+    const shown = base.filter(x => S.showHidden || !isHiddenQ(x));          // hidden quests and games are left out of every count
+    const left = shown.filter(x => x.status !== 'done' && !isHiddenQ(x));
+    const hiddenTxt = [hiddenQ ? `${hiddenQ} quest${hiddenQ === 1 ? '' : 's'}` : '', hiddenG ? `${hiddenG} game${hiddenG === 1 ? '' : 's'}` : ''].filter(Boolean).join(' and ');
+    $('qt-fast').innerHTML = `<span><b>${left.length}</b> left</span><span><b>${left.filter(isEasy).length}</b> easy</span><span class="qt-xp-any"><b>${fmt(left.reduce((a, x) => a + x.xp, 0))}</b> XP available</span>` +
+      (hiddenTxt ? `<span><button type="button" class="qt-linkbtn" data-act="hidden">${S.showHidden ? 'Stop showing' : 'Show'} ${hiddenTxt} you hid</button></span>` : '') +
       (S.sort === 'game' ? '<span class="qt-fast-links"><button type="button" data-act="collapse">Collapse all</button><button type="button" data-act="expand">Expand all</button></span>' : '');
 
-    const list = base.filter(x => !(S.hideDone && x.status === 'done') && !(S.easy && (x.status === 'done' || !isEasy(x))));
+    const list = shown.filter(x => !(S.hideDone && x.status === 'done') && !(S.easy && (x.status === 'done' || !isEasy(x))));
     if (!list.length) { $('qt-lists').innerHTML = `<div class="qt-none">${base.length ? 'Nothing to show with these filters.' : 'No quests match your filters.'}</div>`; return; }
 
     if (S.sort !== 'game') {
@@ -349,12 +484,12 @@
     const groups = {};
     list.forEach(x => (groups[x.game] = groups[x.game] || []).push(x));
     const keys = Object.keys(groups).sort((a, b) => {
-      const la = base.some(x => x.game === a && x.status !== 'done'), lb = base.some(x => x.game === b && x.status !== 'done');
+      const la = shown.some(x => x.game === a && x.status !== 'done' && !isHiddenQ(x)), lb = shown.some(x => x.game === b && x.status !== 'done' && !isHiddenQ(x));
       return (lb - la) || gname(a).localeCompare(gname(b));
     });
     const n = colCount(), cols = Array.from({ length: n }, () => ({ h: 0, html: '' }));
     keys.forEach(g => {
-      const all = base.filter(x => x.game === g), allDone = all.every(x => x.status === 'done');
+      const all = shown.filter(x => x.game === g), allDone = all.every(x => x.status === 'done');
       const open = isOpen(g, allDone), target = cols.reduce((m, c) => c.h < m.h ? c : m, cols[0]);
       target.html += groupHTML(g, groups[g], all); target.h += estimate(groups[g], open) + 12;
     });
@@ -373,21 +508,35 @@
     const uuid = S.uuid;
     $('qt-cal').innerHTML = ''; $('qt-day').innerHTML = ''; $('qt-cal-stats').innerHTML = '<span class="qt-loading">Loading questing history...</span>';
     try {
-      const body = await fetchQuest(S.param, true);
-      if (S.uuid !== uuid) return;                       // searched someone else meanwhile
-      S.data.history = body.history; prepare(); renderCalendar();
+      await loadHistory();
+      if (S.uuid !== uuid || !S.hasHist) return;                       // searched someone else meanwhile
+      renderCalendar(); renderTotals();                                // the streak card can use the history too
     } catch (e) { if (S.uuid === uuid) { $('qt-cal-stats').innerHTML = `<span class="qt-loading">Couldn't load history: ${esc(e.message)}</span>`; } }
   }
   const toggleCalendar = () => S.calOpen ? setCalUI(false) : showCalendar();
 
   function streaks() {
     const keys = [...S.days.keys()].sort();
-    let best = 0, run = 0, prev = null;
-    for (const k of keys) { const dt = parseKey(k); run = prev && Math.round((dt - prev) / DAY) === 1 ? run + 1 : 1; best = Math.max(best, run); prev = dt; }
-    let cur = 0, cursor = new Date(); cursor = new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate());
+    let best = 0, run = 0, prev = null, bestEnd = null;
+    for (const k of keys) { const dt = parseKey(k); run = prev && Math.round((dt - prev) / DAY) === 1 ? run + 1 : 1; if (run > best) { best = run; bestEnd = k; } prev = dt; }
+    const today = hxKey(Date.now());
+    let cur = 0, cursor = parseKey(today);
     if (!S.days.has(keyOf(cursor))) cursor = addDays(cursor, -1);
     while (S.days.has(keyOf(cursor))) { cur++; cursor = addDays(cursor, -1); }
-    return { cur, best, active: keys.length };
+    return { cur, best, active: keys.length, doneToday: S.days.has(today), bestFrom: bestEnd ? keyOf(addDays(parseKey(bestEnd), -(best - 1))) : null, bestTo: bestEnd };
+  }
+  // The streak card uses the server's number when it has one; otherwise (older API) it is worked out from the calendar history.
+  function getStreak() {
+    const fromHist = () => { if (!S.hasHist) return null; const s = streaks(); return { current: s.cur, best: s.best, doneToday: s.doneToday, bestFrom: s.bestFrom, bestTo: s.bestTo }; };
+    if (!tzIsHypixel()) return fromHist() || null;          // "my time" days differ from Hypixel's, so don't mix in the server's number
+    return (S.data && S.data.streak) || fromHist();
+  }
+  let histPromise = null;
+  async function loadHistory() {                            // one shared fetch for the calendar and the streak fallback
+    if (S.hasHist) return;
+    const uuid = S.uuid;
+    if (!histPromise) histPromise = fetchQuest(S.param, true).then(body => { if (S.uuid === uuid && S.data) { S.data.history = body.history; prepare(); } }).finally(() => { histPromise = null; });
+    await histPromise;
   }
 
   function renderCalendar() {
@@ -396,12 +545,12 @@
 
     const Y = S.year, jan1 = new Date(Y, 0, 1), start = jan1.getDay();
     const nDays = Math.round((new Date(Y + 1, 0, 1) - jan1) / DAY);
-    const todayKey = keyOf(new Date());
+    const todayKey = hxKey(Date.now());
     let max = 0, total = 0, active = 0, bestKey = null;
     const hours = new Array(24).fill(0), cells = [];
     for (let i = 0; i < nDays; i++) {
       const k = keyOf(addDays(jan1, i)), evs = S.days.get(k) || [];
-      if (evs.length) { total += evs.length; active++; if (evs.length > max) { max = evs.length; bestKey = k; } evs.forEach(e => hours[new Date(S.events[e].ts).getHours()]++); }
+      if (evs.length) { total += evs.length; active++; if (evs.length > max) { max = evs.length; bestKey = k; } evs.forEach(e => hours[hxHour(S.events[e].ts)]++); }
       cells.push({ i, k, n: evs.length, future: k > todayKey });
     }
     const lv = n => !n ? 0 : Math.min(4, Math.ceil(n / max * 4));
@@ -416,18 +565,30 @@
     $('qt-cal').innerHTML = `<div class="qt-cal-days"><span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span></div>
       <div style="display:grid;gap:4px"><div class="qt-cal-months">${months}</div><div class="qt-cal-grid" id="qt-cal-grid">${grid}</div></div>`;
 
-    const sk = streaks();
-    const peak = hours.indexOf(Math.max(...hours)), h12 = h => `${h % 12 || 12}${h < 12 ? ' AM' : ' PM'}`;
+    const sk = streaks(), p = primaryZone(), o = otherZone();
+    const peak = hours.indexOf(Math.max(...hours)), h12 = h => `${h % 12 || 12} ${h < 12 ? 'AM' : 'PM'}`;
+    const peakAt = dayStart(todayKey, p) + peak * 3600000;
+    const rs = S.data.resets, nowMs = Date.now();
+    const noteHx = `Quests reset at ${clock(rs.dailyNext, 'hx')} ${zoneAbbr(rs.dailyNext, 'hx')}, which is ${clock(rs.dailyNext, 'me')} ${zoneAbbr(rs.dailyNext, 'me')} for you, so a quest day runs from ${clock(rs.dailyNext, 'me')} to ${clock(rs.dailyNext, 'me')} your time.`;
+    const note = tzIsHypixel()
+      ? `${noteHx} Days and hours below are Hypixel time; your time is shown next to them.`
+      : `${noteHx} Days and hours below follow your own midnight, so a quest done after ${clock(rs.dailyNext, 'me')} counts toward the next quest day. Switch "Show times in" to Hypixel time in settings to group by quest day.`;
     $('qt-cal-stats').innerHTML = `
-      <div><b>${fmt(total)}</b>quests in ${Y}</div><div><b>${active}</b>active days</div>
-      <div><b>${active ? (total / active).toFixed(1) : '0'}</b>per active day</div>
-      <div><b>${max}</b>best day${bestKey ? ` (${bestKey})` : ''}</div><div><b>${total ? h12(peak) : '-'}</b>busiest hour</div>
-      <div><b>${sk.cur}</b>current streak</div><div><b>${sk.best}</b>longest streak</div>`;
+      <div class="qt-cs-left">
+        <div><b>${active ? (total / active).toFixed(1) : '0'}</b>Quests per day<small>${active} active day${active === 1 ? '' : 's'} in ${Y}</small></div>
+        <div><b>${max}</b>Best day<small>${bestKey ? prettyKey(bestKey) : '-'}</small></div>
+        <div><b>${total ? h12(peak) + ' ' + zoneAbbr(peakAt, p) : '-'}</b>Most active hour<small>${total ? `${clock(peakAt, o)} ${zoneAbbr(peakAt, o)}` : ''}</small></div>
+      </div>
+      <div class="qt-cs-right">
+        <div><b>${sk.cur}<span> day${sk.cur === 1 ? '' : 's'}</span></b>Current streak<small>${sk.doneToday ? 'Today counted ✓' : sk.cur ? 'Quest before the reset to keep it' : '&nbsp;'}</small></div>
+        <div><b>${sk.best}<span> day${sk.best === 1 ? '' : 's'}</span></b>Highest streak<small>${sk.bestFrom ? `${prettyKey(sk.bestFrom)} to ${prettyKey(sk.bestTo)}` : '&nbsp;'}</small></div>
+      </div>
+      <div class="qt-cal-note">${esc(note)}</div>`;
 
     buildScrub(nDays);
     let k = S.sel && S.sel.startsWith(String(Y)) ? S.sel : null;
     if (!k) {
-      if (Y === new Date().getFullYear()) k = todayKey;
+      if (Y === hxYear()) k = todayKey;
       else { const act = cells.filter(c => c.n).pop(); k = act ? act.k : keyOf(new Date(Y, 11, 31)); }
     }
     selectDay(k);
@@ -444,7 +605,7 @@
       $('qt-range').addEventListener('input', e => selectDay(keyOf(addDays(new Date(S.year, 0, 1), +e.target.value))));
       $('qt-prev').addEventListener('click', () => step(-1));
       $('qt-next').addEventListener('click', () => step(1));
-      $('qt-today').addEventListener('click', () => { S.year = new Date().getFullYear(); S.sel = keyOf(new Date()); renderCalendar(); });
+      $('qt-today').addEventListener('click', () => { S.year = hxYear(); S.sel = hxKey(Date.now()); renderCalendar(); });
     }
     $('qt-range').max = nDays - 1;
   }
@@ -452,7 +613,7 @@
   function step(n) {
     if (!S.sel) return;
     const d = addDays(parseKey(S.sel), n);
-    if (d > new Date()) return;
+    if (keyOf(d) > hxKey(Date.now())) return;
     if (d.getFullYear() !== S.year) { S.year = d.getFullYear(); S.sel = keyOf(d); renderCalendar(); } else selectDay(keyOf(d));
   }
 
@@ -464,19 +625,24 @@
     const evs = (S.days.get(k) || []).map(i => S.events[i]).sort((a, b) => a.ts - b.ts);
     const meta = S.data.history.qmeta;
     const head = parseKey(k).toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    if (!evs.length) { $('qt-day').innerHTML = `<h3>${head}</h3><div class="qt-day-sum">No quests completed</div><div class="qt-day-games">&nbsp;</div><div class="qt-hours-wrap empty"><div class="qt-hours"></div><div class="qt-hours-axis"><span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span></div><div class="qt-hours-cap">Quests by hour of day, your local time.</div></div><ul class="qt-day-list"></ul>`; return; }
-    const hrs = new Array(24).fill(0); evs.forEach(e => hrs[new Date(e.ts).getHours()]++);
-    const hm = Math.max(...hrs);
+    const p = primaryZone(), o = otherZone();
+    const start = dayStart(k, p), end = dayStart(nextKey(k), p);
+    const when = (ms, w) => new Date(ms).toLocaleString('en-US', { ...zoneOf(w), month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    const windowTxt = `${tzIsHypixel() ? 'This quest day' : 'This day'} ran ${clock(start, p)} to ${clock(end, p)} ${zoneAbbr(start, p)} (${zoneName(p)}), which is ${when(start, o)} to ${when(end, o)} ${zoneAbbr(start, o)} (${zoneName(o)}).`;
     const h12 = h => `${h % 12 || 12} ${h < 12 ? 'AM' : 'PM'}`;
-    const hourBars = `<div class="qt-hours-wrap"><div class="qt-hours">${hrs.map((n, h) => `<b data-tip="${h12(h)} to ${h12((h + 1) % 24)}: ${n} quest${n === 1 ? '' : 's'}"><i style="height:${n ? Math.max(14, n / hm * 100) : 4}%"></i></b>`).join('')}</div>
-      <div class="qt-hours-axis"><span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span></div><div class="qt-hours-cap">Quests by hour of day, your local time. Hover a bar.</div></div>`;
+    const axis = `<div class="qt-hours-axis">${[0, 6, 12, 18].map(h => `<span>${h12(h)}<i>${clock(start + h * 3600000, o)}</i></span>`).join('')}</div>`;
+    const cap = `<div class="qt-hours-cap">Quests by hour. Top labels: ${zoneName(p)} (${zoneAbbr(start, p)}). Small labels: ${zoneName(o)} (${zoneAbbr(start, o)}). Hover a bar.</div>`;
+    if (!evs.length) { $('qt-day').innerHTML = `<h3>${head}</h3><div class="qt-day-window">${esc(windowTxt)}</div><div class="qt-day-sum">No quests completed</div><div class="qt-day-games">&nbsp;</div><div class="qt-hours-wrap empty"><div class="qt-hours"></div>${axis}${cap}</div><ul class="qt-day-list"></ul>`; return; }
+    const hrs = new Array(24).fill(0); evs.forEach(e => hrs[hxHour(e.ts)]++);
+    const hm = Math.max(...hrs);
+    const hourBars = `<div class="qt-hours-wrap"><div class="qt-hours">${hrs.map((n, h) => `<b data-tip="${h12(h)} to ${h12((h + 1) % 24)} (${clock(start + h * 3600000, o)} ${zoneAbbr(start, o)}): ${n} quest${n === 1 ? '' : 's'}"><i style="height:${n ? Math.max(14, n / hm * 100) : 4}%"></i></b>`).join('')}</div>${axis}${cap}</div>`;
     const byGame = {}; evs.forEach(e => { const g = meta[e.qi].game; byGame[g] = (byGame[g] || 0) + 1; });
     const gameLine = Object.entries(byGame).sort((a, b) => b[1] - a[1]).map(([g, n]) => `${esc(gname(g))} ${n}`).join(' · ');
-    $('qt-day').innerHTML = `<h3>${head}</h3>
-      <div class="qt-day-sum"><b>${evs.length}</b> quest${evs.length === 1 ? '' : 's'} · ${timeStr(evs[0].ts)} to ${timeStr(evs[evs.length - 1].ts)} <span class="qt-tz">${esc(tz)}</span></div>
+    $('qt-day').innerHTML = `<h3>${head}</h3><div class="qt-day-window">${esc(windowTxt)}</div>
+      <div class="qt-day-sum"><b>${evs.length}</b> quest${evs.length === 1 ? '' : 's'} · first ${clock(evs[0].ts, p, true)}, last ${clock(evs[evs.length - 1].ts, p, true)} <span class="qt-tz">${zoneAbbr(evs[0].ts, p)}</span></div>
       <div class="qt-day-games" title="${gameLine}">${gameLine}</div>${hourBars}
-      <ul class="qt-day-list">${evs.map(e => { const m = meta[e.qi]; return `<li>${iconTag(m.game, 'qt-gicon sm')}<span class="qt-li-name">${esc(m.name)}</span><span class="qt-li-game">${esc(gname(m.game))}</span><em>${m.kind === 'weekly' ? 'WEEKLY' : 'DAILY'}</em><time>${timeStr(e.ts)}</time></li>`; }).join('')}</ul>`;
+      <div class="qt-day-listhead"><span>Quest</span><span>${zoneName(p)} (${zoneAbbr(start, p)})</span><span>${zoneName(o)} (${zoneAbbr(start, o)})</span></div>
+      <ul class="qt-day-list">${evs.map(e => { const m = meta[e.qi]; return `<li>${iconTag(m.game, 'qt-gicon sm')}<span class="qt-li-name">${esc(m.name)}</span><span class="qt-li-game">${esc(gname(m.game))}</span><em>${KIND_LABEL[m.kind] ? KIND_LABEL[m.kind].toUpperCase() : 'DAILY'}</em><time>${clock(e.ts, p, true)}</time><time class="alt">${clock(e.ts, o, true)}</time></li>`; }).join('')}</ul>`;
   }
 
   // ---------- top questers by game ----------
@@ -538,18 +704,30 @@
   document.querySelectorAll('.qt-tabs .tab-btn').forEach(b => b.addEventListener('click', () => switchTab(b.dataset.tab)));
   $('qt-kind').addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
-    S.kind = b.dataset.kind; $('qt-kind').querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b)); renderLists();
+    S.kind = b.dataset.kind; savePrefs(); $('qt-kind').querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b)); renderLists();
   });
   $('qt-game').addEventListener('change', e => { S.game = e.target.value; renderLists(); });
-  $('qt-sort').addEventListener('change', e => { S.sort = e.target.value; renderLists(); });
+  $('qt-sort').addEventListener('change', e => { S.sort = e.target.value; savePrefs(); renderLists(); });
   $('qt-filter').addEventListener('input', e => { S.filter = e.target.value.trim(); renderLists(); });
-  $('qt-toggle-done').addEventListener('click', () => { S.hideDone = !S.hideDone; renderGameSelect(); renderLists(); });
-  $('qt-toggle-easy').addEventListener('click', () => { S.easy = !S.easy; renderGameSelect(); renderLists(); });
+  $('qt-toggle-done').addEventListener('click', () => { S.hideDone = !S.hideDone; savePrefs(); renderGameSelect(); renderLists(); });
+  $('qt-toggle-easy').addEventListener('click', () => { S.easy = !S.easy; savePrefs(); renderGameSelect(); renderLists(); });
   // Collapsing only flips a class on that card, so the other columns don't re-flow.
-  const setOpen = (el, open) => { el.classList.toggle('closed', !open); const b = el.querySelector('.qt-group-head'); if (b) b.setAttribute('aria-expanded', open); S.open.set(el.dataset.g, open); };
-  $('qt-lists').addEventListener('click', e => { const h = e.target.closest('.qt-group-head'); if (h) { const g = h.closest('.qt-group'); setOpen(g, g.classList.contains('closed')); } });
+  const setOpen = (el, open) => { el.classList.toggle('closed', !open); const b = el.querySelector('.qt-group-head'); if (b) b.setAttribute('aria-expanded', open); S.open.set(el.dataset.g, open); savePrefs(); };
+  const listAction = e => {
+    const sk = e.target.closest('[data-skip],[data-unskip]');
+    if (sk) { if (sk.dataset.skip) S.skip.add(sk.dataset.skip); else S.skip.delete(sk.dataset.unskip); saveSkip(); renderTotals(); renderGameSelect(); renderLists(); return true; }
+    const hg = e.target.closest('[data-hidegame],[data-unhidegame]');
+    if (hg) { if (hg.dataset.hidegame) S.hideGames.add(hg.dataset.hidegame); else S.hideGames.delete(hg.dataset.unhidegame); savePrefs(); renderTotals(); renderGameSelect(); renderLists(); return true; }
+    return false;
+  };
+  $('qt-lists').addEventListener('click', e => {
+    if (listAction(e)) return;
+    const h = e.target.closest('.qt-group-head'); if (h) { const g = h.closest('.qt-group'); setOpen(g, g.classList.contains('closed')); }
+  });
+  $('qt-lists').addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-hidegame],[data-unhidegame]')) { e.preventDefault(); listAction(e); } });
   $('qt-fast').addEventListener('click', e => {
     const b = e.target.closest('button[data-act]'); if (!b) return;
+    if (b.dataset.act === 'hidden') { S.showHidden = !S.showHidden; renderLists(); return; }
     document.querySelectorAll('#qt-lists .qt-group').forEach(g => setOpen(g, b.dataset.act === 'expand'));
   });
   let lastCols = colCount();
@@ -569,7 +747,128 @@
     $('top-search-input').value = tr.dataset.name; switchTab('player'); loadPlayer(tr.dataset.name);
   });
 
+  // ---------- quests by game (secondary: the checklist is the main thing) ----------
+  function setGamesUI(open) {
+    S.gamesOpen = !!open;
+    $('qt-games-body').classList.toggle('hidden', !open);
+    $('qt-games-toggle').setAttribute('aria-expanded', !!open);
+    $('qt-games').classList.toggle('open', !!open);
+  }
+  function renderGames() {
+    if (!S.data) return;
+    const rows = Object.entries(S.data.byGame || {}).filter(([g, n]) => g !== 'other' && n > 0 && (UI.gamesHidden || !S.hideGames.has(g)) && !(UI.excludeComp && COMP_GAMES.has(g)));
+    const max = Math.max(1, ...rows.map(r => r[1]));
+    rows.sort(UI.gamesSort === 'name' ? (a, b) => gname(a[0]).localeCompare(gname(b[0])) : (a, b) => b[1] - a[1]);
+    $('qt-games-total').textContent = `${fmt(S.data.total)} total · ${rows.length} game${rows.length === 1 ? '' : 's'}`;
+    $('qt-games-body').innerHTML = rows.length
+      ? `<div class="qt-gtiles">${rows.map(([g, n]) => `<button type="button" class="qt-gtile" data-g="${esc(g)}" title="Show ${esc(gname(g))} quests in the checklist">` +
+          `${UI.gamesIcons ? iconTag(g, 'qt-gicon') : ''}${UI.gamesNames ? `<span class="qt-gt-name">${esc(gname(g))}</span>` : ''}<b>${fmt(n)}</b>` +
+          `${UI.gamesShare ? `<span class="qt-gt-bar"><i style="width:${Math.round(n / max * 100)}%"></i></span>` : ''}</button>`).join('')}</div>`
+      : '<div class="qt-none">No quests completed yet.</div>';
+    setGamesUI(S.gamesOpen);
+  }
+  $('qt-games-toggle').addEventListener('click', () => setGamesUI(!S.gamesOpen));
+  $('qt-games-body').addEventListener('click', e => {         // click a game to filter the checklist to it
+    const t = e.target.closest('.qt-gtile'); if (!t) return;
+    const sel = $('qt-game');
+    if (![...sel.options].some(o => o.value === t.dataset.g)) return;
+    S.game = t.dataset.g; sel.value = S.game; renderLists();
+    $('qt-board').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ---------- Page settings (same look as the achievement dashboard's settings menu) ----------
+  const opt = (key, label, hint) => ({ key, label, hint });
+  const selOpt = (key, label, options) => ({ type: 'select', key, label, options });
+  const OPTIONS = [
+    { title: '', items: [opt('excludeComp', 'Exclude Comp Games', 'Hides Mega Walls, UHC and The Pit quests.'), opt('showXp', 'Show XP values', 'Rewards, XP left and XP totals.')] },
+    { title: 'Layout', items: [
+      selOpt('columns', 'Checklist columns', [['auto', 'Auto'], ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]),
+      selOpt('rowDensity', 'Row spacing', [['comfortable', 'Comfortable'], ['compact', 'Compact']]),
+      selOpt('timeMode', 'Show times in', [['hypixel', 'Hypixel time (US Eastern)'], ['local', 'My time']])
+    ] },
+    { title: 'Page sections', items: [
+      { type: 'order' }, opt('secStats', 'Summary cards'), opt('secGames', 'Quests by game'), opt('secCalendar', 'Calendar'),
+      opt('calAuto', 'Load calendar automatically', 'Off: only when you press Show calendar')
+    ] },
+    { title: 'Show / Hide', items: [
+      opt('cardTotal', 'Quests completed (card)'), opt('cardDaily', 'Daily quests (card)'), opt('cardWeekly', 'Weekly quests (card)'), opt('cardStreak', 'Current streak (card)'), opt('cardXp', 'XP still available (card)'),
+      opt('pillDaily', 'Daily reset timer'), opt('pillWeekly', 'Weekly reset timer'), opt('pillMonthly', 'Monthly reset timer'),
+      opt('rowDesc', 'Quest descriptions'), opt('rowBars', 'Progress bars'), opt('rowKind', 'Daily / Weekly labels'), opt('rowTasks', '"1/2 tasks" labels'), opt('rowEasy', 'Easy tags'), opt('rowHide', 'Hide buttons (✕ and ⊘)')
+    ] },
+    { title: 'Quests by game', items: [
+      opt('gamesOpen', 'Open by default'), selOpt('gamesSort', 'Sort', [['count', 'Most quests first'], ['name', 'A to Z']]),
+      opt('gamesIcons', 'Game icons'), opt('gamesNames', 'Game names'), opt('gamesShare', 'Share bars'), opt('gamesHidden', 'Include games I hid')
+    ] }
+  ];
+  const SECTION_NAMES = { stats: 'Summary cards', board: 'Checklist', games: 'Quests by game', calendar: 'Calendar' };
+
+  function renderCustomize() {
+    const item = it => {
+      if (it.type === 'order') return `<div class="qt-order">${UI.order.map((k, i) => `<div class="qt-order-row"><span>${SECTION_NAMES[k]}</span><span>` +
+        `<button type="button" data-move="${k}:-1" ${i === 0 ? 'disabled' : ''} aria-label="Move ${SECTION_NAMES[k]} up">↑</button>` +
+        `<button type="button" data-move="${k}:1" ${i === UI.order.length - 1 ? 'disabled' : ''} aria-label="Move ${SECTION_NAMES[k]} down">↓</button></span></div>`).join('')}</div>`;
+      if (it.type === 'select') return `<div class="setting-item qt-set-select"><span>${it.label}:</span><select class="todo-select" data-opt="${it.key}">${it.options.map(([v, l]) => `<option value="${v}" ${String(UI[it.key]) === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>`;
+      return `<div class="setting-item"><span class="qt-set-label">${it.label}${it.hint ? `<small>${it.hint}</small>` : ''}</span><label class="toggle-switch"><input type="checkbox" data-opt="${it.key}" ${UI[it.key] ? 'checked' : ''}><span class="slider"></span></label></div>`;
+    };
+    $('qt-custom').innerHTML = OPTIONS.map(g => (g.title ? `<div class="qt-set-title">${g.title}</div>` : '') + g.items.map(item).join('')).join('') +
+      '<div class="qt-set-foot"><button type="button" class="settings-btn" id="qt-custom-reset">Reset to defaults</button></div>';
+  }
+  const closeCustomize = () => { const m = $('qt-custom'); if (m) m.classList.add('hidden'); const b = $('qt-custom-open'); if (b) b.classList.remove('active'); };
+  window.toggleCustomize = e => {
+    if (e) e.stopPropagation();
+    const m = $('qt-custom'), willOpen = m.classList.contains('hidden');
+    if (willOpen) renderCustomize();
+    m.classList.toggle('hidden', !willOpen); $('qt-custom-open').classList.toggle('active', willOpen);
+  };
+  document.addEventListener('click', e => { if (!e.target.closest('.settings-wrapper')) closeCustomize(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCustomize(); });
+  $('qt-custom').addEventListener('change', e => {
+    const el = e.target.closest('[data-opt]'); if (!el) return;
+    UI[el.dataset.opt] = el.type === 'checkbox' ? el.checked : el.value;
+    savePrefs(); applyUI(el.dataset.opt);
+  });
+  $('qt-custom').addEventListener('click', e => {
+    if (e.target.closest('#qt-custom-reset')) {
+      Object.assign(UI, JSON.parse(JSON.stringify(UI_DEFAULTS)));
+      S.gamesOpen = !!UI.gamesOpen; buildTz(); savePrefs(); renderCustomize(); applyUI('*'); return;
+    }
+    const b = e.target.closest('[data-move]'); if (!b) return;
+    const [k, d] = b.dataset.move.split(':'), i = UI.order.indexOf(k), j = i + (+d);
+    if (j < 0 || j >= UI.order.length) return;
+    [UI.order[i], UI.order[j]] = [UI.order[j], UI.order[i]];
+    savePrefs(); renderCustomize(); applyUI('order');
+  });
+
+  // Apply every option. Rows are styled by body classes (no re-render); the rest re-draws only what it changes.
+  function applyUI(key = '*') {
+    const cl = document.body.classList, all = key === '*';
+    const flags = { showXp: 'ui-no-xp', rowDesc: 'ui-no-desc', rowBars: 'ui-no-bars', rowKind: 'ui-no-kind', rowTasks: 'ui-no-tasks', rowEasy: 'ui-no-easy', rowHide: 'ui-no-hide' };
+    Object.keys(flags).forEach(k => cl.toggle(flags[k], !UI[k]));
+    cl.toggle('ui-compact', UI.rowDensity === 'compact');
+    const els = { stats: $('qt-totals'), board: $('qt-board'), games: $('qt-games'), calendar: $('qt-calendar-card') };
+    const on = { stats: UI.secStats, board: true, games: UI.secGames, calendar: UI.secCalendar };
+    UI.order.forEach((k, i) => { if (els[k]) { els[k].style.order = String(i + 1); els[k].classList.toggle('qt-off', !on[k]); } });
+    const prof = document.querySelector('.qt-profile'); if (prof) prof.style.order = '0';
+    if (!S.data) return;
+    if (all || key === 'timeMode') { buildTz(); if (S.hasHist) prepare(); }
+    if (all || /^card/.test(key) || key === 'secStats' || key === 'timeMode') {
+      renderTotals();
+      if ((all || key === 'cardStreak' || key === 'secStats') && needStreak() && !S.data.streak && !S.hasHist) loadHistory().then(() => { if (S.data) renderTotals(); }).catch(() => {});
+    }
+    if (all || key === 'excludeComp') {
+      if (UI.excludeComp && COMP_GAMES.has(S.game)) S.game = 'all';
+      renderTotals(); renderGameSelect(); renderLists(); renderGames();
+    }
+    if (all || key === 'showXp') { renderTotals(); renderLists(); }
+    if (all || /^pill/.test(key) || key === 'timeMode') renderPills();
+    if (all || key === 'columns' || key === 'order') renderLists();
+    if (all || /^games/.test(key) || key === 'secGames') { renderGames(); if (key === 'gamesOpen') setGamesUI(!!UI.gamesOpen); }
+    if ((all || key === 'timeMode') && S.calOpen && S.hasHist) renderCalendar();
+    if ((all || key === 'secCalendar') && UI.secCalendar && UI.calAuto && !S.hasHist && !S.calOpen) showCalendar();
+  }
+
   // ---------- boot ----------
+  applyUI();
   renderPin();
   const qs = new URLSearchParams(location.search);
   const start = qs.get('uuid') || qs.get('name') || qs.get('player') || getPin();
