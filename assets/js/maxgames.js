@@ -173,7 +173,14 @@
       const n = data.games[currentId].players.length;
       meta = `<strong>${n}</strong> ${n === 1 ? 'player has' : 'players have'} this maxed${currentId === 'seasonal' ? ' (all four parts)' : ''}`;
     }
-    if (query) meta += ` · showing ${shown}`;
+    if (query) {
+      meta += ` · showing ${shown}`;
+    } else {
+      const totalCount = currentId === OVERALL ? ranking.length : data.games[currentId].players.length;
+      if (totalCount > 200) {
+        meta += ` · showing top 200 of ${totalCount}`;
+      }
+    }
     $('mg-head').innerHTML = `<img src="${iconFor(g)}" alt="" onerror="this.style.opacity='0'"><div><h2>${esc(title)}</h2><div class="mg-meta">${meta}</div></div>`;
     document.getElementById('mg-note-host')?.remove();
     const note = currentId === OVERALL ? '' : resetNote(currentId);
@@ -190,11 +197,16 @@
     const set = matchSet();
     const tbody = $('mg-tbody');
     let rowsHTML = '', shown = 0, emptyMsg = '';
+    const MAX_VISIBLE = 200;
 
     if (currentId === OVERALL) {
       const total = topGames.length;
       ranking.forEach((r, i) => {
-        if (set && !set.has(r.uuid)) return;
+        const matchesQuery = set && set.has(r.uuid);
+        // Skip rendering past 200 unless it matches an active search query
+        if (!matchesQuery && shown >= MAX_VISIBLE) return;
+
+        if (set && !matchesQuery) return;
         const p = data.players[r.uuid]; shown++;
         rowsHTML += `<tr class="player-row" data-href="${cabinetHref(p)}"><td style="text-align:center;"><span class="rank ${podium(i + 1)}">${i + 1}</span></td>${playerCell(p)}
           <td><div class="mg-maxed"><span><strong>${r.count}</strong><span style="color:var(--text-3)"> / ${total}</span></span><div class="mg-bar"><i style="width:${Math.round(r.count / total * 100)}%"></i></div></div></td>
@@ -205,7 +217,11 @@
       const pre = list.filter(isPre).length;
       list.forEach((e, i) => {
         const p = data.players[e.uuid];
-        if (!p || (set && !set.has(e.uuid))) return;
+        const matchesQuery = set && set.has(e.uuid);
+        // Skip rendering past 200 unless it matches an active search query
+        if (!matchesQuery && shown >= MAX_VISIBLE) return;
+
+        if (!p || (set && !matchesQuery)) return;
         shown++;
         if (!set && pre > 0 && i === 0) rowsHTML += dividerRow('Already maxed when tracking began, listed by AP');
         if (!set && pre > 0 && pre < list.length && i === pre) rowsHTML += dividerRow('Spotted since, in the order we found them');
