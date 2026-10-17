@@ -10,6 +10,7 @@
 
 <link rel="stylesheet" href="assets/css/global.css">
 <link rel="stylesheet" href="assets/css/mc-gui.css">
+<script src="assets/js/pin.js" data-anchor="#player-input"></script>
 
 <style>
   :root {
@@ -573,7 +574,7 @@
 <main class="page-container">
   <h1 class="page-title">Angel's Descent Calculator</h1>
 
-  <div class="search-container" id="tour-search-container">
+  <div class="search-container">
     <input type="text" id="player-input" placeholder="Enter Username or UUID">
     <button id="search-btn" class="btn-primary">
   <span class="btn-text">Load Unlocks</span>
@@ -1266,6 +1267,7 @@ async function fetchPlayerUnlocks(searchTerm) {
     if (data.error) throw new Error(data.error);
 
     isLivePlayerLoaded = true;
+    history.replaceState(null, '', '?player=' + encodeURIComponent(data.username)); // keeps the URL shareable
 
     const swPackages = (data.angelsDescent?.packages || []).map(p => p.toLowerCase());
     const swStats = data.angelsDescent?.stats || {};
@@ -1431,7 +1433,7 @@ let angelTour = null;
 if (typeof LitTour !== 'undefined') {
   angelTour = new LitTour('angel', [
     {
-      target: '#tour-search-container',
+      target: '#player-input',
       title: 'Search Player',
       desc: 'Enter any username or UUID to inspect live tree unlocks, Opals spent, and stats.',
       position: 'bottom'
@@ -1440,13 +1442,13 @@ if (typeof LitTour !== 'undefined') {
       target: '#stats-side-panel',
       title: 'Tree & Player Stats',
       desc: "Displays total Angel's Descent tree costs by default, and switches to live SkyWars summary stats when loaded.",
-      position: 'right'
+      position: 'top'
     },
     {
       target: '.slot[data-index="11"]',
-      title: 'Try Pathfinding',
+      title: 'Click to Pathfind',
       desc: 'Click Tenacity to calculate its shortest unlock path!',
-      position: 'right',
+      position: 'top',
       interactive: true,
       pad: 4,
       onShow: () => closePathPanel()
@@ -1511,8 +1513,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Deep-link: /angel?player=NAME loads that player straight away
+  const urlPlayer = (new URLSearchParams(window.location.search).get('player') || '').trim();
+  if (urlPlayer) {
+    document.getElementById('player-input').value = urlPlayer;
+    fetchPlayerUnlocks(urlPlayer);
+  }
+
   setTimeout(() => {
-    if (angelTour) angelTour.start(false);
+    if (angelTour && !urlPlayer) angelTour.start(false);   // don't show the tour over a loaded player
   }, 600);
 });
 
