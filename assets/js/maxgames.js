@@ -6,7 +6,7 @@
     '2nd': { title: '2nd tier' },
     '3rd': { title: '3rd tier' },
     '4th': { title: '4th tier' },
-    'extra': { title: 'Extra', note: 'time limited and General' },
+    'extra': { title: 'Extra', note: 'Time limited and General' },
   };
   const RESET_NOTE_DAYS = 14;
   const NAME_RE = /^[A-Za-z0-9_]{1,16}$/;
@@ -57,41 +57,63 @@
     const src = code ? `https://flagcdn.com/w40/${code}.png` : 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Flag_of_None.svg';
     return `<div class="flag-cell"><img src="${src}" class="flag-img" alt="" loading="lazy"><span class="country-name">${esc(country)}</span></div>`;
   }
-  function nameLink(p, href) {
+  function nameLink(p) {
     const col = typeof rankNameColour === 'function' ? rankNameColour(p.rank, p.monthlyRankColor) : '';
     const tag = typeof formatRankText === 'function' ? formatRankText(p.rank, p.rankPlusColor, p.monthlyRankColor) : '';
-    return `<a class="mg-name${col ? ' ranked' : ''}"${col ? ` style="--rank-c:${col}"` : ''} href="${href}">${tag ? `<span class="mg-rank-tag">${tag}</span>` : ''}${esc(p.username)}</a>`;
+    return `<span class="mg-name${col ? ' ranked' : ''}"${col ? ` style="--rank-c:${col}"` : ''}>${tag ? `<span class="mg-rank-tag">${tag}</span>` : ''}${esc(p.username)}</span>`;
   }
   const cabinetHref = (p) => `/cabinet?player=${encodeURIComponent(p.username)}`;
   const tip = (text, cls = '') => `<span class="mg-tip ${cls}"><button type="button" class="mg-info" aria-label="More info">i</button><span class="mg-tip-body" role="tooltip">${text}</span></span>`;
 
   /* ---------------- Indexing ---------------- */
+  const EXTRA_GAME_IDS = new Set(['skyclash', 'crazywalls']);
+
+  function getGamePlayers(id) {
+    if (!data.games) return [];
+    if (data.games[id]) return data.games[id].players || [];
+    const g = byId[id];
+    if (g && g.badge && data.games[g.badge]) return data.games[g.badge].players || [];
+    return [];
+  }
+  
   function indexData() {
     byId = Object.fromEntries(data.catalog.map(g => [g.id, g]));
     badgeToId = Object.fromEntries(data.catalog.filter(g => !g.derived).map(g => [g.badge, g.id]));
     topGames = data.catalog.filter(g => !g.parent);
     order = Object.fromEntries(data.catalog.map((g, i) => [g.id, i]));
 
-    // Seasonal = on all four parts (firstSeen = when the last part was spotted)
-    const parts = data.catalog.filter(g => g.parent === 'seasonal').map(g => new Map(data.games[g.id].players.map(e => [e.uuid, e.firstSeen])));
-    data.games.seasonal.players = [...(parts[0] || [])].filter(([u]) => parts.every(m => m.has(u)))
+    const standardGames = topGames.filter(g => !EXTRA_GAME_IDS.has(g.id));
+
+    // Seasonal setup
+    const seasonalCatalog = data.catalog.filter(g => g.parent === 'seasonal');
+    const parts = seasonalCatalog.map(g => new Map(getGamePlayers(g.id).map(e => [e.uuid, e.firstSeen])));
+    
+    const seasonalPlayers = [...(parts[0] || [])].filter(([u]) => parts.every(m => m.has(u)))
       .map(([u]) => ({ uuid: u, firstSeen: parts.map(m => m.get(u)).sort().pop() }));
 
-    const apOf = (u) => data.players[u]?.ap || 0;
-    for (const g of Object.values(data.games)) {
-      g.players.sort((a, b) => a.firstSeen.localeCompare(b.firstSeen) || apOf(b.uuid) - apOf(a.uuid));
-    }
+    if (!data.games.seasonal) data.games.seasonal = { players: [] };
+    data.games.seasonal.players = seasonalPlayers;
 
+    const apOf = (u) => data.players[u]?.ap || 0;
+
+    // Index player sets
     playerGames = new Map();
-    for (const [id, g] of Object.entries(data.games)) {
-      for (const e of g.players) {
+    for (const g of data.catalog) {
+      const list = getGamePlayers(g.id);
+      list.sort((a, b) => a.firstSeen.localeCompare(b.firstSeen) || apOf(b.uuid) - apOf(a.uuid));
+      for (const e of list) {
         if (!playerGames.has(e.uuid)) playerGames.set(e.uuid, new Set());
-        playerGames.get(e.uuid).add(id);
+        playerGames.get(e.uuid).add(g.id);
       }
     }
-    ranking = [...playerGames].map(([uuid, ids]) => ({ uuid, count: topGames.filter(g => ids.has(g.id)).length, ap: apOf(uuid) }))
-      .filter(r => r.count > 0 && data.players[r.uuid])
-      .sort((a, b) => b.count - a.count || b.ap - a.ap);
+
+    ranking = [...playerGames].map(([uuid, ids]) => {
+      const stdCount = standardGames.filter(g => ids.has(g.id)).length;
+      const extraCount = [...EXTRA_GAME_IDS].filter(id => ids.has(id)).length;
+      return { uuid, count: stdCount, extraCount, totalCount: stdCount + extraCount, ap: apOf(uuid) };
+    })
+      .filter(r => r.totalCount > 0 && data.players[r.uuid])
+      .sort((a, b) => b.totalCount - a.totalCount || b.count - a.count || b.ap - a.ap);
   }
 
   /* ---------------- Search helpers ---------------- */
@@ -170,17 +192,19 @@
     let meta;
     if (currentId === OVERALL) meta = `<strong>${ranking.length}</strong> players with at least one game maxed`;
     else {
-      const n = data.games[currentId].players.length;
+      const n = getGamePlayers(currentId).length;
       meta = `<strong>${n}</strong> ${n === 1 ? 'player has' : 'players have'} this maxed${currentId === 'seasonal' ? ' (all four parts)' : ''}`;
     }
+    
     if (query) {
       meta += ` · showing ${shown}`;
     } else {
-      const totalCount = currentId === OVERALL ? ranking.length : data.games[currentId].players.length;
+      const totalCount = currentId === OVERALL ? ranking.length : getGamePlayers(currentId).length;
       if (totalCount > 200) {
         meta += ` · showing top 200 of ${totalCount}`;
       }
     }
+
     $('mg-head').innerHTML = `<img src="${iconFor(g)}" alt="" onerror="this.style.opacity='0'"><div><h2>${esc(title)}</h2><div class="mg-meta">${meta}</div></div>`;
     document.getElementById('mg-note-host')?.remove();
     const note = currentId === OVERALL ? '' : resetNote(currentId);
@@ -193,6 +217,11 @@
   }
   const dividerRow = (text) => `<tr class="mg-divider"><td colspan="4">${text}</td></tr>`;
 
+  function playerCell(p) {
+    const href = cabinetHref(p);
+    return `<td><div class="player-cell"><img class="player-avatar" src="https://minotar.net/helm/${encodeURIComponent(p.username)}/100" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${esc(p.uuid)}.png'">${nameLink(p, href)}</div></td>`;
+  }
+
   function renderBody() {
     const set = matchSet();
     const tbody = $('mg-tbody');
@@ -200,40 +229,44 @@
     const MAX_VISIBLE = 200;
 
     if (currentId === OVERALL) {
-      const total = topGames.length;
+      const TOTAL_STANDARD = 25;
       ranking.forEach((r, i) => {
         const matchesQuery = set && set.has(r.uuid);
-        // Skip rendering past 200 unless it matches an active search query
         if (!matchesQuery && shown >= MAX_VISIBLE) return;
-
         if (set && !matchesQuery) return;
+
         const p = data.players[r.uuid]; shown++;
-        rowsHTML += `<tr class="player-row" data-href="${cabinetHref(p)}"><td style="text-align:center;"><span class="rank ${podium(i + 1)}">${i + 1}</span></td>${playerCell(p)}
-          <td><div class="mg-maxed"><span><strong>${r.count}</strong><span style="color:var(--text-3)"> / ${total}</span></span><div class="mg-bar"><i style="width:${Math.round(r.count / total * 100)}%"></i></div></div></td>
+        
+        const barPct = Math.min(100, Math.round((r.count / TOTAL_STANDARD) * 100));
+        const extraPct = Math.round((r.extraCount / TOTAL_STANDARD) * 100);
+
+        rowsHTML += `<tr class="player-row" data-uuid="${p.uuid}"><td style="text-align:center;"><span class="rank ${podium(i + 1)}">${i + 1}</span></td>${playerCell(p)}
+          <td><div class="mg-maxed"><span><strong>${r.totalCount}</strong><span style="color:var(--text-3)"> / ${TOTAL_STANDARD}</span></span>
+            <div class="mg-bar"><i style="width:${barPct}%"></i>${r.extraCount > 0 ? `<i class="mg-extra-notch" style="width:${extraPct}%; background:var(--accent-2, #5aa7ff);"></i>` : ''}</div>
+          </div></td>
           <td class="ap-cell" style="text-align:right;">${num(p.ap)}</td></tr>`;
       });
     } else {
-      const list = data.games[currentId].players;
+      const list = getGamePlayers(currentId);
       const pre = list.filter(isPre).length;
       list.forEach((e, i) => {
         const p = data.players[e.uuid];
         const matchesQuery = set && set.has(e.uuid);
-        // Skip rendering past 200 unless it matches an active search query
         if (!matchesQuery && shown >= MAX_VISIBLE) return;
-
         if (!p || (set && !matchesQuery)) return;
+        
         shown++;
         if (!set && pre > 0 && i === 0) rowsHTML += dividerRow('Already maxed when tracking began, listed by AP');
         if (!set && pre > 0 && pre < list.length && i === pre) rowsHTML += dividerRow('Spotted since, in the order we found them');
-        rowsHTML += `<tr class="player-row" data-href="${cabinetHref(p)}"><td style="text-align:center;"><span class="rank ${podium(i + 1)} ${isPre(e) ? 'pre' : ''}">${i + 1}</span></td>${playerCell(p)}
+        rowsHTML += `<tr class="player-row" data-uuid="${p.uuid}"><td style="text-align:center;"><span class="rank ${podium(i + 1)} ${isPre(e) ? 'pre' : ''}">${i + 1}</span></td>${playerCell(p)}
           <td class="mg-country-cell">${flagHTML(p.country)}</td><td class="ap-cell" style="text-align:right;">${num(p.ap)}</td></tr>`;
       });
     }
 
     if (!shown) {
-      const name = currentId === OVERALL ? 'any game' : (byId[currentId].parent ? `Seasonal: ${byId[currentId].name}` : byId[currentId].name);
+      const name = currentId === OVERALL ? 'any game' : (byId[currentId]?.parent ? `Seasonal: ${byId[currentId].name}` : byId[currentId]?.name || currentId);
       if (!query) emptyMsg = `<strong>Nobody yet</strong>No tracked player has maxed ${esc(name)}.`;
-      else if (set.size) emptyMsg = `<strong>Not on this list</strong>${esc(query)} hasn't maxed ${esc(name)}. Highlighted games on the list have them.`;
+      else if (set && set.size) emptyMsg = `<strong>Not on this list</strong>${esc(query)} hasn't maxed ${esc(name)}. Highlighted games on the list have them.`;
       else emptyMsg = `<strong>No match</strong>Nobody called "${esc(query)}" is tracked yet. Press Enter to check them live.`;
       rowsHTML = `<tr><td colspan="4" class="mg-empty">${emptyMsg}</td></tr>`;
     }
@@ -363,9 +396,15 @@
     if (pick) return select(pick.dataset.game, { scroll: true });
     const chip = e.target.closest('.mg-chip[data-game], .mg-subtab[data-game]');
     if (chip) return select(chip.dataset.game);
-    if (!e.target.closest('a, .mg-tip')) {
-      const tr = e.target.closest('#mg-tbody tr[data-href]');
-      if (tr) window.location.href = tr.dataset.href;
+
+    // Clicking a player row or name populates search & opens mg-me without redirecting
+    const tr = e.target.closest('#mg-tbody tr.player-row');
+    if (tr && tr.dataset.uuid) {
+      const p = data.players[tr.dataset.uuid];
+      if (p) {
+        $('searchInput').value = p.username;
+        window.runLocalSearch(p.username);
+      }
     }
   });
 
