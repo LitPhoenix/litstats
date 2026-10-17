@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-17T06:45:05.686Z",
+  "last_update": "2026-10-17T11:51:34.690Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -101,7 +101,8 @@
     "27a86e7999a64f32a8ae44b2ea310fe1": 21749,
     "8eb18a9227fb4b36947177babab261cd": 21736,
     "6e49ddeb14ae471f99ffa01f4929b848": 21660,
-    "4995579a28f647dfbc03f33fd2aec058": 26851
+    "4995579a28f647dfbc03f33fd2aec058": 26851,
+    "796cf0f4332c447d88a6fbfffbe0bd70": 22363
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
@@ -477,6 +478,14 @@
           "current_quests": 23295,
           "last_month_quests": 23276,
           "monthly_gain": 19
+        },
+        {
+          "username": "rantingbrit",
+          "uuid": "796cf0f4332c447d88a6fbfffbe0bd70",
+          "country": "UK",
+          "current_quests": 22363,
+          "last_month_quests": 22363,
+          "monthly_gain": 0
         }
       ]
     },
@@ -642,14 +651,6 @@
           "country": "USA",
           "current_quests": 21768,
           "last_month_quests": 21768,
-          "monthly_gain": 0
-        },
-        {
-          "username": "animethighs68",
-          "uuid": "27a86e7999a64f32a8ae44b2ea310fe1",
-          "country": "USA",
-          "current_quests": 21749,
-          "last_month_quests": 21749,
           "monthly_gain": 0
         }
       ]
