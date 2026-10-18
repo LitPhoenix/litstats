@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-18T07:04:06.396Z",
+ "last_update": "2026-10-18T12:17:31.732Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-18T07:04:06.069Z",
+ "source_update": "2026-10-18T12:17:31.324Z",
  "catalog": [
   {
    "id": "uhc",
@@ -3044,11 +3044,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "04f4bddb99004950ab605a20f41c6a98",
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "uuid": "04f4bddb99004950ab605a20f41c6a98",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -4312,7 +4312,7 @@
    "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
    "username": "ToastyOosty",
    "country": "Unknown",
-   "ap": 25460,
+   "ap": 25470,
    "rank": "MVP+",
    "rankPlusColor": "DARK_PURPLE",
    "monthlyRankColor": "GOLD"
@@ -4492,7 +4492,7 @@
    "uuid": "8682b351e9c241639291935776608054",
    "username": "60c",
    "country": "UK",
-   "ap": 29155,
+   "ap": 29180,
    "rank": "MVP+",
    "rankPlusColor": "DARK_BLUE",
    "monthlyRankColor": "GOLD"
@@ -4708,7 +4708,7 @@
    "uuid": "8eb18a9227fb4b36947177babab261cd",
    "username": "kipanator",
    "country": "USA",
-   "ap": 26275,
+   "ap": 26300,
    "rank": "MVP++",
    "rankPlusColor": "DARK_BLUE",
    "monthlyRankColor": "GOLD"
@@ -5707,7 +5707,7 @@
    "uuid": "3abc42d8a881459296c23e9160e943e3",
    "username": "Meloby",
    "country": "Unknown",
-   "ap": 24660
+   "ap": 24665
   },
   "2baaec9272fd487294e673eb4ec35201": {
    "uuid": "2baaec9272fd487294e673eb4ec35201",
