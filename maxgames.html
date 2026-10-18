@@ -46,7 +46,10 @@
     </div>
 
     <div class="search-container">
-      <input type="text" id="searchInput" class="search-input" placeholder="Search a player, press Enter to check them live" autocomplete="off">
+      <div class="mg-search-wrap">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search a player, press Enter to check them live" autocomplete="off">
+        <button type="button" id="searchClear" class="mg-x mg-search-x hidden" aria-label="Clear search">×</button>
+      </div>
       <div id="searchResults" class="search-results-info hidden"></div>
     </div>
 
