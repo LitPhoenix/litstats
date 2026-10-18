@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-18T17:03:05.888Z",
+  "last_update": "2026-10-18T19:52:07.319Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -1154,15 +1154,15 @@
     },
     {
       "country": "Israel",
-      "score": 5038.6,
+      "score": 5039.4,
       "top_players": [
         {
           "username": "eliadbg",
           "uuid": "56b991d1a9c243d7984df6e6a409cd59",
           "country": "Israel",
-          "current_quests": 25193,
+          "current_quests": 25197,
           "last_month_quests": 25055,
-          "monthly_gain": 138
+          "monthly_gain": 142
         }
       ]
     },
