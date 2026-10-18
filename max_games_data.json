@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-18T12:17:31.732Z",
+ "last_update": "2026-10-18T17:03:05.917Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-18T12:17:31.324Z",
+ "source_update": "2026-10-18T17:03:05.469Z",
  "catalog": [
   {
    "id": "uhc",
@@ -2574,11 +2574,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "ad988df25a274cf592b66c9562834230",
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "uuid": "ad988df25a274cf592b66c9562834230",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -3108,15 +3108,15 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
+     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
      "uuid": "ad988df25a274cf592b66c9562834230",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
      "uuid": "a481c0951d3246169ebe1dd6f583d357",
-     "firstSeen": "2026-10-06T02:17:57.433Z"
-    },
-    {
-     "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -4492,7 +4492,7 @@
    "uuid": "8682b351e9c241639291935776608054",
    "username": "60c",
    "country": "UK",
-   "ap": 29180,
+   "ap": 29205,
    "rank": "MVP+",
    "rankPlusColor": "DARK_BLUE",
    "monthlyRankColor": "GOLD"
@@ -5446,7 +5446,7 @@
    "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
    "username": "EmotionalFlare",
    "country": "Turkey",
-   "ap": 25615,
+   "ap": 25640,
    "rank": "MVP++",
    "rankPlusColor": "DARK_BLUE",
    "monthlyRankColor": "AQUA"
