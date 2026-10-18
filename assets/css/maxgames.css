@@ -137,6 +137,28 @@
 .mg-chip.active { border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
 
 /* Table */
+.mg-bar-wrap { display: flex; align-items: center; justify-content: flex-end; margin-top: 8px; }
+.mg-bar-wrap .mg-bar { margin: 0; }
+.mg-maxed .mg-bar-wrap { margin: 0; }
+.mg-maxed .mg-bar { flex: none; }
+.mg-me .mg-bar { flex: 1; }
+/* Bonus (SkyClash / Crazy Walls): extra notches past the end of the 25-game track */
+.mg-ext { display: block; flex: none; width: 8px; height: 4px; border-radius: 3px; background: var(--accent-2, #5aa7ff); }
+.mg-plus { color: var(--accent-2, #5aa7ff); }
+
+/* Clear (X) buttons */
+.mg-search-wrap { position: relative; width: 100%; }
+.mg-search-wrap .search-input { padding-right: 40px; }
+.mg-x {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 22px; height: 22px; padding: 0; border: 0; border-radius: 50%;
+  background: var(--surface-2, var(--border)); color: var(--text-2);
+  font: inherit; font-size: 15px; line-height: 1; cursor: pointer;
+}
+.mg-x:hover, .mg-x:focus-visible { color: var(--text); outline: none; background: var(--border); }
+.mg-search-x { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); }
+.mg-me-x { margin-left: 4px; }
+
 #mg-table .player-row { cursor: pointer; }
 .mg-name { font-weight: 600; color: var(--text); text-decoration: none; }
 .mg-name.ranked { color: var(--rank-c); }
@@ -174,5 +196,5 @@ body.light-theme .mg-name.ranked { color: color-mix(in srgb, var(--rank-c) 62%, 
 @media (max-width: 560px) {
   .mg-col-country, #mg-table td.mg-country-cell { display: none; }
   .mg-results-head h2 { font-size: 20px; }
-  .mg-maxed .mg-bar { display: none; }
+  .mg-maxed .mg-bar-wrap { display: none; }
 }
