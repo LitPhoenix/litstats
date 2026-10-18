@@ -147,8 +147,17 @@
 .mg-plus { color: var(--accent-2, #5aa7ff); }
 
 /* Clear (X) buttons */
-.mg-search-wrap { position: relative; width: 100%; }
-.mg-search-wrap .search-input { padding-right: 40px; }
+.mg-search-wrap { position: relative; width: 100%; display: inline-block; max-width: 400px; }
+.mg-search-wrap .search-input {
+  width: 100%;
+  padding-right: 36px; /* reserve space for the X button */
+}
+#searchClear {
+  position: absolute; /* Float the X inside the box */
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .mg-x {
   display: inline-flex; align-items: center; justify-content: center; flex: none;
   width: 22px; height: 22px; padding: 0; border: 0; border-radius: 50%;
@@ -156,7 +165,7 @@
   font: inherit; font-size: 15px; line-height: 1; cursor: pointer;
 }
 .mg-x:hover, .mg-x:focus-visible { color: var(--text); outline: none; background: var(--border); }
-.mg-search-x { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); }
+.mg-search-x { position: relative; transform: translateY(-50%); }
 .mg-me-x { margin-left: 4px; }
 
 #mg-table .player-row { cursor: pointer; }
