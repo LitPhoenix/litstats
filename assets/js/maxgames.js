@@ -67,6 +67,16 @@
 
   /* ---------------- Indexing ---------------- */
   const EXTRA_GAME_IDS = new Set(['skyclash', 'crazywalls']);
+  let standardTotal = 25;   // regular max games; SkyClash / Crazy Walls are bonus notches on top of this
+
+  // "24+2" style label: regular count, then the bonus count in the accent colour
+  const countLabel = (std, extra) => `<strong>${std}</strong>${extra > 0 ? `<strong class="mg-plus"> +${extra}</strong>` : ''}`;
+  // Progress bar: main track (regular games) followed by one small notch per bonus game
+  function barHTML(std, extraIds) {
+    const pct = Math.min(100, Math.round((std / standardTotal) * 100));
+    const notches = extraIds.map(id => `<i class="mg-ext" title="Bonus: ${esc(byId[id]?.name || id)}"></i>`).join('');
+    return `<div class="mg-bar-wrap"><div class="mg-bar"><i style="width:${pct}%"></i></div>${notches}</div>`;
+  }
 
   function getGamePlayers(id) {
     if (!data.games) return [];
@@ -83,6 +93,7 @@
     order = Object.fromEntries(data.catalog.map((g, i) => [g.id, i]));
 
     const standardGames = topGames.filter(g => !EXTRA_GAME_IDS.has(g.id));
+    standardTotal = standardGames.length || 25;
 
     // Seasonal setup
     const seasonalCatalog = data.catalog.filter(g => g.parent === 'seasonal');
@@ -109,8 +120,9 @@
 
     ranking = [...playerGames].map(([uuid, ids]) => {
       const stdCount = standardGames.filter(g => ids.has(g.id)).length;
-      const extraCount = [...EXTRA_GAME_IDS].filter(id => ids.has(id)).length;
-      return { uuid, count: stdCount, extraCount, totalCount: stdCount + extraCount, ap: apOf(uuid) };
+      const extraIds = [...EXTRA_GAME_IDS].filter(id => ids.has(id));
+      const extraCount = extraIds.length;
+      return { uuid, count: stdCount, extraCount, extraIds, totalCount: stdCount + extraCount, ap: apOf(uuid) };
     })
       .filter(r => r.totalCount > 0 && data.players[r.uuid])
       .sort((a, b) => b.totalCount - a.totalCount || b.count - a.count || b.ap - a.ap);
@@ -169,7 +181,7 @@
   /* ---------------- Results ---------------- */
   function renderThead() {
     $('mg-thead').innerHTML = currentId === OVERALL
-      ? `<tr><th class="rank" style="width:12%;">#${tip('Ranked by how many games they have maxed. Ties go to the higher AP.')}</th>
+      ? `<tr><th class="rank" style="width:12%;">#${tip('Ranked by how many games they have maxed. Ties go to the higher AP. Gold notches display maxed Legacy Games which count towards max games total.')}</th>
           <th style="width:46%;">Player</th><th style="text-align:right;width:24%;">Maxed</th><th style="text-align:right;width:18%;">AP</th></tr>`
       : `<tr><th class="rank" style="width:12%;">#${tip(`Ordered by when we first spotted them with this maxed. Anyone who already had it when tracking began${data.tracking_since ? ` (${fmtDate(data.tracking_since)})` : ''} is listed first, by AP.`)}</th>
           <th style="width:46%;">Player</th><th class="mg-col-country" style="width:24%;">Country</th><th style="text-align:right;width:18%;">AP</th></tr>`;
@@ -229,7 +241,6 @@
     const MAX_VISIBLE = 200;
 
     if (currentId === OVERALL) {
-      const TOTAL_STANDARD = 25;
       ranking.forEach((r, i) => {
         const matchesQuery = set && set.has(r.uuid);
         if (!matchesQuery && shown >= MAX_VISIBLE) return;
@@ -237,12 +248,9 @@
 
         const p = data.players[r.uuid]; shown++;
         
-        const barPct = Math.min(100, Math.round((r.count / TOTAL_STANDARD) * 100));
-        const extraPct = Math.round((r.extraCount / TOTAL_STANDARD) * 100);
-
         rowsHTML += `<tr class="player-row" data-uuid="${p.uuid}"><td style="text-align:center;"><span class="rank ${podium(i + 1)}">${i + 1}</span></td>${playerCell(p)}
-          <td><div class="mg-maxed"><span><strong>${r.totalCount}</strong><span style="color:var(--text-3)"> / ${TOTAL_STANDARD}</span></span>
-            <div class="mg-bar"><i style="width:${barPct}%"></i>${r.extraCount > 0 ? `<i class="mg-extra-notch" style="width:${extraPct}%; background:var(--accent-2, #5aa7ff);"></i>` : ''}</div>
+          <td><div class="mg-maxed"><span>${countLabel(r.count, r.extraCount)}<span style="color:var(--text-3)"> / ${standardTotal}</span></span>
+            ${barHTML(r.count, r.extraIds)}
           </div></td>
           <td class="ap-cell" style="text-align:right;">${num(p.ap)}</td></tr>`;
       });
@@ -279,13 +287,15 @@
     if (!uuid) { host.classList.add('hidden'); host.innerHTML = ''; return; }
     const p = data.players[uuid];
     const ids = [...(playerGames.get(uuid) || [])].filter(id => !byId[id].parent).sort((a, b) => order[a] - order[b]);
-    const total = topGames.length;
+    const stdIds = ids.filter(id => !EXTRA_GAME_IDS.has(id));
+    const extraIds = ids.filter(id => EXTRA_GAME_IDS.has(id));
     const chips = ids.map(id => `<button type="button" class="mg-chip ${topLevel(currentId) === id ? 'active' : ''}" data-game="${id}"><img src="${iconFor(byId[id])}" alt="" onerror="this.style.display='none'">${esc(byId[id].name)}</button>`).join('');
     host.innerHTML = `<div class="mg-me"><div class="mg-me-top">
       <img src="https://minotar.net/helm/${encodeURIComponent(p.username)}/100" alt="" onerror="this.onerror=null;this.src='https://vzge.me/face/${esc(uuid)}.png'">
-      <div class="mg-me-id">${nameLink(p, cabinetHref(p))}<div class="mg-me-sub">${ids.length ? `Maxed ${ids.length} of ${total} games` : 'Hasn\'t maxed a tracked game yet'}</div></div>
-      <a class="mg-me-link" href="${cabinetHref(p)}">Open cabinet ➔</a></div>
-      ${ids.length ? `<div class="mg-bar"><i style="width:${Math.round(ids.length / total * 100)}%"></i></div><div class="mg-chips">${chips}</div>` : ''}</div>`;
+      <div class="mg-me-id">${nameLink(p, cabinetHref(p))}<div class="mg-me-sub">${ids.length ? `Maxed ${countLabel(stdIds.length, extraIds.length)} of ${standardTotal} games` : 'Hasn\'t maxed a tracked game yet'}</div></div>
+      <a class="mg-me-link" href="${cabinetHref(p)}">Open cabinet ➔</a>
+      <button type="button" class="mg-x mg-me-x" aria-label="Clear player" title="Clear">×</button></div>
+      ${ids.length ? `${barHTML(stdIds.length, extraIds)}<div class="mg-chips">${chips}</div>` : ''}</div>`;
     host.classList.remove('hidden');
   }
 
@@ -306,7 +316,15 @@
     markPicker();
     renderStatus();
     renderMe();
+    syncClear();
     renderHead(renderBody());
+  }
+
+  function syncClear() { $('searchClear').classList.toggle('hidden', !$('searchInput').value); }
+  function clearSearch() {
+    $('searchInput').value = '';
+    window.runLocalSearch('');
+    $('searchInput').focus();
   }
 
   function select(id, opts = {}) {
@@ -365,7 +383,8 @@
       const mine = [...(playerGames.get(rec.uuid) || [])].filter(id => !byId[id].parent).sort((a, b) => order[a] - order[b]);
       const here = currentId === OVERALL || (playerGames.get(rec.uuid) || new Set()).has(currentId);
       select(!here && mine.length ? mine[0] : currentId);
-      liveText = mine.length ? `${rec.username} has maxed ${mine.length} of ${topGames.length} games.` : `${rec.username} hasn't maxed a tracked game yet.`;
+      const mStd = mine.filter(id => !EXTRA_GAME_IDS.has(id)).length, mExtra = mine.length - mStd;
+      liveText = mine.length ? `${rec.username} has maxed ${mStd}${mExtra ? `+${mExtra}` : ''} of ${standardTotal} games.` : `${rec.username} hasn't maxed a tracked game yet.`;
       renderStatus();
     } catch (e) {
       liveText = e.message === 'NOT_FOUND' ? `Player "${name}" not found on Hypixel.`
@@ -387,7 +406,10 @@
     if (e.key === 'Enter') { e.preventDefault(); const n = this.value.trim(); if (n) lookup(n); }
   });
 
+  $('searchClear').addEventListener('click', clearSearch);
+
   document.addEventListener('click', (e) => {
+    if (e.target.closest('.mg-me-x')) return clearSearch();
     const info = e.target.closest('.mg-info');
     document.querySelectorAll('.mg-tip.open').forEach(t => { if (!info || t !== info.parentElement) t.classList.remove('open'); });
     if (info) info.parentElement.classList.toggle('open');
