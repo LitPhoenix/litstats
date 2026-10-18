@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-18T19:52:07.349Z",
+ "last_update": "2026-10-18T22:03:56.544Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-18T19:52:07.064Z",
+ "source_update": "2026-10-18T22:03:56.117Z",
  "catalog": [
   {
    "id": "uhc",
@@ -2160,6 +2160,10 @@
     {
      "uuid": "7d92df9db6f04ef4b24ded24ae739198",
      "firstSeen": "2026-10-14T14:48:40.285Z"
+    },
+    {
+     "uuid": "f61b81b44faf4fc58b00405721f19f84",
+     "firstSeen": "2026-10-18T22:03:56.544Z"
     }
    ]
   },
@@ -4312,7 +4316,7 @@
    "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
    "username": "ToastyOosty",
    "country": "Unknown",
-   "ap": 25470,
+   "ap": 25495,
    "rank": "MVP+",
    "rankPlusColor": "DARK_PURPLE",
    "monthlyRankColor": "GOLD"
@@ -4843,7 +4847,7 @@
    "uuid": "f61b81b44faf4fc58b00405721f19f84",
    "username": "Cabbiss",
    "country": "USA",
-   "ap": 29590,
+   "ap": 29615,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "AQUA"

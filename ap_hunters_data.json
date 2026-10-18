@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-18T19:52:07.064Z",
+  "last_update": "2026-10-18T22:03:56.117Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -553,12 +553,13 @@
           "username": "Cabbiss",
           "uuid": "f61b81b44faf4fc58b00405721f19f84",
           "country": "USA",
-          "current_ap": 29590,
+          "current_ap": 29615,
           "last_month_ap": 29535,
-          "monthly_gain": 55,
+          "monthly_gain": 80,
           "maxGames": [
             "Max Quake",
             "Max TNT Games",
+            "Max Arcade",
             "Max Murder Mystery",
             "Max VampireZ",
             "Max TKR",
@@ -2477,9 +2478,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 23635,
+          "current_ap": 23645,
           "last_month_ap": 23405,
-          "monthly_gain": 230,
+          "monthly_gain": 240,
           "maxGames": []
         }
       ]
@@ -2986,9 +2987,9 @@
           "username": "ToastyOosty",
           "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
           "country": "Unknown",
-          "current_ap": 25470,
+          "current_ap": 25495,
           "last_month_ap": 25245,
-          "monthly_gain": 225,
+          "monthly_gain": 250,
           "maxGames": [
             "Max Pit",
             "Max SkyBlock",
