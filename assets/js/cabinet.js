@@ -466,6 +466,7 @@ const TAG_DB = {
   "Reaching the Stars": { type: "Coins", cost: "1,570,000" },
   "Young Apprentice, You are not": { type: "Coins", cost: "1,820,000", tip: "Requires a Prestige 5 Level 20 Hero" },
   "Get Over Here!": { type: "Coins", cost: "10,000" },
+  "[Smash Heroes] Handyman": { type: "Coins", cost: "295,000" },
   "Master of Masters": { type: "Coins", cost: "250,000", tip: "Requires 2000 kills with a Mastery" },
   "Kit Specialist": { type: "Coins", cost: "37,500", tip: "Cheapest 15 kits cost 37,500 coins" },
   "Feels Good Man": { type: "Coins", cost: "2,500", tip: "Cheapest kit cost 2,500 coins" },
