@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-19T09:26:52.988Z",
+  "last_update": "2026-10-19T16:44:04.632Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -400,15 +400,15 @@
     },
     {
       "country": "Belgium",
-      "score": 10254.6,
+      "score": 10265.6,
       "top_players": [
         {
           "username": "Bonbonblok",
           "uuid": "d8e38381ee814ad781a898519de77100",
           "country": "Belgium",
-          "current_quests": 51273,
+          "current_quests": 51328,
           "last_month_quests": 50972,
-          "monthly_gain": 301
+          "monthly_gain": 356
         }
       ]
     },
@@ -1038,15 +1038,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 14768.4,
+      "score": 14770.4,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_quests": 26972,
+          "current_quests": 26982,
           "last_month_quests": 26409,
-          "monthly_gain": 563
+          "monthly_gain": 573
         },
         {
           "username": "iiris",
