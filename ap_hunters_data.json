@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-19T16:44:04.374Z",
+  "last_update": "2026-10-19T21:52:38.936Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -618,9 +618,9 @@
           "username": "Kyralicious",
           "uuid": "7456ccb5c8e24271a721a394191d0602",
           "country": "USA",
-          "current_ap": 28045,
+          "current_ap": 28050,
           "last_month_ap": 28020,
-          "monthly_gain": 25,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ"
@@ -696,10 +696,11 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 27205,
+          "current_ap": 27230,
           "last_month_ap": 27120,
-          "monthly_gain": 85,
+          "monthly_gain": 110,
           "maxGames": [
+            "Max Arcade",
             "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
@@ -2143,7 +2144,7 @@
     },
     {
       "country": "Germany",
-      "score": 6545,
+      "score": 6558,
       "top_players": [
         {
           "username": "NightMan976",
@@ -2168,9 +2169,9 @@
           "username": "Egomaster",
           "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
           "country": "Germany",
-          "current_ap": 28500,
+          "current_ap": 28525,
           "last_month_ap": 28500,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Smash Heroes",
             "Max Paintball",
@@ -2964,15 +2965,15 @@
     },
     {
       "country": "Unknown",
-      "score": 695,
+      "score": 675,
       "top_players": [
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
           "country": "Unknown",
-          "current_ap": 26330,
+          "current_ap": 26310,
           "last_month_ap": 26330,
-          "monthly_gain": 0,
+          "monthly_gain": -20,
           "maxGames": [
             "Max Warlords",
             "Max TNT Games",

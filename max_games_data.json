@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-19T16:44:04.661Z",
+ "last_update": "2026-10-19T21:52:39.191Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-19T16:44:04.374Z",
+ "source_update": "2026-10-19T21:52:38.936Z",
  "catalog": [
   {
    "id": "uhc",
@@ -2164,6 +2164,10 @@
     {
      "uuid": "f61b81b44faf4fc58b00405721f19f84",
      "firstSeen": "2026-10-18T22:03:56.544Z"
+    },
+    {
+     "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+     "firstSeen": "2026-10-19T21:52:39.191Z"
     }
    ]
   },
@@ -4514,7 +4518,7 @@
    "uuid": "7456ccb5c8e24271a721a394191d0602",
    "username": "Kyralicious",
    "country": "USA",
-   "ap": 28045,
+   "ap": 28050,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -4658,7 +4662,7 @@
    "uuid": "73fcd3eb97b54a4b8ab9b34e1c57e2f4",
    "username": "Egomaster",
    "country": "Germany",
-   "ap": 28500,
+   "ap": 28525,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "AQUA"
@@ -5333,7 +5337,7 @@
    "uuid": "ac97442ca125422cbd72ae60cdd8340f",
    "username": "Rayjer",
    "country": "Unknown",
-   "ap": 26330,
+   "ap": 26310,
    "rank": "VIP",
    "rankPlusColor": "RED",
    "monthlyRankColor": "GOLD"
@@ -5495,7 +5499,7 @@
    "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
    "username": "hjx",
    "country": "USA",
-   "ap": 27205,
+   "ap": 27230,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
