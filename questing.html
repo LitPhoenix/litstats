@@ -38,19 +38,11 @@
     <div class="pin-group">
       <button class="settings-btn pin-btn" onclick="pinCurrentPlayer()" title="Pin this player">📌</button>
       <div id="pinned-player-container" class="hidden"></div>
-      <div class="settings-wrapper">
-        <button class="settings-btn" id="qt-custom-open" onclick="toggleCustomize(event)" type="button" title="Page settings" aria-label="Page settings" aria-haspopup="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="pointer-events:none;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>
-        <div id="qt-custom" class="settings-menu qt-settings hidden" role="menu" aria-label="Page settings"></div>
-      </div>
+
     </div>
   </div>
 
   <div id="errorBox" class="loading-msg hidden" style="color: var(--red); text-align: center; margin: 20px auto;"></div>
-
-  <div class="tabs qt-tabs">
-    <button class="tab-btn active" data-tab="player">Player Quests</button>
-    <button class="tab-btn" data-tab="top">Most Quests by Game</button>
-  </div>
 
   <!-- ============ PLAYER TAB ============ -->
   <section id="panel-player">
@@ -61,12 +53,14 @@
 
     <div id="qt-content" class="hidden">
       <div class="profile-card qt-profile">
+        <div class="profile-bg-flag" id="p-bg-flag" style="display:none;"></div>
         <div class="profile-top">
           <img id="p-avatar" class="player-avatar" src="" alt="Avatar">
           <div class="player-info-container">
             <div class="player-name-row">
               <span class="mc-rank" id="p-rank" style="display:none;"></span>
               <h1 id="p-name" style="margin:0;">Loading...</h1>
+              <span class="qt-total-pill" id="qt-total-pill"></span>
             </div>
             <div class="stat-row" id="qt-reset-row"></div>
           </div>
@@ -76,24 +70,45 @@
       <div class="qt-totals" id="qt-totals"></div>
 
       <div id="qt-board">
-      <div class="qt-toolbar">
-        <div class="qt-seg" id="qt-kind" role="tablist" aria-label="Quest type">
-          <button type="button" class="active" data-kind="all">All</button>
-          <button type="button" data-kind="daily">Daily</button>
-          <button type="button" data-kind="weekly">Weekly</button>
-          <button type="button" data-kind="monthly" class="hidden">Monthly</button>
-          <button type="button" data-kind="special" class="hidden">Special</button>
+      <div class="qt-head">
+        <div class="qt-head-left">
+          <h2 class="qt-title">Quests</h2>
+          <div class="qt-seg" id="qt-kind" role="tablist" aria-label="Quest type">
+            <button type="button" class="active" data-kind="all">All</button>
+            <button type="button" data-kind="daily">Daily</button>
+            <button type="button" data-kind="weekly">Weekly</button>
+            <button type="button" data-kind="monthly" class="hidden">Monthly</button>
+            <button type="button" data-kind="special" class="hidden">Special</button>
+          </div>
         </div>
-        <select id="qt-game" class="qt-select" aria-label="Game"></select>
-        <select id="qt-sort" class="qt-select" aria-label="Sort quests">
-          <option value="game">Group by game</option>
-          <option value="easy">Easiest first</option>
-          <option value="close">Closest to done</option>
-          <option value="xp">Most XP first</option>
-        </select>
-        <input type="text" id="qt-filter" class="qt-input" placeholder="Filter quests..." autocomplete="off">
-        <button type="button" id="qt-toggle-easy" class="qt-toggle" aria-pressed="false">Easy only</button>
-        <button type="button" id="qt-toggle-done" class="qt-toggle" aria-pressed="false"></button>
+        <div class="qt-head-right">
+          <select id="qt-sort" class="todo-select qt-select" aria-label="Sort quests">
+            <option value="game">Group by game</option>
+            <option value="easy">Easiest first</option>
+            <option value="close">Closest to done</option>
+            <option value="xp">Most XP first</option>
+          </select>
+          <button type="button" id="qt-toggle-easy" class="qt-toggle" aria-pressed="false">Easy only</button>
+          <button type="button" id="qt-toggle-done" class="qt-toggle" aria-pressed="false"></button>
+          <div class="settings-wrapper">
+        <button class="settings-btn" id="qt-custom-open" onclick="toggleCustomize(event)" type="button" title="Page settings" aria-label="Page settings" aria-haspopup="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="pointer-events:none;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>
+        <div id="qt-custom" class="settings-menu qt-settings hidden" role="menu" aria-label="Page settings"></div>
+      </div>
+        </div>
+      </div>
+
+      <div class="qt-chips" id="qt-chips" aria-label="Filter by game"></div>
+      <select id="qt-game" class="hidden" aria-hidden="true" tabindex="-1"></select>
+
+      <div class="qt-searchrow">
+        <div class="search-bar-container search-wrapper qt-search">
+          <input type="text" id="qt-filter" placeholder="Scan quests by name or description..." autocomplete="off">
+          <button class="clear-btn" id="qt-filter-clear" type="button" aria-label="Clear search">×</button>
+        </div>
+        <div class="qt-viewbtns">
+          <button type="button" class="btn-toggle-view" id="qt-bm-btn">Bookmarks (0)</button>
+          <button type="button" class="btn-toggle-view" id="qt-ign-btn">Ignored (0)</button>
+        </div>
       </div>
 
       <div class="qt-fast" id="qt-fast"></div>
@@ -163,6 +178,7 @@
 
 <script src="assets/js/global.js"></script>
 <script src="assets/js/credits.js"></script>
+<script src="assets/js/flags.js"></script>
 <script src="assets/js/quest-overrides.js"></script>
 <script src="assets/js/questing.js"></script>
 </body>
