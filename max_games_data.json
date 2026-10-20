@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-20T13:09:51.556Z",
+ "last_update": "2026-10-20T18:13:03.523Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-20T13:09:51.255Z",
+ "source_update": "2026-10-20T18:13:03.271Z",
  "catalog": [
   {
    "id": "uhc",
@@ -3618,11 +3618,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "8f0349e80fee4394b66d0e32fb09002d",
+     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+     "uuid": "8f0349e80fee4394b66d0e32fb09002d",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -5499,7 +5499,7 @@
    "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
    "username": "hjx",
    "country": "USA",
-   "ap": 27265,
+   "ap": 27295,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -5517,7 +5517,7 @@
    "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
    "username": "leonl",
    "country": "Italy",
-   "ap": 25155,
+   "ap": 25170,
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "AQUA"
@@ -5856,7 +5856,7 @@
    "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
    "username": "Quent120",
    "country": "France",
-   "ap": 23760,
+   "ap": 23770,
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
