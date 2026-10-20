@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-20T18:13:03.523Z",
+ "last_update": "2026-10-20T22:49:22.331Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-20T18:13:03.271Z",
+ "source_update": "2026-10-20T22:49:21.909Z",
  "catalog": [
   {
    "id": "uhc",
@@ -1778,6 +1778,10 @@
     {
      "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
      "firstSeen": "2026-10-17T21:52:49.182Z"
+    },
+    {
+     "uuid": "44e6b626db3443ba8f06a6c41659d284",
+     "firstSeen": "2026-10-20T22:49:22.331Z"
     }
    ]
   },
@@ -2792,6 +2796,10 @@
     {
      "uuid": "3abc42d8a881459296c23e9160e943e3",
      "firstSeen": "2026-10-12T00:51:06.240Z"
+    },
+    {
+     "uuid": "44e6b626db3443ba8f06a6c41659d284",
+     "firstSeen": "2026-10-20T22:49:22.331Z"
     }
    ]
   },
@@ -3614,11 +3622,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "cef8bc211b264d54b07da2995d587098",
+     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+     "uuid": "cef8bc211b264d54b07da2995d587098",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -5310,7 +5318,7 @@
    "uuid": "7638efa55b784c41ac34a4c59b2b86df",
    "username": "Summer_Albert",
    "country": "Taiwan",
-   "ap": 27110,
+   "ap": 27130,
    "rank": "MVP++",
    "rankPlusColor": "DARK_BLUE",
    "monthlyRankColor": "GOLD"
@@ -5404,6 +5412,12 @@
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
+  },
+  "44e6b626db3443ba8f06a6c41659d284": {
+   "uuid": "44e6b626db3443ba8f06a6c41659d284",
+   "username": "corbr",
+   "country": "Unknown",
+   "ap": 23375
   },
   "ab4645d4f2934af9b02d3c6ff296317a": {
    "uuid": "ab4645d4f2934af9b02d3c6ff296317a",
@@ -5499,7 +5513,7 @@
    "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
    "username": "hjx",
    "country": "USA",
-   "ap": 27295,
+   "ap": 27320,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -5843,6 +5857,15 @@
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
   },
+  "d61cd4e9fcf146d2bd1dd9b494405b07": {
+   "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+   "username": "Quent120",
+   "country": "France",
+   "ap": 23780,
+   "rank": "MVP++",
+   "rankPlusColor": "BLACK",
+   "monthlyRankColor": "GOLD"
+  },
   "cef8bc211b264d54b07da2995d587098": {
    "uuid": "cef8bc211b264d54b07da2995d587098",
    "username": "Oleslaw2009",
@@ -5850,15 +5873,6 @@
    "ap": 23770,
    "rank": "MVP++",
    "rankPlusColor": "DARK_PURPLE",
-   "monthlyRankColor": "GOLD"
-  },
-  "d61cd4e9fcf146d2bd1dd9b494405b07": {
-   "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
-   "username": "Quent120",
-   "country": "France",
-   "ap": 23770,
-   "rank": "MVP++",
-   "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
   },
   "0d405677379c43139db69485749d9d31": {

@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-20T18:13:03.271Z",
+  "last_update": "2026-10-20T22:49:21.909Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -212,7 +212,8 @@
     "c99fe76f6ed14f8a8b739d740a9674c3": 0,
     "c82a204b300f4b88888e4ab79e44920b": 0,
     "c185afbbd692431a906131448e693f19": 0,
-    "e4447d2895924f76986ac1ba4dcf183c": 0
+    "e4447d2895924f76986ac1ba4dcf183c": 0,
+    "44e6b626db3443ba8f06a6c41659d284": 23375
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -696,9 +697,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 27295,
+          "current_ap": 27320,
           "last_month_ap": 27120,
-          "monthly_gain": 175,
+          "monthly_gain": 200,
           "maxGames": [
             "Max Arcade",
             "Max Murder Mystery",
@@ -1313,9 +1314,9 @@
           "username": "Quent120",
           "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
           "country": "France",
-          "current_ap": 23770,
+          "current_ap": 23780,
           "last_month_ap": 23645,
-          "monthly_gain": 125,
+          "monthly_gain": 135,
           "maxGames": [
             "Max Wool Games",
             "Max Duels"
@@ -2225,19 +2226,6 @@
             "Max Wool Games",
             "Max Duels"
           ]
-        },
-        {
-          "username": "DirtyAvocado",
-          "uuid": "8d167f27157d488394f6b6142ccc16be",
-          "country": "Germany",
-          "current_ap": 23735,
-          "last_month_ap": 23735,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max TKR",
-            "Max Duels"
-          ]
         }
       ]
     },
@@ -2888,15 +2876,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 1475,
+      "score": 1495,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_ap": 27110,
+          "current_ap": 27130,
           "last_month_ap": 27065,
-          "monthly_gain": 45,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
@@ -3144,6 +3132,18 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Pit"
+          ]
+        },
+        {
+          "username": "corbr",
+          "uuid": "44e6b626db3443ba8f06a6c41659d284",
+          "country": "Unknown",
+          "current_ap": 23375,
+          "last_month_ap": 23375,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Warlords",
+            "Max VampireZ"
           ]
         }
       ]
