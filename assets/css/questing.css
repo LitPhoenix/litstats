@@ -298,3 +298,99 @@ body.ui-no-xp .qt-xp, body.ui-no-xp .qt-gxp, body.ui-no-xp .qt-xp-any { display:
 .qt-day-listhead span:not(:first-child) { text-align: right; }
 .qt-day-list li time { min-width: 150px; }
 .qt-day-list li time.alt { color: var(--text-3); }
+
+
+/* =========================================================================
+   v8: header row, game chips, search + bookmarks/ignored, list layout (same look as the achievement dashboard)
+   ========================================================================= */
+.qt-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 16px; margin: 4px 0 12px; }
+.qt-head-left, .qt-head-right { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.qt-title { margin: 0; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.01em; }
+.qt-head-right .qt-select { height: 36px; min-width: 150px; }
+.qt-head .settings-wrapper { position: relative; }
+
+/* game chips: the same pills as the dashboard, flowing and wrapping */
+.qt-chips { margin: 0 0 12px; }
+.qt-chip-grid { display: flex !important; flex-wrap: wrap; gap: 4px !important; padding: 6px 8px !important; }
+.qt-chip-grid .filter-pill-btn { flex: 0 0 auto; width: auto !important; height: 28px; padding: 0 9px 0 6px; gap: 6px; cursor: pointer; }
+.qt-chip-grid .filter-pill-icon { width: 16px; height: 16px; }
+.qt-chip-grid .filter-pill-name { flex: none; margin-left: 0; font-size: 11.5px; }
+.qt-chip-grid .filter-pill-stat { font-size: 10px; opacity: .8; }
+
+.qt-searchrow { display: flex; align-items: center; gap: 16px; margin: 4px 0 12px; }
+.qt-searchrow .qt-search { flex: 1; max-width: none; margin: 0; width: auto; }
+.qt-searchrow .qt-search input { padding-right: 36px; }
+.qt-viewbtns { display: flex; gap: 8px; flex: none; }
+
+/* total quests lives in the player card now */
+.qt-profile { position: relative; overflow: hidden; }
+.qt-profile .profile-top { position: relative; z-index: 1; }
+.qt-total-pill { display: inline-flex; align-items: center; margin-left: 14px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent-soft); color: var(--text); font-size: 14px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* bookmark + ignore buttons */
+.qt-acts { display: inline-flex; align-items: center; gap: 2px; }
+.qt-act { border: 0; background: none; color: var(--text-3); font-size: 15px; line-height: 1; padding: 2px 5px; border-radius: 6px; cursor: pointer; }
+.qt-act:hover { color: var(--text); background: var(--surface-2); }
+.qt-act.star.on { color: #f5b942; }
+.qt-bm-star { display: inline-block; width: 26px; text-align: center; color: #f5b942; font-size: 20px; line-height: 26px; }
+.qt-pct { color: var(--text-3); font-weight: 500; }
+body.ui-no-actions .qt-acts { display: none; }
+body.ui-no-tags .qt-p { display: none !important; }
+
+/* List layout: one compact line per quest */
+.qt-lr { display: flex; align-items: center; gap: 10px; min-height: 34px; padding: 6px 2px; border-top: 1px solid var(--border); }
+.qt-group-body > .qt-lr:first-child, .qt-sub + .qt-lr, .qt-flatlist > .qt-lr:first-child { border-top: 0; }
+.qt-lr .qt-st { flex: none; }
+.qt-lr .qt-gicon.sm { margin: 0; flex: none; }
+.qt-lr-main { flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 8px; overflow: hidden; white-space: nowrap; }
+.qt-lr-main .qt-q-name { flex: 0 1 auto; min-width: 0; max-width: 55%; overflow: hidden; text-overflow: ellipsis; font-size: 13.5px; }
+.qt-lr-main .qt-p { flex: none; align-self: center; }
+.qt-lr-desc { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 12px; color: var(--text-3); }
+body.ui-no-desc .qt-lr-desc { display: none; }
+.qt-lr-prog { flex: none; width: 170px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.qt-lr-bar { flex: 1; height: 4px; border-radius: 4px; background: var(--border); overflow: hidden; }
+.qt-lr-bar i { display: block; height: 100%; background: var(--accent); }
+.qt-lr-bar.full i { background: var(--qt-green); }
+body.ui-no-bars .qt-lr-bar { display: none; }
+.qt-lr-count { min-width: 54px; text-align: right; font-size: 11px; font-weight: 600; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.qt-lr .qt-xp { flex: none; min-width: 66px; text-align: right; font-size: 11.5px; color: var(--text-3); }
+.qt-lr.done { opacity: .6; }
+.qt-lr.progress { box-shadow: inset 3px 0 0 var(--accent); padding-left: 8px; }
+.qt-lr.is-hidden { opacity: .5; }
+.qt-flatlist { display: flex; flex-direction: column; padding: 4px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
+body.ui-list .qt-group-body { padding: 0 14px 4px; }
+@media (max-width: 760px) {
+  .qt-searchrow { flex-direction: column; align-items: stretch; }
+  .qt-lr-prog { width: 110px; }
+  .qt-lr-desc { display: none; }
+}
+
+
+/* =========================================================================
+   v9: green tick, expandable per-game breakdown, calendar stats regrouped
+   ========================================================================= */
+.qt-tick { color: var(--qt-green, #34d27b); font-weight: 700; }
+
+/* quests by game: a tile opens into a full-width list of every quest completed in that game */
+.qt-gtile { display: block; padding: 0; cursor: default; }
+.qt-gtile.open { grid-column: 1 / -1; border-color: var(--accent); }
+.qt-gt-head { display: flex; align-items: center; gap: 8px; width: 100%; padding: 8px 10px 4px; border: 0; background: none; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+.qt-gt-head b { margin-left: auto; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.qt-gtile:not(.open) .qt-chev { transform: rotate(-45deg); margin: 0 2px 0 0; }
+.qt-gtile > .qt-gt-bar { display: block; flex: none; height: 3px; margin: 0 10px 8px; }
+.qt-gbreak { display: grid; gap: 2px; padding: 6px 12px 12px; border-top: 1px solid var(--border); }
+.qt-gb-row { display: grid; grid-template-columns: minmax(0, 1fr) 64px 84px minmax(60px, 180px); align-items: center; gap: 12px; padding: 4px 0; font-size: 12.5px; }
+.qt-gb-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-2); }
+.qt-gb-kind { font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-3); }
+.qt-gb-row b { text-align: right; font-variant-numeric: tabular-nums; }
+.qt-gb-bar { height: 4px; border-radius: 4px; background: var(--border); overflow: hidden; }
+.qt-gb-bar i { display: block; height: 100%; background: var(--accent); }
+.qt-gb-row.other .qt-gb-name { color: var(--text-3); font-style: italic; }
+@media (max-width: 760px) { .qt-gb-row { grid-template-columns: minmax(0, 1fr) 84px; } .qt-gb-kind, .qt-gb-bar { display: none; } }
+
+/* calendar header: per-day numbers on the left; best day, busiest hour and the two streaks on the right */
+.qt-cs-left { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.qt-cs-right { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-left: auto; padding-left: 0; border-left: 0; }
+.qt-cs-grp { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.qt-cs-grp.sep { padding-left: 28px; border-left: 1px solid var(--border); }
+@media (max-width: 760px) { .qt-cs-right { margin-left: 0; } .qt-cs-grp.sep { padding-left: 0; border-left: 0; } }
