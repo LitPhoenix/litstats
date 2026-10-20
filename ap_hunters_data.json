@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-20T06:51:28.938Z",
+  "last_update": "2026-10-20T13:09:51.255Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2215,9 +2215,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Germany",
-          "current_ap": 24010,
+          "current_ap": 24045,
           "last_month_ap": 23880,
-          "monthly_gain": 130,
+          "monthly_gain": 165,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -3037,6 +3037,21 @@
           ]
         },
         {
+          "username": "_Tk3",
+          "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+          "country": "Unknown",
+          "current_ap": 24455,
+          "last_month_ap": 24055,
+          "monthly_gain": 400,
+          "maxGames": [
+            "Max Pit",
+            "Max Arena Brawl",
+            "Max Paintball",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
           "username": "Stylee",
           "uuid": "6d481389154d4421ae0d47533b8ce8d3",
           "country": "Unknown",
@@ -3045,21 +3060,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "_Tk3",
-          "uuid": "f2b587fe0b2347dca0908d4832e047d5",
-          "country": "Unknown",
-          "current_ap": 24440,
-          "last_month_ap": 24055,
-          "monthly_gain": 385,
-          "maxGames": [
-            "Max Pit",
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max VampireZ",
-            "Max TKR"
           ]
         },
         {
