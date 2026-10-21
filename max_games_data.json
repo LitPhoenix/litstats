@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-20T22:49:22.331Z",
+ "last_update": "2026-10-21T02:27:32.518Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-20T22:49:21.909Z",
+ "source_update": "2026-10-21T02:27:32.083Z",
  "catalog": [
   {
    "id": "uhc",
@@ -3276,15 +3276,15 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
      "uuid": "9d98449f501a47359a05534728c621c1",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
      "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
-     "firstSeen": "2026-10-06T02:17:57.433Z"
-    },
-    {
-     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -3606,11 +3606,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
+     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
+     "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -4364,7 +4364,7 @@
    "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
    "username": "tommy042001",
    "country": "Germany",
-   "ap": 24045,
+   "ap": 24065,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -4445,7 +4445,7 @@
    "uuid": "fdfcc24e742746e592d666150e771a93",
    "username": "15_step",
    "country": "UK",
-   "ap": 24885,
+   "ap": 24910,
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -5513,7 +5513,7 @@
    "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
    "username": "hjx",
    "country": "USA",
-   "ap": 27320,
+   "ap": 27340,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
