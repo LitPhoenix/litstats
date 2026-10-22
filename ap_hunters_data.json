@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-22T09:01:28.137Z",
+  "last_update": "2026-10-22T14:46:01.597Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -681,6 +681,22 @@
           ]
         },
         {
+          "username": "hjx",
+          "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+          "country": "USA",
+          "current_ap": 27375,
+          "last_month_ap": 27120,
+          "monthly_gain": 255,
+          "maxGames": [
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "C4PS",
           "uuid": "1485b2b58ad54eaca304a90a18746196",
           "country": "USA",
@@ -691,22 +707,6 @@
             "Max Speed UHC",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "hjx",
-          "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
-          "country": "USA",
-          "current_ap": 27360,
-          "last_month_ap": 27120,
-          "monthly_gain": 240,
-          "maxGames": [
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
