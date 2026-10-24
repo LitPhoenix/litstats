@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-24T02:25:02.371Z",
+  "last_update": "2026-10-24T08:30:23.420Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -591,15 +591,16 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28805,
+          "current_ap": 28830,
           "last_month_ap": 28790,
-          "monthly_gain": 15,
+          "monthly_gain": 40,
           "maxGames": [
             "Max Warlords",
             "Max Walls",
             "Max TNT Games",
             "Max VampireZ",
-            "Max TKR"
+            "Max TKR",
+            "Max Wool Games"
           ]
         },
         {
@@ -2451,6 +2452,15 @@
           "maxGames": []
         },
         {
+          "username": "johnush",
+          "uuid": "81760cdc19964181a5c51ce17dd86597",
+          "country": "Israel",
+          "current_ap": 23785,
+          "last_month_ap": 23405,
+          "monthly_gain": 380,
+          "maxGames": []
+        },
+        {
           "username": "alonmario1",
           "uuid": "ba804eff1d3f48348048350cc686a3f6",
           "country": "Israel",
@@ -2462,15 +2472,6 @@
             "Max VampireZ",
             "Max TKR"
           ]
-        },
-        {
-          "username": "johnush",
-          "uuid": "81760cdc19964181a5c51ce17dd86597",
-          "country": "Israel",
-          "current_ap": 23775,
-          "last_month_ap": 23405,
-          "monthly_gain": 370,
-          "maxGames": []
         }
       ]
     },
@@ -2897,9 +2898,9 @@
           "username": "NoHaxJustTaiwan",
           "uuid": "8f0349e80fee4394b66d0e32fb09002d",
           "country": "Taiwan",
-          "current_ap": 23765,
+          "current_ap": 23750,
           "last_month_ap": 23765,
-          "monthly_gain": 0,
+          "monthly_gain": -15,
           "maxGames": [
             "Max Pit",
             "Max TKR",
@@ -3115,9 +3116,9 @@
           "username": "Justin_Jefferson",
           "uuid": "9dccd818228640bfa33174d8dc86dfb7",
           "country": "Unknown",
-          "current_ap": 23610,
+          "current_ap": 23625,
           "last_month_ap": 23570,
-          "monthly_gain": 40,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ"
