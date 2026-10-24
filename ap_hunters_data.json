@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-24T13:44:05.784Z",
+  "last_update": "2026-10-24T17:05:59.067Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -417,7 +417,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12541,
+      "score": 12542,
       "top_players": [
         {
           "username": "oJakey",
@@ -535,9 +535,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30440,
+          "current_ap": 30460,
           "last_month_ap": 30455,
-          "monthly_gain": -15,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -2991,9 +2991,9 @@
           "username": "aikosHD",
           "uuid": "7bfed5378957477bada8e64cf5fa99f1",
           "country": "Unknown",
-          "current_ap": 25115,
+          "current_ap": 25120,
           "last_month_ap": 25105,
-          "monthly_gain": 10,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Murder Mystery",
             "Max TKR",
