@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-24T19:58:31.982Z",
+  "last_update": "2026-10-24T22:12:10.620Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2320,15 +2320,15 @@
     },
     {
       "country": "Finland",
-      "score": 4539,
+      "score": 4554,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28825,
+          "current_ap": 28840,
           "last_month_ap": 28705,
-          "monthly_gain": 120,
+          "monthly_gain": 135,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -2730,9 +2730,9 @@
           "username": "Qacu",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
-          "current_ap": 25435,
+          "current_ap": 25460,
           "last_month_ap": 25350,
-          "monthly_gain": 85,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Warlords",
             "Max Murder Mystery",
