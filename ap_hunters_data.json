@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-25T02:12:12.177Z",
+  "last_update": "2026-10-25T08:49:54.450Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -792,9 +792,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26350,
+          "current_ap": 26380,
           "last_month_ap": 26320,
-          "monthly_gain": 30,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -1299,6 +1299,18 @@
           ]
         },
         {
+          "username": "Quent120",
+          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
+          "country": "France",
+          "current_ap": 23845,
+          "last_month_ap": 23645,
+          "monthly_gain": 200,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "KaoriMiyazono",
           "uuid": "1b8b7e076bcb4795b21a408197d4ded7",
           "country": "France",
@@ -1309,18 +1321,6 @@
             "Max VampireZ",
             "Max TKR",
             "Max Wool Games"
-          ]
-        },
-        {
-          "username": "Quent120",
-          "uuid": "d61cd4e9fcf146d2bd1dd9b494405b07",
-          "country": "France",
-          "current_ap": 23825,
-          "last_month_ap": 23645,
-          "monthly_gain": 180,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Duels"
           ]
         },
         {
@@ -2217,9 +2217,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Germany",
-          "current_ap": 24065,
+          "current_ap": 24080,
           "last_month_ap": 23880,
-          "monthly_gain": 185,
+          "monthly_gain": 200,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -3151,15 +3151,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 580,
+      "score": 605,
       "top_players": [
         {
           "username": "SATURNO",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 26215,
+          "current_ap": 26240,
           "last_month_ap": 25860,
-          "monthly_gain": 355,
+          "monthly_gain": 380,
           "maxGames": [
             "Max VampireZ"
           ]
