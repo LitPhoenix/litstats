@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-25T08:49:54.450Z",
+  "last_update": "2026-10-25T14:01:38.278Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -3301,15 +3301,15 @@
     },
     {
       "country": "Belgium",
-      "score": 265,
+      "score": 275,
       "top_players": [
         {
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Belgium",
-          "current_ap": 25900,
+          "current_ap": 25910,
           "last_month_ap": 25890,
-          "monthly_gain": 10,
+          "monthly_gain": 20,
           "maxGames": [
             "Max SkyBlock",
             "Max Wool Games"
