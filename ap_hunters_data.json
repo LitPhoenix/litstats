@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-25T20:08:30.034Z",
+  "last_update": "2026-10-25T23:42:27.671Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -643,18 +643,10 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27780,
+          "current_ap": 27800,
           "last_month_ap": 27800,
-          "monthly_gain": -20,
-          "maxGames": [
-            "Max Cops and Crims",
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Build Battle"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "gardenavenue",
@@ -671,6 +663,22 @@
           ]
         },
         {
+          "username": "hjx",
+          "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+          "country": "USA",
+          "current_ap": 27495,
+          "last_month_ap": 27120,
+          "monthly_gain": 375,
+          "maxGames": [
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "baseballaholic",
           "uuid": "14552d0d4cb949b59d4f7d1875b0ad94",
           "country": "USA",
@@ -679,22 +687,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max TKR"
-          ]
-        },
-        {
-          "username": "hjx",
-          "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
-          "country": "USA",
-          "current_ap": 27445,
-          "last_month_ap": 27120,
-          "monthly_gain": 325,
-          "maxGames": [
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -927,9 +919,9 @@
           "username": "pumpkan",
           "uuid": "11949c8a9c084ada8afc66fcbcb005fc",
           "country": "USA",
-          "current_ap": 25000,
+          "current_ap": 25005,
           "last_month_ap": 25020,
-          "monthly_gain": -20,
+          "monthly_gain": -15,
           "maxGames": [
             "Max Wool Games"
           ]
@@ -1067,9 +1059,9 @@
           "username": "ULTRAVIOLETlamb",
           "uuid": "d8c93138750f4388a3a99bd98b03192b",
           "country": "USA",
-          "current_ap": 23780,
+          "current_ap": 23795,
           "last_month_ap": 23365,
-          "monthly_gain": 415,
+          "monthly_gain": 430,
           "maxGames": [
             "Max Duels",
             "Max Build Battle"
@@ -2217,9 +2209,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Germany",
-          "current_ap": 24080,
+          "current_ap": 24105,
           "last_month_ap": 23880,
-          "monthly_gain": 200,
+          "monthly_gain": 225,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
