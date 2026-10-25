@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-24T22:12:10.620Z",
+  "last_update": "2026-10-25T02:12:12.177Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -792,9 +792,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26335,
+          "current_ap": 26350,
           "last_month_ap": 26320,
-          "monthly_gain": 15,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
@@ -3151,15 +3151,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 565,
+      "score": 580,
       "top_players": [
         {
           "username": "SATURNO",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 26200,
+          "current_ap": 26215,
           "last_month_ap": 25860,
-          "monthly_gain": 340,
+          "monthly_gain": 355,
           "maxGames": [
             "Max VampireZ"
           ]
