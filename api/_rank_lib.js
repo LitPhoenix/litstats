@@ -37,6 +37,7 @@ const DERIVED = {
   '@networkLevel': (p) => (typeof p.networkExp === 'number' ? Math.round((1 + (-3.5 + Math.sqrt(12.25 + 0.0008 * p.networkExp))) * 100) / 100 : null),
   '@quests': (p) => Object.values(p.quests || {}).reduce((n, q) => n + ((q && q.completions) || []).length, 0),
   '@lilyWeight': (p) => (typeof p.lilyWeight === 'number' ? p.lilyWeight : null),
+  '@skyblockLevel': (p) => (typeof p.__sbExp === 'number' ? p.__sbExp / 100 : null),
 };
 
 function extractValues(player, cfg = config) {
