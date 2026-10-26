@@ -101,11 +101,11 @@ module.exports = async (req, res) => {
 
     if (req.query.inspect) {                                           // admin: no KV access
       if (!isLocalDev && secureToken !== expectedToken) return res.status(403).json({ error: 'inspect needs the auth token' });
-      const player = await core.fetchPlayer(uuid), sb = await core.fetchSkyblockExp(uuid);
-      if (typeof sb === 'number') player.__sbExp = sb;
+      const player = await core.fetchPlayer(uuid), sb = await core.fetchSkyblock(uuid, player);
+      core.applySkyblock(player, sb);
       const values = lib.extractValues(player);
       res.setHeader('Cache-Control', 'no-store');
-      return res.status(200).json({ uuid, username: player.displayname, skyblockExp: sb ?? null,
+      return res.status(200).json({ uuid, username: player.displayname, skyblockExp: sb?.exp ?? null, lilyWeight: sb?.lily ?? null,
         stats: statList.map(st => ({ id: st.id, label: st.label, group: st.group, path: st.path, value: values[st.id], alts: lib.probe(player, st.path) })), raw: player });
     }
 
@@ -118,7 +118,7 @@ module.exports = async (req, res) => {
     let storedRefs = memo.pool.refs;
     if (useKv && !memo.pool.map) { try { const f = await kv.redis(['HGETALL', K.refs]); storedRefs = {}; for (let i = 0; i < (f || []).length; i += 2) storedRefs[f[i]] = Number(f[i + 1]); memo.pool.refs = storedRefs; } catch (e) {} }
 
-    const fresh = old && old.h === lib.configHash() && old.v?.length === statList.length && Date.now() - old.t < COOLDOWN_MS && !req.query.force;
+    const fresh = old && old.h === lib.configHash() && old.v?.length === statList.length && Date.now() - old.t < COOLDOWN_MS && !old.f && !req.query.force;
     let rec, scored, raised = {}, cached = !!fresh;
     if (fresh) { ({ scored } = core.score(core.valuesOf(old), storedRefs)); rec = { ...old, s: lib.round(scored.total, 2) }; }
     else { ({ rec, scored, raised } = await core.buildRecord(uuid, old, storedRefs)); }
