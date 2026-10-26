@@ -52,8 +52,9 @@ th[data-key]:hover, th[data-sort]:hover { color: var(--text); }
 th.sorted::after { content: ' ↓'; color: var(--accent); }
 th.sorted.asc::after { content: ' ↑'; }
 .rk-who { display: flex; align-items: center; gap: 10px; }
-.rk-who .player-avatar { height: 64px; width: 64px; border-radius: 6px; filter: none; }
-.rk-who .player-avatar:hover,
+.rk-who .player-avatar { height: 28px; width: 28px; border-radius: 4px; object-fit: cover; filter: none; background: var(--surface-2); }
+.rk-who .player-avatar:hover { transform: none; }
+@media (max-width: 760px) { .rk-who .player-avatar { height: 24px; width: 24px; } }
 .rk-cmp-card .player-avatar:hover { transform: none; }
 .rk-statcell { display: flex; align-items: center; gap: 10px; }
 .rk-more { display: block; margin: 14px auto 0; padding: 8px 22px; }
