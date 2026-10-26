@@ -127,6 +127,7 @@
     if (!POOL.loaded) return;
     computeRefs();
     ROWS = POOL.players.map(p => ({ p, ...scoreWith(id => p.v[IDX[id]] || 0, id => REFS[id]) }));
+    ROWS.slice().sort((a, b) => b.score - a.score).forEach((r, i) => { r.rank = i + 1; });
   }
 
   /* ================= small renderers ================= */
@@ -146,6 +147,7 @@
 
   /* ================= keys, filters, sorting ================= */
   function keyLabel(key) {
+    if (key === 'rank') return 'Rank';
     if (key === 'score') return 'Score';
     if (key === 'name') return 'Name';
     const t = key[0], id = key.slice(2);
@@ -155,6 +157,7 @@
     return key;
   }
   function val(row, key) {
+    if (key === 'rank') return row.rank;
     if (key === 'score') return row.score;
     if (key === 'name') return row.p.name;
     const t = key[0], id = key.slice(2);
@@ -181,7 +184,7 @@
       const sts = META.stats.filter(s => s.group === g.id);
       return sts.length ? `<optgroup label="${esc(g.name)}${t === 'p' ? ' (points)' : ''}">${sts.map(s => `<option value="${t}:${s.id}">${esc(s.label)}${t === 'p' ? ' pts' : ''}</option>`).join('')}</optgroup>` : '';
     }).join('');
-    return `<optgroup label="Overall"><option value="score">Total score</option><option value="name">Name</option></optgroup>
+    return `<optgroup label="Overall"><option value="rank">Rank</option><option value="score">Total score</option><option value="name">Name</option></optgroup>
       <optgroup label="Game points">${META.groups.map(g => `<option value="g:${g.id}">${esc(g.name)} pts</option>`).join('')}</optgroup>${stat('s')}${stat('p')}`;
   }
   function setOps(field) {
@@ -198,7 +201,7 @@
     onCfg(); return true;
   }
   function renderTry() {
-    const tries = [['s:achievement_points', '>', 25000], ['s:quests', '>', 50000], ['s:sw_experience', '>', 200000], ['score', '>', 100]].filter(([f]) => f === 'score' || ST[f.slice(2)]);
+    const tries = [['s:achievement_points', '>', 25000], ['s:quests', '>', 50000], ['s:sw_experience', '>', 200000], ['score', '>', 100], ['rank', '<=', 100]].filter(([f]) => f === 'score' || f === 'rank' || ST[f.slice(2)]);
     $('ff-try').innerHTML = 'Try: ' + tries.map(([f, o, v], i) => `<button type="button" data-try="${i}">${esc(keyLabel(f))} ${OP_LABEL[o]} ${fmt(v)}</button>`).join('');
     $('ff-try').onclick = (e) => { const b = e.target.closest('[data-try]'); if (b) { const [f, o, v] = tries[+b.dataset.try]; addFilter(f, o, v); } };
   }
@@ -213,11 +216,11 @@
     const rows = sortedRows();
     const { key, dir } = CFG.sort;
     const th = (k, label, cls = 'r') => `<th class="${cls}${key === k ? ' sorted' + (dir === 1 ? ' asc' : '') : ''}" data-key="${k}">${esc(label)}</th>`;
-    $('bd-thead').innerHTML = `<tr><th class="rank" style="width:56px;">#</th>${th('name', 'Player', '')}${th('score', 'Score')}${CFG.cols.filter(c => c !== 'score').map(c => th(c, keyLabel(c))).join('')}</tr>`;
+    $('bd-thead').innerHTML = `<tr><th class="rank${key === 'rank' ? ' sorted' + (dir === 1 ? ' asc' : '') : ''}" data-key="rank" style="width:56px;">#</th>${th('name', 'Player', '')}${th('score', 'Score')}${CFG.cols.filter(c => c !== 'score').map(c => th(c, keyLabel(c))).join('')}</tr>`;
     const cols = CFG.cols.filter(c => c !== 'score');
     $('bd-tbody').innerHTML = rows.slice(0, shown).map((r, i) => {
-      const href = `?player=${encodeURIComponent(r.p.name)}`, pod = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
-      return `<tr class="player-row" data-name="${esc(r.p.name)}"><td style="text-align:center;"><span class="rank ${pod}">${i + 1}</span></td>
+      const href = `?player=${encodeURIComponent(r.p.name)}`, pod = r.rank === 1 ? 'rank-1' : r.rank === 2 ? 'rank-2' : r.rank === 3 ? 'rank-3' : '';
+      return `<tr class="player-row" data-name="${esc(r.p.name)}"><td style="text-align:center;"><span class="rank ${pod}">${r.rank}</span></td>
         <td><div class="rk-who"><img class="player-avatar" src="${avatarSrc(r.p.name)}" alt="" loading="lazy" onerror="${onErr(r.p.uuid)}">${nameHTML(r.p, href)}</div></td>
         <td class="r rk-num ap-cell">${num(r.score)}</td>${cols.map(c => colCell(r, c)).join('')}</tr>`;
     }).join('') || `<tr><td colspan="${3 + cols.length}" class="rk-off" style="margin:0;padding:34px;"><strong>No players match</strong>Loosen or remove a filter.</td></tr>`;
@@ -306,6 +309,17 @@
     if (popType && !e.composedPath().includes(pop)) closePop();
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && popType) closePop(); });
+  /* keyboard shortcuts: / search, Esc blur, 1 2 3 switch tabs */
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable;
+    if (e.key === 'Escape') { if (typing) e.target.blur(); return; }
+    if (typing) return;
+    if (e.key === '/') { e.preventDefault(); (S.tab === 'compare' ? $('cmp-a') : $('top-search-input')).focus(); }
+    else if (e.key === '1') showTab('board');
+    else if (e.key === '2') showTab('player');
+    else if (e.key === '3') showTab('compare');
+  });
 
   /* ================= board wiring ================= */
   $('bd-add').addEventListener('click', () => { $('bd-form').classList.toggle('hidden'); if (!$('bd-form').classList.contains('hidden')) $('ff-val').focus(); });
@@ -320,7 +334,7 @@
   $('bd-thead').addEventListener('click', (e) => {
     const th = e.target.closest('th[data-key]'); if (!th) return;
     const k = th.dataset.key;
-    CFG.sort = { key: k, dir: CFG.sort.key === k ? -CFG.sort.dir : (k === 'name' ? 1 : -1) };
+    CFG.sort = { key: k, dir: CFG.sort.key === k ? -CFG.sort.dir : (k === 'name' || k === 'rank' ? 1 : -1) };
     store.set('litstats_rank_cfg', CFG); renderBoard();
   });
   $('bd-more').addEventListener('click', () => { shown += PAGE; renderBoard(); });
