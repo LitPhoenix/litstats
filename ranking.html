@@ -40,6 +40,14 @@
     </div>
   </div>
 
+  <div class="shortcuts-panel">
+    <div class="shortcut-item"><kbd>/</kbd> Search</div>
+    <div class="shortcut-item"><kbd>Esc</kbd> Escape</div>
+    <div class="shortcut-item"><kbd>1</kbd> Leaderboard</div>
+    <div class="shortcut-item"><kbd>2</kbd> Player</div>
+    <div class="shortcut-item"><kbd>3</kbd> Compare</div>
+  </div>
+
   <div id="errorBox" class="loading-msg hidden" style="color: var(--red); text-align: center; margin: 16px auto;"></div>
 
   <div class="tabs rk-tabs">
@@ -52,6 +60,7 @@
 
   <!-- ============ LEADERBOARD ============ -->
   <section id="panel-board">
+    <div class="section-header"><span class="section-title">Global Ranking</span><span class="section-hint">Click column headers to sort ↑↓</span></div>
     <div class="rk-off hidden" id="board-off"><strong>Rankings aren't connected yet</strong><span id="board-off-msg">The ranking pool needs the Redis database on the API project.</span></div>
     <div id="board-ui" class="hidden">
       <div class="rk-bar-row">
@@ -86,6 +95,7 @@
 
   <!-- ============ PLAYER ============ -->
   <section id="panel-player" class="hidden">
+    <div class="section-header"><span class="section-title">Player Breakdown</span></div>
     <div id="pl-empty" class="rk-off"><strong>Look up a player</strong>Search a username above to see their score, where they stand and every stat behind it.</div>
     <div id="pl-content" class="hidden">
       <div class="profile-card">
@@ -139,6 +149,7 @@
 
   <!-- ============ COMPARE ============ -->
   <section id="panel-compare" class="hidden">
+    <div class="section-header"><span class="section-title">Head to Head</span></div>
     <div class="rk-cmp-inputs">
       <div class="search-wrapper"><input type="text" id="cmp-a" placeholder="Player 1" autocomplete="off"></div>
       <span class="rk-vs">vs</span>
