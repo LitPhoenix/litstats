@@ -305,6 +305,7 @@ const CustomChallengeTrackers = {
 
 const TAG_DB = {
   "Untouched": { type: "Broken", tip: "Obtainable on Dwarven, Nordic, Outback and Jungle, if these maps don't work, try leave a game you know your team will win, or eat a gapple before your absorption ends when the walls fall" },
+  "[Duels] Shut Down": { type: "Broken", tip: "Currently broken" },
   "Hot Potato": { type: "Secret", desc: "Pass the hot potato after fishing it" },
   "Main Lobby: Keep Quiet": { type: "Secret", desc: "Talk to Albus, the librarian", tip: "Go to 143 66 -31 and sneak click the NPC three times" },
   "Main Lobby: Code Breaker": { type: "Secret", desc: "Enter the code into the vault", tip: "Enter the 3 part code at (-33 16 90). Numbers #1) sneak click 3x at the Librarian #2) catch a secret fish and hover over it in chat #3) chest at 208 37 -158." },
