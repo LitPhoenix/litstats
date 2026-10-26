@@ -53,6 +53,8 @@ th.sorted::after { content: ' ↓'; color: var(--accent); }
 th.sorted.asc::after { content: ' ↑'; }
 .rk-who { display: flex; align-items: center; gap: 10px; }
 .rk-who .player-avatar { height: 64px; width: 64px; border-radius: 6px; filter: none; }
+.rk-who .player-avatar:hover,
+.rk-cmp-card .player-avatar:hover { transform: none; }
 .rk-statcell { display: flex; align-items: center; gap: 10px; }
 .rk-more { display: block; margin: 14px auto 0; padding: 8px 22px; }
 td .rk-pct { display: flex; align-items: center; gap: 8px; }
@@ -76,6 +78,19 @@ td .rk-pct em { font-style: normal; width: 3.6em; text-align: right; color: var(
 /* Compare */
 .rk-cmp-inputs { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin-bottom: 18px; }
 .rk-cmp-inputs .search-wrapper { flex: 1; max-width: 300px; min-width: 150px; }
+.rk-cmp-inputs input {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+.rk-cmp-inputs input:focus { border-color: var(--accent); }
 .rk-vs { color: var(--text-3); font-weight: 700; font-size: 13px; }
 .rk-go { height: 40px; padding: 0 22px; }
 .rk-cmp-head { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
