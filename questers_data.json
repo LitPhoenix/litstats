@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-26T02:13:14.639Z",
+  "last_update": "2026-10-26T09:29:25.513Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -562,9 +562,9 @@
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_quests": 32374,
+          "current_quests": 32378,
           "last_month_quests": 32183,
-          "monthly_gain": 191
+          "monthly_gain": 195
         },
         {
           "username": "Dadje",
@@ -1112,15 +1112,15 @@
     },
     {
       "country": "Peru",
-      "score": 5240,
+      "score": 5240.6,
       "top_players": [
         {
           "username": "hollystormz",
           "uuid": "141e5144694046eaa7e536ed70cc1595",
           "country": "Peru",
-          "current_quests": 26200,
+          "current_quests": 26203,
           "last_month_quests": 26143,
-          "monthly_gain": 57
+          "monthly_gain": 60
         }
       ]
     },

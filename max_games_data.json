@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-26T02:13:14.669Z",
+ "last_update": "2026-10-26T09:29:25.544Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-26T02:13:14.245Z",
+ "source_update": "2026-10-26T09:29:25.294Z",
  "catalog": [
   {
    "id": "uhc",
@@ -680,11 +680,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -3056,11 +3056,11 @@
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
+     "uuid": "8eb18a9227fb4b36947177babab261cd",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
-     "uuid": "8eb18a9227fb4b36947177babab261cd",
+     "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
      "firstSeen": "2026-10-06T02:17:57.433Z"
     },
     {
@@ -4719,21 +4719,21 @@
    "rankPlusColor": "LIGHT_PURPLE",
    "monthlyRankColor": "AQUA"
   },
+  "8eb18a9227fb4b36947177babab261cd": {
+   "uuid": "8eb18a9227fb4b36947177babab261cd",
+   "username": "kipanator",
+   "country": "USA",
+   "ap": 26355,
+   "rank": "MVP++",
+   "rankPlusColor": "DARK_BLUE",
+   "monthlyRankColor": "GOLD"
+  },
   "1f15c58cdf3c419bba39b89e256d8a86": {
    "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
    "username": "Chevio",
    "country": "Norway",
    "ap": 26345,
    "rank": "MVP+",
-   "rankPlusColor": "DARK_BLUE",
-   "monthlyRankColor": "GOLD"
-  },
-  "8eb18a9227fb4b36947177babab261cd": {
-   "uuid": "8eb18a9227fb4b36947177babab261cd",
-   "username": "kipanator",
-   "country": "USA",
-   "ap": 26340,
-   "rank": "MVP++",
    "rankPlusColor": "DARK_BLUE",
    "monthlyRankColor": "GOLD"
   },
@@ -5530,7 +5530,7 @@
    "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
    "username": "hjx",
    "country": "USA",
-   "ap": 27495,
+   "ap": 27520,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
