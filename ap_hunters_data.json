@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-25T23:42:27.671Z",
+  "last_update": "2026-10-26T02:13:14.245Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -643,10 +643,18 @@
           "username": "sirumair9505",
           "uuid": "77edb6fda6ef4097914ddc698242fe04",
           "country": "USA",
-          "current_ap": 27800,
+          "current_ap": 27780,
           "last_month_ap": 27800,
-          "monthly_gain": 0,
-          "maxGames": []
+          "monthly_gain": -20,
+          "maxGames": [
+            "Max Cops and Crims",
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Build Battle"
+          ]
         },
         {
           "username": "gardenavenue",
@@ -784,9 +792,9 @@
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
-          "current_ap": 26380,
+          "current_ap": 26410,
           "last_month_ap": 26320,
-          "monthly_gain": 60,
+          "monthly_gain": 90,
           "maxGames": [
             "Max Paintball",
             "Max Speed UHC",
