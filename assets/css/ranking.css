@@ -3,6 +3,22 @@
 .rk-wrap { width: 100%; max-width: 1200px; margin: 0; }
 .rk-tabs { align-self: flex-start; margin: 18px 0 22px; }
 #rk-lookup { justify-content: flex-start; margin-bottom: 14px; }
+/* page is a centered flex column: stretch full-width blocks so title, text and shortcuts line up left with the table */
+main > .hero, main > .shortcuts-panel, main > .top-lookup-bar, main > .rk-wrap { align-self: stretch; width: 100%; box-sizing: border-box; text-align: left; }
+.shortcuts-panel { justify-content: flex-start; }
+
+/* multi-select rank dropdown */
+.rk-multi { position: relative; }
+.rk-multi > summary { list-style: none; cursor: pointer; display: flex; align-items: center; height: 32px; padding: 0 12px; min-width: 190px; max-width: 320px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 13px; font-weight: 600; }
+.rk-multi > summary::-webkit-details-marker { display: none; }
+.rk-multi > summary::after { content: '▾'; margin-left: auto; padding-left: 10px; color: var(--text-3); }
+.rk-multi[open] > summary { border-color: var(--accent); }
+.rk-multi-list { position: absolute; z-index: 30; top: calc(100% + 6px); left: 0; min-width: 240px; max-height: 300px; overflow-y: auto; padding: 6px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%); box-shadow: var(--shadow); }
+.rk-opt { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.rk-opt:hover { background: var(--surface-2); }
+.rk-opt input { accent-color: var(--accent); width: 15px; height: 15px; }
+.rk-opt span { flex: 1; }
+.rk-opt em { font-style: normal; font-size: 11px; color: var(--text-3); }
 .rk-muted { font-size: 12px; color: var(--text-3); }
 .rk-off { max-width: 520px; margin: 48px auto; text-align: center; color: var(--text-3); line-height: 1.55; font-size: 14px; }
 .rk-off strong { display: block; color: var(--text-2); font-size: 16px; margin-bottom: 6px; }
@@ -31,7 +47,7 @@ body.light-theme .rk-name-link.ranked { filter: brightness(.78) saturate(1.15); 
 .rk-input:focus { border-color: var(--accent); }
 
 /* Filter builder + chips */
-.rk-filterform { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(16px); }
+.rk-filterform { position: relative; z-index: 40; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px; margin-bottom: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(16px); }
 .rk-filterform .todo-select { max-width: 260px; }
 .rk-try { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--text-3); }
 .rk-try button { padding: 3px 10px; border-radius: 999px; border: 1px dashed var(--border); background: transparent; color: var(--text-2); font: inherit; font-size: 12px; cursor: pointer; }
@@ -45,7 +61,9 @@ body.light-theme .rk-name-link.ranked { filter: brightness(.78) saturate(1.15); 
 .rk-chip.clear { border-style: dashed; border-color: var(--border); background: transparent; color: var(--text-3); padding: 4px 12px; cursor: pointer; }
 
 /* Tables */
-.rk-scroll { overflow-x: auto; }
+/* clip (not scroll) so the 4px row-hover shift never makes a scrollbar; real scrolling only on narrow screens */
+.rk-scroll { overflow-x: clip; }
+@media (max-width: 900px) { .rk-scroll { overflow-x: auto; } }
 .rk-scroll table { width: 100%; min-width: 640px; }
 th.r, td.r { text-align: right; }
 th[data-key], th[data-sort] { cursor: pointer; user-select: none; white-space: nowrap; }
@@ -53,7 +71,7 @@ th[data-key]:hover, th[data-sort]:hover { color: var(--text); }
 th.sorted::after { content: ' ↓'; color: var(--accent); }
 th.sorted.asc::after { content: ' ↑'; }
 .rk-who { display: flex; align-items: center; gap: 10px; }
-.rk-who .player-avatar { height: 28px; width: 28px; border-radius: 4px; object-fit: cover; filter: none; background: var(--surface-2); }
+.rk-who .player-avatar { height: 28px; width: 28px; border-radius: 2px; object-fit: cover; filter: none; background: var(--surface-2); }
 /* no pop-out on hover inside the scroll wrapper (it triggers a scrollbar) */
 .rk-who .player-avatar:hover, .rk-cmp-card .player-avatar:hover { transform: none; }
 .rk-statcell { display: flex; align-items: center; gap: 10px; }
