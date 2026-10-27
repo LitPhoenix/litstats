@@ -40,7 +40,7 @@
   })();
   const PRESETS = {
     'Default': {},
-    'Competitive PvP': { bedwars: 2, skywars: 2, duels: 2, megawalls: 1.5, blitz: 1, uhc: 1, speeduhc: 1, warlords: 1, smash: 1, network: 0.5, arcade: 0.25, tnt: 0.25, buildbattle: 0.25, murdermystery: 0.5, vampirez: 0.25, quake: 0.25, paintball: 0.25, arena: 0.5, walls: 0.5, cvc: 0.5, tkr: 0.1 },
+    'Competitive PvP': { bedwars: 2, skywars: 2, duels: 2, megawalls: 1.5, blitz: 1.5, uhc: 1.5, speeduhc: 0.8, warlords: 1, smash: 0.8, network: 0.5, arcade: 0.25, tnt: 0.25, buildbattle: 0.25, murdermystery: 0.25, vampirez: 0.25, quake: 0.25, paintball: 0.25, arena: 0.5, walls: 1, cvc: 0.5, tkr: 0.1 },
     'Achievement hunter': { network: 3, bedwars: 0.5, skywars: 0.5, duels: 0.5 },
     'Minigames': { arcade: 2, tnt: 2, buildbattle: 1.5, quake: 1.5, paintball: 1.5, arena: 1.5, walls: 1.5, vampirez: 1.5, tkr: 1.5, bedwars: 0.5, skywars: 0.5, duels: 0.5, megawalls: 0.5, network: 0.5 },
     'Ignore network stats': { network: 0 },
@@ -146,7 +146,13 @@
   };
 
   /* ================= keys, filters, sorting ================= */
+  const RANK_ORDER = ['OWNER', 'ADMIN', 'MODERATOR', 'HELPER', 'GAME_MASTER', 'YOUTUBER', 'SUPERSTAR', 'MVP_PLUS_PLUS', 'MVP_PLUS', 'MVP', 'VIP_PLUS', 'VIP', 'NON'];
+  const RANK_NAMES = { OWNER: 'Owner', ADMIN: 'Admin', MODERATOR: 'Moderator', HELPER: 'Helper', GAME_MASTER: 'Game Master', YOUTUBER: 'YouTube', SUPERSTAR: 'MVP++', MVP_PLUS_PLUS: 'MVP++', MVP_PLUS: 'MVP+', MVP: 'MVP', VIP_PLUS: 'VIP+', VIP: 'VIP', NON: 'No rank' };
+  const hrankOf = (p) => (!p.rank || p.rank === 'NORMAL' ? 'NON' : p.rank);
+  const rankLabel = (k) => RANK_NAMES[k] || String(k).replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  const rankSort = (k) => (k === 'NON' ? 999 : RANK_ORDER.indexOf(k) < 0 ? 500 : RANK_ORDER.indexOf(k));
   function keyLabel(key) {
+    if (key === 'hrank') return 'Hypixel rank';
     if (key === 'rank') return 'Rank';
     if (key === 'score') return 'Score';
     if (key === 'name') return 'Name';
@@ -158,6 +164,7 @@
   }
   function val(row, key) {
     if (key === 'rank') return row.rank;
+    if (key === 'hrank') return hrankOf(row.p);
     if (key === 'score') return row.score;
     if (key === 'name') return row.p.name;
     const t = key[0], id = key.slice(2);
@@ -166,9 +173,9 @@
     if (t === 'p') return row.pts[id] || 0;
     return 0;
   }
-  const OPS = { '>': (a, b) => a > b, '>=': (a, b) => a >= b, '<': (a, b) => a < b, '<=': (a, b) => a <= b, '=': (a, b) => a === b, '!=': (a, b) => a !== b,
+  const OPS = { 'in': (a, b) => b.includes(a), '!in': (a, b) => !b.includes(a), '>': (a, b) => a > b, '>=': (a, b) => a >= b, '<': (a, b) => a < b, '<=': (a, b) => a <= b, '=': (a, b) => a === b, '!=': (a, b) => a !== b,
     'contains': (a, b) => String(a).toLowerCase().includes(String(b).toLowerCase()), '!contains': (a, b) => !String(a).toLowerCase().includes(String(b).toLowerCase()) };
-  const OP_LABEL = { '>': '>', '>=': '≥', '<': '<', '<=': '≤', '=': '=', '!=': '≠', 'contains': 'contains', '!contains': 'does not contain' };
+  const OP_LABEL = { 'in': 'is any of', '!in': 'is not any of', '>': '>', '>=': '≥', '<': '<', '<=': '≤', '=': '=', '!=': '≠', 'contains': 'contains', '!contains': 'does not contain' };
   const passes = (row) => CFG.filters.every(f => OPS[f.op](val(row, f.f), f.v));
   function sortedRows() {
     const { key, dir } = CFG.sort;
@@ -184,14 +191,36 @@
       const sts = META.stats.filter(s => s.group === g.id);
       return sts.length ? `<optgroup label="${esc(g.name)}${t === 'p' ? ' (points)' : ''}">${sts.map(s => `<option value="${t}:${s.id}">${esc(s.label)}${t === 'p' ? ' pts' : ''}</option>`).join('')}</optgroup>` : '';
     }).join('');
-    return `<optgroup label="Overall"><option value="rank">Rank</option><option value="score">Total score</option><option value="name">Name</option></optgroup>
+    return `<optgroup label="Overall"><option value="score">Total score</option><option value="name">Name</option><option value="hrank">Hypixel rank</option></optgroup>
       <optgroup label="Game points">${META.groups.map(g => `<option value="g:${g.id}">${esc(g.name)} pts</option>`).join('')}</optgroup>${stat('s')}${stat('p')}`;
   }
+  function buildRankPicker() {
+    const counts = {}, sample = {};
+    ROWS.forEach(r => { const k = hrankOf(r.p); counts[k] = (counts[k] || 0) + 1; sample[k] = sample[k] || r.p; });
+    $('ff-ranks-list').innerHTML = Object.keys(counts).sort((x, y) => rankSort(x) - rankSort(y)).map(k => {
+      const c = typeof getRankBaseColourHex === 'function' && k !== 'NON' ? getRankBaseColourHex(sample[k].rank, sample[k].monthlyRankColor) : '';
+      return `<label class="rk-opt"><input type="checkbox" value="${esc(k)}"><span style="${c && c.startsWith('#') ? `color:${c}` : ''}">${esc(rankLabel(k))}</span><em>${counts[k].toLocaleString()}</em></label>`;
+    }).join('');
+  }
+  const pickedRanks = () => [...document.querySelectorAll('#ff-ranks-list input:checked')].map(i => i.value);
   function setOps(field) {
-    const isName = field === 'name';
-    $('ff-op').innerHTML = isName ? `<option value="contains">contains</option><option value="!contains">does not contain</option>`
+    const isName = field === 'name', isRank = field === 'hrank';
+    $('ff-op').innerHTML = isRank ? `<option value="in">is any of</option><option value="!in">is not any of</option>`
+      : isName ? `<option value="contains">contains</option><option value="!contains">does not contain</option>`
       : `<option value=">">is greater than</option><option value=">=">is at least</option><option value="<">is less than</option><option value="<=">is at most</option><option value="=">equals</option><option value="!=">does not equal</option>`;
+    $('ff-val').classList.toggle('hidden', isRank);
+    $('ff-ranks').classList.toggle('hidden', !isRank);
+    if (isRank) buildRankPicker();
     $('ff-val').placeholder = isName ? 'part of a name' : '25000  or  25k';
+  }
+  function addRankFilter(op) {
+    const picked = pickedRanks();
+    if (!picked.length) { $('ff-ranks-sum').style.borderColor = 'var(--red)'; return; }
+    const ex = CFG.filters.find(f => f.f === 'hrank' && f.op === op);
+    if (ex) ex.v = [...new Set([...ex.v, ...picked])]; else CFG.filters.push({ f: 'hrank', op, v: picked });
+    document.querySelectorAll('#ff-ranks-list input').forEach(i => { i.checked = false; });
+    $('ff-ranks-sum').textContent = 'Choose ranks'; $('ff-ranks').open = false;
+    onCfg();
   }
   function addFilter(f, op, raw) {
     const v = op.includes('contains') ? String(raw).trim() : parseVal(raw);
@@ -201,15 +230,15 @@
     onCfg(); return true;
   }
   function renderTry() {
-    const tries = [['s:achievement_points', '>', 25000], ['s:quests', '>', 50000], ['s:sw_experience', '>', 200000], ['score', '>', 100], ['rank', '<=', 100]].filter(([f]) => f === 'score' || f === 'rank' || ST[f.slice(2)]);
+    const tries = [['s:achievement_points', '>', 25000], ['s:quests', '>', 50000], ['s:sw_experience', '>', 200000], ['score', '>', 100]].filter(([f]) => f === 'score' || ST[f.slice(2)]);
     $('ff-try').innerHTML = 'Try: ' + tries.map(([f, o, v], i) => `<button type="button" data-try="${i}">${esc(keyLabel(f))} ${OP_LABEL[o]} ${fmt(v)}</button>`).join('');
     $('ff-try').onclick = (e) => { const b = e.target.closest('[data-try]'); if (b) { const [f, o, v] = tries[+b.dataset.try]; addFilter(f, o, v); } };
   }
   function renderChips() {
-    const chips = CFG.filters.map((f, i) => `<span class="rk-chip">${esc(keyLabel(f.f))} <b>${OP_LABEL[f.op]}</b> ${typeof f.v === 'number' ? fmt(f.v) : esc(f.v)}<button type="button" data-rm="${i}" aria-label="Remove filter">✕</button></span>`).join('');
+    const chips = CFG.filters.map((f, i) => `<span class="rk-chip">${esc(keyLabel(f.f))} <b>${OP_LABEL[f.op]}</b> ${Array.isArray(f.v) ? esc(f.v.map(rankLabel).join(', ')) : typeof f.v === 'number' ? fmt(f.v) : esc(f.v)}<button type="button" data-rm="${i}" aria-label="Remove filter">✕</button></span>`).join('');
     $('bd-chips').innerHTML = chips + (CFG.filters.length > 1 ? `<span class="rk-chip clear" data-clear="1">Clear all</span>` : '');
   }
-  function colCell(row, key) { const v = val(row, key); return `<td class="r rk-num">${num(v)}</td>`; }
+  function colCell(row, key) { const v = val(row, key); return `<td class="r rk-num">${v ? num(v) : '<span class="rk-dim">–</span>'}</td>`; }
   function renderBoard() {
     if (!POOL.loaded) return;
     renderChips();
@@ -324,7 +353,12 @@
   /* ================= board wiring ================= */
   $('bd-add').addEventListener('click', () => { $('bd-form').classList.toggle('hidden'); if (!$('bd-form').classList.contains('hidden')) $('ff-val').focus(); });
   $('ff-field').addEventListener('change', (e) => setOps(e.target.value));
-  const submitFilter = () => { if (addFilter($('ff-field').value, $('ff-op').value, $('ff-val').value)) $('ff-val').value = ''; };
+  const submitFilter = () => {
+    if ($('ff-field').value === 'hrank') return addRankFilter($('ff-op').value);
+    if (addFilter($('ff-field').value, $('ff-op').value, $('ff-val').value)) $('ff-val').value = '';
+  };
+  $('ff-ranks-list').addEventListener('change', () => { const p = pickedRanks(); $('ff-ranks-sum').textContent = p.length ? p.map(rankLabel).join(', ') : 'Choose ranks'; $('ff-ranks-sum').style.borderColor = ''; });
+  document.addEventListener('click', (e) => { const d = $('ff-ranks'); if (d.open && !d.contains(e.target)) d.open = false; });
   $('ff-add').addEventListener('click', submitFilter);
   $('ff-val').addEventListener('keydown', (e) => { if (e.key === 'Enter') submitFilter(); });
   $('bd-chips').addEventListener('click', (e) => {
