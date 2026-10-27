@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-26T22:04:32.981Z",
+  "last_update": "2026-10-27T02:49:35.229Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -674,9 +674,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 27520,
+          "current_ap": 27525,
           "last_month_ap": 27120,
-          "monthly_gain": 400,
+          "monthly_gain": 405,
           "maxGames": [
             "Max Arcade",
             "Max Murder Mystery",
@@ -1339,7 +1339,7 @@
     },
     {
       "country": "UK",
-      "score": 10037,
+      "score": 10038,
       "top_players": [
         {
           "username": "greaneye",
@@ -1423,9 +1423,9 @@
           "username": "Evdia",
           "uuid": "aad6a2754e9c4744bd335213853f023f",
           "country": "UK",
-          "current_ap": 29100,
+          "current_ap": 29110,
           "last_month_ap": 29100,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Mega Walls",
             "Max Blitz",
@@ -1573,9 +1573,9 @@
           "username": "Woomy",
           "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
           "country": "UK",
-          "current_ap": 23550,
+          "current_ap": 23560,
           "last_month_ap": 23535,
-          "monthly_gain": 15,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -3128,10 +3128,12 @@
           "username": "22charizard",
           "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
           "country": "Unknown",
-          "current_ap": 23390,
+          "current_ap": 23395,
           "last_month_ap": 23395,
-          "monthly_gain": -5,
-          "maxGames": []
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Pit"
+          ]
         },
         {
           "username": "corbr",
@@ -3140,7 +3142,10 @@
           "current_ap": 23375,
           "last_month_ap": 23375,
           "monthly_gain": 0,
-          "maxGames": []
+          "maxGames": [
+            "Max Warlords",
+            "Max VampireZ"
+          ]
         }
       ]
     },
