@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-27T09:26:30.080Z",
+  "last_update": "2026-10-27T15:37:19.817Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -106,7 +106,8 @@
     "6119d70a8a724f2aa2ded280a8cf58bb": 0,
     "e2bf0a2f2cf24fc29512511ddc10201a": 0,
     "b12c6b822faa4ebfaab429982dab58ed": 0,
-    "4b48e58c5304407ab8c761fbe125ff3b": 0
+    "4b48e58c5304407ab8c761fbe125ff3b": 0,
+    "122b0820a213425a8ddf4fc4cf2a1f13": 29653
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
@@ -340,7 +341,7 @@
     },
     {
       "country": "Poland",
-      "score": 28433.4,
+      "score": 24081.4,
       "top_players": [
         {
           "username": "huntz",
@@ -364,14 +365,6 @@
           "country": "Poland",
           "current_quests": 24987,
           "last_month_quests": 24987,
-          "monthly_gain": 0
-        },
-        {
-          "username": "BluPlays",
-          "uuid": "2ad002d5144a413e9de436f5dc766651",
-          "country": "Poland",
-          "current_quests": 21760,
-          "last_month_quests": 21760,
           "monthly_gain": 0
         }
       ]
@@ -946,8 +939,16 @@
     },
     {
       "country": "Unknown",
-      "score": 26996.8,
+      "score": 27942,
       "top_players": [
+        {
+          "username": "duonk",
+          "uuid": "122b0820a213425a8ddf4fc4cf2a1f13",
+          "country": "Unknown",
+          "current_quests": 29653,
+          "last_month_quests": 29653,
+          "monthly_gain": 0
+        },
         {
           "username": "Rayjer",
           "uuid": "ac97442ca125422cbd72ae60cdd8340f",
@@ -1038,7 +1039,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 14845.6,
+      "score": 14849.2,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1052,9 +1053,9 @@
           "username": "iiris",
           "uuid": "bf6b32ef38934d9e90b8a1037e16b972",
           "country": "The Netherlands",
-          "current_quests": 24205,
+          "current_quests": 24223,
           "last_month_quests": 23927,
-          "monthly_gain": 278
+          "monthly_gain": 296
         },
         {
           "username": "Th3three",

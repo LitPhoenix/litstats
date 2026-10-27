@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-27T09:26:29.798Z",
+  "last_update": "2026-10-27T15:37:19.399Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -213,7 +213,8 @@
     "c82a204b300f4b88888e4ab79e44920b": 0,
     "c185afbbd692431a906131448e693f19": 0,
     "e4447d2895924f76986ac1ba4dcf183c": 0,
-    "44e6b626db3443ba8f06a6c41659d284": 23375
+    "44e6b626db3443ba8f06a6c41659d284": 23375,
+    "122b0820a213425a8ddf4fc4cf2a1f13": 23870
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -437,7 +438,6 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -468,7 +468,6 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -518,7 +517,6 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
-            "Max SkyBlock",
             "Max Warlords",
             "Max Walls",
             "Max TNT Games",
@@ -542,7 +540,6 @@
             "Max Pit",
             "Max SkyWars",
             "Max Quake",
-            "Max SkyBlock",
             "Max TNT Games",
             "Max Murder Mystery",
             "Max VampireZ",
@@ -720,7 +717,6 @@
           "maxGames": [
             "Max Blitz",
             "Max Cops and Crims",
-            "Max SkyBlock",
             "Max Murder Mystery",
             "Max VampireZ",
             "Max TKR",
@@ -748,7 +744,6 @@
           "last_month_ap": 26840,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max Warlords",
             "Max Arcade",
             "Max Murder Mystery",
@@ -767,7 +762,6 @@
           "last_month_ap": 26725,
           "monthly_gain": -20,
           "maxGames": [
-            "Max SkyBlock",
             "Max VampireZ",
             "Max TKR",
             "Max Duels"
@@ -782,7 +776,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Blitz",
-            "Max SkyBlock",
             "Max Arcade",
             "Max Wool Games",
             "Max Duels"
@@ -865,7 +858,6 @@
             "Max Arena Brawl",
             "Max Smash Heroes",
             "Max Paintball",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max VampireZ",
@@ -893,7 +885,6 @@
           "last_month_ap": 25515,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max TKR"
           ]
         },
@@ -905,7 +896,6 @@
           "last_month_ap": 25105,
           "monthly_gain": 90,
           "maxGames": [
-            "Max SkyBlock",
             "Max Arcade",
             "Max Wool Games",
             "Max Duels"
@@ -999,7 +989,6 @@
           "maxGames": [
             "Max Smash Heroes",
             "Max Quake",
-            "Max SkyBlock",
             "Max TKR"
           ]
         },
@@ -1112,7 +1101,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Pit",
-            "Max SkyBlock",
             "Max VampireZ"
           ]
         },
@@ -1151,7 +1139,6 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -1212,7 +1199,6 @@
           "last_month_ap": 28745,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Walls",
             "Max Murder Mystery",
@@ -1263,7 +1249,6 @@
           "monthly_gain": 10,
           "maxGames": [
             "Max Blitz",
-            "Max SkyBlock",
             "Max VampireZ",
             "Max TKR"
           ]
@@ -1378,7 +1363,6 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -1429,7 +1413,6 @@
           "maxGames": [
             "Max Mega Walls",
             "Max Blitz",
-            "Max SkyBlock",
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
@@ -1473,7 +1456,6 @@
           "last_month_ap": 25945,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
@@ -1564,7 +1546,6 @@
           "last_month_ap": 24020,
           "monthly_gain": 95,
           "maxGames": [
-            "Max SkyBlock",
             "Max Murder Mystery",
             "Max Duels"
           ]
@@ -1678,7 +1659,6 @@
           "monthly_gain": 30,
           "maxGames": [
             "Max Quake",
-            "Max SkyBlock",
             "Max Warlords",
             "Max VampireZ",
             "Max TKR",
@@ -1705,8 +1685,7 @@
           "last_month_ap": 25195,
           "monthly_gain": -20,
           "maxGames": [
-            "Max Pit",
-            "Max SkyBlock"
+            "Max Pit"
           ]
         },
         {
@@ -1759,7 +1738,6 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Smash Heroes",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max VampireZ",
             "Max TKR"
@@ -1773,8 +1751,7 @@
           "last_month_ap": 23605,
           "monthly_gain": 5,
           "maxGames": [
-            "Max Pit",
-            "Max SkyBlock"
+            "Max Pit"
           ]
         }
       ]
@@ -1799,7 +1776,6 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -1863,7 +1839,6 @@
             "Max Arena Brawl",
             "Max Paintball",
             "Max Quake",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -1887,7 +1862,6 @@
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -1932,8 +1906,7 @@
           "last_month_ap": 25520,
           "monthly_gain": 10,
           "maxGames": [
-            "Max Pit",
-            "Max SkyBlock"
+            "Max Pit"
           ]
         },
         {
@@ -2090,7 +2063,6 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -2177,7 +2149,6 @@
           "maxGames": [
             "Max Smash Heroes",
             "Max Paintball",
-            "Max SkyBlock",
             "Max Warlords",
             "Max TNT Games",
             "Max Arcade",
@@ -2209,7 +2180,6 @@
           "last_month_ap": 25445,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max Warlords"
           ]
         },
@@ -2217,9 +2187,9 @@
           "username": "tommy042001",
           "uuid": "7d96f585618f4b328d7ebdea16ca1d71",
           "country": "Germany",
-          "current_ap": 24220,
+          "current_ap": 24230,
           "last_month_ap": 23880,
-          "monthly_gain": 340,
+          "monthly_gain": 350,
           "maxGames": [
             "Max Pit",
             "Max Warlords",
@@ -2246,7 +2216,6 @@
             "Max Arena Brawl",
             "Max Smash Heroes",
             "Max Quake",
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -2350,7 +2319,6 @@
           "last_month_ap": 27810,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max Warlords",
             "Max VampireZ",
             "Max TKR",
@@ -2374,9 +2342,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_ap": 24060,
+          "current_ap": 24085,
           "last_month_ap": 23780,
-          "monthly_gain": 280,
+          "monthly_gain": 305,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2416,7 +2384,6 @@
           "last_month_ap": 27905,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max Speed UHC",
             "Max TKR"
           ]
@@ -2487,7 +2454,6 @@
           "last_month_ap": 28975,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max VampireZ",
             "Max TKR",
             "Max Wool Games",
@@ -2700,7 +2666,6 @@
           "last_month_ap": 26800,
           "monthly_gain": 30,
           "maxGames": [
-            "Max SkyBlock",
             "Max Wool Games",
             "Max Duels"
           ]
@@ -2817,7 +2782,6 @@
           "last_month_ap": 25415,
           "monthly_gain": 85,
           "maxGames": [
-            "Max SkyBlock",
             "Max Murder Mystery",
             "Max TKR",
             "Max Wool Games",
@@ -2982,7 +2946,6 @@
           "monthly_gain": 385,
           "maxGames": [
             "Max Pit",
-            "Max SkyBlock",
             "Max Warlords",
             "Max VampireZ"
           ]
@@ -3072,7 +3035,6 @@
           "last_month_ap": 24360,
           "monthly_gain": 5,
           "maxGames": [
-            "Max SkyBlock",
             "Max TKR",
             "Max Duels"
           ]
@@ -3086,6 +3048,17 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Paintball",
+            "Max VampireZ"
+          ]
+        },
+        {
+          "username": "duonk",
+          "uuid": "122b0820a213425a8ddf4fc4cf2a1f13",
+          "country": "Unknown",
+          "current_ap": 23870,
+          "last_month_ap": 23870,
+          "monthly_gain": 0,
+          "maxGames": [
             "Max VampireZ"
           ]
         },
@@ -3134,18 +3107,6 @@
           "maxGames": [
             "Max Pit"
           ]
-        },
-        {
-          "username": "corbr",
-          "uuid": "44e6b626db3443ba8f06a6c41659d284",
-          "country": "Unknown",
-          "current_ap": 23375,
-          "last_month_ap": 23375,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max VampireZ"
-          ]
         }
       ]
     },
@@ -3178,7 +3139,6 @@
           "last_month_ap": 26175,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max Wool Games",
             "Max Build Battle"
           ]
@@ -3311,7 +3271,6 @@
           "last_month_ap": 25890,
           "monthly_gain": 20,
           "maxGames": [
-            "Max SkyBlock",
             "Max Wool Games"
           ]
         }
@@ -3429,7 +3388,6 @@
           "last_month_ap": 25230,
           "monthly_gain": 0,
           "maxGames": [
-            "Max SkyBlock",
             "Max Murder Mystery",
             "Max Wool Games",
             "Max Duels",
