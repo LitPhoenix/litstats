@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-27T15:37:19.399Z",
+  "last_update": "2026-10-27T20:19:35.739Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -671,9 +671,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 27535,
+          "current_ap": 27550,
           "last_month_ap": 27120,
-          "monthly_gain": 415,
+          "monthly_gain": 430,
           "maxGames": [
             "Max Arcade",
             "Max Murder Mystery",
@@ -799,11 +799,12 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 26375,
+          "current_ap": 26400,
           "last_month_ap": 25965,
-          "monthly_gain": 410,
+          "monthly_gain": 435,
           "maxGames": [
             "Max Smash Heroes",
+            "Max Murder Mystery",
             "Max TKR",
             "Max Duels"
           ]
@@ -2410,21 +2411,21 @@
           ]
         },
         {
+          "username": "johnush",
+          "uuid": "81760cdc19964181a5c51ce17dd86597",
+          "country": "Israel",
+          "current_ap": 23830,
+          "last_month_ap": 23405,
+          "monthly_gain": 425,
+          "maxGames": []
+        },
+        {
           "username": "Slime",
           "uuid": "6056e9c1e8174c6e9a8e01830d8b803d",
           "country": "Israel",
           "current_ap": 23810,
           "last_month_ap": 23805,
           "monthly_gain": 5,
-          "maxGames": []
-        },
-        {
-          "username": "johnush",
-          "uuid": "81760cdc19964181a5c51ce17dd86597",
-          "country": "Israel",
-          "current_ap": 23805,
-          "last_month_ap": 23405,
-          "monthly_gain": 400,
           "maxGames": []
         },
         {
@@ -2500,7 +2501,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3584,
+      "score": 3586,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2537,9 +2538,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 26380,
+          "current_ap": 26390,
           "last_month_ap": 26235,
-          "monthly_gain": 145,
+          "monthly_gain": 155,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
