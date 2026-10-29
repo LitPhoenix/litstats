@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-29T07:47:08.001Z",
+  "last_update": "2026-10-29T20:45:43.517Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -327,15 +327,15 @@
     },
     {
       "country": "Croatia",
-      "score": 13004.4,
+      "score": 13011.8,
       "top_players": [
         {
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_quests": 65022,
+          "current_quests": 65059,
           "last_month_quests": 64019,
-          "monthly_gain": 1003
+          "monthly_gain": 1040
         }
       ]
     },
@@ -725,7 +725,7 @@
     },
     {
       "country": "Finland",
-      "score": 20095.4,
+      "score": 20110.8,
       "top_players": [
         {
           "username": "Mol_o",
@@ -739,17 +739,17 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_quests": 34777,
+          "current_quests": 34852,
           "last_month_quests": 33705,
-          "monthly_gain": 1072
+          "monthly_gain": 1147
         },
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_quests": 23786,
+          "current_quests": 23788,
           "last_month_quests": 23343,
-          "monthly_gain": 443
+          "monthly_gain": 445
         }
       ]
     },
