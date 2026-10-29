@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-28T20:41:41.698Z",
+  "last_update": "2026-10-29T01:22:45.888Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1325,7 +1325,7 @@
     },
     {
       "country": "UK",
-      "score": 10039,
+      "score": 10040,
       "top_players": [
         {
           "username": "greaneye",
@@ -1391,9 +1391,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29240,
+          "current_ap": 29250,
           "last_month_ap": 29100,
-          "monthly_gain": 140,
+          "monthly_gain": 150,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
@@ -1655,9 +1655,9 @@
           "username": "mm_dm",
           "uuid": "78a41722527449c38925f5914b005173",
           "country": "Canada",
-          "current_ap": 26240,
+          "current_ap": 26260,
           "last_month_ap": 26210,
-          "monthly_gain": 30,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Quake",
             "Max Warlords",
@@ -1903,9 +1903,9 @@
           "username": "Kinderfeest",
           "uuid": "f1c38498d6b74d7089313d2e3b2c28b2",
           "country": "The Netherlands",
-          "current_ap": 25530,
+          "current_ap": 25535,
           "last_month_ap": 25520,
-          "monthly_gain": 10,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Pit"
           ]
@@ -3148,15 +3148,15 @@
     },
     {
       "country": "Ukraine",
-      "score": 505,
+      "score": 525,
       "top_players": [
         {
           "username": "kawaiinex",
           "uuid": "11a41ffd6abc42f8b484e7534118a503",
           "country": "Ukraine",
-          "current_ap": 26140,
+          "current_ap": 26160,
           "last_month_ap": 26080,
-          "monthly_gain": 60,
+          "monthly_gain": 80,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",

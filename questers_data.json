@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-28T20:41:42.043Z",
+  "last_update": "2026-10-29T01:22:46.489Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111597,
     "289e9f90a76640e0921c85dcd96385b5": 85164,
@@ -1169,15 +1169,15 @@
     },
     {
       "country": "Hungary",
-      "score": 4955,
+      "score": 4974.8,
       "top_players": [
         {
           "username": "FlaashX",
           "uuid": "7afbca3f75d8494b8b6a381dfa18e16b",
           "country": "Hungary",
-          "current_quests": 24775,
+          "current_quests": 24874,
           "last_month_quests": 24775,
-          "monthly_gain": 0
+          "monthly_gain": 99
         }
       ]
     },
