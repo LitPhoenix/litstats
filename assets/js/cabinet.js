@@ -329,7 +329,7 @@ const TAG_DB = {
   "Zoop!": { type: "Secret", desc: "Pop a link of 10 Puffs in the Rift" },
   "The ultimate scheme": { type: "Secret", desc: "Secure the final Timecharm in the Rift" },
   "Tragedy reversed": { type: "Secret", desc: "Murder your past self in the Rift quest" },
-  "Lily Mania": { type: "Secret", desc: "Help create a lily pad explosion on the Lotus Atoll (thanks guys)", tip: "Equip your Froggles, then cast your rod into Wormholes to pull out Reality Hoppers" },
+  "Lily Mania": { type: "Secret", desc: "Help create a lily pad explosion on the Lotus Atoll (thanks guys)", tip: "Push lily pads into each other until it's big enough to explode" },
   "Top of the Wizard food chain": { type: "Secret", desc: "Become Wizardman in the Rift quest" },
   "Finally over...": { type: "Secret", desc: "Murder Special Agent Amog in the Rift quest" },
   "The first to have ever done it": { type: "Secret", desc: "Return back from the breach" },
