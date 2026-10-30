@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-29T20:45:42.911Z",
+  "last_update": "2026-10-30T01:26:35.965Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -654,6 +654,22 @@
           ]
         },
         {
+          "username": "hjx",
+          "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
+          "country": "USA",
+          "current_ap": 27630,
+          "last_month_ap": 27120,
+          "monthly_gain": 510,
+          "maxGames": [
+            "Max Arcade",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        },
+        {
           "username": "gardenavenue",
           "uuid": "6119d70a8a724f2aa2ded280a8cf58bb",
           "country": "USA",
@@ -665,22 +681,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "hjx",
-          "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
-          "country": "USA",
-          "current_ap": 27610,
-          "last_month_ap": 27120,
-          "monthly_gain": 490,
-          "maxGames": [
-            "Max Arcade",
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels",
-            "Max Build Battle"
           ]
         },
         {
@@ -1325,7 +1325,7 @@
     },
     {
       "country": "UK",
-      "score": 10040,
+      "score": 10042,
       "top_players": [
         {
           "username": "greaneye",
@@ -1391,9 +1391,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29250,
+          "current_ap": 29265,
           "last_month_ap": 29100,
-          "monthly_gain": 150,
+          "monthly_gain": 165,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
@@ -3398,6 +3398,24 @@
       ]
     },
     {
+      "country": "Italy",
+      "score": 0,
+      "top_players": [
+        {
+          "username": "leonl",
+          "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
+          "country": "Italy",
+          "current_ap": 25185,
+          "last_month_ap": 25155,
+          "monthly_gain": 30,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max Wool Games"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Portugal",
       "score": 0,
       "top_players": [
@@ -3412,24 +3430,6 @@
             "Max TNT Games",
             "Max VampireZ",
             "Max TKR"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Italy",
-      "score": 0,
-      "top_players": [
-        {
-          "username": "leonl",
-          "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
-          "country": "Italy",
-          "current_ap": 25170,
-          "last_month_ap": 25155,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max Wool Games"
           ]
         }
       ]
