@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-30T14:41:59.892Z",
+  "last_update": "2026-10-30T20:17:13.575Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1085,9 +1085,9 @@
           "username": "huvo",
           "uuid": "01834d8a3c7a49c796589979d7a9ab74",
           "country": "USA",
-          "current_ap": 23465,
+          "current_ap": 23475,
           "last_month_ap": 23430,
-          "monthly_gain": 35,
+          "monthly_gain": 45,
           "maxGames": [
             "Max VampireZ",
             "Max Wool Games"
@@ -1325,7 +1325,7 @@
     },
     {
       "country": "UK",
-      "score": 10042,
+      "score": 10044,
       "top_players": [
         {
           "username": "greaneye",
@@ -1391,9 +1391,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29265,
+          "current_ap": 29290,
           "last_month_ap": 29100,
-          "monthly_gain": 165,
+          "monthly_gain": 190,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
@@ -2343,9 +2343,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_ap": 24085,
+          "current_ap": 24095,
           "last_month_ap": 23780,
-          "monthly_gain": 305,
+          "monthly_gain": 315,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -3012,9 +3012,7 @@
           "current_ap": 24445,
           "last_month_ap": 24445,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "Battalius",
@@ -3023,11 +3021,7 @@
           "current_ap": 24425,
           "last_month_ap": 24425,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "InInk",
@@ -3036,10 +3030,7 @@
           "current_ap": 24365,
           "last_month_ap": 24360,
           "monthly_gain": 5,
-          "maxGames": [
-            "Max TKR",
-            "Max Duels"
-          ]
+          "maxGames": []
         },
         {
           "username": "tyelur",
