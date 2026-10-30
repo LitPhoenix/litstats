@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-30T07:53:50.949Z",
+ "last_update": "2026-10-30T14:42:00.250Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-30T07:53:50.480Z",
+ "source_update": "2026-10-30T14:41:59.892Z",
  "catalog": [
   {
    "id": "uhc",
@@ -3867,6 +3867,10 @@
     {
      "uuid": "d8c93138750f4388a3a99bd98b03192b",
      "firstSeen": "2026-10-06T02:17:57.433Z"
+    },
+    {
+     "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+     "firstSeen": "2026-10-30T14:42:00.250Z"
     }
    ]
   },
@@ -4319,7 +4323,7 @@
    "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
    "username": "Iaan",
    "country": "Argentina",
-   "ap": 26585,
+   "ap": 26610,
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -4434,7 +4438,7 @@
   },
   "0e32634dffea4e69b45cae23ea7f4e02": {
    "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
-   "username": "beegirlval",
+   "username": "valericious",
    "country": "Czech Republic",
    "ap": 26410,
    "rank": "MVP++",
@@ -4562,7 +4566,7 @@
    "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
    "username": "mihannah",
    "country": "Croatia",
-   "ap": 26390,
+   "ap": 26395,
    "rank": "MVP+",
    "rankPlusColor": "LIGHT_PURPLE",
    "monthlyRankColor": "AQUA"
@@ -5459,7 +5463,7 @@
    "uuid": "4019260a28f544c2a35a0a1f35108a96",
    "username": "morof",
    "country": "Russia",
-   "ap": 24890,
+   "ap": 24895,
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"

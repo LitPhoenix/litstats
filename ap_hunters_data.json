@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-30T07:53:50.480Z",
+  "last_update": "2026-10-30T14:41:59.892Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2094,9 +2094,9 @@
           "username": "morof",
           "uuid": "4019260a28f544c2a35a0a1f35108a96",
           "country": "Russia",
-          "current_ap": 24890,
+          "current_ap": 24895,
           "last_month_ap": 24890,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -2501,7 +2501,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3586,
+      "score": 3588,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2538,9 +2538,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 26390,
+          "current_ap": 26395,
           "last_month_ap": 26235,
-          "monthly_gain": 155,
+          "monthly_gain": 160,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2595,7 +2595,7 @@
           ]
         },
         {
-          "username": "beegirlval",
+          "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
           "current_ap": 26410,
@@ -2726,7 +2726,7 @@
     },
     {
       "country": "Argentina",
-      "score": 1690,
+      "score": 1703,
       "top_players": [
         {
           "username": "Sayapi",
@@ -2743,13 +2743,14 @@
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26585,
+          "current_ap": 26610,
           "last_month_ap": 26520,
-          "monthly_gain": 65,
+          "monthly_gain": 90,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
-            "Max TKR"
+            "Max TKR",
+            "Max Build Battle"
           ]
         }
       ]
