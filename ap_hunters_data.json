@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-10-30T20:17:13.575Z",
+  "last_update": "2026-10-31T01:14:01.093Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1245,9 +1245,9 @@
           "username": "horri",
           "uuid": "04f4bddb99004950ab605a20f41c6a98",
           "country": "France",
-          "current_ap": 26285,
+          "current_ap": 26290,
           "last_month_ap": 26275,
-          "monthly_gain": 10,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ",
@@ -1555,9 +1555,9 @@
           "username": "Woomy",
           "uuid": "b2b30608b0744cdfa5512f7f2fa06408",
           "country": "UK",
-          "current_ap": 23560,
+          "current_ap": 23580,
           "last_month_ap": 23535,
-          "monthly_gain": 25,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Warlords",
             "Max TKR"
@@ -1686,7 +1686,8 @@
           "last_month_ap": 25195,
           "monthly_gain": 5,
           "maxGames": [
-            "Max Pit"
+            "Max Pit",
+            "Max SkyBlock"
           ]
         },
         {
@@ -2414,9 +2415,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 23880,
+          "current_ap": 23890,
           "last_month_ap": 23405,
-          "monthly_gain": 475,
+          "monthly_gain": 485,
           "maxGames": []
         },
         {
@@ -2674,6 +2675,37 @@
       ]
     },
     {
+      "country": "Argentina",
+      "score": 1720,
+      "top_players": [
+        {
+          "username": "Sayapi",
+          "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
+          "country": "Argentina",
+          "current_ap": 26850,
+          "last_month_ap": 26850,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        },
+        {
+          "username": "Iaan",
+          "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
+          "country": "Argentina",
+          "current_ap": 26645,
+          "last_month_ap": 26520,
+          "monthly_gain": 125,
+          "maxGames": [
+            "Max SkyWars",
+            "Max TNT Games",
+            "Max TKR",
+            "Max Build Battle"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Japan",
       "score": 1710,
       "top_players": [
@@ -2720,37 +2752,6 @@
             "Max VampireZ",
             "Max Wool Games",
             "Max Duels"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Argentina",
-      "score": 1703,
-      "top_players": [
-        {
-          "username": "Sayapi",
-          "uuid": "6bb0a8005e3346f8a18ce706dc5f5ccf",
-          "country": "Argentina",
-          "current_ap": 26850,
-          "last_month_ap": 26850,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
-        },
-        {
-          "username": "Iaan",
-          "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
-          "country": "Argentina",
-          "current_ap": 26610,
-          "last_month_ap": 26520,
-          "monthly_gain": 90,
-          "maxGames": [
-            "Max SkyWars",
-            "Max TNT Games",
-            "Max TKR",
-            "Max Build Battle"
           ]
         }
       ]
@@ -3012,7 +3013,9 @@
           "current_ap": 24445,
           "last_month_ap": 24445,
           "monthly_gain": 0,
-          "maxGames": []
+          "maxGames": [
+            "Max VampireZ"
+          ]
         },
         {
           "username": "Battalius",
@@ -3021,7 +3024,11 @@
           "current_ap": 24425,
           "last_month_ap": 24425,
           "monthly_gain": 0,
-          "maxGames": []
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
         },
         {
           "username": "InInk",
@@ -3030,7 +3037,10 @@
           "current_ap": 24365,
           "last_month_ap": 24360,
           "monthly_gain": 5,
-          "maxGames": []
+          "maxGames": [
+            "Max TKR",
+            "Max Duels"
+          ]
         },
         {
           "username": "tyelur",
@@ -3291,15 +3301,15 @@
     },
     {
       "country": "Turkey",
-      "score": 5,
+      "score": 30,
       "top_players": [
         {
           "username": "EmotionalFlare",
           "uuid": "e20c8b534c054c3db9c079a6fd982c9b",
           "country": "Turkey",
-          "current_ap": 25640,
+          "current_ap": 25665,
           "last_month_ap": 25595,
-          "monthly_gain": 45,
+          "monthly_gain": 70,
           "maxGames": [
             "Max TNT Games",
             "Max Murder Mystery",
