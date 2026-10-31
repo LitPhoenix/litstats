@@ -1,7 +1,7 @@
 {
- "last_update": "2026-10-31T14:01:04.478Z",
+ "last_update": "2026-10-31T18:17:45.720Z",
  "tracking_since": "2026-10-06T02:17:57.433Z",
- "source_update": "2026-10-31T14:01:04.093Z",
+ "source_update": "2026-10-31T18:17:45.228Z",
  "catalog": [
   {
    "id": "uhc",
@@ -2154,6 +2154,10 @@
     {
      "uuid": "8eb18a9227fb4b36947177babab261cd",
      "firstSeen": "2026-10-27T20:19:36.165Z"
+    },
+    {
+     "uuid": "289e9f90a76640e0921c85dcd96385b5",
+     "firstSeen": "2026-10-31T18:17:45.720Z"
     }
    ]
   },
@@ -4310,7 +4314,7 @@
    "uuid": "289e9f90a76640e0921c85dcd96385b5",
    "username": "Songgg",
    "country": "Canada",
-   "ap": 32135,
+   "ap": 32165,
    "rank": "MVP+",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "GOLD"
@@ -5102,7 +5106,7 @@
    "uuid": "e44b43cda004469eb1a8a00c1952a92b",
    "username": "Qacu",
    "country": "Japan",
-   "ap": 25460,
+   "ap": 25505,
    "rank": "MVP++",
    "rankPlusColor": "BLACK",
    "monthlyRankColor": "AQUA"
