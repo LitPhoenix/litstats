@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-01T03:04:51.507Z",
+  "last_update": "2026-11-01T10:54:22.347Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2405,9 +2405,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 23915,
+          "current_ap": 24005,
           "last_month_ap": 23915,
-          "monthly_gain": 0,
+          "monthly_gain": 90,
           "maxGames": []
         },
         {
@@ -2439,7 +2439,7 @@
       "score": 3695,
       "top_players": [
         {
-          "username": "Boonoz",
+          "username": "Lumenoz",
           "uuid": "4885c9a84e714b21be94fd7d5e3c0171",
           "country": "Norway",
           "current_ap": 28975,
@@ -2557,7 +2557,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2594,
+      "score": 2598,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2589,9 +2589,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26410,
+          "current_ap": 26425,
           "last_month_ap": 26410,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
