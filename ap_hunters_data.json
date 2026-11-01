@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-01T17:24:45.841Z",
+  "last_update": "2026-11-01T21:29:20.131Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -556,9 +556,9 @@
           "username": "Physiological",
           "uuid": "8b87c1da0a114a988235c7f54bf48b51",
           "country": "USA",
-          "current_ap": 29350,
+          "current_ap": 29360,
           "last_month_ap": 29350,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Blitz",
             "Max Smash Heroes",
@@ -2167,9 +2167,9 @@
           "username": "Niko702",
           "uuid": "40884fdda30c4c26ba00abef570469e0",
           "country": "Germany",
-          "current_ap": 25445,
+          "current_ap": 25450,
           "last_month_ap": 25445,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max SkyBlock",
             "Max Warlords"
@@ -2334,9 +2334,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_ap": 24095,
+          "current_ap": 24100,
           "last_month_ap": 24095,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2405,9 +2405,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 24005,
+          "current_ap": 24015,
           "last_month_ap": 23915,
-          "monthly_gain": 90,
+          "monthly_gain": 100,
           "maxGames": []
         },
         {
@@ -2492,7 +2492,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3588,
+      "score": 3591,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2529,9 +2529,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 26395,
+          "current_ap": 26410,
           "last_month_ap": 26395,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3160,9 +3160,9 @@
           "username": "typefast",
           "uuid": "df968d057a4445c2a5118faa3e5d7e3b",
           "country": "Ukraine",
-          "current_ap": 24380,
+          "current_ap": 24395,
           "last_month_ap": 24380,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
