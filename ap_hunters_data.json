@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-01T10:54:22.347Z",
+  "last_update": "2026-11-01T17:24:45.841Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -574,9 +574,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28890,
+          "current_ap": 28910,
           "last_month_ap": 28890,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Warlords",
             "Max Walls",
@@ -1312,7 +1312,7 @@
     },
     {
       "country": "UK",
-      "score": 10044,
+      "score": 10047,
       "top_players": [
         {
           "username": "greaneye",
@@ -1378,9 +1378,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29290,
+          "current_ap": 29315,
           "last_month_ap": 29290,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
@@ -2436,7 +2436,7 @@
     },
     {
       "country": "Norway",
-      "score": 3695,
+      "score": 3700,
       "top_players": [
         {
           "username": "Lumenoz",
@@ -2457,9 +2457,9 @@
           "username": "Chevio",
           "uuid": "1f15c58cdf3c419bba39b89e256d8a86",
           "country": "Norway",
-          "current_ap": 26345,
+          "current_ap": 26355,
           "last_month_ap": 26345,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Arena Brawl",
             "Max Smash Heroes",
@@ -2557,7 +2557,7 @@
     },
     {
       "country": "Czech Republic",
-      "score": 2598,
+      "score": 2601,
       "top_players": [
         {
           "username": "ZenBenn",
@@ -2589,9 +2589,9 @@
           "username": "valericious",
           "uuid": "0e32634dffea4e69b45cae23ea7f4e02",
           "country": "Czech Republic",
-          "current_ap": 26425,
+          "current_ap": 26440,
           "last_month_ap": 26410,
-          "monthly_gain": 15,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Blitz",
             "Max Warlords",
