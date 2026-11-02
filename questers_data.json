@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-01T21:29:20.354Z",
+  "last_update": "2026-11-02T01:07:28.622Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111888,
     "289e9f90a76640e0921c85dcd96385b5": 85391,
@@ -204,23 +204,23 @@
   "country_leaderboard": [
     {
       "country": "France",
-      "score": 49986.2,
+      "score": 49988.8,
       "top_players": [
         {
           "username": "Skorlex",
           "uuid": "53c51b4607e649d0b81826bc2d64df82",
           "country": "France",
-          "current_quests": 111888,
+          "current_quests": 111899,
           "last_month_quests": 111888,
-          "monthly_gain": 0
+          "monthly_gain": 11
         },
         {
           "username": "ErtrycheZ",
           "uuid": "bfe045f7babf4d1c8f00556716576c34",
           "country": "France",
-          "current_quests": 40797,
+          "current_quests": 40799,
           "last_month_quests": 40797,
-          "monthly_gain": 0
+          "monthly_gain": 2
         },
         {
           "username": "Edzio",
@@ -274,9 +274,9 @@
           "username": "wadfrere",
           "uuid": "2d0095e5a83242649f088f3f20846f07",
           "country": "France",
-          "current_quests": 23980,
+          "current_quests": 23983,
           "last_month_quests": 23980,
-          "monthly_gain": 0
+          "monthly_gain": 3
         }
       ]
     },
@@ -548,9 +548,9 @@
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_quests": 32408,
+          "current_quests": 32416,
           "last_month_quests": 32403,
-          "monthly_gain": 5
+          "monthly_gain": 13
         },
         {
           "username": "Dadje",
@@ -1032,15 +1032,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 14868.8,
+      "score": 14875.8,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_quests": 27340,
+          "current_quests": 27375,
           "last_month_quests": 27340,
-          "monthly_gain": 0
+          "monthly_gain": 35
         },
         {
           "username": "iiris",

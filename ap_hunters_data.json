@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-01T21:29:20.131Z",
+  "last_update": "2026-11-02T01:07:28.308Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -574,9 +574,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28910,
+          "current_ap": 28945,
           "last_month_ap": 28890,
-          "monthly_gain": 20,
+          "monthly_gain": 55,
           "maxGames": [
             "Max Warlords",
             "Max Walls",
@@ -2673,7 +2673,7 @@
       "score": 1863,
       "top_players": [
         {
-          "username": "GusTheMonkey",
+          "username": "Baskertball",
           "uuid": "d33a4d925db84c30a28e528239471102",
           "country": "New Zealand",
           "current_ap": 26880,
@@ -3121,34 +3121,16 @@
       ]
     },
     {
-      "country": "Iraq",
-      "score": 540,
-      "top_players": [
-        {
-          "username": "Amony",
-          "uuid": "96f645ba026b4e45bc34dd8f0531334c",
-          "country": "Iraq",
-          "current_ap": 26175,
-          "last_month_ap": 26175,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games",
-            "Max Build Battle"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Ukraine",
-      "score": 530,
+      "score": 555,
       "top_players": [
         {
           "username": "kawaiinex",
           "uuid": "11a41ffd6abc42f8b484e7534118a503",
           "country": "Ukraine",
-          "current_ap": 26165,
+          "current_ap": 26190,
           "last_month_ap": 26165,
-          "monthly_gain": 0,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3166,6 +3148,24 @@
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Iraq",
+      "score": 540,
+      "top_players": [
+        {
+          "username": "Amony",
+          "uuid": "96f645ba026b4e45bc34dd8f0531334c",
+          "country": "Iraq",
+          "current_ap": 26175,
+          "last_month_ap": 26175,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Wool Games",
+            "Max Build Battle"
           ]
         }
       ]
