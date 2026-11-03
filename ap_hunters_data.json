@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-03T08:49:11.104Z",
+  "last_update": "2026-11-03T17:26:46.455Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1232,9 +1232,9 @@
           "username": "horri",
           "uuid": "04f4bddb99004950ab605a20f41c6a98",
           "country": "France",
-          "current_ap": 26290,
+          "current_ap": 26305,
           "last_month_ap": 26290,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Blitz",
             "Max VampireZ",
@@ -2393,9 +2393,9 @@
           "username": "Ofek",
           "uuid": "1121d718b08145fe8b8a3728639d6723",
           "country": "Israel",
-          "current_ap": 24555,
+          "current_ap": 24575,
           "last_month_ap": 24555,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max UHC",
             "Max Speed UHC"
@@ -3105,15 +3105,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 610,
+      "score": 615,
       "top_players": [
         {
           "username": "SATURNO",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 26245,
+          "current_ap": 26250,
           "last_month_ap": 26240,
-          "monthly_gain": 5,
+          "monthly_gain": 10,
           "maxGames": [
             "Max VampireZ"
           ]
