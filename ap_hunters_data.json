@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-03T01:56:35.263Z",
+  "last_update": "2026-11-03T08:49:11.104Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -615,9 +615,9 @@
           "username": "Boogatomyooga",
           "uuid": "343139d84b91435c90a6d0054a709ca5",
           "country": "USA",
-          "current_ap": 28015,
+          "current_ap": 28035,
           "last_month_ap": 28015,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Duels"
           ]
@@ -2334,9 +2334,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_ap": 24110,
+          "current_ap": 24145,
           "last_month_ap": 24095,
-          "monthly_gain": 15,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
@@ -2492,7 +2492,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3598,
+      "score": 3600,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2529,9 +2529,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 26435,
+          "current_ap": 26445,
           "last_month_ap": 26395,
-          "monthly_gain": 40,
+          "monthly_gain": 50,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -2639,15 +2639,15 @@
     },
     {
       "country": "Argentina",
-      "score": 1888,
+      "score": 1908,
       "top_players": [
         {
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26915,
+          "current_ap": 26935,
           "last_month_ap": 26895,
-          "monthly_gain": 20,
+          "monthly_gain": 40,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -3105,15 +3105,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 605,
+      "score": 610,
       "top_players": [
         {
           "username": "SATURNO",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 26240,
+          "current_ap": 26245,
           "last_month_ap": 26240,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max VampireZ"
           ]
