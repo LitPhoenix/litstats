@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-02T19:54:32.329Z",
+  "last_update": "2026-11-03T01:56:35.263Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -823,18 +823,6 @@
           ]
         },
         {
-          "username": "JurassicBox",
-          "uuid": "c08043d19f334a3e8189695cf356cd16",
-          "country": "USA",
-          "current_ap": 25745,
-          "last_month_ap": 25745,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
           "username": "lyraava",
           "uuid": "6d84e8ed95b3452095221594b9e448fe",
           "country": "USA",
@@ -847,6 +835,18 @@
             "Max Paintball",
             "Max Speed UHC",
             "Max Warlords",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "JurassicBox",
+          "uuid": "c08043d19f334a3e8189695cf356cd16",
+          "country": "USA",
+          "current_ap": 25730,
+          "last_month_ap": 25745,
+          "monthly_gain": -15,
+          "maxGames": [
             "Max VampireZ",
             "Max TKR"
           ]
@@ -1312,7 +1312,7 @@
     },
     {
       "country": "UK",
-      "score": 10047,
+      "score": 10049,
       "top_players": [
         {
           "username": "greaneye",
@@ -1362,6 +1362,23 @@
           ]
         },
         {
+          "username": "60c",
+          "uuid": "8682b351e9c241639291935776608054",
+          "country": "UK",
+          "current_ap": 29325,
+          "last_month_ap": 29290,
+          "monthly_gain": 35,
+          "maxGames": [
+            "Max Blitz",
+            "Max Speed UHC",
+            "Max Walls",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Crazy Walls"
+          ]
+        },
+        {
           "username": "litphoenix",
           "uuid": "ddc92083ea134a11a5ddd2a7edcde137",
           "country": "UK",
@@ -1372,23 +1389,6 @@
             "Max VampireZ",
             "Max TKR",
             "Max Build Battle"
-          ]
-        },
-        {
-          "username": "60c",
-          "uuid": "8682b351e9c241639291935776608054",
-          "country": "UK",
-          "current_ap": 29315,
-          "last_month_ap": 29290,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Blitz",
-            "Max Speed UHC",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Crazy Walls"
           ]
         },
         {
@@ -2334,9 +2334,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_ap": 24100,
+          "current_ap": 24110,
           "last_month_ap": 24095,
-          "monthly_gain": 5,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
