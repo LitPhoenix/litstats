@@ -20,7 +20,8 @@ const getNum = (obj, dotted) => {
  * Returns a number, or null when every term is missing.
  */
 function readPath(obj, expr) {
-  for (const alt of String(expr).split('|')) {          // alternatives first
+  // '|' has the LOWEST precedence: "a | b + c" = first of [a, (b + c)] that exists. Terms inside an alternative are summed.
+  for (const alt of String(expr).split('|')) {
     let sum = 0, found = false;
     for (let term of alt.split('+')) {
       let weight = 1;
@@ -39,6 +40,8 @@ const DERIVED = {
   '@quests': (p) => Object.values(p.quests || {}).reduce((n, q) => n + ((q && q.completions) || []).length, 0),
   '@lilyWeight': (p) => (typeof p.lilyWeight === 'number' ? p.lilyWeight : null),
   '@skyblockLevel': (p) => (typeof p.__sbExp === 'number' ? p.__sbExp / 100 : null),
+  // Pit: profile.xp is only the XP of the CURRENT prestige. Lifetime XP = XP banked at every earlier prestige + the current xp.
+  '@pitXp': (p) => { const f = p.stats?.Pit?.profile; if (!f || typeof f.xp !== 'number') return null; return (Array.isArray(f.prestiges) ? f.prestiges : []).reduce((a, x) => a + ((x && x.xp_on_prestige) || 0), 0) + f.xp; },
 };
 
 function extractValues(player, cfg = config) {
@@ -91,7 +94,14 @@ function statScore(value, st, mode, cfg = config) {
     for (let i = 1; i < A.length; i++) if (value <= A[i][0]) { const [x0, y0] = A[i - 1], [x1, y1] = A[i]; return y0 + ((value - x0) / (x1 - x0)) * (y1 - y0); }
   }
   const pos = statPosition(value, st, cfg);
-  return clamp01(1 - Math.log10(Math.max(1, pos)) / (st.L || 5));
+  const r = clamp01(1 - Math.log10(Math.max(1, pos)) / (st.L || 5));
+  // saturating stats (Achievement Points: the top 1000 sit within ~2x of each other): rank alone makes #3 worth only 90% even when it is 20 points
+  // from #1, so also reward numeric closeness to #1. Only ever raises the score (st.sat = { m: blend share, v1k: value at rank 1000 }).
+  if (st.sat && sc.type === 'empirical') {
+    const top = sc.knots[0][0], p = clamp01(1 - Math.log10(top / Math.min(value, top)) / Math.log10(top / st.sat.v1k));
+    return Math.max(r, (1 - st.sat.m) * r + st.sat.m * p);
+  }
+  return r;
 }
 
 /**
@@ -108,18 +118,21 @@ function composite(S, cfg = config, gw = {}) {
   // scoreGamma (global, or per game): s^gamma. >1 rewards only strong ranks, <1 is more forgiving of mid ranks
   const gam = Object.fromEntries(cfg.groups.map(g => [g.id, g.gamma ?? P.scoreGamma ?? 1]));
   const byG = {};
-  for (const s of sts) (byG[s.group] = byG[s.group] || []).push({ u: Math.pow(eff[s.id] || 0, gam[s.group]), w: s.w ?? 1 });
+  for (const s of sts) (byG[s.group] = byG[s.group] || []).push({ u: Math.pow(eff[s.id] || 0, gam[s.group]), w: s.w ?? 1, fx: !!s.fixed });
   // game score = power mean of its stats. A "specialist" game (e.g. Arcade) works like the overall ranking: stats are sorted best first,
   // each next one counts spec.decay times less, and the single best stat gets a spec.peak bonus
   const G = {};
   for (const g of cfg.groups) {
-    const act = (byG[g.id] || []).filter(x => x.w > 0);
-    if (!act.length) continue;
+    const all = (byG[g.id] || []).filter(x => x.w > 0);
+    if (!all.length) continue;
+    // "fixed" stats (e.g. Creeper Attack best wave) count in the mean at their weight but never take a decay slot or the specialist peak bonus
+    const act = all.filter(x => !x.fx), fx = all.filter(x => x.fx);
     if (g.spec) act.sort((a, b) => b.u - a.u);
     let n = 0, d = 0;
     act.forEach((x, k) => { const w = g.spec ? x.w * Math.pow(g.spec.decay, k) : x.w; n += w * Math.pow(x.u, P.statMeanP); d += w; });
+    fx.forEach(x => { n += x.w * Math.pow(x.u, P.statMeanP); d += x.w; });
     const v = Math.pow(n / d, 1 / P.statMeanP);
-    G[g.id] = g.spec ? g.spec.peak * act[0].u + (1 - g.spec.peak) * v : v;
+    G[g.id] = g.spec && act.length ? g.spec.peak * act[0].u + (1 - g.spec.peak) * v : v;
   }
   // popularity: a game's weight (and its peak) is scaled by (field size / nRef)^popExponent, so niche games are worth less
   const pf = (g) => (g.kind === 'network' || !g.pop ? 1 : Math.pow(Math.min(1, g.pop / P.nRef), P.popExponent ?? 0));
@@ -180,7 +193,19 @@ function configHash(cfg = config) {
   return (h >>> 0).toString(36);
 }
 
+/** Admin helper for /api/rank?inspect=1: for each term of a path, list the numeric sibling keys that share its name stem (finds the real API key names). */
+function probe(player, expr) {
+  const out = {};
+  for (const term of String(expr).split(/[+|]/)) {
+    const path = term.replace(/\*\s*-?[\d.]+\s*$/, '').trim().split('.'), key = path.pop();
+    if (!key || key.startsWith('@')) continue;
+    let cur = player; for (const k of path) cur = cur?.[k];
+    if (cur && typeof cur === 'object') out[term.trim()] = Object.fromEntries(Object.entries(cur).filter(([k, v]) => typeof v === 'number' && k.includes(key.split('_')[0])));
+  }
+  return out;
+}
+
 const seedRefs = () => Object.fromEntries(enabled().map(s => [s.id, s.ref]));
 const round = (n, d = 2) => Math.round(n * 10 ** d) / 10 ** d;
 
-module.exports = { config, enabled, configHash, readPath, extractValues, fraction, statScore, statPosition, positionFromKnots, composite, ratchet, scorePlayer, seedRefs, round };
+module.exports = { config, enabled, configHash, readPath, probe, extractValues, fraction, statScore, statPosition, positionFromKnots, composite, ratchet, scorePlayer, seedRefs, round };
