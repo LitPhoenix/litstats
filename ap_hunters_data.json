@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-04T03:49:59.354Z",
+  "last_update": "2026-11-04T11:44:08.040Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -2406,9 +2406,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 24050,
+          "current_ap": 24070,
           "last_month_ap": 23915,
-          "monthly_gain": 135,
+          "monthly_gain": 155,
           "maxGames": []
         },
         {
@@ -2640,15 +2640,15 @@
     },
     {
       "country": "Argentina",
-      "score": 1908,
+      "score": 1933,
       "top_players": [
         {
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_ap": 26935,
+          "current_ap": 26960,
           "last_month_ap": 26895,
-          "monthly_gain": 40,
+          "monthly_gain": 65,
           "maxGames": [
             "Max SkyWars",
             "Max TNT Games",
@@ -3049,9 +3049,9 @@
           "username": "duonk",
           "uuid": "122b0820a213425a8ddf4fc4cf2a1f13",
           "country": "Unknown",
-          "current_ap": 23870,
+          "current_ap": 23865,
           "last_month_ap": 23870,
-          "monthly_gain": 0,
+          "monthly_gain": -5,
           "maxGames": [
             "Max VampireZ"
           ]
