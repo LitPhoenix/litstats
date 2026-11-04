@@ -20,17 +20,18 @@ const getNum = (obj, dotted) => {
  * Returns a number, or null when every term is missing.
  */
 function readPath(obj, expr) {
-  let sum = 0, found = false;
-  for (let term of String(expr).split('+')) {
-    let weight = 1;
-    const m = term.match(/\*\s*(-?[\d.]+)\s*$/);
-    if (m) { weight = parseFloat(m[1]); term = term.slice(0, m.index); }
-    for (const alt of term.split('|')) {
-      const v = getNum(obj, alt);
-      if (v !== null) { sum += v * weight; found = true; break; }
+  for (const alt of String(expr).split('|')) {          // alternatives first
+    let sum = 0, found = false;
+    for (let term of alt.split('+')) {
+      let weight = 1;
+      const m = term.match(/\*\s*(-?[\d.]+)\s*$/);
+      if (m) { weight = parseFloat(m[1]); term = term.slice(0, m.index); }
+      const v = getNum(obj, term);
+      if (v !== null) { sum += v * weight; found = true; }
     }
+    if (found) return sum;
   }
-  return found ? sum : null;
+  return null;
 }
 
 const DERIVED = {
