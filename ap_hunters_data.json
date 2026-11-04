@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-03T22:41:33.953Z",
+  "last_update": "2026-11-04T03:49:59.354Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -643,9 +643,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 27635,
+          "current_ap": 27655,
           "last_month_ap": 27635,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Arcade",
             "Max Murder Mystery",
@@ -2617,9 +2617,9 @@
           "username": "Aldix",
           "uuid": "6a040159d71841129271ce291b226587",
           "country": "Czech Republic",
-          "current_ap": 25110,
+          "current_ap": 25130,
           "last_month_ap": 25110,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -2716,7 +2716,7 @@
           ]
         },
         {
-          "username": "Qacu",
+          "username": "Kawaa",
           "uuid": "e44b43cda004469eb1a8a00c1952a92b",
           "country": "Japan",
           "current_ap": 25565,
