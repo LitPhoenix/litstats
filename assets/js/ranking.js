@@ -49,7 +49,7 @@
   /* ================= data ================= */
   const POOL = { loaded: false, players: [], ids: [], refs: {}, size: 0, stale: 0, off: false };
   let IDX = {}, ROWS = [], REFS = {}, shown = PAGE;
-  const S = { tab: 'board', player: null, cmp: { a: null, b: null, group: 'all', diff: false }, pl: { group: 'all', hideZero: false, sort: { key: 'earned', dir: -1 } } };
+  const S = { tab: 'board', player: null, cmp: { a: null, b: null, group: 'all', diff: false }, pl: { group: 'all', hideZero: false, sort: { key: 'fraction', dir: -1 } } };
   const cache = new Map();
 
   const gw = (gid) => (CFG.gw[gid] ?? ((META.groups.find(g => g.id === gid) || {}).weight ?? 1));
@@ -79,19 +79,26 @@
       if (value <= A[0][0]) return A[0][1];
       for (let i = 1; i < A.length; i++) if (value <= A[i][0]) { const [x0, y0] = A[i - 1], [x1, y1] = A[i]; return y0 + ((value - x0) / (x1 - x0)) * (y1 - y0); }
     }
-    return Math.max(0, Math.min(1, 1 - Math.log10(Math.max(1, sPos(value, st, ref))) / (st.L || 5)));
+    const r = Math.max(0, Math.min(1, 1 - Math.log10(Math.max(1, sPos(value, st, ref))) / (st.L || 5)));
+    if (st.sat && sc.type === 'empirical') {   // saturating stat: also reward being numerically close to #1 (mirror of statScore in _rank_lib.js)
+      const top = sc.knots[0][0], p = Math.max(0, Math.min(1, 1 - Math.log10(top / Math.min(value, top)) / Math.log10(top / st.sat.v1k)));
+      return Math.max(r, (1 - st.sat.m) * r + st.sat.m * p);
+    }
+    return r;
   }
   /** Mirror of composite() in api/_rank_lib.js: stat scores S -> {score, G (per game, 0..1), eff (after caps)}. Game weights (gw) come from the page presets. */
   function compose(S) {
     const P = META.params, eff = { ...S }, gam = {}, byG = {}, Gm = {};
     for (const s of META.stats) if (s.cappedBy && s.cappedBy.length) eff[s.id] = Math.min(S[s.id] || 0, s.cappedBy.reduce((a, id) => a + (S[id] || 0), 0) / s.cappedBy.length + (s.capMargin ?? 0.05));
     for (const g of META.groups) gam[g.id] = g.gamma ?? P.scoreGamma ?? 1;
-    for (const s of META.stats) (byG[s.group] = byG[s.group] || []).push({ u: Math.pow(eff[s.id] || 0, gam[s.group]), w: s.w ?? 1 });
+    for (const s of META.stats) (byG[s.group] = byG[s.group] || []).push({ u: Math.pow(eff[s.id] || 0, gam[s.group]), w: s.w ?? 1, fx: !!s.fixed });
     for (const g of META.groups) {
-      const act = (byG[g.id] || []).filter(x => x.w > 0); if (!act.length) continue;
+      const all = (byG[g.id] || []).filter(x => x.w > 0); if (!all.length) continue;
+      const act = all.filter(x => !x.fx), fx = all.filter(x => x.fx);
       if (g.spec) act.sort((a, b) => b.u - a.u);
       let n = 0, d = 0; act.forEach((x, k) => { const w = g.spec ? x.w * Math.pow(g.spec.decay, k) : x.w; n += w * Math.pow(x.u, P.statMeanP); d += w; });
-      const v = Math.pow(n / d, 1 / P.statMeanP); Gm[g.id] = g.spec ? g.spec.peak * act[0].u + (1 - g.spec.peak) * v : v;
+      fx.forEach(x => { n += x.w * Math.pow(x.u, P.statMeanP); d += x.w; });
+      const v = Math.pow(n / d, 1 / P.statMeanP); Gm[g.id] = g.spec && act.length ? g.spec.peak * act[0].u + (1 - g.spec.peak) * v : v;
     }
     const pf = (g) => (g.kind === 'network' || !g.pop ? 1 : Math.pow(Math.min(1, g.pop / P.nRef), P.popExponent ?? 0));
     const cap = P.gameCap ?? 1, slope = P.capSlope ?? 1, cnt = (x) => (x > cap ? cap + (x - cap) * slope : x);
@@ -131,11 +138,13 @@
   }
 
   /* ================= small renderers ================= */
+  const GUILD_COL = { BLACK: '#555555', DARK_BLUE: '#0000AA', DARK_GREEN: '#00AA00', DARK_AQUA: '#00AAAA', DARK_RED: '#AA0000', DARK_PURPLE: '#AA00AA', GOLD: '#FFAA00', GRAY: '#AAAAAA', DARK_GRAY: '#555555', BLUE: '#5555FF', GREEN: '#55FF55', AQUA: '#55FFFF', RED: '#FF5555', LIGHT_PURPLE: '#FF55FF', YELLOW: '#FFFF55', WHITE: '#FFFFFF' };
+  const guildHTML = (t, c) => (t ? ` <span class="rk-guild" style="color:${GUILD_COL[c] || GUILD_COL.GRAY}">[${esc(t)}]</span>` : '');
   function nameHTML(p, href) {
     const col = typeof getRankBaseColourHex === 'function' ? getRankBaseColourHex(p.rank, p.monthlyRankColor) : '';
     const tag = typeof formatRankText === 'function' ? formatRankText(p.rank, p.rankPlusColor, p.monthlyRankColor) : '';
     const colored = col && col.startsWith('#');
-    return `<a class="rk-name-link${colored ? ' ranked' : ''}" ${href ? `href="${href}"` : ''} style="${colored ? `color:${col}` : 'color:var(--text)'}">${tag ? `<span class="rk-rank-tag">${tag}</span>` : ''}${esc(p.name || p.username)}</a>`;
+    return `<a class="rk-name-link${colored ? ' ranked' : ''}" ${href ? `href="${href}"` : ''} style="${colored ? `color:${col}` : 'color:var(--text)'}">${tag ? `<span class="rk-rank-tag">${tag}</span>` : ''}${esc(p.name || p.username)}</a>${guildHTML(p.guildTag, p.guildColor)}`;
   }
   const avatarSrc = (name) => `https://minotar.net/helm/${encodeURIComponent(name)}/100`;
   const onErr = (uuid) => `this.onerror=null;this.src='https://vzge.me/face/${esc(uuid)}.png'`;
@@ -440,6 +449,7 @@
     $('pl-empty').classList.add('hidden'); $('pl-content').classList.remove('hidden');
     $('pl-avatar').src = `https://visage.surgeplay.com/bust/${d.uuid}`; $('pl-avatar').onerror = function () { this.onerror = null; this.src = `https://vzge.me/bust/${d.uuid}.png`; };
     const nameEl = $('pl-name'); nameEl.textContent = d.username;
+    const gEl = $('pl-guild'); if (gEl) gEl.innerHTML = guildHTML(d.guildTag, d.guildColor);
     nameEl.style.setProperty('color', typeof getRankBaseColourHex === 'function' ? getRankBaseColourHex(d.rank, d.monthlyRankColor) : '', 'important');
     const rankEl = $('pl-rank');
     if (d.rank && d.rank !== 'NON' && typeof formatRankText === 'function') { rankEl.innerHTML = formatRankText(d.rank, d.rankPlusColor, d.monthlyRankColor); rankEl.style.display = 'inline-block'; } else rankEl.style.display = 'none';
@@ -465,11 +475,11 @@
 
     const { key, dir } = S.pl.sort;
     const rows = d.rows.filter(r => r.outOf > 0 && (S.pl.group === 'all' || r.group === S.pl.group) && (!S.pl.hideZero || r.value > 0))
-      .sort((a, b) => { const x = key === 'label' ? a.label : (a[key] ?? Infinity), y = key === 'label' ? b.label : (b[key] ?? Infinity); return (typeof x === 'string' ? x.localeCompare(y) : x - y) * dir; });
+      .sort((a, b) => { const x = key === 'label' ? a.label : (a[key] ?? Infinity), y = key === 'label' ? b.label : (b[key] ?? Infinity); return (typeof x === 'string' ? x.localeCompare(y) : x - y) * dir || (b.fraction - a.fraction); });
     $('pl-tbody').innerHTML = rows.map(r => {
       const p = Math.round(r.fraction * 1000) / 10;
-      return `<tr><td><div class="rk-statcell">${ico(statIcon(r.st || r))}<span>${esc(r.label)}${r.estimate ? '<span class="rk-flag" title="Reference value is an estimate until a real player beats it">est</span>' : ''}</span></div></td>
-        <td class="r rk-num">${num(r.value)}</td><td class="r rk-dim rk-hide-sm">${num(r.ref)}</td>
+      return `<tr><td><div class="rk-statcell">${ico(statIcon(r.st || r))}<span>${esc(r.label)}${r.estimate || (r.st && r.st.verify) ? '<span class="rk-flag" title="The #1 value for this stat is an estimate, not read from a real leaderboard">est</span>' : ''}</span></div></td>
+        <td class="r rk-num">${num(r.value)}</td><td class="r rk-dim rk-hide-sm">${r.st && r.st.verify ? '~' : ''}${num(r.ref)}</td>
         <td><div class="rk-pct"><div class="rk-track"><i style="width:${Math.min(100, p)}%"></i></div><em>${p}%</em></div></td>
         <td class="r rk-num">${num(r.earned)} <span class="rk-dim" style="font-weight:500">/ ${fmt(r.outOf)}</span></td>
         <td class="r rk-dim rk-hide-sm" title="${r.position ? `Among tracked players: #${r.position.toLocaleString()}` : ''}">${r.gpos ? '≈#' + Math.round(r.gpos).toLocaleString() : '-'}</td></tr>`;
@@ -505,7 +515,7 @@
       const col = typeof getRankBaseColourHex === 'function' ? getRankBaseColourHex(d.rank, d.monthlyRankColor) : '';
       const tag = d.rank && d.rank !== 'NON' && typeof formatRankText === 'function' ? `<span class="mc-rank" style="font-size:18px">${formatRankText(d.rank, d.rankPlusColor, d.monthlyRankColor)}</span>` : '';
       return `<div class="rk-cmp-card ${win ? 'win' : ''}">${win ? '<span class="rk-crown">Leads</span>' : ''}<img class="player-avatar" src="https://visage.surgeplay.com/bust/${d.uuid}" alt="" onerror="this.onerror=null;this.src='https://vzge.me/bust/${d.uuid}.png'">
-        <div><div class="player-name-row" style="gap:6px">${tag}<h2 style="${col && col.startsWith('#') ? `color:${col}` : ''}">${esc(d.username)}</h2></div><div class="rk-muted" style="margin-top:6px">${d.position ? `#${d.position.toLocaleString()} of ${d.poolN.toLocaleString()}` : '&nbsp;'}</div></div>
+        <div><div class="player-name-row" style="gap:6px">${tag}<h2 style="${col && col.startsWith('#') ? `color:${col}` : ''}">${esc(d.username)}</h2>${guildHTML(d.guildTag, d.guildColor)}</div><div class="rk-muted" style="margin-top:6px">${d.position ? `#${d.position.toLocaleString()} of ${d.poolN.toLocaleString()}` : '&nbsp;'}</div></div>
         <div class="rk-bigscore"><b>${d.score.toLocaleString(undefined, { maximumFractionDigits: 2 })}</b><span>score</span></div></div>`;
     };
     $('cmp-head').innerHTML = card(A, A.score > B.score) + card(B, B.score > A.score);
@@ -557,7 +567,7 @@
         G = Object.fromEntries(m.groups.map(g => [g.id, g])); ST = Object.fromEntries(m.stats.map(s => [s.id, s]));
         if (p.configured && p.players.length) {
           IDX = Object.fromEntries(p.ids.map((id, i) => [id, i]));
-          POOL.players = p.players.map(([uuid, name, rank, rp, mr, v]) => ({ uuid, name, rank, rankPlusColor: rp, monthlyRankColor: mr, v }));
+          POOL.players = p.players.map(([uuid, name, rank, rp, mr, v, , gt, gc]) => ({ uuid, name, rank, rankPlusColor: rp, monthlyRankColor: mr, v, guildTag: gt, guildColor: gc }));
           POOL.ids = p.ids; POOL.refs = p.refs; POOL.size = p.size; POOL.stale = p.stale; POOL.loaded = true;
         } else { POOL.off = true; POOL.stale = p.stale || 0; POOL.msg = p.configured ? `${p.stale || 0} players need re-scoring. Run the seeding job to refresh them.` : 'The ranking pool needs the Redis database on the API project.'; }
       });
