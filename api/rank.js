@@ -13,7 +13,8 @@ const lib = require('./_rank_lib');
 const kv = require('./_kv');
 const core = require('./_rank_core');
 
-const K = { refs: 'litstats:rank:refs', total: 'litstats:rank:total', players: 'litstats:rank:players' };
+const PFX = process.env.RANK_PREFIX || 'litstats:rank';                           // a different prefix = a separate pool (staging / safe re-seeding)
+const K = { refs: PFX + ':refs', total: PFX + ':total', players: PFX + ':players' };
 const COOLDOWN_MS = (parseInt(process.env.RANK_COOLDOWN_MIN) || 360) * 60000;   // re-lookup of a player inside this window: no Hypixel call, no writes
 const POOL_TTL_MS = (parseInt(process.env.RANK_POOL_TTL_MIN) || 30) * 60000;     // in-memory snapshot of the whole pool per server instance
 const RESP_TTL_MS = 10 * 60000;                                                  // identical lookups answered from memory: 0 commands
@@ -42,7 +43,7 @@ async function leaderboard(req, res) {
   const rows = validPlayers(await getPool()).map(([uuid, r]) => ({ uuid, r, value: idx < 0 ? r.s : r.v[idx] })).filter(x => x.value > 0).sort((a, b) => b.value - a.value);
   res.setHeader('Cache-Control', CDN_POOL);
   return res.status(200).json({ stat, offset, size: rows.length, configured: true, entries: rows.slice(offset, offset + limit).map(({ uuid, r, value }) =>
-    ({ uuid, username: r.u || uuid.slice(0, 8), rank: r.r, rankPlusColor: r.rp, monthlyRankColor: r.mr, value, total: r.s ?? null })) });
+    ({ uuid, username: r.u || uuid.slice(0, 8), rank: r.r, rankPlusColor: r.rp, monthlyRankColor: r.mr, guildTag: r.g?.[0] || null, guildColor: r.g?.[1] || null, value, total: r.s ?? null })) });
 }
 async function pool(req, res) {
   const limit = Math.min(3000, Math.max(1, parseInt(req.query.limit) || 2000));
@@ -51,7 +52,7 @@ async function pool(req, res) {
   const refs = lib.seedRefs(); for (const k in P.refs) refs[k] = Math.max(refs[k] || 0, P.refs[k]);
   res.setHeader('Cache-Control', CDN_POOL);
   return res.status(200).json({ configured: true, h: lib.configHash(), ids: lib.enabled().map(x => x.id), refs, size: P.map.size, returned: ok.length, stale: P.map.size - validPlayers(P).length,
-    players: ok.map(([uuid, r]) => [uuid, r.u, r.r, r.rp, r.mr, r.v]) });
+    players: ok.map(([uuid, r]) => [uuid, r.u, r.r, r.rp, r.mr, r.v, r.t || 0, r.g?.[0] || null, r.g?.[1] || null]) });
 }
 async function resolveUuid(req) {
   let uuid = req.query.uuid;
@@ -92,7 +93,7 @@ module.exports = async (req, res) => {
       res.setHeader('Cache-Control', CDN_POOL);
       return res.status(200).json({ perfectScore: lib.config.meta.perfectScore, groups: lib.config.groups,
         population: lib.config.meta.population, params: lib.config.meta.params, template: lib.config.meta.template, templateTail: lib.config.meta.templateTail,
-        stats: lib.enabled().map(({ id, label, group, points, icon, estimate, verify, scale, ref, population, L, w, wBase, unb, emp, popNat, cappedBy, capMargin }) => ({ id, label, group, points, icon, estimate, verify, scale, ref, population, L, w, wBase, unb, emp, popNat, cappedBy, capMargin })) });
+        stats: lib.enabled().map(({ id, label, group, points, icon, estimate, verify, scale, ref, population, L, w, wBase, unb, emp, popNat, cappedBy, capMargin, fixed, sat }) => ({ id, label, group, points, icon, estimate, verify, scale, ref, population, L, w, wBase, unb, emp, popNat, cappedBy, capMargin, fixed, sat })) });
     }
     if (req.query.pool) return await pool(req, res);
     if (req.query.stat) return await leaderboard(req, res);
@@ -119,8 +120,11 @@ module.exports = async (req, res) => {
     if (useKv && !memo.pool.map) { try { const f = await kv.redis(['HGETALL', K.refs]); storedRefs = {}; for (let i = 0; i < (f || []).length; i += 2) storedRefs[f[i]] = Number(f[i + 1]); memo.pool.refs = storedRefs; } catch (e) {} }
 
     const fresh = old && old.h === lib.configHash() && old.v?.length === statList.length && Date.now() - old.t < COOLDOWN_MS && !old.f && !req.query.force;
-    let rec, scored, raised = {}, cached = !!fresh;
-    if (fresh) { ({ scored } = core.score(core.valuesOf(old), storedRefs)); rec = { ...old, s: lib.round(scored.total, 2) }; }
+    let rec, scored, raised = {}, cached = !!fresh, guildDirty = false;
+    if (fresh) {
+      ({ scored } = core.score(core.valuesOf(old), storedRefs)); rec = { ...old, s: lib.round(scored.total, 2) };
+      if (!core.guildFresh(old)) { const g = await core.fetchGuild(uuid); if (g) { rec.g = g; guildDirty = true; } }   // guild tag older than the TTL: one call + one write
+    }
     else { ({ rec, scored, raised } = await core.buildRecord(uuid, old, storedRefs)); }
 
     // writes only when something was fetched: 1 record + 1 total (+ references, rarely); reads: position + pool size
@@ -132,6 +136,9 @@ module.exports = async (req, res) => {
           if (Object.keys(raised).length) { cmds.push(['HSET', K.refs, ...Object.entries(raised).flat()]); Object.assign(memo.pool.refs, raised); }
           cmds.push(['HSET', K.players, uuid, JSON.stringify(rec)], ['ZADD', K.total, rec.s, uuid]);
           if (memo.pool.map) memo.pool.map.set(uuid, rec);
+        } else if (guildDirty) {
+          cmds.push(['HSET', K.players, uuid, JSON.stringify(rec)]);
+          if (memo.pool.map) memo.pool.map.set(uuid, rec);
         }
         await kv.pipeline(cmds);
         const P = await getPool(); P.map.set(uuid, rec);                 // position is computed from the pool with current scores
@@ -141,7 +148,7 @@ module.exports = async (req, res) => {
     }
 
     const body = {
-      uuid, username: rec.u, rank: rec.r, rankPlusColor: rec.rp, monthlyRankColor: rec.mr, cached,
+      uuid, username: rec.u, rank: rec.r, rankPlusColor: rec.rp, monthlyRankColor: rec.mr, guildTag: rec.g?.[0] || null, guildColor: rec.g?.[1] || null, cached,
       total: rec.s, totalPosition: totalPos, poolSize, perfectScore: lib.config.meta.perfectScore,
       groups: scored.groups.map(g => ({ id: g.id, name: g.name, earned: lib.round(g.earned), points: g.points })),
       rows: scored.rows.map(r => ({ id: r.id, label: r.label, group: r.group, points: r.points, value: r.value, ref: r.ref,
