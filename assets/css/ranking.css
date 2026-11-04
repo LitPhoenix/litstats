@@ -72,6 +72,7 @@ th.sorted::after { content: ' ↓'; color: var(--accent); }
 th.sorted.asc::after { content: ' ↑'; }
 .rk-who { display: flex; align-items: center; gap: 10px; }
 .rk-who .player-avatar { height: 28px; width: 28px; border-radius: 2px; object-fit: cover; filter: none; background: var(--surface-2); }
+#pl-avatar { height: 64px; width: 64px; }
 /* no pop-out on hover inside the scroll wrapper (it triggers a scrollbar) */
 .rk-who .player-avatar:hover, .rk-cmp-card .player-avatar:hover { transform: none; }
 .rk-statcell { display: flex; align-items: center; gap: 10px; }
@@ -154,3 +155,7 @@ td .rk-pct em { font-style: normal; width: 3.6em; text-align: right; color: var(
   .rk-pop { top: auto; bottom: 0; right: 0; left: 0; width: auto; max-width: none; max-height: 78vh; border-radius: 16px 16px 0 0; }
   .rk-cmp-row { grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 9px 12px; }
 }
+
+/* Guild tag next to a name */
+.rk-guild { font-weight: 700; font-size: 13px; font-family: 'DM Sans', sans-serif; }
+body.light-theme .rk-guild { filter: brightness(.78) saturate(1.15); }
