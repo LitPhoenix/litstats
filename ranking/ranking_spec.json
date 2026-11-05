@@ -1,0 +1,870 @@
+{
+ "population": 36411202,
+ "perfectScore": 1000,
+ "note": "v2. Stat power is derived from the leaderboard curves (see scripts/build_rank_config.js); only 'signal' (kind of stat) is hand-set. Tune spec.params, then: node scripts/build_rank_config.js",
+ "groups": [
+  {
+   "id": "network",
+   "name": "Network",
+   "game": "Network",
+   "kind": "network"
+  },
+  {
+   "id": "skywars",
+   "name": "SkyWars",
+   "game": "SkyWars"
+  },
+  {
+   "id": "bedwars",
+   "name": "Bed Wars",
+   "game": "Bed Wars"
+  },
+  {
+   "id": "duels",
+   "name": "Duels",
+   "game": "Duels"
+  },
+  {
+   "id": "arcade",
+   "name": "Arcade",
+   "game": "Arcade",
+   "specialist": {
+    "peak": 0.3,
+    "decay": 0.85
+   }
+  },
+  {
+   "id": "tnt",
+   "name": "TNT Games",
+   "game": "TNT Games"
+  },
+  {
+   "id": "buildbattle",
+   "name": "Build Battle",
+   "game": "Build Battle"
+  },
+  {
+   "id": "megawalls",
+   "name": "Mega Walls",
+   "game": "Mega Walls"
+  },
+  {
+   "id": "blitz",
+   "name": "Blitz SG",
+   "game": "Blitz"
+  },
+  {
+   "id": "uhc",
+   "name": "UHC",
+   "game": "UHC"
+  },
+  {
+   "id": "speeduhc",
+   "name": "Speed UHC",
+   "game": "Speed UHC"
+  },
+  {
+   "id": "cvc",
+   "name": "Cops and Crims",
+   "game": "Cops and Crims"
+  },
+  {
+   "id": "warlords",
+   "name": "Warlords",
+   "game": "Warlords"
+  },
+  {
+   "id": "smash",
+   "name": "Smash Heroes",
+   "game": "Smash Heroes"
+  },
+  {
+   "id": "murdermystery",
+   "name": "Murder Mystery",
+   "game": "Murder Mystery"
+  },
+  {
+   "id": "woolgames",
+   "name": "Wool Games",
+   "game": "Wool Games"
+  },
+  {
+   "id": "vampirez",
+   "name": "VampireZ",
+   "game": "VampireZ"
+  },
+  {
+   "id": "quake",
+   "name": "Quakecraft",
+   "game": "Quake"
+  },
+  {
+   "id": "paintball",
+   "name": "Paintball",
+   "game": "Paintball"
+  },
+  {
+   "id": "arena",
+   "name": "Arena Brawl",
+   "game": "Arena Brawl"
+  },
+  {
+   "id": "walls",
+   "name": "The Walls",
+   "game": "Walls"
+  },
+  {
+   "id": "tkr",
+   "name": "Turbo Kart Racers",
+   "game": "TKR"
+  },
+  {
+   "id": "pit",
+   "name": "The Pit",
+   "game": "The Pit"
+  },
+  {
+   "id": "skyblock",
+   "name": "SkyBlock",
+   "game": "SkyBlock"
+  }
+ ],
+ "stats": [
+  {
+   "id": "achievement_points",
+   "label": "Achievement Points",
+   "group": "network",
+   "path": "achievementPoints",
+   "ref": 32520,
+   "icon": "img/diamond.png",
+   "signal": "wins"
+  },
+  {
+   "id": "quests",
+   "label": "Quests",
+   "group": "network",
+   "path": "@quests",
+   "ref": 111651,
+   "icon": "img/xp.png",
+   "signal": "wins"
+  },
+  {
+   "id": "network_level",
+   "label": "Network Level",
+   "group": "network",
+   "path": "@networkLevel",
+   "ref": 1959.263,
+   "icon": "img/xp.png",
+   "signal": "level",
+   "discount": 0.35,
+   "cappedBy": [
+    "achievement_points",
+    "quests"
+   ],
+   "capMargin": 0.05,
+   "note": "Purchasable (ranks/levels), so weighted down and capped by what AP + quests (not purchasable) support."
+  },
+  {
+   "id": "trophies",
+   "label": "Trophies",
+   "group": "tkr",
+   "path": "stats.GingerBread.gold_trophy*3+stats.GingerBread.silver_trophy*2+stats.GingerBread.bronze_trophy",
+   "ref": 98022,
+   "signal": "wins"
+  },
+  {
+   "id": "sw_experience",
+   "label": "SkyWars Experience",
+   "group": "skywars",
+   "path": "stats.SkyWars.skywars_experience|stats.SkyWars.experience",
+   "ref": 2767929,
+   "signal": "xp"
+  },
+  {
+   "id": "sw_kills",
+   "label": "SkyWars Kills",
+   "group": "skywars",
+   "path": "stats.SkyWars.kills",
+   "ref": 651452,
+   "signal": "kills"
+  },
+  {
+   "id": "bw_experience",
+   "label": "Bed Wars Experience",
+   "group": "bedwars",
+   "path": "stats.Bedwars.Experience|stats.Bedwars.bedwars_experience|@bedwarsXp",
+   "ref": 37408005,
+   "signal": "xp"
+  },
+  {
+   "id": "bw_finals",
+   "label": "Bed Wars Final Kills",
+   "group": "bedwars",
+   "path": "stats.Bedwars.final_kills_bedwars",
+   "ref": 100000,
+   "signal": "finals",
+   "verify": true
+  },
+  {
+   "id": "duels_wins",
+   "label": "Duels Wins",
+   "group": "duels",
+   "path": "stats.Duels.wins",
+   "ref": 542366,
+   "signal": "wins"
+  },
+  {
+   "id": "hide_seek",
+   "label": "Hide and Seek Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.seeker_wins_hide_and_seek + stats.Arcade.hider_wins_hide_and_seek",
+   "ref": 26175,
+   "icon": "arcade:hide_and_seek",
+   "signal": "wins"
+  },
+  {
+   "id": "farm_hunt",
+   "label": "Farm Hunt Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_farm_hunt",
+   "ref": 21410,
+   "icon": "arcade:farm_hunt",
+   "signal": "wins"
+  },
+  {
+   "id": "party_games",
+   "label": "Party Games Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_party+stats.Arcade.wins_party_2+stats.Arcade.wins_party_3",
+   "ref": 22801,
+   "icon": "arcade:party_games",
+   "signal": "wins"
+  },
+  {
+   "id": "mini_walls",
+   "label": "Mini Walls Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_mini_walls",
+   "ref": 33343,
+   "icon": "arcade:mini_walls",
+   "signal": "wins"
+  },
+  {
+   "id": "hypixel_says",
+   "label": "Hypixel Says Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_simon_says",
+   "ref": 56331,
+   "icon": "arcade:hypixel_says",
+   "signal": "wins"
+  },
+  {
+   "id": "blocking_dead",
+   "label": "Blocking Dead Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_dayone",
+   "ref": 15730,
+   "icon": "arcade:blocking_dead",
+   "signal": "wins"
+  },
+  {
+   "id": "galaxy_wars",
+   "label": "Galaxy Wars Kills",
+   "group": "arcade",
+   "path": "stats.Arcade.sw_kills",
+   "ref": 397892,
+   "icon": "arcade:galaxy_wars",
+   "signal": "kills"
+  },
+  {
+   "id": "dragon_wars",
+   "label": "Dragon Wars Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_dragonwars2",
+   "ref": 2745,
+   "icon": "arcade:dragon_wars",
+   "signal": "wins"
+  },
+  {
+   "id": "throw_out",
+   "label": "Throw Out Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_throw_out",
+   "ref": 5021,
+   "icon": "arcade:throw_out",
+   "signal": "wins",
+   "verify": true
+  },
+  {
+   "id": "football",
+   "label": "Football Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_soccer",
+   "ref": 66298,
+   "icon": "arcade:football",
+   "signal": "wins"
+  },
+  {
+   "id": "bounty_hunters",
+   "label": "Bounty Hunters Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_oneinthequiver",
+   "ref": 5515,
+   "icon": "arcade:bounty_hunters",
+   "signal": "wins"
+  },
+  {
+   "id": "hitw",
+   "label": "Hole in the Wall Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_hole_in_the_wall",
+   "ref": 13587,
+   "icon": "arcade:hole_in_the_wall",
+   "signal": "wins",
+   "verify": true
+  },
+  {
+   "id": "creeper_attack",
+   "label": "Creeper Attack Best Wave",
+   "group": "arcade",
+   "path": "stats.Arcade.max_wave",
+   "ref": 618,
+   "icon": "arcade:creeper_attack",
+   "signal": "record",
+   "scale": {
+    "type": "anchors",
+    "anchors": [
+     [
+      0,
+      0
+     ],
+     [
+      100,
+      0.15
+     ],
+     [
+      300,
+      0.55
+     ],
+     [
+      474,
+      0.85
+     ],
+     [
+      540,
+      0.95
+     ],
+     [
+      618,
+      1.0
+     ]
+    ]
+   },
+   "fixed": true,
+   "weight": 0.6
+  },
+  {
+   "id": "creeper_challenge",
+   "label": "Creeper Attack Challenges",
+   "group": "arcade",
+   "path": "challenges.all_time.ARCADE__creeper_attack_challenge",
+   "ref": 1572,
+   "signal": "wins",
+   "icon": "arcade:creeper_attack",
+   "verify": true
+  },
+  {
+   "id": "zombies_wins",
+   "label": "Zombies Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_zombies",
+   "ref": 13091,
+   "signal": "wins",
+   "icon": "arcade:zombies"
+  },
+  {
+   "id": "dropper_wins",
+   "label": "Dropper Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.dropper.wins",
+   "ref": 100000,
+   "signal": "wins",
+   "icon": "arcade:dropper",
+   "note": "Nadeshiko #1 is exactly 100,000 (capped or farmed); harmless for empirical curves"
+  },
+  {
+   "id": "pixel_party",
+   "label": "Pixel Party Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.pixel_party.wins",
+   "ref": 5000,
+   "signal": "wins",
+   "icon": "arcade:pixel_party",
+   "verify": true
+  },
+  {
+   "id": "pixel_painters",
+   "label": "Pixel Painters Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_draw_their_thing",
+   "ref": 4000,
+   "signal": "wins",
+   "verify": true,
+   "icon": "arcade:pixel_painters"
+  },
+  {
+   "id": "ender_spleef",
+   "label": "Ender Spleef Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.wins_ender",
+   "ref": 8000,
+   "signal": "wins",
+   "verify": true,
+   "icon": "arcade:ender_spleef"
+  },
+  {
+   "id": "disasters",
+   "label": "Disasters Wins",
+   "group": "arcade",
+   "path": "stats.Arcade.disasters.stats.wins|stats.Arcade.wins_disasters",
+   "ref": 3000,
+   "signal": "wins",
+   "verify": true,
+   "icon": "arcade:disasters"
+  },
+  {
+   "id": "tnt_run",
+   "label": "TNT Run Wins",
+   "group": "tnt",
+   "path": "stats.TNTGames.wins_tntrun",
+   "ref": 104225,
+   "signal": "wins"
+  },
+  {
+   "id": "pvp_run",
+   "label": "PvP Run Wins",
+   "group": "tnt",
+   "path": "stats.TNTGames.wins_pvprun",
+   "ref": 11616,
+   "signal": "wins"
+  },
+  {
+   "id": "tnt_tag",
+   "label": "TNT Tag Wins",
+   "group": "tnt",
+   "path": "stats.TNTGames.wins_tntag",
+   "ref": 20000,
+   "signal": "wins"
+  },
+  {
+   "id": "bow_spleef",
+   "label": "Bow Spleef Wins",
+   "group": "tnt",
+   "path": "stats.TNTGames.wins_bowspleef",
+   "ref": 44275,
+   "signal": "wins"
+  },
+  {
+   "id": "tnt_wizards",
+   "label": "TNT Wizards Wins",
+   "group": "tnt",
+   "path": "stats.TNTGames.wins_capture",
+   "ref": 23811,
+   "signal": "wins"
+  },
+  {
+   "id": "bb_score",
+   "label": "Build Battle Score",
+   "group": "buildbattle",
+   "path": "stats.BuildBattle.score",
+   "ref": 1025205,
+   "signal": "score"
+  },
+  {
+   "id": "bb_wins",
+   "label": "Build Battle Wins",
+   "group": "buildbattle",
+   "path": "stats.BuildBattle.wins",
+   "ref": 25397,
+   "signal": "wins",
+   "verify": true
+  },
+  {
+   "id": "uhc_score",
+   "label": "UHC Score",
+   "group": "uhc",
+   "path": "stats.UHC.score",
+   "ref": 50375,
+   "signal": "score"
+  },
+  {
+   "id": "uhc_kills",
+   "label": "UHC Kills",
+   "group": "uhc",
+   "path": "stats.UHC.kills+stats.UHC.kills_solo",
+   "ref": 60000,
+   "signal": "kills",
+   "verify": true
+  },
+  {
+   "id": "mw_finals",
+   "label": "Mega Walls Final Kills",
+   "group": "megawalls",
+   "path": "stats.Walls3.final_kills",
+   "ref": 26798,
+   "signal": "finals"
+  },
+  {
+   "id": "blitz_wins",
+   "label": "Blitz SG Wins",
+   "group": "blitz",
+   "path": "stats.HungerGames.wins+stats.HungerGames.wins_teams",
+   "ref": 37086,
+   "signal": "wins"
+  },
+  {
+   "id": "blitz_kills",
+   "label": "Blitz SG Kills",
+   "group": "blitz",
+   "path": "stats.HungerGames.kills",
+   "ref": 323044,
+   "signal": "kills"
+  },
+  {
+   "id": "suhc_score",
+   "label": "Speed UHC Score",
+   "group": "speeduhc",
+   "path": "stats.SpeedUHC.score|stats.SpeedUHC.score_normal + stats.SpeedUHC.score_mega",
+   "ref": 184656,
+   "signal": "score"
+  },
+  {
+   "id": "suhc_kills",
+   "label": "Speed UHC Kills",
+   "group": "speeduhc",
+   "path": "stats.SpeedUHC.kills",
+   "ref": 73804,
+   "signal": "kills"
+  },
+  {
+   "id": "cvc_score",
+   "label": "Cops and Crims Score",
+   "group": "cvc",
+   "path": "stats.MCGO.score|stats.MCGO.score_deathmatch + stats.MCGO.score_defusal",
+   "ref": 237757,
+   "signal": "score"
+  },
+  {
+   "id": "cvc_kills",
+   "label": "Cops and Crims Kills",
+   "group": "cvc",
+   "path": "stats.MCGO.kills+stats.MCGO.kills_deathmatch+stats.MCGO.kills_gungame",
+   "ref": 352525,
+   "signal": "kills"
+  },
+  {
+   "id": "cvc_bombs",
+   "label": "Cops and Crims Bombs",
+   "group": "cvc",
+   "path": "stats.MCGO.bombs_planted+stats.MCGO.bombs_defused",
+   "ref": 17294,
+   "signal": "objective"
+  },
+  {
+   "id": "wl_wins",
+   "label": "Warlords Wins",
+   "group": "warlords",
+   "path": "stats.Battleground.wins",
+   "ref": 15886,
+   "signal": "wins"
+  },
+  {
+   "id": "wl_kills",
+   "label": "Warlords Kills",
+   "group": "warlords",
+   "path": "stats.Battleground.kills",
+   "ref": 304326,
+   "signal": "kills"
+  },
+  {
+   "id": "wl_assists",
+   "label": "Warlords Assists",
+   "group": "warlords",
+   "path": "stats.Battleground.assists",
+   "ref": 533768,
+   "signal": "assists"
+  },
+  {
+   "id": "smash_wins",
+   "label": "Smash Heroes Wins",
+   "group": "smash",
+   "path": "stats.SuperSmash.wins",
+   "ref": 54738,
+   "signal": "wins"
+  },
+  {
+   "id": "smash_kills",
+   "label": "Smash Heroes Kills",
+   "group": "smash",
+   "path": "stats.SuperSmash.kills",
+   "ref": 218350,
+   "signal": "kills"
+  },
+  {
+   "id": "smash_level",
+   "label": "Smash Heroes Level",
+   "group": "smash",
+   "path": "stats.SuperSmash.smashLevel|stats.SuperSmash.smash_level_total",
+   "ref": 1920,
+   "signal": "level",
+   "scale": {
+    "type": "capped",
+    "cap": 1.05,
+    "m": 3.2
+   }
+  },
+  {
+   "id": "mm_wins",
+   "label": "Murder Mystery Wins",
+   "group": "murdermystery",
+   "path": "stats.MurderMystery.wins",
+   "ref": 145000,
+   "signal": "wins",
+   "refPos": 2
+  },
+  {
+   "id": "mm_kills",
+   "label": "Murder Mystery Kills",
+   "group": "murdermystery",
+   "path": "stats.MurderMystery.kills",
+   "ref": 387299,
+   "signal": "kills"
+  },
+  {
+   "id": "vz_human",
+   "label": "VampireZ Human Kills",
+   "group": "vampirez",
+   "path": "stats.VampireZ.human_kills",
+   "ref": 100796,
+   "signal": "kills"
+  },
+  {
+   "id": "vz_vamp",
+   "label": "VampireZ Vampire Kills",
+   "group": "vampirez",
+   "path": "stats.VampireZ.vampire_kills",
+   "ref": 625884,
+   "signal": "kills"
+  },
+  {
+   "id": "quake_kills",
+   "label": "Quakecraft Kills",
+   "group": "quake",
+   "path": "stats.Quake.kills+stats.Quake.kills_teams",
+   "ref": 2437869,
+   "signal": "kills"
+  },
+  {
+   "id": "pb_kills",
+   "label": "Paintball Kills",
+   "group": "paintball",
+   "path": "stats.Paintball.kills",
+   "ref": 1159387,
+   "signal": "kills"
+  },
+  {
+   "id": "arena_wins",
+   "label": "Arena Brawl Wins",
+   "group": "arena",
+   "path": "stats.Arena.wins",
+   "ref": 35297,
+   "signal": "wins"
+  },
+  {
+   "id": "walls_wins",
+   "label": "The Walls Wins",
+   "group": "walls",
+   "path": "stats.Walls.wins",
+   "ref": 14533,
+   "signal": "wins"
+  },
+  {
+   "id": "walls_kills",
+   "label": "The Walls Kills",
+   "group": "walls",
+   "path": "stats.Walls.kills",
+   "ref": 35833,
+   "signal": "kills"
+  },
+  {
+   "id": "wool_xp",
+   "label": "Wool Games Experience",
+   "group": "woolgames",
+   "path": "stats.WoolGames.progression.experience|stats.WoolGames.experience",
+   "ref": 7171363,
+   "signal": "xp",
+   "weight": 0.3
+  },
+  {
+   "id": "ctw_wools",
+   "label": "Capture The Wool: Wools Captured",
+   "group": "woolgames",
+   "path": "stats.WoolGames.capture_the_wool.stats.wools_captured|stats.WoolGames.capture_the_wool.stats.participated_wools_captured",
+   "ref": 60000,
+   "signal": "objective",
+   "verify": true
+  },
+  {
+   "id": "ctw_kills",
+   "label": "Capture The Wool: Kills",
+   "group": "woolgames",
+   "path": "stats.WoolGames.capture_the_wool.stats.kills|stats.WoolGames.capture_the_wool.stats.participated_kills",
+   "ref": 40000,
+   "signal": "kills",
+   "verify": true
+  },
+  {
+   "id": "ww_wins",
+   "label": "Wool Wars Wins",
+   "group": "woolgames",
+   "path": "stats.WoolGames.wool_wars.stats.wins",
+   "ref": 20000,
+   "signal": "wins",
+   "verify": true
+  },
+  {
+   "id": "sw_wins",
+   "label": "Sheep Wars Wins",
+   "group": "woolgames",
+   "path": "stats.WoolGames.sheep_wars.stats.wins",
+   "ref": 10000,
+   "signal": "wins",
+   "verify": true
+  },
+  {
+   "id": "pit_xp",
+   "label": "Pit Experience",
+   "group": "pit",
+   "path": "@pitXp",
+   "ref": 70000000,
+   "signal": "xp",
+   "verify": true
+  },
+  {
+   "id": "pit_kills",
+   "label": "Pit Kills",
+   "group": "pit",
+   "path": "stats.Pit.pit_stats_ptl.kills",
+   "ref": 300000,
+   "signal": "kills"
+  },
+  {
+   "id": "sb_level",
+   "label": "SkyBlock Level",
+   "group": "skyblock",
+   "path": "@skyblockLevel",
+   "ref": 621,
+   "signal": "level",
+   "scale": {
+    "type": "anchors",
+    "anchors": [
+     [
+      0,
+      0
+     ],
+     [
+      100,
+      0.02
+     ],
+     [
+      200,
+      0.1
+     ],
+     [
+      300,
+      0.25
+     ],
+     [
+      400,
+      0.4
+     ],
+     [
+      500,
+      0.6
+     ],
+     [
+      600,
+      0.8
+     ],
+     [
+      622.11,
+      1
+     ]
+    ]
+   }
+  },
+  {
+   "id": "sb_lily",
+   "label": "Lily Weight",
+   "group": "skyblock",
+   "path": "@lilyWeight",
+   "ref": 124870,
+   "signal": "score",
+   "scale": {
+    "type": "anchors",
+    "anchors": [
+     [
+      0,
+      0
+     ],
+     [
+      10000,
+      0.25
+     ],
+     [
+      50000,
+      0.55
+     ],
+     [
+      65000,
+      0.75
+     ],
+     [
+      75000,
+      0.92
+     ],
+     [
+      124870,
+      1
+     ]
+    ]
+   }
+  }
+ ],
+ "excludedGames": [
+  {
+   "id": "truecombat",
+   "name": "Crazy Walls",
+   "why": "legacy (retired)"
+  },
+  {
+   "id": "skyclash",
+   "name": "SkyClash",
+   "why": "legacy (retired)"
+  }
+ ],
+ "params": {
+  "statMeanP": 2,
+  "gameDecay": 0.93,
+  "peakShare": 0.15,
+  "networkShare": 0.15,
+  "fieldShrink": 0.5,
+  "nRef": 100000,
+  "unboardedFactor": 0.5,
+  "defaultResolution": 0.7,
+  "resolutionMin": 0.3,
+  "defaultPopulation": 50000,
+  "tailMin": 0.3,
+  "tailMax": 3.5
+ }
+}
