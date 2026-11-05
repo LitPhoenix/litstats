@@ -236,7 +236,7 @@
     "peak": 0.1,
     "decay": 0.9
    },
-   "pop": 20000
+   "pop": 50000
   },
   {
    "id": "tnt",
@@ -247,7 +247,7 @@
     "peak": 0.3,
     "decay": 0.85
    },
-   "pop": 20000
+   "pop": 50000
   },
   {
    "id": "buildbattle",
@@ -269,14 +269,14 @@
    "name": "Blitz SG",
    "game": "Blitz",
    "kind": "game",
-   "pop": 20000
+   "pop": 100000
   },
   {
    "id": "uhc",
    "name": "UHC",
    "game": "UHC",
    "kind": "game",
-   "pop": 80304
+   "pop": 80000
   },
   {
    "id": "speeduhc",
@@ -284,7 +284,7 @@
    "game": "Speed UHC",
    "kind": "game",
    "weight": 0.8,
-   "pop": 97726
+   "pop": 50000
   },
   {
    "id": "cvc",
@@ -298,7 +298,7 @@
    "name": "Warlords",
    "game": "Warlords",
    "kind": "game",
-   "pop": 78055
+   "pop": 50000
   },
   {
    "id": "smash",
@@ -352,7 +352,7 @@
    "game": "Arena Brawl",
    "kind": "game",
    "weight": 0.8,
-   "pop": 52700
+   "pop": 30000
   },
   {
    "id": "walls",
@@ -360,7 +360,7 @@
    "game": "Walls",
    "kind": "game",
    "weight": 0.8,
-   "pop": 79455
+   "pop": 50000
   },
   {
    "id": "tkr",
@@ -382,7 +382,7 @@
    "game": "SkyBlock",
    "kind": "game",
    "weight": 0.85,
-   "pop": 50000
+   "pop": 100000
   }
  ],
  "stats": [
@@ -551,7 +551,11 @@
     "tail": 3.15
    },
    "wBase": 0.3,
-   "icon": "img/diamond.png"
+   "icon": "img/diamond.png",
+   "sat": {
+    "m": 0.7,
+    "v1k": 16683
+   }
   },
   {
    "group": "network",
@@ -898,7 +902,11 @@
     "quests"
    ],
    "capMargin": 0.05,
-   "icon": "img/xp.png"
+   "icon": "img/xp.png",
+   "sat": {
+    "m": 0.51,
+    "v1k": 410
+   }
   },
   {
    "group": "tkr",
@@ -1270,7 +1278,11 @@
     ],
     "tail": 1.38
    },
-   "wBase": 0.444316
+   "wBase": 0.444316,
+   "sat": {
+    "m": 0.48,
+    "v1k": 6004507
+   }
   },
   {
    "group": "bedwars",
@@ -1286,7 +1298,8 @@
     "type": "template"
    },
    "wBase": 0.595,
-   "unb": true
+   "unb": true,
+   "verify": true
   },
   {
    "group": "duels",
@@ -1467,7 +1480,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 1,
-   "points": 93,
+   "points": 88,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -1634,7 +1647,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 33,
+   "points": 31,
    "scale": {
     "type": "template"
    },
@@ -1651,7 +1664,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.9,
-   "points": 84,
+   "points": 79,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -1818,7 +1831,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.5775,
-   "points": 54,
+   "points": 51,
    "scale": {
     "type": "template"
    },
@@ -1835,7 +1848,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.84,
-   "points": 79,
+   "points": 74,
    "scale": {
     "type": "template"
    },
@@ -1852,7 +1865,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 33,
+   "points": 31,
    "scale": {
     "type": "template"
    },
@@ -1869,7 +1882,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.40425,
-   "points": 38,
+   "points": 36,
    "scale": {
     "type": "template"
    },
@@ -1886,7 +1899,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 33,
+   "points": 31,
    "scale": {
     "type": "template"
    },
@@ -1899,11 +1912,11 @@
    "id": "throw_out",
    "label": "Throw Out Wins",
    "path": "stats.Arcade.wins_throw_out",
-   "ref": 30000,
+   "ref": 5021,
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 33,
+   "points": 31,
    "scale": {
     "type": "template"
    },
@@ -1921,7 +1934,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 33,
+   "points": 31,
    "scale": {
     "type": "template"
    },
@@ -1938,7 +1951,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 33,
+   "points": 31,
    "scale": {
     "type": "template"
    },
@@ -1949,19 +1962,20 @@
   {
    "group": "arcade",
    "id": "hitw",
-   "label": "Hole in the Wall Rounds",
-   "path": "stats.Arcade.rounds_hole_in_the_wall",
-   "ref": 540795,
+   "label": "Hole in the Wall Wins",
+   "path": "stats.Arcade.wins_hole_in_the_wall",
+   "ref": 13587,
    "population": 20000,
    "L": 4.651,
-   "w": 0.343,
-   "points": 32,
+   "w": 0.8575,
+   "points": 75,
    "scale": {
     "type": "template"
    },
-   "wBase": 0.28,
+   "wBase": 0.7,
    "unb": true,
-   "icon": "arcade:hole_in_the_wall"
+   "icon": "arcade:hole_in_the_wall",
+   "verify": true
   },
   {
    "group": "arcade",
@@ -1971,8 +1985,8 @@
    "ref": 618,
    "population": 20000,
    "L": 4.651,
-   "w": 0.504,
-   "points": 47,
+   "w": 0.3024,
+   "points": 27,
    "scale": {
     "type": "anchors",
     "anchors": [
@@ -2002,8 +2016,27 @@
      ]
     ]
    },
-   "wBase": 0.42,
-   "icon": "arcade:creeper_attack"
+   "wBase": 0.252,
+   "icon": "arcade:creeper_attack",
+   "fixed": true
+  },
+  {
+   "group": "arcade",
+   "id": "creeper_challenge",
+   "label": "Creeper Attack Challenges",
+   "path": "challenges.all_time.ARCADE__creeper_attack_challenge",
+   "ref": 1572,
+   "population": 20000,
+   "L": 4.651,
+   "w": 0.35,
+   "points": 31,
+   "scale": {
+    "type": "template"
+   },
+   "wBase": 0.7,
+   "unb": true,
+   "icon": "arcade:creeper_attack",
+   "verify": true
   },
   {
    "group": "arcade",
@@ -2014,7 +2047,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 1,
-   "points": 93,
+   "points": 88,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -2185,7 +2218,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 1,
-   "points": 93,
+   "points": 88,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -2352,13 +2385,14 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 33,
+   "points": 31,
    "scale": {
     "type": "template"
    },
    "wBase": 0.7,
    "unb": true,
-   "icon": "arcade:pixel_party"
+   "icon": "arcade:pixel_party",
+   "verify": true
   },
   {
    "group": "arcade",
@@ -2369,7 +2403,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 33,
+   "points": 31,
    "scale": {
     "type": "template"
    },
@@ -2387,7 +2421,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 33,
+   "points": 31,
    "scale": {
     "type": "template"
    },
@@ -2405,7 +2439,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.98,
-   "points": 92,
+   "points": 86,
    "scale": {
     "type": "template"
    },
@@ -3249,7 +3283,7 @@
    "population": 100000,
    "L": 5,
    "w": 1,
-   "points": 877,
+   "points": 741,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -3412,14 +3446,14 @@
   },
   {
    "group": "buildbattle",
-   "id": "gtb_wins",
-   "label": "Guess The Build Wins",
-   "path": "stats.BuildBattle.wins_guess_the_build",
-   "ref": 8000,
+   "id": "bb_wins",
+   "label": "Build Battle Wins",
+   "path": "stats.BuildBattle.wins",
+   "ref": 25397,
    "population": 100000,
    "L": 5,
-   "w": 0.14,
-   "points": 123,
+   "w": 0.35,
+   "points": 259,
    "scale": {
     "type": "template"
    },
@@ -3601,7 +3635,7 @@
    "group": "uhc",
    "id": "uhc_kills",
    "label": "UHC Kills",
-   "path": "stats.UHC.kills",
+   "path": "stats.UHC.kills+stats.UHC.kills_solo",
    "ref": 60000,
    "population": 80304,
    "L": 4.952,
@@ -3634,7 +3668,7 @@
    "group": "blitz",
    "id": "blitz_wins",
    "label": "Blitz SG Wins",
-   "path": "stats.HungerGames.wins",
+   "path": "stats.HungerGames.wins+stats.HungerGames.wins_teams",
    "ref": 37086,
    "population": 20000,
    "L": 4.651,
@@ -4168,7 +4202,7 @@
    "group": "cvc",
    "id": "cvc_kills",
    "label": "Cops and Crims Kills",
-   "path": "stats.MCGO.kills",
+   "path": "stats.MCGO.kills+stats.MCGO.kills_deathmatch+stats.MCGO.kills_gungame",
    "ref": 352525,
    "population": 100000,
    "L": 5,
@@ -4822,7 +4856,7 @@
    "group": "quake",
    "id": "quake_kills",
    "label": "Quakecraft Kills",
-   "path": "stats.Quake.kills",
+   "path": "stats.Quake.kills+stats.Quake.kills_teams",
    "ref": 2583275,
    "population": 100000,
    "L": 5,
@@ -5514,12 +5548,12 @@
    "ref": 7171363,
    "population": 50000,
    "L": 4.849,
-   "w": 0.2975,
-   "points": 863,
+   "w": 0.08925,
+   "points": 107,
    "scale": {
     "type": "template"
    },
-   "wBase": 0.595,
+   "wBase": 0.1785,
    "unb": true
   },
   {
@@ -5531,12 +5565,13 @@
    "population": 50000,
    "L": 4.849,
    "w": 0.018375,
-   "points": 53,
+   "points": 22,
    "scale": {
     "type": "template"
    },
    "wBase": 0.245,
-   "unb": true
+   "unb": true,
+   "verify": true
   },
   {
    "group": "woolgames",
@@ -5547,18 +5582,53 @@
    "population": 50000,
    "L": 4.849,
    "w": 0.028875,
-   "points": 84,
+   "points": 35,
    "scale": {
     "type": "template"
    },
    "wBase": 0.385,
-   "unb": true
+   "unb": true,
+   "verify": true
+  },
+  {
+   "group": "woolgames",
+   "id": "ww_wins",
+   "label": "Wool Wars Wins",
+   "path": "stats.WoolGames.wool_wars.stats.wins",
+   "ref": 20000,
+   "population": 50000,
+   "L": 4.849,
+   "w": 0.35,
+   "points": 418,
+   "scale": {
+    "type": "template"
+   },
+   "wBase": 0.7,
+   "unb": true,
+   "verify": true
+  },
+  {
+   "group": "woolgames",
+   "id": "sw_wins",
+   "label": "Sheep Wars Wins",
+   "path": "stats.WoolGames.sheep_wars.stats.wins",
+   "ref": 10000,
+   "population": 50000,
+   "L": 4.849,
+   "w": 0.35,
+   "points": 418,
+   "scale": {
+    "type": "template"
+   },
+   "wBase": 0.7,
+   "unb": true,
+   "verify": true
   },
   {
    "group": "pit",
    "id": "pit_xp",
    "label": "Pit Experience",
-   "path": "stats.Pit.profile.xp",
+   "path": "@pitXp",
    "ref": 70000000,
    "population": 50000,
    "L": 4.849,
@@ -5568,7 +5638,8 @@
     "type": "template"
    },
    "wBase": 0.595,
-   "unb": true
+   "unb": true,
+   "verify": true
   },
   {
    "group": "pit",
@@ -5604,31 +5675,31 @@
       0
      ],
      [
-      50,
+      100,
       0.02
      ],
      [
-      150,
+      200,
       0.1
      ],
      [
-      250,
+      300,
       0.25
      ],
      [
-      350,
+      400,
       0.4
      ],
      [
-      450,
+      500,
       0.6
      ],
      [
-      550,
+      600,
       0.8
      ],
      [
-      621,
+      622.11,
       1
      ]
     ]
@@ -5640,40 +5711,11 @@
    "id": "sb_lily",
    "label": "Lily Weight",
    "path": "@lilyWeight",
-   "ref": 30000,
-   "population": 50000,
+   "ref": 124870,
+   "population": 100000,
    "L": 4.849,
    "w": 0.7,
    "points": 862,
-   "scale": {
-    "type": "anchors",
-    "anchors": [
-     [
-      0,
-      0
-     ],
-     [
-      1000,
-      0.25
-     ],
-     [
-      5000,
-      0.55
-     ],
-     [
-      10000,
-      0.75
-     ],
-     [
-      20000,
-      0.92
-     ],
-     [
-      30000,
-      1
-     ]
-    ]
-   },
    "wBase": 0.7
   }
  ]
