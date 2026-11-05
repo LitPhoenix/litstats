@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-04T19:02:56.688Z",
+  "last_update": "2026-11-05T00:37:24.832Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -587,6 +587,17 @@
           ]
         },
         {
+          "username": "Boogatomyooga",
+          "uuid": "343139d84b91435c90a6d0054a709ca5",
+          "country": "USA",
+          "current_ap": 28080,
+          "last_month_ap": 28015,
+          "monthly_gain": 65,
+          "maxGames": [
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Rcnnie",
           "uuid": "f13bced3fe9044a6831e0496c0cab1e9",
           "country": "USA",
@@ -597,17 +608,6 @@
             "Max Warlords",
             "Max VampireZ",
             "Max TKR"
-          ]
-        },
-        {
-          "username": "Boogatomyooga",
-          "uuid": "343139d84b91435c90a6d0054a709ca5",
-          "country": "USA",
-          "current_ap": 28055,
-          "last_month_ap": 28015,
-          "monthly_gain": 40,
-          "maxGames": [
-            "Max Duels"
           ]
         },
         {
@@ -643,9 +643,9 @@
           "username": "hjx",
           "uuid": "cdc3d11920c3401c9903468bc4d82fe3",
           "country": "USA",
-          "current_ap": 27655,
+          "current_ap": 27680,
           "last_month_ap": 27635,
-          "monthly_gain": 20,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Arcade",
             "Max Murder Mystery",
@@ -1055,9 +1055,9 @@
           "username": "MockBall",
           "uuid": "8415341022134dbe969b81ed3ff6cd6f",
           "country": "USA",
-          "current_ap": 23580,
+          "current_ap": 23585,
           "last_month_ap": 23560,
-          "monthly_gain": 20,
+          "monthly_gain": 25,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
