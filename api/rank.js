@@ -26,7 +26,7 @@ async function getPool() {
   const map = new Map(), refs = {};
   for (let i = 0; i < (pf || []).length; i += 2) { try { map.set(pf[i], JSON.parse(pf[i + 1])); } catch (e) {} }
   for (let i = 0; i < (rf || []).length; i += 2) refs[rf[i]] = Number(rf[i + 1]);
-  const sr = { ...lib.seedRefs(), ...refs }, h = lib.configHash();      // totals follow the CURRENT config: no refresh-ranks needed after tuning
+  const sr = lib.seedRefs(), h = lib.configHash(); for (const k in refs) sr[k] = Math.max(sr[k] || 0, refs[k]);      // totals follow the CURRENT config: no refresh-ranks needed after tuning
   for (const [, r] of map) if (r && Array.isArray(r.v) && r.h === h && core.usable(r)) { try { r.s = lib.round(lib.scorePlayer(core.valuesOf(r), sr).total, 2); } catch (e) {} }
   memo.pool = { t: Date.now(), map, refs };
   return memo.pool;
@@ -88,6 +88,11 @@ module.exports = async (req, res) => {
     if (requestOrigin && !isAllowed) return res.status(403).json({ error: 'Access Denied: Direct browser origin blocked.' });
   }
 
+  if (req.query.inspect) {   // admin only, fails closed: needs the auth token, or ALLOW_INSPECT=1 (set it in .env.local only, never in production)
+    const ok = process.env.ALLOW_INSPECT === '1' || (expectedToken && secureToken === expectedToken);
+    if (!ok) { res.setHeader('Cache-Control', 'no-store'); return res.status(403).json({ error: 'inspect needs the auth token' }); }
+  }
+
   try {
     if (req.query.meta) {
       res.setHeader('Cache-Control', CDN_POOL);
@@ -101,7 +106,6 @@ module.exports = async (req, res) => {
     const uuid = await resolveUuid(req), statList = lib.enabled(), useKv = kv.isConfigured();
 
     if (req.query.inspect) {                                           // admin: no KV access
-      if (!isLocalDev && secureToken !== expectedToken) return res.status(403).json({ error: 'inspect needs the auth token' });
       const player = await core.fetchPlayer(uuid), sb = await core.fetchSkyblock(uuid, player);
       core.applySkyblock(player, sb);
       const values = lib.extractValues(player);
