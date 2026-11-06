@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-06T04:04:56.337Z",
+  "last_update": "2026-11-06T13:26:03.864Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -755,6 +755,20 @@
           ]
         },
         {
+          "username": "kipanator",
+          "uuid": "8eb18a9227fb4b36947177babab261cd",
+          "country": "USA",
+          "current_ap": 26430,
+          "last_month_ap": 26400,
+          "monthly_gain": 30,
+          "maxGames": [
+            "Max Smash Heroes",
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
           "username": "Pocketing",
           "uuid": "281aef4684e94e759c7860a055549fe7",
           "country": "USA",
@@ -779,20 +793,6 @@
             "Max Blitz",
             "Max Arcade",
             "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "kipanator",
-          "uuid": "8eb18a9227fb4b36947177babab261cd",
-          "country": "USA",
-          "current_ap": 26420,
-          "last_month_ap": 26400,
-          "monthly_gain": 20,
-          "maxGames": [
-            "Max Smash Heroes",
-            "Max Murder Mystery",
-            "Max TKR",
             "Max Duels"
           ]
         },
@@ -2420,9 +2420,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 24070,
+          "current_ap": 24095,
           "last_month_ap": 23915,
-          "monthly_gain": 155,
+          "monthly_gain": 180,
           "maxGames": []
         },
         {
