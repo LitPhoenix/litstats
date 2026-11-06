@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-05T23:01:32.716Z",
+  "last_update": "2026-11-06T04:04:56.337Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -200,7 +200,8 @@
     "9872248cdad742f785657dbf78d9c756": 23420,
     "1ee8f444029b41db84a0b2a34415cdf0": 23440,
     "6d1160f1c9104aa082c64487645e2c3d": 23395,
-    "58f4b39fbea342aebff47c541c8bf1c7": 23395
+    "58f4b39fbea342aebff47c541c8bf1c7": 23395,
+    "8d167f27157d488394f6b6142ccc16be": 23735
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -574,9 +575,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 28995,
+          "current_ap": 29000,
           "last_month_ap": 28890,
-          "monthly_gain": 105,
+          "monthly_gain": 110,
           "maxGames": [
             "Max Warlords",
             "Max Walls",
@@ -2190,6 +2191,19 @@
             "Max Wool Games",
             "Max Duels"
           ]
+        },
+        {
+          "username": "DirtyAvocado",
+          "uuid": "8d167f27157d488394f6b6142ccc16be",
+          "country": "Germany",
+          "current_ap": 23735,
+          "last_month_ap": 23735,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Arena Brawl",
+            "Max TKR",
+            "Max Duels"
+          ]
         }
       ]
     },
@@ -3089,17 +3103,6 @@
           "maxGames": [
             "Max Paintball",
             "Max VampireZ"
-          ]
-        },
-        {
-          "username": "22charizard",
-          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
-          "country": "Unknown",
-          "current_ap": 23395,
-          "last_month_ap": 23395,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit"
           ]
         }
       ]
