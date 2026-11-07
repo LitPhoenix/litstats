@@ -19,6 +19,17 @@
   font-display: swap;
 }
 
+/* Coloured Text Selection */
+::selection {
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--text);
+}
+
+::-moz-selection {
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--text);
+}
+
 /* Background Fix: Never paint opaque backgrounds on html/body */
 html {
   background: transparent !important;
