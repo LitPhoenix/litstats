@@ -139,7 +139,7 @@ tbody tr.country-row:hover {
 .player-name { font-weight: 600; color: var(--text); }
 
 .flag-cell { display: flex; align-items: center; gap: 8px; }
-.flag-img { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; border: 1px solid var(--border-strong); }
+.flag-img { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; }
 .country-name { color: var(--text-2); font-size: 13px; }
 
 .ap-cell { font-family: 'DM Mono', monospace; font-weight: 600; color: var(--text); }
