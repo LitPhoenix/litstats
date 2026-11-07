@@ -211,7 +211,7 @@
    "kind": "game",
    "gamma": 1,
    "pop": 100000,
-   "strength": 0.96
+   "strength": 0.9
   },
   {
    "id": "bedwars",
@@ -386,7 +386,7 @@
    "game": "The Pit",
    "kind": "game",
    "pop": 50000,
-   "strength": 0.96
+   "strength": 0.92
   },
   {
    "id": "skyblock",
