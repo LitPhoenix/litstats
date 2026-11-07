@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-06T20:09:33.224Z",
+  "last_update": "2026-11-07T01:27:10.275Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -3109,15 +3109,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 635,
+      "score": 665,
       "top_players": [
         {
           "username": "SATURNO",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 26270,
+          "current_ap": 26300,
           "last_month_ap": 26240,
-          "monthly_gain": 30,
+          "monthly_gain": 60,
           "maxGames": [
             "Max VampireZ"
           ]
