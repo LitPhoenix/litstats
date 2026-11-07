@@ -49,7 +49,7 @@
   /* ================= data ================= */
   const POOL = { loaded: false, players: [], ids: [], refs: {}, size: 0, stale: 0, off: false };
   let IDX = {}, ROWS = [], REFS = {}, shown = PAGE;
-  const S = { tab: 'board', player: null, cmp: { a: null, b: null, group: 'all', diff: false }, pl: { group: 'all', hideZero: false, sort: { key: 'fraction', dir: -1 } } };
+  const S = { tab: 'board', player: null, cmp: { a: null, b: null, group: 'all', sort: 'swing', open: new Set() }, pl: { group: 'all', hideZero: false, sort: { key: 'fraction', dir: -1 } } };
   const cache = new Map();
 
   const gw = (gid) => (CFG.gw[gid] ?? ((META.groups.find(g => g.id === gid) || {}).weight ?? 1));
@@ -98,19 +98,59 @@
       if (g.spec) act.sort((a, b) => b.u - a.u);
       let n = 0, d = 0; act.forEach((x, k) => { const w = g.spec ? x.w * Math.pow(g.spec.decay, k) : x.w; n += w * Math.pow(x.u, P.statMeanP); d += w; });
       fx.forEach(x => { n += x.w * Math.pow(x.u, P.statMeanP); d += x.w; });
-      const v = Math.pow(n / d, 1 / P.statMeanP); Gm[g.id] = g.spec && act.length ? g.spec.peak * act[0].u + (1 - g.spec.peak) * v : v;
+      const v = Math.pow(n / d, 1 / P.statMeanP); Gm[g.id] = (g.spec && act.length ? g.spec.peak * act[0].u + (1 - g.spec.peak) * v : v) * (g.strength ?? 1);
     }
     const pf = (g) => (g.kind === 'network' || !g.pop ? 1 : Math.pow(Math.min(1, g.pop / P.nRef), P.popExponent ?? 0));
     const cap = P.gameCap ?? 1, slope = P.capSlope ?? 1, cnt = (x) => (x > cap ? cap + (x - cap) * slope : x);
-    const games = META.groups.filter(g => g.kind !== 'network' && Gm[g.id] != null && gw(g.id) > 0).map(g => ({ G: cnt(Gm[g.id]), w: gw(g.id), f: pf(g) })).sort((a, b) => b.G - a.G || b.w * b.f - a.w * a.f);
-    let wsum = 0, acc = 0, peak = 0; games.forEach((g, k) => { const w = Math.pow(P.gameDecay, k) * g.w * g.f; wsum += w; acc += w * g.G; peak = Math.max(peak, g.G * g.f); });
+    const games = META.groups.filter(g => g.kind !== 'network' && Gm[g.id] != null && gw(g.id) > 0).map(g => ({ id: g.id, G: cnt(Gm[g.id]), w: gw(g.id), f: pf(g) })).sort((a, b) => b.G - a.G || b.w * b.f - a.w * a.f);
+    let wsum = 0, acc = 0, peak = 0, peakId = null; games.forEach((g, k) => { const w = Math.pow(P.gameDecay, k) * g.w * g.f; g.wk = w; wsum += w; acc += w * g.G; if (g.G * g.f > peak) { peak = g.G * g.f; peakId = g.id; } });
     const gamesScore = P.peakShare * peak + (1 - P.peakShare) * (wsum ? acc / wsum : 0);
     const net = META.groups.find(g => g.kind === 'network'), netScore = net && Gm[net.id] ? Gm[net.id] : 0, netW = net ? gw(net.id) : 0;
     const wG = games.length ? 1 - P.networkShare : 0, wN = P.networkShare * netW;
     const raw = wG + wN ? ((wG * gamesScore + wN * netScore) / (wG + wN)) * META.perfect : 0;
-    return { score: P.scoreFlatten > 1 ? META.perfect * Math.pow(raw / META.perfect, 1 / P.scoreFlatten) : raw, G: Gm, eff };
+    const score = P.scoreFlatten > 1 ? META.perfect * Math.pow(raw / META.perfect, 1 / P.scoreFlatten) : raw;
+    // parts: how many of the final points each game adds (they sum to score). mult: points per 1.0 of that game's score. The best game gets the peak bonus on top of its decay slot.
+    const den = (wG + wN) || 1, k = raw > 0 ? score / raw : 0, parts = {}, mult = {};
+    for (const g of games) { const m = (wG / den) * (P.peakShare * (g.id === peakId ? g.f : 0) + (1 - P.peakShare) * (wsum ? g.wk / wsum : 0)) * META.perfect * k; mult[g.id] = m; parts[g.id] = m * g.G; }
+    if (net && netW) parts[net.id] = (wN / den) * netScore * META.perfect * k;
+    return { score, G: Gm, eff, parts, mult, peakId };
   }
   const stScore = (v, id, ref) => (CFG.model === 'classic' ? frac(v, ref) : sScore(v, ST[id] || {}, ref));
+
+  /* ================= custom-scoring flag (so edited rankings are obvious in screenshots) ================= */
+  function scoringChanges() {
+    const out = [];
+    if (CFG.model === 'classic') { out.push('Classic model (% of #1)'); if (CFG.curve !== 1) out.push(`curve ${CFG.curve}`); if (CFG.ref !== 'known') out.push(`#1 = ${CFG.ref === 'pool' ? 'best tracked' : '99th percentile'}`); }
+    for (const g of META.groups) { const def = g.weight ?? 1, cur = gw(g.id); if (Math.abs(cur - def) > 1e-9) out.push(cur === 0 ? `${g.name} removed` : `${g.name} ×${+cur.toFixed(2)}`); }
+    return out;
+  }
+  const isCustom = () => scoringChanges().length > 0;
+  const customBadge = () => (isCustom() ? `<span class="rk-cbadge" title="${esc('Scoring was edited: ' + scoringChanges().join(', '))}">Custom scoring</span>` : '');
+  function updateCustomUI() {
+    const ch = scoringChanges(), on = ch.length > 0;
+    document.body.classList.toggle('rk-is-custom', on);
+    $('rk-custom').classList.toggle('hidden', !on);
+    $('rk-custom-list').textContent = ch.slice(0, 6).join(', ') + (ch.length > 6 ? `, +${ch.length - 6} more` : '');
+    document.querySelectorAll('.settings-btn[data-pop="scoring"]').forEach(b => b.classList.toggle('custom', on));
+  }
+  const resetScoring = () => { CFG.model = 'smart'; CFG.curve = 1; CFG.ref = 'known'; CFG.gw = {}; };
+  const gname = (id) => (G[id] || {}).name || id;
+  const p1 = (n) => Number(n).toLocaleString(undefined, { maximumFractionDigits: 1 });
+  const p2 = (n) => Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  /** How many times more a game counts than the average game for this player (the best game gets the peak bonus). */
+  const weightX = (d, id) => { const v = Object.values(d.mult || {}).filter(x => x > 0), avg = v.length ? v.reduce((a, b) => a + b, 0) / v.length : 1; return (d.mult[id] || 0) / avg; };
+  function minorIds(A, B) {
+    const all = Object.keys(A.parts), mx = (id) => Math.max(A.parts[id] || 0, B.parts[id] || 0), mean = all.reduce((s, id) => s + mx(id), 0) / (all.length || 1);
+    const out = all.filter(id => id !== A.peakId && id !== B.peakId && mx(id) < 0.6 * mean);
+    return out.length >= 3 ? new Set(out) : new Set();
+  }
+  /** Stacked bar of where a player's points come from; the best game is hatched and called out. */
+  function contribBar(d, side) {
+    const ents = Object.entries(d.parts || {}).filter(([, v]) => v > 0.0001).sort((x, y) => y[1] - x[1]), tot = ents.reduce((s, [, v]) => s + v, 0) || 1;
+    const pk = d.peakId ? d.parts[d.peakId] : 0;
+    return `<div class="rk-contrib ${side}"><div class="rk-contrib-bar">${ents.map(([id, v], i) => `<i class="${id === d.peakId ? 'pk' : ''}" style="width:${(v / tot) * 100}%;opacity:${id === d.peakId ? 1 : Math.max(0.28, 0.72 - i * 0.04)}" title="${esc(gname(id))}: ${p1(v)} pts"></i>`).join('')}</div>
+      ${pk ? `<div class="rk-contrib-cap"><span class="rk-star">★</span> Best game: <b>${esc(gname(d.peakId))}</b> adds <b>${p1(pk)}</b> pts (${Math.round((pk / tot) * 100)}% of the score) and counts ×${weightX(d, d.peakId).toFixed(1)} the average game</div>` : ''}</div>`;
+  }
 
   function computeRefs() {
     const out = {};
@@ -254,7 +294,7 @@
     const rows = sortedRows();
     const { key, dir } = CFG.sort;
     const th = (k, label, cls = 'r') => `<th class="${cls}${key === k ? ' sorted' + (dir === 1 ? ' asc' : '') : ''}" data-key="${k}">${esc(label)}</th>`;
-    $('bd-thead').innerHTML = `<tr><th class="rank${key === 'rank' ? ' sorted' + (dir === 1 ? ' asc' : '') : ''}" data-key="rank" style="width:56px;">#</th>${th('name', 'Player', '')}${th('score', 'Score')}${CFG.cols.filter(c => c !== 'score').map(c => th(c, keyLabel(c))).join('')}</tr>`;
+    $('bd-thead').innerHTML = `<tr><th class="rank${key === 'rank' ? ' sorted' + (dir === 1 ? ' asc' : '') : ''}" data-key="rank" style="width:56px;">#</th>${th('name', 'Player', '')}${th('score', isCustom() ? 'Score*' : 'Score')}${CFG.cols.filter(c => c !== 'score').map(c => th(c, keyLabel(c))).join('')}</tr>`;
     const cols = CFG.cols.filter(c => c !== 'score');
     $('bd-tbody').innerHTML = rows.slice(0, shown).map((r, i) => {
       const href = `?player=${encodeURIComponent(r.p.name)}`, pod = r.rank === 1 ? 'rank-1' : r.rank === 2 ? 'rank-2' : r.rank === 3 ? 'rank-3' : '';
@@ -306,7 +346,7 @@
   }
   let t = null;
   function onCfg() {
-    store.set('litstats_rank_cfg', CFG);
+    store.set('litstats_rank_cfg', CFG); updateCustomUI();
     clearTimeout(t);
     t = setTimeout(() => { rebuild(); shown = PAGE; renderBoard(); if (S.player) renderPlayer(); if (S.cmp.a && S.cmp.b) renderCompare(); }, 40);
   }
@@ -329,7 +369,7 @@
     if (act === 'close') return closePop();
     if (b.dataset.curve) { CFG.curve = parseFloat(b.dataset.curve); onCfg(); return renderPop(); }
     if (b.dataset.preset) { CFG.gw = { ...PRESETS[b.dataset.preset] }; onCfg(); return renderPop(); }
-    if (act === 'reset-scoring') { CFG.model = 'smart'; CFG.curve = 1; CFG.ref = 'known'; CFG.gw = {}; onCfg(); return renderPop(); }
+    if (act === 'reset-scoring') { resetScoring(); onCfg(); return renderPop(); }
     if (act === 'reset-cols') { CFG.cols = defaults().cols; onCfg(); return renderPop(); }
     if (act === 'reset-all') { CFG = defaults(); onCfg(); return renderPop(); }
     if (act === 'save-view') { const n = $('view-name').value.trim(); if (!n) return; const s = store.get('litstats_rank_views', {}); s[n] = CFG; store.set('litstats_rank_views', s); return renderPop(); }
@@ -349,7 +389,7 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && popType) closePop(); });
   /* keyboard shortcuts: / search, Esc blur, 1 2 3 switch tabs */
   document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.ctrlKey || e.metaKey || e.altKey || !$('rk-arena').classList.contains('hidden')) return;
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable;
     if (e.key === 'Escape') { if (typing) e.target.blur(); return; }
     if (typing) return;
@@ -414,7 +454,7 @@
     const score = C.score;
     const better = POOL.loaded ? ROWS.filter(r => r.score > score + 1e-9 && r.p.uuid !== d.uuid).length : null;
     const known = POOL.loaded ? ROWS.some(r => r.p.uuid === d.uuid) : false;
-    return { ...d, rows, groups, score, position: better === null ? null : better + 1, poolN: POOL.loaded ? ROWS.length + (known ? 0 : 1) : null };
+    return { ...d, rows, groups, score, parts: C.parts, mult: C.mult, peakId: C.peakId, position: better === null ? null : better + 1, poolN: POOL.loaded ? ROWS.length + (known ? 0 : 1) : null };
   }
 
   /* ================= tabs + url ================= */
@@ -433,6 +473,7 @@
   document.querySelectorAll('.rk-tabs .tab-btn').forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
   window.handleTopSearch = () => { const n = $('top-search-input').value.trim(); if (n) openPlayer(n); };
   window.clearSearch = (id) => { $(id).value = ''; $(id).focus(); };
+  $('rk-custom-reset').addEventListener('click', () => { resetScoring(); onCfg(); if (popType) renderPop(); });
 
   /* ================= player ================= */
   async function openPlayer(name, push = true) {
@@ -457,10 +498,11 @@
     const best = d.groups.slice().sort((a, b) => (b.points ? b.earned / b.points : 0) - (a.points ? a.earned / a.points : 0))[0];
     const posCls = !d.position ? '' : d.position <= 10 ? 'rank-top10' : d.position <= 25 ? 'rank-top25' : d.position <= 50 ? 'rank-top50' : d.position <= 100 ? 'rank-top100' : '';
     $('pl-pills').innerHTML = (d.position ? `<span class="rank-num-pill ${posCls}" title="Position among tracked players with your current scoring">#${d.position.toLocaleString()} of ${d.poolN.toLocaleString()}</span>` : '') +
-      (best && best.points ? `<span class="rk-pill">Strongest <b>${esc(best.name)}</b></span>` : '') + `<a class="rk-pill" href="/cabinet?player=${encodeURIComponent(d.username)}">Open cabinet ➔</a>`;
+      (best && best.points ? `<span class="rk-pill">Strongest <b>${esc(best.name)}</b></span>` : '') + `<a class="rk-pill" href="/cabinet?player=${encodeURIComponent(d.username)}">Open cabinet ➔</a>` + customBadge();
     $('pl-score').textContent = d.score.toLocaleString(undefined, { maximumFractionDigits: 2 });
     $('pl-outof').textContent = `out of ${d.perfectScore.toLocaleString()}`;
     const pct = Math.min(100, (d.score / d.perfectScore) * 100);
+    $('pl-contrib').innerHTML = contribBar(d, 'a');
     $('pl-bar').style.width = pct + '%'; $('pl-bar-pct').textContent = pct.toFixed(1) + '%';
     $('pl-bar-label').textContent = CFG.model === 'classic' ? (CFG.curve === 1 ? 'Score (% of #1)' : `Score (% of #1, curve ${CFG.curve.toFixed(2)})`) : 'Score (rank-based percentile)';
     const pctTh = document.querySelector('#pl-table th[data-sort="fraction"]'); if (pctTh) pctTh.textContent = CFG.model === 'classic' ? '% of #1' : 'Percentile';
@@ -498,6 +540,7 @@
   $('pl-compare').addEventListener('click', () => { if (S.player) { $('cmp-a').value = S.player.username; showTab('compare', false); $('cmp-b').focus(); } });
 
   /* ================= compare ================= */
+  let CMPV = null;
   async function runCompare(a, b, push = true) {
     showError('');
     if (!a || !b) { showError('Enter two usernames.'); return; }
@@ -505,54 +548,159 @@
     $('cmp-content').classList.add('hidden'); $('cmp-empty').classList.add('hidden');
     try {
       const [da, db] = await withLoader('Comparing players...', () => Promise.all([fetchRank(a), fetchRank(b)]));
-      S.cmp.a = da; S.cmp.b = db; S.cmp.group = 'all'; renderCompare(); showTab('compare', push);
+      S.cmp.a = da; S.cmp.b = db; S.cmp.group = 'all'; S.cmp.open = new Set(); S.cmp.minorOpen = false; renderCompare(); showTab('compare', push); playFight();
     } catch (e) { showError(e.message); $('cmp-empty').classList.remove('hidden'); }
   }
   function renderCompare() {
     const A = scorePayload(S.cmp.a), B = scorePayload(S.cmp.b);
+    CMPV = { A, B };
     $('cmp-empty').classList.add('hidden'); $('cmp-content').classList.remove('hidden');
-    const card = (d, win) => {
+    const card = (d, win, side) => {
       const col = typeof getRankBaseColourHex === 'function' ? getRankBaseColourHex(d.rank, d.monthlyRankColor) : '';
       const tag = d.rank && d.rank !== 'NON' && typeof formatRankText === 'function' ? `<span class="mc-rank" style="font-size:18px">${formatRankText(d.rank, d.rankPlusColor, d.monthlyRankColor)}</span>` : '';
-      return `<div class="rk-cmp-card ${win ? 'win' : ''}">${win ? '<span class="rk-crown">Leads</span>' : ''}<img class="player-avatar" src="https://visage.surgeplay.com/bust/${d.uuid}" alt="" onerror="this.onerror=null;this.src='https://vzge.me/bust/${d.uuid}.png'">
-        <div><div class="player-name-row" style="gap:6px">${tag}<h2 style="${col && col.startsWith('#') ? `color:${col}` : ''}">${esc(d.username)}</h2>${guildHTML(d.guildTag, d.guildColor)}</div><div class="rk-muted" style="margin-top:6px">${d.position ? `#${d.position.toLocaleString()} of ${d.poolN.toLocaleString()}` : '&nbsp;'}</div></div>
-        <div class="rk-bigscore"><b>${d.score.toLocaleString(undefined, { maximumFractionDigits: 2 })}</b><span>score</span></div></div>`;
+      return `<div class="rk-cmp-card ${side} ${win ? 'win' : ''}">${win ? '<span class="rk-crown">Leads</span>' : ''}<img class="player-avatar" src="https://visage.surgeplay.com/bust/${d.uuid}" alt="" onerror="this.onerror=null;this.src='https://vzge.me/bust/${d.uuid}.png'">
+        <div><div class="player-name-row" style="gap:6px">${tag}<h2 style="${col && col.startsWith('#') ? `color:${col}` : ''}">${esc(d.username)}</h2>${guildHTML(d.guildTag, d.guildColor)}</div><div class="rk-muted" style="margin-top:6px">${d.position ? `#${d.position.toLocaleString()} of ${d.poolN.toLocaleString()}` : ''} ${customBadge()}</div></div>
+        <div class="rk-bigscore"><b>${p2(d.score)}</b><span>score</span></div>${contribBar(d, side)}</div>`;
     };
-    $('cmp-head').innerHTML = card(A, A.score > B.score) + card(B, B.score > A.score);
+    $('cmp-head').innerHTML = card(A, A.score > B.score, 'a') + card(B, B.score > A.score, 'b');
 
     const byId = Object.fromEntries(B.rows.map(r => [r.id, r]));
     const pairs = A.rows.filter(r => r.outOf > 0).map(r => ({ id: r.id, label: r.label, group: r.group, st: r.st || r, a: r, b: byId[r.id] }));
     let aLead = 0, bLead = 0, tie = 0;
     pairs.forEach(p => { if (p.a.value > p.b.value) aLead++; else if (p.b.value > p.a.value) bLead++; else tie++; });
+    CMPV.pairs = pairs;
     const diff = A.score - B.score;
-    $('cmp-summary').innerHTML = `<b>${esc(A.username)}</b> leads in <b>${aLead}</b> stats, <b>${esc(B.username)}</b> in <b>${bLead}</b>${tie ? `, ${tie} level` : ''}. ${diff === 0 ? 'Dead level overall.' : `<b>${esc(diff > 0 ? A.username : B.username)}</b> is ahead by <b>${Math.abs(diff).toLocaleString(undefined, { maximumFractionDigits: 2 })}</b> points.`}`;
-
+    $('cmp-summary').innerHTML = `<b>${esc(A.username)}</b> leads in <b>${aLead}</b> stats, <b>${esc(B.username)}</b> in <b>${bLead}</b>${tie ? `, ${tie} level` : ''}. ${diff === 0 ? 'Dead level overall.' : `<b>${esc(diff > 0 ? A.username : B.username)}</b> is ahead by <b>${p2(Math.abs(diff))}</b> points.`}`;
     $('cmp-group').innerHTML = `<option value="all">All games</option>` + A.groups.filter(g => g.points).map(g => `<option value="${g.id}">${esc(g.name)}</option>`).join('');
-    $('cmp-group').value = S.cmp.group; $('cmp-diff').setAttribute('aria-pressed', S.cmp.diff);
-
+    $('cmp-group').value = S.cmp.group; $('cmp-sort').value = S.cmp.sort;
+    renderCmpList();
+  }
+  function renderCmpList() {
+    if (!CMPV) return;
+    const { A, B, pairs } = CMPV, gB = Object.fromEntries(B.groups.map(g => [g.id, g]));
+    let games = A.groups.filter(g => g.points && (S.cmp.group === 'all' || S.cmp.group === g.id)).map(g => ({ id: g.id, name: g.name, ea: g.earned, eb: (gB[g.id] || {}).earned || 0, pa: A.parts[g.id] || 0, pb: B.parts[g.id] || 0 }));
+    if (S.cmp.sort === 'swing') games.sort((x, y) => Math.abs(y.pa - y.pb) - Math.abs(x.pa - x.pb));
     const split = (x, y) => { const tot = x + y, pa = tot ? (x / tot) * 100 : 50; return `<div class="rk-split"><i style="width:${pa}%"></i><i style="width:${100 - pa}%"></i></div>`; };
-    const cell = (x, y, side) => `<div class="${side} ${x > y ? 'w' : x < y ? 'n' : ''} rk-num">${num(x)}</div>`;
-    let html = '';
-    for (const g of A.groups) {
-      if (!g.points || (S.cmp.group !== 'all' && S.cmp.group !== g.id)) continue;
-      const gb = B.groups.find(x => x.id === g.id);
-      let rows = pairs.filter(p => p.group === g.id);
-      if (S.cmp.diff) rows = rows.filter(p => p.a.value !== p.b.value);
-      if (!rows.length) continue;
-      html += `<div class="rk-cmp-row group">${cell(g.earned, gb.earned, 'l')}<div class="rk-cmp-mid"><span>${ico(groupIcon(g.id))}${esc(g.name)}</span>${split(g.earned, gb.earned)}</div>${cell(gb.earned, g.earned, 'r')}</div>`;
-      html += rows.map(p => `<div class="rk-cmp-row">${cell(p.a.value, p.b.value, 'l')}<div class="rk-cmp-mid"><span>${ico(statIcon(p.st))}${esc(p.label)}</span>${split(p.a.value, p.b.value)}</div>${cell(p.b.value, p.a.value, 'r')}</div>`).join('');
+    const stat = (x, y, side) => `<div class="${side} ${x > y ? 'w' : x < y ? 'n' : ''} rk-num">${num(x)}</div>`;
+    const head = (d, id, e, p, o, side) => `<span class="${side} ${p > o ? 'w' : p < o ? 'n' : ''}"><b class="rk-num">+${p1(p)}</b><small>${Math.round(e).toLocaleString()} / 1,000</small>${d.peakId === id ? `<em class="rk-best">★ Best game · ×${weightX(d, id).toFixed(1)}</em>` : ''}</span>`;
+    const card = (g) => {
+      const open = S.cmp.open.has(g.id), rows = pairs.filter(p => p.group === g.id);
+      return `<section class="rk-g ${open ? 'open' : ''}"><button type="button" class="rk-g-h" data-g="${g.id}" aria-expanded="${open}">
+        ${head(A, g.id, g.ea, g.pa, g.pb, 'l')}<span class="rk-g-mid"><span class="rk-g-name">${ico(groupIcon(g.id))}${esc(g.name)}<i class="rk-chev" aria-hidden="true"></i></span>${split(g.pa, g.pb)}</span>${head(B, g.id, g.eb, g.pb, g.pa, 'r')}</button>
+        ${open ? `<div class="rk-g-body">${rows.map(p => `<div class="rk-cmp-row">${stat(p.a.value, p.b.value, 'l')}<div class="rk-cmp-mid"><span>${ico(statIcon(p.st))}${esc(p.label)}</span>${split(p.a.value, p.b.value)}</div>${stat(p.b.value, p.a.value, 'r')}</div>`).join('')}</div>` : ''}</section>`;
+    };
+    const minor = S.cmp.group === 'all' ? minorIds(A, B) : new Set(), big = games.filter(g => !minor.has(g.id)), small = games.filter(g => minor.has(g.id));
+    let html = big.map(card).join('');
+    if (small.length) {
+      const sa = small.reduce((s, g) => s + g.pa, 0), sb = small.reduce((s, g) => s + g.pb, 0), mo = S.cmp.minorOpen;
+      const side = (p, o, cls) => `<span class="${cls} ${p > o ? 'w' : p < o ? 'n' : ''}"><b class="rk-num">+${p1(p)}</b><small>combined</small></span>`;
+      html += `<section class="rk-g rk-minor ${mo ? 'open' : ''}"><button type="button" class="rk-g-h" data-minor="1" aria-expanded="${mo}">${side(sa, sb, 'l')}<span class="rk-g-mid"><span class="rk-g-name"><span class="rk-icons">${small.slice(0, 6).map(g => ico(groupIcon(g.id))).join('')}</span>${small.length} smaller games<i class="rk-chev" aria-hidden="true"></i></span>${split(sa, sb)}</span>${side(sb, sa, 'r')}</button>${mo ? `<div class="rk-minor-body">${small.map(card).join('')}</div>` : ''}</section>`;
     }
-    $('cmp-list').innerHTML = html || '<div class="rk-off" style="margin:24px auto;">No differences to show.</div>';
+    $('cmp-list').innerHTML = html || '<div class="rk-off" style="margin:24px auto;">Nothing to show.</div>';
+    const all = games.length && games.every(g => S.cmp.open.has(g.id));
+    $('cmp-expand').textContent = all ? 'Collapse all' : 'Expand all';
   }
   $('cmp-go').addEventListener('click', () => runCompare($('cmp-a').value.trim(), $('cmp-b').value.trim()));
   ['cmp-a', 'cmp-b'].forEach(id => $(id).addEventListener('keydown', (e) => { if (e.key === 'Enter') $('cmp-go').click(); }));
-  $('cmp-group').addEventListener('change', (e) => { S.cmp.group = e.target.value; renderCompare(); });
-  $('cmp-diff').addEventListener('click', () => { S.cmp.diff = !S.cmp.diff; renderCompare(); });
-  $('cmp-share').addEventListener('click', async function () {
-    const u = new URL(location.href); u.search = ''; u.searchParams.set('a', S.cmp.a.username); u.searchParams.set('b', S.cmp.b.username);
-    try { await navigator.clipboard.writeText(u.toString()); this.textContent = 'Copied'; } catch (e) { this.textContent = 'Copy failed'; }
-    setTimeout(() => { this.textContent = 'Copy link'; }, 1500);
+  $('cmp-group').addEventListener('change', (e) => { S.cmp.group = e.target.value; renderCmpList(); });
+  $('cmp-sort').addEventListener('change', (e) => { S.cmp.sort = e.target.value; renderCmpList(); });
+  $('cmp-expand').addEventListener('click', () => {
+    const ids = CMPV.A.groups.filter(g => g.points && (S.cmp.group === 'all' || S.cmp.group === g.id)).map(g => g.id), all = ids.every(i => S.cmp.open.has(i));
+    ids.forEach(i => (all ? S.cmp.open.delete(i) : S.cmp.open.add(i))); S.cmp.minorOpen = !all; renderCmpList();
   });
+  $('cmp-list').addEventListener('click', (e) => {
+    const h = e.target.closest('.rk-g-h'); if (!h) return;
+    if (h.dataset.minor) { S.cmp.minorOpen = !S.cmp.minorOpen; return renderCmpList(); }
+    const id = h.dataset.g; S.cmp.open.has(id) ? S.cmp.open.delete(id) : S.cmp.open.add(id); renderCmpList();
+  });
+  $('cmp-replay').addEventListener('click', () => playFight());
+  const shareCompare = async (btn, idle) => {
+    const u = new URL(location.href); u.search = ''; u.searchParams.set('a', S.cmp.a.username); u.searchParams.set('b', S.cmp.b.username);
+    if (isCustom()) u.searchParams.set('v', encode(CFG));      // custom scoring travels with the link
+    try { await navigator.clipboard.writeText(u.toString()); btn.textContent = 'Copied'; } catch (e) { btn.textContent = 'Copy failed'; }
+    setTimeout(() => { btn.textContent = idle; }, 1500);
+  };
+  $('cmp-share').addEventListener('click', function () { shareCompare(this, 'Copy link'); });
+
+  /* ================= fight arena ================= */
+  const arena = $('rk-arena');
+  let FIGHT = null;
+  const SPEEDS = [1, 2, 4];
+  const prefersReduced = () => !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  function stopFight() { if (FIGHT) { FIGHT.dead = true; [...FIGHT.wake].forEach(w => w()); } }
+  function closeArena() { stopFight(); arena.classList.add('hidden'); document.body.style.overflow = ''; $('cmp-replay').focus(); }
+  const fighterHTML = (d, side) => {
+    const col = typeof getRankBaseColourHex === 'function' ? getRankBaseColourHex(d.rank, d.monthlyRankColor) : '';
+    return `<div class="ar-f ${side}" id="ar-f${side}"><span class="ar-crown">Winner</span><div class="ar-fp"><img class="ar-av" src="https://visage.surgeplay.com/bust/${d.uuid}" alt="" onerror="this.onerror=null;this.src='https://vzge.me/bust/${d.uuid}.png'"><div class="ar-fn"><span class="ar-name" style="${col && col.startsWith('#') ? `color:${col}` : ''}">${esc(d.username)}</span>${guildHTML(d.guildTag, d.guildColor)}</div></div>
+      <div class="ar-tot" id="ar-t${side}">0.00</div><div class="ar-meter"><i id="ar-m${side}"></i></div><div class="ar-sub" id="ar-s${side}">0 rounds won</div></div>`;
+  };
+  const sideHTML = (side, d, pk, x) => `<div class="ar-side ${side} ${pk ? 'peak' : ''}" id="ar-sd${side}"><div class="ar-gv" id="ar-gv${side}">0</div><div class="ar-gbar"><i id="ar-gb${side}"></i></div><div class="ar-best">${pk ? `★ Best game · counts ×${x.toFixed(1)}` : ''}</div></div>`;
+
+  async function playFight() {
+    if (!S.cmp.a || !S.cmp.b) return;
+    stopFight();
+    const A = scorePayload(S.cmp.a), B = scorePayload(S.cmp.b), gB = Object.fromEntries(B.groups.map(g => [g.id, g]));
+    const all = A.groups.filter(g => g.points).map(g => ({ id: g.id, name: g.name, ga: g.earned, gb: (gB[g.id] || {}).earned || 0, pa: A.parts[g.id] || 0, pb: B.parts[g.id] || 0 })), minor = minorIds(A, B);
+    const rounds = all.filter(r => !minor.has(r.id)).sort((x, y) => Math.max(x.pa, x.pb) - Math.max(y.pa, y.pb));       // big rounds land last
+    const small = all.filter(r => minor.has(r.id));
+    if (small.length) rounds.unshift({ id: '_small', bunch: small, name: `${small.length} smaller games`, pa: small.reduce((s, r) => s + r.pa, 0), pb: small.reduce((s, r) => s + r.pb, 0) });   // the lowest games fight as one quick warm-up
+    const tok = FIGHT = { skip: prefersReduced(), dead: false, speed: 1, wake: new Set(), done: false };
+    const sleep = (ms) => new Promise(res => { if (tok.skip || tok.dead) return res(); const w = () => { clearTimeout(id); tok.wake.delete(w); res(); }; const id = setTimeout(w, ms / tok.speed); tok.wake.add(w); });
+    const tween = (from, to, ms, apply) => new Promise(res => {
+      if (tok.skip || tok.dead) { if (!tok.dead) apply(to); return res(); }
+      let raf; const t0 = performance.now();
+      const w = () => { cancelAnimationFrame(raf); tok.wake.delete(w); if (!tok.dead) apply(to); res(); };
+      tok.wake.add(w);
+      const step = (now) => { if (tok.dead) return; const k = Math.min(1, ((now - t0) * tok.speed) / ms); apply(from + (to - from) * (1 - Math.pow(1 - k, 3))); if (k < 1) raf = requestAnimationFrame(step); else { tok.wake.delete(w); res(); } };
+      raf = requestAnimationFrame(step);
+    });
+
+    arena.innerHTML = `<div class="ar-top"><div class="ar-top-l"><span class="ar-roundlab" id="ar-rl">Get ready</span>${customBadge()}</div><div class="ar-hint"><span class="rk-star">★</span> A player's best game counts the most</div>
+        <div class="ar-ctrl"><button type="button" class="ar-btn" id="ar-speed" aria-label="Playback speed">1×</button><button type="button" class="ar-btn ar-main" id="ar-skip">Skip to result</button><button type="button" class="ar-btn" id="ar-close" aria-label="Close">✕</button></div></div>
+      <div class="ar-stage">${fighterHTML(A, 'a')}<div class="ar-mid" id="ar-mid" aria-live="polite"></div>${fighterHTML(B, 'b')}</div>
+      <div class="ar-track" id="ar-track">${rounds.map((r, i) => `<span class="ar-chip" id="ar-c${i}" title="${esc(r.name)}">${r.bunch ? `<b>${r.bunch.length}</b>` : ico(groupIcon(r.id))}</span>`).join('')}</div>`;
+    arena.classList.remove('hidden'); document.body.style.overflow = 'hidden'; $('ar-skip').focus();
+    $('ar-close').onclick = closeArena;
+    $('ar-skip').onclick = () => { tok.skip = true; [...tok.wake].forEach(w => w()); };
+    $('ar-speed').onclick = function () { tok.speed = SPEEDS[(SPEEDS.indexOf(tok.speed) + 1) % SPEEDS.length]; this.textContent = tok.speed + '×'; };
+
+    const maxT = Math.max(A.score, B.score) || 1;
+    const setTot = (s, v) => { $('ar-t' + s).textContent = p2(v); $('ar-m' + s).style.width = Math.min(100, (v / maxT) * 100) + '%'; };
+    const setG = (s, v, r) => { $('ar-gv' + s).textContent = r.bunch ? '+' + p2(v) : Math.round(v).toLocaleString(); $('ar-gb' + s).style.width = (r.bunch ? (v / (Math.max(r.pa, r.pb) || 1)) * 100 : v / 10) + '%'; };
+    const float = (s, txt, big) => { if (tok.skip) return; const el = document.createElement('span'); el.className = 'ar-float' + (big ? ' big' : ''); el.textContent = txt; $('ar-f' + s).appendChild(el); setTimeout(() => el.remove(), 1100); };
+    const bump = (s) => { const el = $('ar-t' + s); el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); };
+    let tA = 0, tB = 0, wA = 0, wB = 0;
+
+    $('ar-mid').innerHTML = `<div class="ar-intro"><div class="ar-vs-big">VS</div><p>${rounds.length} rounds. Every game is scored out of 1,000, then turned into points. Your best game is worth the most.</p></div>`;
+    await sleep(1800); if (tok.dead) return;
+
+    for (let i = 0; i < rounds.length; i++) {
+      const r = rounds[i], pkA = A.peakId === r.id, pkB = B.peakId === r.id;
+      $('ar-rl').textContent = `Round ${i + 1} of ${rounds.length}`;
+      $('ar-mid').innerHTML = `<div class="ar-round"><div class="ar-gname">${r.bunch ? `<span class="rk-icons">${r.bunch.slice(0, 6).map(x => ico(groupIcon(x.id))).join('')}</span>` : ico(groupIcon(r.id))}<span>${esc(r.name)}</span></div><div class="ar-duel">${sideHTML('a', A, pkA, weightX(A, r.id))}${sideHTML('b', B, pkB, weightX(B, r.id))}</div></div>`;
+      await sleep(260); if (tok.dead) return;
+      await Promise.all([tween(0, r.bunch ? r.pa : r.ga, 520, v => setG('a', v, r)), tween(0, r.bunch ? r.pb : r.gb, 520, v => setG('b', v, r))]); if (tok.dead) return;
+      const win = r.pa > r.pb ? 'a' : r.pb > r.pa ? 'b' : null;
+      if (win) { $('ar-sd' + win).classList.add('win'); win === 'a' ? wA++ : wB++; }
+      float('a', '+' + p2(r.pa), pkA); float('b', '+' + p2(r.pb), pkB);
+      await Promise.all([tween(tA, tA + r.pa, 520, v => setTot('a', v)), tween(tB, tB + r.pb, 520, v => setTot('b', v))]); if (tok.dead) return;
+      tA += r.pa; tB += r.pb; bump('a'); bump('b');
+      $('ar-sa').textContent = `${wA} round${wA === 1 ? '' : 's'} won`; $('ar-sb').textContent = `${wB} round${wB === 1 ? '' : 's'} won`;
+      $('ar-c' + i).classList.add(win || 'tie', 'done');
+      await sleep(pkA || pkB ? 800 : 160); if (tok.dead) return;
+    }
+    setTot('a', A.score); setTot('b', B.score);
+    tok.done = true; $('ar-skip').classList.add('hidden'); $('ar-speed').classList.add('hidden'); $('ar-rl').textContent = 'Final result';
+    const win = A.score === B.score ? null : A.score > B.score ? 'a' : 'b', W = win === 'a' ? A : B;
+    if (win) $('ar-f' + win).classList.add('champ');
+    const sw = rounds.slice().sort((x, y) => Math.abs(y.pa - y.pb) - Math.abs(x.pa - x.pb))[0], swWho = sw.pa > sw.pb ? A : B;
+    $('ar-mid').innerHTML = `<div class="ar-result"><div class="ar-kicker">${win ? 'Winner' : 'Dead heat'}</div><h2>${win ? esc(W.username) : 'All square'}</h2>${win ? `<p class="ar-margin">by ${p2(Math.abs(A.score - B.score))} points</p>` : ''}
+      <div class="ar-facts"><div><b>${wA} – ${wB}</b><span>rounds won</span></div><div><b>${esc(sw.name)}</b><span>decisive round: ${esc(swWho.username)} by ${p2(Math.abs(sw.pa - sw.pb))}</span></div><div><b>${A.peakId === B.peakId ? esc(gname(A.peakId)) : `${esc(gname(A.peakId))} vs ${esc(gname(B.peakId))}`}</b><span>${A.peakId === B.peakId ? 'best game for both' : 'best games'}</span></div></div>
+      <div class="ar-actions"><button type="button" class="ar-btn" id="ar-again">Replay</button><button type="button" class="ar-btn ar-main" id="ar-done">See full breakdown</button><button type="button" class="ar-btn" id="ar-copy">Copy link</button></div></div>`;
+    $('ar-again').onclick = playFight; $('ar-done').onclick = closeArena; $('ar-copy').onclick = function () { shareCompare(this, 'Copy link'); };
+    $('ar-done').focus();
+  }
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !arena.classList.contains('hidden')) closeArena(); });
 
   /* ================= init ================= */
   async function init() {
@@ -573,7 +721,7 @@
       });
     } catch (e) { showError(e.message); $('board-off').classList.remove('hidden'); return; }
 
-    $('ff-field').innerHTML = fieldOptions(); $('ff-field').value = 's:achievement_points'; setOps('s:achievement_points'); renderTry();
+    updateCustomUI(); $('ff-field').innerHTML = fieldOptions(); $('ff-field').value = 's:achievement_points'; setOps('s:achievement_points'); renderTry();
     if (POOL.loaded) { rebuild(); $('board-ui').classList.remove('hidden'); renderBoard(); }
     else { $('board-off-msg').textContent = POOL.msg; $('board-off').classList.remove('hidden'); }
 
