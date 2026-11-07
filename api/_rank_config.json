@@ -211,7 +211,8 @@
    "kind": "game",
    "gamma": 1,
    "pop": 100000,
-   "strength": 0.9
+   "strength": 0.88,
+   "weight": 0.95
   },
   {
    "id": "bedwars",
