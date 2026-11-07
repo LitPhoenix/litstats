@@ -502,7 +502,7 @@
    "label": "UHC Kills",
    "group": "uhc",
    "path": "stats.UHC.kills+stats.UHC.kills_solo",
-   "ref": 30000,
+   "ref": 32000,
    "signal": "kills",
    "verify": true
   },
