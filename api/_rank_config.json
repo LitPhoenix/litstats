@@ -923,7 +923,7 @@
   {
    "group": "tkr",
    "id": "trophies",
-   "label": "Trophies",
+   "label": "Trophy Score",
    "path": "stats.GingerBread.gold_trophy*3+stats.GingerBread.silver_trophy*2+stats.GingerBread.bronze_trophy",
    "ref": 98022,
    "population": 50000,
