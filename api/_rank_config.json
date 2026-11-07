@@ -202,7 +202,7 @@
    "game": "Network",
    "kind": "network",
    "weight": 0.9,
-   "strength": 0.96
+   "strength": 0.66
   },
   {
    "id": "skywars",
@@ -352,7 +352,8 @@
    "game": "Paintball",
    "kind": "game",
    "weight": 0.85,
-   "pop": 100000
+   "pop": 100000,
+   "strength": 0.93
   },
   {
    "id": "arena",
@@ -385,7 +386,7 @@
    "game": "The Pit",
    "kind": "game",
    "pop": 50000,
-   "strength": 0.98
+   "strength": 0.96
   },
   {
    "id": "skyblock",
