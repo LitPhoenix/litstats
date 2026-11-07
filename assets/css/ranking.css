@@ -179,7 +179,7 @@ body.rk-is-custom .table-wrap { border-top: 3px solid #ffb020; }
 /* ===== "Where the points come from" bar. Best game = hatched, full strength ===== */
 .rk-contrib { grid-column: 1 / -1; --pc: var(--accent); margin-top: 6px; }
 .rk-contrib.b { --pc: #5aa7ff; }
-.rk-contrib-bar { display: flex; gap: 2px; height: 12px; border-radius: 6px; overflow: hidden; background: rgba(0,0,0,.18); }
+.rk-contrib-bar { display: flex; gap: 2px; height: 12px; overflow: hidden; background: rgba(0,0,0,.18); }
 .rk-contrib-bar i { display: block; height: 100%; min-width: 2px; background: var(--pc); }
 .rk-contrib-bar i.pk { background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.45) 0 3px, transparent 3px 7px); box-shadow: 0 0 10px var(--pc); }
 .rk-contrib-cap { margin-top: 6px; font-size: 12px; color: var(--text-2); line-height: 1.4; }
