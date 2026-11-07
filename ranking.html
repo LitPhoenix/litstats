@@ -23,12 +23,12 @@
   <script src="assets/js/components.js"></script>
 
 <main>
-  <div class="hero">
-    <h1>Global Ranking</h1>
-    <p>Every player scored on stats across the whole network, each measured against the best in that stat. Filter it, re-weight it, make it yours.</p>
-  </div>
-
-  <div class="top-lookup-bar" id="rk-lookup">
+  <div class="rk-top">
+    <div class="rk-title">
+      <h1>Global Ranking</h1>
+      <p>Every player scored across the whole network. Filter it, re-weight it, make it yours.</p>
+    </div>
+    <div class="top-lookup-bar" id="rk-lookup">
     <div class="search-group">
       <div class="search-wrapper">
         <input type="text" id="top-search-input" placeholder="Search Player Username..." onkeydown="if(event.key==='Enter')handleTopSearch()">
@@ -39,21 +39,27 @@
       </button>
     </div>
   </div>
-
-  <div class="shortcuts-panel">
-    <div class="shortcut-item"><kbd>/</kbd> Search</div>
-    <div class="shortcut-item"><kbd>Esc</kbd> Escape</div>
-    <div class="shortcut-item"><kbd>1</kbd> Leaderboard</div>
-    <div class="shortcut-item"><kbd>2</kbd> Player</div>
-    <div class="shortcut-item"><kbd>3</kbd> Compare</div>
   </div>
 
-  <div id="errorBox" class="loading-msg hidden" style="color: var(--red); text-align: center; margin: 16px auto;"></div>
+  <div class="rk-nav">
+    <div class="tabs rk-tabs">
+      <button class="tab-btn active" data-tab="board">Leaderboard</button>
+      <button class="tab-btn" data-tab="player">Player</button>
+      <button class="tab-btn" data-tab="compare">Compare</button>
+    </div>
+    <div class="shortcuts-panel">
+      <div class="shortcut-item"><kbd>/</kbd> Search</div>
+      <div class="shortcut-item"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> Tabs</div>
+    </div>
+  </div>
 
-  <div class="tabs rk-tabs">
-    <button class="tab-btn active" data-tab="board">Leaderboard</button>
-    <button class="tab-btn" data-tab="player">Player</button>
-    <button class="tab-btn" data-tab="compare">Compare</button>
+  <div id="errorBox" class="loading-msg hidden" style="color: var(--red); text-align: center; margin: 0 auto 12px;"></div>
+
+  <div class="rk-custom hidden" id="rk-custom" role="status">
+    <span class="rk-cbadge">Custom scoring</span>
+    <span class="rk-custom-list" id="rk-custom-list"></span>
+    <button type="button" class="rk-btn" data-pop="scoring">Edit</button>
+    <button type="button" class="rk-btn" id="rk-custom-reset">Reset to official</button>
   </div>
 
   <div class="rk-wrap">
@@ -62,8 +68,7 @@
   <section id="panel-board">
     <div class="rk-off hidden" id="board-off"><strong>Rankings aren't connected yet</strong><span id="board-off-msg">The ranking pool needs the Redis database on the API project.</span></div>
     <div id="board-ui" class="hidden">
-      <div class="section-header"><span class="section-title">Global Ranking</span><span class="section-hint">Click column headers to sort ↑↓</span></div>
-      <div class="rk-bar-row">
+            <div class="rk-bar-row">
         <div class="rk-btns">
           <button type="button" class="settings-btn" id="bd-add">＋ Filter</button>
           <button type="button" class="settings-btn" data-pop="columns">Columns</button>
@@ -98,8 +103,7 @@
   <section id="panel-player" class="hidden">
     <div id="pl-empty" class="rk-off"><strong>Look up a player</strong>Search a username above to see their score, where they stand and every stat behind it.</div>
     <div id="pl-content" class="hidden">
-      <div class="section-header"><span class="section-title">Player Breakdown</span></div>
-      <div class="profile-card">
+            <div class="profile-card">
         <div class="profile-top">
           <img id="pl-avatar" class="player-avatar" src="" alt="Avatar">
           <div class="player-info-container">
@@ -118,6 +122,7 @@
           <div class="ap-labels-flex"><span id="pl-bar-label">Score</span><span id="pl-bar-pct">0%</span></div>
           <div class="ap-bar-bg"><div class="ap-bar-fill fancy-bar" id="pl-bar" style="width:0%"></div></div>
         </div>
+        <div id="pl-contrib"></div>
       </div>
 
       <div class="rk-bar-row">
@@ -151,11 +156,10 @@
 
   <!-- ============ COMPARE ============ -->
   <section id="panel-compare" class="hidden">
-    <div class="section-header"><span class="section-title">Head to Head</span></div>
-    <div class="rk-cmp-inputs">
-      <div class="search-wrapper"><input type="text" id="cmp-a" placeholder="Player 1" autocomplete="off"></div>
+        <div class="rk-cmp-inputs">
+      <div class="search-wrapper"><input type="text" id="cmp-a" placeholder="Player 1" autocomplete="off"><button type="button" class="clear-btn" onclick="clearSearch('cmp-a')" aria-label="Clear">×</button></div>
       <span class="rk-vs">vs</span>
-      <div class="search-wrapper"><input type="text" id="cmp-b" placeholder="Player 2" autocomplete="off"></div>
+      <div class="search-wrapper"><input type="text" id="cmp-b" placeholder="Player 2" autocomplete="off"><button type="button" class="clear-btn" onclick="clearSearch('cmp-b')" aria-label="Clear">×</button></div>
       <button type="button" id="cmp-go" class="primary-btn rk-go">Compare</button>
     </div>
     <div id="cmp-empty" class="rk-off"><strong>Pick two players</strong>See who wins overall, game by game and stat by stat.</div>
@@ -165,10 +169,11 @@
       <div class="rk-bar-row">
         <div class="rk-btns">
           <select id="cmp-group" class="todo-select" aria-label="Game"></select>
-          <button type="button" id="cmp-diff" class="settings-btn" aria-pressed="false">Only differences</button>
+          <select id="cmp-sort" class="todo-select" aria-label="Sort games"><option value="swing">Biggest swing first</option><option value="order">Game order</option></select>
+          <button type="button" id="cmp-expand" class="settings-btn">Expand all</button>
           <button type="button" class="settings-btn" data-pop="scoring">Scoring</button>
         </div>
-        <button type="button" id="cmp-share" class="btn-toggle-view">Copy link</button>
+        <div class="rk-btns"><button type="button" id="cmp-replay" class="settings-btn rk-primary">▶ Replay battle</button><button type="button" id="cmp-share" class="btn-toggle-view">Copy link</button></div>
       </div>
       <div class="rk-cmp-list" id="cmp-list"></div>
     </div>
@@ -176,6 +181,8 @@
 
   </div>
 </main>
+
+<div id="rk-arena" class="rk-arena hidden" role="dialog" aria-modal="true" aria-label="Head to head battle"></div>
 
 <div id="rk-pop" class="rk-pop hidden" role="dialog" aria-label="Options"></div>
 
