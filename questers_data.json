@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-07T14:38:39.241Z",
+  "last_update": "2026-11-07T19:45:19.215Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111888,
     "289e9f90a76640e0921c85dcd96385b5": 85391,
@@ -400,7 +400,7 @@
     },
     {
       "country": "UK",
-      "score": 36547.6,
+      "score": 36550.2,
       "top_players": [
         {
           "username": "Avula",
@@ -409,6 +409,14 @@
           "current_quests": 50422,
           "last_month_quests": 50404,
           "monthly_gain": 18
+        },
+        {
+          "username": "60c",
+          "uuid": "8682b351e9c241639291935776608054",
+          "country": "UK",
+          "current_quests": 35864,
+          "last_month_quests": 35789,
+          "monthly_gain": 75
         },
         {
           "username": "Shazombie",
@@ -425,14 +433,6 @@
           "current_quests": 35851,
           "last_month_quests": 35851,
           "monthly_gain": 0
-        },
-        {
-          "username": "60c",
-          "uuid": "8682b351e9c241639291935776608054",
-          "country": "UK",
-          "current_quests": 35851,
-          "last_month_quests": 35789,
-          "monthly_gain": 62
         },
         {
           "username": "Evdia",
@@ -1032,15 +1032,15 @@
     },
     {
       "country": "The Netherlands",
-      "score": 14905.2,
+      "score": 14911.8,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_quests": 27477,
+          "current_quests": 27510,
           "last_month_quests": 27340,
-          "monthly_gain": 137
+          "monthly_gain": 170
         },
         {
           "username": "iiris",

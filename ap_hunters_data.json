@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-07T14:38:39.024Z",
+  "last_update": "2026-11-07T19:45:18.799Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -948,10 +948,7 @@
           "current_ap": 24445,
           "last_month_ap": 24445,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Speed UHC",
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "recordheat",
@@ -1942,13 +1939,7 @@
           "current_ap": 24370,
           "last_month_ap": 24370,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max Walls",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Crazy Walls"
-          ]
+          "maxGames": []
         },
         {
           "username": "warido37",
@@ -2213,15 +2204,15 @@
     },
     {
       "country": "Hungary",
-      "score": 5660,
+      "score": 5675,
       "top_players": [
         {
           "username": "mustangk",
           "uuid": "f7a452bae2874e8fb98b5b2a20cedbf9",
           "country": "Hungary",
-          "current_ap": 31295,
+          "current_ap": 31310,
           "last_month_ap": 31280,
-          "monthly_gain": 15,
+          "monthly_gain": 30,
           "maxGames": [
             "Max Pit",
             "Max Arena Brawl",
@@ -2425,9 +2416,9 @@
           "username": "johnush",
           "uuid": "81760cdc19964181a5c51ce17dd86597",
           "country": "Israel",
-          "current_ap": 24095,
+          "current_ap": 24105,
           "last_month_ap": 23915,
-          "monthly_gain": 180,
+          "monthly_gain": 190,
           "maxGames": []
         },
         {
@@ -2935,7 +2926,7 @@
       "score": 700,
       "top_players": [
         {
-          "username": "SATURNO",
+          "username": "ILOVESN1",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
           "current_ap": 26335,
@@ -3041,9 +3032,7 @@
           "current_ap": 24445,
           "last_month_ap": 24445,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
+          "maxGames": []
         },
         {
           "username": "Battalius",
@@ -3052,23 +3041,16 @@
           "current_ap": 24425,
           "last_month_ap": 24425,
           "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
-          ]
+          "maxGames": []
         },
         {
           "username": "InInk",
           "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
           "country": "Unknown",
-          "current_ap": 24375,
+          "current_ap": 24365,
           "last_month_ap": 24375,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max TKR",
-            "Max Duels"
-          ]
+          "monthly_gain": -10,
+          "maxGames": []
         },
         {
           "username": "tyelur",
@@ -3152,13 +3134,10 @@
           "username": "typefast",
           "uuid": "df968d057a4445c2a5118faa3e5d7e3b",
           "country": "Ukraine",
-          "current_ap": 24395,
+          "current_ap": 24380,
           "last_month_ap": 24380,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -3411,9 +3390,9 @@
           "username": "leonl",
           "uuid": "00b5bbf550084470a4dd3c2e1b9049fb",
           "country": "Italy",
-          "current_ap": 25200,
+          "current_ap": 25215,
           "last_month_ap": 25200,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Murder Mystery",
             "Max Wool Games"
