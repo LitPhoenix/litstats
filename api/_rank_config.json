@@ -201,7 +201,8 @@
    "name": "Network",
    "game": "Network",
    "kind": "network",
-   "weight": 0.9
+   "weight": 0.9,
+   "strength": 0.96
   },
   {
    "id": "skywars",
@@ -209,7 +210,8 @@
    "game": "SkyWars",
    "kind": "game",
    "gamma": 1,
-   "pop": 100000
+   "pop": 100000,
+   "strength": 0.96
   },
   {
    "id": "bedwars",
@@ -225,7 +227,8 @@
    "name": "Duels",
    "game": "Duels",
    "kind": "game",
-   "pop": 100000
+   "pop": 100000,
+   "strength": 1
   },
   {
    "id": "arcade",
@@ -269,7 +272,8 @@
    "name": "Blitz SG",
    "game": "Blitz",
    "kind": "game",
-   "pop": 100000
+   "pop": 100000,
+   "strength": 1.05
   },
   {
    "id": "uhc",
@@ -284,7 +288,8 @@
    "game": "Speed UHC",
    "kind": "game",
    "weight": 0.8,
-   "pop": 50000
+   "pop": 50000,
+   "strength": 0.81
   },
   {
    "id": "cvc",
@@ -306,7 +311,8 @@
    "game": "Smash Heroes",
    "kind": "game",
    "weight": 0.8,
-   "pop": 20000
+   "pop": 20000,
+   "strength": 0.92
   },
   {
    "id": "murdermystery",
@@ -321,7 +327,8 @@
    "game": "Wool Games",
    "kind": "game",
    "weight": 0.9,
-   "pop": 50000
+   "pop": 50000,
+   "strength": 0.85
   },
   {
    "id": "vampirez",
@@ -336,7 +343,8 @@
    "name": "Quakecraft",
    "game": "Quake",
    "kind": "game",
-   "pop": 100000
+   "pop": 100000,
+   "strength": 1.05
   },
   {
    "id": "paintball",
@@ -352,7 +360,8 @@
    "game": "Arena Brawl",
    "kind": "game",
    "weight": 0.8,
-   "pop": 30000
+   "pop": 30000,
+   "strength": 0.94
   },
   {
    "id": "walls",
@@ -360,7 +369,8 @@
    "game": "Walls",
    "kind": "game",
    "weight": 0.8,
-   "pop": 50000
+   "pop": 50000,
+   "strength": 0.9
   },
   {
    "id": "tkr",
@@ -374,7 +384,8 @@
    "name": "The Pit",
    "game": "The Pit",
    "kind": "game",
-   "pop": 50000
+   "pop": 50000,
+   "strength": 0.98
   },
   {
    "id": "skyblock",
@@ -1995,8 +2006,12 @@
       0
      ],
      [
+      55,
+      0.2
+     ],
+     [
       100,
-      0.15
+      0.35
      ],
      [
       300,
@@ -3636,7 +3651,7 @@
    "id": "uhc_kills",
    "label": "UHC Kills",
    "path": "stats.UHC.kills+stats.UHC.kills_solo",
-   "ref": 60000,
+   "ref": 40000,
    "population": 80304,
    "L": 4.952,
    "w": 0.193077,
@@ -3656,10 +3671,33 @@
    "ref": 26798,
    "population": 50000,
    "L": 4.849,
-   "w": 0.2975,
-   "points": 1000,
+   "w": 0.6,
+   "points": 600,
    "scale": {
-    "type": "template"
+    "type": "anchors",
+    "anchors": [
+     [
+      0,
+      0
+     ],
+     [
+      1000,
+      0.2
+     ],
+     [
+      5000,
+      0.35
+     ],
+     [
+      12000,
+      0.75
+     ],
+     [
+      35887,
+      1
+     ]
+    ],
+    "tail": 0.46
    },
    "wBase": 0.595,
    "unb": true
@@ -4860,8 +4898,8 @@
    "ref": 2583275,
    "population": 100000,
    "L": 5,
-   "w": 0.55,
-   "points": 1000,
+   "w": 0.65,
+   "points": 650,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -5030,8 +5068,8 @@
    "ref": 1159387,
    "population": 100000,
    "L": 5,
-   "w": 0.55,
-   "points": 1000,
+   "w": 0.65,
+   "points": 650,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -5561,7 +5599,7 @@
    "id": "ctw_wools",
    "label": "Capture The Wool: Wools Captured",
    "path": "stats.WoolGames.capture_the_wool.stats.wools_captured|stats.WoolGames.capture_the_wool.stats.participated_wools_captured",
-   "ref": 60000,
+   "ref": 40000,
    "population": 50000,
    "L": 4.849,
    "w": 0.018375,
@@ -5578,7 +5616,7 @@
    "id": "ctw_kills",
    "label": "Capture The Wool: Kills",
    "path": "stats.WoolGames.capture_the_wool.stats.kills|stats.WoolGames.capture_the_wool.stats.participated_kills",
-   "ref": 40000,
+   "ref": 400000,
    "population": 50000,
    "L": 4.849,
    "w": 0.028875,
@@ -5629,7 +5667,7 @@
    "id": "pit_xp",
    "label": "Pit Experience",
    "path": "@pitXp",
-   "ref": 70000000,
+   "ref": 7000000000,
    "population": 50000,
    "L": 4.849,
    "w": 0.2975,
@@ -5713,10 +5751,80 @@
    "path": "@lilyWeight",
    "ref": 124870,
    "population": 100000,
-   "L": 4.849,
+   "L": 5,
    "w": 0.7,
    "points": 862,
-   "wBase": 0.7
+   "wBase": 0.7,
+   "scale": {
+    "type": "anchors",
+    "anchors": [
+     [
+      0,
+      0
+     ],
+     [
+      30000,
+      0.3
+     ],
+     [
+      50000,
+      0.6
+     ],
+     [
+      75000,
+      0.8
+     ],
+     [
+      124870,
+      1
+     ]
+    ]
+   }
+  },
+  {
+   "group": "megawalls",
+   "id": "mega_walls_wins",
+   "label": "Mega Walls Wins",
+   "path": "stats.Walls3.wins",
+   "ref": 6600,
+   "population": 50000,
+   "L": 4.849,
+   "w": 0.4,
+   "points": 400,
+   "scale": {
+    "type": "template"
+   },
+   "verify": true
+  },
+  {
+   "group": "quake",
+   "id": "quakecraft_wins",
+   "label": "Quakecraft Wins",
+   "path": "stats.Quake.wins+stats.Quake.wins_teams",
+   "ref": 82000,
+   "population": 50000,
+   "L": 4.849,
+   "w": 0.35,
+   "points": 350,
+   "scale": {
+    "type": "template"
+   },
+   "verify": true
+  },
+  {
+   "group": "paintball",
+   "id": "paintball_wins",
+   "label": "Paintball Wins",
+   "path": "stats.Paintball.wins",
+   "ref": 13000,
+   "population": 50000,
+   "L": 4.849,
+   "w": 0.35,
+   "points": 350,
+   "scale": {
+    "type": "template"
+   },
+   "verify": true
   }
  ]
 }
