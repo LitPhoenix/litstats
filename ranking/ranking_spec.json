@@ -166,7 +166,7 @@
   },
   {
    "id": "trophies",
-   "label": "Trophies",
+   "label": "Trophy Score",
    "group": "tkr",
    "path": "stats.GingerBread.gold_trophy*3+stats.GingerBread.silver_trophy*2+stats.GingerBread.bronze_trophy",
    "ref": 98022,
@@ -502,7 +502,7 @@
    "label": "UHC Kills",
    "group": "uhc",
    "path": "stats.UHC.kills+stats.UHC.kills_solo",
-   "ref": 60000,
+   "ref": 30000,
    "signal": "kills",
    "verify": true
   },
@@ -511,7 +511,7 @@
    "label": "Mega Walls Final Kills",
    "group": "megawalls",
    "path": "stats.Walls3.final_kills",
-   "ref": 26798,
+   "ref": 35887,
    "signal": "finals"
   },
   {
@@ -710,7 +710,7 @@
    "label": "Capture The Wool: Wools Captured",
    "group": "woolgames",
    "path": "stats.WoolGames.capture_the_wool.stats.wools_captured|stats.WoolGames.capture_the_wool.stats.participated_wools_captured",
-   "ref": 60000,
+   "ref": 54000,
    "signal": "objective",
    "verify": true
   },
@@ -719,7 +719,7 @@
    "label": "Capture The Wool: Kills",
    "group": "woolgames",
    "path": "stats.WoolGames.capture_the_wool.stats.kills|stats.WoolGames.capture_the_wool.stats.participated_kills",
-   "ref": 40000,
+   "ref": 250000,
    "signal": "kills",
    "verify": true
   },
