@@ -43,6 +43,23 @@ function initTheme() {
   applyTheme(savedTheme);
 }
 
+const isClassic = localStorage.getItem('classicItems') === 'true';
+document.body.classList.toggle('classic-items', isClassic);
+
+document.addEventListener('change', (e) => {
+  if (e.target.matches('#classic-items-toggle')) {
+    const enabled = e.target.checked;
+    localStorage.setItem('classicItems', enabled);
+    document.body.classList.toggle('classic-items', enabled);
+    
+    // Force immediate visual update across rendered items if needed
+    document.querySelectorAll('.item-icon, img[data-item]').forEach(el => {
+      // Trigger any custom swap logic or let CSS handle the class change
+      el.classList.toggle('classic', enabled);
+    });
+  }
+});
+
 function parseMinecraftColors(text) {
   if (!text || text.trim() === '') return '&nbsp;';
   const colorMap = { 
