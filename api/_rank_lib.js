@@ -5,7 +5,7 @@
  *  games score              = peakShare * best game + (1 - peakShare) * decay-weighted average of ALL games, best first
  *  total                    = (1 - networkShare) * games + networkShare * network      (scaled to perfectScore)
  */
-const config = require('./_rank_config.json');
+const config = typeof module === 'object' ? require('./_rank_config.json') : null;   // null in the browser (Rank Studio passes its own cfg)
 
 const enabled = (cfg = config) => cfg.stats.filter(s => !s.disabled && s.path);
 
@@ -89,9 +89,9 @@ function statScore(value, st, mode, cfg = config) {
   const sc = st.scale || { type: 'template' };
   if (sc.type === 'anchors') {
     const A = sc.anchors;
-    if (value >= A[A.length - 1][0]) return A[A.length - 1][1];
-    if (value <= A[0][0]) return A[0][1];
-    for (let i = 1; i < A.length; i++) if (value <= A[i][0]) { const [x0, y0] = A[i - 1], [x1, y1] = A[i]; return y0 + ((value - x0) / (x1 - x0)) * (y1 - y0); }
+    if (value >= A[A.length - 1][0]) return clamp01(A[A.length - 1][1]);
+    if (value <= A[0][0]) return clamp01(A[0][1]);
+    for (let i = 1; i < A.length; i++) if (value <= A[i][0]) { const [x0, y0] = A[i - 1], [x1, y1] = A[i]; return clamp01(y0 + ((value - x0) / (x1 - x0)) * (y1 - y0)); }
   }
   const pos = statPosition(value, st, cfg);
   const r = clamp01(1 - Math.log10(Math.max(1, pos)) / (st.L || 5));
@@ -132,7 +132,7 @@ function composite(S, cfg = config, gw = {}) {
     act.forEach((x, k) => { const w = g.spec ? x.w * Math.pow(g.spec.decay, k) : x.w; n += w * Math.pow(x.u, P.statMeanP); d += w; });
     fx.forEach(x => { n += x.w * Math.pow(x.u, P.statMeanP); d += x.w; });
     const v = Math.pow(n / d, 1 / P.statMeanP);
-    G[g.id] = g.spec && act.length ? g.spec.peak * act[0].u + (1 - g.spec.peak) * v : v;
+    G[g.id] = (g.spec && act.length ? g.spec.peak * act[0].u + (1 - g.spec.peak) * v : v) * (g.strength ?? 1);   // strength: scoring multiplier of the whole game (nerf < 1 < buff)
   }
   // popularity: a game's weight (and its peak) is scaled by (field size / nRef)^popExponent, so niche games are worth less
   const pf = (g) => (g.kind === 'network' || !g.pop ? 1 : Math.pow(Math.min(1, g.pop / P.nRef), P.popExponent ?? 0));
@@ -208,4 +208,5 @@ function probe(player, expr) {
 const seedRefs = () => Object.fromEntries(enabled().map(s => [s.id, s.ref]));
 const round = (n, d = 2) => Math.round(n * 10 ** d) / 10 ** d;
 
-module.exports = { config, enabled, configHash, readPath, probe, extractValues, fraction, statScore, statPosition, positionFromKnots, composite, ratchet, scorePlayer, seedRefs, round };
+const __api = { config, enabled, configHash, readPath, probe, extractValues, fraction, statScore, statPosition, positionFromKnots, composite, ratchet, scorePlayer, seedRefs, round };
+if (typeof module === 'object') module.exports = __api; else window.RankLib = __api;
