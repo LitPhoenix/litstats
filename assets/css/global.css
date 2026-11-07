@@ -21,8 +21,6 @@
 
 body.classic-items .item-icon,
 body.classic-items img[data-item] {
-  /* Add your classic texture adjustments or filters here */
-  image-rendering: pixelated;
 }
 
 /* Coloured Text Selection */
