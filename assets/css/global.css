@@ -19,6 +19,12 @@
   font-display: swap;
 }
 
+body.classic-items .item-icon,
+body.classic-items img[data-item] {
+  /* Add your classic texture adjustments or filters here */
+  image-rendering: pixelated;
+}
+
 /* Coloured Text Selection */
 ::selection {
   background: color-mix(in srgb, var(--accent) 45%, transparent);
