@@ -60,7 +60,7 @@
   function nameLink(p) {
     const col = typeof rankNameColour === 'function' ? rankNameColour(p.rank, p.monthlyRankColor) : '';
     const tag = typeof formatRankText === 'function' ? formatRankText(p.rank, p.rankPlusColor, p.monthlyRankColor) : '';
-    return `<span class="mg-name${col ? ' ranked' : ''}"${col ? ` style="--rank-c:${col}"` : ''}>${tag ? `<span class="mg-rank-tag">${tag}</span>` : ''}${esc(p.username)}</span>`;
+    return `<span class="mg-name${col ? ' ranked' : ''}"${col ? ` style="--rank-c:${col}"` : ''}>${tag ? `<span class="mg-rank-tag">${tag} </span>` : ''}${esc(p.username)}</span>`;
   }
   const cabinetHref = (p) => `/cabinet?player=${encodeURIComponent(p.username)}`;
   const tip = (text, cls = '') => `<span class="mg-tip ${cls}"><button type="button" class="mg-info" aria-label="More info">i</button><span class="mg-tip-body" role="tooltip">${text}</span></span>`;
