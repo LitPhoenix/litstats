@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-07T01:27:10.275Z",
+  "last_update": "2026-11-07T07:59:30.755Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -405,7 +405,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12545,
+      "score": 12546,
       "top_players": [
         {
           "username": "oJakey",
@@ -520,9 +520,9 @@
           "username": "righter",
           "uuid": "396c6009191449f691fc86e6d60f7243",
           "country": "USA",
-          "current_ap": 30535,
+          "current_ap": 30550,
           "last_month_ap": 30535,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Pit",
             "Max SkyWars",
@@ -727,10 +727,11 @@
           "username": "Stuffy",
           "uuid": "2cfc8db571ed4eb3aacd53b8abff5ee2",
           "country": "USA",
-          "current_ap": 26840,
+          "current_ap": 26845,
           "last_month_ap": 26840,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
+            "Max SkyBlock",
             "Max Warlords",
             "Max Arcade",
             "Max Murder Mystery",
@@ -758,9 +759,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 26430,
+          "current_ap": 26460,
           "last_month_ap": 26400,
-          "monthly_gain": 30,
+          "monthly_gain": 60,
           "maxGames": [
             "Max Smash Heroes",
             "Max Murder Mystery",
@@ -884,6 +885,7 @@
           "last_month_ap": 25195,
           "monthly_gain": 0,
           "maxGames": [
+            "Max SkyBlock",
             "Max Arcade",
             "Max Wool Games",
             "Max Duels"
@@ -1645,11 +1647,12 @@
           "username": "mm_dm",
           "uuid": "78a41722527449c38925f5914b005173",
           "country": "Canada",
-          "current_ap": 26260,
+          "current_ap": 26265,
           "last_month_ap": 26260,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Quake",
+            "Max SkyBlock",
             "Max Warlords",
             "Max VampireZ",
             "Max TKR",
@@ -1730,6 +1733,7 @@
           "monthly_gain": 0,
           "maxGames": [
             "Max Smash Heroes",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max VampireZ",
             "Max TKR"
@@ -2223,6 +2227,7 @@
             "Max Arena Brawl",
             "Max Smash Heroes",
             "Max Quake",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -3097,9 +3102,9 @@
           "username": "Justin_Jefferson",
           "uuid": "9dccd818228640bfa33174d8dc86dfb7",
           "country": "Unknown",
-          "current_ap": 23640,
+          "current_ap": 23650,
           "last_month_ap": 23640,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Paintball",
             "Max VampireZ"
@@ -3109,15 +3114,15 @@
     },
     {
       "country": "Ecuador",
-      "score": 665,
+      "score": 670,
       "top_players": [
         {
           "username": "SATURNO",
           "uuid": "be11708dcb0946bd9608d29af61269ec",
           "country": "Ecuador",
-          "current_ap": 26300,
+          "current_ap": 26305,
           "last_month_ap": 26240,
-          "monthly_gain": 60,
+          "monthly_gain": 65,
           "maxGames": [
             "Max VampireZ"
           ]
@@ -3168,6 +3173,7 @@
           "last_month_ap": 26175,
           "monthly_gain": 0,
           "maxGames": [
+            "Max SkyBlock",
             "Max Wool Games",
             "Max Build Battle"
           ]
