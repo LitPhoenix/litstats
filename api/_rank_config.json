@@ -211,8 +211,8 @@
    "kind": "game",
    "gamma": 1,
    "pop": 100000,
-   "strength": 0.88,
-   "weight": 0.95
+   "strength": 0.9,
+   "weight": 1.1
   },
   {
    "id": "bedwars",
@@ -221,7 +221,9 @@
    "kind": "game",
    "gamma": 1,
    "pop": 136000,
-   "popNat": 100000
+   "popNat": 100000,
+   "strength": 1.15,
+   "weight": 1.1
   },
   {
    "id": "duels",
@@ -229,7 +231,8 @@
    "game": "Duels",
    "kind": "game",
    "pop": 100000,
-   "strength": 1
+   "strength": 1.07,
+   "weight": 1.1
   },
   {
    "id": "arcade",
@@ -240,7 +243,8 @@
     "peak": 0.1,
     "decay": 0.9
    },
-   "pop": 50000
+   "pop": 50000,
+   "strength": 1.1
   },
   {
    "id": "tnt",
@@ -258,7 +262,8 @@
    "name": "Build Battle",
    "game": "Build Battle",
    "kind": "game",
-   "pop": 100000
+   "pop": 100000,
+   "strength": 1.05
   },
   {
    "id": "megawalls",
@@ -329,15 +334,16 @@
    "kind": "game",
    "weight": 0.9,
    "pop": 50000,
-   "strength": 0.85
+   "strength": 0.9
   },
   {
    "id": "vampirez",
    "name": "VampireZ",
    "game": "VampireZ",
    "kind": "game",
-   "weight": 0.8,
-   "pop": 50000
+   "weight": 0.9,
+   "pop": 50000,
+   "strength": 0.95
   },
   {
    "id": "quake",
@@ -345,16 +351,17 @@
    "game": "Quake",
    "kind": "game",
    "pop": 100000,
-   "strength": 1.05
+   "strength": 1.05,
+   "weight": 0.95
   },
   {
    "id": "paintball",
    "name": "Paintball",
    "game": "Paintball",
    "kind": "game",
-   "weight": 0.85,
+   "weight": 0.9,
    "pop": 100000,
-   "strength": 0.93
+   "strength": 0.85
   },
   {
    "id": "arena",
@@ -363,14 +370,14 @@
    "kind": "game",
    "weight": 0.8,
    "pop": 30000,
-   "strength": 0.94
+   "strength": 0.9
   },
   {
    "id": "walls",
    "name": "The Walls",
    "game": "Walls",
    "kind": "game",
-   "weight": 0.8,
+   "weight": 0.85,
    "pop": 50000,
    "strength": 0.9
   },
@@ -379,7 +386,8 @@
    "name": "Turbo Kart Racers",
    "game": "TKR",
    "kind": "game",
-   "pop": 50000
+   "pop": 50000,
+   "strength": 0.95
   },
   {
    "id": "pit",
@@ -394,8 +402,9 @@
    "name": "SkyBlock",
    "game": "SkyBlock",
    "kind": "game",
-   "weight": 0.85,
-   "pop": 100000
+   "weight": 1.1,
+   "pop": 100000,
+   "strength": 1
   }
  ],
  "stats": [
@@ -407,8 +416,8 @@
    "ref": 32520,
    "population": 100000,
    "L": 5,
-   "w": 0.585,
-   "points": 425,
+   "w": 0.5,
+   "points": 455,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -578,8 +587,8 @@
    "ref": 111740,
    "population": 100000,
    "L": 5,
-   "w": 0.652555,
-   "points": 474,
+   "w": 0.5,
+   "points": 455,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -749,8 +758,8 @@
    "ref": 1959.2628173828125,
    "population": 100000,
    "L": 5,
-   "w": 0.137825,
-   "points": 100,
+   "w": 0.1,
+   "points": 91,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -945,8 +954,8 @@
    "ref": 2767929,
    "population": 100000,
    "L": 5,
-   "w": 0.674118,
-   "points": 777,
+   "w": 0.67,
+   "points": 670,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -1115,8 +1124,8 @@
    "ref": 651452,
    "population": 100000,
    "L": 5,
-   "w": 0.193077,
-   "points": 223,
+   "w": 0.33,
+   "points": 330,
    "scale": {
     "type": "template"
    },
@@ -1131,8 +1140,8 @@
    "ref": 37452666,
    "population": 100000,
    "L": 5,
-   "w": 0.444316,
-   "points": 598,
+   "w": 0.7,
+   "points": 700,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -1305,8 +1314,8 @@
    "ref": 300000,
    "population": 100000,
    "L": 5,
-   "w": 0.298095,
-   "points": 402,
+   "w": 0.3,
+   "points": 300,
    "scale": {
     "type": "template"
    },
@@ -1322,7 +1331,7 @@
    "ref": 542366,
    "population": 100000,
    "L": 5,
-   "w": 0.912074,
+   "w": 1,
    "points": 1000,
    "scale": {
     "type": "empirical",
@@ -1493,7 +1502,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 1,
-   "points": 88,
+   "points": 77,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -1659,8 +1668,8 @@
    "ref": 21410,
    "population": 20000,
    "L": 4.651,
-   "w": 0.35,
-   "points": 31,
+   "w": 0.5,
+   "points": 38,
    "scale": {
     "type": "template"
    },
@@ -1676,8 +1685,8 @@
    "ref": 22801,
    "population": 20000,
    "L": 4.651,
-   "w": 0.9,
-   "points": 79,
+   "w": 1,
+   "points": 77,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -1843,8 +1852,8 @@
    "ref": 33343,
    "population": 20000,
    "L": 4.651,
-   "w": 0.5775,
-   "points": 51,
+   "w": 0.6,
+   "points": 46,
    "scale": {
     "type": "template"
    },
@@ -1861,7 +1870,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.84,
-   "points": 74,
+   "points": 64,
    "scale": {
     "type": "template"
    },
@@ -1877,8 +1886,8 @@
    "ref": 15730,
    "population": 20000,
    "L": 4.651,
-   "w": 0.35,
-   "points": 31,
+   "w": 0.8,
+   "points": 61,
    "scale": {
     "type": "template"
    },
@@ -1894,8 +1903,8 @@
    "ref": 397892,
    "population": 20000,
    "L": 4.651,
-   "w": 0.40425,
-   "points": 36,
+   "w": 0.5,
+   "points": 38,
    "scale": {
     "type": "template"
    },
@@ -1912,7 +1921,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 31,
+   "points": 27,
    "scale": {
     "type": "template"
    },
@@ -1929,7 +1938,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 31,
+   "points": 27,
    "scale": {
     "type": "template"
    },
@@ -1946,7 +1955,7 @@
    "ref": 66298,
    "population": 20000,
    "L": 4.651,
-   "w": 0.35,
+   "w": 0.4,
    "points": 31,
    "scale": {
     "type": "template"
@@ -1963,7 +1972,7 @@
    "ref": 5515,
    "population": 20000,
    "L": 4.651,
-   "w": 0.35,
+   "w": 0.4,
    "points": 31,
    "scale": {
     "type": "template"
@@ -1980,8 +1989,8 @@
    "ref": 13587,
    "population": 20000,
    "L": 4.651,
-   "w": 0.8575,
-   "points": 75,
+   "w": 0.8,
+   "points": 61,
    "scale": {
     "type": "template"
    },
@@ -1998,8 +2007,8 @@
    "ref": 618,
    "population": 20000,
    "L": 4.651,
-   "w": 0.3024,
-   "points": 27,
+   "w": 0.65,
+   "points": 50,
    "scale": {
     "type": "anchors",
     "anchors": [
@@ -2046,7 +2055,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.35,
-   "points": 31,
+   "points": 27,
    "scale": {
     "type": "template"
    },
@@ -2064,7 +2073,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 1,
-   "points": 88,
+   "points": 77,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -2235,7 +2244,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 1,
-   "points": 88,
+   "points": 77,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -2401,8 +2410,8 @@
    "ref": 16000,
    "population": 20000,
    "L": 4.651,
-   "w": 0.35,
-   "points": 31,
+   "w": 0.6,
+   "points": 46,
    "scale": {
     "type": "template"
    },
@@ -2419,8 +2428,8 @@
    "ref": 4000,
    "population": 20000,
    "L": 4.651,
-   "w": 0.35,
-   "points": 31,
+   "w": 0.5,
+   "points": 38,
    "scale": {
     "type": "template"
    },
@@ -2437,7 +2446,7 @@
    "ref": 10000,
    "population": 20000,
    "L": 4.651,
-   "w": 0.35,
+   "w": 0.4,
    "points": 31,
    "scale": {
     "type": "template"
@@ -2455,8 +2464,8 @@
    "ref": 17000,
    "population": 20000,
    "L": 4.651,
-   "w": 0.98,
-   "points": 86,
+   "w": 1,
+   "points": 77,
    "scale": {
     "type": "template"
    },
@@ -3299,8 +3308,8 @@
    "ref": 1025205,
    "population": 100000,
    "L": 5,
-   "w": 1,
-   "points": 741,
+   "w": 0.65,
+   "points": 650,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -3470,7 +3479,7 @@
    "population": 100000,
    "L": 5,
    "w": 0.35,
-   "points": 259,
+   "points": 350,
    "scale": {
     "type": "template"
    },
@@ -3486,8 +3495,8 @@
    "ref": 50375,
    "population": 80304,
    "L": 4.952,
-   "w": 0.99843,
-   "points": 838,
+   "w": 0.8,
+   "points": 800,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -3656,8 +3665,8 @@
    "ref": 32000,
    "population": 80304,
    "L": 4.952,
-   "w": 0.193077,
-   "points": 162,
+   "w": 0.2,
+   "points": 200,
    "scale": {
     "type": "template"
    },
@@ -3712,8 +3721,8 @@
    "ref": 37086,
    "population": 20000,
    "L": 4.651,
-   "w": 1,
-   "points": 838,
+   "w": 0.8,
+   "points": 800,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -3882,8 +3891,8 @@
    "ref": 323044,
    "population": 20000,
    "L": 4.651,
-   "w": 0.193077,
-   "points": 162,
+   "w": 0.2,
+   "points": 200,
    "scale": {
     "type": "template"
    },
@@ -3898,8 +3907,8 @@
    "ref": 184656,
    "population": 97726,
    "L": 4.995,
-   "w": 1,
-   "points": 838,
+   "w": 0.8,
+   "points": 800,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -4060,8 +4069,8 @@
    "ref": 73804,
    "population": 97726,
    "L": 4.995,
-   "w": 0.193077,
-   "points": 162,
+   "w": 0.2,
+   "points": 200,
    "scale": {
     "type": "template"
    },
@@ -4076,8 +4085,8 @@
    "ref": 237757,
    "population": 100000,
    "L": 5,
-   "w": 1,
-   "points": 760,
+   "w": 0.75,
+   "points": 750,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -4246,8 +4255,8 @@
    "ref": 352525,
    "population": 100000,
    "L": 5,
-   "w": 0.193077,
-   "points": 147,
+   "w": 0.125,
+   "points": 125,
    "scale": {
     "type": "template"
    },
@@ -4262,8 +4271,8 @@
    "ref": 17294,
    "population": 100000,
    "L": 5,
-   "w": 0.12201,
-   "points": 93,
+   "w": 0.125,
+   "points": 125,
    "scale": {
     "type": "template"
    },
@@ -4278,8 +4287,8 @@
    "ref": 15886,
    "population": 78055,
    "L": 4.946,
-   "w": 0.6,
-   "points": 587,
+   "w": 0.55,
+   "points": 500,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -4448,8 +4457,8 @@
    "ref": 304326,
    "population": 78055,
    "L": 4.946,
-   "w": 0.317625,
-   "points": 311,
+   "w": 0.45,
+   "points": 409,
    "scale": {
     "type": "template"
    },
@@ -4464,8 +4473,8 @@
    "ref": 533768,
    "population": 78055,
    "L": 4.946,
-   "w": 0.105,
-   "points": 103,
+   "w": 0.1,
+   "points": 91,
    "scale": {
     "type": "template"
    },
@@ -4481,7 +4490,7 @@
    "population": 20000,
    "L": 4.651,
    "w": 0.65,
-   "points": 475,
+   "points": 619,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -4650,8 +4659,8 @@
    "ref": 218350,
    "population": 20000,
    "L": 4.651,
-   "w": 0.5775,
-   "points": 422,
+   "w": 0.3,
+   "points": 286,
    "scale": {
     "type": "template"
    },
@@ -4666,8 +4675,8 @@
    "ref": 1920,
    "population": 20000,
    "L": 4.651,
-   "w": 0.14,
-   "points": 102,
+   "w": 0.1,
+   "points": 95,
    "scale": {
     "type": "template"
    },
@@ -4682,8 +4691,8 @@
    "ref": 448925,
    "population": 100000,
    "L": 5,
-   "w": 0.503358,
-   "points": 613,
+   "w": 0.6,
+   "points": 600,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -4852,8 +4861,8 @@
    "ref": 387299,
    "population": 100000,
    "L": 5,
-   "w": 0.317625,
-   "points": 387,
+   "w": 0.4,
+   "points": 400,
    "scale": {
     "type": "template"
    },
@@ -4868,8 +4877,8 @@
    "ref": 100796,
    "population": 50000,
    "L": 4.849,
-   "w": 0.193077,
-   "points": 500,
+   "w": 0.45,
+   "points": 450,
    "scale": {
     "type": "template"
    },
@@ -4884,8 +4893,8 @@
    "ref": 625884,
    "population": 50000,
    "L": 4.849,
-   "w": 0.193077,
-   "points": 500,
+   "w": 0.25,
+   "points": 250,
    "scale": {
     "type": "template"
    },
@@ -5410,8 +5419,8 @@
    "ref": 14533,
    "population": 79455,
    "L": 4.95,
-   "w": 0.4,
-   "points": 581,
+   "w": 0.35,
+   "points": 350,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -5572,8 +5581,8 @@
    "ref": 35833,
    "population": 79455,
    "L": 4.95,
-   "w": 0.28875,
-   "points": 419,
+   "w": 0.65,
+   "points": 650,
    "scale": {
     "type": "template"
    },
@@ -5588,8 +5597,8 @@
    "ref": 7171363,
    "population": 50000,
    "L": 4.849,
-   "w": 0.08925,
-   "points": 107,
+   "w": 0.5,
+   "points": 526,
    "scale": {
     "type": "template"
    },
@@ -5604,8 +5613,8 @@
    "ref": 40000,
    "population": 50000,
    "L": 4.849,
-   "w": 0.018375,
-   "points": 22,
+   "w": 0.1,
+   "points": 105,
    "scale": {
     "type": "template"
    },
@@ -5621,8 +5630,8 @@
    "ref": 400000,
    "population": 50000,
    "L": 4.849,
-   "w": 0.028875,
-   "points": 35,
+   "w": 0.05,
+   "points": 53,
    "scale": {
     "type": "template"
    },
@@ -5638,8 +5647,8 @@
    "ref": 56000,
    "population": 50000,
    "L": 4.849,
-   "w": 0.35,
-   "points": 418,
+   "w": 0.15,
+   "points": 158,
    "scale": {
     "type": "template"
    },
@@ -5655,8 +5664,8 @@
    "ref": 10000,
    "population": 50000,
    "L": 4.849,
-   "w": 0.35,
-   "points": 418,
+   "w": 0.15,
+   "points": 158,
    "scale": {
     "type": "template"
    },
@@ -5672,8 +5681,8 @@
    "ref": 24123123123,
    "population": 50000,
    "L": 4.849,
-   "w": 0.2975,
-   "points": 607,
+   "w": 0.5975,
+   "points": 548,
    "scale": {
     "type": "template"
    },
@@ -5689,8 +5698,8 @@
    "ref": 1000000,
    "population": 50000,
    "L": 4.849,
-   "w": 0.1925,
-   "points": 393,
+   "w": 0.4925,
+   "points": 452,
    "scale": {
     "type": "template"
    },
@@ -5702,11 +5711,11 @@
    "id": "sb_level",
    "label": "SkyBlock Level",
    "path": "@skyblockLevel",
-   "ref": 621,
+   "ref": 622.11,
    "population": 50000,
    "L": 4.849,
-   "w": 0.112,
-   "points": 138,
+   "w": 0.3,
+   "points": 300,
    "scale": {
     "type": "anchors",
     "anchors": [
@@ -5715,20 +5724,20 @@
       0
      ],
      [
-      100,
-      0.02
-     ],
-     [
-      200,
+      50,
       0.1
      ],
      [
+      150,
+      0.2
+     ],
+     [
       300,
-      0.25
+      0.35
      ],
      [
       400,
-      0.4
+      0.45
      ],
      [
       500,
@@ -5755,7 +5764,7 @@
    "population": 100000,
    "L": 5,
    "w": 0.7,
-   "points": 862,
+   "points": 700,
    "wBase": 0.7,
    "scale": {
     "type": "anchors",
@@ -5765,8 +5774,12 @@
       0
      ],
      [
+      10000,
+      0.2
+     ],
+     [
       30000,
-      0.3
+      0.4
      ],
      [
       50000,
@@ -5823,6 +5836,21 @@
    "L": 4.849,
    "w": 0.35,
    "points": 350,
+   "scale": {
+    "type": "template"
+   },
+   "verify": true
+  },
+  {
+   "group": "vampirez",
+   "id": "vampirez_human_wins",
+   "label": "VampireZ Human Wins",
+   "path": "stats.VampireZ.human_wins",
+   "ref": 25000,
+   "population": 50000,
+   "L": 4.849,
+   "w": 0.3,
+   "points": 300,
    "scale": {
     "type": "template"
    },
