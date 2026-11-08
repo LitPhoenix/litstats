@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-08T17:23:09.307Z",
+  "last_update": "2026-11-08T21:28:43.926Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -882,9 +882,9 @@
           "username": "ohDevil",
           "uuid": "b9aa26ec20b447a59a4ad10cc08a46fe",
           "country": "USA",
-          "current_ap": 25195,
+          "current_ap": 25200,
           "last_month_ap": 25195,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max SkyBlock",
             "Max Arcade",
@@ -1316,7 +1316,7 @@
     },
     {
       "country": "UK",
-      "score": 10057,
+      "score": 10064,
       "top_players": [
         {
           "username": "greaneye",
@@ -1369,13 +1369,14 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29355,
+          "current_ap": 29385,
           "last_month_ap": 29290,
-          "monthly_gain": 65,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
             "Max Walls",
+            "Max Murder Mystery",
             "Max VampireZ",
             "Max TKR",
             "Max Wool Games",
@@ -2302,15 +2303,15 @@
     },
     {
       "country": "Finland",
-      "score": 4574,
+      "score": 4594,
       "top_players": [
         {
           "username": "Champiez",
           "uuid": "7d92df9db6f04ef4b24ded24ae739198",
           "country": "Finland",
-          "current_ap": 28860,
+          "current_ap": 28880,
           "last_month_ap": 28860,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max Cops and Crims",
             "Max Warlords",
@@ -3012,9 +3013,9 @@
           "username": "Meloby",
           "uuid": "3abc42d8a881459296c23e9160e943e3",
           "country": "Unknown",
-          "current_ap": 24665,
+          "current_ap": 24680,
           "last_month_ap": 24665,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
