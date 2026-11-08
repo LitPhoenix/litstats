@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-08T10:53:33.192Z",
+  "last_update": "2026-11-08T17:23:09.307Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -1316,7 +1316,7 @@
     },
     {
       "country": "UK",
-      "score": 10053,
+      "score": 10057,
       "top_players": [
         {
           "username": "greaneye",
@@ -1369,9 +1369,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_ap": 29340,
+          "current_ap": 29355,
           "last_month_ap": 29290,
-          "monthly_gain": 50,
+          "monthly_gain": 65,
           "maxGames": [
             "Max Blitz",
             "Max Speed UHC",
@@ -2355,9 +2355,9 @@
           "username": "shirool",
           "uuid": "cca4b5f5f0e54d9193fc5f8c66724766",
           "country": "Finland",
-          "current_ap": 24170,
+          "current_ap": 24190,
           "last_month_ap": 24095,
-          "monthly_gain": 75,
+          "monthly_gain": 95,
           "maxGames": [
             "Max Warlords",
             "Max VampireZ",
