@@ -1294,6 +1294,12 @@ async function fetchPlayerUnlocks(searchTerm) {
     if (uText) {
       uText.textContent = data.username;
       uText.style.color = getRankBaseColourHex(data.rank, data.monthlyRankColor);
+
+      // Remove existing guild tags and insert the new one if available
+      uText.parentNode.querySelectorAll('.guild-tag').forEach(e => e.remove());
+      if (data.guildTag && typeof guildTagHTML === 'function') {
+        uText.insertAdjacentHTML('afterend', guildTagHTML(data.guildTag, data.guildColor));
+      }
     }
 
     const sideTitle = document.getElementById('side-panel-title');
