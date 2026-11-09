@@ -331,7 +331,15 @@
   function render() {
     const d = S.data, rv = rankView(d);
     $('qt-empty').classList.add('hidden'); $('qt-content').classList.remove('hidden');
-    const n = $('p-name'); n.textContent = S.name; n.style.color = rv.c;
+    const n = $('p-name'); 
+    n.textContent = S.name; 
+    n.style.color = rv.c;
+
+    // Recycle guild tag from Redis data (matching cabinet.js)
+    n.parentNode.querySelectorAll('.guild-tag').forEach(e => e.remove());
+    if (d.guildTag && typeof guildTagHTML === 'function') {
+      n.insertAdjacentHTML('afterend', guildTagHTML(d.guildTag, d.guildColor));
+    }
     $('p-avatar').src = `https://vzge.me/bust/${d.uuid}.png`;
     const cs = getComputedStyle(n);
     const tp = $('qt-total-pill');
