@@ -24,7 +24,7 @@ body.light-theme .mc-rank > span > span, body.light-theme .rk-rank-tag > span > 
 .rk-rank-tag { margin-right: 6px; font-size: 13px; font-family: 'DM Sans', sans-serif; font-weight: 700; }
 .rk-name-link { font-weight: 600; text-decoration: none; }
 tr.player-row:hover .rk-name-link { text-decoration: underline; text-underline-offset: 3px; }
-body.light-theme .rk-name-link.ranked { filter: brightness(.78) saturate(1.15); }
+body.light-theme .rk-name-link.ranked { filter: brightness(.83) saturate(1.15); }
 
 /* Numbers: DM Sans with fixed-width digits (tabNum in global.js) */
 .tn { white-space: nowrap; }
@@ -152,7 +152,7 @@ td .rk-pct em { font-style: normal; width: 3.6em; text-align: right; color: var(
 
 /* Guild tag next to a name */
 .rk-guild { font-weight: 700; font-size: 13px; font-family: 'DM Sans', sans-serif; }
-body.light-theme .rk-guild { filter: brightness(.78) saturate(1.15); }
+body.light-theme .rk-guild { filter: brightness(.83) saturate(1.15); }
 /* ===== Compact header: title + search on one row, tabs + shortcuts on the next ===== */
 main > .rk-top, main > .rk-nav, main > .rk-custom, main > #errorBox { align-self: stretch; width: 100%; max-width: 1200px; box-sizing: border-box; margin-left: 0; margin-right: 0; }
 .rk-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin: 0 0 12px; text-align: left; }
