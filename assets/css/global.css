@@ -1208,3 +1208,11 @@ html[data-theme="minecraft"] .nav-dropdown-menu {
     width: auto !important;
   }
 }
+
+/* Minecraft font is already evenly spaced: undo the fixed digit boxes from tabNum() */
+html[data-theme="minecraft"] .tn i, html[data-theme="minecraft"] .tn b,
+html[data-font="minecraft"] .tn i, html[data-font="minecraft"] .tn b { display: inline; width: auto; }
+
+/* Guild tag next to a player name (shared by every page) */
+.guild-tag { margin-left: 6px; font-weight: 700; font-size: 0.95em; white-space: nowrap; }
+body.light-theme .guild-tag { filter: brightness(.83) saturate(1.15); }
