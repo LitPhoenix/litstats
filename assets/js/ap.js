@@ -140,7 +140,7 @@ function renderNextPlayersBatch() {
 
   toRender.forEach(p => {
     const rc = getRankClass(p.globalRank);
-    let gainHTML = p.monthly_gain === "NEW" ? `<span class="gain-new">NEW</span>` : p.monthly_gain > 0 ? `<span class="gain-pos">+${fmt(p.monthly_gain)}</span>` : p.monthly_gain < 0 ? `<span class="gain-neg">${fmt(p.monthly_gain)}</span>` : `<span class="gain-zero">-</span>`;
+    let gainHTML = p.monthly_gain === "NEW" ? `<span class="gain-new">NEW</span>` : p.monthly_gain > 0 ? `<span class="gain-pos">+${tabNum(p.monthly_gain)}</span>` : p.monthly_gain < 0 ? `<span class="gain-neg">${tabNum(p.monthly_gain)}</span>` : `<span class="gain-zero">-</span>`;
     let posHTML = p.posChange > 0 ? `<span class="position-indicator pos-up">▲ ${p.posChange}</span>` : p.posChange < 0 ? `<span class="position-indicator pos-down">▼ ${Math.abs(p.posChange)}</span>` : p.previousRank > 0 ? `<span class="position-indicator pos-same">=</span>` : '';
 
     const tr = document.createElement('tr'); tr.className = 'player-row'; tr.onclick = () => togglePlayerExpand(p.uuid);
@@ -149,7 +149,7 @@ function renderNextPlayersBatch() {
         <td>
           <div class="player-cell">
             <img class="player-avatar" src="https://minotar.net/helm/${p.username}/100" alt="${p.username} avatar" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://vzge.me/face/${p.uuid || ''}.png'">
-            <span ${nameAttrs(p, 'player-name')}>${rankTagHTML(p)}${p.username}</span>
+            <span ${nameAttrs(p, 'player-name')} data-ident="${p.uuid}" data-name="${p.username}">${rankTagHTML(p)}${p.username}</span>
           </div>
         </td>
         <td><div class="flag-cell">${getFlagHTML(p.country)}<span class="country-name">${p.country}</span></div></td>
@@ -204,9 +204,9 @@ function renderNextCountriesBatch() {
           <div class="sub-player-left">
             <span class="sub-rank">${i+1}</span>
             <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
-            <span ${nameAttrs(sp, 'sub-name')}>${rankTagHTML(sp)}${sp.username}</span>
+            <span ${nameAttrs(sp, 'sub-name')} data-ident="${sp.uuid}" data-name="${sp.username}">${rankTagHTML(sp)}${sp.username}</span>
           </div>
-          <span class="sub-ap">${fmt(sp.current_ap)} AP</span>
+          <span class="sub-ap">${tabNum(sp.current_ap)} AP</span>
         </div>
       `).join('');
 
