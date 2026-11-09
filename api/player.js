@@ -929,6 +929,7 @@ module.exports = async (req, res) => {
       if (outcome && (outcome.error || outcome.timeout)) console.error('max games register:', outcome);
     } catch (e) {}
 
+    try { await require('./_identity').withGuild(responseData, responseData.uuid); } catch (e) {}   // guild tag from Redis if /ranking has it
     return res.status(200).json(responseData);
 
   } catch (error) {
