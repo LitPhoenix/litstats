@@ -220,7 +220,7 @@
    "game": "Bed Wars",
    "kind": "game",
    "gamma": 1,
-   "pop": 136000,
+   "pop": 120000,
    "popNat": 100000,
    "strength": 1.15,
    "weight": 1.1
@@ -231,7 +231,7 @@
    "game": "Duels",
    "kind": "game",
    "pop": 100000,
-   "strength": 1.07,
+   "strength": 1.1,
    "weight": 1.1
   },
   {
@@ -240,8 +240,8 @@
    "game": "Arcade",
    "kind": "game",
    "spec": {
-    "peak": 0.1,
-    "decay": 0.9
+    "peak": 0.2,
+    "decay": 0.85
    },
    "pop": 50000,
    "strength": 1.1
@@ -251,11 +251,11 @@
    "name": "TNT Games",
    "game": "TNT Games",
    "kind": "game",
+   "pop": 50000,
    "spec": {
-    "peak": 0.3,
+    "peak": 0.2,
     "decay": 0.85
-   },
-   "pop": 50000
+   }
   },
   {
    "id": "buildbattle",
@@ -278,7 +278,7 @@
    "name": "Blitz SG",
    "game": "Blitz",
    "kind": "game",
-   "pop": 100000,
+   "pop": 70000,
    "strength": 1.05
   },
   {
@@ -295,14 +295,14 @@
    "kind": "game",
    "weight": 0.8,
    "pop": 50000,
-   "strength": 0.81
+   "strength": 0.8
   },
   {
    "id": "cvc",
    "name": "Cops and Crims",
    "game": "Cops and Crims",
    "kind": "game",
-   "pop": 100000
+   "pop": 50000
   },
   {
    "id": "warlords",
@@ -318,7 +318,7 @@
    "kind": "game",
    "weight": 0.8,
    "pop": 20000,
-   "strength": 0.92
+   "strength": 0.9
   },
   {
    "id": "murdermystery",
@@ -350,7 +350,7 @@
    "name": "Quakecraft",
    "game": "Quake",
    "kind": "game",
-   "pop": 100000,
+   "pop": 50000,
    "strength": 1.05,
    "weight": 0.95
   },
@@ -360,7 +360,7 @@
    "game": "Paintball",
    "kind": "game",
    "weight": 0.9,
-   "pop": 100000,
+   "pop": 50000,
    "strength": 0.85
   },
   {
@@ -395,7 +395,7 @@
    "game": "The Pit",
    "kind": "game",
    "pop": 50000,
-   "strength": 0.92
+   "strength": 0.95
   },
   {
    "id": "skyblock",
@@ -403,7 +403,7 @@
    "game": "SkyBlock",
    "kind": "game",
    "weight": 1.1,
-   "pop": 100000,
+   "pop": 150000,
    "strength": 1
   }
  ],
@@ -3717,12 +3717,12 @@
    "group": "blitz",
    "id": "blitz_wins",
    "label": "Blitz SG Wins",
-   "path": "stats.HungerGames.wins+stats.HungerGames.wins_teams",
+   "path": "stats.HungerGames.wins_solo_normal+stats.HungerGames.wins_teams",
    "ref": 37086,
    "population": 20000,
    "L": 4.651,
-   "w": 0.8,
-   "points": 800,
+   "w": 0.7,
+   "points": 700,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -3881,7 +3881,8 @@
     ],
     "tail": 0.46
    },
-   "wBase": 1
+   "wBase": 1,
+   "verify": true
   },
   {
    "group": "blitz",
@@ -3891,8 +3892,8 @@
    "ref": 323044,
    "population": 20000,
    "L": 4.651,
-   "w": 0.2,
-   "points": 200,
+   "w": 0.3,
+   "points": 300,
    "scale": {
     "type": "template"
    },
@@ -4081,12 +4082,12 @@
    "group": "cvc",
    "id": "cvc_score",
    "label": "Cops and Crims Score",
-   "path": "stats.MCGO.score|stats.MCGO.score_deathmatch + stats.MCGO.score_defusal",
+   "path": "stats.MCGO.score",
    "ref": 237757,
    "population": 100000,
    "L": 5,
-   "w": 0.75,
-   "points": 750,
+   "w": 0.3,
+   "points": 300,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -4245,7 +4246,8 @@
     ],
     "tail": 0.62
    },
-   "wBase": 1
+   "wBase": 1,
+   "verify": true
   },
   {
    "group": "cvc",
@@ -4255,8 +4257,8 @@
    "ref": 352525,
    "population": 100000,
    "L": 5,
-   "w": 0.125,
-   "points": 125,
+   "w": 0.3,
+   "points": 300,
    "scale": {
     "type": "template"
    },
@@ -4271,8 +4273,8 @@
    "ref": 17294,
    "population": 100000,
    "L": 5,
-   "w": 0.125,
-   "points": 125,
+   "w": 0.1,
+   "points": 100,
    "scale": {
     "type": "template"
    },
@@ -4287,8 +4289,8 @@
    "ref": 15886,
    "population": 78055,
    "L": 4.946,
-   "w": 0.55,
-   "points": 500,
+   "w": 0.6,
+   "points": 600,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -4457,8 +4459,8 @@
    "ref": 304326,
    "population": 78055,
    "L": 4.946,
-   "w": 0.45,
-   "points": 409,
+   "w": 0.3,
+   "points": 300,
    "scale": {
     "type": "template"
    },
@@ -4474,7 +4476,7 @@
    "population": 78055,
    "L": 4.946,
    "w": 0.1,
-   "points": 91,
+   "points": 100,
    "scale": {
     "type": "template"
    },
@@ -4872,7 +4874,7 @@
   {
    "group": "vampirez",
    "id": "vz_human",
-   "label": "VampireZ Human Kills",
+   "label": "VampireZ Humans Killed",
    "path": "stats.VampireZ.human_kills",
    "ref": 100796,
    "population": 50000,
@@ -4888,7 +4890,7 @@
   {
    "group": "vampirez",
    "id": "vz_vamp",
-   "label": "VampireZ Vampire Kills",
+   "label": "VampireZ Vampires Killed",
    "path": "stats.VampireZ.vampire_kills",
    "ref": 625884,
    "population": 50000,
@@ -5861,7 +5863,22 @@
    "id": "skywars_wins",
    "label": "SkyWars Wins",
    "path": "stats.SkyWars.wins",
-   "ref": 1000,
+   "ref": 129000,
+   "population": 50000,
+   "L": 4.849,
+   "w": 0.3,
+   "points": 300,
+   "scale": {
+    "type": "template"
+   },
+   "verify": true
+  },
+  {
+   "group": "cvc",
+   "id": "cops_and_crims_wins",
+   "label": "Cops and Crims Wins",
+   "path": "stats.MCGO.game_wins+stats.MCGO.game_wins_gungame+stats.MCGO.game_wins_deathmatch",
+   "ref": 20000,
    "population": 50000,
    "L": 4.849,
    "w": 0.3,
