@@ -1371,6 +1371,11 @@ async function fetchPlayerUnlocks(searchTerm) {
     if (uText) {
       uText.textContent = data.username;
       uText.style.color = typeof getRankBaseColourHex === 'function' ? getRankBaseColourHex(data.rank, data.monthlyRankColor) : '#AAAAAA';
+
+      uText.parentNode.querySelectorAll('.guild-tag').forEach(e => e.remove());
+      if (data.guildTag && typeof guildTagHTML === 'function') {
+        uText.insertAdjacentHTML('afterend', guildTagHTML(data.guildTag, data.guildColor));
+      }
     }
 
     const setVal = (id, val) => {
