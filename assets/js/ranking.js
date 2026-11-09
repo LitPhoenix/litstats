@@ -447,10 +447,15 @@
     for (const r of d.rows) S[r.id] = stScore(r.value, r.id, refOf(r));
     const C = compose(S);
     const rows = d.rows.map(r => {
-      const w = gw(r.group), ref = refOf(r), f = w ? (C.eff[r.id] || 0) : 0, out = r.points * w;
+      const w = gw(r.group), ref = refOf(r), f = w ? (C.eff[r.id] || 0) : 0;
+      const strength = (G[r.group] || {}).strength ?? 1;
+      const out = r.points * w * strength;
       return { ...r, ref, fraction: f, outOf: out, earned: f * out, st: ST[r.id], gpos: sPos(r.value, ST[r.id] || {}, ref) };
     });
-    const groups = d.groups.map(g => ({ ...g, earned: (C.G[g.id] || 0) * 1000, points: gw(g.id) ? 1000 : 0 }));
+    const groups = d.groups.map(g => {
+      const strength = (G[g.id] || {}).strength ?? 1;
+      return { ...g, earned: (C.G[g.id] || 0) * 1000, points: gw(g.id) ? 1000 * strength : 0 };
+    });
     const score = C.score;
     const better = POOL.loaded ? ROWS.filter(r => r.score > score + 1e-9 && r.p.uuid !== d.uuid).length : null;
     const known = POOL.loaded ? ROWS.some(r => r.p.uuid === d.uuid) : false;
