@@ -102,7 +102,7 @@ module.exports = async (req, res) => {
       return res.status(200).json({ id, def, player: raw && { ...raw, completions: (raw.completions || []).slice(-8).map(c => ({ ...c, iso: iso(c.time) })) },
         now: iso(Date.now()), sampleKeys: Object.keys(pData.player.quests || {}).slice(0, 12) });
     }
-    const body = buildQuestResponse(pData.player, defsCache, gamesCache, { history: req.query.history === '1' });
+    const body = buildQuestResponse(pData.player, defsCache, gamesCache, { history: req.query.history === '1', streak: req.query.streak === '1' });
     body.uuid = pData.player.uuid || targetUuid;
     body.rank = getPlayerRank(pData.player);
     body.rankPlusColor = pData.player.rankPlusColor || 'RED';
@@ -112,6 +112,7 @@ module.exports = async (req, res) => {
       try { await Promise.race([require('./_quest_board').record(body.uuid, pData.player.displayname, body.byGame), new Promise(r => setTimeout(r, 800))]); }
       catch (e) { console.warn('quest board skipped:', e.message); }
     }
+    try { await require('./_identity').withGuild(body, body.uuid); } catch (e) {}   // guild tag from Redis if /ranking has it
     return res.status(200).json(body);
   } catch (error) {
     console.error('quest api error:', error);
