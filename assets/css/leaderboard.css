@@ -306,7 +306,7 @@ tbody tr:has(.rank-3):hover td:first-child { box-shadow: inset 4px 0 0 var(--bro
 
 /* Usernames take the rank colour; darkened a little on light themes so green/aqua/yellow stay readable */
 .player-name.ranked, .sub-name.ranked, .country-name.ranked { color: var(--rank-c); }
-body.light-theme .player-name.ranked, body.light-theme .sub-name.ranked, body.light-theme .country-name.ranked { color: color-mix(in srgb, var(--rank-c) 62%, #000); }
+body.light-theme .player-name.ranked, body.light-theme .sub-name.ranked, body.light-theme .country-name.ranked { color: color-mix(in srgb, var(--rank-c) 90%, #000); }
 
 /* Digit-aligned numbers (see tabNum() in global.js). DM Sans has no tabular figures, so each digit gets a fixed box. */
 .tn { white-space: nowrap; }
