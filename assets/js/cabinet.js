@@ -2038,6 +2038,9 @@ function renderCabinet(data, softRender = false) {
   nameEl.textContent = data.username;
   nameEl.style.setProperty('color', getRankBaseColourHex(data.rank, data.monthlyRankColor), 'important');
 
+  nameEl.parentNode.querySelectorAll('.guild-tag').forEach(e => e.remove());
+  if (data.guildTag && typeof guildTagHTML === 'function') nameEl.insertAdjacentHTML('afterend', guildTagHTML(data.guildTag, data.guildColor));
+
   const rankEl = document.getElementById('p-rank');
   if (data.rank && data.rank !== 'NON') {
     rankEl.innerHTML = formatRankText(data.rank, data.rankPlusColor, data.monthlyRankColor);
