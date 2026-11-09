@@ -689,7 +689,7 @@ function getTntGameForAchievement(title, desc) {
 
   const combined = `${title} ${desc || ''}`.toLowerCase();
   if (combined.includes('wizard')) return 'TNT Wizards';
-  if (combined.includes('tag') || combined.includes('repulsor')) return 'TNT Tag';
+  if (combined.includes('tag')) return 'TNT Tag';
   if (combined.includes('bow spleef') || combined.includes('spleef')) return 'Bow Spleef';
   if (combined.includes('pvp run')) return 'PVP Run';
   if (combined.includes('tnt run')) return 'TNT Run';
