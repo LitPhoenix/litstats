@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-08T21:28:43.926Z",
+  "last_update": "2026-11-09T01:18:32.551Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -576,10 +576,11 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 29035,
+          "current_ap": 29050,
           "last_month_ap": 28890,
-          "monthly_gain": 145,
+          "monthly_gain": 160,
           "maxGames": [
+            "Max UHC",
             "Max Warlords",
             "Max Walls",
             "Max TNT Games",
@@ -2693,8 +2694,17 @@
     },
     {
       "country": "New Zealand",
-      "score": 1883,
+      "score": 1895,
       "top_players": [
+        {
+          "username": "Baskertball",
+          "uuid": "d33a4d925db84c30a28e528239471102",
+          "country": "New Zealand",
+          "current_ap": 26900,
+          "last_month_ap": 26880,
+          "monthly_gain": 20,
+          "maxGames": []
+        },
         {
           "username": "ILiveInAWall",
           "uuid": "dde31282b7be4cc0bea437a22ee0c6d7",
@@ -2706,15 +2716,6 @@
             "Max Wool Games",
             "Max Duels"
           ]
-        },
-        {
-          "username": "Baskertball",
-          "uuid": "d33a4d925db84c30a28e528239471102",
-          "country": "New Zealand",
-          "current_ap": 26880,
-          "last_month_ap": 26880,
-          "monthly_gain": 0,
-          "maxGames": []
         }
       ]
     },
@@ -3248,15 +3249,15 @@
     },
     {
       "country": "Belgium",
-      "score": 295,
+      "score": 305,
       "top_players": [
         {
           "username": "ToggleFly",
           "uuid": "00eb09d164b54ab08114d119eebbb903",
           "country": "Belgium",
-          "current_ap": 25930,
+          "current_ap": 25940,
           "last_month_ap": 25930,
-          "monthly_gain": 0,
+          "monthly_gain": 10,
           "maxGames": [
             "Max Wool Games"
           ]
