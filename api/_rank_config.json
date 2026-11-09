@@ -954,8 +954,8 @@
    "ref": 2767929,
    "population": 100000,
    "L": 5,
-   "w": 0.67,
-   "points": 670,
+   "w": 0.2,
+   "points": 200,
    "scale": {
     "type": "empirical",
     "knots": [
@@ -1124,8 +1124,8 @@
    "ref": 651452,
    "population": 100000,
    "L": 5,
-   "w": 0.33,
-   "points": 330,
+   "w": 0.5,
+   "points": 500,
    "scale": {
     "type": "template"
    },
@@ -5847,6 +5847,21 @@
    "label": "VampireZ Human Wins",
    "path": "stats.VampireZ.human_wins",
    "ref": 25000,
+   "population": 50000,
+   "L": 4.849,
+   "w": 0.3,
+   "points": 300,
+   "scale": {
+    "type": "template"
+   },
+   "verify": true
+  },
+  {
+   "group": "skywars",
+   "id": "skywars_wins",
+   "label": "SkyWars Wins",
+   "path": "stats.SkyWars.wins",
+   "ref": 1000,
    "population": 50000,
    "L": 4.849,
    "w": 0.3,
