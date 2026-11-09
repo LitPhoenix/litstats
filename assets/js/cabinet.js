@@ -672,7 +672,7 @@ function getMwClassForAchievement(title, desc) {
 const TNT_CUSTOM_MAPPINGS = {
   "sorcery": "TNT Wizards",
   "prosurfer": "TNT Wizards",
-  "havefun": "TNT Tag",
+  "havefun": "Bow Spleef",
   "asecondchance": "TNT Tag",
   "holeinmypocket": "Other",
   "conqueror": "Other",
