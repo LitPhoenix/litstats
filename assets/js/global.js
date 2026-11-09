@@ -286,6 +286,46 @@ function tabNum(n) {
 // Older pages call formatRankHtml; keep it pointing at the same formatter.
 function formatRankHtml(rank, plusColour, monthlyRankColor) { return formatRankText(rank, plusColour, monthlyRankColor); }
 
+
+// ---- Guild tags + live rank colours (shared by every page) --------------------------------------
+// Put data-ident="<uuid>" on a name element (and data-name="<name>" if the page should also get the coloured [RANK] + name).
+// Identities come from /api/rank?ids= (Redis, no Hypixel calls) and are painted in automatically, also for rows rendered later.
+const GUILD_COL = { BLACK: '#555555', DARK_BLUE: '#0000AA', DARK_GREEN: '#00AA00', DARK_AQUA: '#00AAAA', DARK_RED: '#AA0000', DARK_PURPLE: '#AA00AA', GOLD: '#FFAA00', GRAY: '#AAAAAA', DARK_GRAY: '#555555', BLUE: '#5555FF', GREEN: '#55FF55', AQUA: '#55FFFF', RED: '#FF5555', LIGHT_PURPLE: '#FF55FF', YELLOW: '#FFFF55', WHITE: '#FFFFFF' };
+const escHTML = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function guildTagHTML(tag, color) { return tag ? `<span class="guild-tag" style="color:${GUILD_COL[color] || GUILD_COL.GRAY}">[${escHTML(tag)}]</span>` : ''; }
+const IDENT = {}, identAsked = new Set(), cleanUuid = (u) => String(u || '').replace(/-/g, '').toLowerCase();
+function paintIdents() {
+  document.querySelectorAll('[data-ident]:not([data-painted])').forEach(el => {
+    const id = IDENT[cleanUuid(el.dataset.ident)]; if (!id) return;
+    el.dataset.painted = '1';
+    if (el.dataset.name) {
+      const col = rankNameColour(id.rank, id.monthlyRankColor), tag = formatRankText(id.rank, id.rankPlusColor, id.monthlyRankColor);
+      if (col) { el.classList.add('ranked'); el.style.setProperty('--rank-c', col); }
+      el.innerHTML = (tag ? tag + ' ' : '') + escHTML(el.dataset.name);
+    }
+    if (id.guildTag) el.insertAdjacentHTML('afterend', guildTagHTML(id.guildTag, id.guildColor));
+  });
+}
+async function loadIdents(uuids) {
+  const need = [...new Set(uuids.map(cleanUuid))].filter(u => u && !identAsked.has(u));
+  need.forEach(u => identAsked.add(u));
+  for (let i = 0; i < need.length; i += 150) {
+    const chunk = need.slice(i, i + 150);
+    try {
+      const r = await fetch('https://api.litstats.com/api/rank?ids=' + chunk.join(','));
+      if (!r.ok) throw new Error(r.status);
+      Object.assign(IDENT, (await r.json()).identities || {});
+    } catch (e) { chunk.forEach(u => identAsked.delete(u)); }   // retry on the next render
+  }
+  paintIdents();
+}
+(function watchIdents() {
+  let t; new MutationObserver(() => { clearTimeout(t); t = setTimeout(() => {
+    const els = [...document.querySelectorAll('[data-ident]:not([data-painted])')]; if (!els.length) return;
+    paintIdents(); loadIdents(els.map(e => e.dataset.ident));
+  }, 80); }).observe(document.body, { childList: true, subtree: true });
+})();
+
 // --- AUDIO CONTEXT ---
 let audioCtx; 
 document.addEventListener('click', () => {
