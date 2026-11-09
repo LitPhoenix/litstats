@@ -26,18 +26,41 @@ const memo = { pool: { t: 0, map: null, refs: {} }, resp: new Map(), names: new 
 
 async function getPool() {
   if (memo.pool.map && Date.now() - memo.pool.t < POOL_TTL_MS) return memo.pool;
-  const [pf] = await kv.pipeline([['HGETALL', K.players]]);                               // 1 command for the whole pool
+  const [pf] = await kv.pipeline([['HGETALL', K.players]]);
   const map = new Map();
   for (let i = 0; i < (pf || []).length; i += 2) { try { map.set(pf[i], JSON.parse(pf[i + 1])); } catch (e) {} }
-  const h = lib.configHash(), list = lib.enabled(), refs = {};
-  // highest value of every stat among the players that are actually shown (same validity rule as validPlayers); recomputed on every pool load
-  for (const [, r] of map) if (r && Array.isArray(r.v) && r.h === h && r.v.length === list.length) list.forEach((s, i) => { if (r.v[i] > (refs[s.id] || 0)) refs[s.id] = r.v[i]; });
-  const sr = lib.seedRefs(); for (const k in refs) sr[k] = Math.max(sr[k] || 0, refs[k]);      // config ref, raised by the DB. Totals follow the CURRENT config: no refresh-ranks needed after tuning
-  for (const [, r] of map) if (r && Array.isArray(r.v) && r.h === h && core.usable(r)) { try { r.s = lib.round(lib.scorePlayer(core.valuesOf(r), sr).total, 2); } catch (e) {} }
+  
+  const list = lib.enabled(), refs = {};
+  
+  // 1. Allow older/shorter records and build references safely
+  for (const [, r] of map) {
+    if (r && Array.isArray(r.v) && r.v.length <= list.length) {
+      list.forEach((s, i) => {
+        const val = r.v[i] || 0;
+        if (val > (refs[s.id] || 0)) refs[s.id] = val;
+      });
+    }
+  }
+  
+  const sr = lib.seedRefs(); 
+  for (const k in refs) sr[k] = Math.max(sr[k] || 0, refs[k]);
+  
+  // 2. Score older records (missing new stats automatically default to 0)
+  for (const [, r] of map) {
+    if (r && Array.isArray(r.v) && r.v.length <= list.length) { 
+      try { 
+        r.s = lib.round(lib.scorePlayer(core.valuesOf(r), sr).total, 2); 
+      } catch (e) {} 
+    }
+  }
+  
   memo.pool = { t: Date.now(), map, refs };
   return memo.pool;
 }
-const validPlayers = (P) => { const h = lib.configHash(), n = lib.enabled().length; return [...P.map].filter(([, r]) => r && Array.isArray(r.v) && r.h === h && r.v.length === n); };
+const validPlayers = (P) => {
+  const n = lib.enabled().length;
+  return [...P.map].filter(([, r]) => r && Array.isArray(r.v) && r.v.length <= n);
+};
 const CDN_POOL = 'public, max-age=300, s-maxage=1800, stale-while-revalidate=3600';
 
 async function leaderboard(req, res) {
