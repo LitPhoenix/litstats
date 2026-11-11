@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-10T19:04:49.861Z",
+  "last_update": "2026-11-11T00:18:54.296Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111888,
     "289e9f90a76640e0921c85dcd96385b5": 85391,
@@ -1017,30 +1017,16 @@
       ]
     },
     {
-      "country": "Portugal",
-      "score": 5520.4,
-      "top_players": [
-        {
-          "username": "pedrominecraft11",
-          "uuid": "153377202f274dd09dc838b83c09b104",
-          "country": "Portugal",
-          "current_quests": 27602,
-          "last_month_quests": 27602,
-          "monthly_gain": 0
-        }
-      ]
-    },
-    {
       "country": "The Netherlands",
-      "score": 14926.8,
+      "score": 14930.2,
       "top_players": [
         {
           "username": "Timkoensurvival",
           "uuid": "743c12bffc7348fb8525effead057de2",
           "country": "The Netherlands",
-          "current_quests": 27585,
+          "current_quests": 27602,
           "last_month_quests": 27340,
-          "monthly_gain": 245
+          "monthly_gain": 262
         },
         {
           "username": "iiris",
@@ -1056,6 +1042,20 @@
           "country": "The Netherlands",
           "current_quests": 22781,
           "last_month_quests": 22781,
+          "monthly_gain": 0
+        }
+      ]
+    },
+    {
+      "country": "Portugal",
+      "score": 5520.4,
+      "top_players": [
+        {
+          "username": "pedrominecraft11",
+          "uuid": "153377202f274dd09dc838b83c09b104",
+          "country": "Portugal",
+          "current_quests": 27602,
+          "last_month_quests": 27602,
           "monthly_gain": 0
         }
       ]
