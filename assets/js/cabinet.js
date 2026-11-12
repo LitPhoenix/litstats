@@ -949,9 +949,9 @@ function getPlusColourHex(colourName) {
 function getRankBaseColourHex(rank, monthlyRankColor) {
   if (!rank || rank === 'NON') return 'var(--text-3)';
   const clean = rank.replace(/\[|\]/g, ''); 
-  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#36e9e9' : '#FFAA00';
+  if (clean.includes('++')) return monthlyRankColor === 'AQUA' ? '#2cd9d9' : '#FFAA00';
   if (clean === 'MOJANG' || clean === 'EVENTS') return '#FFAA00'; 
-  if (clean.includes('MVP')) return '#36e9e9'; 
+  if (clean.includes('MVP')) return '#2cd9d9'; 
   if (clean.includes('VIP')) return '#55FF55'; 
   if (clean.includes('YOUTUBE') || clean === 'STAFF') return '#FF5555'; 
   if (clean.includes('PIG') || clean.includes('INNIT')) return '#FF55FF'; 
