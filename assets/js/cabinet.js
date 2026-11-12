@@ -740,6 +740,15 @@ window.setLegacyMode = function(mode) {
   renderDashboard();
 };
 
+window.setYearCrop = function(year) {
+  anaPrefs.range = 'custom';
+  anaPrefs.from = `${year}-01-01`;
+  anaPrefs.to = `${year}-12-31`;
+  saveAnaPrefs();
+  initOrUpdateAnalyticsChart();
+  syncAnaControls();
+};
+
 window.clearSearch = function(id) {
   const input = document.getElementById(id);
   if(input) {
@@ -1872,88 +1881,530 @@ function getApColor(ap) {
   return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(lit * 100)}%)`;
 }
 
+const MAX_COMPARE = 8; // compared players, on top of the profile being viewed
+// Base colour per player (claims get an automatically derived alternate shade of the same hue).
+const PLAYER_COLORS = ['#ff5100', '#00bfff', '#55ff55', '#ffd700', '#ff55ff', '#ff3366', '#9d7bff', '#2de2c4', '#aab4c3'];
+
+function getApiBase() {
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  return isLocal ? 'http://localhost:3000' : 'https://api.litstats.com';
+}
+
+function escHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+async function resolveUuid(input) {
+  const clean = input.trim().replace(/-/g, '');
+  if (/^[0-9a-f]{32}$/i.test(clean)) return clean.toLowerCase();
+  const res = await fetch(`https://playerdb.co/api/player/minecraft/${encodeURIComponent(input.trim())}`);
+  const json = await res.json();
+  if (json.code !== 'player.found') throw new Error(`Player "${input.trim()}" not found.`);
+  return json.data.player.raw_id.toLowerCase();
+}
+
+// Claim timestamps from achievementRewardsNew ("for_points_N": ms timestamp).
+// Lower rewards can be claimed late, so each claim is flagged `late` if a higher
+// reward was already claimed before it. Only non-late claims are charted, which
+// keeps the claim line strictly upward over time.
+function processClaims(rewards) {
+  const claims = Object.entries(rewards || {}).map(([key, ts]) => {
+    const m = /^for_points_(\d+)$/.exec(key);
+    return m && Number.isFinite(ts) ? { points: parseInt(m[1], 10), ts } : null;
+  }).filter(Boolean).sort((a, b) => a.ts - b.ts || a.points - b.points);
+
+  let runningMax = -Infinity;
+  claims.forEach(c => {
+    c.late = c.points <= runningMax;
+    if (!c.late) runningMax = c.points;
+  });
+  return claims;
+}
+
+function fmtClaimDate(ts) {
+  return new Date(ts).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+function setCompareError(msg) {
+  const el = document.getElementById('compare-error');
+  if (!el) return;
+  el.textContent = msg || '';
+  el.classList.toggle('hidden', !msg);
+}
+
+window.addComparisonPlayer = async function() {
+  const input = document.getElementById('compare-player-input');
+  const btn = document.querySelector('.compare-btn');
+  const query = (input?.value || '').trim();
+  if (!query || !globalPlayerData) return;
+
+  setCompareError('');
+  if (comparisonPlayers.length >= MAX_COMPARE) {
+    setCompareError(`You can compare up to ${MAX_COMPARE} players.`);
+    return;
+  }
+
+  if (btn) btn.disabled = true;
+  try {
+    const uuid = await resolveUuid(query);
+    if (uuid === normUuid(globalPlayerData.uuid)) throw new Error('That is the player you are already viewing.');
+    if (comparisonPlayers.some(p => p.uuid === uuid)) throw new Error('Player already added.');
+
+    const res = await fetch(`${getApiBase()}/api/player?uuid=${encodeURIComponent(uuid)}`);
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(body.error || `Failed to fetch player (${res.status})`);
+    }
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+
+    comparisonPlayers.push({
+      uuid,
+      username: data.username,
+      currentAp: data.achievementPoints || 0,
+      claims: processClaims(data.achievementRewardsNew)
+    });
+    if (input) input.value = '';
+    initOrUpdateAnalyticsChart();
+  } catch (err) {
+    setCompareError(err.message || 'Could not add player.');
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+};
+
+window.removeComparisonPlayer = function(uuid) {
+  comparisonPlayers = comparisonPlayers.filter(p => p.uuid !== uuid);
+  mutedPlayers.delete(uuid);
+  setCompareError('');
+  initOrUpdateAnalyticsChart();
+};
+
+(function bindCompareEnter() {
+  const input = document.getElementById('compare-player-input');
+  if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') window.addComparisonPlayer(); });
+})();
+
+// ==== AP analytics (start) ====
+const DAY_MS = 86400000;
+const ANA_DEFAULTS = { mode: 'claims', range: 'all', from: '', to: '', milestones: true, late: false, yZero: false };
+const ANA_RANGES = { '1m': 1, '3m': 3, '6m': 6, '1y': 12 };
+let anaPrefs = { ...ANA_DEFAULTS };
+try {
+  const saved = JSON.parse(localStorage.getItem('litstats_anaPrefs') || '{}');
+  Object.keys(ANA_DEFAULTS).forEach(k => { if (typeof saved[k] === typeof ANA_DEFAULTS[k]) anaPrefs[k] = saved[k]; });
+} catch (e) {}
+if (!['claims', 'history'].includes(anaPrefs.mode)) anaPrefs.mode = ANA_DEFAULTS.mode;
+if (anaPrefs.range !== 'all' && anaPrefs.range !== 'custom' && !ANA_RANGES[anaPrefs.range]) anaPrefs.range = ANA_DEFAULTS.range;
+const mutedPlayers = new Set();
+
+function saveAnaPrefs() { try { localStorage.setItem('litstats_anaPrefs', JSON.stringify(anaPrefs)); } catch (e) {} }
+
+const normUuid = u => String(u || '').replace(/-/g, '').toLowerCase();
+const parseDay = v => (/^\d{4}-\d{2}-\d{2}$/.test(v || '') ? Date.parse(v + 'T00:00:00Z') : NaN);
+const isoDay = ts => new Date(ts).toISOString().slice(0, 10);
+const fmtDayUTC = ts => new Date(ts).toLocaleDateString(undefined, { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' });
+
+function isLightTheme() { return ['light', 'cherry'].includes(document.documentElement.getAttribute('data-theme')); }
+function cssVar(name, fallback) { return (getComputedStyle(document.body).getPropertyValue(name) || '').trim() || fallback; }
+function hexRgb(h) { return [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)); }
+// Mix a hex colour towards white (255) or black (0) — used for the "claims" alternate shade.
+function mixHex(h, target, amt) { const c = hexRgb(h).map(v => Math.round(v + (target - v) * amt)); return `rgb(${c[0]}, ${c[1]}, ${c[2]})`; }
+function hexAlpha(h, a) { const c = hexRgb(h); return `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${a})`; }
+
+// Archive re-indexed per player: { uuid: [{x: ms, y: ap}, ...] }. UUIDs are normalised (no dashes,
+// lowercase) so a format mismatch between the archive and the API can't silently drop a player's data.
+let _archiveSrc = null, _archiveIdx = null;
+function getArchiveIndex() {
+  if (_archiveIdx && _archiveSrc === historicalArchiveData) return _archiveIdx;
+  const idx = {};
+  Object.keys(historicalArchiveData || {}).forEach(date => {
+    const day = historicalArchiveData[date];
+    const x = parseDay(date);
+    if (!Number.isFinite(x) || !day || typeof day !== 'object') return;
+    Object.entries(day).forEach(([u, ap]) => {
+      const y = Number(ap);
+      if (!Number.isFinite(y)) return;
+      (idx[normUuid(u)] ||= []).push({ x, y });
+    });
+  });
+  Object.values(idx).forEach(a => a.sort((p, q) => p.x - q.x));
+  _archiveSrc = historicalArchiveData; _archiveIdx = idx;
+  return idx;
+}
+
+// Collapse runs of identical values: keep the first and last point of each run, drop the days in
+// between (a straight line between them already says "unchanged"). Run-end points remember `since`.
+function collapseFlat(pts) {
+  const out = [];
+  let runStart = 0;
+  for (let i = 0; i < pts.length; i++) {
+    const p = pts[i], prev = pts[i - 1], next = pts[i + 1];
+    if (prev && p.y !== prev.y) runStart = i;
+    if (prev && next && p.y === prev.y && p.y === next.y) continue;
+    out.push(prev && p.y === prev.y ? { ...p, since: pts[runStart].x } : p);
+  }
+  return out;
+}
+
+// History = real archive snapshots + the live AP as the final point. No invented fill-in days.
+function buildHistorySeries(e) {
+  const pts = (getArchiveIndex()[e.uuid] || []).map(p => ({ ...p }));
+  if (!pts.length && e.primary) {
+    const start = Number(globalPlayerData.last_month_ap);
+    if (Number.isFinite(start) && start > 0) {
+      const d = new Date();
+      pts.push({ x: Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1), y: start, note: 'Month start' });
+    }
+  }
+  if (e.currentAp > 0) pts.push({ x: Date.now(), y: e.currentAp, live: true });
+  return collapseFlat(pts); // Collapse toggle was removed from the UI: always collapse unchanged history days
+}
+
+// Claims = non-late claims at their real timestamps. With "collapse" on, claims made on the same
+// day merge into one point (highest reward that day). Late claims are returned separately.
+function buildClaimSeries(claims) {
+  const filtered = claims.filter(c => anaPrefs.late || !c.late);
+  const sorted = [...filtered].sort((a, b) => a.ts - b.ts);
+  const pts = sorted.map(c => ({ x: c.ts, y: c.points, late: c.late }));
+
+  const milestones = [], top = sorted.reduce((m, c) => Math.max(m, c.points), 0);
+  for (let m = 5000; m <= top; m += 5000) {
+    const c = sorted.find(x => x.points === m && !x.late);
+    if (c) milestones.push({ x: c.ts, y: m, ms: true });
+  }
+  return { pts, milestones };
+}
+
+// Keep points inside [min,max] plus the nearest neighbour on each side so lines run to the edges.
+function windowed(pts, min, max) {
+  const out = [];
+  if (!Array.isArray(pts)) return out;
+  for (let i = 0; i < pts.length; i++) {
+    const p = pts[i];
+    if (!p || typeof p.x !== 'number') continue;
+    if (p.x >= min && p.x <= max) out.push(p);
+    else if (p.x < min && pts[i + 1] && typeof pts[i + 1].x === 'number' && pts[i + 1].x >= min) out.push(p);
+    else if (p.x > max && pts[i - 1] && typeof pts[i - 1].x === 'number' && pts[i - 1].x <= max) out.push(p);
+  }
+  return out;
+}
+
+// Calendar-aligned ticks for a millisecond x-axis (no date adapter needed).
+const TIME_STEPS = [{ d: 1 }, { d: 2 }, { d: 7 }, { d: 14 }, { m: 1 }, { m: 2 }, { m: 3 }, { m: 6 }, { y: 1 }, { y: 2 }, { y: 5 }, { y: 10 }];
+function pickTimeStep(span, target) {
+  const len = s => (s.d ? s.d * DAY_MS : s.m ? s.m * 30.44 * DAY_MS : s.y * 365.25 * DAY_MS);
+  return TIME_STEPS.find(s => span / len(s) <= target) || TIME_STEPS[TIME_STEPS.length - 1];
+}
+function niceTimeTicks(min, max, target) {
+  const step = pickTimeStep(max - min, target), ticks = [];
+  if (step.d) {
+    const len = step.d * DAY_MS;
+    for (let t = Math.ceil(min / len) * len, n = 0; t <= max && n < 500; t += len, n++) ticks.push(t);
+  } else {
+    const stepM = step.y ? step.y * 12 : step.m, d0 = new Date(min);
+    let idx = step.y ? Math.floor(d0.getUTCFullYear() / step.y) * step.y * 12
+                     : d0.getUTCFullYear() * 12 + Math.floor(d0.getUTCMonth() / step.m) * step.m;
+    for (let n = 0; n < 500; n++, idx += stepM) {
+      const t = Date.UTC(Math.floor(idx / 12), idx % 12, 1);
+      if (t > max) break;
+      if (t >= min) ticks.push(t);
+    }
+  }
+  return ticks;
+}
+function fmtAnaTick(v, scale) {
+  const span = scale.max - scale.min, step = pickTimeStep(span, Math.max(3, Math.floor(scale.width / 100)));
+  const d = new Date(v), tz = { timeZone: 'UTC' };
+  if (step.y) return String(d.getUTCFullYear());
+  if (step.m) return d.toLocaleDateString(undefined, { ...tz, month: 'short', year: 'numeric' });
+  return d.toLocaleDateString(undefined, { ...tz, day: 'numeric', month: 'short', ...(span > 200 * DAY_MS ? { year: '2-digit' } : {}) });
+}
+
+window.toggleMutePlayer = function(uuid) {
+  if (mutedPlayers.has(uuid)) mutedPlayers.delete(uuid); else mutedPlayers.add(uuid);
+  initOrUpdateAnalyticsChart();
+};
+
+// Chips double as the chart legend: swatch = the line colour in the current mode, number = current AP.
+function renderCompareChips(entries) {
+  const el = document.getElementById('compare-chips');
+  if (!el) return;
+  el.innerHTML = entries.map(e => `
+    <span class="compare-chip ${mutedPlayers.has(e.uuid) ? 'muted' : ''}">
+      <button type="button" class="chip-main" title="Click to show / hide on the chart" onclick="toggleMutePlayer('${e.uuid}')">
+        <span class="dot" style="background:${e.line}"></span>${escHtml(e.username)}${e.currentAp > 0 ? `<span class="chip-ap">${Number(e.currentAp).toLocaleString()} AP</span>` : ''}
+      </button>
+      ${e.primary ? '' : `<button type="button" class="chip-x" title="Remove" onclick="removeComparisonPlayer('${e.uuid}')">&times;</button>`}
+    </span>`).join('');
+}
+
+function renderAnaInfo(shown) {
+  const el = document.getElementById('ana-info');
+  if (!el) return;
+  let lo = Infinity, hi = -Infinity;
+  shown.forEach(e => {
+    if (anaPrefs.mode === 'claims') {
+      (e.claims || []).forEach(c => { if (c && typeof c.ts === 'number') { if (c.ts < lo) lo = c.ts; if (c.ts > hi) hi = c.ts; } });
+    } else {
+      (e.hist || []).forEach(p => { if (!p || p.live || p.note || typeof p.x !== 'number') return; if (p.x < lo) lo = p.x; if (p.x > hi) hi = p.x; });
+    }
+  });
+  const fmt = anaPrefs.mode === 'claims' ? fmtClaimDate : fmtDayUTC, name = anaPrefs.mode === 'claims' ? 'Claims' : 'History';
+  el.textContent = Number.isFinite(lo) ? `${name}: ${fmt(lo)} → ${fmt(hi)}` : `${name}: no data`;
+}
+
+function syncAnaControls(range) {
+  const $ = id => document.getElementById(id);
+  document.querySelectorAll('#ana-mode button').forEach(b => b.classList.toggle('active', b.dataset.mode === anaPrefs.mode));
+  document.querySelectorAll('#ana-range button').forEach(b => b.classList.toggle('active', b.dataset.range === anaPrefs.range));
+  $('ana-custom-dates')?.classList.toggle('hidden', anaPrefs.range !== 'custom');
+  [['ana-late', 'late'], ['ana-ms', 'milestones'], ['ana-yzero', 'yZero']]
+    .forEach(([id, k]) => $(id)?.addEventListener('change', e => { anaPrefs[k] = e.target.checked; refresh(); }));
+  document.querySelectorAll('[data-only]').forEach(el => el.classList.toggle('hidden', el.dataset.only !== anaPrefs.mode));
+  if ($('ana-from') && $('ana-to')) {
+    if (anaPrefs.range === 'custom') { $('ana-from').value = anaPrefs.from; $('ana-to').value = anaPrefs.to; }
+    else if (range) { $('ana-from').value = isoDay(range.min); $('ana-to').value = isoDay(range.max); }
+  }
+}
+
+function renderClaimsPanel(entries) {
+  const el = document.getElementById('ap-claims-wrapper');
+  if (!el) return;
+  el.innerHTML = entries.map(e => {
+    const claims = e.claims;
+    if (!claims.length) {
+      return `<details><summary><span class="dot" style="background:${e.color}"></span><b>${escHtml(e.username)}</b> No AP reward claim data</summary></details>`;
+    }
+    const last = claims[claims.length - 1];
+    const highest = Math.max(...claims.map(c => c.points));
+    const lateCount = claims.filter(c => c.late).length;
+    const rows = [...claims].reverse().map(c =>
+      `<div class="claim-row ${c.late ? 'late' : ''}"><b>${c.points.toLocaleString()} AP</b> <i>${fmtClaimDate(c.ts)}${c.late ? ' (late claim)' : ''}</i></div>`
+    ).join('');
+    return `<details>
+      <summary><span class="dot" style="background:${e.color}"></span><b>${escHtml(e.username)}</b>
+        ${e.currentAp > 0 ? `${Number(e.currentAp).toLocaleString()} AP now · ` : ''}${claims.length.toLocaleString()} rewards claimed · highest ${highest.toLocaleString()} AP · last claim ${fmtClaimDate(last.ts)}${lateCount ? ` · ${lateCount} late` : ''}
+      </summary>
+      <div class="claim-list">${rows}</div>
+    </details>`;
+  }).join('');
+}
+
+const anaMilestonePlugin = {
+  id: 'anaMilestones',
+  afterDatasetsDraw(chart) {
+    const { ctx, chartArea: a } = chart, boxes = [];
+    ctx.save();
+    ctx.font = '600 11px "DM Sans", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    chart.data.datasets.forEach((ds, i) => {
+      if (ds.kind !== 'milestone' || !chart.isDatasetVisible(i)) return;
+      const meta = chart.getDatasetMeta(i);
+      if (!meta || !meta.data) return;
+      meta.data.forEach((pt, j) => {
+        if (!pt || typeof pt.x !== 'number' || typeof pt.y !== 'number') return;
+        const dataObj = ds.data[j];
+        if (!dataObj || typeof dataObj.y !== 'number') return;
+        const text = Number(dataObj.y).toLocaleString(), w = ctx.measureText(text).width, x = pt.x, y = pt.y - 10;
+        const box = [x - w / 2 - 2, y - 13, x + w / 2 + 2, y + 2];
+        if (box[0] < a.left || box[2] > a.right || box[1] < a.top) return;
+        if (boxes.some(q => box[0] < q[2] && box[2] > q[0] && box[1] < q[3] && box[3] > q[1])) return;
+        boxes.push(box);
+        ctx.fillStyle = ds.borderColor;
+        ctx.fillText(text, x, y);
+      });
+    });
+    ctx.restore();
+  }
+};
+
+function buildAnaChartOptions() {
+  const font = { family: 'DM Sans' };
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 250 },
+    interaction: { mode: 'nearest', intersect: false },
+    plugins: {
+      legend: { display: false }, // the player chips are the legend
+      tooltip: {
+        callbacks: {
+          title(items) {
+            const it = items[0];
+            if (!it) return '';
+            const r = it.raw || {};
+            if (r.live) return 'Current (live)';
+            if (it.dataset.kind === 'history') return fmtDayUTC(r.x) + (r.note ? ` · ${r.note}` : '');
+            return fmtClaimDate(r.x);
+          },
+          label(it) {
+            const ds = it.dataset, r = it.raw || {}, ap = Number(r.y).toLocaleString();
+            if (ds.kind === 'history') {
+              const out = [`${ds.player}: ${ap} AP`];
+              if (r.since) out.push(`Unchanged since ${fmtDayUTC(r.since)}`);
+              return out;
+            }
+            if (ds.kind === 'late') return `${ds.player}: ${ap} AP reward (late claim)`;
+            if (ds.kind === 'milestone') return `${ds.player}: ${ap} AP reward claimed ★`;
+            const out = [`${ds.player}: ${ap} AP reward claimed`];
+            if (r.n > 1) out.push(`${r.n} rewards claimed that day (${r.lo.toLocaleString()} → ${r.hi.toLocaleString()} AP)`);
+            return out;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        type: 'linear',
+        bounds: 'data',
+        grid: {},
+        ticks: { font, maxRotation: 0, minRotation: 0, autoSkip: false, callback: function(v) { return fmtAnaTick(v, this); } },
+        afterBuildTicks(scale) {
+          scale.ticks = niceTimeTicks(scale.min, scale.max, Math.max(3, Math.floor(scale.width / 100))).map(value => ({ value }));
+        }
+      },
+      y: { grid: {}, ticks: { font } }
+    }
+  };
+}
+
 function initOrUpdateAnalyticsChart() {
   const ctx = document.getElementById('apHistoryChart');
   if (!ctx || !globalPlayerData) return;
 
-  const colorPalette = ['#ff5100', '#00bfff', '#55ff55', '#ffd700', '#ff55ff', '#ff3366'];
-  const allKnownDates = Object.keys(historicalArchiveData || {}).sort();
+  const primaryUuid = normUuid(globalPlayerData.uuid);
+  comparisonPlayers = comparisonPlayers.filter(p => p.uuid !== primaryUuid);
 
-  let timeLabels = [];
-  if (allKnownDates.length > 0) {
-    timeLabels = [...allKnownDates];
-    const lastDate = allKnownDates[allKnownDates.length - 1];
-    const todayIso = new Date().toISOString().split('T')[0];
-    if (lastDate !== todayIso && lastDate !== 'Current') {
-      timeLabels.push('Current');
-    }
+  const entries = [
+    {
+      uuid: primaryUuid,
+      username: globalPlayerData.username,
+      currentAp: globalPlayerData.achievementPoints || globalPlayerData.current_ap || 0,
+      claims: processClaims(globalPlayerData.achievementRewardsNew),
+      primary: true
+    },
+    ...comparisonPlayers.map(p => ({ uuid: p.uuid, username: p.username, currentAp: p.currentAp, claims: p.claims }))
+  ];
+  const light = isLightTheme();
+  entries.forEach((e, i) => {
+    e.color = PLAYER_COLORS[i % PLAYER_COLORS.length];
+    e.alt = light ? mixHex(e.color, 0, 0.4) : mixHex(e.color, 255, 0.45); // alternate shade = claims
+    e.line = anaPrefs.mode === 'claims' ? e.alt : e.color;
+    e.hist = buildHistorySeries(e);
+    e.claimSeries = buildClaimSeries(e.claims);
+  });
+
+  const showH = anaPrefs.mode === 'history';
+  const showC = !showH;
+  const shown = entries.filter(e => !mutedPlayers.has(e.uuid));
+  const now = Date.now();
+
+  // ---- x range: history is anchored to today, claims to the last claim shown ----
+  let dataMin = Infinity, dataMax = -Infinity;
+  shown.forEach(e => {
+    const list = showH ? e.hist : e.claimSeries.pts;
+    list.forEach(p => { if (p.x < dataMin) dataMin = p.x; if (p.x > dataMax) dataMax = p.x; });
+  });
+  if (!Number.isFinite(dataMin)) { dataMax = now; dataMin = now - 30 * DAY_MS; }
+  const anchor = showH ? now : dataMax;
+
+  let rawMin, rawMax = anchor;
+  if (anaPrefs.range === 'custom') {
+    const f = parseDay(anaPrefs.from), t = parseDay(anaPrefs.to);
+    rawMin = Number.isFinite(f) ? f : dataMin;
+    if (Number.isFinite(t)) rawMax = t + DAY_MS;
+  } else if (anaPrefs.range === 'all') {
+    rawMin = dataMin;
   } else {
-    timeLabels = ['Month Start', 'Current'];
+    const d = new Date(anchor);
+    d.setUTCMonth(d.getUTCMonth() - ANA_RANGES[anaPrefs.range]);
+    rawMin = d.getTime();
   }
+  if (rawMax <= rawMin) rawMax = rawMin + DAY_MS;
+  const pad = (rawMax - rawMin) * 0.02;
+  const xMin = rawMin - pad, xMax = rawMax + pad;
 
-  function resolveTimelinePoints(uuid, fallbackCurrent, fallbackStart) {
-    if (allKnownDates.length > 0) {
-      return timeLabels.map(tLabel => {
-        if (tLabel === 'Current') return fallbackCurrent;
-        if (historicalArchiveData[tLabel]?.[uuid] !== undefined) {
-          return historicalArchiveData[tLabel][uuid];
-        }
-        return localAPDataCache?.month_start_snapshot?.[uuid] ?? fallbackStart;
+  // ---- datasets: one solid connected line per player (history = base colour, claims = muted shade) ----
+  const showPts = anaPrefs.points !== false; // Points toggle was removed from the UI: always on
+  const textColor = cssVar('--text', light ? '#111' : '#fff');
+  const datasets = [];
+  shown.forEach(e => {
+    if (showH) {
+      const pts = windowed(e.hist, xMin, xMax);
+      if (pts.length) datasets.push({
+        kind: 'history', player: e.username, label: `${e.username} (history)`, data: pts, order: 1,
+        borderColor: e.line, borderWidth: 2, tension: 0, spanGaps: true, backgroundColor: 'transparent', fill: false,
+        pointBackgroundColor: e.line, pointBorderColor: e.line, pointHoverBackgroundColor: e.line, pointHoverBorderColor: textColor,
+        pointRadius: c => (!showPts ? 0 : c.raw && c.raw.live ? 5.5 : 3.5), pointHoverRadius: 7, pointHitRadius: 10
+      });
+    } else {
+      const cp = windowed(e.claimSeries.pts, xMin, xMax);
+      if (cp.length) datasets.push({
+        kind: 'claims', player: e.username, label: `${e.username} (claims)`, data: cp, order: 1,
+        borderColor: e.line, borderWidth: 2, tension: 0, spanGaps: true, backgroundColor: 'transparent', fill: false,
+        pointBackgroundColor: e.line, pointBorderColor: e.line, pointHoverBackgroundColor: e.line, pointHoverBorderColor: textColor,
+        pointRadius: showPts ? 2 : 0, pointHoverRadius: 6, pointHitRadius: 8
+      });
+      const inWin = p => p.x >= xMin && p.x <= xMax;
+      const ms = e.claimSeries.milestones.filter(inWin);
+      if (anaPrefs.milestones && ms.length) datasets.push({
+        kind: 'milestone', player: e.username, label: `${e.username} (milestones)`, data: ms, showLine: false, order: 0,
+        borderColor: e.line, backgroundColor: e.line, pointBackgroundColor: e.line, pointBorderColor: textColor, pointBorderWidth: 2,
+        pointRadius: 6, pointHoverRadius: 8, pointHitRadius: 10
       });
     }
-    return [fallbackStart, fallbackCurrent];
+  });
+
+  renderCompareChips(entries);
+  renderClaimsPanel(entries);
+  renderAnaInfo(shown);
+  syncAnaControls({ min: rawMin, max: rawMax });
+
+  const emptyEl = document.getElementById('ap-chart-empty');
+  if (emptyEl) {
+    emptyEl.classList.toggle('hidden', datasets.length > 0);
+    emptyEl.textContent = shown.length ? 'No data in this range for the selected mode.' : 'All players are hidden. Click a player chip to show them.';
   }
 
-  const currentPrimaryAp = globalPlayerData.achievementPoints || globalPlayerData.current_ap || 0;
-  const startPrimaryAp = globalPlayerData.last_month_ap || (localAPDataCache?.month_start_snapshot?.[globalPlayerData.uuid]) || currentPrimaryAp;
-  const primaryPoints = resolveTimelinePoints(globalPlayerData.uuid, currentPrimaryAp, startPrimaryAp);
+  if (!apChartInstance) apChartInstance = new Chart(ctx, { type: 'line', data: { datasets }, options: buildAnaChartOptions(), plugins: [anaMilestonePlugin] });
+  else apChartInstance.data.datasets = datasets;
 
-  const datasets = [{
-    label: globalPlayerData.username,
-    data: primaryPoints,
-    borderColor: colorPalette[0],
-    backgroundColor: 'rgba(255, 81, 0, 0.12)',
-    pointBackgroundColor: colorPalette[0],
-    pointHoverBackgroundColor: colorPalette[0],
-    pointBorderColor: colorPalette[0],
-    pointHoverBorderColor: '#ffffff',
-    tension: 0.2,
-    fill: true,
-    pointRadius: 5,
-    pointHoverRadius: 7
-  }];
-
-  if (apChartInstance) {
-    apChartInstance.data.labels = timeLabels;
-    apChartInstance.data.datasets = datasets;
-    apChartInstance.update();
-  } else {
-    apChartInstance = new Chart(ctx, {
-      type: 'line',
-      data: { labels: timeLabels, datasets: datasets },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { 
-            labels: { 
-              color: '#e0e0e0', 
-              font: { family: 'DM Sans', size: 12 },
-              usePointStyle: true,
-              pointStyle: 'line',
-              boxWidth: 24,
-              padding: 18
-            } 
-          }
-        },
-        scales: {
-          x: { ticks: { color: '#888', font: { family: 'DM Sans' } }, grid: { color: 'rgba(255,255,255,0.05)' } },
-          y: { ticks: { color: '#888', font: { family: 'DM Sans' } }, grid: { color: 'rgba(255,255,255,0.05)' } }
-        }
-      }
-    });
-  }
+  const o = apChartInstance.options;
+  const tickColor = cssVar('--text-3', '#888');
+  const gridColor = light ? 'rgba(0,0,0,0.07)' : 'rgba(255,255,255,0.06)';
+  o.scales.x.min = xMin;
+  o.scales.x.max = xMax;
+  o.scales.y.beginAtZero = anaPrefs.yZero;
+  [o.scales.x, o.scales.y].forEach(s => { s.ticks.color = tickColor; s.grid.color = gridColor; });
+  apChartInstance.update();
 }
+
+(function bindAnaControls() {
+  const $ = id => document.getElementById(id);
+  const refresh = () => { saveAnaPrefs(); initOrUpdateAnalyticsChart(); syncAnaControls(); };
+  document.querySelectorAll('#ana-mode button').forEach(b => b.addEventListener('click', () => { anaPrefs.mode = b.dataset.mode; refresh(); }));
+  document.querySelectorAll('#ana-range button').forEach(b => b.addEventListener('click', () => {
+    if (b.dataset.range === 'custom') { // start the custom range from whatever is currently shown
+      anaPrefs.from = $('ana-from').value || anaPrefs.from;
+      anaPrefs.to = $('ana-to').value || anaPrefs.to;
+    }
+    anaPrefs.range = b.dataset.range;
+    refresh();
+  }));
+  ['ana-from', 'ana-to'].forEach(id => $(id)?.addEventListener('change', () => {
+    anaPrefs.from = $('ana-from').value;
+    anaPrefs.to = $('ana-to').value;
+    anaPrefs.range = 'custom';
+    refresh();
+  }));
+  [['ana-collapse', 'collapse'], ['ana-points', 'points'], ['ana-late', 'late'], ['ana-ms', 'milestones'], ['ana-yzero', 'yZero']]
+    .forEach(([id, k]) => $(id)?.addEventListener('change', e => { anaPrefs[k] = e.target.checked; refresh(); }));
+  $('ana-reset')?.addEventListener('click', () => { anaPrefs = { ...ANA_DEFAULTS }; mutedPlayers.clear(); refresh(); });
+  syncAnaControls();
+})();
+// ==== AP analytics (end) ====
 
 let cabinetTour = null;
 function initCabinetTour() {
