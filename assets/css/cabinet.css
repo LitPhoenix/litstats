@@ -553,7 +553,7 @@ body[data-theme="dark"] .maxed-stat-pill {
   font-weight: 600;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
   color: var(--text-2);
   transition: 0.2s;
@@ -1220,27 +1220,14 @@ body.hide-rarity .ach-percent { display: none !important; }
 
 
 /* player heads and skin rewards stay square and crisp */
-.p-helm, .custom-skin-badge img { border-radius: 0 !important; image-rendering: pixelated; }
+.p-helm, .custom-skin-badge img { border-radius: 2px; image-rendering: pixelated; }
 
-.ana-year-croppers {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.year-crop-btn {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--text-2);
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.15s;
-}
-.year-crop-btn:hover {
-  background: var(--surface);
-  color: var(--text);
-  border-color: var(--accent);
-}
+.ana-btn { padding: 5px 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; color: var(--text-2); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.15s; }
+.ana-btn:hover:not(:disabled) { color: var(--text); border-color: var(--accent); }
+.ana-btn:disabled { opacity: 0.4; cursor: default; }
+.ana-slider { position: relative; height: 26px; margin-top: 8px; touch-action: none; user-select: none; }
+.ana-track { position: absolute; left: 0; right: 0; top: 11px; height: 4px; border-radius: 2px; background: var(--border); }
+.ana-sel { position: absolute; top: 8px; height: 10px; border-radius: 5px; background: color-mix(in srgb, var(--accent) 45%, transparent); cursor: grab; }
+.ana-sel:active { cursor: grabbing; }
+.ana-handle { position: absolute; top: 0; width: 12px; height: 26px; margin-left: -6px; border-radius: 6px; background: var(--accent); border: 2px solid var(--surface); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45); cursor: ew-resize; }
+.ana-handle::after { content: ''; position: absolute; left: 2px; right: 2px; top: 8px; height: 6px; border-left: 1px solid rgba(255, 255, 255, 0.75); border-right: 1px solid rgba(255, 255, 255, 0.75); }
