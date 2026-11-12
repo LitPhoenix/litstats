@@ -904,7 +904,57 @@ body[data-theme="dark"] .maxed-stat-pill {
 .compare-box input { padding: 8px 14px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: inherit; font-size: 13px; outline: none; }
 .compare-box input:focus { border-color: var(--accent); }
 
-.chart-container-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; width: 100%; box-sizing: border-box; position: relative; height: 320px; }
+.compare-error { color: var(--red); font-size: 13px; margin-bottom: 10px; }
+.compare-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.compare-chips:empty { display: none; }
+.compare-chip { display: inline-flex; align-items: center; gap: 8px; padding: 5px 8px 5px 10px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; font-size: 13px; color: var(--text); }
+.compare-chip .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.compare-chip { padding: 0 4px 0 0; gap: 0; transition: opacity 0.15s; }
+.compare-chip.muted { opacity: 0.4; }
+.compare-chip.muted .chip-main { text-decoration: line-through; }
+.compare-chip button { background: none; border: none; cursor: pointer; font-family: inherit; }
+.compare-chip .chip-main { display: inline-flex; align-items: center; gap: 5px; padding: 5px 4px 5px 10px; color: var(--text); font-size: 13px; }
+.compare-chip .chip-x { color: var(--text-3); font-size: 15px; line-height: 1; padding: 4px 6px; }
+.compare-chip .chip-x:hover { color: var(--red); }
+.compare-chip .chip-ap { margin-left: 4px; font-size: 11px; color: var(--text-3); }
+
+/* analytics toolbar */
+.ana-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin-bottom: 10px; }
+.ana-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.ana-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }
+.seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.seg button { background: none; border: none; border-right: 1px solid var(--border); color: var(--text-2); font-family: inherit; font-size: 12px; font-weight: 600; padding: 6px 12px; cursor: pointer; transition: background 0.15s, color 0.15s; }
+.seg button:last-child { border-right: none; }
+.seg button:hover { color: var(--text); }
+.seg button.active { background: var(--accent); color: #fff; }
+.ana-dates { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-3); }
+.ana-dates input { padding: 5px 8px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: inherit; font-size: 12px; outline: none; color-scheme: dark; }
+.ana-dates input:focus { border-color: var(--accent); }
+html[data-theme="light"] .ana-dates input, html[data-theme="cherry"] .ana-dates input { color-scheme: light; }
+.ana-tog { position: relative; cursor: pointer; }
+.ana-tog input { position: absolute; opacity: 0; pointer-events: none; }
+.ana-tog span { display: inline-block; padding: 5px 11px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-2); color: var(--text-2); font-size: 12px; user-select: none; transition: 0.15s; }
+.ana-tog:hover span { color: var(--text); }
+.ana-tog input:checked + span { border-color: var(--accent); color: var(--text); background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.ana-tog input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ana-reset { margin-left: auto; padding: 5px 12px; background: none; border: 1px solid var(--border); border-radius: 999px; color: var(--text-3); font-family: inherit; font-size: 12px; cursor: pointer; }
+.ana-reset:hover { color: var(--text); border-color: var(--text-3); }
+.ana-opts { margin-bottom: 12px; }
+.ana-dates.hidden, .chart-empty.hidden, .ana-tog.hidden { display: none !important; }
+.ana-info { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 10px; font-size: 12px; color: var(--text-3); }
+.ana-info:empty { display: none; }
+.chart-empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; font-size: 13px; color: var(--text-3); pointer-events: none; }
+.compare-btn:disabled { opacity: 0.5; cursor: wait; }
+.ap-claims { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.ap-claims details { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; }
+.ap-claims summary { cursor: pointer; font-size: 13px; color: var(--text-2); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ap-claims summary .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.ap-claims summary b { color: var(--text); }
+.ap-claims .claim-list { margin-top: 10px; max-height: 220px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 4px 16px; font-size: 12px; color: var(--text-2); }
+.ap-claims .claim-row.late { opacity: 0.55; }
+.ap-claims .claim-row i { font-style: normal; color: var(--text-3); }
+
+.chart-container-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; width: 100%; box-sizing: border-box; position: relative; height: 380px; }
 
 .loading-msg, .error-msg { text-align: center; padding: 48px 24px; font-size: 14px; color: var(--text-3); }
 .error-msg { color: var(--red); }
@@ -1171,3 +1221,26 @@ body.hide-rarity .ach-percent { display: none !important; }
 
 /* player heads and skin rewards stay square and crisp */
 .p-helm, .custom-skin-badge img { border-radius: 0 !important; image-rendering: pixelated; }
+
+.ana-year-croppers {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.year-crop-btn {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+.year-crop-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--accent);
+}
