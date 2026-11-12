@@ -740,15 +740,6 @@ window.setLegacyMode = function(mode) {
   renderDashboard();
 };
 
-window.setYearCrop = function(year) {
-  anaPrefs.range = 'custom';
-  anaPrefs.from = `${year}-01-01`;
-  anaPrefs.to = `${year}-12-31`;
-  saveAnaPrefs();
-  initOrUpdateAnalyticsChart();
-  syncAnaControls();
-};
-
 window.clearSearch = function(id) {
   const input = document.getElementById(id);
   if(input) {
@@ -1987,18 +1978,22 @@ window.removeComparisonPlayer = function(uuid) {
 
 // ==== AP analytics (start) ====
 const DAY_MS = 86400000;
-const ANA_DEFAULTS = { mode: 'claims', range: 'all', from: '', to: '', milestones: true, late: false, yZero: false };
-const ANA_RANGES = { '1m': 1, '3m': 3, '6m': 6, '1y': 12 };
+const ANA_DEFAULTS = { mode: 'claims', milestones: true, late: false, yZero: false };
+// Achievement rewards launched in early Nov 2017, so earlier claim timestamps are invalid and are ignored.
+const CLAIMS_EPOCH = Date.UTC(2017, 10, 1);
+const ANA_CLIP = { top: 8, bottom: 8, left: 6, right: 6 }; // let edge markers overflow the plot slightly instead of being cut in half
 let anaPrefs = { ...ANA_DEFAULTS };
 try {
-  const saved = JSON.parse(localStorage.getItem('litstats_anaPrefs') || '{}');
+  const saved = JSON.parse(localStorage.getItem('litstats_anaPrefs2') || '{}');
   Object.keys(ANA_DEFAULTS).forEach(k => { if (typeof saved[k] === typeof ANA_DEFAULTS[k]) anaPrefs[k] = saved[k]; });
 } catch (e) {}
 if (!['claims', 'history'].includes(anaPrefs.mode)) anaPrefs.mode = ANA_DEFAULTS.mode;
-if (anaPrefs.range !== 'all' && anaPrefs.range !== 'custom' && !ANA_RANGES[anaPrefs.range]) anaPrefs.range = ANA_DEFAULTS.range;
+// Visible window set by the drag handles / date boxes (null = full extent). Not persisted: it only makes sense for the data loaded.
+const anaView = { min: null, max: null };
+let anaExtent = { min: Date.now() - 30 * 86400000, max: Date.now() }, anaWin = { ...anaExtent };
 const mutedPlayers = new Set();
 
-function saveAnaPrefs() { try { localStorage.setItem('litstats_anaPrefs', JSON.stringify(anaPrefs)); } catch (e) {} }
+function saveAnaPrefs() { try { localStorage.setItem('litstats_anaPrefs2', JSON.stringify(anaPrefs)); } catch (e) {} }
 
 const normUuid = u => String(u || '').replace(/-/g, '').toLowerCase();
 const parseDay = v => (/^\d{4}-\d{2}-\d{2}$/.test(v || '') ? Date.parse(v + 'T00:00:00Z') : NaN);
@@ -2064,10 +2059,9 @@ function buildHistorySeries(e) {
 // Claims = non-late claims at their real timestamps. With "collapse" on, claims made on the same
 // day merge into one point (highest reward that day). Late claims are returned separately.
 function buildClaimSeries(claims) {
-  const filtered = claims.filter(c => anaPrefs.late || !c.late);
-  const sorted = [...filtered].sort((a, b) => a.ts - b.ts);
+  const valid = claims.filter(c => c.ts >= CLAIMS_EPOCH);
+  const sorted = (anaPrefs.late ? valid : valid.filter(c => !c.late)).sort((a, b) => a.ts - b.ts);
   const pts = sorted.map(c => ({ x: c.ts, y: c.points, late: c.late }));
-
   const milestones = [], top = sorted.reduce((m, c) => Math.max(m, c.points), 0);
   for (let m = 5000; m <= top; m += 5000) {
     const c = sorted.find(x => x.points === m && !x.late);
@@ -2142,30 +2136,61 @@ function renderCompareChips(entries) {
 function renderAnaInfo(shown) {
   const el = document.getElementById('ana-info');
   if (!el) return;
-  let lo = Infinity, hi = -Infinity;
+  let lo = Infinity, hi = -Infinity, hidden = 0;
   shown.forEach(e => {
     if (anaPrefs.mode === 'claims') {
-      (e.claims || []).forEach(c => { if (c && typeof c.ts === 'number') { if (c.ts < lo) lo = c.ts; if (c.ts > hi) hi = c.ts; } });
+      (e.claims || []).forEach(c => {
+        if (!c || typeof c.ts !== 'number') return;
+        if (c.ts < CLAIMS_EPOCH) { hidden++; return; }
+        if (c.ts < lo) lo = c.ts; if (c.ts > hi) hi = c.ts;
+      });
     } else {
       (e.hist || []).forEach(p => { if (!p || p.live || p.note || typeof p.x !== 'number') return; if (p.x < lo) lo = p.x; if (p.x > hi) hi = p.x; });
     }
   });
-  const fmt = anaPrefs.mode === 'claims' ? fmtClaimDate : fmtDayUTC, name = anaPrefs.mode === 'claims' ? 'Claims' : 'History';
-  el.textContent = Number.isFinite(lo) ? `${name}: ${fmt(lo)} → ${fmt(hi)}` : `${name}: no data`;
+  const claims = anaPrefs.mode === 'claims', fmt = claims ? fmtClaimDate : fmtDayUTC;
+  let text = Number.isFinite(lo) ? `${claims ? 'Claims' : 'History'}: ${fmt(lo)} → ${fmt(hi)}` : `${claims ? 'Claims' : 'History'}: no data`;
+  if (claims && hidden) text += ` · ${hidden} claim${hidden > 1 ? 's' : ''} dated before Nov 2017 ignored`;
+  el.textContent = text;
 }
 
-function syncAnaControls(range) {
+function updateAnaSlider() {
+  const $ = id => document.getElementById(id), span = anaExtent.max - anaExtent.min || 1;
+  const l = ((anaWin.min - anaExtent.min) / span) * 100, r = ((anaWin.max - anaExtent.min) / span) * 100;
+  if ($('ana-hl')) $('ana-hl').style.left = l + '%';
+  if ($('ana-hr')) $('ana-hr').style.left = r + '%';
+  if ($('ana-sel')) { $('ana-sel').style.left = l + '%'; $('ana-sel').style.width = (r - l) + '%'; }
+}
+
+// Line the slider track up with the chart's plot area so the handles sit on the plot's left/right edges.
+function alignAnaSlider(chart = apChartInstance) {
+  const slider = document.getElementById('ana-slider'), canvas = document.getElementById('apHistoryChart');
+  if (!slider || !canvas || !chart || !chart.chartArea) return;
+  const box = canvas.parentElement, ca = chart.chartArea;
+  if (!(ca.right - ca.left > 20)) return; // chart is hidden / not laid out yet: keep the CSS default until it is
+  const off = (box && box.clientLeft || 0) + (canvas.offsetLeft || 0);
+  slider.style.marginLeft = (off + ca.left) + 'px';
+  slider.style.width = (ca.right - ca.left) + 'px';
+}
+
+let _anaViewRaf = 0;
+function scheduleAnaView() { // coalesce rapid changes (dragging) into one chart redraw per frame
+  if (_anaViewRaf) return;
+  _anaViewRaf = requestAnimationFrame(() => { _anaViewRaf = 0; initOrUpdateAnalyticsChart({ viewOnly: true }); });
+}
+
+function syncAnaControls() {
   const $ = id => document.getElementById(id);
   document.querySelectorAll('#ana-mode button').forEach(b => b.classList.toggle('active', b.dataset.mode === anaPrefs.mode));
-  document.querySelectorAll('#ana-range button').forEach(b => b.classList.toggle('active', b.dataset.range === anaPrefs.range));
-  $('ana-custom-dates')?.classList.toggle('hidden', anaPrefs.range !== 'custom');
-  [['ana-late', 'late'], ['ana-ms', 'milestones'], ['ana-yzero', 'yZero']]
-    .forEach(([id, k]) => $(id)?.addEventListener('change', e => { anaPrefs[k] = e.target.checked; refresh(); }));
+  [['ana-late', 'late'], ['ana-ms', 'milestones'], ['ana-yzero', 'yZero']].forEach(([id, k]) => { const el = $(id); if (el) el.checked = !!anaPrefs[k]; });
   document.querySelectorAll('[data-only]').forEach(el => el.classList.toggle('hidden', el.dataset.only !== anaPrefs.mode));
-  if ($('ana-from') && $('ana-to')) {
-    if (anaPrefs.range === 'custom') { $('ana-from').value = anaPrefs.from; $('ana-to').value = anaPrefs.to; }
-    else if (range) { $('ana-from').value = isoDay(range.min); $('ana-to').value = isoDay(range.max); }
+  const f = $('ana-from'), t = $('ana-to');
+  if (f && t) {
+    f.min = t.min = isoDay(anaExtent.min); f.max = t.max = isoDay(anaExtent.max); // the picker only offers days that have data
+    f.value = isoDay(anaWin.min); t.value = isoDay(anaWin.max);
   }
+  if ($('ana-full')) $('ana-full').disabled = anaView.min == null && anaView.max == null;
+  updateAnaSlider();
 }
 
 function renderClaimsPanel(entries) {
@@ -2193,6 +2218,7 @@ function renderClaimsPanel(entries) {
 
 const anaMilestonePlugin = {
   id: 'anaMilestones',
+  afterLayout(chart) { alignAnaSlider(chart); }, // runs after every layout (first show, resize, tab/section reveal)
   afterDatasetsDraw(chart) {
     const { ctx, chartArea: a } = chart, boxes = [];
     ctx.save();
@@ -2207,9 +2233,11 @@ const anaMilestonePlugin = {
         if (!pt || typeof pt.x !== 'number' || typeof pt.y !== 'number') return;
         const dataObj = ds.data[j];
         if (!dataObj || typeof dataObj.y !== 'number') return;
-        const text = Number(dataObj.y).toLocaleString(), w = ctx.measureText(text).width, x = pt.x, y = pt.y - 10;
+        const text = Number(dataObj.y).toLocaleString(), w = ctx.measureText(text).width, x = pt.x;
+        let y = pt.y - 10;
+        if (y - 13 < a.top) y = pt.y + 22;
         const box = [x - w / 2 - 2, y - 13, x + w / 2 + 2, y + 2];
-        if (box[0] < a.left || box[2] > a.right || box[1] < a.top) return;
+        if (box[0] < a.left || box[2] > a.right || box[1] < a.top || box[3] > a.bottom) return;
         if (boxes.some(q => box[0] < q[2] && box[2] > q[0] && box[1] < q[3] && box[3] > q[1])) return;
         boxes.push(box);
         ctx.fillStyle = ds.borderColor;
@@ -2248,7 +2276,7 @@ function buildAnaChartOptions() {
             }
             if (ds.kind === 'late') return `${ds.player}: ${ap} AP reward (late claim)`;
             if (ds.kind === 'milestone') return `${ds.player}: ${ap} AP reward claimed ★`;
-            const out = [`${ds.player}: ${ap} AP reward claimed`];
+            const out = [`${ds.player}: ${ap} AP reward claimed${r.late ? ' (late claim)' : ''}`];
             if (r.n > 1) out.push(`${r.n} rewards claimed that day (${r.lo.toLocaleString()} → ${r.hi.toLocaleString()} AP)`);
             return out;
           }
@@ -2270,7 +2298,7 @@ function buildAnaChartOptions() {
   };
 }
 
-function initOrUpdateAnalyticsChart() {
+function initOrUpdateAnalyticsChart(opts = {}) {
   const ctx = document.getElementById('apHistoryChart');
   if (!ctx || !globalPlayerData) return;
 
@@ -2290,8 +2318,7 @@ function initOrUpdateAnalyticsChart() {
   const light = isLightTheme();
   entries.forEach((e, i) => {
     e.color = PLAYER_COLORS[i % PLAYER_COLORS.length];
-    e.alt = light ? mixHex(e.color, 0, 0.4) : mixHex(e.color, 255, 0.45); // alternate shade = claims
-    e.line = anaPrefs.mode === 'claims' ? e.alt : e.color;
+    e.line = e.color;
     e.hist = buildHistorySeries(e);
     e.claimSeries = buildClaimSeries(e.claims);
   });
@@ -2301,30 +2328,20 @@ function initOrUpdateAnalyticsChart() {
   const shown = entries.filter(e => !mutedPlayers.has(e.uuid));
   const now = Date.now();
 
-  // ---- x range: history is anchored to today, claims to the last claim shown ----
+  // ---- x range: the full extent of the data shown; the drag handles / date boxes crop it ----
   let dataMin = Infinity, dataMax = -Infinity;
   shown.forEach(e => {
     const list = showH ? e.hist : e.claimSeries.pts;
     list.forEach(p => { if (p.x < dataMin) dataMin = p.x; if (p.x > dataMax) dataMax = p.x; });
   });
   if (!Number.isFinite(dataMin)) { dataMax = now; dataMin = now - 30 * DAY_MS; }
-  const anchor = showH ? now : dataMax;
-
-  let rawMin, rawMax = anchor;
-  if (anaPrefs.range === 'custom') {
-    const f = parseDay(anaPrefs.from), t = parseDay(anaPrefs.to);
-    rawMin = Number.isFinite(f) ? f : dataMin;
-    if (Number.isFinite(t)) rawMax = t + DAY_MS;
-  } else if (anaPrefs.range === 'all') {
-    rawMin = dataMin;
-  } else {
-    const d = new Date(anchor);
-    d.setUTCMonth(d.getUTCMonth() - ANA_RANGES[anaPrefs.range]);
-    rawMin = d.getTime();
-  }
-  if (rawMax <= rawMin) rawMax = rawMin + DAY_MS;
-  const pad = (rawMax - rawMin) * 0.02;
-  const xMin = rawMin - pad, xMax = rawMax + pad;
+  if (dataMax <= dataMin) dataMax = dataMin + DAY_MS;
+  const minSpan = Math.max(DAY_MS, (dataMax - dataMin) * 0.01);
+  const rawMin = Math.min(Math.max(anaView.min ?? dataMin, dataMin), dataMax - minSpan);
+  const rawMax = Math.max(Math.min(anaView.max ?? dataMax, dataMax), rawMin + minSpan);
+  const xMin = rawMin, xMax = rawMax;
+  anaExtent = { min: dataMin, max: dataMax };
+  anaWin = { min: rawMin, max: rawMax };
 
   // ---- datasets: one solid connected line per player (history = base colour, claims = muted shade) ----
   const showPts = anaPrefs.points !== false; // Points toggle was removed from the UI: always on
@@ -2337,7 +2354,7 @@ function initOrUpdateAnalyticsChart() {
         kind: 'history', player: e.username, label: `${e.username} (history)`, data: pts, order: 1,
         borderColor: e.line, borderWidth: 2, tension: 0, spanGaps: true, backgroundColor: 'transparent', fill: false,
         pointBackgroundColor: e.line, pointBorderColor: e.line, pointHoverBackgroundColor: e.line, pointHoverBorderColor: textColor,
-        pointRadius: c => (!showPts ? 0 : c.raw && c.raw.live ? 5.5 : 3.5), pointHoverRadius: 7, pointHitRadius: 10
+        clip: ANA_CLIP, pointRadius: c => (!showPts ? 0 : c.raw && c.raw.live ? 5.5 : 3.5), pointHoverRadius: 7, pointHitRadius: 10
       });
     } else {
       const cp = windowed(e.claimSeries.pts, xMin, xMax);
@@ -2345,22 +2362,24 @@ function initOrUpdateAnalyticsChart() {
         kind: 'claims', player: e.username, label: `${e.username} (claims)`, data: cp, order: 1,
         borderColor: e.line, borderWidth: 2, tension: 0, spanGaps: true, backgroundColor: 'transparent', fill: false,
         pointBackgroundColor: e.line, pointBorderColor: e.line, pointHoverBackgroundColor: e.line, pointHoverBorderColor: textColor,
-        pointRadius: showPts ? 2 : 0, pointHoverRadius: 6, pointHitRadius: 8
+        clip: ANA_CLIP, pointRadius: showPts ? 2 : 0, pointHoverRadius: 6, pointHitRadius: 8
       });
       const inWin = p => p.x >= xMin && p.x <= xMax;
       const ms = e.claimSeries.milestones.filter(inWin);
       if (anaPrefs.milestones && ms.length) datasets.push({
         kind: 'milestone', player: e.username, label: `${e.username} (milestones)`, data: ms, showLine: false, order: 0,
         borderColor: e.line, backgroundColor: e.line, pointBackgroundColor: e.line, pointBorderColor: textColor, pointBorderWidth: 2,
-        pointRadius: 6, pointHoverRadius: 8, pointHitRadius: 10
+        clip: ANA_CLIP, pointRadius: 6, pointHoverRadius: 8, pointHitRadius: 10
       });
     }
   });
 
-  renderCompareChips(entries);
-  renderClaimsPanel(entries);
+  if (!opts.viewOnly) { // chips + claim lists don't depend on the visible window, so skip them while cropping
+    renderCompareChips(entries);
+    renderClaimsPanel(entries);
+  }
   renderAnaInfo(shown);
-  syncAnaControls({ min: rawMin, max: rawMax });
+  syncAnaControls();
 
   const emptyEl = document.getElementById('ap-chart-empty');
   if (emptyEl) {
@@ -2378,30 +2397,55 @@ function initOrUpdateAnalyticsChart() {
   o.scales.x.max = xMax;
   o.scales.y.beginAtZero = anaPrefs.yZero;
   [o.scales.x, o.scales.y].forEach(s => { s.ticks.color = tickColor; s.grid.color = gridColor; });
-  apChartInstance.update();
+  apChartInstance.update(opts.viewOnly ? 'none' : undefined);
+  alignAnaSlider();
+}
+
+function bindAnaSlider() {
+  const slider = document.getElementById('ana-slider');
+  if (!slider) return;
+  let drag = null;
+  slider.addEventListener('pointerdown', e => {
+    const h = e.target.closest && e.target.closest('[data-h]');
+    if (!h) return;
+    e.preventDefault();
+    if (slider.setPointerCapture) slider.setPointerCapture(e.pointerId);
+    drag = { kind: h.dataset.h, x0: e.clientX, win: { ...anaWin } };
+  });
+  slider.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const width = slider.getBoundingClientRect().width || 1, span = anaExtent.max - anaExtent.min;
+    const minSpan = Math.max(DAY_MS, span * 0.01), d = ((e.clientX - drag.x0) / width) * span;
+    let { min, max } = drag.win;
+    if (drag.kind === 'l') min = Math.min(Math.max(anaExtent.min, min + d), max - minSpan);
+    else if (drag.kind === 'r') max = Math.max(Math.min(anaExtent.max, max + d), min + minSpan);
+    else { const w = max - min; min = Math.min(Math.max(anaExtent.min, min + d), anaExtent.max - w); max = min + w; }
+    anaView.min = min; anaView.max = max;
+    scheduleAnaView();
+  });
+  const end = () => { drag = null; };
+  slider.addEventListener('pointerup', end);
+  slider.addEventListener('pointercancel', end);
 }
 
 (function bindAnaControls() {
   const $ = id => document.getElementById(id);
-  const refresh = () => { saveAnaPrefs(); initOrUpdateAnalyticsChart(); syncAnaControls(); };
-  document.querySelectorAll('#ana-mode button').forEach(b => b.addEventListener('click', () => { anaPrefs.mode = b.dataset.mode; refresh(); }));
-  document.querySelectorAll('#ana-range button').forEach(b => b.addEventListener('click', () => {
-    if (b.dataset.range === 'custom') { // start the custom range from whatever is currently shown
-      anaPrefs.from = $('ana-from').value || anaPrefs.from;
-      anaPrefs.to = $('ana-to').value || anaPrefs.to;
-    }
-    anaPrefs.range = b.dataset.range;
-    refresh();
+  const resetView = () => { anaView.min = null; anaView.max = null; };
+  document.querySelectorAll('#ana-mode button').forEach(b => b.addEventListener('click', () => {
+    anaPrefs.mode = b.dataset.mode; resetView(); saveAnaPrefs(); initOrUpdateAnalyticsChart();
   }));
-  ['ana-from', 'ana-to'].forEach(id => $(id)?.addEventListener('change', () => {
-    anaPrefs.from = $('ana-from').value;
-    anaPrefs.to = $('ana-to').value;
-    anaPrefs.range = 'custom';
-    refresh();
-  }));
-  [['ana-collapse', 'collapse'], ['ana-points', 'points'], ['ana-late', 'late'], ['ana-ms', 'milestones'], ['ana-yzero', 'yZero']]
-    .forEach(([id, k]) => $(id)?.addEventListener('change', e => { anaPrefs[k] = e.target.checked; refresh(); }));
-  $('ana-reset')?.addEventListener('click', () => { anaPrefs = { ...ANA_DEFAULTS }; mutedPlayers.clear(); refresh(); });
+  const dateChange = () => {
+    const f = parseDay($('ana-from').value), t = parseDay($('ana-to').value);
+    anaView.min = Number.isFinite(f) ? f : null;
+    anaView.max = Number.isFinite(t) ? t + DAY_MS - 1 : null;
+    scheduleAnaView();
+  };
+  ['ana-from', 'ana-to'].forEach(id => $(id)?.addEventListener('change', dateChange));
+  $('ana-full')?.addEventListener('click', () => { resetView(); scheduleAnaView(); });
+  [['ana-late', 'late'], ['ana-ms', 'milestones'], ['ana-yzero', 'yZero']]
+    .forEach(([id, k]) => $(id)?.addEventListener('change', e => { anaPrefs[k] = e.target.checked; saveAnaPrefs(); scheduleAnaView(); }));
+  $('ana-reset')?.addEventListener('click', () => { anaPrefs = { ...ANA_DEFAULTS }; resetView(); mutedPlayers.clear(); saveAnaPrefs(); initOrUpdateAnalyticsChart(); });
+  bindAnaSlider();
   syncAnaControls();
 })();
 // ==== AP analytics (end) ====
