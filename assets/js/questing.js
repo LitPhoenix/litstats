@@ -10,7 +10,7 @@
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const DAY = 86400000;
 
-  const MC = { BLACK: '#000000', DARK_BLUE: '#0000AA', DARK_GREEN: '#00AA00', DARK_AQUA: '#00AAAA', DARK_RED: '#AA0000', DARK_PURPLE: '#AA00AA', GOLD: '#FFAA00', GRAY: '#AAAAAA', DARK_GRAY: '#555555', BLUE: '#5555FF', GREEN: '#55FF55', AQUA: '#36e9e9', RED: '#FF5555', LIGHT_PURPLE: '#FF55FF', YELLOW: '#FFFF55', WHITE: '#FFFFFF' };
+  const MC = { BLACK: '#000000', DARK_BLUE: '#0000AA', DARK_GREEN: '#009400', DARK_AQUA: '#00AAAA', DARK_RED: '#AA0000', DARK_PURPLE: '#AA00AA', GOLD: '#FFAA00', GRAY: '#AAAAAA', DARK_GRAY: '#555555', BLUE: '#5555FF', GREEN: '#3be23b', AQUA: '#2cd9d9', RED: '#FF5555', LIGHT_PURPLE: '#FF55FF', YELLOW: '#eed545', WHITE: '#FFFFFF' };
 
   // ---------- saved preferences ----------
   // Everything persists through Store, so adding accounts later means swapping this one object for a synced version.
