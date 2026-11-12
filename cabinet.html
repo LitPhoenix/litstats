@@ -320,14 +320,58 @@
                 </span>
           </h2>
           <div class="compare-box">
-            <input type="text" id="compare-player-input" placeholder="Compare player (max 5)...">
+            <input type="text" id="compare-player-input" placeholder="Compare player (max 8)...">
             <button class="pill-btn compare-btn" onclick="addComparisonPlayer()">Compare</button>
           </div>
         </div>
         <div id="analytics-content-wrapper" style="margin-top: 16px;">
+          <div id="compare-error" class="compare-error hidden"></div>
+          <div id="compare-chips" class="compare-chips"></div>
+          <div class="ana-toolbar" id="ana-toolbar">
+            <div class="ana-group">
+              <span class="ana-label">Show</span>
+              <div class="seg" id="ana-mode">
+                <button type="button" data-mode="claims" title="Every achievement reward claim, connected over time">Claims</button>
+                <button type="button" data-mode="history" title="Archived AP snapshots plus live AP">History</button>
+              </div>
+            </div>
+            <div class="ana-group">
+              <span class="ana-label">Range</span>
+              <div class="seg" id="ana-range">
+                <button type="button" data-range="1m">1M</button>
+                <button type="button" data-range="3m">3M</button>
+                <button type="button" data-range="6m">6M</button>
+                <button type="button" data-range="1y">1Y</button>
+                <button type="button" data-range="all">All</button>
+                <button type="button" data-range="custom">Custom</button>
+              </div>
+              <div class="ana-dates hidden" id="ana-custom-dates">
+                <input type="date" id="ana-from" aria-label="From date">
+                <span>to</span>
+                <input type="date" id="ana-to" aria-label="To date">
+              </div>
+            </div>
+          </div>
+          <div class="ana-toolbar ana-opts">
+            <label class="ana-tog" data-only="claims" title="Highlight and label the 5k / 10k / 15k / 20k / 25k reward claims"><input type="checkbox" id="ana-ms"><span>Milestones</span></label>
+            <label class="ana-tog" data-only="claims" title="Include late claims in the main line (dips down and back up)"><input type="checkbox" id="ana-late"><span>Late claims</span></label>
+            <label class="ana-tog" title="Start the AP axis at zero instead of fitting to the data"><input type="checkbox" id="ana-yzero"><span>Y from 0</span></label>
+            <div class="ana-year-croppers">
+              <span class="ana-label" style="margin-left: 8px;">Years:</span>
+              <button type="button" class="year-crop-btn" onclick="setYearCrop(2022)">2022</button>
+              <button type="button" class="year-crop-btn" onclick="setYearCrop(2023)">2023</button>
+              <button type="button" class="year-crop-btn" onclick="setYearCrop(2024)">2024</button>
+              <button type="button" class="year-crop-btn" onclick="setYearCrop(2025)">2025</button>
+              <button type="button" class="year-crop-btn" onclick="setYearCrop(2026)">2026</button>
+            </div>
+            <button type="button" class="ana-reset" id="ana-reset" title="Restore default view and show all players">Reset</button>
+          </div>
           <div class="chart-container-box">
             <canvas id="apHistoryChart"></canvas>
+            <div id="ap-chart-empty" class="chart-empty hidden"></div>
           </div>
+          <div class="ana-info" id="ana-info"></div>
+          <div id="ap-claims-wrapper" class="ap-claims"></div>
         </div>
       </div>
 
@@ -343,4 +387,4 @@
   <script src="assets/js/credits.js"></script>
   <script src="assets/js/cabinet.js"></script>
 </body>
-</html>  
+</html>
