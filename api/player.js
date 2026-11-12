@@ -419,6 +419,7 @@ module.exports = async (req, res) => {
       rawAchievements: profile.achievements || {},
       
       achievementPoints: profile.achievementPoints || 0,
+      achievementRewardsNew: profile.achievementRewardsNew || {},
       questsCompleted: 0, 
       maxGames: [],
       topQuests: [],
