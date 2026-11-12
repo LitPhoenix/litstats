@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-12T21:59:01.813Z",
+  "last_update": "2026-11-12T22:19:56.445Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -201,15 +201,26 @@
     "1ee8f444029b41db84a0b2a34415cdf0": 23440,
     "6d1160f1c9104aa082c64487645e2c3d": 23395,
     "58f4b39fbea342aebff47c541c8bf1c7": 23395,
-    "8d167f27157d488394f6b6142ccc16be": 23735
+    "8d167f27157d488394f6b6142ccc16be": 23735,
+    "8d66db5ea90b4137854808b97e0ca5c7": 0,
+    "5fd7ec031e054a01b18c2aca29cf1a23": 0,
+    "4b03948c422f4f11b0d55170b640a673": 0,
+    "9899b3edf2364d318fe33c7278a2d4a8": 0,
+    "92c736b5ae414125b4cacd89bf856a77": 0,
+    "d0115286ff43420ca6dbf452f67a4a56": 0,
+    "b12c6b822faa4ebfaab429982dab58ed": 0,
+    "c99fe76f6ed14f8a8b739d740a9674c3": 0,
+    "c82a204b300f4b88888e4ab79e44920b": 0,
+    "c185afbbd692431a906131448e693f19": 0,
+    "e4447d2895924f76986ac1ba4dcf183c": 0
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
     "3abe2f6bd45a4e2282d4f9014569db25": "Russia",
     "9cc15d802eb44f2aaf2075604ce452d5": "USA",
     "3de9779b0ed34ca196575639b57e2c3b": "France",
-    "743c12bffc7348fb8525effead057de2": "The Netherlands",
     "24132c1e1e504da499e1c2953880acd9": "Denmark",
+    "743c12bffc7348fb8525effead057de2": "The Netherlands",
     "289e9f90a76640e0921c85dcd96385b5": "Canada",
     "bfe045f7babf4d1c8f00556716576c34": "France",
     "1fc7b5e6c8e1433ba41e7013ab0a3582": "UK",
@@ -226,13 +237,13 @@
     "f61b81b44faf4fc58b00405721f19f84": "USA",
     "8b87c1da0a114a988235c7f54bf48b51": "USA",
     "ddc92083ea134a11a5ddd2a7edcde137": "UK",
-    "aad6a2754e9c4744bd335213853f023f": "UK",
     "8682b351e9c241639291935776608054": "UK",
+    "aad6a2754e9c4744bd335213853f023f": "UK",
     "4885c9a84e714b21be94fd7d5e3c0171": "Norway",
+    "7d92df9db6f04ef4b24ded24ae739198": "Finland",
     "baebdae38c064f40a3dda17bda5ecbf5": "USA",
     "992df94349aa4409ac6a890f6a947a17": "France",
     "eab5c169c27140c6aba22f3c3f23c7c0": "France",
-    "7d92df9db6f04ef4b24ded24ae739198": "Finland",
     "56b991d1a9c243d7984df6e6a409cd59": "Israel",
     "73fcd3eb97b54a4b8ab9b34e1c57e2f4": "Germany",
     "88c0e6ff872a4a94838536b40423dc41": "Croatia",
@@ -246,6 +257,7 @@
     "f8338f46fc6b4dcdb77842667a6903f8": "Israel",
     "77edb6fda6ef4097914ddc698242fe04": "USA",
     "6119d70a8a724f2aa2ded280a8cf58bb": "USA",
+    "cdc3d11920c3401c9903468bc4d82fe3": "USA",
     "f9adb4d8fd664d4098d4e70bb3d15ee6": "Czech Republic",
     "2baaec9272fd487294e673eb4ec35201": "Serbia",
     "14552d0d4cb949b59d4f7d1875b0ad94": "USA",
@@ -254,143 +266,142 @@
     "559860c584174a7c90a8f79332802516": "Finland",
     "dc2eaa964e0242589f2731a11aacea55": "USA",
     "dbb5f49cc2394912b1ca89783632d068": "Australia",
-    "3b6994dadd264c7986ffd85df3db4289": "The Netherlands",
-    "cdc3d11920c3401c9903468bc4d82fe3": "USA",
     "7638efa55b784c41ac34a4c59b2b86df": "Taiwan",
+    "3b6994dadd264c7986ffd85df3db4289": "The Netherlands",
     "059abcc217c2422f9d9f92e8dea2e607": "USA",
     "d33a4d925db84c30a28e528239471102": "New Zealand",
     "db31ce2250814b1d94345cbb8d07fe4f": "Canada",
     "6bb0a8005e3346f8a18ce706dc5f5ccf": "Argentina",
     "2cfc8db571ed4eb3aacd53b8abff5ee2": "USA",
+    "dde31282b7be4cc0bea437a22ee0c6d7": "New Zealand",
     "f9fe4ed41242460db7dbd7bfd054e082": "France",
+    "11f24315871f43f296d5daa2bfc4911d": "Syria",
     "e3292ca36c5e43cbacd01c52adaca375": "UK",
     "0324177073ee43df82f3825488c83b60": "Croatia",
     "40efa3f0ba0c4a11abfab74d8edff3eb": "USA",
     "3d07a6ad5e5b43a59fe2e99b70c95d88": "Canada",
-    "dde31282b7be4cc0bea437a22ee0c6d7": "New Zealand",
-    "e37ccf10fe9643789745e0432ca096b2": "Czech Republic",
     "e9a871c29903474687b0b045edd35ae9": "Finland",
-    "31283097ed0d4628a595eb094130b223": "The Netherlands",
+    "e37ccf10fe9643789745e0432ca096b2": "Czech Republic",
     "d7e0ec9bc36f4d44abd2ff1a1043cebd": "Argentina",
-    "0e32634dffea4e69b45cae23ea7f4e02": "Czech Republic",
+    "31283097ed0d4628a595eb094130b223": "The Netherlands",
     "cf0e056bfae246f48053bd7979772f63": "USA",
+    "8eb18a9227fb4b36947177babab261cd": "USA",
+    "0e32634dffea4e69b45cae23ea7f4e02": "Czech Republic",
+    "eb2814a894d748dc87c2cb2eedfe1306": "Croatia",
+    "68e1a6b0b49d45fe90661241a5b61a00": "Israel",
     "1f15c58cdf3c419bba39b89e256d8a86": "Norway",
     "281aef4684e94e759c7860a055549fe7": "USA",
     "04f4bddb99004950ab605a20f41c6a98": "France",
-    "eb2814a894d748dc87c2cb2eedfe1306": "Croatia",
+    "be11708dcb0946bd9608d29af61269ec": "Ecuador",
     "78a41722527449c38925f5914b005173": "Canada",
-    "11f24315871f43f296d5daa2bfc4911d": "Syria",
     "96f645ba026b4e45bc34dd8f0531334c": "Iraq",
-    "68e1a6b0b49d45fe90661241a5b61a00": "Israel",
-    "98a4b53f22cd4a18a7b8a4000c98d0cd": "UK",
     "11a41ffd6abc42f8b484e7534118a503": "Ukraine",
+    "98a4b53f22cd4a18a7b8a4000c98d0cd": "UK",
     "6333479985aa448392625f6a5a6876c0": "South Korea",
     "dda3fc724a8f467b8a8033aadde1b569": "Spain",
-    "f326f15b6fab42ad83fe3f0f0ba9994b": "USA",
     "de800b3ca269499e9bcb6ab43e86b4c5": "Russia",
+    "f326f15b6fab42ad83fe3f0f0ba9994b": "USA",
     "d297331b7ff9452babd6828871bc2636": "UK",
     "4b431497b4094a1d8e15335e81454c4a": "Moldova",
-    "8eb18a9227fb4b36947177babab261cd": "USA",
     "00eb09d164b54ab08114d119eebbb903": "Belgium",
     "9d3220330bfa402987411bf9baf75309": "Germany",
-    "be11708dcb0946bd9608d29af61269ec": "Ecuador",
     "63488c2cf2dc48c0951bdf71efbbdb09": "USA",
     "2f066b0e58fd4db6a24bfbce5ab5bdb4": "UK",
     "c08043d19f334a3e8189695cf356cd16": "USA",
-    "6d84e8ed95b3452095221594b9e448fe": "USA",
     "4b48e58c5304407ab8c761fbe125ff3b": "Greece",
+    "6d84e8ed95b3452095221594b9e448fe": "USA",
     "73c22246f2ea4f84827ae0b141d6e33d": "USA",
+    "e20c8b534c054c3db9c079a6fd982c9b": "Turkey",
     "ad988df25a274cf592b66c9562834230": "Sweden",
     "a481c0951d3246169ebe1dd6f583d357": "Croatia",
-    "e20c8b534c054c3db9c079a6fd982c9b": "Turkey",
     "37c6f7335d874321ac4f57c7a5062c71": "UK",
+    "24c6a4ad771b4328a49b9c6f9196ace3": "Australia",
     "11b8466e2c724fe994a00cada8112674": "Spain",
     "f1c38498d6b74d7089313d2e3b2c28b2": "The Netherlands",
     "99fcc41648bc45718c6cebfaf501da97": "USA",
-    "171faf6b54c045d884ba95f27049984f": "The Netherlands",
     "40884fdda30c4c26ba00abef570469e0": "Germany",
-    "24c6a4ad771b4328a49b9c6f9196ace3": "Australia",
-    "266b09b979a345909824aa9d31ffe8ba": "Canada",
+    "171faf6b54c045d884ba95f27049984f": "The Netherlands",
     "e44b43cda004469eb1a8a00c1952a92b": "Japan",
+    "266b09b979a345909824aa9d31ffe8ba": "Canada",
     "fe7bf008272246f18421d39db8042257": "Brazil",
     "2a8842a87cfe40fc8ed200f91908a7fa": "Australia",
     "9f532f0b78fc4dc49c1f95665d890fce": "Syria",
     "6f5ceade0f984d8fbf6bed73765101cc": "Estonia",
     "1cf6bb869dc74417bfcf7536bb30578c": "France",
-    "f4bee4a9c1ca4b929563f4f8148b2968": "Canada",
-    "72250a1d144c48d882231209ffcaf82d": "Czech Republic",
-    "0c1f10f9134e496399b6502270055a10": "Portugal",
-    "00b5bbf550084470a4dd3c2e1b9049fb": "Italy",
-    "6a040159d71841129271ce291b226587": "Czech Republic",
     "b9aa26ec20b447a59a4ad10cc08a46fe": "USA",
+    "72250a1d144c48d882231209ffcaf82d": "Czech Republic",
+    "00b5bbf550084470a4dd3c2e1b9049fb": "Italy",
+    "0c1f10f9134e496399b6502270055a10": "Portugal",
+    "f4bee4a9c1ca4b929563f4f8148b2968": "Canada",
+    "6a040159d71841129271ce291b226587": "Czech Republic",
     "666ef25282ec47b881c5b3e474c3ec2b": "Canada",
     "4f9182ff532e4dd0a77ebc0994c1562b": "France",
-    "11949c8a9c084ada8afc66fcbcb005fc": "USA",
     "0ca18b7f6cb74731865b69e5511f0ff1": "Canada",
+    "11949c8a9c084ada8afc66fcbcb005fc": "USA",
     "6d3ec92d80ed4cf3aded1c5d7db7dfe3": "USA",
+    "fdfcc24e742746e592d666150e771a93": "UK",
     "4019260a28f544c2a35a0a1f35108a96": "Russia",
     "2e1884f69c294bd589e6d7709b100298": "USA",
-    "fdfcc24e742746e592d666150e771a93": "UK",
+    "bf6b32ef38934d9e90b8a1037e16b972": "The Netherlands",
     "23498017b5654aa0b9949effbbdd147e": "USA",
     "5c1acb0d23fa4ded8bdf20acf508e7d0": "UK",
-    "cbb48c0b007745b8a5a6e8cd5fca808a": "Canada",
     "ab4645d4f2934af9b02d3c6ff296317a": "Chile",
+    "cbb48c0b007745b8a5a6e8cd5fca808a": "Canada",
     "c7b1528ce5604302a279c16e7e135038": "UK",
-    "bf6b32ef38934d9e90b8a1037e16b972": "The Netherlands",
     "82fc95c49afc4b8182b6cefeac42874e": "Chile",
     "12ecedbce19b448cad38aa4f57f3afda": "Australia",
     "1121d718b08145fe8b8a3728639d6723": "Israel",
     "8ace6f57323d4a349441a1ca863f5072": "Russia",
     "e5525c64899b40e49ab5b019e66e137d": "USA",
     "df968d057a4445c2a5118faa3e5d7e3b": "Ukraine",
-    "9f16e788457c44fc8c24b90167569420": "USA",
     "27a214e4b2644bcea2f5584ea2b994a3": "The Netherlands",
-    "82b6b4ca76004360af77d0d141a2e83a": "Australia",
+    "9f16e788457c44fc8c24b90167569420": "USA",
     "caee82099e1f44b0ad5a3682c3faf6e7": "Sweden",
-    "27a86e7999a64f32a8ae44b2ea310fe1": "USA",
-    "14016bbfdcf547dab04549b49e891dc8": "UK",
-    "f94ade5012374648b0423fc0b66cac0a": "USA",
+    "82b6b4ca76004360af77d0d141a2e83a": "Australia",
+    "7d96f585618f4b328d7ebdea16ca1d71": "Germany",
     "cdea33877a37413da44e365acc9f7a50": "USA",
+    "14016bbfdcf547dab04549b49e891dc8": "UK",
+    "27a86e7999a64f32a8ae44b2ea310fe1": "USA",
+    "f94ade5012374648b0423fc0b66cac0a": "USA",
     "3c38a419050345f2bce19bd3d1fc055c": "Czech Republic",
-    "9d98449f501a47359a05534728c621c1": "USA",
-    "0e42568a6d934984bc699c60ab1895d8": "Bosnia and Herzegovina",
+    "8c8ba6d440554b1886ad1777c5066282": "UK",
     "decd08e13b754a6788b65181f302c94d": "USA",
+    "9d98449f501a47359a05534728c621c1": "USA",
+    "cca4b5f5f0e54d9193fc5f8c66724766": "Finland",
+    "0e42568a6d934984bc699c60ab1895d8": "Bosnia and Herzegovina",
     "22eb4504ff954677ba3e6cc87c8e271c": "Serbia",
     "cc596a56d1d245a08a4292fd1e36a128": "Japan",
     "2c8e1e5d1fbd466fb6770fdd65359cd5": "Canada",
-    "8c8ba6d440554b1886ad1777c5066282": "UK",
     "35de049d7fcc4d129fe03eb48f5c3804": "Hong Kong",
-    "79e033c9e772499896561e0d7d117301": "Brazil",
     "5dd1035bc9b2491e892a71ac3e952c3c": "Poland",
+    "79e033c9e772499896561e0d7d117301": "Brazil",
     "7a49c7d7b03243bd86b11fd88214e3b2": "Australia",
+    "81760cdc19964181a5c51ce17dd86597": "Israel",
     "8edc188a258c461b91ac9844a44ec989": "USA",
     "0ff62bf91bda4c6b92b8f2d0ca4ed835": "Slovakia",
-    "7d96f585618f4b328d7ebdea16ca1d71": "Germany",
+    "d61cd4e9fcf146d2bd1dd9b494405b07": "France",
     "0cfa3f33d16f46949ae6e5a4a1ea547d": "The Netherlands",
     "1b8b7e076bcb4795b21a408197d4ded7": "France",
+    "6056e9c1e8174c6e9a8e01830d8b803d": "Israel",
+    "d8c93138750f4388a3a99bd98b03192b": "USA",
     "ba804eff1d3f48348048350cc686a3f6": "Israel",
     "8f0349e80fee4394b66d0e32fb09002d": "Taiwan",
     "a621a7a79f324b5c83449e4453ad454d": "France",
     "1cc68f64f4384b50bf846bf55bd2e1df": "South Korea",
-    "8d167f27157d488394f6b6142ccc16be": "Germany",
-    "cca4b5f5f0e54d9193fc5f8c66724766": "Finland",
-    "6056e9c1e8174c6e9a8e01830d8b803d": "Israel",
     "b5ab6db9366049ae8a9882927e46ce08": "Norway",
-    "d61cd4e9fcf146d2bd1dd9b494405b07": "France",
     "bde72daebb4640ae90ee096f26bb5f85": "Canada",
     "a06aea053b6b47da8931a453e1f9632f": "Poland",
     "0d405677379c43139db69485749d9d31": "Denmark",
-    "8415341022134dbe969b81ed3ff6cd6f": "USA",
     "b2b30608b0744cdfa5512f7f2fa06408": "UK",
+    "8415341022134dbe969b81ed3ff6cd6f": "USA",
     "6be718564437499fbb6242e17fbaa0c3": "Poland",
-    "9872248cdad742f785657dbf78d9c756": "USA",
     "01834d8a3c7a49c796589979d7a9ab74": "USA",
     "92d13bad96ba4a959d1d3cd40a70cec7": "USA",
-    "6d1160f1c9104aa082c64487645e2c3d": "Jackassistan",
+    "9872248cdad742f785657dbf78d9c756": "USA",
     "1ee8f444029b41db84a0b2a34415cdf0": "Taiwan",
-    "d8c93138750f4388a3a99bd98b03192b": "USA",
+    "6d1160f1c9104aa082c64487645e2c3d": "Jackassistan",
+    "8d167f27157d488394f6b6142ccc16be": "The Netherlands",
     "8d66db5ea90b4137854808b97e0ca5c7": "Sweden",
-    "81760cdc19964181a5c51ce17dd86597": "Israel",
     "5fd7ec031e054a01b18c2aca29cf1a23": "Poland",
     "4b03948c422f4f11b0d55170b640a673": "Taiwan",
     "9899b3edf2364d318fe33c7278a2d4a8": "UK",
@@ -1108,6 +1119,33 @@
             "Max TKR",
             "Max Wool Games"
           ]
+        },
+        {
+          "username": "Unknown",
+          "uuid": "92c736b5ae414125b4cacd89bf856a77",
+          "country": "USA",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Unknown",
+          "uuid": "c82a204b300f4b88888e4ab79e44920b",
+          "country": "USA",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Unknown",
+          "uuid": "c185afbbd692431a906131448e693f19",
+          "country": "USA",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -1558,6 +1596,24 @@
             "Max Warlords",
             "Max TKR"
           ]
+        },
+        {
+          "username": "Unknown",
+          "uuid": "9899b3edf2364d318fe33c7278a2d4a8",
+          "country": "UK",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
+        },
+        {
+          "username": "Unknown",
+          "uuid": "b12c6b822faa4ebfaab429982dab58ed",
+          "country": "UK",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -1965,6 +2021,28 @@
           "maxGames": [
             "Max Duels"
           ]
+        },
+        {
+          "username": "DirtyAvocado",
+          "uuid": "8d167f27157d488394f6b6142ccc16be",
+          "country": "The Netherlands",
+          "current_ap": 23735,
+          "last_month_ap": 23735,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Arena Brawl",
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
+          "username": "Unknown",
+          "uuid": "d0115286ff43420ca6dbf452f67a4a56",
+          "country": "The Netherlands",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -2200,19 +2278,6 @@
             "Max Wool Games",
             "Max Duels"
           ]
-        },
-        {
-          "username": "DirtyAvocado",
-          "uuid": "8d167f27157d488394f6b6142ccc16be",
-          "country": "Germany",
-          "current_ap": 23735,
-          "last_month_ap": 23735,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Arena Brawl",
-            "Max TKR",
-            "Max Duels"
-          ]
         }
       ]
     },
@@ -2301,6 +2366,15 @@
           "maxGames": [
             "Max TKR"
           ]
+        },
+        {
+          "username": "Unknown",
+          "uuid": "5fd7ec031e054a01b18c2aca29cf1a23",
+          "country": "Poland",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -2901,6 +2975,15 @@
             "Max Walls",
             "Max VampireZ"
           ]
+        },
+        {
+          "username": "Unknown",
+          "uuid": "4b03948c422f4f11b0d55170b640a673",
+          "country": "Taiwan",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -2947,189 +3030,6 @@
           "last_month_ap": 26240,
           "monthly_gain": 105,
           "maxGames": [
-            "Max VampireZ"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Unknown",
-      "score": 678,
-      "top_players": [
-        {
-          "username": "Rayjer",
-          "uuid": "ac97442ca125422cbd72ae60cdd8340f",
-          "country": "Unknown",
-          "current_ap": 26310,
-          "last_month_ap": 26310,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max TNT Games",
-            "Max Murder Mystery",
-            "Max VampireZ",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "ToastyOosty",
-          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
-          "country": "Unknown",
-          "current_ap": 25655,
-          "last_month_ap": 25630,
-          "monthly_gain": 25,
-          "maxGames": [
-            "Max Pit",
-            "Max Warlords",
-            "Max VampireZ"
-          ]
-        },
-        {
-          "username": "aikosHD",
-          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
-          "country": "Unknown",
-          "current_ap": 25125,
-          "last_month_ap": 25120,
-          "monthly_gain": 5,
-          "maxGames": [
-            "Max Murder Mystery",
-            "Max TKR",
-            "Max Wool Games",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "sosal",
-          "uuid": "14fc22531af545cf918eec7b30527272",
-          "country": "Unknown",
-          "current_ap": 25075,
-          "last_month_ap": 25075,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "Meloby",
-          "uuid": "3abc42d8a881459296c23e9160e943e3",
-          "country": "Unknown",
-          "current_ap": 24680,
-          "last_month_ap": 24665,
-          "monthly_gain": 15,
-          "maxGames": [
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "_Tk3",
-          "uuid": "f2b587fe0b2347dca0908d4832e047d5",
-          "country": "Unknown",
-          "current_ap": 24515,
-          "last_month_ap": 24515,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Pit",
-            "Max Arena Brawl",
-            "Max Paintball",
-            "Max VampireZ",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "Stylee",
-          "uuid": "6d481389154d4421ae0d47533b8ce8d3",
-          "country": "Unknown",
-          "current_ap": 24445,
-          "last_month_ap": 24445,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max VampireZ"
-          ]
-        },
-        {
-          "username": "Battalius",
-          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
-          "country": "Unknown",
-          "current_ap": 24425,
-          "last_month_ap": 24425,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max UHC",
-            "Max Blitz",
-            "Max TKR"
-          ]
-        },
-        {
-          "username": "InInk",
-          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
-          "country": "Unknown",
-          "current_ap": 24375,
-          "last_month_ap": 24375,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max TKR",
-            "Max Duels"
-          ]
-        },
-        {
-          "username": "tyelur",
-          "uuid": "b2cbfed76872468fac2842af0cd4877b",
-          "country": "Unknown",
-          "current_ap": 24050,
-          "last_month_ap": 24050,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Paintball",
-            "Max VampireZ"
-          ]
-        },
-        {
-          "username": "duonk",
-          "uuid": "122b0820a213425a8ddf4fc4cf2a1f13",
-          "country": "Unknown",
-          "current_ap": 23865,
-          "last_month_ap": 23870,
-          "monthly_gain": -5,
-          "maxGames": [
-            "Max VampireZ"
-          ]
-        },
-        {
-          "username": "Oleslaw2009",
-          "uuid": "cef8bc211b264d54b07da2995d587098",
-          "country": "Unknown",
-          "current_ap": 23795,
-          "last_month_ap": 23795,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Wool Games"
-          ]
-        },
-        {
-          "username": "DarkSilent",
-          "uuid": "93b354235bd44e9a8ebf43763d90c96a",
-          "country": "Unknown",
-          "current_ap": 23765,
-          "last_month_ap": 23765,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Warlords",
-            "Max SkyClash"
-          ]
-        },
-        {
-          "username": "Justin_Jefferson",
-          "uuid": "9dccd818228640bfa33174d8dc86dfb7",
-          "country": "Unknown",
-          "current_ap": 23650,
-          "last_month_ap": 23640,
-          "monthly_gain": 10,
-          "maxGames": [
-            "Max Paintball",
             "Max VampireZ"
           ]
         }
@@ -3355,6 +3255,15 @@
           "last_month_ap": 24295,
           "monthly_gain": 0,
           "maxGames": []
+        },
+        {
+          "username": "Unknown",
+          "uuid": "8d66db5ea90b4137854808b97e0ca5c7",
+          "country": "Sweden",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -3542,6 +3451,228 @@
           "maxGames": [
             "Max Arcade"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Ireland",
+      "score": 0,
+      "top_players": [
+        {
+          "username": "Unknown",
+          "uuid": "c99fe76f6ed14f8a8b739d740a9674c3",
+          "country": "Ireland",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Slovenia",
+      "score": 0,
+      "top_players": [
+        {
+          "username": "Unknown",
+          "uuid": "e4447d2895924f76986ac1ba4dcf183c",
+          "country": "Slovenia",
+          "current_ap": 0,
+          "last_month_ap": 0,
+          "monthly_gain": 0,
+          "maxGames": []
+        }
+      ]
+    },
+    {
+      "country": "Unknown",
+      "score": 678,
+      "top_players": [
+        {
+          "username": "Rayjer",
+          "uuid": "ac97442ca125422cbd72ae60cdd8340f",
+          "country": "Unknown",
+          "current_ap": 26310,
+          "last_month_ap": 26310,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Warlords",
+            "Max TNT Games",
+            "Max Murder Mystery",
+            "Max VampireZ",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
+          "username": "ToastyOosty",
+          "uuid": "0a3e7efc5bb3461eb18f47a64e4d9721",
+          "country": "Unknown",
+          "current_ap": 25655,
+          "last_month_ap": 25630,
+          "monthly_gain": 25,
+          "maxGames": [
+            "Max Pit",
+            "Max Warlords",
+            "Max VampireZ"
+          ]
+        },
+        {
+          "username": "aikosHD",
+          "uuid": "7bfed5378957477bada8e64cf5fa99f1",
+          "country": "Unknown",
+          "current_ap": 25125,
+          "last_month_ap": 25120,
+          "monthly_gain": 5,
+          "maxGames": [
+            "Max Murder Mystery",
+            "Max TKR",
+            "Max Wool Games",
+            "Max Duels"
+          ]
+        },
+        {
+          "username": "sosal",
+          "uuid": "14fc22531af545cf918eec7b30527272",
+          "country": "Unknown",
+          "current_ap": 25075,
+          "last_month_ap": 25075,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "Meloby",
+          "uuid": "3abc42d8a881459296c23e9160e943e3",
+          "country": "Unknown",
+          "current_ap": 24680,
+          "last_month_ap": 24665,
+          "monthly_gain": 15,
+          "maxGames": [
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "_Tk3",
+          "uuid": "f2b587fe0b2347dca0908d4832e047d5",
+          "country": "Unknown",
+          "current_ap": 24515,
+          "last_month_ap": 24515,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Pit",
+            "Max Arena Brawl",
+            "Max Paintball",
+            "Max VampireZ",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "Stylee",
+          "uuid": "6d481389154d4421ae0d47533b8ce8d3",
+          "country": "Unknown",
+          "current_ap": 24445,
+          "last_month_ap": 24445,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        },
+        {
+          "username": "Battalius",
+          "uuid": "3d12e102ea444d4d8b269bebacd720f0",
+          "country": "Unknown",
+          "current_ap": 24425,
+          "last_month_ap": 24425,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max UHC",
+            "Max Blitz",
+            "Max TKR"
+          ]
+        },
+        {
+          "username": "InInk",
+          "uuid": "e3fc5b36a60f4ff1ac2df06405a20601",
+          "country": "Unknown",
+          "current_ap": 24375,
+          "last_month_ap": 24375,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max TKR",
+            "Max Duels"
+          ]
+        },
+        {
+          "username": "tyelur",
+          "uuid": "b2cbfed76872468fac2842af0cd4877b",
+          "country": "Unknown",
+          "current_ap": 24050,
+          "last_month_ap": 24050,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Paintball",
+            "Max VampireZ"
+          ]
+        },
+        {
+          "username": "duonk",
+          "uuid": "122b0820a213425a8ddf4fc4cf2a1f13",
+          "country": "Unknown",
+          "current_ap": 23865,
+          "last_month_ap": 23870,
+          "monthly_gain": -5,
+          "maxGames": [
+            "Max VampireZ"
+          ]
+        },
+        {
+          "username": "Oleslaw2009",
+          "uuid": "cef8bc211b264d54b07da2995d587098",
+          "country": "Unknown",
+          "current_ap": 23795,
+          "last_month_ap": 23795,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Wool Games"
+          ]
+        },
+        {
+          "username": "DarkSilent",
+          "uuid": "93b354235bd44e9a8ebf43763d90c96a",
+          "country": "Unknown",
+          "current_ap": 23765,
+          "last_month_ap": 23765,
+          "monthly_gain": 0,
+          "maxGames": [
+            "Max Warlords",
+            "Max SkyClash"
+          ]
+        },
+        {
+          "username": "Justin_Jefferson",
+          "uuid": "9dccd818228640bfa33174d8dc86dfb7",
+          "country": "Unknown",
+          "current_ap": 23650,
+          "last_month_ap": 23640,
+          "monthly_gain": 10,
+          "maxGames": [
+            "Max Paintball",
+            "Max VampireZ"
+          ]
+        },
+        {
+          "username": "Unknown",
+          "uuid": "58f4b39fbea342aebff47c541c8bf1c7",
+          "country": "Unknown",
+          "current_ap": 23395,
+          "last_month_ap": 23395,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     }
