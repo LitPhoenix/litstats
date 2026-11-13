@@ -40,217 +40,6 @@ const arcadeGamesList = ["Blocking Dead", "Bounty Hunters", "Creeper Attack", "D
 const tntGamesList = ["Bow Spleef", "PVP Run", "TNT Run", "TNT Tag", "TNT Wizards", "Other"];
 const woolGamesList = ["Capture the Wool", "Sheep Wars", "Wool Wars", "Other"];
 
-const customSkinRewards = {
-  "i am cow": "img/megawalls/cow/Cow Suit.png",
-  "moo brawl": "img/megawalls/cow/Iron Cow.png",
-  "greedy louis": "img/megawalls/cow/Skelly Moo.png",
-  "team player": "img/megawalls/cow/Fungu Madness.png",
-  "legendary cow": "img/megawalls/cow/One Serious Bull.png",
-  "beyond the grave": "img/megawalls/cow/Parasite.png",
-  "fine dining": "img/megawalls/cow/Sir Loin.png",
-  "biological restoration": "img/megawalls/cow/Sacred Bull.png",
-  "on point": "img/megawalls/hunter/Edge.png",
-  "treasure hunter": "img/megawalls/hunter/Tucson.png",
-  "yeehaw": "img/megawalls/hunter/Hippie Moon.png",
-  "ba boom": "img/megawalls/hunter/Animal Tamer.png",
-  "cake hunter": "img/megawalls/hunter/Cake Hunter.png",
-  "cake hunter tiered": "img/megawalls/hunter/Cake Hunter.png",
-  "legendary hunter": "img/megawalls/hunter/Kuba the Caveman.png",
-  "one with nature": "img/megawalls/hunter/Annie.png",
-  "target eliminated": "img/megawalls/hunter/Bounty.png",
-  "hammerhead": "img/megawalls/shark/Shelly.png",
-  "great white": "img/megawalls/shark/Treasure.png",
-  "tiger shark": "img/megawalls/shark/Devourer.png",
-  "bull shark": "img/megawalls/shark/Wata.png",
-  "legendary shark": "img/megawalls/shark/Bblurgbl.png",
-  "oceans explorer": "img/megawalls/shark/Cosmo.png",
-  "oceans defender": "img/megawalls/shark/Chum.png",
-  "potions of death": "img/megawalls/arcanist/Drufus.png",
-  "hard as steel": "img/megawalls/arcanist/Steele.png",
-  "to infinity": "img/megawalls/arcanist/Chester.png",
-  "laser precision": "img/megawalls/arcanist/Byron Boy.png",
-  "legendary arcanist": "img/megawalls/arcanist/Emperor.png",
-  "abil spammer": "img/megawalls/arcanist/Archmage.png",
-  "tripleshot": "img/megawalls/arcanist/Arcana.png",
-  "maximum effort": "img/megawalls/dreadlord/Doomboy.png",
-  "birds eye": "img/megawalls/dreadlord/Crowe.png",
-  "rushlord": "img/megawalls/dreadlord/Rushlord.png",
-  "breadlord": "img/megawalls/dreadlord/Breadlord.png",
-  "legendary dreadlord": "img/megawalls/dreadlord/Sweets.png",
-  "gathering talent indeed": "img/megawalls/dreadlord/Frostlord.png",
-  "the chosen few": "img/megawalls/dreadlord/Conquest.png",
-  "its all ogre now": "img/megawalls/golem/Ogre.png",
-  "timber": "img/megawalls/golem/Bryce.png",
-  "taking the heat": "img/megawalls/golem/Flint.png",
-  "hammer down": "img/megawalls/golem/Victor.png",
-  "legendary golem": "img/megawalls/golem/Grey.png",
-  "judgement call": "img/megawalls/golem/Cooper.png",
-  "iron hearted": "img/megawalls/golem/Iglu.png",
-  "thunder": "img/megawalls/herobrine/Thunders.png",
-  "not a golem": "img/megawalls/herobrine/Larry.png",
-  "lucky sunny": "img/megawalls/herobrine/Sunny.png",
-  "multi kill": "img/megawalls/herobrine/Boxer.png",
-  "legendary herobrine": "img/megawalls/herobrine/Odin.png",
-  "seasons greetings": "img/megawalls/herobrine/Santabrine.png",
-  "world ender": "img/megawalls/herobrine/Jerry.png",
-  "derpbrines revenge": "img/megawalls/herobrine/Derpbrine.png",
-  "circle of trust": "img/megawalls/pigman/Super Pig.png",
-  "blowing bubbles": "img/megawalls/pigman/King Pig.png",
-  "collector": "img/megawalls/pigman/Kai.png",
-  "masterpiece": "img/megawalls/pigman/Picasso.png",
-  "legendary pigman": "img/megawalls/pigman/Bandit.png",
-  "young thug": "img/megawalls/pigman/Soos.png",
-  "tough skin": "img/megawalls/pigman/Goliath.png",
-  "alotv1": "img/megawalls/zombie/Toon.png",
-  "hug me": "img/megawalls/zombie/Jumbo.png",
-  "gone vegan": "img/megawalls/zombie/Taco.png",
-  "sleepytime": "img/megawalls/zombie/Yawn.png",
-  "legendary zombie": "img/megawalls/zombie/Gorilla.png",
-  "mr clutcherson": "img/megawalls/zombie/Furbie.png",
-  "unstoppable force": "img/megawalls/zombie/King Dainn.png",
-  "throwing hot coconuts": "img/megawalls/blaze/Mango.png",
-  "max render distance": "img/megawalls/blaze/Proto.png",
-  "blaze party": "img/megawalls/blaze/Scorch.png",
-  "high on ores": "img/megawalls/blaze/Chaze.png",
-  "legendary blaze": "img/megawalls/blaze/Ghaze.png",
-  "light em up": "img/megawalls/blaze/Matcho.png",
-  "blazecaller": "img/megawalls/blaze/Miquella.png",
-  "speed run": "img/megawalls/enderman/Dash.png",
-  "untouchable": "img/megawalls/enderman/Seeker.png",
-  "surprise": "img/megawalls/enderman/Gamer.png",
-  "sneak attack": "img/megawalls/enderman/Shadow.png",
-  "legendary enderman": "img/megawalls/enderman/Hoops.png",
-  "true teleporter": "img/megawalls/enderman/Inno.png",
-  "end to end": "img/megawalls/enderman/Plexi.png",
-  "whirlwind": "img/megawalls/shaman/Totem.png",
-  "much dogs": "img/megawalls/shaman/Doggo.png",
-  "stayin alive": "img/megawalls/shaman/Brian the Disco Bear.png",
-  "revenge of the wolves": "img/megawalls/shaman/Wolf.png",
-  "legendary shaman": "img/megawalls/shaman/Nikolaos.png",
-  "souls bound": "img/megawalls/shaman/Fina.png",
-  "call it a comeback": "img/megawalls/shaman/Avarion.png",
-  "living on the edge": "img/megawalls/shaman/Dauntless.png",
-  "you shall not pass": "img/megawalls/squid/Guardian.png",
-  "trust me im a doctor": "img/megawalls/squid/Doctor Squish.png",
-  "whirlpool": "img/megawalls/squid/K'Tulu.png",
-  "i feel sick": "img/megawalls/squid/Grumps.png",
-  "legendary squid": "img/megawalls/squid/Sea Warrior.png",
-  "fiery tomb": "img/megawalls/squid/Lava Kraken.png",
-  "everblind": "img/megawalls/squid/Glow Squid.png",
-  "peacekreeper": "img/megawalls/creeper/Johnny.png",
-  "ready set boom": "img/megawalls/creeper/Bomberdude.png",
-  "mass destruction": "img/megawalls/creeper/Destructo.png",
-  "remote detonation": "img/megawalls/creeper/Kreeft.png",
-  "legendary creeper": "img/megawalls/creeper/Cricket.png",
-  "collateral": "img/megawalls/creeper/Haze.png",
-  "instaboom": "img/megawalls/creeper/Steampunk.png",
-  "grave robber": "img/megawalls/pirate/Captain Bones.png",
-  "fire in the hole": "img/megawalls/pirate/Jameson.png",
-  "esc": "img/megawalls/pirate/Guy.png",
-  "death from above": "img/megawalls/pirate/Parrot Frank.png",
-  "legendary pirate": "img/megawalls/pirate/Fjodor.png",
-  "lady luck": "img/megawalls/pirate/Killigrew.png",
-  "burial at sea": "img/megawalls/pirate/Axe.png",
-  "think twice": "img/megawalls/sheep/Pablo.png",
-  "magical party": "img/megawalls/sheep/Mutton.png",
-  "perfect disguise": "img/megawalls/sheep/Lord Lambchop.png",
-  "woolly respite": "img/megawalls/sheep/Llama.png",
-  "teamkill": "img/megawalls/sheep/Ramsay.png",
-  "legendary sheep": "img/megawalls/sheep/Dolly.png",
-  "moodsetter": "img/megawalls/skeleton/Jazz Hands.png",
-  "bow down": "img/megawalls/skeleton/Space Armor.png",
-  "marksman": "img/megawalls/skeleton/Trick.png",
-  "skeletons best friend": "img/megawalls/skeleton/Spookster.png",
-  "legendary skeleton": "img/megawalls/skeleton/Red Ted.png",
-  "ranged training": "img/megawalls/skeleton/Symphony.png",
-  "explosive ending": "img/megawalls/skeleton/dave.png",
-  "skitterama": "img/megawalls/spider/Lethal.png",
-  "ninja 7s": "img/megawalls/spider/Vinny.png",
-  "geronimo": "img/megawalls/spider/Flutter.png",
-  "feels bad": "img/megawalls/spider/Frog.png",
-  "legendary spider": "img/megawalls/spider/Shade.png",
-  "i dont feel so good": "img/megawalls/spider/spoderman.png",
-  "one giant leap": "img/megawalls/spider/Earl.png",
-  "dirty dog": "img/megawalls/werewolf/Crunch.png",
-  "time to diet": "img/megawalls/werewolf/Bloo.png",
-  "hunting season": "img/megawalls/werewolf/Duster.png",
-  "time to feast": "img/megawalls/werewolf/Jake.png",
-  "legendary werewolf": "img/megawalls/werewolf/Cruze.png",
-  "howling moon": "img/megawalls/werewolf/Lupus.png",
-  "vegetarian": "img/megawalls/werewolf/Savage.png",
-  "the hand that feeds": "img/megawalls/angel/Athena.png",
-  "rewriting fate": "img/megawalls/angel/Goddess.png",
-  "guardian angel": "img/megawalls/angel/Chad.png",
-  "unwavering": "img/megawalls/angel/Eyeless.png",
-  "delaying the inevitable": "img/megawalls/angel/Puck.png",
-  "legendary angel": "img/megawalls/angel/Justice.png",
-  "dont blink": "img/megawalls/assassin/Hitguy.png",
-  "alchemy 100": "img/megawalls/assassin/Torny.png",
-  "thanks connor": "img/megawalls/assassin/Connor.png",
-  "morra": "img/megawalls/assassin/Blu.png",
-  "legendary assassin": "img/megawalls/assassin/Okamoto.png",
-  "contract killer": "img/megawalls/assassin/Shady.png",
-  "kingmaker": "img/megawalls/assassin/Baba Yaga.png",
-  "short circuit": "img/megawalls/automaton/Atomic.png",
-  "into the future": "img/megawalls/automaton/Fender.png",
-  "terminated script": "img/megawalls/automaton/Vacuum.png",
-  "failed experiment": "img/megawalls/automaton/Failed Experiment.png",
-  "legendary automaton": "img/megawalls/automaton/Crank.png",
-  "configuration": "img/megawalls/automaton/CCDA-3301.png",
-  "current objective survive": "img/megawalls/automaton/Soldier.png",
-  "gotcha": "img/megawalls/moleman/Truck.png",
-  "speedy mineman": "img/megawalls/moleman/Mineman Tyler.png",
-  "coming through": "img/megawalls/moleman/Jolly.png",
-  "constructor": "img/megawalls/moleman/Brick.png",
-  "legendary moleman": "img/megawalls/moleman/Graen.png",
-  "nom nom": "img/megawalls/moleman/Capybara.png",
-  "sixty feet under": "img/megawalls/moleman/Mole-rat.png",
-  "heavy eater": "img/megawalls/moleman/Rat.png",
-  "whats the big idea": "img/megawalls/phoenix/Sailor Sid.png",
-  "nights rest": "img/megawalls/phoenix/Owl.png",
-  "ashes to bashes": "img/megawalls/phoenix/Ember.png",
-  "cruising flames": "img/megawalls/phoenix/Fringe.png",
-  "legendary phoenix": "img/megawalls/phoenix/Falcon X.png",
-  "reborn": "img/megawalls/phoenix/Fae.png",
-  "simmer down": "img/megawalls/phoenix/Hotshot.png",
-  "frightful flames": "img/megawalls/dragon/Frightful.png",
-  "dragonborn": "img/megawalls/dragon/Jade.png",
-  "unbridled riches": "img/megawalls/dragon/Greg.png",
-  "ashes to ashes": "img/megawalls/dragon/Fury.png",
-  "dragons eye": "img/megawalls/dragon/Hydragon.png",
-  "legendary dragon": "img/megawalls/dragon/Pip.png",
-  "born talented": "img/megawalls/renegade/Bedrock.png",
-  "recycling": "img/megawalls/renegade/Traitor.png",
-  "inventory management": "img/megawalls/renegade/Ara.png",
-  "captain combo": "img/megawalls/renegade/Hood.png",
-  "legendary renegade": "img/megawalls/renegade/Morde.png",
-  "chased down": "img/megawalls/renegade/Deathskull.png",
-  "crossfire": "img/megawalls/renegade/Renny.png",
-  "chill sniper": "img/megawalls/snowman/Gus.png",
-  "school cancelled": "img/megawalls/snowman/Frozen.png",
-  "avalanche": "img/megawalls/snowman/Abominable.png",
-  "frosty friendship": "img/megawalls/snowman/Ice Bug.png",
-  "legendary snowman": "img/megawalls/snowman/Dobu.png",
-  "snowball fight": "img/megawalls/snowman/Feathers.png",
-  "grave digger": "img/megawalls/snowman/David.png"
-};
-
-const normalizedSkinRewards = {};
-Object.entries(customSkinRewards).forEach(([key, path]) => {
-  const normKey = key.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const parts = path.split('/');
-  const fileName = parts.pop();
-  const folder = parts.join('/');
-  const cleanName = fileName.replace('.png', '');
-  const noSpaceFile = fileName.replace(/ /g, '');
-  const safeFolder = folder.startsWith('/') ? folder : '/' + folder;
-  
-  normalizedSkinRewards[normKey] = {
-    path: `${safeFolder}/${noSpaceFile}`,
-    name: cleanName,
-    mwClass: parts.length > 2 ? parts[2].toLowerCase() : null 
-  };
-});
 
 // Bed Wars Dreamfeast "main path": 21 items, bought with Ticket Tarts at 1, 5, 10, 15 ... 95, 100 (1,051 total).
 // The 21 apiKeys in path order (cheapest first), taken from menuConfig on the Bed Wars page.
@@ -303,337 +92,7 @@ const CustomChallengeTrackers = {
 "champion!": { path: ["rawStats", "uhc", "score"], max: 10000 },
 }
 
-const TAG_DB = {
-  "Untouched": { type: "Broken", tip: "Obtainable on Dwarven, Nordic, Outback and Jungle, if these maps don't work, try leave a game you know your team will win, or eat a gapple before your absorption ends when the walls fall" },
-  "[Duels] Shut Down": { type: "Broken", tip: "Currently broken" },
-  "Hot Potato": { type: "Secret", desc: "Pass the hot potato after fishing it" },
-  "Main Lobby: Keep Quiet": { type: "Secret", desc: "Talk to Albus, the librarian", tip: "Go to 143 66 -31 and sneak click the NPC three times" },
-  "Main Lobby: Code Breaker": { type: "Secret", desc: "Enter the code into the vault", tip: "Enter the 3 part code at (-33 16 90). Numbers #1) sneak click 3x at the Librarian #2) catch a secret fish and hover over it in chat #3) chest at 208 37 -158." },
-  "Main Lobby: Crash Landed": { type: "Secret", tip: "Enter the SkyBlock portal at -158, 128, 115" },
-  "Main Lobby: Hypixel Historian": { type: "Secret", tip: "Click on every bookshelf with green particles in the library to read them, each of them will be at eye level on the ground" },
-  "Sneaky Snake": { type: "Secret", desc: "Score 50 points in the snake lobby minigame", tip: "The snake arcade machines are located behind the game NPCs, up the stairs" },
-  "Dragon Wars: Voidseeker": { type: "Secret", desc: "Jump into the void", tip: "Climb up the mountain using your jump boost and wither blasts and jump off" },
-  "Dropper: Well, Well, Well": { type: "Map", map: "Floating Island", desc: "Only on the Floating Island map, you must drop down small jumps at a time to not die, and click on the frog in the well, near the bottom of the map" },
-  "Ender Spleef: No Powerhouse": { type: "Secret", desc: "Win without using any powerups" },
-  "Hypixel Says: Rebel Movement": { type: "Secret", desc: "Jump off when you are told to stand still" },
-  "Zombies: Technical Difficulties!": { type: "Secret", desc: "Interact with all of the computers on the prison map" },
-  "Zombies: What Lies Beyond?": { type: "Secret", desc: "Find the Black Hole gun, found behind the cracked wall in the storage room", tip: "Place turrets on all teleport pads (look for the message in chat), then place one by the cracked storage room wall to access the Black Hole gun" },
-  "Disasters: Titanfall": { type: "Secret", desc: "Kill a Giant during the Zombie Apocalypse", tip: "Easy to kill it with lava, by using a Stone Sword or a Fang as Werewolf" },
-  "Disasters: Dragon Tamer": { type: "Secret", desc: "Hit a dragon with a snowball powerup to force it to change directions" },
-  "Perfectceptionception": { type: "Secret", desc: "Complete every round first and with 100% accuracy in a single Speed Builders game" },
-  "Configuration": { type: "Secret", desc: "Final kill 3 players from one team, 2 from another, and 1 from the third in a single game", tip: "This unlocks a skin for Automaton, though can be done on any class" },
-  "We're Set": { type: "Map", map: "Gold Rush", desc: "Open the bank vault on the map Gold Rush", tip: "Don't mind the quality, but here's a video tutorial: https://www.youtube.com/watch?v=jSd1P0eiiy0" },
-  "Dragon Slayer": { type: "Secret", desc: "Kill an Ender Dragon" },
-  "That's... not the exit...": { type: "Secret", desc: "Help Ikrus in the Rift", tip: "It doesn't matter what dialogue options you pick" },
-  "\"If you wish to defeat me...\"": { type: "Secret", desc: "Defeat Sun Gecko in the Rift" },
-  "Zoop!": { type: "Secret", desc: "Pop a link of 10 Puffs in the Rift" },
-  "The ultimate scheme": { type: "Secret", desc: "Secure the final Timecharm in the Rift" },
-  "Tragedy reversed": { type: "Secret", desc: "Murder your past self in the Rift quest" },
-  "Lily Mania": { type: "Secret", desc: "Help create a lily pad explosion on the Lotus Atoll (thanks guys)", tip: "Push lily pads into each other until it's big enough to explode" },
-  "Top of the Wizard food chain": { type: "Secret", desc: "Become Wizardman in the Rift quest" },
-  "Finally over...": { type: "Secret", desc: "Murder Special Agent Amog in the Rift quest" },
-  "The first to have ever done it": { type: "Secret", desc: "Return back from the breach" },
-  "Genius": { type: "Secret", desc: "Obtain a Free Will from Ubik", tip: "Select ~13-15 when talking to Ubik on the Rift's Mountaintop" },
-  "What the flip?": { type: "Secret", desc: "Flip the Iceberg in the Critter Safari", tip: "Jump on the edge of the Iceberg at (-68, 66, -43) ~20 times" },
-  "The Miracle in a Sunbeam": { type: "Secret", desc: "Encounter a Rainbug", tip: "Ring all 7 Critter Safari bells: (1) -4,96,-42 (2) 47,55,-7 (3) -30,125,59 (4) -90,109,16 (5) -50,81,0 (6) -96,46,-57 (7) -68,66,-43 (Icebreaker required for #7)." },
-  "Hasta la vista!": { type: "Secret", desc: "Receive a postcard from your minion", tip: "Give a Free Will to a minion so it leaves forever" },
-  "[SkyBlock] Maximum Power": { type: "Secret", desc: "Defeat Sun Gecko with all 7 modifiers enabled" },
-  "Too much joy": { type: "Secret", desc: "Sometimes too much happiness can kill you.", tip: "Wear the Sunflower Head and right click 20 people to die. [Tutorial](https://youtu.be/TiQxrBK3Llw)" },
-  "Cleaning House": { type: "Secret", desc: "Break all cobwebs in the Critter Safari", tip: "Located in the Haunted House and the small shack next to it" },
-  "Empty Flower Pot?": { type: "Secret", desc: "Place a flower in the Park's flower pot", tip: "Click the Park's flower pot with an Oxeye Daisy for 5+ minutes until pitch increases fully" },
-  "I am Superior": { type: "Secret", desc: "Defeat a Superior Dragon", tip: "4% spawn chance, you must get at least 1 hit on the Dragon to get the achievement" },
-  "Sirius Business": { type: "Secret", desc: "Participate in the Dark Auction", tip: "At XX:55, click Sirius in the Wilderness (91, 75, 176) within 35 seconds. Bring ~10M+ and stay for the full auction" },
-  "Shrimp!?!": { type: "Secret", desc: "Obtain Shrimp the Traveler Fish", tip: "Drop and pick up Shrimp (mined from glowing End blocks or Auction House)" },
-  "Royal Conversation": { type: "Secret", desc: "Listen to the full Royal Resident's dialogue in the Dwarven Mines", tip: "Talk to the Dwarven Mines NPC at (63, 204, 200) for 30m, then at (65, 211, 199) for 6h while he counts down" },
-  "Existential Revelations": { type: "Secret", desc: "Find the mushroom in the catacombs", tip: "Superboom TNT the mushroom room wall in dungeons, then click one of the 3 mushrooms" },
-  "Defeating Death": { type: "Secret", desc: "Kill a Deathmite in a dungeon", tip: "Kill a Deathmite in the Ancient evil tomb room (use Superboom TNT on Diorite)" },
-  "I knew it!": { type: "Secret", desc: "Wear the full Monster Hunter armor set", tip: "Wear Skeleton Helmet, Guardian Chestplate, Creeper Pants, and Spider Boots together" },
-  "Rebirth": { type: "Secret", desc: "Kill a fairy in the fairy room while dead", tip: "Kill a fairy in the pink map room while dead" },
-  "The Cult of the Fallen Star": { type: "Secret", desc: "Participate in a Cult of the Fallen Star meeting", tip: "Enter the Dwarven Mines cave at (-45, 193, 45) between 0-6 AM in-game time on days 7, 14, 21 or 28. Attend a meeting at the cult's cave (-26, 198, 40)" },
-  "Nightmare": { type: "Secret", desc: "Complete Bednom's secret quest", tip: "Talk to Bednom at (-31, 214, -90) across 3 SkyBlock days, then visit treasure at (3, 177, -69) and talk to him again" },
-  "The Ring": { type: "Secret", desc: "Drop an Eternal Flame Ring into the lava in the special room in the Crystal Hollows", tip: "From Auction House or killing a Flaming Worm, Lava Blaze or Lava Pigman. Room is ring shaped with a chest in the middle" },
-  "This is the Way": { type: "Secret", desc: "Find the Belly of the Beast", tip: "In the Crimson Isles, go to the coordinates -530 40 -890 and get eaten by the ghast mob" },
-  "The Itsy Bitsy Spider": { type: "Secret", desc: "Feed a player to Aranya", tip: "Bring an unarmored player to the Crimson Isles cave (-335, -1003) to be killed by Aranya" },
-  "[SkyBlock] Geronimo!": { type: "Secret", desc: "Get launched into the air by the Blazing Volcano", tip: "Stand atop the Blazing Volcano when it erupts (every 30 minutes)" },
-  "Meal fit for a King": { type: "Secret", desc: "Put a Trophy Fish into the Melancholic Viking's furnace at the house in the Spruce Woods" },
-  "Wasted Potential": { type: "Secret", desc: "Feed a Staff of the Volcano to a Cow", tip: "Feed a Staff of the Volcano (from Fire Eels or AH) to a Cow" },
-  "What is this place...": { type: "Secret", desc: "Enter the secret room in The End", tip: "On the large outer spikes, enter the room at -659 36 -193" },
-  "Jake's Mystery": { type: "Secret", desc: "Complete Beth's Quest", tip: "Accept Beth's 3rd garden offer, then she will tell you to visit 175 44 -470 on the Mushroom Island, click on the dirt to enter. After Beth's 4th garden visit, go back down the ladder and talk to Jake" },
-  "End Credits": { type: "Secret", desc: "Face your demise with the Temporal Pillar in the Rift", tip: "Stand in front of and die to an Enderman in the Rift's main village" },
-  "Responsible Pet Owner": { type: "Secret", desc: "Have your rabbit get squashed in the Half-Eaten Cave", tip: "In the cave by Marco's flower house in the Rift, explode some hay with your Horsezooka and let your rabbit die in the respawning hay" },
-  "One Pound Slap": { type: "Secret", desc: "Hit a player off a cliff using the Slap Fish", tip: "Obtain the Slap Fish from the Pandora's Box craft" },
-  "Wool Wars: Enderman": { type: "Secret", desc: "Go through 15 portals in one round" },
-  "Capture the Wool: Magician": { type: "Secret", desc: "Capture 2 Wools in a single game" },
-  "Sheep Wars: Shopping for Wool": { type: "Secret", desc: "Break every single magic wool in a round", tip: "Magic Wool spawns in the sky on a fixed timer, look in chat for when they spawn" },
-  "That Time of Year": { type: "Secret", desc: "Find the dancing Spooky Scary Skeleton in the Main Lobby", tip: "Under the well in the farm, enter the room with a painting to find the Skeleton" },
-  "New Years Celebrations": { type: "Secret", desc: "Watch the fireworks go off in the SkyBlock Hub or Main lobby", tip: "On New Years Eve, fireworks will display at the end of every hour 0:00, 1:00 etc." },
-  "Prestige": { type: "Prestige", level: 15 },
-  "Renown": { type: "Renown", renown: 2000 },
-  "Gold": { type: "Gold", cost: "30,000,000" },
-  "All hail the King!": { type: "Prestige", level: 1 },
-  "Mysticism": { type: "Prestige", level: 1, renown: 10, tip: "Mysticism unlocks at Prestige 1" },
-  "Did I see some blue?": { type: "Prestige", level: 1, renown: 10, tip: "Mysticism I costs 10 renown. Has about a 0.2% chance to drop from kills" },
-  "Scam Artist": { type: "Prestige", level: 1, renown: 10, tip: "First tier of Scam Artist unlocks at Prestige 1" },
-  "One small step for Pants": { type: "Prestige", level: 1, renown: 30, tip: "Mysticism IV costs 30 renown" },
-  "Rare!": { type: "Prestige", level: 1, renown: 10, tip: "Need Mysticism to enchant items, possible with Tier II items, however more common with Tier III" },
-  "This isn't the lobby!": { type: "Prestige", level: 1, renown: 5, tip: "Need Fishing Club I renown upgrade" },
-  "[Pit] Rambo": { type: "Prestige", level: 3, renown: 15, tip: "Need Rambo renown perk" },
-  "Paint Job": { type: "Prestige", level: 5, renown: 10, tip: "Need Fancy Hat renown upgrade" },
-  "Poet": { type: "Prestige", level: 6, renown: 10, tip: "Need Heresy renown upgrade, complete the night quest in chat, night falls every 36 minutes or you can check [here](https://pit.wiki/Night_Quests)" },
-  "In the Club": { type: "Prestige", level: 7, renown: 30, tip: "Need Fishing Club V renown upgrade" },
-  "Big Belly": { type: "Prestige", level: 7, renown: 50, tip: "Soup is 30 renown, Olympus is 20 renown, Steaks from pants enchant, Golden Head from its perk, Golden Apple from disabling healing perks" },
-  "Fast Pass": { type: "Prestige", level: 10, renown: 100 },
-  "The XX": { type: "Prestige", level: 20},
-  "Big Time": { type: "Prestige", level: 25, renown: 3420 },
-  "Well, well": { souls: 10 },
-  "Mountain of Wool": { type: "Wool", cost: "10,000" },
-  "Magical Box": { type: "Coins", cost: "1,350,000", tip: "You can buy 100 keys for 45,000 coins\nPrice tag shown is the minimum for Tier 5" },
-  "Runic Enhancements": { type: "Coins", cost: "500" },
-  "Offensive Training": { type: "Coins", cost: "50,000", tip: "Unlocked through Magical Chests with a high chance" },
-  "Support Training": { type: "Coins", cost: "50,000", tip: "Unlocked through Magical Chests with a high chance" },
-  "Disco Star": { type: "Coins", cost: "1,000,000", tip: "You need 3,000 Wins and All Combat Upgrades in order to purchase this hat" },
-  "New Toy!": { type: "Coins", cost: "50,000", tip: "Unlocked through Magical Chests with a high chance" },
-  "Lucky Pig!": { type: "Coins", cost: "250,000", tip: "Unlocked through Magical Chests with a low chance" },
-  "Deadly Pumpkin": { type: "Coins", cost: "250,000", tip: "Unlocked through Magical Chests with a low chance" },
-  "Magical Shenanigans": { type: "Coins", cost: "500", tip: "Magical Chest costs 500 coins" },
-  "Melee Specialization": { type: "Coins", cost: "250,530" },
-  "Health Specialization": { type: "Coins", cost: "250,530" },
-  "Energy Specialization": { type: "Coins", cost: "250,530" },
-  "Cooldown Specialization": { type: "Coins", cost: "250,530" },
-  "Maximum Runic Magic": { type: "Coins", cost: "296,250" },
-  "Kit Collector": { type: "Coins", cost: "120,000", tip: "View Blitz kit prices [here](www.litstats.com/blitzkits)\nPrice tag shown is the minimum for Tier 5" },
-  "Can't Decide!": { type: "Coins", cost: "560" },
-  "Lucky #7": { type: "Coins", cost: "66,480" },
-  "Raised by Wolves": { type: "Coins", cost: "40,000", tip: "Could get Wolftamer during Blitz Hour" },
-  "Blitz Maniac": { type: "Coins", cost: "80,000", tip: "Price shown is the minimum\nView Blitz Star prices [here](www.litstats.com/blitzstars)" },
-  "Unfortunate": { type: "Coins", cost: "10,000" },
-  "Experimentation": { type: "Coins", cost: "25,000", tip: "Each kill effect costs 5,000 coins, there are 5 in total" },
-  "Are you not entertained?": { type: "Coins", cost: "10,000" },
-  "TACTICAL NUKE INCOMING": { type: "Coins", cost: "15,000" },
-  "Finally": { type: "Coins", cost: "1,416,480" },
-  "HORSEEEYYY": { type: "Coins", cost: "100,000", tip: "Could get Horsetamer during Blitz Hour" },
-  "#pigrider77": { type: "Coins", cost: "1,416,480", tip: "Could ride the pig mob while using the pig taunt" },
-  "[Blitz] Collector": { type: "Coins", cost: "4,249,440", tip: "3 standard Level X kits costs 4,249,440, however it's free to level Ultimate kits" },
-  "So Shiny": { type: "Coins", cost: "3,416,480", tip: "Standard Prestige kit costs 3,416,480, if you prestige an Ultimate kit, you only spend 2,000,000 extra" },
-  "Even Shinier": { type: "Coins", cost: "3,916,480", tip: "Standard Prestige II kit costs 3,916,480, if you prestige an Ultimate kit, you only spend 2,500,000 extra" },
-  "Ultimate Prestiger": { type: "Coins", cost: "2,000,000" },
-  "[Blitz] Jack of All Trades": { type: "Coins", cost: "1,045,000", tip: "Need Ultimate kit requirements too" },
-  "[Smash Heroes] Tinman Challenge": { type: "Coins", cost: "10,000" },
-  "[Smash Heroes] Marauder Challenge": { type: "Coins", cost: "10,000" },
-  "[Smash Heroes] Spooderman Challenge": { type: "Coins", cost: "25,000" },
-  "[Smash Heroes] Pug Challenge": { type: "Coins", cost: "25,000" },
-  "[Smash Heroes] Cryomancer Challenge": { type: "Coins", cost: "25,000" },
-  "[Smash Heroes] Karakot Challenge": { type: "Coins", cost: "50,000" },
-  "[Smash Heroes] Skullfire Challenge": { type: "Coins", cost: "50,000" },
-  "[Smash Heroes] Void Crawler Challenge": { type: "Coins", cost: "100,000", tip: "Requires Smash Level 100" },
-  "[Smash Heroes] Shoop Challenge": { type: "Coins", cost: "150,000", tip: "Requires Smash Level 150" },
-  "Superior Vote": { type: "Tokens", cost: "2,000"},
-  "Fancy": { type: "Tokens", cost: "900"},
-  "Musician": { type: "Tokens", cost: "125,000", tip: "All songs cost the same amount, 5,000 coins" },
-  "The Hat Master": { type: "Tokens", cost: "652,937"},
-  "Like my gun?": { type: "Coins", cost: "10,000", tip: "Need VIP/VIP+ and 10k coins for Pistol, SMG, Auto Shotgun, Scoped Rifle, Carbine skins, or get 100 pistol kills for free skin" },
-  "Fancy New Toys": { type: "Coins", cost: "125,000", tip: "Need VIP/VIP+ and 10k coins for Pistol, SMG, Auto Shotgun, Scoped Rifle, Carbine skins, other gun skins are 15k, or obtain free stat skins" },
-  "Warfare Stylist": { type: "Coins", cost: "4,000", tip: "Variations are 1,000 coins each, 350 for helmet, 650 for chestplate"},
-  "Maximizado": { type: "Gold", cost: "15,000" },
-  "Fully Upgraded": { type: "Gold", cost: "175,250", tip: "Best to do it in combination with Gold Magnate" },
-  "Gold Magnate": { type: "Gold", cost: "250,000", tip: "Best to do it in combination with Fully Upgraded" },
-  "I bought a thing!": { type: "Gold", cost: "10,000", tip: "Can be bought for 5k-10k gold if the item is bad" },
-  "Hat Collector": { type: "Coins", cost: "522,000", tip: "Between each tier: 7,600 / 29400 / 475,000 coins" },
-  "Mad Hatter": { type: "Coins", cost: "2,000", tip: "Cheapest hat is 2,000 coins" },
-  "Now you see me": { type: "Coins", cost: "4,200" },
-  "Explosive Death": { type: "Coins", cost: "4,200" },
-  "Go home, you're drunk": { type: "Coins", cost: "4,200", tip: "You can disable distortion effects in the latest version in accessibility settings" },
-  "Cheating Death": { type: "Coins", cost: "50,000" },
-  "Espionage": { type: "Coins", cost: "75,000" },
-  "Undercover Sloth": { type: "Coins", cost: "75,000" },
-  "The Originals": { type: "Coins", cost: "150,000", tip: "Required hats are 75k coins each" },
-  "Godfather": { type: "Coins", cost: "2,325,000", tip: "It is recommended to upgrade Endurance before Godfather" },
-  "Endurance": { type: "Coins", cost: "3,487,500", tip: "It is recommended to upgrade Endurance before Godfather" },
-  "New Style": { type: "Mystery Dust", cost: "5", tip: "Blueshell Inc's Eclipse costs 5 Mystery Dust" },
-  "Mechanic": { type: "Coins", cost: "1,406", tip: "Cheapest part costs 1,406 coins" },
-  "I'm Lucky": { type: "Coins", cost: "2,500" },
-  "Honking Amazing": { type: "Coins", cost: "10,000" },
-  "Show Off": { type: "Coins", cost: "25,000" },
-  "Ungrateful": { type: "Coins", cost: "120,000", tip: "It is recommended to scrap the one you get from the Gettin' Paid achievement" },
-  "Eternally Awesome": { type: "Coins", cost: "871,872", tip: "Engine = 290,623, Frame = 290,624, Turbocharger = 290,625" },
-  "Getting Ready": { type: "Coins", cost: "350", tip: "Farmer, Escapist, Trap Engineer, Watch Your Step! all cost 350 coins" },
-  "Getting Stronger": { type: "Coins", cost: "2,500", tip: "Adrenaline I costs 2,500 coins" },
-  "MOAR!!": { type: "Coins", cost: "13,140", tip: "Cheapest kits cost 13,140 coins" },
-  "This isn't VampireZ...": { type: "Coins", cost: "16,600" },
-  "Conan the Barbarian": { type: "Coins", cost: "18,600" },
-  "Robbed!": { type: "Coins", cost: "977,500" },
-  "Experience Express": { type: "Tokens", cost: "6,000" },
-  "Reaching the Sky": { type: "Coins", cost: "50,000" },
-  "Reaching the Stars": { type: "Coins", cost: "1,570,000" },
-  "Young Apprentice, You are not": { type: "Coins", cost: "1,820,000", tip: "Requires a Prestige 5 Level 20 Hero" },
-  "Get Over Here!": { type: "Coins", cost: "10,000" },
-  "[Smash Heroes] Handyman": { type: "Coins", cost: "295,000" },
-  "Master of Masters": { type: "Coins", cost: "250,000", tip: "Requires 2000 kills with a Mastery" },
-  "Kit Specialist": { type: "Coins", cost: "37,500", tip: "Cheapest 15 kits cost 37,500 coins" },
-  "Feels Good Man": { type: "Coins", cost: "2,500", tip: "Cheapest kit cost 2,500 coins" },
-  "umadbro?": { type: "Coins", cost: "200" },
-  "Grafitti King": { type: "Coins", cost: "300" },
-  "Street Artist": { type: "Coins", cost: "1,100" },
-  "Armed and Dangerous": { type: "Coins", cost: "1,825,473", tip: "Pistol costs 419,725, Handgun costs 571,300, Magnum costs 834,448; for max upgrades with Ammo Clip" },
-  "Better Version Of Yourself": { type: "Coins", cost: "789,450", tip: "Each of the 3 upgrade paths cost 263,150" },
-  "Is it good now?": { type: "Coins", cost: "419,725", tip: "This is the price for Pistol" },
-  "Snazzy": { type: "Coins", cost: "50,000", tip: "Or claim free Emblem from levelling menu at Level 1" },
-  "Rubbing It In": { type: "Coins", cost: "50,000", tip: "Or claim free Glyph from levelling menu at Level 6" },
-  "Stylistic": { type: "Coins", cost: "50,000", tip: "Or claim free Scheme from levelling menu at Level 20" },
-  "Express Yourself": { type: "Coins", cost: "5,000" },
-  "The Gatherer": { type: "Coins", cost: "1,000" },
-  "Going to the Gym": { type: "Coins", cost: "200", tip: "Kit Upgrade on Default class is 200 coins" },
-  "Save your stuff": { type: "Coins", cost: "10,000" },
-  "This Is Not Even My Final Form": { type: "Coins", cost: "57,500" },
-  "This is my final form!": { type: "Coins", cost: "302,500" },
-  "[Mega Walls] Veteran": { type: "Coins", cost: "115,000" },
-  "Exchange": { type: "Coins", cost: "320,000" },
-  "Wunderbar": { type: "Coins", cost: "1,302,500" },
-  "Magnate": { type: "Coins", cost: "2,052,500" },
-  "Completionist": { type: "Coins", cost: "3,052,500" },
-  "Moctezuma": { type: "Coins", cost: "4,840,000" },
-  "[Mega Walls] Jack of all Trades": { type: "Coins", cost: "285,000", tip: "Requires 67 Mythic Favor" },
-  "Zombie Leader": { type: "Coins", cost: "67,500" },
-  "Herobrine Super Saiyan": { type: "Coins", cost: "77,500" },
-  "Skeleton Supremacy": { type: "Coins", cost: "92,500" },
-  "The Golden Dragon's Egg": { type: "Coins", cost: "500,000,000", tip: "Requires 50x Enchanted Gold Blocks, 1 of each Perfect Amethyst, Jade, Sapphire, Amber, Topaz" },
-  "The Jade Dragon's Egg": { type: "Coins", cost: "500,000,000", tip: "Requires 1x Shiniest, 64x Figstone, 64x Mangcore, 64x Helixis" },
-  "Ring Ring... Who's this?": { type: "Coins", cost: "100,000" },
-  "Rough Deal": { type: "Coins", cost: "4,000,000" },
-  "Scam?": { type: "Coins", cost: "1,000,000" },
-  "Kit Mastery": { type: "Coins", cost: "25,000" },
-  "This is only the first one": { type: "Coins", cost: "50", tip: "Apprentice Helmet is the cheapest" },
-  "Prestigious!": { type: "Coins", cost: "76,937", tip: "Engineering or Survivalism are the cheapest" },
-  "Wealthy Champion": { type: "Coins", cost: "525,860", tip: "Apprentice: 50,924. Engineering / Survivalism: 51,937. Alchemy / Enchanting: 77,906. Toolsmithing / Weaponsmithing / Armorsmithing / Cooking: 107,625." },
-  "Ace Kit": { type: "Coins", cost: "275,000" },
-  "Elite Prestige": { type: "Coins", cost: "226,937", tip: "Engineering or Survivalism are the cheapest" },
-  "Dice of God": { type: "Coins", cost: "359,687", tip: "Requires max Bloodcraft and Engineering" },
-  "Extra Powerful": { type: "Coins", cost: "489,405", tip: "King's Rod, Cornucopia, Potion of Vitality are the cheapest 3 Extra Ultimates" },
-  "Chest of Fate": { type: "Coins", cost: "386,624", tip: "Requires max Bloodcraft, Engineering and Survivalism" },
-  "Death's Scythe": { type: "Coins", cost: "515,375", tip: "Requires max Bloodcraft and Weaponsmithing" },
-  "Ghost Rider": { type: "Coins", cost: "617,437", tip: "Requires max Hunter, Bloodcraft and Survivalism" },
-  "Axe of Perun": { type: "Coins", cost: "279,843", tip: "Requires max Weaponsmithing and Enchanting" },
-  "Deux Ex Machina": { type: "Coins", cost: "493,281", tip: "Requires max Bloodcraft, Alchemy and Cooking" },
-  "Tablets of Destiny": { type: "Coins", cost: "379,843", tip: "Requires max Engineering and Enchanting" },
-  "Exodus": { type: "Coins", cost: "824,937", tip: "Requires max Cooking, Armorsmithing, Bloodcraft and Engineering" },
-  "[UHC] Treasure Hunter": { type: "Coins", cost: "225,250", tip: "Requires max Strategist" },
-  "Accidental Summoning": { type: "Coins", cost: "9,250", tip: "Pandora's Box costs 9,250 coins to unlock" },
-  "Dragon Warrior": { type: "Coins", cost: "215,250", tip: "Requires max Weaponsmithing and Armorsmithing" },
-  "Grand Master": { type: "Tokens", cost: "1,000,000", tip: "Requires 150 wins in each TNT Game" },
-  "2fancy4me": { type: "Tokens", cost: "100,000", tip: "Requires 5,000 kills with the specific wizard class" },
-  "It Shines": { type: "Coins", cost: "500,000", tip: "Requires 250 wins with that specific class" },
-  "Looking Fancy": { type: "Coins", cost: "350" },
-  "Spooky...": { type: "Coins", cost: "1,000", tip: "Must be purchased during the Halloween event" },
-  "See Through": { type: "Coins", cost: "50,000", tip: "20% chance to activate ability on death" },
-  "Winter Runner": { type: "Coins", cost: "900" },
-  "Contracts": { tip: "Purchasing the Contractor renown upgrade allows players to complete up to 8 contracts a day" },
-  "Sugar Rush": { tip: "Aim for cherries, they give more gold" },
-  "Blasphemous": { tip: "Check Opal costs for the the Fallen Angel Kit [here](https://www.litstats.com/angel)" },
-  "Digging Through The Descent": { tip: "Check Opal costs for the the Archeologist Kit [here](https://www.litstats.com/angel)" },
-  "Lucid Dreams of Feastfood": { tip: "Check your progress [here](https://www.litstats.com/bedwars)" },
-  "Murderer's Pinnacle": { tip: "Check your progress [here](https://www.litstats.com/mm)" },
-  "Alpha's Pinnacle": { tip: "Check your progress [here](https://www.litstats.com/mm)" },
-  "Assassin's Pinnacle": { tip: "Check your progress [here](https://www.litstats.com/mm)" },
-  "There are Levels to This": { tip: "Use the Lucky Charm Blitz Star, and level up kill effect after Lucky Charm ends" },
-  "[SkyBlock] Explosive Ending": { tip: "Requires destroying all crystals and letting the Dragon die naturally below 450k HP, which fails if a player kills it early or with Ferocity" },
-  "Happy AND Winning": { tip: "Every Friday from 3pm to 7pm EDT" },
-  "Well Traveled": { type: "Map", map: "Transport" },
-  "I Am Your Shield": { type: "Map", map: "Transport" },
-  "Totally Tubular": { type: "Map", map: "Transport" },
-  "Paranoid much?": { type: "Map", map: "Transport" },
-  "Mixed messages": { type: "Map", map: "Ancient Tomb" },
-  "It's Time To Stop": { type: "Map", map: "Ancient Tomb" },
-  "[Murder Mystery] Beyond The Grave": { type: "Map", map: "Ancient Tomb" },
-  "This Isn't A Funfair ... Maybe": { type: "Map", map: "Hypixel World" },
-  "Wicked Ride": { type: "Map", map: "Hypixel World" },
-  "You Did Not See That Coming!": { type: "Map", map: "Hypixel World" },
-  "It's High Noon": { type: "Map", map: "Gold Rush" },
-  "Cacti Cleared": { type: "Map", map: "Gold Rush" },
-  "Storm Chaser": { type: "Map", map: "Cruise Ship" },
-  "Game-ception": { type: "Map", map: "Cruise Ship" },
-  "Zombies: Herobrine": { type: "Map", map: "Bad Blood" },
-  "Zombies: Prison Escape": { type: "Map", map: "Prison" },
-  "Zombies: Time Trial Bad Blood": { type: "Map", map: "Bad Blood" },
-  "Zombies: Automated Shooter": { type: "Map", map: "Prison" },
-  "Zombies: Time Trial Prison": { type: "Map", map: "Prison" },
-  "Zombies: Technical Difficulties!": { type: "Map", map: "Prison" },
-  "That wasn't eaZy": { type: "Map", map: "Alien Arcadium" },
-  "Zombies: Time Trial Dead End": { type: "Map", map: "Dead End" },
-  "JAWS!": { type: "Map", map: "Aquarium" }
-};
 
-const MWSkinData = {
-  "moobrawl": { class: "Cow", stat: "moo_brawl", max: 600 },
-  "greedylouis": { class: "Cow", stat: "greedy_louis", max: 500 },
-  "biologicalrestoration": { class: "Cow", stat: "bio_restore", max: 2500 },
-  "beyondthegrave": { class: "Cow", stat: "beyond_the_grave", max: 15 },
-  "treasurehunter": { class: "Hunter", stat: "treasure_hunter", max: 300 },
-  "cakehunter": { class: "Hunter", stat: "cake_hunter", max: 150 },
-  "onewithnature": { class: "Hunter", stat: "one_with_nature", max: 50 },
-  "hammerhead": { class: "Shark", stat: "hammerhead", max: 100 },
-  "oceansexplorer": { class: "Shark", stat: "explorer", max: 1000 },
-  "oceansdefender": { class: "Shark", stat: "defender", max: 250 },
-  "rushlord": { class: "Dreadlord", stat: "rushlord", max: 20000 },
-  "breadlord": { class: "Dreadlord", stat: "breadlord", max: 617 },
-  "gatheringtalentindeed": { class: "Dreadlord", stat: "gathering_ti", max: 500 },
-  "timber": { class: "Golem", stat: "timber", max: 5000 },
-  "ironhearted": { class: "Golem", stat: "iron_hearted", max: 1000 },
-  "chestsfound": { class: "Herobrine", stat: "lucky_sunny", max: 1000 },
-  "luckysunny": { class: "Herobrine", stat: "lucky_sunny", max: 1000 },
-  "seasonsgreetings": { class: "Herobrine", stat: "seasons_greetings", max: 1000 },
-  "sleepytime": { class: "Zombie", stat: "sleepytime", max: 50 },
-  "mrclutcherson": { class: "Zombie", stat: "clutcherson", max: 100 },
-  "unstoppableforce": { class: "Zombie", stat: "unstoppable_force", max: 25 },
-  "potionsofdeath": { class: "Arcanist", stat: "potions_of_death", max: 8 },
-  "hardassteel": { class: "Arcanist", stat: "hard_as_steel", max: 5000 },
-  "abilspammer": { class: "Arcanist", stat: "abil_spammer", max: 1000 },
-  "surprise": { class: "Enderman", stat: "surprise", max: 2500 },
-  "sneakattack": { class: "Enderman", stat: "sneak_attack", max: 100 },
-  "highonores": { class: "Blaze", stat: "high_on_ores", max: 2000 },
-  "lightemup": { class: "Blaze", stat: "light_em_up", max: 10 },
-  "blazecaller": { class: "Blaze", stat: "blazecaller", max: 500 },
-  "marksman": { class: "Skeleton", stat: "marksman", max: 25 },
-  "skeletonsbestfriend": { class: "Skeleton", stat: "skele_best_friend", max: 50 },
-  "geronimo": { class: "Spider", stat: "geronimo", max: 25000 },
-  "onegiantleap": { class: "Spider", stat: "one_giant_leap", max: 250 },
-  "idontfeelsogood": { class: "Spider", stat: "idfsg", max: 600 },
-  "massdestruction": { class: "Creeper", stat: "mass_destruction", max: 3000 },
-  "instaboom": { class: "Creeper", stat: "instaboom", max: 20 },
-  "dontblink": { class: "Assassin", stat: "dont_blink", max: 1200 },
-  "alchemy100": { class: "Assassin", stat: "alchemy_100", max: 1000 },
-  "dirtydog": { class: "Werewolf", stat: "dirty_dog", max: 15 },
-  "timetodiet": { class: "Werewolf", stat: "time_to_diet", max: 750 },
-  "huntingseason": { class: "Werewolf", stat: "hunting_season", max: 50000 },
-  "howlingmoon": { class: "Werewolf", stat: "howling_moon", max: 1000 },
-  "nightsrest": { class: "Phoenix", stat: "nights_rest", max: 1000 },
-  "terminatedscript": { class: "Automaton", stat: "terminated_script", max: 3000 },
-  "constructor": { class: "Moleman", stat: "constructor", max: 15000 },
-  "heavyeater": { class: "Moleman", stat: "heavy_eater", max: 1000 },
-  "nomnom": { class: "Moleman", stat: "nom_nom", max: 1000 },
-  "recycling": { class: "Renegade", stat: "recycling", max: 3000 },
-  "captaincombo": { class: "Renegade", stat: "captain_combo", max: 20000 },
-  "chaseddown": { class: "Renegade", stat: "chased_down", max: 20 },
-  "schoolcancelled": { class: "Snowman", stat: "school_cancelled", max: 7200 },
-  "frostyfriendship": { class: "Snowman", stat: "frosty_friendship", max: 500 },
-  "australianwinterseasonal": { class: "Snowman", stat: "australian_winter", max: 500 },
-  "australianwinter": { class: "Snowman", stat: "australian_winter", max: 500 },
-  "muchdogs": { class: "Shaman", stat: "much_dogs", max: 500 },
-  "revengeofthewolves": { class: "Shaman", stat: "revenge_of_the_wolves", max: 5 },
-  "livingontheedge": { class: "Shaman", stat: "spring_hero", max: 250 },
-  "collector": { class: "Pigman", stat: "collector", max: 500 },
-  "youngthug": { class: "Pigman", stat: "young_thug", max: 5 },
-  "toughskin": { class: "Pigman", stat: "tough_skin", max: 500 },
-  "graverobber": { class: "Pirate", stat: "grave_robber", max: 100 },
-  "deathfromabove": { class: "Pirate", stat: "death_from_above", max: 12 },
-  "burialatsea": { class: "Pirate", stat: "burial_at_sea", max: 5 },
-  "youshallnotpass": { class: "Squid", stat: "you_shall_not_pass", max: 10 },
-  "trustmeimadoctor": { class: "Squid", stat: "trust_me_im", max: 2500 },
-  "everblind": { class: "Squid", stat: "everblind", max: 250 },
-  "rewritingfate": { class: "Angel", stat: "rewriting_fate", max: 250 },
-  "ashestoashes": { class: "Dragon", stat: "ashes_to_ashes", max: 5 },
-  "perfectdisguise": { class: "Sheep", stat: "perfect_disguise", max: 100 },
-  "woollyrespite": { class: "Sheep", stat: "woolly_respite", max: 250 }
-};
 
 const MW_CUSTOM_MAPPINGS = {
   "bigleap": "Spider",
@@ -1016,9 +475,13 @@ function getGameIconUrl(gameName) {
   return `/img/games/${filename}`;
 }
 
+let _searchTimer;
 window.handleAchSearch = function() {
-  searchQuery = document.getElementById('achSearch').value.toLowerCase();
-  renderDashboard();
+  clearTimeout(_searchTimer);
+  _searchTimer = setTimeout(() => {
+    searchQuery = document.getElementById('achSearch').value.toLowerCase();
+    renderDashboard();
+  }, 150);
 };
 
 function toggleSettingsMenu(e) {
@@ -1226,7 +689,7 @@ window.setTierView = function(base64Id, tierNum) {
   renderDashboard();
 };
 
-function applyAchievementTags(ach) {
+function computeAchievementTags(ach) {
   let tagsHtml = '';
   let tipHtml = '';
   let cleanGame = ach.game.replace('Max ', '');
@@ -1297,10 +760,35 @@ function applyAchievementTags(ach) {
   return ach;
 }
 
+// Tags/tips depend only on game+title, so compute once instead of on every render.
+const _tagCache = new Map();
+function applyAchievementTags(ach) {
+  const key = `${showSecretTags}${showBrokenTags}|${ach.game}|${ach.title}`;
+  let c = _tagCache.get(key);
+  if (!c) {
+    const probe = { game: ach.game, title: ach.title, desc: ach.desc };
+    computeAchievementTags(probe);
+    c = { desc: probe.desc !== ach.desc ? probe.desc : undefined, tagsHtml: probe.tagsHtml || '', tipHtml: probe.tipHtml || '' };
+    _tagCache.set(key, c);
+  }
+  if (c.desc !== undefined) ach.desc = c.desc;
+  ach.tagsHtml = c.tagsHtml;
+  ach.tipHtml = c.tipHtml;
+  return ach;
+}
+
+const _idCache = new Map();
+function achId(title) {
+  let id = _idCache.get(title);
+  if (id === undefined) { id = btoa(encodeURIComponent(title)); _idCache.set(title, id); }
+  return id;
+}
+
 function renderDashboard() {
   if (!globalPlayerData) return;
 
   const isBookmarkViewActive = viewMode === 'bookmarks';
+  const ignoredSet = new Set(ignoredAchs), bookmarkedSet = new Set(bookmarkedAchs);
   
   let dataRefMissing = (isLegacyMode ? globalPlayerData.legacyMissing : globalPlayerData.missingAchievements).map(a => ({...a, trulyCompleted: false}));
   let dataRefCompleted = (isLegacyMode ? globalPlayerData.legacyCompleted : globalPlayerData.completedAchievements).map(a => ({...a, trulyCompleted: true}));
@@ -1516,11 +1004,11 @@ function renderDashboard() {
   if (bkBtn) bkBtn.classList.toggle('active', viewMode === 'bookmarks');
 
   allMissing.forEach(ach => {
-    let uniqueId = btoa(encodeURIComponent(ach.title)); 
+    let uniqueId = achId(ach.title); 
     ach.uniqueId = uniqueId;
 
-    let isIgnored = ignoredAchs.includes(uniqueId);
-    let isBookmarked = bookmarkedAchs.includes(uniqueId);
+    let isIgnored = ignoredSet.has(uniqueId);
+    let isBookmarked = bookmarkedSet.has(uniqueId);
 
     if (viewMode === 'ignored' && !isIgnored) return;
     if (viewMode === 'bookmarks' && !isBookmarked) return;
@@ -1671,13 +1159,13 @@ function renderDashboard() {
   }
   
   recents = recents.map(ach => {
-    ach.uniqueId = btoa(encodeURIComponent(ach.title));
+    ach.uniqueId = achId(ach.title);
     return applyAchievementTags(ach);
   });
 
   const generateCard = (ach, isTiered, progressBlock, notches, isHistory = false) => {
-    let isIgnored = ignoredAchs.includes(ach.uniqueId);
-    let isBookmarked = bookmarkedAchs.includes(ach.uniqueId);
+    let isIgnored = ignoredSet.has(ach.uniqueId);
+    let isBookmarked = bookmarkedSet.has(ach.uniqueId);
     let ignoreText = isIgnored ? 'Restore' : 'Ignore';
     let bookmarkClass = isBookmarked ? 'active-bookmark' : '';
     let bookmarkIcon = isBookmarked ? '★' : '☆';
@@ -1695,7 +1183,7 @@ function renderDashboard() {
       if (skinData) {
         const skinName = skinData.name;
         const safePath = encodeURI(skinData.path);
-        customRewardImg = `<span class="custom-skin-badge" title="${skinName}"><img src="${safePath}" onerror="this.style.display='none'"> <span>${skinName}</span></span>`;
+        customRewardImg = `<span class="custom-skin-badge" title="${skinName}"><img src="${safePath}" loading="lazy" decoding="async" onerror="this.style.display='none'"> <span>${skinName}</span></span>`;
       }
     }
 
@@ -1711,7 +1199,7 @@ function renderDashboard() {
         ${!isTiered && !isHistory && !ach.isLegacy ? `<span class="ach-percent">${ach.calcPct.toFixed(2)}%</span>` : ''}
         
         <div class="ach-card-header" title="${ach.game.replace('Max ', '')}">
-          <img src="${getGameIconUrl(ach.game)}" class="todo-game-icon" onerror="this.style.display='none'">
+          <img src="${getGameIconUrl(ach.game)}" class="todo-game-icon" loading="lazy" decoding="async" onerror="this.style.display='none'">
           <span class="ach-game">${ach.game.replace('Max ', '')}</span>
         </div>
         
@@ -2003,7 +1491,7 @@ const fmtDayUTC = ts => new Date(ts).toLocaleDateString(undefined, { timeZone: '
 function isLightTheme() { return ['light', 'cherry'].includes(document.documentElement.getAttribute('data-theme')); }
 function cssVar(name, fallback) { return (getComputedStyle(document.body).getPropertyValue(name) || '').trim() || fallback; }
 function hexRgb(h) { return [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)); }
-// Mix a hex colour towards white (255) or black (0) — used for the "claims" alternate shade.
+// Mix a hex colour towards white (255) or black (0) - used for the "claims" alternate shade.
 function mixHex(h, target, amt) { const c = hexRgb(h).map(v => Math.round(v + (target - v) * amt)); return `rgb(${c[0]}, ${c[1]}, ${c[2]})`; }
 function hexAlpha(h, a) { const c = hexRgb(h); return `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${a})`; }
 
@@ -2300,7 +1788,7 @@ function buildAnaChartOptions() {
 
 function initOrUpdateAnalyticsChart(opts = {}) {
   const ctx = document.getElementById('apHistoryChart');
-  if (!ctx || !globalPlayerData) return;
+  if (!ctx || !globalPlayerData || typeof Chart === 'undefined') return;
 
   const primaryUuid = normUuid(globalPlayerData.uuid);
   comparisonPlayers = comparisonPlayers.filter(p => p.uuid !== primaryUuid);
@@ -2512,6 +2000,29 @@ window.startCabinetTour = function(force = false) {
   }
 };
 
+// The archive is large and only the analytics chart needs it, so load it (and build the chart)
+// when that section is about to scroll into view rather than during first paint.
+let _archiveP = null, _anaObserver = null;
+function loadArchive() {
+  return _archiveP ||= fetch('ap_history_archive.json')
+    .then(r => (r.ok ? r.json() : {}))
+    .then(d => { historicalArchiveData = d || {}; return historicalArchiveData; })
+    .catch(() => { _archiveP = null; return historicalArchiveData; });
+}
+function scheduleAnalytics() {
+  if (apChartInstance) { initOrUpdateAnalyticsChart(); return; }
+  const section = document.getElementById('analytics-section');
+  if (!section) return;
+  if (_anaObserver) _anaObserver.disconnect();
+  if (!('IntersectionObserver' in window)) { loadArchive().then(() => initOrUpdateAnalyticsChart()); return; }
+  _anaObserver = new IntersectionObserver((entries, obs) => {
+    if (!entries.some(e => e.isIntersecting)) return;
+    obs.disconnect();
+    loadArchive().then(() => initOrUpdateAnalyticsChart());
+  }, { rootMargin: '400px' });
+  _anaObserver.observe(section);
+}
+
 function renderCabinet(data, softRender = false) {
   if (!softRender) document.title = `LitStats - ${data.username}'s Cabinet`;
   
@@ -2668,7 +2179,7 @@ function renderCabinet(data, softRender = false) {
     renderDashboard();
   }
 
-  initOrUpdateAnalyticsChart();
+  scheduleAnalytics();
   document.getElementById('cabinet-content').classList.remove('hidden');
 
   setTimeout(() => {
@@ -2707,6 +2218,9 @@ async function initCabinet(explicitLookupId) {
     return;
   }
 
+  // Start the leaderboard fetch now so it overlaps the player lookups below.
+  const huntersP = fetch('ap_hunters_data.json').then(r => (r.ok ? r.json() : null)).catch(() => null);
+
   if (typeof window.showLoader === 'function') {
     window.showLoader("Loading achievements...");
   }
@@ -2734,16 +2248,13 @@ async function initCabinet(explicitLookupId) {
     if (data.error) throw new Error(data.error);
 
     try {
-      const huntersRes = await fetch('ap_hunters_data.json');
-      if (huntersRes.ok) {
-        const huntersData = await huntersRes.json();
-        
-        let allPlayers = [];
+      const huntersData = await huntersP;
+      if (huntersData && huntersData.country_leaderboard) {
+        const allPlayers = [];
         huntersData.country_leaderboard.forEach(c => allPlayers.push(...c.top_players));
         allPlayers.sort((a, b) => b.current_ap - a.current_ap);
-
-        const hunterIndex = allPlayers.findIndex(h => h.uuid === data.uuid || h.username.toLowerCase() === data.username.toLowerCase());
-        
+        const uname = (data.username || '').toLowerCase();
+        const hunterIndex = allPlayers.findIndex(h => h.uuid === data.uuid || (h.username || '').toLowerCase() === uname);
         if (hunterIndex !== -1 && hunterIndex < 200) {
           data.leaderboardRank = hunterIndex + 1;
           data.country = allPlayers[hunterIndex].country || data.country;
@@ -2751,15 +2262,6 @@ async function initCabinet(explicitLookupId) {
       }
     } catch (err) {
       console.log("Could not load hunters data");
-    }
-
-    try {
-      const archiveRes = await fetch('ap_history_archive.json');
-      if (archiveRes.ok) {
-        historicalArchiveData = await archiveRes.json();
-      }
-    } catch (err) {
-      console.log("Could not load historical archive data");
     }
 
     renderCabinet(data);
@@ -2776,11 +2278,15 @@ async function initCabinet(explicitLookupId) {
   }
 }
 
+let _wasMobile = window.innerWidth <= 800, _resizeTimer;
 window.addEventListener('resize', () => {
-  if (globalPlayerData) {
-    populateFilters();
-    renderDashboard();
-  }
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(() => {
+    const m = window.innerWidth <= 800;
+    if (m === _wasMobile) return;          // layout is CSS-driven; only labels differ across the breakpoint
+    _wasMobile = m;
+    if (globalPlayerData) { populateFilters(); renderDashboard(); }
+  }, 150);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
