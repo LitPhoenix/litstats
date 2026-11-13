@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LitStats — Kit Protection Leaderboard</title>
+    <title>LitStats - Kit Protection Leaderboard</title>
     <meta name="description" content="Check out the highest protection percentage kits!">
     <meta name="theme-color" content="#ff5100">
     
@@ -19,12 +19,12 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://litstats.com/kitlb">
-    <meta property="og:title" content="LitStats — Kit Protection Leaderboard">
+    <meta property="og:title" content="LitStats - Kit Protection Leaderboard">
     <meta property="og:description" content="Check out the highest protection percentage kits!">
     <meta property="og:image" content="https://litstats.com/img/lq-protection-leaderboard-opengraph.jpg">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://litstats.com/kitlb">
-    <meta property="twitter:title" content="LitStats — Kit Protection Leaderboard">
+    <meta property="twitter:title" content="LitStats - Kit Protection Leaderboard">
     <meta property="twitter:description" content="Check out the highest protection percentage kits!">
     <meta property="twitter:image" content="https://litstats.com/img/lq-protection-leaderboard-opengraph.jpg">
     
@@ -258,57 +258,9 @@
             if (e.key === '2') setMatrixTier('P2');
         });
 
-        function extractLineEPF(enchantmentText) {
-            if (!enchantmentText || !enchantmentText.includes('Protection')) return 0;
-            if (enchantmentText.includes('Fire') || enchantmentText.includes('Blast') || enchantmentText.includes('Projectile')) return 0;
-            if (enchantmentText.includes('IV')) return 5;
-            if (enchantmentText.includes('III')) return 3;
-            if (enchantmentText.includes('II')) return 2;
-            if (enchantmentText.includes('I')) return 1;
-            return 0;
-        }
+        function extractLineEPF(enchantmentText) { return ArmourCalc.lineEpf(enchantmentText); }
 
-        function getPieceScore(piece) {
-            if (!piece) return 0;
-            let armor = BASE_ARMOUR_MAP[piece.id] || 0;
-            let epf = 0;
-            if (piece.lines) piece.lines.forEach(l => epf += extractLineEPF(l.text || l));
-            return (armor * 0.04) + (epf * 0.75 * 0.04);
-        }
-        
-        function getWeaponDamage(item) {
-            if (!item) return 1;
-            let base = 1;
-            const id = item.id.toLowerCase();
-            
-            if (id.includes('wooden_sword') || id.includes('golden_sword')) base = 4.0;
-            else if (id.includes('stone_sword')) base = 5.0;
-            else if (id.includes('iron_sword')) base = 6.0;
-            else if (id.includes('diamond_sword')) base = 7.0;
-            else if (id.includes('wooden_axe') || id.includes('golden_axe')) base = 3.0;
-            else if (id.includes('stone_axe')) base = 4.0;
-            else if (id.includes('iron_axe')) base = 5.0;
-            else if (id.includes('diamond_axe')) base = 6.0;
-            else if (id.includes('diamond_shovel') || id.includes('diamond_spade')) base = 4.0;
-            else if (id.includes('iron_shovel') || id.includes('iron_spade')) base = 3.0;
-            else if (id.includes('stone_shovel') || id.includes('stone_spade')) base = 2.0;
-            else if (id.includes('wooden_shovel') || id.includes('wooden_spade') || id.includes('golden_shovel')) base = 1.0;
-            else if (id.includes('fishing_rod')) base = 1.0;
-            
-            let sharpLvl = 0;
-            if (item.lines) {
-                const sharpLine = item.lines.find(l => (l.text || l).includes('Sharpness'));
-                if (sharpLine) {
-                    const txt = sharpLine.text || sharpLine;
-                    if (txt.includes('V')) sharpLvl = 5;
-                    else if (txt.includes('IV')) sharpLvl = 4;
-                    else if (txt.includes('III')) sharpLvl = 3;
-                    else if (txt.includes('II')) sharpLvl = 2;
-                    else if (txt.includes('I')) sharpLvl = 1;
-                }
-            }
-            return base + (sharpLvl * 1.25);
-        }
+        function getWeaponDamage(item) { return ArmourCalc.weaponDamage(item); }
 
         function resolveKitAsset(kitName) {
             const match = chestMap.find(c => c && c.name.toLowerCase() === kitName.toLowerCase());
@@ -324,6 +276,9 @@
                 return `img/blitz/leather_armor/${safeKey}_${piece.id}.png`;
             }
             if (piece.customImg) return piece.customImg;
+            // Heads/skulls live outside img/blitz/items, so the glint mask needs the real sprite path
+            if (piece.id === 'shark' || piece.id === 'player_head') return 'img/blitz/shark.png';
+            if (piece.id === 'wither_skeleton_skull') return 'img/blitz/wither_skeleton_skull.png';
             return `img/blitz/items/${piece.id}.png`;
         }
 
@@ -392,53 +347,32 @@
                     }
 
                     if (isMaxBlitzSimulated) {
-                        const blitzHelm = { id: 'iron_helmet', name: 'Iron Helmet', rarity: 'uncommon', lines: [] };
-                        const blitzChest = { id: 'iron_chestplate', name: 'Iron Chestplate', rarity: 'uncommon', lines: [] };
-                        const blitzLegs = { id: 'chainmail_leggings', name: 'Chainmail Leggings', rarity: 'uncommon', lines: [] };
-                        const blitzBoots = { id: 'iron_boots', name: 'Iron Boots', rarity: 'uncommon', lines: [] };
+                        ({ helmet, chestplate, leggings, boots } =
+                            ArmourCalc.applyMaxBlitzLoot({ helmet, chestplate, leggings, boots }));
 
-                        if (getPieceScore(blitzHelm) > getPieceScore(helmet)) helmet = blitzHelm;
-                        if (getPieceScore(blitzChest) > getPieceScore(chestplate)) chestplate = blitzChest;
-                        if (getPieceScore(blitzLegs) > getPieceScore(leggings)) leggings = blitzLegs;
-                        if (getPieceScore(blitzBoots) > getPieceScore(boots)) boots = blitzBoots;
-                        
                         if (bestWeaponDmg < 6.0) {
-                            bestWeapon = { id: 'stone_sword', name: 'Stone Sword', rarity: 'uncommon', lines: [{ text: 'Sharpness I', cls: 'c-grey' }], enchanted: true };
+                            bestWeapon = ArmourCalc.lootWeapon();
                         }
                     }
 
-                    let computedArmourPoints = 0;
-                    let accumulatedEPF = 0;
-                    const processedGearPieces = [helmet, chestplate, leggings, boots];
-
-                    processedGearPieces.forEach(piece => {
-                        if (!piece) return;
-                        computedArmourPoints += BASE_ARMOUR_MAP[piece.id] || 0;
-                        if (piece.lines) {
-                            piece.lines.forEach(line => {
-                                accumulatedEPF += extractLineEPF(line.text || line);
-                            });
-                        }
-                    });
-
-                    computedArmourPoints = Math.min(computedArmourPoints, 20);
-                    const baseArmourReduction = computedArmourPoints * 0.04;
-                    
-                    const verifiedEPF = Math.min(accumulatedEPF, 25);
-                    const averageEpfReduction = verifiedEPF * 0.75 * 0.04;
+                    const calc = ArmourCalc.protectionPercent({ helmet, chestplate, leggings, boots });
+                    const baseArmourReduction = calc.points * 0.04;
+                    const averageEpfReduction = calc.epf * 0.75 * 0.04;
 
                     const damagePassArmour = chosenDamageModel * (1 - baseArmourReduction);
                     const absoluteFinalDamage = damagePassArmour * (1 - averageEpfReduction);
                     
                     const finalProtectionPercentage = (1 - (absoluteFinalDamage / chosenDamageModel)) * 100;
-                    const survivalHitsToKill = 20.0 / absoluteFinalDamage;
+                    const bonusHp = ArmourCalc.bonusHealth(levelData);   // e.g. Guardian Health Boost: +4 HP
+                    const survivalHitsToKill = (20.0 + bonusHp) / absoluteFinalDamage;
 
                     calculatedMatrix.push({
                         name: kitName,
                         helmet, chestplate, leggings, boots,
                         primaryWeapon: bestWeapon,
                         protectionRatio: finalProtectionPercentage,
-                        hitsToKill: survivalHitsToKill
+                        hitsToKill: survivalHitsToKill,
+                        bonusHp
                     });
                 }
 
@@ -467,13 +401,13 @@
                                         <img src="${resolveKitAsset(entry.name)}" alt="${entry.name}">
                                     </div>
                                     <div>
-                                        <div class="kit-txt-name">${entry.name}${displayTierSuffix}</div>
+                                        <div class="kit-txt-name">${entry.name}${displayTierSuffix}${entry.bonusHp ? ` <span title="Health Boost: +${entry.bonusHp / 2} hearts (counted in hits to kill)" style="font-size:12px;color:var(--red);">+${entry.bonusHp / 2}♥</span>` : ''}</div>
                                     </div>
                                 </div>
                             </td>
                             <td>${slotsFlexHtml}</td>
-                            <td style="text-align: right; font-weight: 700; color: var(--text); font-family: 'DM Mono', monospace;">${entry.protectionRatio === 0 ? "0.0%" : entry.protectionRatio.toFixed(1) + "%"}</td>
-                            <td style="text-align: right; font-weight: 700; color: var(--accent); font-family: 'DM Mono', monospace;">${entry.hitsToKill.toFixed(1)}</td>
+                            <td style="text-align: right; font-weight: 600; color: var(--text); font-family: 'DM Mono', monospace;">${entry.protectionRatio === 0 ? "0.0%" : entry.protectionRatio.toFixed(1) + "%"}</td>
+                            <td style="text-align: right; font-weight: 600; color: var(--accent); font-family: 'DM Mono', monospace;">${entry.hitsToKill.toFixed(1)}</td>
                         </tr>
                     `;
                 });
