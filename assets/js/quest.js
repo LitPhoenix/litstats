@@ -220,23 +220,25 @@ function renderNextCountriesBatch() {
 
     const expandRow = document.createElement('tr');
     expandRow.className = 'country-players-row';
-    let subPlayersHTML = c.top_players.slice(0, 10).map((sp, i) => `
+    const buildSub = () => c.top_players.slice(0, 10).map((sp, i) => `
         <div class="sub-player">
           <div class="sub-player-left">
             <span class="sub-rank">${i+1}</span>
-            <img class="player-avatar" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
+            <img class="player-avatar" loading="lazy" decoding="async" style="width:20px;height:20px;" src="https://minotar.net/helm/${sp.username}/100" onerror="this.onerror=null;this.src='https://vzge.me/face/${sp.uuid}.png'">
             <span class="sub-name">${sp.username}</span>
           </div>
           <span class="sub-ap">${fmt(sp.current_quests)} Quests</span>
         </div>
       `).join('');
 
-    expandRow.innerHTML = `<td colspan="5"><div class="country-players-inner"><div class="sub-player-list">${subPlayersHTML}</div></div></td>`;
+    expandRow.innerHTML = `<td colspan="5"><div class="country-players-inner"><div class="sub-player-list"></div></div></td>`;
 
-    tr.addEventListener('click', () => {
-      tr.classList.toggle('open');
-      expandRow.classList.toggle('open');
-    });
+    let _filled = false;
+    const openCountry = () => {
+      if (!_filled) { expandRow.querySelector('.sub-player-list').innerHTML = buildSub(); _filled = true; }
+      tr.classList.toggle('open'); expandRow.classList.toggle('open');
+    };
+    tr.addEventListener('click', openCountry);
 
     fragment.appendChild(tr);
     fragment.appendChild(expandRow);
@@ -266,8 +268,9 @@ async function loadData() {
     const sortedByQuests = [...tempPlayers].sort((a,b) => b.current_quests - a.current_quests);
     const sortedByPrev = [...tempPlayers].sort((a,b) => (b.last_month_quests||0) - (a.last_month_quests||0));
     
+    const prevIdxMap = new Map(); sortedByPrev.forEach((op, i) => { if (!prevIdxMap.has(op.uuid)) prevIdxMap.set(op.uuid, i); });
     allPlayersList = sortedByQuests.map((p, idx) => {
-      const prevIdx = sortedByPrev.findIndex(op => op.uuid === p.uuid);
+      const prevIdx = prevIdxMap.has(p.uuid) ? prevIdxMap.get(p.uuid) : -1;
       return {
         ...p,
         globalRank: idx + 1,
@@ -354,7 +357,12 @@ function runLocalSearch(q) {
   }
 }
 
-searchInput.addEventListener('input', function() { runLocalSearch(this.value.toLowerCase().trim()); });
+let _searchT = null;
+searchInput.addEventListener('input', function() {
+  const v = this.value;
+  clearTimeout(_searchT);
+  _searchT = setTimeout(() => runLocalSearch(v.toLowerCase().trim()), 150);   // debounce: don't rebuild the table on every keystroke
+});
 
 searchInput.addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
