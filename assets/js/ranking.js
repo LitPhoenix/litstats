@@ -219,8 +219,8 @@
   };
   const HOW = `<details class="rk-how"><summary>How are these calculated?</summary><div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px; font-size: 13px; color: var(--text-2);">
     <div>Every game gets a score out of 1,000 from that player's stats.</div>
-    <div>A player's games are ranked best to worst. Their #1 game counts for far more than their #8.</div>
-    <div>Points = game score × that weight. So having more stats in a game can still earn fewer points if it sits lower on your list.</div>
+    <div>A player's games are ranked best to worst. Their #1 game counts for far more than their #10.</div>
+    <div>Points = game score × that weight. So having more stats in a game can still earn fewer points if it falls lower on your list.</div>
   </div></details>`;
   function minorIds(A, B) {
     const all = Object.keys(A.parts), mx = (id) => Math.max(A.parts[id] || 0, B.parts[id] || 0), mean = all.reduce((s, id) => s + mx(id), 0) / (all.length || 1);
