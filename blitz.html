@@ -4,21 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <title>LitStats — Blitz Kits</title>
+  <title>LitStats - Blitz Kits</title>
   <meta name="description" content="Generate a full breakdown of your Blitz Kit progress and stats.">
   <meta name="theme-color" content="#ff5100">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://litstats.com/blitz">
-  <meta property="og:title" content="LitStats — Blitz Kits">
+  <meta property="og:title" content="LitStats - Blitz Kits">
   <meta property="og:description" content="Generate a full breakdown of your Blitz Kit progress and stats.">
-  <meta property="og:image" content="https://litstats.com/img/lq-kit-stats-opengraph.jpg">
-
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://litstats.com/blitz">
-  <meta property="twitter:title" content="LitStats — Blitz Kits">
-  <meta property="twitter:description" content="Generate a full breakdown of your Blitz Kit progress and stats.">
-  <meta property="twitter:image" content="https://litstats.com/img/lq-kit-stats-opengraph.jpg">
+  <meta property="og:image" content="https://litstats.com/img/lq-blitz-opengraph.jpg">
 
   <link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +36,7 @@
     @keyframes glint { 0%{background-position:200% center} 100%{background-position:-200% center} }
 
     .hero-search-wrapper { text-align: center; margin-bottom: 32px; }
-    .hero-title { font-family: 'DM Sans', sans-serif; color: var(--text); font-size: 32px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .hero-title { color: var(--text); font-size: 32px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
     .modern-search { display: flex; gap: 8px; justify-content: center; margin-bottom: 8px; flex-wrap: wrap; }
     .modern-input { padding: 10px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; outline: none; width: 240px; transition: border-color 0.2s; box-shadow: var(--shadow); }
     .modern-input:focus { border-color: var(--accent); }
@@ -114,6 +108,46 @@
     .level-btn.active { background: var(--accent); color: #fff; box-shadow: 0 0 12px rgba(255, 81, 0, 0.4); }
     .level-btn.unowned-tier { opacity: 0.3; }
     .level-btn.unowned-tier:hover { opacity: 0.7; }
+
+    /* Active level button: always white text so dark tier colours stay readable on the orange */
+    html .level-btn.active.active.active.active { color: #fff !important; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+
+    /* Three-column kit viewer: kit panel | inventory | protection panel */
+    .inv-main-layout { max-width: 1060px; }
+    @media (max-width: 1080px) { .inv-main-layout { flex-wrap: wrap; } #kit-protection-panel { width: 100%; max-width: 540px; } }
+    #kit-protection-panel { gap: 0; }
+    .prot-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--text-2); margin-bottom: 8px; }
+    .prot-big { font-family: var(--mc-font); font-size: 30px; color: var(--accent); text-shadow: 1px 1px 0 rgba(0,0,0,0.5); }
+    .prot-sub { font-size: 11px; font-weight: 600; color: var(--text-2); margin: 4px 0 14px; }
+    .prot-rows { width: 100%; display: flex; flex-direction: column; gap: 8px; padding: 12px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .prot-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; color: var(--text-2); }
+    .prot-row span:last-child { color: var(--text); font-family: 'DM Mono', monospace; }
+    .loot-btn { margin-top: 14px; width: 100%; display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 6px; cursor: pointer; font: 600 13px 'DM Sans', sans-serif; color: var(--text); background: rgba(128,128,128,0.12); border: 1px solid var(--border); transition: 0.2s; }
+    .loot-btn img { width: 20px; height: 20px; image-rendering: pixelated; }
+    .loot-btn:hover { background: rgba(128,128,128,0.25); }
+    .loot-btn .loot-state { margin-left: auto; font-size: 11px; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 4px; background: rgba(128,128,128,0.25); }
+    .loot-btn.active { background: var(--accent); border-color: transparent; color: #fff; box-shadow: 0 0 12px rgba(255,81,0,0.4); }
+    .loot-btn.active .loot-state { background: rgba(0,0,0,0.25); }
+
+    .loot-row { display: flex; align-items: center; gap: 8px; margin-top: 14px; width: 100%; position: relative; }
+    .loot-row .loot-btn { margin-top: 0; flex: 1; min-width: 0; }
+    .info-tip { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border); color: var(--text-2); font: 700 12px 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; cursor: help; position: relative; }
+    .info-tip:hover, .info-tip:focus { color: var(--text); background: rgba(128,128,128,0.25); outline: none; }
+    .info-tip-text { display: none; position: absolute; bottom: calc(100% + 10px); right: -8px; width: 250px; padding: 12px; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); color: var(--text-2); font: 500 12px/1.45 'DM Sans', sans-serif; text-align: left; z-index: 50; }
+    .info-tip-text b { color: var(--text); }
+    .info-tip:hover .info-tip-text, .info-tip:focus .info-tip-text { display: block; }
+    .wins-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; color: var(--text-2); margin-bottom: 8px; text-align: center; }
+    .wins-list { display: flex; flex-direction: column; gap: 4px; max-height: 360px; overflow-y: auto; scrollbar-width: thin; }
+    .wins-row { position: relative; display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; cursor: pointer; overflow: hidden; font: 600 13px 'DM Sans', sans-serif; color: var(--text); }
+    .wins-row:hover { background: rgba(128,128,128,0.15); }
+    .wins-row .wins-fill { position: absolute; inset: 0 auto 0 0; background: rgba(255,81,0,0.14); z-index: 0; }
+    .wins-row > *:not(.wins-fill) { position: relative; z-index: 1; }
+    .wins-row .wins-rank { width: 18px; color: var(--text-2); font-size: 11px; text-align: right; }
+    .wins-row img { width: 20px; height: 20px; image-rendering: pixelated; }
+    .wins-row .wins-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .wins-row .wins-num { font-family: 'DM Mono', monospace; color: var(--green, #55FF55); }
+    .wins-empty { text-align: center; color: var(--text-2); font-size: 12px; padding: 12px 0; }
+    .prot-note { margin-top: 10px; font-size: 10px; color: var(--text-2); text-align: center; }
     
     .level-btn.level-color-2 { color: var(--tier-1, #00AA00); }
     .level-btn.level-color-a { color: var(--tier-2, #55FF55); }
@@ -275,6 +309,9 @@
         <button class="panel-tab" onclick="switchTab('main', 'coins')">
           <img src="img/gold_ingot.png" alt="Coins">
         </button>
+        <button class="panel-tab" onclick="switchTab('main', 'wins')" title="Most wins by kit">
+          <img src="https://api.minecraftitems.xyz/api/item/nether_star?size=2&glint=false" alt="Wins by kit">
+        </button>
       </div>
 
       <div id="main-tab-stats" class="tab-content active">
@@ -284,11 +321,19 @@
           <div class="stat-box" style="position: relative; overflow: hidden; padding-bottom: 12px;">
             <div class="stat-label">Wins</div>
             <div class="stat-val val-green" id="main-stat-wins">0</div>
-            <div id="main-win-bar" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, #FF5555 50%, #5555FF 50%);"></div>
+            <div id="main-win-bar" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 8px; display: flex;">
+              <div id="win-bar-solo" title="Solo" style="width: 50%; height: 100%; background: #FF5555;"></div>
+              <div id="win-bar-teams" title="Teams" style="width: 50%; height: 100%; background: #5555FF;"></div>
+            </div>
           </div>
           <div class="stat-box"><div class="stat-label">W/L Ratio</div><div class="stat-val val-orange" id="main-stat-wlr">0.00</div></div>
         </div>
         <div class="stat-box" style="width: 100%;"><div class="stat-label">Playtime</div><div class="stat-val val-yellow" id="main-stat-playtime">0m</div></div>
+      </div>
+
+      <div id="main-tab-wins" class="tab-content">
+        <div class="wins-title">Most wins by kit</div>
+        <div id="wins-by-kit-list" class="wins-list"></div>
       </div>
 
       <div id="main-tab-coins" class="tab-content">
@@ -396,6 +441,32 @@
           <div class="mc-grid" style="--cols: 9; --rows: 1;" id="hotbar-inv"></div>
         </div>
       </div>
+
+      <aside class="modern-side-panel" id="kit-protection-panel">
+        <div class="prot-title">Armour Protection</div>
+        <div class="prot-big" id="kit-prot-main">0.0%</div>
+        <div class="prot-sub" id="kit-prot-detail"></div>
+        <div class="prot-rows">
+          <div class="prot-row"><span>Kit only</span><span id="kit-prot-kit">0.0%</span></div>
+          <div class="prot-row"><span>With max loot</span><span id="kit-prot-loot">0.0%</span></div>
+          <div class="prot-row"><span>Health</span><span id="kit-prot-hp">20 HP</span></div>
+          <div class="prot-row"><span>Hits to kill</span><span id="kit-prot-htk">0.0</span></div>
+        </div>
+        <div class="loot-row">
+          <button type="button" class="loot-btn" id="max-loot-btn" onclick="toggleMaxLoot()" aria-pressed="false">
+            <img src="img/blitz/items/iron_chestplate.png" alt="">
+            <span>Max Blitz Loot</span>
+            <span class="loot-state">OFF</span>
+          </button>
+          <span class="info-tip" tabindex="0" aria-label="What does Max Blitz Loot do?">i
+            <span class="info-tip-text">
+              <b>Max Blitz Loot</b> simulates the best loot you can find in a game and adds it to the viewer: iron helmet, iron chestplate, chainmail leggings, iron boots, plus a Sharpness I stone sword if the kit has nothing as strong as an iron sword.<br><br>
+              A loot piece only replaces a kit piece when it raises your <i>total</i> protection, so strong enchanted pieces (like Shark or Shadow Knight heads) are kept. The kit's real gear is never changed.
+            </span>
+          </span>
+        </div>
+        <div class="prot-note">Hits to kill assumes a Stone Sword.</div>
+      </aside>
     </div>
   </div>
 
