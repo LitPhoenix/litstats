@@ -139,6 +139,22 @@
   const p2 = (n) => Number(n).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   /** How many times more a game counts than the average game for this player (the best game gets the peak bonus). */
   const weightX = (d, id) => { const v = Object.values(d.mult || {}).filter(x => x > 0), avg = v.length ? v.reduce((a, b) => a + b, 0) / v.length : 1; return (d.mult[id] || 0) / avg; };
+  const netId = () => (Object.values(G).find(g => g.kind === 'network') || {}).id;
+  /** A player's game order (1 = best) by game score, network excluded. This is the order the weights are handed out in. */
+  const slotOf = (d, id) => (id === netId() ? 0 : d.groups.filter(g => g.id !== netId() && g.points).sort((a, b) => b.earned - a.earned).findIndex(g => g.id === id) + 1);
+  const tier = (x, cuts) => cuts.filter(c => x >= c).length;
+  const verdict = (W, L) => {
+    const a = `<b>${esc(W.username)}</b>`, b = `<b>${esc(L.username)}</b>`;
+    return [`${a} edges out ${b}`, `${a} beats ${b}`, `${a} is better than ${b}`, `${a} outclasses ${b}`, `${a} mogs ${b}`, `${a} absolutely mogs ${b}`, `${a} sent ${b} back to the tutorial`, `${b} never stood a chance against ${a}`][tier(W.score - L.score, [3, 10, 25, 60, 120, 250, 400])];
+  };
+  const roundTag = (r, A, B) => {
+    if (r.pa === r.pb) return 'Dead level';
+    const w = r.pa > r.pb ? A : B, l = w === A ? B : A, hi = Math.max(r.pa, r.pb), lo = Math.min(r.pa, r.pb);
+    const a = `<b>${esc(w.username)}</b>`, b = `<b>${esc(l.username)}</b>`;
+    if (!(lo > 0)) return `${b} forgot to play this`;
+    return [`Photo finish, ${a} by a hair`, `${a} takes it`, `${a} is better here`, `${a} mogs ${b}`, `${a} flattens ${b}`, `${b} wasn't ready for this`, `${a} deleted ${b}`][tier(1 - lo / hi, [0.05, 0.2, 0.4, 0.6, 0.8, 0.92])];
+  };
+  const HOW = `<details class="rk-how"><summary>How are these points worked out?</summary><ol><li>Every game gets a score out of 1,000 from that player's stats.</li><li>A player's games are ranked best to worst. Their #1 game counts for far more than their #8.</li><li>Points = game score × that weight. So having more stats in a game can still earn fewer points if it sits lower on your list.</li></ol></details>`;
   function minorIds(A, B) {
     const all = Object.keys(A.parts), mx = (id) => Math.max(A.parts[id] || 0, B.parts[id] || 0), mean = all.reduce((s, id) => s + mx(id), 0) / (all.length || 1);
     const out = all.filter(id => id !== A.peakId && id !== B.peakId && mx(id) < 0.6 * mean);
@@ -345,15 +361,15 @@
     }
   }
   let t = null;
-  function onCfg() {
+  function onCfg(delay = 40) {   // delay: sliders pass a longer one so a drag doesn't re-score the whole pool on every tick
     store.set('litstats_rank_cfg', CFG); updateCustomUI();
     clearTimeout(t);
-    t = setTimeout(() => { rebuild(); shown = PAGE; renderBoard(); if (S.player) renderPlayer(); if (S.cmp.a && S.cmp.b) renderCompare(); }, 40);
+    t = setTimeout(() => { rebuild(); shown = PAGE; renderBoard(); if (S.player) renderPlayer(); if (S.cmp.a && S.cmp.b) renderCompare(); }, delay);
   }
   pop.addEventListener('input', (e) => {
     const el = e.target;
-    if (el.dataset.act === 'curve') { CFG.curve = parseFloat(el.value); $('curve-val').textContent = CFG.curve.toFixed(2); onCfg(); }
-    else if (el.dataset.gw) { CFG.gw[el.dataset.gw] = parseFloat(el.value); $(`gw-${el.dataset.gw}`).textContent = Math.round(el.value * 100) + '%'; onCfg(); }
+    if (el.dataset.act === 'curve') { CFG.curve = parseFloat(el.value); $('curve-val').textContent = CFG.curve.toFixed(2); onCfg(180); }
+    else if (el.dataset.gw) { CFG.gw[el.dataset.gw] = parseFloat(el.value); $(`gw-${el.dataset.gw}`).textContent = Math.round(el.value * 100) + '%'; onCfg(180); }
   });
   pop.addEventListener('change', (e) => {
     const el = e.target;
@@ -500,10 +516,10 @@
     const rankEl = $('pl-rank');
     if (d.rank && d.rank !== 'NON' && typeof formatRankText === 'function') { rankEl.innerHTML = formatRankText(d.rank, d.rankPlusColor, d.monthlyRankColor); rankEl.style.display = 'inline-block'; } else rankEl.style.display = 'none';
 
-    const best = d.groups.slice().sort((a, b) => (b.points ? b.earned / b.points : 0) - (a.points ? a.earned / a.points : 0))[0];
+    const best = d.groups.find(g => g.id === d.peakId) || d.groups.slice().sort((a, b) => (b.points ? b.earned / b.points : 0) - (a.points ? a.earned / a.points : 0))[0];
     const posCls = !d.position ? '' : d.position <= 10 ? 'rank-top10' : d.position <= 25 ? 'rank-top25' : d.position <= 50 ? 'rank-top50' : d.position <= 100 ? 'rank-top100' : '';
     $('pl-pills').innerHTML = (d.position ? `<span class="rank-num-pill ${posCls}" title="Position among tracked players with your current scoring">#${d.position.toLocaleString()} of ${d.poolN.toLocaleString()}</span>` : '') +
-      (best && best.points ? `<span class="rk-pill">Strongest <b>${esc(best.name)}</b></span>` : '') + `<a class="rk-pill" href="/cabinet?player=${encodeURIComponent(d.username)}">Open cabinet ➔</a>` + customBadge();
+      (best && best.points ? `<span class="rk-pill" title="The game that counts the most toward your score">Best game <b>${esc(best.name)}</b></span>` : '') + `<a class="rk-pill" href="/cabinet?player=${encodeURIComponent(d.username)}">Open cabinet ➔</a>` + customBadge();
     $('pl-score').textContent = d.score.toLocaleString(undefined, { maximumFractionDigits: 2 });
     $('pl-outof').textContent = `out of ${d.perfectScore.toLocaleString()}`;
     const pct = Math.min(100, (d.score / d.perfectScore) * 100);
@@ -517,7 +533,7 @@
     $('pl-zero').setAttribute('aria-pressed', S.pl.hideZero);
     $('pl-groups').innerHTML = d.groups.slice().sort((a, b) => (b.points ? b.earned / b.points : 0) - (a.points ? a.earned / a.points : 0)).map(g => {
       const p = g.points ? Math.round((g.earned / g.points) * 100) : 0;
-      return `<div class="filter-pill-btn ${S.pl.group === g.id ? 'active' : ''} ${g.points ? '' : 'disabled'}" data-group="${g.id}"><div class="filter-pill-fill" style="width:${p}%"></div>${ico(groupIcon(g.id)).replace('rk-ico', 'filter-pill-icon')}<span class="filter-pill-name">${esc(g.name)}</span><span class="filter-pill-stat">${p}%</span></div>`;
+      return `<div class="filter-pill-btn ${S.pl.group === g.id ? 'active' : ''} ${g.points ? '' : 'disabled'}" data-group="${g.id}" title="${esc(g.name)}: ${slotOf(d, g.id) ? '#' + slotOf(d, g.id) + ' game, ' : ''}+${p1(d.parts[g.id] || 0)} pts"><div class="filter-pill-fill" style="width:${p}%"></div>${ico(groupIcon(g.id)).replace('rk-ico', 'filter-pill-icon')}<span class="filter-pill-name">${slotOf(d, g.id) ? `<em class="rk-slotn">#${slotOf(d, g.id)}</em> ` : ''}${esc(g.name)}</span><span class="filter-pill-stat">${p}%</span></div>`;
     }).join('');
 
     const { key, dir } = S.pl.sort;
@@ -575,7 +591,7 @@
     pairs.forEach(p => { if (p.a.value > p.b.value) aLead++; else if (p.b.value > p.a.value) bLead++; else tie++; });
     CMPV.pairs = pairs;
     const diff = A.score - B.score;
-    $('cmp-summary').innerHTML = `<b>${esc(A.username)}</b> leads in <b>${aLead}</b> stats, <b>${esc(B.username)}</b> in <b>${bLead}</b>${tie ? `, ${tie} level` : ''}. ${diff === 0 ? 'Dead level overall.' : `<b>${esc(diff > 0 ? A.username : B.username)}</b> is ahead by <b>${p2(Math.abs(diff))}</b> points.`}`;
+    $('cmp-summary').innerHTML = (diff === 0 ? '' : `<div class="rk-verdict">${verdict(diff > 0 ? A : B, diff > 0 ? B : A)}</div>`) + `<b>${esc(A.username)}</b> leads in <b>${aLead}</b> stats, <b>${esc(B.username)}</b> in <b>${bLead}</b>${tie ? `, ${tie} level` : ''}. ${diff === 0 ? 'Dead level overall.' : `<b>${esc(diff > 0 ? A.username : B.username)}</b> is ahead by <b>${p2(Math.abs(diff))}</b> points.`}` + HOW;
     $('cmp-group').innerHTML = `<option value="all">All games</option>` + A.groups.filter(g => g.points).map(g => `<option value="${g.id}">${esc(g.name)}</option>`).join('');
     $('cmp-group').value = S.cmp.group; $('cmp-sort').value = S.cmp.sort;
     renderCmpList();
@@ -587,12 +603,21 @@
     if (S.cmp.sort === 'swing') games.sort((x, y) => Math.abs(y.pa - y.pb) - Math.abs(x.pa - x.pb));
     const split = (x, y) => { const tot = x + y, pa = tot ? (x / tot) * 100 : 50; return `<div class="rk-split"><i style="width:${pa}%"></i><i style="width:${100 - pa}%"></i></div>`; };
     const stat = (x, y, side) => `<div class="${side} ${x > y ? 'w' : x < y ? 'n' : ''} rk-num">${num(x)}</div>`;
-    const head = (d, id, e, p, o, side) => `<span class="${side} ${p > o ? 'w' : p < o ? 'n' : ''}"><b class="rk-num">+${p1(p)}</b><small>${Math.round(e).toLocaleString()} / 1,000</small>${d.peakId === id ? `<em class="rk-best">★ Best game · ×${weightX(d, id).toFixed(1)}</em>` : ''}</span>`;
+    const head = (d, id, e, p, o, side) => `<span class="${side} ${p > o ? 'w' : p < o ? 'n' : ''}"><b class="rk-num">+${p1(p)}</b><small>${Math.round(e).toLocaleString()} / 1,000</small>${d.peakId === id ? `<em class="rk-best">★ Best game · ×${weightX(d, id).toFixed(1)}</em>` : slotOf(d, id) ? `<em class="rk-best dim">#${slotOf(d, id)} game · ×${weightX(d, id).toFixed(1)}</em>` : ''}</span>`;
+    const gTag = (g) => (Math.abs(g.pa - g.pb) / (Math.max(g.pa, g.pb) || 1) >= 0.4 ? `<small class="rk-tag">${roundTag(g, A, B)}</small>` : '');
+    const why = (g, rows) => {
+      const la = rows.filter(p => p.a.value > p.b.value).length, lb = rows.filter(p => p.b.value > p.a.value).length;
+      const sw = la > lb ? 'a' : lb > la ? 'b' : null, pw = g.pa > g.pb ? 'a' : g.pb > g.pa ? 'b' : null;
+      if (!sw || !pw || sw === pw) return '';
+      const S1 = sw === 'a' ? A : B, S2 = sw === 'a' ? B : A;
+      if (!slotOf(S1, g.id) || !slotOf(S2, g.id)) return '';
+      return `<div class="rk-why"><b>${esc(S1.username)}</b> leads ${Math.max(la, lb)} of ${rows.length} stats here but earns fewer points. This is ${esc(S1.username)}'s #${slotOf(S1, g.id)} game (×${weightX(S1, g.id).toFixed(1)}) and ${esc(S2.username)}'s #${slotOf(S2, g.id)} (×${weightX(S2, g.id).toFixed(1)}), and higher games count for more.</div>`;
+    };
     const card = (g) => {
       const open = S.cmp.open.has(g.id), rows = pairs.filter(p => p.group === g.id);
       return `<section class="rk-g ${open ? 'open' : ''}"><button type="button" class="rk-g-h" data-g="${g.id}" aria-expanded="${open}">
         ${head(A, g.id, g.ea, g.pa, g.pb, 'l')}<span class="rk-g-mid"><span class="rk-g-name">${ico(groupIcon(g.id))}${esc(g.name)}<i class="rk-chev" aria-hidden="true"></i></span>${split(g.pa, g.pb)}</span>${head(B, g.id, g.eb, g.pb, g.pa, 'r')}</button>
-        ${open ? `<div class="rk-g-body">${rows.map(p => `<div class="rk-cmp-row">${stat(p.a.value, p.b.value, 'l')}<div class="rk-cmp-mid"><span>${ico(statIcon(p.st))}${esc(p.label)}</span>${split(p.a.value, p.b.value)}</div>${stat(p.b.value, p.a.value, 'r')}</div>`).join('')}</div>` : ''}</section>`;
+        ${open ? `<div class="rk-g-body">${why(g, rows)}${rows.map(p => `<div class="rk-cmp-row">${stat(p.a.value, p.b.value, 'l')}<div class="rk-cmp-mid"><span>${ico(statIcon(p.st))}${esc(p.label)}</span>${split(p.a.value, p.b.value)}</div>${stat(p.b.value, p.a.value, 'r')}</div>`).join('')}</div>` : ''}</section>`;
     };
     const minor = S.cmp.group === 'all' ? minorIds(A, B) : new Set(), big = games.filter(g => !minor.has(g.id)), small = games.filter(g => minor.has(g.id));
     let html = big.map(card).join('');
@@ -639,16 +664,19 @@
     return `<div class="ar-f ${side}" id="ar-f${side}"><span class="ar-crown">Winner</span><div class="ar-fp"><img class="ar-av" src="https://visage.surgeplay.com/bust/${d.uuid}" alt="" onerror="this.onerror=null;this.src='https://vzge.me/bust/${d.uuid}.png'"><div class="ar-fn"><span class="ar-name" style="${col && col.startsWith('#') ? `color:${col}` : ''}">${esc(d.username)}</span>${guildHTML(d.guildTag, d.guildColor)}</div></div>
       <div class="ar-tot" id="ar-t${side}">0.00</div><div class="ar-meter"><i id="ar-m${side}"></i></div><div class="ar-sub" id="ar-s${side}">0 rounds won</div></div>`;
   };
-  const sideHTML = (side, d, pk, x) => `<div class="ar-side ${side} ${pk ? 'peak' : ''}" id="ar-sd${side}"><div class="ar-gv" id="ar-gv${side}">0</div><div class="ar-gbar"><i id="ar-gb${side}"></i></div><div class="ar-best">${pk ? `★ Best game · counts ×${x.toFixed(1)}` : ''}</div></div>`;
+  const sideHTML = (side, d, r, pk) => {
+    const sl = r.bunch ? 0 : slotOf(d, r.id), x = r.bunch ? 0 : weightX(d, r.id);
+    return `<div class="ar-side ${side} ${pk ? 'peak' : ''}" id="ar-sd${side}"><div class="ar-gv" id="ar-gv${side}">0</div><div class="ar-gl">${r.bunch ? 'points' : 'game score / 1,000'}</div><div class="ar-gbar"><i id="ar-gb${side}"></i></div><div class="ar-best ${pk ? '' : 'dim'}">${r.bunch ? 'lowest weights' : pk ? `★ Best game · ×${x.toFixed(1)}` : sl ? `#${sl} game · ×${x.toFixed(1)}` : 'Network share'}</div><div class="ar-pts" id="ar-pt${side}"></div></div>`;
+  };
 
   async function playFight() {
     if (!S.cmp.a || !S.cmp.b) return;
     stopFight();
     const A = scorePayload(S.cmp.a), B = scorePayload(S.cmp.b), gB = Object.fromEntries(B.groups.map(g => [g.id, g]));
-    const all = A.groups.filter(g => g.points).map(g => ({ id: g.id, name: g.name, ga: g.earned, gb: (gB[g.id] || {}).earned || 0, pa: A.parts[g.id] || 0, pb: B.parts[g.id] || 0 })), minor = minorIds(A, B);
-    const rounds = all.filter(r => !minor.has(r.id)).sort((x, y) => Math.max(x.pa, x.pb) - Math.max(y.pa, y.pb));       // big rounds land last
-    const small = all.filter(r => minor.has(r.id));
-    if (small.length) rounds.unshift({ id: '_small', bunch: small, name: `${small.length} smaller games`, pa: small.reduce((s, r) => s + r.pa, 0), pb: small.reduce((s, r) => s + r.pb, 0) });   // the lowest games fight as one quick warm-up
+    const all = A.groups.filter(g => g.points).map(g => ({ id: g.id, name: g.name, ga: g.earned, gb: (gB[g.id] || {}).earned || 0, pa: A.parts[g.id] || 0, pb: B.parts[g.id] || 0 }));
+    const MAXR = 10, order = all.slice().sort((x, y) => Math.max(y.pa, y.pb) - Math.max(x.pa, x.pb));     // 10 rounds: the 9 biggest games alone, every smaller game bundled into the opening round
+    const rest = order.length > MAXR ? order.slice(MAXR - 1) : [], rounds = order.slice(0, order.length > MAXR ? MAXR - 1 : order.length).reverse();
+    if (rest.length) rounds.unshift({ id: '_small', bunch: rest, name: `${rest.length} smaller games`, pa: rest.reduce((s, r) => s + r.pa, 0), pb: rest.reduce((s, r) => s + r.pb, 0) });
     const tok = FIGHT = { skip: prefersReduced(), dead: false, speed: 1, wake: new Set(), done: false };
     const sleep = (ms) => new Promise(res => { if (tok.skip || tok.dead) return res(); const w = () => { clearTimeout(id); tok.wake.delete(w); res(); }; const id = setTimeout(w, ms / tok.speed); tok.wake.add(w); });
     const tween = (from, to, ms, apply) => new Promise(res => {
@@ -660,9 +688,10 @@
       raf = requestAnimationFrame(step);
     });
 
-    arena.innerHTML = `<div class="ar-top"><div class="ar-top-l"><span class="ar-roundlab" id="ar-rl">Get ready</span>${customBadge()}</div><div class="ar-hint"><span class="rk-star">★</span> A player's best game counts the most</div>
-        <div class="ar-ctrl"><button type="button" class="ar-btn" id="ar-speed" aria-label="Playback speed">1×</button><button type="button" class="ar-btn ar-main" id="ar-skip">Skip to result</button><button type="button" class="ar-btn" id="ar-close" aria-label="Close">✕</button></div></div>
+    arena.innerHTML = `<div class="ar-top"><div class="ar-top-l"><span class="ar-roundlab" id="ar-rl">Get ready</span>${customBadge()}</div>
+        <div class="ar-ctrl"><button type="button" class="ar-btn" id="ar-speed" aria-label="Playback speed">1×</button><button type="button" class="ar-btn" id="ar-close" aria-label="Close">✕</button></div></div>
       <div class="ar-stage">${fighterHTML(A, 'a')}<div class="ar-mid" id="ar-mid" aria-live="polite"></div>${fighterHTML(B, 'b')}</div>
+      <div class="ar-skiprow" id="ar-skiprow"><button type="button" class="ar-btn ar-main" id="ar-skip">Skip</button></div>
       <div class="ar-track" id="ar-track">${rounds.map((r, i) => `<span class="ar-chip" id="ar-c${i}" title="${esc(r.name)}">${r.bunch ? `<b>${r.bunch.length}</b>` : ico(groupIcon(r.id))}</span>`).join('')}</div>`;
     arena.classList.remove('hidden'); document.body.style.overflow = 'hidden'; $('ar-skip').focus();
     $('ar-close').onclick = closeArena;
@@ -676,18 +705,19 @@
     const bump = (s) => { const el = $('ar-t' + s); el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); };
     let tA = 0, tB = 0, wA = 0, wB = 0;
 
-    $('ar-mid').innerHTML = `<div class="ar-intro"><div class="ar-vs-big">VS</div><p>${rounds.length} rounds. Every game is scored out of 1,000, then turned into points. Your best game is worth the most.</p></div>`;
-    await sleep(1800); if (tok.dead) return;
+    $('ar-mid').innerHTML = `<div class="ar-intro"><div class="ar-vs-big">VS</div><ol class="ar-how"><li>${rounds.length} rounds. Each game is scored out of 1,000 from the player's stats.</li><li>A player's best games count for more, their lowest games for less.</li><li>Points = game score × that weight. More stats in a lower game can still earn fewer points.</li></ol></div>`;
+    await sleep(4500); if (tok.dead) return;
 
     for (let i = 0; i < rounds.length; i++) {
       const r = rounds[i], pkA = A.peakId === r.id, pkB = B.peakId === r.id;
       $('ar-rl').textContent = `Round ${i + 1} of ${rounds.length}`;
-      $('ar-mid').innerHTML = `<div class="ar-round"><div class="ar-gname">${r.bunch ? `<span class="rk-icons">${r.bunch.slice(0, 6).map(x => ico(groupIcon(x.id))).join('')}</span>` : ico(groupIcon(r.id))}<span>${esc(r.name)}</span></div><div class="ar-duel">${sideHTML('a', A, pkA, weightX(A, r.id))}${sideHTML('b', B, pkB, weightX(B, r.id))}</div></div>`;
+      $('ar-mid').innerHTML = `<div class="ar-round"><div class="ar-gname">${r.bunch ? `<span class="rk-icons">${r.bunch.slice(0, 6).map(x => ico(groupIcon(x.id))).join('')}</span>` : ico(groupIcon(r.id))}<span>${esc(r.name)}</span></div><div class="ar-duel">${sideHTML('a', A, r, pkA)}${sideHTML('b', B, r, pkB)}</div><div class="ar-tagline" id="ar-tag"></div></div>`;
       await sleep(260); if (tok.dead) return;
       await Promise.all([tween(0, r.bunch ? r.pa : r.ga, 520, v => setG('a', v, r)), tween(0, r.bunch ? r.pb : r.gb, 520, v => setG('b', v, r))]); if (tok.dead) return;
       const win = r.pa > r.pb ? 'a' : r.pb > r.pa ? 'b' : null;
       if (win) { $('ar-sd' + win).classList.add('win'); win === 'a' ? wA++ : wB++; }
       float('a', '+' + p2(r.pa), pkA); float('b', '+' + p2(r.pb), pkB);
+      $('ar-pta').textContent = '+' + p2(r.pa) + ' pts'; $('ar-ptb').textContent = '+' + p2(r.pb) + ' pts'; $('ar-tag').innerHTML = roundTag(r, A, B);
       await Promise.all([tween(tA, tA + r.pa, 520, v => setTot('a', v)), tween(tB, tB + r.pb, 520, v => setTot('b', v))]); if (tok.dead) return;
       tA += r.pa; tB += r.pb; bump('a'); bump('b');
       $('ar-sa').textContent = `${wA} round${wA === 1 ? '' : 's'} won`; $('ar-sb').textContent = `${wB} round${wB === 1 ? '' : 's'} won`;
@@ -695,17 +725,18 @@
       await sleep(pkA || pkB ? 800 : 160); if (tok.dead) return;
     }
     setTot('a', A.score); setTot('b', B.score);
-    tok.done = true; $('ar-skip').classList.add('hidden'); $('ar-speed').classList.add('hidden'); $('ar-rl').textContent = 'Final result';
+    tok.done = true; $('ar-skiprow').classList.add('off'); $('ar-speed').classList.add('hidden'); $('ar-rl').textContent = 'Final result';
     const win = A.score === B.score ? null : A.score > B.score ? 'a' : 'b', W = win === 'a' ? A : B;
     if (win) $('ar-f' + win).classList.add('champ');
     const sw = rounds.slice().sort((x, y) => Math.abs(y.pa - y.pb) - Math.abs(x.pa - x.pb))[0], swWho = sw.pa > sw.pb ? A : B;
-    $('ar-mid').innerHTML = `<div class="ar-result"><div class="ar-kicker">${win ? 'Winner' : 'Dead heat'}</div><h2>${win ? esc(W.username) : 'All square'}</h2>${win ? `<p class="ar-margin">by ${p2(Math.abs(A.score - B.score))} points</p>` : ''}
+    $('ar-mid').innerHTML = `<div class="ar-result"><div class="ar-kicker">${win ? 'Winner' : 'Dead heat'}</div><h2>${win ? esc(W.username) : 'All square'}</h2>${win ? `<p class="ar-margin">by ${p2(Math.abs(A.score - B.score))} points</p><p class="ar-verdict">${verdict(W, win === 'a' ? B : A)}</p>` : ''}
       <div class="ar-facts"><div><b>${wA} – ${wB}</b><span>rounds won</span></div><div><b>${esc(sw.name)}</b><span>decisive round: ${esc(swWho.username)} by ${p2(Math.abs(sw.pa - sw.pb))}</span></div><div><b>${A.peakId === B.peakId ? esc(gname(A.peakId)) : `${esc(gname(A.peakId))} vs ${esc(gname(B.peakId))}`}</b><span>${A.peakId === B.peakId ? 'best game for both' : 'best games'}</span></div></div>
-      <div class="ar-actions"><button type="button" class="ar-btn" id="ar-again">Replay</button><button type="button" class="ar-btn ar-main" id="ar-done">See full breakdown</button><button type="button" class="ar-btn" id="ar-copy">Copy link</button></div></div>`;
+      <div class="ar-actions"><button type="button" class="ar-btn" id="ar-again">Replay</button><button type="button" class="ar-btn ar-main" id="ar-done">Continue</button><button type="button" class="ar-btn" id="ar-copy">Copy link</button></div></div>`;
     $('ar-again').onclick = playFight; $('ar-done').onclick = closeArena; $('ar-copy').onclick = function () { shareCompare(this, 'Copy link'); };
     $('ar-done').focus();
   }
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !arena.classList.contains('hidden')) closeArena(); });
+  arena.addEventListener('click', (e) => { if (FIGHT && FIGHT.done && !e.target.closest('.ar-f, .ar-result, .ar-btn')) closeArena(); });   // click outside the cards once it has ended
 
   /* ================= init ================= */
   async function init() {
