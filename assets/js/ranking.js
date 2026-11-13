@@ -144,17 +144,83 @@
   const slotOf = (d, id) => (id === netId() ? 0 : d.groups.filter(g => g.id !== netId() && g.points).sort((a, b) => b.earned - a.earned).findIndex(g => g.id === id) + 1);
   const tier = (x, cuts) => cuts.filter(c => x >= c).length;
   const verdict = (W, L) => {
-    const a = `<b>${esc(W.username)}</b>`, b = `<b>${esc(L.username)}</b>`;
-    return [`${a} edges out ${b}`, `${a} beats ${b}`, `${a} is better than ${b}`, `${a} outclasses ${b}`, `${a} mogs ${b}`, `${a} absolutely mogs ${b}`, `${a} sent ${b} back to the tutorial`, `${b} never stood a chance against ${a}`][tier(W.score - L.score, [3, 10, 25, 60, 120, 250, 400])];
-  };
+  const a = `<b>${esc(W.username)}</b>`, b = `<b>${esc(L.username)}</b>`;
+  const t = tier(W.score - L.score, [3, 10, 20, 40, 80, 160, 320]);
+  
+  const tierOptions = [                           // FINAL SUMMARY MESSAGES
+    [                                             // Tier 0 (< 3)
+      `${a} just about beats ${b}`,
+      `${a} is almost even with ${b}`,
+      `${b} is catching up to ${a}`,
+    ],                   
+    [                                             // Tier 1 (3+)
+      `${a} beats ${b}`,
+      `${a} cooked ${b}`,
+    ],
+    [                                             // Tier 2 (10+)
+      `${a} is better than ${b}`,
+      `${a} clipped ${b}`,
+    ],                 
+    [                                             // Tier 3 (20+)
+      `${a} destroys ${b}`,
+      `${a} humbled ${b}`,
+      `${a} quickdropped ${b}`,
+    ],                       
+    [                                             // Tier 4 (40+)
+      `${a} mogs ${b}`,
+      `${a} put ${b} in a blender`,
+      `${a} sent ${b} back to the lobby`,
+    ],                           
+    [                                             // Tier 5 (80+)
+      `${a} absolutely mogs ${b}`,
+      `${a} rules over ${b}`,
+      `${a} folded ${b} like a lawn chair`,
+    ],                
+    [                                             // Tier 6 (160+)
+      `${a} is on another level than ${b}`,
+      `${a} is a king, ${b} is a peasant`,
+      `${a} is a master, ${b} is a noob`,
+      `${b} unplugged their keyboard`,
+    ],         
+    [                                             // Tier 7 (320+)
+      `${a} is in creative mode`,
+      `${a} is a god compared to ${b}`,
+      `${b} uninstalled Minecraft after losing to ${a}`,
+    ]
+  ];
+  
+  const options = tierOptions[t] || tierOptions[tierOptions.length - 1];
+  return options[Math.floor(Math.random() * options.length)];
+};
   const roundTag = (r, A, B) => {
-    if (r.pa === r.pb) return 'Dead level';
+    if (r.pa === r.pb) return 'Dead even';
     const w = r.pa > r.pb ? A : B, l = w === A ? B : A, hi = Math.max(r.pa, r.pb), lo = Math.min(r.pa, r.pb);
     const a = `<b>${esc(w.username)}</b>`, b = `<b>${esc(l.username)}</b>`;
     if (!(lo > 0)) return `${b} forgot to play this`;
-    return [`Photo finish, ${a} by a hair`, `${a} takes it`, `${a} is better here`, `${a} mogs ${b}`, `${a} flattens ${b}`, `${b} wasn't ready for this`, `${a} deleted ${b}`][tier(1 - lo / hi, [0.05, 0.2, 0.4, 0.6, 0.8, 0.92])];
+    
+    const t = tier(1 - lo / hi, [0.05, 0.2, 0.4, 0.6, 0.8, 0.92]);
+    const tierOptions = [             // ROUND BY ROUND MESSAGES
+      [`Close one, ${a} by a hair`],  // Tier 0
+      [`${a} takes the round`],              // Tier 1
+      [`${a} is better here`],        // Tier 2
+      [`${a} mogs ${b}`],             // Tier 3
+      [`${a} destroys ${b}`],         // Tier 4
+      [`${b} wasn't ready for this`], // Tier 5
+      [`${a} annihilated ${b}`],          // Tier 6
+      [                               // Tier 7 (Absolute domination)
+        `${b} unplugged their keyboard`,
+        `${b} is questioning their life choices`
+      ]
+    ];
+    
+    const options = tierOptions[t] || tierOptions[tierOptions.length - 1];
+    return options[Math.floor(Math.random() * options.length)];
   };
-  const HOW = `<details class="rk-how"><summary>How are these points worked out?</summary><ol><li>Every game gets a score out of 1,000 from that player's stats.</li><li>A player's games are ranked best to worst. Their #1 game counts for far more than their #8.</li><li>Points = game score × that weight. So having more stats in a game can still earn fewer points if it sits lower on your list.</li></ol></details>`;
+  const HOW = `<details class="rk-how"><summary>How are these calculated?</summary><div style="display: flex; flex-direction: column; gap: 6px; margin-top: 8px; font-size: 13px; color: var(--text-2);">
+    <div>Every game gets a score out of 1,000 from that player's stats.</div>
+    <div>A player's games are ranked best to worst. Their #1 game counts for far more than their #8.</div>
+    <div>Points = game score × that weight. So having more stats in a game can still earn fewer points if it sits lower on your list.</div>
+  </div></details>`;
   function minorIds(A, B) {
     const all = Object.keys(A.parts), mx = (id) => Math.max(A.parts[id] || 0, B.parts[id] || 0), mean = all.reduce((s, id) => s + mx(id), 0) / (all.length || 1);
     const out = all.filter(id => id !== A.peakId && id !== B.peakId && mx(id) < 0.6 * mean);
@@ -579,7 +645,7 @@
     const card = (d, win, side) => {
       const col = typeof getRankBaseColourHex === 'function' ? getRankBaseColourHex(d.rank, d.monthlyRankColor) : '';
       const tag = d.rank && d.rank !== 'NON' && typeof formatRankText === 'function' ? `<span class="mc-rank" style="font-size:18px">${formatRankText(d.rank, d.rankPlusColor, d.monthlyRankColor)}</span>` : '';
-      return `<div class="rk-cmp-card ${side} ${win ? 'win' : ''}">${win ? '<span class="rk-crown">Leads</span>' : ''}<img class="player-avatar" src="https://visage.surgeplay.com/bust/${d.uuid}" alt="" onerror="this.onerror=null;this.src='https://vzge.me/bust/${d.uuid}.png'">
+      return `<div class="rk-cmp-card ${side} ${win ? 'win' : ''}">${win ? '<span class="rk-crown">Winner</span>' : ''}<img class="player-avatar" src="https://visage.surgeplay.com/bust/${d.uuid}" alt="" onerror="this.onerror=null;this.src='https://vzge.me/bust/${d.uuid}.png'">
         <div><div class="player-name-row" style="gap:6px">${tag}<h2 style="${col && col.startsWith('#') ? `color:${col}` : ''}">${esc(d.username)}</h2>${guildHTML(d.guildTag, d.guildColor)}</div><div class="rk-muted" style="margin-top:6px">${d.position ? `#${d.position.toLocaleString()} of ${d.poolN.toLocaleString()}` : ''} ${customBadge()}</div></div>
         <div class="rk-bigscore"><b>${p2(d.score)}</b><span>score</span></div>${contribBar(d, side)}</div>`;
     };
@@ -591,7 +657,8 @@
     pairs.forEach(p => { if (p.a.value > p.b.value) aLead++; else if (p.b.value > p.a.value) bLead++; else tie++; });
     CMPV.pairs = pairs;
     const diff = A.score - B.score;
-    $('cmp-summary').innerHTML = (diff === 0 ? '' : `<div class="rk-verdict">${verdict(diff > 0 ? A : B, diff > 0 ? B : A)}</div>`) + `<b>${esc(A.username)}</b> leads in <b>${aLead}</b> stats, <b>${esc(B.username)}</b> in <b>${bLead}</b>${tie ? `, ${tie} level` : ''}. ${diff === 0 ? 'Dead level overall.' : `<b>${esc(diff > 0 ? A.username : B.username)}</b> is ahead by <b>${p2(Math.abs(diff))}</b> points.`}` + HOW;
+    $('cmp-summary').innerHTML = (diff === 0 ? '' : `<div class="rk-verdict" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 10px; color: var(--accent);">${verdict(diff > 0 ? A : B, diff > 0 ? B : A)}</div>`) + 
+      `<div><b>${esc(A.username)}</b> leads in <b>${aLead}</b> stats, <b>${esc(B.username)}</b> leads in <b>${bLead}</b>${tie ? `, ${tie} even` : ''}. ${diff === 0 ? 'Dead even overall.' : `<b>${esc(diff > 0 ? A.username : B.username)}</b> is ahead by <b>${p2(Math.abs(diff))}</b> points.`}</div>` + HOW;
     $('cmp-group').innerHTML = `<option value="all">All games</option>` + A.groups.filter(g => g.points).map(g => `<option value="${g.id}">${esc(g.name)}</option>`).join('');
     $('cmp-group').value = S.cmp.group; $('cmp-sort').value = S.cmp.sort;
     renderCmpList();
