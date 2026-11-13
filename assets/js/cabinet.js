@@ -13,10 +13,11 @@ let isHighestTierOnly = localStorage.getItem('litstats_highestTier') === 'true';
 let isHistoryHidden = localStorage.getItem('litstats_historyHidden') === 'true';
 let isMaxesHidden = localStorage.getItem('litstats_maxesHidden') === 'true';
 let isGoldApEnabled = localStorage.getItem('litstats_gold_ap') === 'true';
-let uiDensity = localStorage.getItem('litstats_density') || 'comfortable';   // 'comfortable' | 'compact' | 'list'
+const DEFAULT_DENSITY = 'comfortable';   // set to 'list' to make the streamlined list the default for new visitors
+let uiDensity = localStorage.getItem('litstats_density') || DEFAULT_DENSITY;   // 'comfortable' | 'compact' | 'list'
 let uiFilterStyle = localStorage.getItem('litstats_filterStyle') || 'auto';  // 'auto' (compact chips in list layout) | 'grid' | 'chips'
 if (!['auto', 'grid', 'chips'].includes(uiFilterStyle)) uiFilterStyle = 'auto';
-const DISPLAY_DEFAULTS = { heroPct: true, cardAp: true, tierPct: false, chalPct: true, rarity: true };
+const DISPLAY_DEFAULTS = { tips: true, heroPct: true, cardAp: true, tierPct: false, chalPct: true, rarity: true };
 let uiTierStyle = localStorage.getItem('litstats_tierStyle') === 'dots' ? 'dots' : 'chip';   // List layout: numbered chip or colour dots
 let displayPrefs = { ...DISPLAY_DEFAULTS };
 try { Object.assign(displayPrefs, JSON.parse(localStorage.getItem('litstats_display') || '{}')); } catch (e) {}
@@ -375,16 +376,53 @@ window.toggleViewMode = function(mode) {
   renderDashboard();
 };
 
-window.toggleIgnore = function(uniqueId) {
-  if (!ignoredAchs.includes(uniqueId)) {
-    if (!confirm("Are you sure you want to hide this achievement?")) return;
-    ignoredAchs.push(uniqueId);
-    bookmarkedAchs = bookmarkedAchs.filter(i => i !== uniqueId); 
-  } else {
-    ignoredAchs = ignoredAchs.filter(i => i !== uniqueId);
-  }
+function showToast(msg, actions = []) {
+  let host = document.getElementById('toast-host');
+  if (!host) { host = document.createElement('div'); host.id = 'toast-host'; document.body.appendChild(host); }
+  host.innerHTML = '';
+  const t = document.createElement('div');
+  t.className = 'toast';
+  const span = document.createElement('span');
+  span.textContent = msg;
+  t.appendChild(span);
+  actions.forEach(a => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = a.label;
+    btn.onclick = () => { t.remove(); a.fn(); };
+    t.appendChild(btn);
+  });
+  host.appendChild(t);
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => t.remove(), 8000);
+}
+
+function saveAchLists() {
   localStorage.setItem('litstats_ignored', JSON.stringify(ignoredAchs));
   localStorage.setItem('litstats_bookmarked', JSON.stringify(bookmarkedAchs));
+}
+
+window.toggleIgnore = function(uniqueId) {
+  if (!ignoredAchs.includes(uniqueId)) {
+    const wasBookmarked = bookmarkedAchs.includes(uniqueId);
+    let title = 'Achievement';
+    try { title = decodeURIComponent(atob(uniqueId)); } catch (e) {}
+    ignoredAchs.push(uniqueId);
+    bookmarkedAchs = bookmarkedAchs.filter(i => i !== uniqueId);
+    saveAchLists();
+    renderDashboard();
+    showToast(`Hidden \u201c${title}\u201d`, [
+      { label: 'Undo', fn: () => {
+          ignoredAchs = ignoredAchs.filter(i => i !== uniqueId);
+          if (wasBookmarked && !bookmarkedAchs.includes(uniqueId)) bookmarkedAchs.push(uniqueId);
+          saveAchLists(); renderDashboard();
+      } },
+      { label: 'View ignored', fn: () => { viewMode = 'ignored'; renderDashboard(); } }
+    ]);
+    return;
+  }
+  ignoredAchs = ignoredAchs.filter(i => i !== uniqueId);
+  saveAchLists();
   renderDashboard();
 };
 
@@ -558,14 +596,17 @@ function applyDensity() {
   document.body.classList.toggle('filters-chips', uiFilterStyle === 'chips' || (uiFilterStyle === 'auto' && uiDensity === 'list'));
   document.body.classList.toggle('highest-tier', !!isHighestTierOnly);
   document.body.classList.toggle('tier-dots', uiTierStyle === 'dots');
-  const hideClass = { heroPct: 'hide-hero-pct', cardAp: 'hide-card-ap', tierPct: 'hide-tier-pct', chalPct: 'hide-chal-pct', rarity: 'hide-rarity' };
+  const hideClass = { tips: 'hide-tips', heroPct: 'hide-hero-pct', cardAp: 'hide-card-ap', tierPct: 'hide-tier-pct', chalPct: 'hide-chal-pct', rarity: 'hide-rarity' };
   Object.keys(hideClass).forEach(k => {
     document.body.classList.toggle(hideClass[k], !displayPrefs[k]);
     const cb = document.getElementById('disp-' + k);
     if (cb) cb.checked = !!displayPrefs[k];
   });
-  const sel = document.getElementById('densitySelect');
-  if (sel) sel.value = uiDensity;
+  document.querySelectorAll('#view-switch button').forEach(b => {
+    const on = b.dataset.density === uiDensity;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', on);
+  });
   const fs = document.getElementById('filterStyleSelect');
   if (fs) fs.value = uiFilterStyle;
   const ts = document.getElementById('tierStyleSelect');
@@ -590,6 +631,25 @@ window.changeDensity = function(val) {
   uiDensity = ['comfortable', 'compact', 'list'].includes(val) ? val : 'comfortable';
   localStorage.setItem('litstats_density', uiDensity);
   applyDensity();
+  dismissLayoutHint();
+};
+
+// One-time nudge toward the List layout for people still on the default
+window.dismissLayoutHint = function() {
+  try { localStorage.setItem('litstats_layoutHintSeen', '1'); } catch (e) {}
+  document.getElementById('layout-hint')?.classList.add('hidden');
+};
+function updateLayoutHint() {
+  let seen = false;
+  try { seen = localStorage.getItem('litstats_layoutHintSeen') === '1'; } catch (e) {}
+  document.getElementById('layout-hint')?.classList.toggle('hidden', seen || uiDensity === 'list');
+}
+
+window.resetDisplaySettings = function() {
+  if (!confirm('Reset all display settings to default? Your bookmarks and ignored list are kept.')) return;
+  ['litstats_density','litstats_filterStyle','litstats_tierStyle','litstats_display','litstats_filterLabelMode','litstats_highestTier','litstats_gold_ap','litstats_excludeComp','litstats_multiSelect','litstats_multiExclude','litstats_layoutHintSeen']
+    .forEach(k => localStorage.removeItem(k));
+  location.reload();
 };
 
 window.toggleMultiExclude = function() {
@@ -783,6 +843,47 @@ function achId(title) {
   if (id === undefined) { id = btoa(encodeURIComponent(title)); _idCache.set(title, id); }
   return id;
 }
+
+// AP for the tier the player is working on now (or the single reward for a challenge).
+function rewardLeft(a) {
+  if (Array.isArray(a.allTiers) && a.allTiers.length) {
+    const cur = a.currentAmt || 0;
+    const next = [...a.allTiers].sort((x, y) => x.amount - y.amount).find(t => cur < t.amount);
+    return next ? (next.reward || 0) : 0;
+  }
+  return a.reward || 0;
+}
+
+function updateViewBanner(missing, bookmarkedSet) {
+  const el = document.getElementById('view-banner');
+  if (!el) return;
+  let html = '';
+  if (viewMode === 'bookmarks') {
+    if (isLegacyMode) {
+      html = 'Legacy achievements can no longer be earned, so there is no AP to add up.';
+    } else if (!bookmarkedAchs.length) {
+      html = 'No bookmarks yet. Press \u2606 on any achievement to track it here.';
+    } else {
+      let n = 0, ap = 0;
+      missing.forEach(a => { if (bookmarkedSet.has(achId(a.title))) { n++; ap += rewardLeft(a); } });
+      const cur = globalPlayerData.achievementPoints || globalPlayerData.current_ap || 0;
+      html = `<b>\u2605 ${n} bookmarked</b> \u00b7 finish them all for <b>+${ap.toLocaleString()} AP</b> \u2192 <b>${(cur + ap).toLocaleString()} AP</b> <span class="vb-sub">(now ${cur.toLocaleString()}; counts each achievement\u2019s current tier)</span>`;
+    }
+  } else if (viewMode === 'ignored') {
+    html = 'These achievements are hidden from your lists. Press <b>+</b> to bring one back, or choose <b>View All</b> to return.';
+  } else if (ignoredAchs.length) {
+    html = `${ignoredAchs.length} ignored achievement${ignoredAchs.length === 1 ? ' is' : 's are'} hidden from these lists. <button type="button" class="vb-link" onclick="toggleViewMode('ignored')">View ignored</button>`;
+  }
+  el.innerHTML = html;
+  el.classList.toggle('hidden', !html);
+}
+
+// Skin art may be stored with or without spaces in the filename: try both before giving up.
+window.skinImgFail = function(img) {
+  const alt = img.dataset.alt;
+  if (alt && !img.dataset.tried && alt !== img.getAttribute('src')) { img.dataset.tried = '1'; img.src = alt; }
+  else img.style.display = 'none';
+};
 
 function renderDashboard() {
   if (!globalPlayerData) return;
@@ -1183,7 +1284,7 @@ function renderDashboard() {
       if (skinData) {
         const skinName = skinData.name;
         const safePath = encodeURI(skinData.path);
-        customRewardImg = `<span class="custom-skin-badge" title="${skinName}"><img src="${safePath}" loading="lazy" decoding="async" onerror="this.style.display='none'"> <span>${skinName}</span></span>`;
+        customRewardImg = `<span class="custom-skin-badge" title="${skinName}"><img src="${safePath}" data-alt="${encodeURI(skinData.altPath || '')}" loading="lazy" decoding="async" onerror="skinImgFail(this)"> <span>${skinName}</span></span>`;
       }
     }
 
@@ -1291,6 +1392,7 @@ function renderDashboard() {
     }).join('');
   }
 
+  updateViewBanner(dataRefMissing, bookmarkedSet);
   document.getElementById('btn-more-tiered').style.display = viewLimitTiered < tiered.length ? 'block' : 'none';
   document.getElementById('btn-more-chal').style.display = viewLimitChal < challenges.length ? 'block' : 'none';
   document.getElementById('btn-more-rec').style.display = limits.recent < recents.length ? 'block' : 'none';
@@ -1398,6 +1500,29 @@ function processClaims(rewards) {
     if (!c.late) runningMax = c.points;
   });
   return claims;
+}
+
+// Reward claims exist for 200, 300 ... 25,000 AP (249 in total; there is no reward at 100).
+// "Unclaimed" = reward tiers below the player's highest claim that have no claim on record.
+const CLAIM_FIRST = 200, CLAIM_STEP = 100, CLAIM_MAX = 25000;
+function findUnclaimed(claims, currentAp = 0) {
+  const have = new Set(claims.map(c => c.points));
+  const highest = claims.reduce((m, c) => Math.max(m, c.points), 0);
+  const missing = [];
+  // below the highest claim, or between it and the player's current AP (those are claimable too)
+  const limit = Math.min(Math.max(highest, currentAp), CLAIM_MAX);
+  for (let p = CLAIM_FIRST; p <= limit; p += CLAIM_STEP) if (!have.has(p)) missing.push(p);
+  return missing;
+}
+function fmtClaimRanges(list) {
+  const out = [];
+  for (let i = 0; i < list.length;) {
+    let k = i;
+    while (k + 1 < list.length && list[k + 1] === list[k] + CLAIM_STEP) k++;
+    out.push(k === i ? list[i].toLocaleString() : `${list[i].toLocaleString()}\u2013${list[k].toLocaleString()} (${k - i + 1})`);
+    i = k + 1;
+  }
+  return out.join(', ');
 }
 
 function fmtClaimDate(ts) {
@@ -1692,12 +1817,16 @@ function renderClaimsPanel(entries) {
     const last = claims[claims.length - 1];
     const highest = Math.max(...claims.map(c => c.points));
     const lateCount = claims.filter(c => c.late).length;
-    const rows = [...claims].reverse().map(c =>
-      `<div class="claim-row ${c.late ? 'late' : ''}"><b>${c.points.toLocaleString()} AP</b> <i>${fmtClaimDate(c.ts)}${c.late ? ' (late claim)' : ''}</i></div>`
-    ).join('');
+    const unclaimed = findUnclaimed(claims, Number(e.currentAp) || 0);
+    const rows = [...claims, ...unclaimed.map(p => ({ points: p, unclaimed: true }))]
+      .sort((a, b) => b.points - a.points)
+      .map(c => c.unclaimed
+        ? `<div class="claim-row unclaimed"><b>${c.points.toLocaleString()} AP</b> <i>unclaimed</i></div>`
+        : `<div class="claim-row ${c.late ? 'late' : ''}"><b>${c.points.toLocaleString()} AP</b> <i>${fmtClaimDate(c.ts)}${c.late ? ' (late claim)' : ''}</i></div>`
+      ).join('');
     return `<details>
       <summary><span class="dot" style="background:${e.color}"></span><b>${escHtml(e.username)}</b>
-        ${e.currentAp > 0 ? `${Number(e.currentAp).toLocaleString()} AP now · ` : ''}${claims.length.toLocaleString()} rewards claimed · highest ${highest.toLocaleString()} AP · last claim ${fmtClaimDate(last.ts)}${lateCount ? ` · ${lateCount} late` : ''}
+        ${e.currentAp > 0 ? `${Number(e.currentAp).toLocaleString()} AP now · ` : ''}${claims.length.toLocaleString()} rewards claimed · highest ${highest.toLocaleString()} AP · ${unclaimed.length ? `<span class="unclaimed-chip">${unclaimed.length} unclaimed</span> · ` : ''}last claim ${fmtClaimDate(last.ts)}${lateCount ? ` · ${lateCount} late` : ''}
       </summary>
       <div class="claim-list">${rows}</div>
     </details>`;
@@ -1707,6 +1836,22 @@ function renderClaimsPanel(entries) {
 const anaMilestonePlugin = {
   id: 'anaMilestones',
   afterLayout(chart) { alignAnaSlider(chart); }, // runs after every layout (first show, resize, tab/section reveal)
+  beforeDatasetsDraw(chart) {                       // gold line at the top reward (25,000 AP) on the claims graph
+    if (anaPrefs.mode !== 'claims') return;
+    const y = chart.scales && chart.scales.y, a = chart.chartArea;
+    if (!y || !a) return;
+    const py = y.getPixelForValue(CLAIM_MAX);
+    if (!(py >= a.top - 1 && py <= a.bottom + 1)) return;       // 25k is outside the visible range
+    const { ctx } = chart, gold = isLightTheme() ? '#b7791f' : '#f5b301';
+    ctx.save();
+    ctx.strokeStyle = gold; ctx.lineWidth = 1.5; ctx.globalAlpha = 0.9;
+    ctx.beginPath(); ctx.moveTo(a.left, py); ctx.lineTo(a.right, py); ctx.stroke();
+    ctx.globalAlpha = 1; ctx.fillStyle = gold;
+    ctx.font = '600 11px "DM Sans", sans-serif'; ctx.textAlign = 'right';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('25,000 AP \u00b7 max reward', a.right - 6, py - 4);
+    ctx.restore();
+  },
   afterDatasetsDraw(chart) {
     const { ctx, chartArea: a } = chart, boxes = [];
     ctx.save();
@@ -1741,6 +1886,7 @@ function buildAnaChartOptions() {
   return {
     responsive: true,
     maintainAspectRatio: false,
+    layout: { padding: { top: 18 } },   // headroom so the 25k label can sit above the line
     animation: { duration: 250 },
     interaction: { mode: 'nearest', intersect: false },
     plugins: {
@@ -2311,6 +2457,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   applyDensity();
+  updateLayoutHint();
   syncDashLayout();
   if (document.getElementById('excludeComp')) document.getElementById('excludeComp').checked = isCompExcluded;
   if (document.getElementById('multiSelectToggle')) document.getElementById('multiSelectToggle').checked = isMultiSelect;
