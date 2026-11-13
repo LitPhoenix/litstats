@@ -206,6 +206,7 @@ Object.entries(customSkinRewards).forEach(([key, path]) => {
   
   normalizedSkinRewards[normKey] = {
     path: `${safeFolder}/${noSpaceFile}`,
+    altPath: `${safeFolder}/${fileName}`,
     name: cleanName,
     mwClass: parts.length > 2 ? parts[2].toLowerCase() : null 
   };
