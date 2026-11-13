@@ -237,6 +237,42 @@
       text-decoration: underline;
     }
 
+
+    /* Mini Leaderboard Carousel */
+    .mini-lb-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; gap: 12px; }
+    .mini-lb-head .mini-lb-title { margin-bottom: 0; text-align: left; }
+    .mini-lb-arrows { display: flex; gap: 6px; }
+    .mini-lb-arrow {
+      width: 28px; height: 28px; display: grid; place-items: center; padding: 0;
+      background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px;
+      color: var(--text-2); cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .mini-lb-arrow:hover { background: var(--surface-2); color: var(--accent); border-color: var(--accent); }
+    .mini-lb-arrow svg { width: 14px; height: 14px; }
+    .mini-lb-track {
+      display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      -ms-overflow-style: none; gap: 0; border-radius: 10px; overscroll-behavior-x: contain;
+    }
+    .mini-lb-track::-webkit-scrollbar { display: none; }
+    .mini-lb-slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; padding: 0 1px; box-sizing: border-box; }
+    .mini-lb-slide .mini-lb-card { text-align: left; }
+    .mini-lb-row {
+      display: flex; align-items: center; gap: 10px; padding: 10px 14px; font-size: 13px;
+      border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text);
+      transition: background 0.15s;
+    }
+    .mini-lb-row:hover { background: var(--surface-2); }
+    .mini-lb-row .pos { width: 28px; color: var(--text-3); font-weight: 700; flex-shrink: 0; }
+    .mini-lb-row img { width: 20px; height: 20px; border-radius: 4px; object-fit: contain; flex-shrink: 0; }
+    .mini-lb-row .nm { flex: 1; min-width: 0; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .mini-lb-row .val { font-weight: 700; color: var(--accent); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .mini-lb-row .val small { font-weight: 500; font-size: 11px; color: var(--text-3); }
+    .mini-lb-msg { padding: 20px; color: var(--text-3); font-size: 13px; text-align: center; min-height: 210px; display: grid; place-items: center; }
+    .mini-lb-msg.err { color: var(--red); }
+    .mini-lb-dots { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+    .mini-lb-dot { width: 7px; height: 7px; padding: 0; border: none; border-radius: 50%; background: var(--border-strong); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .mini-lb-dot.active { background: var(--accent); transform: scale(1.25); }
+
     /* Tools Showcase Hub */
     .showcase-wrapper {
       width: 100%;
@@ -325,7 +361,7 @@
         <img src="img/lq-favicon.png" alt="LitStats" style="width: 44px; height: 44px; border-radius: 6px;">
         <span>LitStats</span>
       </h1>
-      <p>Enter a Minecraft username and jump right into their stats.</p>
+      <p>Enter a Minecraft username and dive into their stats.</p>
       
       <!-- Clean Search Bar -->
       <div class="search-wrap">
@@ -345,17 +381,34 @@
       <div id="portStatus" class="port-status" aria-live="polite"></div>
       <div id="portError" style="color: var(--red); margin-bottom: 20px; font-size: 14px; font-weight: 600; display:none;"></div>
 
-      <!-- Mini Leaderboard -->
-      <div class="mini-lb-wrapper">
-        <div class="mini-lb-title">Current Top AP</div>
-        <div class="mini-lb-card">
-          <div id="mini-lb-content">
-            <div style="padding: 20px; color: var(--text-3); font-size: 13px;">Loading leaderboard data...</div>
-          </div>
-          <div class="mini-lb-footer">
-            <a href="leaderboard.html">View Full Leaderboard ➔</a>
+      <!-- Mini Leaderboards (carousel) -->
+      <div class="mini-lb-wrapper" id="miniLb" aria-roledescription="carousel" aria-label="Leaderboard previews">
+        <div class="mini-lb-head">
+          <div class="mini-lb-title" id="miniLbTitle">Top Ranked Players</div>
+          <div class="mini-lb-arrows">
+            <button type="button" class="mini-lb-arrow" id="miniLbPrev" aria-label="Previous leaderboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button type="button" class="mini-lb-arrow" id="miniLbNext" aria-label="Next leaderboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
           </div>
         </div>
+        <div class="mini-lb-track" id="miniLbTrack">
+          <div class="mini-lb-slide" data-title="Top Ranked Players" data-key="rank">
+            <div class="mini-lb-card"><div class="mini-lb-body"><div class="mini-lb-msg">Loading leaderboard data...</div></div>
+              <div class="mini-lb-footer"><a href="/ranking">View Full Ranking ➔</a></div></div>
+          </div>
+          <div class="mini-lb-slide" data-title="Top Questers" data-key="quest">
+            <div class="mini-lb-card"><div class="mini-lb-body"><div class="mini-lb-msg">Loading leaderboard data...</div></div>
+              <div class="mini-lb-footer"><a href="quest.html">View Full Quest Leaderboard ➔</a></div></div>
+          </div>
+          <div class="mini-lb-slide" data-title="Top Achievement Points" data-key="ap">
+            <div class="mini-lb-card"><div class="mini-lb-body"><div class="mini-lb-msg">Loading leaderboard data...</div></div>
+              <div class="mini-lb-footer"><a href="leaderboard.html">View Full Leaderboard ➔</a></div></div>
+          </div>
+          <div class="mini-lb-slide" data-title="Most Max Games" data-key="maxgames">
+            <div class="mini-lb-card"><div class="mini-lb-body"><div class="mini-lb-msg">Loading leaderboard data...</div></div>
+              <div class="mini-lb-footer"><a href="maxgames.html">View Full Max Games Leaderboard ➔</a></div></div>
+          </div>
+        </div>
+        <div class="mini-lb-dots" id="miniLbDots"></div>
       </div>
 
       <!-- Available Tools & Resources Showcase -->
@@ -364,6 +417,13 @@
           <span class="showcase-title">Leaderboards & Standings</span>
         </div>
         <div class="showcase-grid">
+          <a href="ranking" class="tool-tile">
+            <img src="img/mm/iron_sword.png" alt="Ranking">
+            <div class="tool-info">
+              <span class="tool-name">Ranking</span>
+              <span class="tool-desc">Overall player scores across Hypixel</span>
+            </div>
+          </a>
           <a href="leaderboard.html" class="tool-tile">
             <img src="img/diamond.png" alt="AP Leaderboard">
             <div class="tool-info">
@@ -456,11 +516,11 @@
     const PLATFORMS = [
       { id: 'ap',    label: 'AP Tracker',     icon: 'img/diamond.png',                 url: '/cabinet?player={p}' },
       { id: 'quest', label: 'Quest Tracker',  icon: 'img/xp.png',                      url: '/questing?name={p}' },
+      { id: 'rank',  label: 'Ranking',        icon: 'img/mm/iron_sword.png',           url: '/ranking?player={p}' },
       { id: 'blitz', label: 'Blitz',          icon: 'img/games/SG-64.png',             url: '/blitz?player={p}' },
       { id: 'bw',    label: 'Bed Wars',       icon: 'img/games/BedWars-64.png',        url: '/bedwars?player={p}' },
       { id: 'sw',    label: 'SkyWars',        icon: 'img/games/Skywars-64.png',        url: '/angel?player={p}' },
-      { id: 'mm',    label: 'Murder Mystery', icon: 'img/games/MurderMystery-64.png',  url: '/mm?player={p}' },
-      { id: 'rank',  label: 'Ranking',        icon: 'img/mm/iron_sword.png',           url: '/ranking?player={p}' }
+      { id: 'mm',    label: 'Murder Mystery', icon: 'img/games/MurderMystery-64.png',  url: '/mm?player={p}' }
     ];
 
     const DICE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.2" fill="currentColor"/></svg>';
@@ -604,47 +664,188 @@
       }
     });
 
-    async function loadMiniLeaderboard() {
-      try {
-        const currentHour = Math.floor(Date.now() / (1000 * 60 * 60));
-        const res = await fetch(`ap_hunters_data.json?v=${currentHour}`);
-        const data = await res.json();
-        
-        let allPlayers = [];
-        (data.country_leaderboard || []).forEach(c => {
-          if (c.top_players) allPlayers.push(...c.top_players);
-        });
-        
-        const uniquePlayers = Array.from(new Map(allPlayers.map(p => [p.uuid, p])).values());
-        uniquePlayers.sort((a, b) => (b.current_ap || 0) - (a.current_ap || 0));
-        
-        const top5 = uniquePlayers.slice(0, 5);
-        
-        const html = `
-          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
-            <tbody>
-              ${top5.map((p, index) => `
-                <tr style="border-bottom: 1px solid var(--border);">
-                  <td style="padding: 10px 14px; width: 36px; color: var(--text-3); font-weight: 700;">#${index + 1}</td>
-                  <td style="padding: 10px 14px; display: flex; align-items: center; gap: 10px;">
-                    <img src="https://visage.surgeplay.com/bust/${p.uuid || p.username}" onerror="this.src='https://minotar.net/helm/${p.username}/24'" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain;">
-                    <span style="font-weight: 600; color: var(--text);">${p.username}</span>
-                  </td>
-                  <td style="padding: 10px 14px; font-weight: 700; color: var(--accent); text-align: right;">
-                    ${(p.current_ap || 0).toLocaleString()} AP
-                  </td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-        `;
-        
-        document.getElementById('mini-lb-content').innerHTML = html;
-      } catch (err) {
-        document.getElementById('mini-lb-content').innerHTML = `<div style="padding: 20px; color: var(--red); font-size: 13px; text-align: center;">Failed to load leaderboard preview.</div>`;
-      }
+    // ---- Mini leaderboards ------------------------------------------------
+    const IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+    const API_BASE = IS_LOCAL ? 'http://localhost:3000' : 'https://api.litstats.com';
+    const LB_ROWS = 5;
+    const hourKey = () => Math.floor(Date.now() / 3600000);
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const fmtNum = (n) => Number(n || 0).toLocaleString();
+
+    function lbRows(list) {
+      if (!list.length) return '<div class="mini-lb-msg">No data yet.</div>';
+      return list.slice(0, LB_ROWS).map((p, i) => `
+        <a class="mini-lb-row" href="${p.href}">
+          <span class="pos">#${i + 1}</span>
+          <img src="https://visage.surgeplay.com/bust/${esc(p.uuid || p.name)}" onerror="this.onerror=null;this.src='https://minotar.net/helm/${esc(p.name)}/24'" alt="">
+          <span class="nm">${esc(p.name)}</span>
+          <span class="val">${p.value}</span>
+        </a>`).join('');
     }
-    loadMiniLeaderboard();
+    function setSlide(key, html, isErr) {
+      const body = document.querySelector(`.mini-lb-slide[data-key="${key}"] .mini-lb-body`);
+      if (!body) return;
+      body.innerHTML = isErr ? `<div class="mini-lb-msg err">${html}</div>` : html;
+    }
+    const flatPlayers = (data) => (data.country_leaderboard || []).flatMap(c => c.top_players || []);
+    const dedupe = (arr) => Array.from(new Map(arr.map(p => [p.uuid || p.username, p])).values());
+
+    async function loadRankLb() {
+      try {
+        const res = await fetch(`${API_BASE}/api/rank?stat=total&limit=${LB_ROWS}`);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const d = await res.json();
+        const list = (d.entries || []).map(p => ({
+          name: p.username, uuid: p.uuid, value: `${fmtNum(Math.round(p.value))} <small>points</small>`,
+          href: `/ranking?player=${encodeURIComponent(p.username)}`
+        }));
+        if (!list.length) throw new Error('empty');
+        setSlide('rank', lbRows(list));
+      } catch (err) { setSlide('rank', 'Failed to load ranking preview.', true); }
+    }
+
+    async function loadQuestLb() {
+      try {
+        const res = await fetch(`questers_data.json?v=${hourKey()}`);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const list = dedupe(flatPlayers(await res.json()))
+          .sort((a, b) => (b.current_quests || 0) - (a.current_quests || 0))
+          .map(p => ({ name: p.username, uuid: p.uuid, value: `${fmtNum(p.current_quests)} <small>quests</small>`, href: `/questing?name=${encodeURIComponent(p.username)}` }));
+        setSlide('quest', lbRows(list));
+      } catch (err) { setSlide('quest', 'Failed to load leaderboard preview.', true); }
+    }
+
+    async function loadApLb() {
+      try {
+        const res = await fetch(`ap_hunters_data.json?v=${hourKey()}`);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const list = dedupe(flatPlayers(await res.json()))
+          .sort((a, b) => (b.current_ap || 0) - (a.current_ap || 0))
+          .map(p => ({ name: p.username, uuid: p.uuid, value: `${fmtNum(p.current_ap)} <small>AP</small>`, href: `/cabinet?player=${encodeURIComponent(p.username)}` }));
+        setSlide('ap', lbRows(list));
+      } catch (err) { setSlide('ap', 'Failed to load leaderboard preview.', true); }
+    }
+
+    // Same counting rules as maxgames.js: top-level games, SkyClash / Crazy Walls are bonus notches, Seasonal needs every part.
+    async function loadMaxGamesLb() {
+      try {
+        const [staticRes, liveRes] = await Promise.allSettled([
+          fetch(`max_games_data.json?v=${hourKey()}`),
+          fetch(`${API_BASE}/api/maxgames`).then(r => (r.ok ? r.json() : null)),
+        ]);
+        if (staticRes.status !== 'fulfilled' || !staticRes.value.ok) throw new Error('Data fetch failed');
+        const data = await staticRes.value.json();
+        const EXTRA = new Set(['skyclash', 'crazywalls']);
+        const byId = Object.fromEntries(data.catalog.map(g => [g.id, g]));
+        const badgeToId = Object.fromEntries(data.catalog.filter(g => !g.derived).map(g => [g.badge, g.id]));
+        data.games = data.games || {};
+
+        if (liveRes.status === 'fulfilled' && liveRes.value) {
+          for (const [uuid, rec] of Object.entries(liveRes.value.players || {})) {
+            let added = false;
+            for (const [badge, firstSeen] of Object.entries(rec.games || {})) {
+              const id = badgeToId[badge], g = id && data.games[id];
+              if (!g || (g.lastReset && firstSeen < g.lastReset)) continue;
+              if (!g.players.some(e => e.uuid === uuid)) { g.players.push({ uuid, firstSeen }); added = true; }
+            }
+            if (added && !data.players[uuid]) data.players[uuid] = { uuid, username: rec.username, ap: rec.ap || 0 };
+          }
+        }
+
+        const gamePlayers = (id) => {
+          if (data.games[id]) return data.games[id].players || [];
+          const g = byId[id];
+          return g && g.badge && data.games[g.badge] ? (data.games[g.badge].players || []) : [];
+        };
+        const seasonalParts = data.catalog.filter(g => g.parent === 'seasonal').map(g => new Set(gamePlayers(g.id).map(e => e.uuid)));
+        const seasonalSet = new Set([...(seasonalParts[0] || [])].filter(u => seasonalParts.every(s => s.has(u))));
+        const has = (id, uuid) => id === 'seasonal' ? seasonalSet.has(uuid) : gamePlayers(id).some(e => e.uuid === uuid);
+
+        const top = data.catalog.filter(g => !g.parent);
+        const standard = top.filter(g => !EXTRA.has(g.id));
+        const extras = top.filter(g => EXTRA.has(g.id));
+        const uuids = new Set();
+        top.forEach(g => (g.id === 'seasonal' ? seasonalSet : gamePlayers(g.id).map(e => e.uuid)).forEach(u => uuids.add(u)));
+
+        const list = [...uuids].filter(u => data.players[u]).map(u => {
+          const std = standard.filter(g => has(g.id, u)).length;
+          const ext = extras.filter(g => has(g.id, u)).length;
+          return { uuid: u, std, ext, ap: data.players[u].ap || 0, name: data.players[u].username };
+        }).filter(r => r.std + r.ext > 0)
+          .sort((a, b) => (b.std + b.ext) - (a.std + a.ext) || b.std - a.std || b.ap - a.ap)
+          .map(r => ({ name: r.name, uuid: r.uuid, value: `${r.std}${r.ext ? ` <small>+${r.ext}</small>` : ''} <small>games</small>`, href: `/cabinet?player=${encodeURIComponent(r.name)}` }));
+        setSlide('maxgames', lbRows(list));
+      } catch (err) { setSlide('maxgames', 'Failed to load leaderboard preview.', true); }
+    }
+
+    // ---- Carousel ---------------------------------------------------------
+    function initMiniCarousel() {
+      const track = document.getElementById('miniLbTrack');
+      const slides = Array.from(track.querySelectorAll('.mini-lb-slide'));
+      const dotsWrap = document.getElementById('miniLbDots');
+      const titleEl = document.getElementById('miniLbTitle');
+      const wrap = document.getElementById('miniLb');
+      let idx = 0, timer = null, pausedUntil = 0, hovering = false;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      slides.forEach((s, i) => {
+        s.setAttribute('role', 'group');
+        s.setAttribute('aria-label', `${i + 1} of ${slides.length}: ${s.dataset.title}`);
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'mini-lb-dot';
+        d.setAttribute('aria-label', 'Show ' + s.dataset.title);
+        d.onclick = () => { goTo(i); pauseAuto(12000); };
+        dotsWrap.appendChild(d);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function render() {
+        titleEl.textContent = slides[idx].dataset.title;
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+      function goTo(i) {
+        idx = (i + slides.length) % slides.length;
+        track.scrollTo({ left: slides[idx].offsetLeft - track.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+        render();
+      }
+      function pauseAuto(ms) { pausedUntil = Date.now() + ms; }
+
+      document.getElementById('miniLbPrev').onclick = () => { goTo(idx - 1); pauseAuto(12000); };
+      document.getElementById('miniLbNext').onclick = () => { goTo(idx + 1); pauseAuto(12000); };
+
+      // Keep the title/dots in sync when the user swipes or scrolls
+      let raf = null;
+      track.addEventListener('scroll', () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const i = Math.round(track.scrollLeft / track.clientWidth);
+          if (i !== idx && i >= 0 && i < slides.length) { idx = i; render(); }
+        });
+      }, { passive: true });
+      track.addEventListener('touchstart', () => pauseAuto(12000), { passive: true });
+      track.addEventListener('wheel', () => pauseAuto(12000), { passive: true });
+
+      wrap.addEventListener('mouseenter', () => { hovering = true; });
+      wrap.addEventListener('mouseleave', () => { hovering = false; });
+      wrap.addEventListener('focusin', () => pauseAuto(12000));
+
+      // Gradual auto-advance (off for reduced-motion users)
+      if (!reduceMotion) {
+        timer = setInterval(() => {
+          if (hovering || document.hidden || Date.now() < pausedUntil) return;
+          goTo(idx + 1);
+        }, 6000);
+      }
+      window.addEventListener('resize', () => goTo(idx));
+      render();
+    }
+
+    initMiniCarousel();
+    loadRankLb();
+    loadQuestLb();
+    loadApLb();
+    loadMaxGamesLb();
   </script>
 </body>
 </html>
