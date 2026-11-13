@@ -169,7 +169,7 @@
     [                                             // Tier 4 (40+)
       `${a} mogs ${b}`,
       `${a} put ${b} in a blender!`,
-      `${a} is on another level than ${b}`,
+      `${a} is on a higher level than ${b}`,
       `${a} rules over ${b}`,
     ],                           
     [                                             // Tier 5 (80+)
@@ -797,7 +797,7 @@
     const win = A.score === B.score ? null : A.score > B.score ? 'a' : 'b', W = win === 'a' ? A : B;
     if (win) $('ar-f' + win).classList.add('champ');
     const sw = rounds.slice().sort((x, y) => Math.abs(y.pa - y.pb) - Math.abs(x.pa - x.pb))[0], swWho = sw.pa > sw.pb ? A : B;
-    $('ar-mid').innerHTML = `<div class="ar-result"><div class="ar-kicker">${win ? 'Winner' : 'Dead heat'}</div><h2>${win ? esc(W.username) : 'All square'}</h2>${win ? `<p class="ar-margin">by ${p2(Math.abs(A.score - B.score))} points</p><p class="ar-verdict">${verdict(W, win === 'a' ? B : A)}</p>` : ''}
+    $('ar-mid').innerHTML = `<div class="ar-result"><div class="ar-kicker">${win ? 'Winner' : 'Dead heat'}</div><h3 style="font-size: 40px;">${win ? esc(W.username) : 'All square'}</h3>${win ? `<p class="ar-margin">by ${p2(Math.abs(A.score - B.score))} points</p><p class="ar-verdict">${verdict(W, win === 'a' ? B : A)}</p>` : ''}
       <div class="ar-facts"><div><b>${wA} – ${wB}</b><span>rounds won</span></div><div><b>${esc(sw.name)}</b><span>decisive round: ${esc(swWho.username)} by ${p2(Math.abs(sw.pa - sw.pb))}</span></div><div><b>${A.peakId === B.peakId ? esc(gname(A.peakId)) : `${esc(gname(A.peakId))} vs ${esc(gname(B.peakId))}`}</b><span>${A.peakId === B.peakId ? 'best game for both' : 'best games'}</span></div></div>
       <div class="ar-actions"><button type="button" class="ar-btn" id="ar-again">Replay</button><button type="button" class="ar-btn ar-main" id="ar-done">Continue</button><button type="button" class="ar-btn" id="ar-copy">Copy link</button></div></div>`;
     $('ar-again').onclick = playFight; $('ar-done').onclick = closeArena; $('ar-copy').onclick = function () { shareCompare(this, 'Copy link'); };
