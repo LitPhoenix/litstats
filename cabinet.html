@@ -6,6 +6,8 @@
   <title>LitStats - Player Hub</title>
   
   <link rel="icon" type="image/png" href="img/lq-favicon.png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   
   <link rel="stylesheet" href="assets/css/global.css">
@@ -13,7 +15,7 @@
   <link rel="preload" as="image" href="img/lq-bg-embers.png" media="(prefers-color-scheme: dark)">
   <link rel="preload" as="image" href="img/lq-bg-embers-light.png" media="(prefers-color-scheme: light)">
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -116,12 +118,10 @@
             <button class="settings-btn" id="toggle-legacy-btn" onclick="toggleLegacyMode()">Legacy</button>
             
             <button class="settings-btn" id="start-tour-btn" onclick="startCabinetTour(true)" type="button" title="Redo Feature Tour">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="pointer-events:none;">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none;">
                 <circle cx="12" cy="12" r="10"></circle>
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
-              </svg>
               </svg>
               Tour
             </button>
@@ -373,9 +373,11 @@
   <div class="bottom-fade"></div>
   <div class="made-by-tag">made by <a href="https://namemc.com/profile/litphoenix.1" target="_blank" id="credits-hover">litphoenix</a></div>
 
-  <script src="assets/js/global.js"></script>
-  <script src="assets/js/tour.js"></script>
-  <script src="assets/js/credits.js"></script>
-  <script src="assets/js/cabinet.js"></script>
+  <script defer src="assets/js/global.js"></script>
+  <script defer src="assets/js/tour.js"></script>
+  <script defer src="assets/js/credits.js"></script>
+  <script defer src="assets/js/tips.js"></script>
+  <script defer src="assets/js/mw-data.js"></script>
+  <script defer src="assets/js/cabinet.js"></script>
 </body>
 </html>
