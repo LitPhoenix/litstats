@@ -1,3 +1,14 @@
+// Pin button + chip: loads the shared pin.js that sits next to this file (skipped if the page already includes it)
+(function () {
+  if (window.LitPin || document.querySelector('script[src*="pin.js"]')) return;
+  const s = document.createElement('script');
+  const base = (document.currentScript && document.currentScript.src) ? document.currentScript.src.replace(/[^/]*$/, '') : 'assets/js/';
+  s.src = base + 'pin.js';
+  s.dataset.anchor = '#blitz-player-search';
+  s.dataset.redirect = 'false';   // this file already auto-loads the player below
+  document.head.appendChild(s);
+})();
+
 const chestMap = [
     {id:'saddle', name:'Horsetamer', lore:'It\'s a real horse I ride'}, {id:'arrow', name:'Ranger', lore:'Gone beyond the wall'}, {id:'bow', name:'Archer', lore:'Ranged attacks.'}, {id:'iron_boots', name:'Astronaut', lore:'One mini step for man.'},
     {id:'witch_spawn_egg', name:'Troll', lore:'Trololololol.'}, {id:'cooked_beef', name:'MeatMaster', lore:'Harvset those mobs!'}, {id:'iron_hoe', name:'Reaper', lore:'Lurking in the darkness'},
@@ -42,7 +53,10 @@ function getBlitzAssetUrl(it) {
     
     if (id === 'potion' || id.includes('potion')) {
         const nameLower = (it.name || '').toLowerCase();
-        if (nameLower.includes('health boost') || nameLower.includes('fire resistance') || nameLower.includes('absorption')) return 'img/blitz/items/Splash_Potion_of_Fire_Resistance.png';
+        const isSplash = id === 'splash_potion' || nameLower.startsWith('splash');
+        if (nameLower.includes('health boost') || nameLower.includes('fire resistance') || nameLower.includes('absorption')) {
+            return isSplash ? 'img/blitz/items/Splash_Potion_of_Fire_Resistance.png' : 'img/blitz/items/Potion_of_Fire_Resistance.png';
+        }
         if (nameLower.includes('of harming')) return 'img/blitz/items/Splash_Potion_of_Harming.png';
         if (nameLower.includes('of wither') || nameLower.includes('weakness')) return 'img/blitz/items/Splash_Potion_of_Weakness.png';
         if (nameLower.includes('strength')) return 'img/blitz/items/Splash_Potion_of_Strength.png';
@@ -57,7 +71,8 @@ function getBlitzAssetUrl(it) {
         if (nameLower === 'scout') return 'img/blitz/items/Potion_of_Swiftness.png';
     }
     
-    if (id === 'player_head' || (it.name && it.name.toLowerCase() === 'shark head')) return 'img/blitz/shark.png';
+    if (id === 'player_head' || id === 'shark' || (it.name && it.name.toLowerCase() === 'shark head')) return 'img/blitz/shark.png';
+    if (id === 'wither_skeleton_skull') return 'img/blitz/wither_skeleton_skull.png';
     if (id === 'leather_chestplate' && it.name && it.name.toLowerCase() === 'armorer') return 'img/blitz/leather_armor/armorer_leather_chestplate.png';
     if (id === 'tall_grass' || id === 'grass' || id === 'short_grass') return 'img/blitz/items/Grass.png';
 
@@ -110,23 +125,43 @@ function renderPlayerSkinViewer(usernameOrUuid) {
     });
 }
 
+// ── Most wins by kit (player summary panel, third tab) ───────────────────────
+function renderWinsByKit() {
+    const list = document.getElementById('wins-by-kit-list');
+    if (!list) return;
+    const stats = window.KIT_STATS || {};
+    const rows = chestMap.filter(Boolean)
+        .map(k => ({ k, wins: (stats[normalizeKey(k.name)] || {}).wins || 0 }))
+        .filter(r => r.wins > 0)
+        .sort((a, b) => b.wins - a.wins);
+    if (!rows.length) { list.innerHTML = '<div class="wins-empty">No kit wins yet.</div>'; return; }
+    const top = rows[0].wins;
+    list.innerHTML = rows.map((r, i) => `
+        <div class="wins-row" onclick="openKit('${r.k.name.replace(/'/g, "\\'")}')" title="${r.k.name}: ${r.wins.toLocaleString()} wins">
+            <div class="wins-fill" style="width:${(r.wins / top * 100).toFixed(1)}%"></div>
+            <span class="wins-rank">${i + 1}</span>
+            <img src="${getBlitzAssetUrl(r.k)}" alt="" onerror="this.style.opacity='0'">
+            <span class="wins-name">${r.k.name}</span>
+            <span class="wins-num">${r.wins.toLocaleString()}</span>
+        </div>`).join('');
+}
+
 function switchTab(panelContext, tabName) {
     const isMain = panelContext === 'main';
     const wrapperId = isMain ? 'player-summary-panel' : 'inventory-view';
     const wrapper = document.getElementById(wrapperId);
     if (!wrapper) return;
-    
+
+    const TAB_ORDER = ['stats', 'coins', 'wins'];
     wrapper.querySelectorAll('.panel-tab').forEach((btn, idx) => {
-        if ((tabName === 'stats' && idx === 0) || (tabName === 'coins' && idx === 1)) btn.classList.add('active');
-        else btn.classList.remove('active');
+        btn.classList.toggle('active', TAB_ORDER[idx] === tabName);
     });
-    
+
     const prefix = isMain ? 'main' : 'kit';
-    const statsTab = document.getElementById(`${prefix}-tab-stats`);
-    const coinsTab = document.getElementById(`${prefix}-tab-coins`);
-    if (statsTab) statsTab.classList.remove('active');
-    if (coinsTab) coinsTab.classList.remove('active');
-    
+    TAB_ORDER.forEach(t => {
+        const el = document.getElementById(`${prefix}-tab-${t}`);
+        if (el) el.classList.remove('active');
+    });
     const activeEl = document.getElementById(`${prefix}-tab-${tabName}`);
     if (activeEl) activeEl.classList.add('active');
 }
@@ -479,10 +514,16 @@ async function fetchBlitzPlayer() {
             const soloWins = os.wins_solo_normal || 0;
             const soloPct = totalWins > 0 ? (soloWins / totalWins) * 100 : 50;
 
-            const winBar = document.getElementById('main-win-bar');
-            if (winBar) {
-                winBar.style.background = `linear-gradient(to right, #FF5555 ${soloPct}%, #5555FF ${soloPct}%)`;
+            const teamWins = os.wins_teams_normal || 0;
+            const soloEl = document.getElementById('win-bar-solo');
+            const teamsEl = document.getElementById('win-bar-teams');
+            if (soloEl && teamsEl) {
+                soloEl.style.width = soloPct + '%';
+                teamsEl.style.width = (100 - soloPct) + '%';
+                soloEl.title = `Solo: ${soloWins.toLocaleString()} wins`;
+                teamsEl.title = `Teams: ${teamWins.toLocaleString()} wins`;
             }
+            renderWinsByKit();
             
             const costData = calculateTotalCoins(window.PLAYER_KITS, window.PLAYER_PRESTIGES, vData.currentCoins || 0, vData.blitzStars || []);
             
@@ -770,15 +811,59 @@ function renderInventory() {
     if (!isOwned) invContainer.classList.add('locked-tier-view');
     else invContainer.classList.remove('locked-tier-view');
 
+    const view = getDisplayGear(d);
+    updateArmourProtection(d, view);
+
     document.getElementById('armour-slots').innerHTML = ['helmet','chestplate','leggings','boots']
-        .map(t => MCEngine.makeSlotHtml(d.armour[t], getBlitzAssetUrl(d.armour[t]), t)).join('');
+        .map(t => MCEngine.makeSlotHtml(view.armour[t], getBlitzAssetUrl(view.armour[t]), t)).join('');
         
     let m=''; for(let i=0; i<27; i++) m += MCEngine.makeSlotHtml(d.inv[i], getBlitzAssetUrl(d.inv[i]));
     document.getElementById('main-inv').innerHTML = m;
     
-    const hb = sortHotbar(d.hotbar);
+    const hb = sortHotbar(view.hotbar);
     let h=''; for(let i=0; i<9; i++) h += MCEngine.makeSlotHtml(hb[i], getBlitzAssetUrl(hb[i]));
     document.getElementById('hotbar-inv').innerHTML = h;
+}
+
+// ── Max Blitz Loot toggle + protection panel ───────────────────────────────
+let maxLootOn = false;
+try { maxLootOn = localStorage.getItem('litstats_max_loot') === '1'; } catch (e) {}
+
+function toggleMaxLoot() {
+    maxLootOn = !maxLootOn;
+    try { localStorage.setItem('litstats_max_loot', maxLootOn ? '1' : '0'); } catch (e) {}
+    if (activeKitName) renderInventory();
+}
+
+// What the viewer actually shows: the kit as-is, or with the free Blitz loot layered on top.
+function getDisplayGear(d) {
+    const armour = d.armour || {};
+    const hotbar = (d.hotbar || []).slice();
+    if (!maxLootOn || !window.ArmourCalc) return { armour, hotbar };
+    const hasRoom = hotbar.filter(i => i && i.id !== 'compass').length < 8;
+    if (ArmourCalc.bestWeaponDamage(hotbar) < 6.0 && hasRoom) hotbar.push(ArmourCalc.lootWeapon());
+    return { armour: ArmourCalc.applyMaxBlitzLoot(armour), hotbar };
+}
+
+function updateArmourProtection(d, view) {
+    if (!window.ArmourCalc || !document.getElementById('kit-prot-main')) return;
+    const shown = ArmourCalc.protectionPercent(view.armour);
+    const own = ArmourCalc.protectionPercent(d.armour || {});
+    const loot = ArmourCalc.protectionPercent(ArmourCalc.applyMaxBlitzLoot(d.armour || {}));
+    const hp = 20 + ArmourCalc.bonusHealth(d);
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    set('kit-prot-main', shown.percent.toFixed(1) + '%');
+    set('kit-prot-detail', `${shown.points} armour pts \u00b7 ${shown.epf} EPF`);
+    set('kit-prot-kit', own.percent.toFixed(1) + '%');
+    set('kit-prot-loot', loot.percent.toFixed(1) + '%');
+    set('kit-prot-hp', hp > 20 ? `${hp} HP (+${(hp - 20) / 2}\u2665)` : '20 HP');
+    set('kit-prot-htk', ArmourCalc.hitsToKill(view.armour, hp, 5).toFixed(1));
+    const btn = document.getElementById('max-loot-btn');
+    if (btn) {
+        btn.classList.toggle('active', maxLootOn);
+        btn.setAttribute('aria-pressed', maxLootOn ? 'true' : 'false');
+        btn.querySelector('.loot-state').textContent = maxLootOn ? 'ON' : 'OFF';
+    }
 }
 
 function sortHotbar(raw) {
@@ -886,7 +971,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 50);
 
     const params = new URLSearchParams(window.location.search);
-    const playerParam = params.get('player') || params.get('uuid') || sessionStorage.getItem('active_player_session') || sessionStorage.getItem('blitz_user');
+    const playerParam = params.get('player') || params.get('uuid') || sessionStorage.getItem('active_player_session') || sessionStorage.getItem('blitz_user') || localStorage.getItem('litstats_pinnedPlayer');
     if (playerParam) {
         const searchInput = document.getElementById('blitz-player-search');
         if (searchInput) searchInput.value = playerParam;
