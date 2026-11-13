@@ -182,7 +182,7 @@ body.rk-is-custom .table-wrap { border-top: 3px solid #ffb020; }
 /* Contribution bar */
 .rk-contrib { grid-column: 1 / -1; --pc: var(--accent); margin-top: 6px; }
 .rk-contrib.b { --pc: #5aa7ff; }
-.rk-contrib-bar { display: flex; gap: 2px; height: 12px; overflow: hidden; background: rgba(0,0,0,.18); }
+.rk-contrib-bar { display: flex; gap: 2px; height: 12px; overflow: hidden; }
 .rk-contrib-bar i { display: block; height: 100%; min-width: 2px; background: var(--pc); }
 .rk-contrib-bar i.pk { background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.45) 0 3px, transparent 3px 7px); box-shadow: 0 0 10px var(--pc); }
 .rk-contrib-cap { margin-top: 6px; font-size: 12px; color: var(--text-2); line-height: 1.4; }
@@ -239,9 +239,9 @@ body.light-theme .rk-best { color: #a86400; }
 .ar-btn:hover { background: #fff; color: #0a0807; }
 .ar-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .ar-btn.hidden { display: none; }
-.ar-main { background: var(--ac); color: #fff; }
+.ar-main { background: var(--accent); color: #fff; }
 .ar-stage { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr minmax(320px, 1.2fr) 1fr; gap: 18px; align-items: center; max-width: 1240px; width: 100%; margin: 0 auto; }
-.ar-f { --c: var(--ac); position: relative; display: flex; flex-direction: column; gap: 8px; padding: 20px 30px 18px 22px; background: linear-gradient(90deg, color-mix(in srgb, var(--c) 24%, #0a0807), #100c0b 75%); border-left: 6px solid var(--c); clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%); }
+.ar-f { --c: var(--accent); position: relative; display: flex; flex-direction: column; gap: 8px; padding: 20px 30px 18px 22px; background: linear-gradient(90deg, color-mix(in srgb, var(--c) 24%, #0a0807), #100c0b 75%); border-left: 6px solid var(--c); clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%); }
 .ar-f.b { --c: var(--bc); padding: 20px 22px 18px 30px; text-align: right; border-left: 0; border-right: 6px solid var(--c); background: linear-gradient(270deg, color-mix(in srgb, var(--c) 24%, #0a0807), #100c0b 75%); clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%); }
 .ar-f.champ { filter: drop-shadow(0 0 14px color-mix(in srgb, var(--c) 60%, transparent)); }
 .ar-crown { display: none; position: absolute; top: 10px; right: 30px; padding: 2px 10px; background: var(--c); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; transform: skewX(-14deg); }
@@ -266,7 +266,7 @@ body.light-theme .rk-best { color: #a86400; }
 @keyframes arUp { from { opacity: 0; transform: translateY(12px); } 15% { opacity: 1; } to { opacity: 0; transform: translateY(-40px); } }
 .ar-mid { text-align: center; min-width: 0; }
 .ar-intro { display: grid; gap: 14px; justify-items: center; }
-.ar-vs-big { font-size: clamp(64px, 10vw, 112px); font-weight: 800; line-height: .9; letter-spacing: -.04em; color: #f4efe9; transform: skewX(-8deg); text-shadow: 5px 0 0 var(--ac), -5px 0 0 var(--bc); }
+.ar-vs-big { font-size: clamp(64px, 10vw, 112px); font-weight: 800; line-height: .9; letter-spacing: -.04em; color: #f4efe9; transform: skewX(-8deg); text-shadow: 5px 0 0 var(--accent), -5px 0 0 var(--bc); }
 .ar-how { margin: 8px 0 10px; font-size: 13px; color: var(--text-muted, #a89f98); }
 .ar-how summary { cursor: pointer; font-weight: 600; }
 .ar-how ol { margin: 8px 0 0; padding-left: 20px; display: grid; gap: 4px; }
@@ -274,10 +274,10 @@ body.light-theme .rk-best { color: #a86400; }
 .ar-how li::before { content: counter(s); flex: none; display: grid; place-items: center; width: 22px; height: 22px; background: #f4efe9; color: #0a0807; font-size: 12px; font-weight: 800; transform: skewX(-12deg); }
 @keyframes arPop { from { transform: scale(.6); opacity: 0; } }
 .ar-gname { position: relative; display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; font-size: clamp(22px, 3vw, 32px); font-weight: 800; text-transform: uppercase; animation: arPop .25s ease-out; }
-.ar-gname::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: 0; height: 4px; background: linear-gradient(90deg, var(--ac) 50%, var(--bc) 50%); transform: skewX(-30deg); }
+.ar-gname::after { content: ""; position: absolute; left: 14%; right: 14%; bottom: 0; height: 4px; background: linear-gradient(90deg, var(--accent) 50%, var(--bc) 50%); transform: skewX(-30deg); }
 .ar-gname .rk-ico { width: 44px; height: 44px; }
 .ar-duel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.ar-side { --c: var(--ac); padding: 10px 12px; border-top: 3px solid rgba(255,255,255,.12); }
+.ar-side { --c: var(--accent); padding: 10px 12px; border-top: 3px solid rgba(255,255,255,.12); }
 .ar-side.b { --c: var(--bc); }
 .ar-side.win { border-top-color: var(--c); background: linear-gradient(180deg, color-mix(in srgb, var(--c) 16%, transparent), transparent); }
 .ar-gv { font-size: 34px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
@@ -307,7 +307,7 @@ body.light-theme .rk-best { color: #a86400; }
 .ar-chip { display: grid; place-items: center; width: 34px; height: 34px; border: 2px solid rgba(255,255,255,.12); opacity: .4; transform: skewX(-12deg); }
 .ar-chip > * { transform: skewX(12deg); }
 .ar-chip.done { opacity: 1; }
-.ar-chip.a { border-color: var(--ac); background: color-mix(in srgb, var(--ac) 25%, transparent); } 
+.ar-chip.a { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 25%, transparent); } 
 .ar-chip.b { border-color: var(--bc); background: color-mix(in srgb, var(--bc) 25%, transparent); } 
 .ar-chip.tie { border-color: #888; }
 
