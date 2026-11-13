@@ -722,3 +722,156 @@ for (const [kitName, levels] of Object.entries(window.KIT_DATABASE)) {
     lvl.inv.forEach(guessSlotAndApply);
   });
 }
+
+// =============================================================================
+// SHARED ARMOUR PROTECTION CALCULATOR (used by kitlb.html and blitz.html)
+// =============================================================================
+window.ArmourCalc = (function () {
+  const SLOTS = ['helmet', 'chestplate', 'leggings', 'boots'];
+
+  // Armour points per piece. Heads/skulls give 0 points (their value is the enchants).
+  const BASE_ARMOUR = {
+    leather_helmet: 1, leather_chestplate: 3, leather_leggings: 2, leather_boots: 1,
+    golden_helmet: 2, golden_chestplate: 5, golden_leggings: 3, golden_boots: 1,
+    chainmail_helmet: 2, chainmail_chestplate: 5, chainmail_leggings: 4, chainmail_boots: 1,
+    iron_helmet: 2, iron_chestplate: 6, iron_leggings: 5, iron_boots: 2,
+    diamond_helmet: 3, diamond_chestplate: 8, diamond_leggings: 6, diamond_boots: 3
+  };
+
+  const LOOT_LORE = { text: 'Max Blitz Loot', cls: 'c-grey' };
+
+  // What "Max Blitz Loot" gives for free in each slot.
+  const BLITZ_LOOT = {
+    helmet:     { id: 'iron_helmet',        name: 'Iron Helmet',        rarity: 'uncommon', lines: [LOOT_LORE] },
+    chestplate: { id: 'iron_chestplate',    name: 'Iron Chestplate',    rarity: 'uncommon', lines: [LOOT_LORE] },
+    leggings:   { id: 'chainmail_leggings', name: 'Chainmail Leggings', rarity: 'uncommon', lines: [LOOT_LORE] },
+    boots:      { id: 'iron_boots',         name: 'Iron Boots',         rarity: 'uncommon', lines: [LOOT_LORE] }
+  };
+
+  const ROMAN = { I: 1, V: 5, X: 10 };
+  function romanToInt(s) {
+    let total = 0;
+    for (let i = 0; i < s.length; i++) {
+      const v = ROMAN[s[i]] || 0, next = ROMAN[s[i + 1]] || 0;
+      total += v < next ? -v : v;
+    }
+    return total;
+  }
+
+  // Vanilla 1.8 Protection EPF per level: floor(floor((6 + L^2) / 3) * 0.75)
+  // I=1, II=2, III=3, IV=5, V=7
+  function protectionEpf(level) {
+    return Math.floor(Math.floor((6 + level * level) / 3) * 0.75);
+  }
+
+  // Only plain "Protection N" counts (Fire/Blast/Projectile Protection are ignored).
+  function lineEpf(line) {
+    const text = (line && line.text) || line || '';
+    const m = /^\s*Protection\s+([IVX]+)\b/.exec(text);
+    return m ? protectionEpf(romanToInt(m[1])) : 0;
+  }
+
+  function pieceEpf(piece) {
+    if (!piece || !piece.lines) return 0;
+    return piece.lines.reduce((sum, l) => sum + lineEpf(l), 0);
+  }
+
+  function protectionPercent(armour) {
+    let points = 0, epf = 0;
+    SLOTS.forEach(s => {
+      const p = armour[s];
+      if (!p) return;
+      points += BASE_ARMOUR[p.id] || 0;
+      epf += pieceEpf(p);
+    });
+    points = Math.min(points, 20);
+    epf = Math.min(epf, 25);
+    const armourReduction = points * 0.04;
+    const epfReduction = epf * 0.75 * 0.04;   // 0.75 = average enchant roll
+    return {
+      points, epf,
+      percent: (1 - (1 - armourReduction) * (1 - epfReduction)) * 100,
+      damageMultiplier: (1 - armourReduction) * (1 - epfReduction)
+    };
+  }
+
+  // For every slot, pick either the kit's piece or the free Blitz loot piece, whichever
+  // gives the best TOTAL protection. Tries all 16 combos, so the result can never be worse
+  // than the kit alone or the plain loot baseline, and strong enchanted heads are kept.
+  function applyMaxBlitzLoot(armour) {
+    let best = null, bestPct = -1;
+    for (let mask = 0; mask < 16; mask++) {   // bit set = use loot piece in that slot
+      const combo = {};
+      SLOTS.forEach((s, i) => {
+        const kitPiece = armour[s] || null;
+        const useLoot = (mask >> i) & 1;
+        combo[s] = (useLoot || !kitPiece) ? { ...BLITZ_LOOT[s] } : kitPiece;
+      });
+      const pct = protectionPercent(combo).percent;
+      if (pct > bestPct + 1e-9) { bestPct = pct; best = combo; }
+    }
+    return best;
+  }
+
+  // ---- Weapons ----
+  function weaponDamage(item) {
+    if (!item) return 1;
+    const id = item.id.toLowerCase();
+    let base = 1;
+    if (id.includes('wooden_sword') || id.includes('golden_sword')) base = 4.0;
+    else if (id.includes('stone_sword')) base = 5.0;
+    else if (id.includes('iron_sword')) base = 6.0;
+    else if (id.includes('diamond_sword')) base = 7.0;
+    else if (id.includes('wooden_axe') || id.includes('golden_axe')) base = 3.0;
+    else if (id.includes('stone_axe')) base = 4.0;
+    else if (id.includes('iron_axe')) base = 5.0;
+    else if (id.includes('diamond_axe')) base = 6.0;
+    else if (id.includes('diamond_shovel') || id.includes('diamond_spade')) base = 4.0;
+    else if (id.includes('iron_shovel') || id.includes('iron_spade')) base = 3.0;
+    else if (id.includes('stone_shovel') || id.includes('stone_spade')) base = 2.0;
+    else if (id.includes('wooden_shovel') || id.includes('wooden_spade') || id.includes('golden_shovel')) base = 1.0;
+    let sharp = 0;
+    const line = (item.lines || []).find(l => (l.text || l).includes('Sharpness'));
+    if (line) {
+      const m = /Sharpness\s+([IVX]+)/.exec(line.text || line);
+      if (m) sharp = romanToInt(m[1]);
+    }
+    return base + sharp * 1.25;
+  }
+
+  function isWeapon(it) {
+    return !!it && (/sword|axe|bow|shovel|spade/.test(it.id) ||
+      ['stick', 'ghast_tear', 'bone', 'poppy', 'fishing_rod'].includes(it.id));
+  }
+
+  function bestWeaponDamage(hotbar) {
+    return (hotbar || []).filter(isWeapon).reduce((m, w) => Math.max(m, weaponDamage(w)), 1);
+  }
+
+  // Max Blitz Loot weapon: Sharpness I stone sword (only used when the kit has nothing >= iron sword).
+  function lootWeapon() {
+    return { id: 'stone_sword', name: 'Stone Sword', rarity: 'uncommon', stack: null, enchanted: true,
+             lines: [{ text: 'Sharpness I', cls: 'c-grey' }, LOOT_LORE] };
+  }
+
+  // ---- Health ----
+  // Extra HP from a drinkable Health Boost potion in the kit (Guardian: "2 hearts" = 4 HP).
+  function bonusHealth(level) {
+    let hp = 0;
+    [...(level.hotbar || []), ...(level.inv || [])].forEach(it => {
+      if (!it || it.id !== 'potion') return;
+      const n = it.rawName || it.name || '';
+      if (!/health boost/i.test(n)) return;
+      const m = /(\d+)\s*hearts?/i.exec(n);
+      hp = Math.max(hp, (m ? +m[1] : 2) * 2);
+    });
+    return hp;
+  }
+
+  function hitsToKill(armour, hp, hitDamage) {
+    return (hp || 20) / ((hitDamage || 5) * protectionPercent(armour).damageMultiplier);
+  }
+
+  return { SLOTS, BASE_ARMOUR, BLITZ_LOOT, lineEpf, pieceEpf, protectionPercent, applyMaxBlitzLoot,
+           weaponDamage, isWeapon, bestWeaponDamage, lootWeapon, bonusHealth, hitsToKill };
+})();
