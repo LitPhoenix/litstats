@@ -231,11 +231,6 @@ function setupControls() {
   initBanner();
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', setupControls);
-} else {
-  setupControls();
-}
 
 function getPlusColourHex(colourName) {
   const colours = { 'RED': '#FF5555', 'GOLD': '#FFAA00', 'GREEN': '#55FF55', 'YELLOW': '#edd839', 'LIGHT_PURPLE': '#FF55FF', 'WHITE': '#d9dade', 'BLUE': '#5555FF', 'DARK_GREEN': '#00AA00', 'DARK_RED': '#AA0000', 'DARK_AQUA': '#00AAAA', 'DARK_PURPLE': '#AA00AA', 'DARK_GRAY': '#555555', 'BLACK': '#000000', 'DARK_BLUE': '#0000AA' };
@@ -482,4 +477,13 @@ function closeBanner() {
   const banner = document.getElementById('lit-banner');
   if (banner) banner.classList.add('hidden');
   localStorage.setItem(`litBannerClosed_${bannerVersion}`, 'true');
+}
+
+// Kick off setup only after every top-level const above is initialised. Running it earlier
+// (when the script loads after the page is parsed) hit consts such as bannerMode / GUILD_COL in their
+// temporal dead zone and aborted the whole file.
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupControls);
+} else {
+  setupControls();
 }
