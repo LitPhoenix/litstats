@@ -168,24 +168,25 @@
     ],                       
     [                                             // Tier 4 (40+)
       `${a} mogs ${b}`,
-      `${a} put ${b} in a blender`,
-      `${a} sent ${b} back to the lobby`,
+      `${a} put ${b} in a blender!`,
+      `${a} is on another level than ${b}`,
+      `${a} rules over ${b}`,
     ],                           
     [                                             // Tier 5 (80+)
       `${a} absolutely mogs ${b}`,
-      `${a} rules over ${b}`,
-      `${a} folded ${b} like a lawn chair`,
+      `${a} sent ${b} back to the lobby!`,
+      `${a} folded ${b} like a lawn chair!`,
     ],                
     [                                             // Tier 6 (160+)
-      `${a} is on another level than ${b}`,
-      `${a} is a king, ${b} is a peasant`,
-      `${a} is a master, ${b} is a noob`,
-      `${b} unplugged their keyboard`,
+      `${a} is a king, ${b} is a peasant!`,
+      `${a} is a master, ${b} is a noob!`,
+      `${b} unplugged their keyboard!`,
     ],         
     [                                             // Tier 7 (320+)
-      `${a} is in creative mode`,
+      `${a} is in creative mode!`,
       `${a} is a god compared to ${b}`,
-      `${b} uninstalled Minecraft after losing to ${a}`,
+      `Has ${b} played Hypixel before?`,
+      `${b} uninstalled Minecraft after losing to ${a}!`,
     ]
   ];
   
@@ -202,14 +203,14 @@
     const tierOptions = [             // ROUND BY ROUND MESSAGES
       [`Close one, ${a} by a hair`],  // Tier 0
       [`${a} takes the round`],              // Tier 1
-      [`${a} is better here`],        // Tier 2
+      [`${a} is better`],        // Tier 2
       [`${a} mogs ${b}`],             // Tier 3
       [`${a} destroys ${b}`],         // Tier 4
-      [`${b} wasn't ready for this`], // Tier 5
+      [`${b} got montaged!`], // Tier 5
       [`${a} annihilated ${b}`],          // Tier 6
       [                               // Tier 7 (Absolute domination)
-        `${b} unplugged their keyboard`,
-        `${b} is questioning their life choices`
+        `${b} unplugged their keyboard!`,
+        `${b} is questioning their life choices!`
       ]
     ];
     
