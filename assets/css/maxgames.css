@@ -171,7 +171,7 @@
 #mg-table .player-row { cursor: pointer; }
 .mg-name { font-weight: 600; color: var(--text); text-decoration: none; }
 .mg-name.ranked { color: var(--rank-c); }
-body.light-theme .mg-name.ranked { color: color-mix(in srgb, var(--rank-c) 62%, #000); }
+body.light-theme .mg-name.ranked { color: color-mix(in srgb, var(--rank-c) 90%, #000); }
 #mg-table .player-row:hover .mg-name { text-decoration: underline; text-underline-offset: 3px; }
 #mg-table .mg-rank-tag { margin-right: 6px; font-size: 13px; }
 
