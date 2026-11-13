@@ -401,7 +401,12 @@
     if (!query) $('searchInput').value = '';
     if (data) renderAll();
   };
-  $('searchInput').addEventListener('input', function () { window.runLocalSearch(this.value); });
+  let searchT = null;
+  $('searchInput').addEventListener('input', function () {
+    const v = this.value;
+    clearTimeout(searchT);
+    searchT = setTimeout(() => window.runLocalSearch(v), 150);   // debounce: renderAll() is heavy
+  });
   $('searchInput').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') { e.preventDefault(); const n = this.value.trim(); if (n) lookup(n); }
   });
@@ -432,12 +437,14 @@
 
   /* ---------------- Load ---------------- */
   function mergeLive(players) {
+    const seenByGame = {};   // game id -> Set of uuids, so the merge is O(n) instead of a .some() scan per player
     for (const [uuid, rec] of Object.entries(players || {})) {
       let added = false;
       for (const [badge, firstSeen] of Object.entries(rec.games || {})) {
         const id = badgeToId[badge], g = id && data.games[id];
         if (!g || (g.lastReset && firstSeen < g.lastReset)) continue;     // stale: predates the last reset
-        if (!g.players.some(e => e.uuid === uuid)) { g.players.push({ uuid, firstSeen }); added = true; }
+        const seen = seenByGame[id] || (seenByGame[id] = new Set(g.players.map(e => e.uuid)));
+        if (!seen.has(uuid)) { g.players.push({ uuid, firstSeen }); seen.add(uuid); added = true; }
       }
       if (added && !data.players[uuid]) {
         data.players[uuid] = { uuid, username: rec.username, country: 'Unknown', ap: rec.ap || 0, rank: rec.rank, rankPlusColor: rec.rankPlusColor, monthlyRankColor: rec.monthlyRankColor };
