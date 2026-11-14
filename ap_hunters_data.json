@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-14T16:14:33.390Z",
+  "last_update": "2026-11-14T21:48:42.468Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -201,7 +201,8 @@
     "1ee8f444029b41db84a0b2a34415cdf0": 23440,
     "6d1160f1c9104aa082c64487645e2c3d": 23395,
     "58f4b39fbea342aebff47c541c8bf1c7": 23395,
-    "8d167f27157d488394f6b6142ccc16be": 23735
+    "8d167f27157d488394f6b6142ccc16be": 23735,
+    "d285145c13bf4a8583ede4231a2582cf": 23445
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -566,9 +567,9 @@
           "username": "Respawnless",
           "uuid": "baebdae38c064f40a3dda17bda5ecbf5",
           "country": "USA",
-          "current_ap": 29100,
+          "current_ap": 29110,
           "last_month_ap": 28890,
-          "monthly_gain": 210,
+          "monthly_gain": 220,
           "maxGames": [
             "Max UHC",
             "Max Warlords",
@@ -707,9 +708,9 @@
           "username": "Mazk",
           "uuid": "059abcc217c2422f9d9f92e8dea2e607",
           "country": "USA",
-          "current_ap": 26960,
+          "current_ap": 26985,
           "last_month_ap": 26940,
-          "monthly_gain": 20,
+          "monthly_gain": 45,
           "maxGames": [
             "Max Blitz",
             "Max TKR"
@@ -1090,9 +1091,9 @@
           "username": "Pqssible",
           "uuid": "9872248cdad742f785657dbf78d9c756",
           "country": "USA",
-          "current_ap": 23420,
+          "current_ap": 23440,
           "last_month_ap": 23420,
-          "monthly_gain": 0,
+          "monthly_gain": 20,
           "maxGames": [
             "Max TKR",
             "Max Wool Games"
@@ -3121,6 +3122,15 @@
             "Max Paintball",
             "Max VampireZ"
           ]
+        },
+        {
+          "username": "BleuShot",
+          "uuid": "d285145c13bf4a8583ede4231a2582cf",
+          "country": "Unknown",
+          "current_ap": 23445,
+          "last_month_ap": 23445,
+          "monthly_gain": 0,
+          "maxGames": []
         }
       ]
     },
@@ -3260,7 +3270,7 @@
       "score": 280,
       "top_players": [
         {
-          "username": "lofaet",
+          "username": "Lofaet",
           "uuid": "4b431497b4094a1d8e15335e81454c4a",
           "country": "Moldova",
           "current_ap": 25920,
@@ -3514,23 +3524,6 @@
           "last_month_ap": 23870,
           "monthly_gain": 0,
           "maxGames": []
-        }
-      ]
-    },
-    {
-      "country": "Jackassistan",
-      "score": 0,
-      "top_players": [
-        {
-          "username": "7hu",
-          "uuid": "6d1160f1c9104aa082c64487645e2c3d",
-          "country": "Jackassistan",
-          "current_ap": 23395,
-          "last_month_ap": 23395,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Arcade"
-          ]
         }
       ]
     }
