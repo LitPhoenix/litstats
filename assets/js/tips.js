@@ -234,6 +234,8 @@ const TAG_DB = {
   "There are Levels to This": { tip: "Use the Lucky Charm Blitz Star, and level up kill effect after Lucky Charm ends" },
   "[SkyBlock] Explosive Ending": { tip: "Requires destroying all crystals and letting the Dragon die naturally below 450k HP, which fails if a player kills it early or with Ferocity" },
   "Happy AND Winning": { tip: "Every Friday from 3pm to 7pm EDT" },
+  "R. I. P.": { type: "Coins", cost: "2,000,000", tip: "Needs the 0.85s trigger, which requires MLG V (100,000 kills), Winner V and the Quakezodia boots" },
+  "Platinum plated": { type: "Coins", cost: "2,000,000", tip: "Needs the 0.85s trigger, which requires MLG V (100,000 kills), Winner V and the Quakezodia boots" },
   "Well Traveled": { type: "Map", map: "Transport" },
   "I Am Your Shield": { type: "Map", map: "Transport" },
   "Totally Tubular": { type: "Map", map: "Transport" },
@@ -257,4 +259,68 @@ const TAG_DB = {
   "That wasn't eaZy": { type: "Map", map: "Alien Arcadium" },
   "Zombies: Time Trial Dead End": { type: "Map", map: "Dead End" },
   "JAWS!": { type: "Map", map: "Aquarium" }
+};
+
+// Live prices (see "Live item prices" in cabinet.js). Keyed by SkyBlock achievement title.
+//   items:   every item listed is needed, prices are added together (full sets = all pieces)
+//   options: alternatives, the cheapest one is shown with its label
+// P(id, name): id is the Hypixel item ID, name is only used as a fallback lookup and for the label.
+// Items on the Bazaar use the instant-buy price, everything else the lowest Auction House BIN.
+const P = (id, name) => ({ id, name });
+// FIXED(name, coins): a set cost that is not on the market (NPC / reforge fee), added to the total as-is.
+const FIXED = (name, coins) => ({ name, fixed: coins });
+const armorSet = (idPrefix, label, pieces = ["HELMET", "CHESTPLATE", "LEGGINGS", "BOOTS"]) =>
+  pieces.map(piece => P(`${idPrefix}_${piece}`, `${label} ${piece[0]}${piece.slice(1).toLowerCase()}`));
+
+const RECOMBOBULATOR = { items: [P("RECOMBOBULATOR_3000", "Recombobulator 3000")] };
+const PRICE_DB = {
+  "I Call That... Mercy": { items: [P("GEMSTONE_GAUNTLET", "Gemstone Gauntlet")] },
+  "Blaze Wrangler": { items: [P("MOODY_GRAPPLESHOT", "Moody Grappleshot")] },
+  "This is fair": { items: [P("PIGMAN_SWORD", "Pigman Sword")] },
+  "It Never Ends": { items: [P("ZOMBIE_SWORD", "Zombie Sword")] },
+  "Beaconator 2.0": { items: [P("BEACON_1", "Beacon I")] },
+  "Legendary Rod": { items: [P("ROD_OF_LEGENDS", "Rod of Legends")] },
+  "Flamin Hot": { items: [P("MAGMA_BOW", "Magma Bow")] },
+  "Three Birds, One Arrow": { items: [P("RUNAANS_BOW", "Runaan's Bow")] },
+  "Water Blade": { items: [P("PRISMARINE_BLADE", "Prismarine Blade")] },
+  "Infinite Darkness": { items: [P("INK_WAND", "Ink Wand")] },
+  "Do you even Voodoo?": { items: [P("VOODOO_DOLL", "Voodoo Doll")] },
+  "Jerry!!": { items: [P("INFLATABLE_JERRY", "Inflatable Jerry")] },
+  "Wasted Potential": { items: [P("STAFF_OF_THE_VOLCANO", "Staff of the Volcano")] },
+  "Time to go on vacation": { items: [P("SUPER_COMPACTOR_3000", "Super Compactor 3000")] },
+  "Advanced Transportation": { items: [P("ENCHANTED_HOPPER", "Enchanted Hopper")] },
+  "More Space": { items: [P("MINION_EXPANDER", "Minion Expander")] },
+  "Bigger Storage Is Seeded": { items: [P("LARGE_STORAGE", "Large Storage")] },
+  "Welcome to my Factory": { items: [P("FARM_CRYSTAL", "Farm Crystal")] },
+  "To space we go!": { items: [P("LAUNCH_PAD", "Launch Pad")] },
+  "Super Fuel": { items: [P("ENCHANTED_LAVA_BUCKET", "Enchanted Lava Bucket")] },
+  "Sweet Tooth": { items: [P("PURPLE_CANDY", "Purple Candy")] },
+  "Sea Monsters": { items: [P("SEA_CREATURE_ARTIFACT", "Sea Creature Artifact")] },
+  "Safety First": { items: [P("STONK", "Stonk")] },
+  "Shrimp!?!": { items: [P("SHRIMP_THE_FISH", "Shrimp the Fish")] },
+  "United in Blood": { items: [P("MIDAS_SWORD", "Midas' Sword"), P("MIDAS_JEWEL", "Midas' Jewel"), FIXED("Gilded reforge fee", 5000000)] },
+  "Higher Enchants": { items: [P("ENCHANTMENT_INFINITE_QUIVER_6", "Infinite Quiver VI")] },
+  "Dullahan": { items: [P("HORSEMAN_CANDLE", "Horseman Candle")] },
+  "Absorb it all!": { options: [
+    { label: "Sponge", items: [P("SPONGE", "Sponge")] },
+    { label: "Shark Scale Armor", items: armorSet("SHARK_SCALE", "Shark Scale") }
+  ] },
+  "Supreme Farmer": { items: armorSet("FARM_ARMOR", "Farm Armor") },
+  "Watch Me Shine": { items: armorSet("CRYSTAL", "Crystal") },
+  "Raaaiiinnnnbbooww!": { items: armorSet("FAIRY", "Fairy") },
+  "I knew it!": { items: [P("SKELETON_HELMET", "Skeleton Helmet"), P("GUARDIAN_CHESTPLATE", "Guardian Chestplate"), P("CREEPER_LEGGINGS", "Creeper Leggings"), P("SPIDER_BOOTS", "Spider Boots")] },
+  "King Of The Sea": { items: [P("GUARDIAN_CHESTPLATE", "Guardian Chestplate")] },
+  "Hsssss": { items: [P("CREEPER_LEGGINGS", "Creeper Leggings")] },
+  "Higher Than a Rabbit": { items: [P("SPIDER_BOOTS", "Spider Boots")] },
+  "Forbidden Fruit": { items: armorSet("FERMENTO", "Fermento") },
+  "Memories of a Bal": { items: armorSet("DIVAN", "Divan") },
+  "I believe I can fly!": { items: armorSet("BAT_PERSON", "Bat Person") },
+  "Gottagofast": { items: armorSet("SPEEDSTER", "Speedster") },
+  "Glass Cannon": { items: armorSet("ELEGANT_TUXEDO", "Elegant Tuxedo", ["CHESTPLATE", "LEGGINGS", "BOOTS"]) },
+  "I Am Groot": { items: armorSet("GROWTH", "Growth") },
+  "Precious Minerals": { items: armorSet("EMERALD_ARMOR", "Emerald Armor") },
+  "Upgrades people, Upgrades!": RECOMBOBULATOR,
+  "Mystical": RECOMBOBULATOR,
+  "Seriously?": RECOMBOBULATOR,
+  "Gotcha!": { items: [P("POCKET_BLACK_HOLE", "Pocket Black Hole")] }
 };
