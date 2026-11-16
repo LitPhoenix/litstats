@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-16T12:13:56.437Z",
+  "last_update": "2026-11-16T23:07:12.368Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111888,
     "289e9f90a76640e0921c85dcd96385b5": 85391,
@@ -100,7 +100,8 @@
     "8eb18a9227fb4b36947177babab261cd": 22175,
     "8a4a5046009a4a23acb58841a8e49356": 22129,
     "4b715312d0bb45a5b766184613c45aa4": 21980,
-    "9f16e788457c44fc8c24b90167569420": 21768
+    "9f16e788457c44fc8c24b90167569420": 21768,
+    "68ebc017179e46fab198211c038bb5e5": 22561
   },
   "manual_country_mapping": {
     "53c51b4607e649d0b81826bc2d64df82": "France",
@@ -364,7 +365,7 @@
     },
     {
       "country": "Taiwan",
-      "score": 20403.4,
+      "score": 20454,
       "top_players": [
         {
           "username": "Summer_Albert",
@@ -378,9 +379,9 @@
           "username": "Itz_Pipi",
           "uuid": "ae655706622d410cb36b9a8c4e1f1be4",
           "country": "Taiwan",
-          "current_quests": 46925,
+          "current_quests": 47178,
           "last_month_quests": 46925,
-          "monthly_gain": 0
+          "monthly_gain": 253
         }
       ]
     },
@@ -548,9 +549,9 @@
           "username": "oJakey",
           "uuid": "41825ee5f46b406b9bb74aea7eb2742b",
           "country": "USA",
-          "current_quests": 32467,
+          "current_quests": 32482,
           "last_month_quests": 32403,
-          "monthly_gain": 64
+          "monthly_gain": 79
         },
         {
           "username": "Dadje",
@@ -638,14 +639,6 @@
           "country": "USA",
           "current_quests": 21980,
           "last_month_quests": 21980,
-          "monthly_gain": 0
-        },
-        {
-          "username": "recordheat",
-          "uuid": "9f16e788457c44fc8c24b90167569420",
-          "country": "USA",
-          "current_quests": 21768,
-          "last_month_quests": 21768,
           "monthly_gain": 0
         }
       ]
@@ -1004,6 +997,14 @@
           "country": "Unknown",
           "current_quests": 22681,
           "last_month_quests": 22681,
+          "monthly_gain": 0
+        },
+        {
+          "username": "Anzec",
+          "uuid": "68ebc017179e46fab198211c038bb5e5",
+          "country": "Unknown",
+          "current_quests": 22561,
+          "last_month_quests": 22561,
           "monthly_gain": 0
         },
         {
