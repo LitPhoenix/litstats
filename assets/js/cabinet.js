@@ -90,7 +90,59 @@ const CustomChallengeTrackers = {
 },
 "veteran": { path: ["rawAchievements", "walls3_jack_of_all_trades"], max: 12 },
 "blitz:jackofalltrades": { path: ["rawAchievements", "blitz_kit_collector"], max: 31 },
-"champion!": { path: ["rawStats", "uhc", "score"], max: 10000 },
+// Exact "Game:Title" keys (punctuation kept) win over the stripped keys above. UHC has a tiered "Champion" (wins) and the
+// challenge "Champion!" (Champion rank) that both strip to "champion", so this one needs the exact key.
+"UHC:Champion!": { path: ["rawStats", "UHC", "score"], max: 10210 },   // Champion rank = 10,210 score (change if wrong)
+
+// Pit (rawStats.Pit.pit_stats_ptl)
+"pit:bountyhunter":      { path: ["rawStats", "Pit", "pit_stats_ptl", "bounties_of_500g_with_bh"], max: 30 },
+"pit:ingotscollector":   { path: ["rawStats", "Pit", "pit_stats_ptl", "ingots_picked_up"], max: 2000 },
+"pit:goldentreat":       { path: ["rawStats", "Pit", "pit_stats_ptl", "ghead_eaten"], max: 1000 },
+"pit:goldenage":         { path: ["rawStats", "Pit", "pit_stats_ptl", "extra_from_trickle_down"], max: 1000 },
+"pit:infinitequiver":    { path: ["rawStats", "Pit", "pit_stats_ptl", "endless_quiver_arrows"], max: 1500 },
+"pit:luckydiamond":      { path: ["rawStats", "Pit", "pit_stats_ptl", "lucky_diamond_pieces"], max: 50 },
+"pit:immininghere":        { path: ["rawStats", "Pit", "pit_stats_ptl", "obsidian_broken"], max: 100 },
+"pit:nosferatu":         { path: ["rawStats", "Pit", "pit_stats_ptl", "vampire_healed_hp"], max: 15000 },
+"pit:raginghunter":      { path: ["rawStats", "Pit", "pit_stats_ptl", "rage_potatoes_eaten"], max: 100 },
+
+// Quake guns: the 0.85s trigger (needed for The Reaper / Platinum Smelter) is gated behind MLG V (100k kills)
+"quake:rip":             { compute: quakeGunProgress, max: 100000, unit: "kills" },
+"quake:platinumplated":  { compute: quakeGunProgress, max: 100000, unit: "kills" },
+
+// Blitz: closest Ultimate kit to 10,000 kit XP
+"blitz:ultimatecompletist": { compute: blitzUltimateProgress, max: 10000, unit: "XP" },
+}
+
+// Case-insensitive object walk, so "uhc" / "UHC" style key mistakes cannot silently give 0.
+function getPathValue(obj, path) {
+  let val = obj;
+  for (const key of path) {
+    if (val === undefined || val === null || typeof val !== 'object') return undefined;
+    if (key in val) { val = val[key]; continue; }
+    const hit = Object.keys(val).find(k => k.toLowerCase() === String(key).toLowerCase());
+    val = hit === undefined ? undefined : val[hit];
+  }
+  return val;
+}
+
+function quakeGunProgress(data) {
+  const q = getPathValue(data, ["rawStats", "Quake"]) || {};
+  const kills = (q.kills || 0) + (q.kills_teams || 0);
+  return { current: kills };
+}
+
+const BLITZ_ULTIMATES = [
+  { stat: "exp_warrior", name: "Warrior" }, { stat: "exp_donkeytamer", name: "Donkeytamer" },
+  { stat: "exp_ranger", name: "Ranger" }, { stat: "exp_phoenix", name: "Phoenix" }, { stat: "exp_milkman", name: "Milkman" }
+];
+function blitzUltimateProgress(data) {
+  let best = { name: null, xp: 0 };
+  BLITZ_ULTIMATES.forEach(k => {
+    const xp = getPathValue(data, ["rawStats", "HungerGames", k.stat]);
+    if (typeof xp === 'number' && xp >= best.xp) best = { name: k.name, xp };
+  });
+  const closest = best.name || "Warrior";
+  return { current: best.xp, note: `Closest: ${closest}` };
 }
 
 
@@ -749,60 +801,72 @@ window.setTierView = function(base64Id, tierNum) {
   renderDashboard();
 };
 
+// Strips Hypixel colour codes (%%dark_gray%%, %%italic%% ...) but keeps %%value%%, and moves a trailing "Note: ..." into a tip.
+function cleanApiDescription(desc) {
+  if (typeof desc !== 'string') return { desc, note: '' };
+  let d = desc.replace(/%%(?!value%%)[a-z_]+%%/gi, '').replace(/\s{2,}/g, ' ').trim();
+  let note = '';
+  const m = d.match(/^(.*?)\s*\bNote:\s*(.+)$/i);
+  if (m && m[1]) { d = m[1].trim(); note = m[2].trim(); }
+  return { desc: d, note };
+}
+
 function computeAchievementTags(ach) {
   let tagsHtml = '';
   let tipHtml = '';
   let cleanGame = ach.game.replace('Max ', '');
   const tagData = TAG_DB[`[${cleanGame}] ${ach.title}`] || TAG_DB[ach.title];
+  const cleaned = cleanApiDescription(ach.desc);
+  ach.desc = cleaned.desc;
+  const autoNote = cleaned.note;
 
   if (tagData) {
     if (tagData.desc) ach.desc = tagData.desc;
 
-    if (tagData.type) {
-      if (!showSecretTags && tagData.type === 'Secret') return ach;
-      if (!showBrokenTags && tagData.type === 'Broken') return ach;
-      
-      let skipTypeTag = tagData.type === 'Renown';
+    // type may be a string or an array (e.g. ["Broken", "Coins"]); every entry gets its own tag.
+    // cost is attached to the currency-style types only (not Secret / Broken / Map).
+    for (const typeName of [].concat(tagData.type || [])) {
+      if (!showSecretTags && typeName === 'Secret') return ach;
+      if (!showBrokenTags && typeName === 'Broken') return ach;
+      if (typeName === 'Renown') continue;
 
-      if (!skipTypeTag) {
-        let colour = tagData.type === 'Broken' ? 'var(--red)' : tagData.type === 'Map' ? 'var(--green)' : tagData.type === 'Secret' ? '#ff33ff' : 'var(--gold)';
-        
-        if (tagData.type === 'Prestige' && tagData.level) {
-          let lvl = parseInt(tagData.level, 10);
-          let bCol = lvl <= 4 ? '#5555FF' : lvl <= 9 ? '#FACC15' : lvl <= 14 ? '#FFAA00' : 
-                  lvl <= 19 ? '#FF5555' : lvl <= 24 ? '#AA00AA' : lvl <= 29 ? '#FF55FF' : 
-                  lvl <= 34 ? '#FFFFFF' : lvl <= 39 ? 'var(--blue)' : lvl <= 44 ? '#0000AA' : 
-                  lvl <= 47 ? '#000000' : lvl <= 49 ? '#AA0000' : '#555555';
-          
-          const romanMap = { L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
-          let rStr = '', n = lvl;
-          for (let i of Object.keys(romanMap)) {
-            let q = Math.floor(n / romanMap[i]);
-            n -= q * romanMap[i];
-            rStr += i.repeat(q);
-          }
-          
-          tagsHtml += `<span class="sleek-tag" style="--tag-color: ${bCol};"><span style="color: var(--text);">${rStr}</span></span>`;
-        } else {
-          let tagText;
-          if (tagData.type === 'Map') {
-            tagText = tagData.map;
-          } else if (tagData.cost) {
-            let num = parseInt(tagData.cost.replace(/,/g, ''), 10);
-            let formattedCost = num >= 1000000 
-              ? (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M' 
-              : num >= 1000 
-                ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K' 
-                : num;
-            tagText = `${formattedCost} ${tagData.type}`;
-          } else {
-            tagText = tagData.type;
-          }
-          tagsHtml += `<span class="sleek-tag" style="--tag-color: ${colour};">${tagText}</span>`;
+      let colour = typeName === 'Broken' ? 'var(--red)' : typeName === 'Map' ? 'var(--green)' : typeName === 'Secret' ? '#ff33ff' : 'var(--gold)';
+
+      if (typeName === 'Prestige' && tagData.level) {
+        let lvl = parseInt(tagData.level, 10);
+        let bCol = lvl <= 4 ? '#5555FF' : lvl <= 9 ? '#FACC15' : lvl <= 14 ? '#FFAA00' :
+                lvl <= 19 ? '#FF5555' : lvl <= 24 ? '#AA00AA' : lvl <= 29 ? '#FF55FF' :
+                lvl <= 34 ? '#FFFFFF' : lvl <= 39 ? 'var(--blue)' : lvl <= 44 ? '#0000AA' :
+                lvl <= 47 ? '#000000' : lvl <= 49 ? '#AA0000' : '#555555';
+
+        const romanMap = { L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
+        let rStr = '', n = lvl;
+        for (let i of Object.keys(romanMap)) {
+          let q = Math.floor(n / romanMap[i]);
+          n -= q * romanMap[i];
+          rStr += i.repeat(q);
         }
+
+        tagsHtml += `<span class="sleek-tag" style="--tag-color: ${bCol};"><span style="color: var(--text);">${rStr}</span></span>`;
+      } else {
+        let tagText;
+        if (typeName === 'Map') {
+          tagText = tagData.map;
+        } else if (tagData.cost && typeName !== 'Secret' && typeName !== 'Broken') {
+          let num = parseInt(tagData.cost.replace(/,/g, ''), 10);
+          let formattedCost = num >= 1000000
+            ? (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M'
+            : num >= 1000
+              ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K'
+              : num;
+          tagText = `${formattedCost} ${typeName}`;
+        } else {
+          tagText = typeName;
+        }
+        tagsHtml += `<span class="sleek-tag" style="--tag-color: ${colour};">${tagText}</span>`;
       }
     }
-    
+
     if (tagData.renown) tagsHtml += ` <span class="sleek-tag" data-tag="renown" style="margin-left: 4px;">${tagData.renown} Renown</span>`;
     if (tagData.souls) tagsHtml += ` <span class="sleek-tag" style="--tag-color: #41dada; margin-left: 4px;">${tagData.souls} Souls</span>`;
     
@@ -815,6 +879,17 @@ function computeAchievementTags(ach) {
     }
   }
   
+  if (autoNote) {
+    tipHtml = tipHtml
+      ? tipHtml.replace('</i></div>', `<br>${autoNote}</i></div>`)
+      : `<div class="ach-tip"><i>Tip: ${autoNote}</i></div>`;
+  }
+
+  const priceInfo = livePriceFor(ach.game, ach.title);
+  if (priceInfo) {
+    if (!(tagData && tagData.cost)) tagsHtml += priceInfo.tagHtml;
+  }
+
   ach.tagsHtml = tagsHtml;
   ach.tipHtml = tipHtml;
   return ach;
@@ -823,7 +898,7 @@ function computeAchievementTags(ach) {
 // Tags/tips depend only on game+title, so compute once instead of on every render.
 const _tagCache = new Map();
 function applyAchievementTags(ach) {
-  const key = `${showSecretTags}${showBrokenTags}|${ach.game}|${ach.title}`;
+  const key = `${showSecretTags}${showBrokenTags}|${priceVersion}|${ach.game}|${ach.title}`;
   let c = _tagCache.get(key);
   if (!c) {
     const probe = { game: ach.game, title: ach.title, desc: ach.desc };
@@ -906,13 +981,16 @@ function renderDashboard() {
     allMissing = allMissing.filter(a => {
       let cleanGame = a.game.replace('Max ', '');
       const tData = TAG_DB[`[${cleanGame}] ${a.title}`] || TAG_DB[a.title];
+      // live AH/BZ priced achievements count as Cost even without a TAG_DB entry
+      if (activeTagF === 'Cost' && hasPriceEntry(a.game, a.title)) return true;
       if (!tData) return false;
       
-      if (activeTagF === 'Cost') return tData.cost !== undefined || tData.type === 'Coins' || tData.type === 'Gold';
-      if (activeTagF === 'Renown') return tData.renown !== undefined || tData.type === 'Renown';
-      if (activeTagF === 'Prestige') return tData.type === 'Prestige';
+      const types = [].concat(tData.type || []);
+      if (activeTagF === 'Cost') return tData.cost !== undefined || types.includes('Coins') || types.includes('Gold');
+      if (activeTagF === 'Renown') return tData.renown !== undefined || types.includes('Renown');
+      if (activeTagF === 'Prestige') return types.includes('Prestige');
       
-      return tData.type === activeTagF;
+      return types.includes(activeTagF);
     });
   }
 
@@ -1130,7 +1208,7 @@ function renderDashboard() {
     const namespacedKey = `${cleanGameKey}:${cleanTitle}`;
     
     // Check for a namespaced match first, fallback to the generic title
-    let tracker = CustomChallengeTrackers[namespacedKey] || CustomChallengeTrackers[cleanTitle];
+    let tracker = CustomChallengeTrackers[`${cleanGame}:${ach.title}`] || CustomChallengeTrackers[namespacedKey] || CustomChallengeTrackers[cleanTitle];
     let trackerResult = null;
     if (tracker && tracker.compute) {                 // computed trackers (e.g. Dreamfeast main path)
       trackerResult = tracker.compute(globalPlayerData);
@@ -1153,13 +1231,9 @@ function renderDashboard() {
       } else if (tracker.paths) {
         customCurrentAmt = 0;
         for (const p of tracker.paths) {
-          let val = globalPlayerData;
           let targetPath = p.path || p;
           let req = p.req || 1;
-
-          for (const key of targetPath) {
-            if (val !== undefined && val !== null) val = val[key];
-          }
+          let val = getPathValue(globalPlayerData, targetPath);
 
           let currentVal = typeof val === 'number' ? val : 0;
           customCurrentAmt += Math.min(currentVal, req);
@@ -1173,10 +1247,7 @@ function renderDashboard() {
           }
         }
       } else {
-        let val = globalPlayerData;
-        for (const key of tracker.path) {
-          if (val !== undefined && val !== null) val = val[key];
-        }
+        let val = getPathValue(globalPlayerData, tracker.path);
         customCurrentAmt = typeof val === 'number' ? val : 0;
       }
 
@@ -2481,3 +2552,153 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 if (document.getElementById('showCompletedToggle')) document.getElementById('showCompletedToggle').checked = isShowCompleted;
+
+// ==== Live item prices (start) ====
+// PRICE_DB (tips.js) lists the items each achievement needs. Prices come from the public Bazaar endpoint (instant-buy price)
+// and a public lowest-BIN feed for Auction House items. Full sets add up the pieces; "options" entries use the cheapest option.
+const PRICE_URLS = {
+  bazaar: 'https://api.hypixel.net/v2/skyblock/bazaar',
+  bins: ['https://moulberry.codes/lowestbin.json', 'https://lb.tricked.pro/lowestbins'],
+  items: 'https://api.hypixel.net/v2/resources/skyblock/items'
+};
+const PRICE_TTL = 5 * 60 * 1000;
+let priceVersion = 0;   // bumped whenever prices change so cached tags are rebuilt
+let priceState = { bazaar: null, bins: null, nameToId: null, at: 0, loading: false };
+
+const normTitle = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
+const PRICE_INDEX = (() => {
+  const idx = {};
+  if (typeof PRICE_DB !== 'undefined') Object.keys(PRICE_DB).forEach(k => { idx[normTitle(k)] = PRICE_DB[k]; });
+  return idx;
+})();
+
+function fmtCoinsShort(n) {
+  if (n >= 1e9) return (n / 1e9).toFixed(1).replace(/\.0$/, '') + 'B';
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+  return String(Math.round(n));
+}
+
+async function fetchJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(url + ' ' + res.status);
+  return res.json();
+}
+
+function allPriceItems() {
+  const out = [];
+  Object.values(PRICE_INDEX).forEach(e => (e.options || [{ items: e.items }]).forEach(o => out.push(...o.items)));
+  return out;
+}
+
+async function loadPrices() {
+  if (priceState.loading || (priceState.bazaar && Date.now() - priceState.at < PRICE_TTL)) return;
+  priceState.loading = true;
+  const next = { ...priceState, loading: false, at: Date.now() };
+  try { const j = await fetchJson(PRICE_URLS.bazaar); if (j.success) next.bazaar = j.products; } catch (e) { console.warn('[prices] bazaar failed', e); }
+  for (const url of PRICE_URLS.bins) {
+    try { next.bins = await fetchJson(url); break; } catch (e) { console.warn('[prices] lowest BIN failed', url, e); }
+  }
+  priceState = next;
+  // Anything the guessed IDs missed is looked up by name once.
+  const unresolved = allPriceItems().filter(it => it.name && it.fixed === undefined && !rawUnitPrice(it.id));
+  if (unresolved.length && !priceState.nameToId) {
+    try {
+      const j = await fetchJson(PRICE_URLS.items);
+      const map = {};
+      (j.items || []).forEach(it => { if (it.name && !(it.name.toLowerCase() in map)) map[it.name.toLowerCase()] = it.id; });
+      priceState.nameToId = map;
+    } catch (e) { console.warn('[prices] item list failed', e); }
+  }
+  const still = allPriceItems().filter(it => !unitPrice(it)).map(it => it.name || it.id);
+  if (still.length) console.info('[prices] no price found for:', [...new Set(still)].join(', '));
+  priceVersion++;
+  if (typeof renderDashboard === 'function' && globalPlayerData) renderDashboard();
+}
+
+function rawUnitPrice(id) {
+  if (!id) return null;
+  const bz = priceState.bazaar && priceState.bazaar[id] && priceState.bazaar[id].quick_status && priceState.bazaar[id].quick_status.buyPrice;
+  if (bz) return { price: bz, src: 'Bazaar' };
+  const bin = priceState.bins && priceState.bins[id];
+  if (bin) return { price: bin, src: 'AH' };
+  return null;
+}
+function unitPrice(item) {
+  if (item.fixed !== undefined) return { price: item.fixed, src: 'Fixed' };
+  return rawUnitPrice(item.id) || (item.name && priceState.nameToId ? rawUnitPrice(priceState.nameToId[item.name.toLowerCase()]) : null);
+}
+
+function hasPriceEntry(game, title) {
+  return String(game).replace('Max ', '') === 'SkyBlock' && !!PRICE_INDEX[normTitle(title)];
+}
+
+// Every option with its pieces and prices (null price = not found), plus which option is cheapest.
+function priceBreakdown(game, title) {
+  if (String(game).replace('Max ', '') !== 'SkyBlock') return null;
+  const entry = PRICE_INDEX[normTitle(title)];
+  if (!entry) return null;
+  const options = (entry.options || [{ label: null, items: entry.items }]).map(opt => {
+    const pieces = opt.items.map(it => { const p = unitPrice(it); return { name: it.name, price: p ? p.price : null, src: p ? p.src : null }; });
+    const complete = pieces.every(x => x.price !== null);
+    return { label: opt.label, pieces, complete, total: complete ? pieces.reduce((a, x) => a + x.price, 0) : null };
+  });
+  const done = options.filter(o => o.complete);
+  const best = done.length ? done.reduce((a, o) => (o.total < a.total ? o : a)) : null;
+  return { options, best };
+}
+
+// -> { total, tagHtml } or null (not a priced achievement, not loaded yet, or a piece has no price)
+function livePriceFor(game, title) {
+  const info = priceBreakdown(game, title);
+  if (!info) return null;
+  if (Date.now() - priceState.at > PRICE_TTL) loadPrices();
+  if (!priceState.at || !info.best) return null;
+  const srcs = new Set(info.best.pieces.map(x => x.src).filter(s => s !== 'Fixed'));
+  const srcLabel = srcs.size > 1 ? 'AH+BZ' : srcs.has('AH') ? 'AH' : srcs.has('Bazaar') ? 'BZ' : 'NPC';
+  const safeTitle = String(title).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  const tagHtml = `<span class="sleek-tag price-tag" data-price-game="${String(game).replace(/"/g, '')}" data-price-title="${safeTitle}"><span class="pt-src">${srcLabel}</span><span class="pt-sep"></span><span class="pt-val">${fmtCoinsShort(info.best.total)} Coins</span></span>`;
+  return { total: info.best.total, tagHtml };
+}
+
+// ---- hover breakdown ----
+function priceTooltipHtml(game, title) {
+  const info = priceBreakdown(game, title);
+  if (!info) return '';
+  const multi = info.options.length > 1;
+  const blocks = info.options.map(o => {
+    const rows = o.pieces.map(x => `<div class="pp-row"><span class="pp-name">${escHtml(x.name)}</span>` +
+      (x.price === null ? `<span class="pp-none">no price</span>` : `<span class="pp-badge">${x.src === 'AH' ? 'AH' : x.src === 'Fixed' ? 'FEE' : 'BZ'}</span><span class="pp-price">${Math.round(x.price).toLocaleString()}</span>`) + `</div>`).join('');
+    const isBest = multi && info.best === o;
+    const head = multi ? `<div class="pp-head${isBest ? ' pp-best' : ''}">${escHtml(o.label)}${isBest ? '<span>Cheapest</span>' : ''}</div>` : '';
+    const total = o.pieces.length > 1 && o.complete ? `<div class="pp-row pp-total"><span class="pp-name">Total</span><span class="pp-price">${Math.round(o.total).toLocaleString()}</span></div>` : '';
+    return `<div class="pp-block">${head}${rows}${total}</div>`;
+  }).join('');
+  const mins = Math.max(0, Math.round((Date.now() - priceState.at) / 60000));
+  return `${blocks}<div class="pp-foot">BZ = Bazaar instant-buy, AH = lowest BIN, FEE = fixed cost. Updated ${mins < 1 ? 'just now' : mins + 'm ago'}</div>`;
+}
+
+(function setupPriceTooltip() {
+  if (typeof document === 'undefined') return;
+  let tip = null, current = null;
+  const hide = () => { if (tip) tip.style.display = 'none'; current = null; };
+  const show = el => {
+    const html = priceTooltipHtml(el.dataset.priceGame, el.dataset.priceTitle);
+    if (!html) return hide();
+    if (!tip) { tip = document.createElement('div'); tip.id = 'price-tooltip'; document.body.appendChild(tip); }
+    tip.innerHTML = html;
+    tip.style.display = 'block';
+    const r = el.getBoundingClientRect(), tr = tip.getBoundingClientRect();
+    let left = Math.min(Math.max(8, r.left), window.innerWidth - tr.width - 8);
+    let top = r.bottom + 8;
+    if (top + tr.height > window.innerHeight - 8) top = Math.max(8, r.top - tr.height - 8);
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+    current = el;
+  };
+  document.addEventListener('mouseover', e => { const el = e.target.closest && e.target.closest('.price-tag'); if (el && el !== current) show(el); });
+  document.addEventListener('mouseout', e => { const el = e.target.closest && e.target.closest('.price-tag'); if (el && !el.contains(e.relatedTarget)) hide(); });
+  document.addEventListener('click', e => { const el = e.target.closest && e.target.closest('.price-tag'); if (el) { current === el ? hide() : show(el); } else hide(); });   // tap on touch screens
+  window.addEventListener('scroll', hide, true);
+})();
+// ==== Live item prices (end) ====
