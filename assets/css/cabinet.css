@@ -1302,3 +1302,31 @@ body.density-list .legacy-challenge-card .ach-ap-amt { color: var(--red); }
 
 /* settings: spacing inside the collapsible groups */
 .set-body { display: flex; flex-direction: column; gap: 12px; padding-top: 10px; }
+
+/* ---- Live price tag: "BZ | 95K COINS" (source | amount) so market prices read differently from fixed NPC prices ---- */
+.sleek-tag.price-tag { --tag-color: var(--gold); display: inline-flex; align-items: stretch; padding: 0; overflow: hidden; cursor: help; }
+.price-tag .pt-src { padding: 2px 6px 2px 8px; opacity: .7; letter-spacing: .06em; }
+.price-tag .pt-sep { width: 1px; background: var(--tag-color); opacity: .45; }
+.price-tag .pt-val { padding: 2px 8px 2px 6px; }
+.price-tag:hover .pt-src { opacity: 1; }
+body.density-compact .price-tag .pt-src { padding: 1px 5px 1px 6px; }
+body.density-compact .price-tag .pt-val { padding: 1px 6px 1px 5px; }
+body.density-list .ach-title .sleek-tag.price-tag { padding: 0; }
+body.density-list .price-tag .pt-src { padding: 0 5px 0 6px; }
+body.density-list .price-tag .pt-val { padding: 0 6px 0 5px; }
+
+/* hover breakdown */
+#price-tooltip { display: none; position: fixed; z-index: 10000; min-width: 230px; max-width: 320px; padding: 10px 12px; pointer-events: none;
+  background-color: var(--bg, #120f0d); background-image: linear-gradient(var(--surface-2), var(--surface-2)); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,.55); font-size: 12px; color: var(--text); }
+#price-tooltip .pp-block + .pp-block { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); }
+#price-tooltip .pp-head { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 4px; color: var(--text-2); }
+#price-tooltip .pp-head.pp-best { color: var(--gold); }
+#price-tooltip .pp-head span { font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
+#price-tooltip .pp-row { display: flex; align-items: baseline; gap: 8px; padding: 2px 0; }
+#price-tooltip .pp-name { flex: 1; color: var(--text-2); }
+#price-tooltip .pp-badge { font-size: 9px; font-weight: 700; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 0 4px; opacity: .8; }
+#price-tooltip .pp-price { font-variant-numeric: tabular-nums; font-weight: 600; min-width: 70px; text-align: right; }
+#price-tooltip .pp-none { color: var(--text-3); font-style: italic; }
+#price-tooltip .pp-total { margin-top: 3px; padding-top: 5px; border-top: 1px solid var(--border); }
+#price-tooltip .pp-total .pp-name, #price-tooltip .pp-total .pp-price { color: var(--gold); font-weight: 700; }
+#price-tooltip .pp-foot { margin-top: 8px; font-size: 10.5px; color: var(--text-3); }
