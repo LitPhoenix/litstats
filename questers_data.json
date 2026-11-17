@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-17T05:39:34.874Z",
+  "last_update": "2026-11-17T15:07:23.795Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111888,
     "289e9f90a76640e0921c85dcd96385b5": 85391,
@@ -365,15 +365,15 @@
     },
     {
       "country": "Taiwan",
-      "score": 20454,
+      "score": 20465.2,
       "top_players": [
         {
           "username": "Summer_Albert",
           "uuid": "7638efa55b784c41ac34a4c59b2b86df",
           "country": "Taiwan",
-          "current_quests": 55092,
+          "current_quests": 55148,
           "last_month_quests": 54372,
-          "monthly_gain": 720
+          "monthly_gain": 776
         },
         {
           "username": "Itz_Pipi",
@@ -401,7 +401,7 @@
     },
     {
       "country": "UK",
-      "score": 36569,
+      "score": 36569.4,
       "top_players": [
         {
           "username": "EfficiencyPvP",
@@ -415,9 +415,9 @@
           "username": "60c",
           "uuid": "8682b351e9c241639291935776608054",
           "country": "UK",
-          "current_quests": 35911,
+          "current_quests": 35913,
           "last_month_quests": 35789,
-          "monthly_gain": 122
+          "monthly_gain": 124
         },
         {
           "username": "Shazombie",
@@ -667,15 +667,15 @@
     },
     {
       "country": "Argentina",
-      "score": 9097.2,
+      "score": 9106,
       "top_players": [
         {
           "username": "Iaan",
           "uuid": "d7e0ec9bc36f4d44abd2ff1a1043cebd",
           "country": "Argentina",
-          "current_quests": 45486,
+          "current_quests": 45530,
           "last_month_quests": 44818,
-          "monthly_gain": 668
+          "monthly_gain": 712
         }
       ]
     },
