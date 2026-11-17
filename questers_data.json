@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-17T15:07:23.795Z",
+  "last_update": "2026-11-17T23:15:06.591Z",
   "month_start_snapshot": {
     "53c51b4607e649d0b81826bc2d64df82": 111888,
     "289e9f90a76640e0921c85dcd96385b5": 85391,
@@ -925,7 +925,7 @@
     },
     {
       "country": "Unknown",
-      "score": 27942,
+      "score": 27968.6,
       "top_players": [
         {
           "username": "duonk",
@@ -960,20 +960,20 @@
           "monthly_gain": 0
         },
         {
+          "username": "Spaghetti2003",
+          "uuid": "ced40338048a4382aaba0e88fc04a102",
+          "country": "Unknown",
+          "current_quests": 25484,
+          "last_month_quests": 25261,
+          "monthly_gain": 223
+        },
+        {
           "username": "MI7RAN",
           "uuid": "fe0d23d926054c62921afa2d71a3cc2c",
           "country": "Unknown",
           "current_quests": 25351,
           "last_month_quests": 25351,
           "monthly_gain": 0
-        },
-        {
-          "username": "Spaghetti2003",
-          "uuid": "ced40338048a4382aaba0e88fc04a102",
-          "country": "Unknown",
-          "current_quests": 25290,
-          "last_month_quests": 25261,
-          "monthly_gain": 29
         },
         {
           "username": "emperqr",

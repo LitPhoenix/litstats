@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-17T15:07:23.337Z",
+  "last_update": "2026-11-17T23:15:06.210Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -446,6 +446,7 @@
             "Max Paintball",
             "Max Cops and Crims",
             "Max Quake",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -1818,7 +1819,7 @@
     },
     {
       "country": "The Netherlands",
-      "score": 8191,
+      "score": 8194,
       "top_players": [
         {
           "username": "Timkoensurvival",
@@ -1849,12 +1850,13 @@
           "username": "Paskwal",
           "uuid": "6248c4ae570147369f5cd94192a55094",
           "country": "The Netherlands",
-          "current_ap": 27985,
+          "current_ap": 27990,
           "last_month_ap": 27985,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max Arena Brawl",
             "Max Paintball",
+            "Max SkyBlock",
             "Max Speed UHC",
             "Max Warlords",
             "Max Walls",
@@ -2509,7 +2511,7 @@
     },
     {
       "country": "Croatia",
-      "score": 3608,
+      "score": 3613,
       "top_players": [
         {
           "username": "IAmKroty",
@@ -2546,9 +2548,9 @@
           "username": "mihannah",
           "uuid": "eb2814a894d748dc87c2cb2eedfe1306",
           "country": "Croatia",
-          "current_ap": 26510,
+          "current_ap": 26530,
           "last_month_ap": 26395,
-          "monthly_gain": 115,
+          "monthly_gain": 135,
           "maxGames": [
             "Max Smash Heroes",
             "Max Walls",
@@ -3486,9 +3488,9 @@
           "username": "SpaceDano",
           "uuid": "0e42568a6d934984bc699c60ab1895d8",
           "country": "Bosnia and Herzegovina",
-          "current_ap": 24080,
+          "current_ap": 24095,
           "last_month_ap": 24075,
-          "monthly_gain": 5,
+          "monthly_gain": 20,
           "maxGames": []
         }
       ]
