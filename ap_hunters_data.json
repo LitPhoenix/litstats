@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-17T23:15:06.210Z",
+  "last_update": "2026-11-18T05:02:20.857Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -395,7 +395,7 @@
   "country_leaderboard": [
     {
       "country": "USA",
-      "score": 12542,
+      "score": 12545,
       "top_players": [
         {
           "username": "oJakey",
@@ -433,9 +433,9 @@
           "username": "vasiv",
           "uuid": "9cc15d802eb44f2aaf2075604ce452d5",
           "country": "USA",
-          "current_ap": 32500,
+          "current_ap": 32505,
           "last_month_ap": 32500,
-          "monthly_gain": 0,
+          "monthly_gain": 5,
           "maxGames": [
             "Max UHC",
             "Max Pit",
@@ -754,9 +754,9 @@
           "username": "kipanator",
           "uuid": "8eb18a9227fb4b36947177babab261cd",
           "country": "USA",
-          "current_ap": 26630,
+          "current_ap": 26650,
           "last_month_ap": 26400,
-          "monthly_gain": 230,
+          "monthly_gain": 250,
           "maxGames": [
             "Max Smash Heroes",
             "Max Murder Mystery",
@@ -3252,6 +3252,25 @@
       ]
     },
     {
+      "country": "Moldova",
+      "score": 315,
+      "top_players": [
+        {
+          "username": "Lofaet",
+          "uuid": "4b431497b4094a1d8e15335e81454c4a",
+          "country": "Moldova",
+          "current_ap": 25955,
+          "last_month_ap": 25920,
+          "monthly_gain": 35,
+          "maxGames": [
+            "Max VampireZ",
+            "Max Duels",
+            "Max Build Battle"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Belgium",
       "score": 300,
       "top_players": [
@@ -3264,25 +3283,6 @@
           "monthly_gain": 10,
           "maxGames": [
             "Max Wool Games"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Moldova",
-      "score": 290,
-      "top_players": [
-        {
-          "username": "Lofaet",
-          "uuid": "4b431497b4094a1d8e15335e81454c4a",
-          "country": "Moldova",
-          "current_ap": 25930,
-          "last_month_ap": 25920,
-          "monthly_gain": 10,
-          "maxGames": [
-            "Max VampireZ",
-            "Max Duels",
-            "Max Build Battle"
           ]
         }
       ]
