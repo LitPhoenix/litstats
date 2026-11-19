@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-18T22:47:30.186Z",
+  "last_update": "2026-11-19T04:57:25.785Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -840,9 +840,9 @@
           "username": "JurassicBox",
           "uuid": "c08043d19f334a3e8189695cf356cd16",
           "country": "USA",
-          "current_ap": 25730,
+          "current_ap": 25745,
           "last_month_ap": 25745,
-          "monthly_gain": -15,
+          "monthly_gain": 0,
           "maxGames": [
             "Max VampireZ",
             "Max TKR"
@@ -865,9 +865,9 @@
           "username": "ysosalty",
           "uuid": "99fcc41648bc45718c6cebfaf501da97",
           "country": "USA",
-          "current_ap": 25515,
+          "current_ap": 25530,
           "last_month_ap": 25515,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max TKR"
           ]
