@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-11-26T22:42:26.440Z",
+  "last_update": "2026-11-27T05:46:32.758Z",
   "month_start_snapshot": {
     "41825ee5f46b406b9bb74aea7eb2742b": 32520,
     "3abe2f6bd45a4e2282d4f9014569db25": 32520,
@@ -202,7 +202,8 @@
     "6d1160f1c9104aa082c64487645e2c3d": 23395,
     "58f4b39fbea342aebff47c541c8bf1c7": 23395,
     "8d167f27157d488394f6b6142ccc16be": 23735,
-    "d285145c13bf4a8583ede4231a2582cf": 23445
+    "d285145c13bf4a8583ede4231a2582cf": 23445,
+    "e4447d2895924f76986ac1ba4dcf183c": 23490
   },
   "manual_country_mapping": {
     "41825ee5f46b406b9bb74aea7eb2742b": "USA",
@@ -969,9 +970,9 @@
           "username": "SeaOtterFan",
           "uuid": "cdea33877a37413da44e365acc9f7a50",
           "country": "USA",
-          "current_ap": 24240,
+          "current_ap": 24255,
           "last_month_ap": 24240,
-          "monthly_gain": 0,
+          "monthly_gain": 15,
           "maxGames": [
             "Max Smash Heroes",
             "Max Quake",
@@ -2884,18 +2885,6 @@
             "Max TKR",
             "Max Wool Games"
           ]
-        },
-        {
-          "username": "twww",
-          "uuid": "1ee8f444029b41db84a0b2a34415cdf0",
-          "country": "Taiwan",
-          "current_ap": 23440,
-          "last_month_ap": 23440,
-          "monthly_gain": 0,
-          "maxGames": [
-            "Max Walls",
-            "Max VampireZ"
-          ]
         }
       ]
     },
@@ -3127,6 +3116,15 @@
             "Max Paintball",
             "Max VampireZ"
           ]
+        },
+        {
+          "username": "Maribor",
+          "uuid": "e4447d2895924f76986ac1ba4dcf183c",
+          "country": "Unknown",
+          "current_ap": 23490,
+          "last_month_ap": 23490,
+          "monthly_gain": 0,
+          "maxGames": []
         },
         {
           "username": "BleuShot",
